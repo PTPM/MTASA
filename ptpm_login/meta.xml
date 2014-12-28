@@ -1,0 +1,23 @@
+﻿<meta>
+	<info name="PTPM Login GUI" version="1.0.0" />
+	
+	<script src="globals.lua" type="server"/>
+	<script src="globals.lua" type="client"/>
+	
+	<script src="login.lua" type="server"/>
+	<script src="login_client.lua" type="client"/>
+	<script src="login_scenery.lua" type="client"/>
+	
+	<script src="panel.lua" type="server"/>
+	<script src="panel_client.lua" type="client"/>
+	
+	<export function="setLoginScreenForPlayer" type="server" />
+	
+	<file src="resources/tahoma.ttf"/>
+	<file src="resources/tahomabd.ttf"/>
+	<file src="resources/click.mp3"/>
+	<file src="resources/click2.mp3"/>
+	<file src="resources/grey.fx"/>
+	
+	<include resource="ptpm_accounts" />
+</meta>

@@ -1,0 +1,171 @@
+﻿<map mod="ptpm" version="1.0">
+
+    <wardrobe playerX="324.4081" playerY="1847.7921" playerZ="7.5" playerRot="90.0" camX="314.4081" camY="1847.7921" camZ="8.3" interior="0" />
+	
+    <spawngroup type="psycho">
+        <class id="0" skin="230" weapons="24,15;10,1" />
+        <class id="1" skin="212" weapons="24,15;10,1" />
+        <class id="2" skin="200" weapons="24,15;10,1" />
+        <class id="3" skin="137" weapons="24,15;10,1" />
+        <spawn posX="260.1531" posY="1816.7098" posZ="1.0078" rot="268.6017" />
+        <spawn posX="291.4659" posY="1815.6201" posZ="1.0078" rot="246.0415" />
+        <spawn posX="277.7576" posY="1825.1091" posZ="7.8281" rot="173.6376" />
+        <spawn posX="277.8398" posY="1839.2059" posZ="7.8281" rot="278.9185" />
+        <spawn posX="312.8518" posY="1839.8718" posZ="7.8281" rot="281.7384" />
+        <spawn posX="297.2137" posY="1845.4871" posZ="7.7266" rot="350.0457" />
+        <spawn posX="268.6386" posY="1888.1619" posZ="-29.5313" rot="179.8573" />
+    </spawngroup>
+	
+    <spawngroup type="terrorist">
+        <class id="4" skin="181" weapons="22,30" />
+        <class id="5" skin="183" weapons="22,30" />
+        <class id="6" skin="179" weapons="22,30" />
+        <class id="7" skin="191" weapons="22,30" />
+        <class id="8" skin="111" weapons="22,30" />
+        <class id="9" skin="73" weapons="22,30" />
+        <class id="10" skin="100" weapons="22,30" />
+        <class id="11" skin="274" medic="true" />
+        <linespawn startX="264.9245" startY="1854.9965" startZ="8.7578" endX="279.3932" endY="1855.5127" endZ="8.7649" />
+    </spawngroup>
+	
+    <spawngroup type="pm">
+        <class id="12" skin="147" weapons="15,1;41,300" />
+        <spawn posX="214.8228" posY="1823.0508" posZ="6.4141" rot="90" />
+    </spawngroup>
+	
+    <spawngroup type="bodyguard">
+        <class id="13" skin="163" weapons="23,30" />
+        <class id="14" skin="164" weapons="23,30" />
+        <class id="15" skin="165" weapons="23,30" />
+        <class id="16" skin="166" weapons="23,30" />
+        <class id="17" skin="141" weapons="23,30" />
+        <class id="18" skin="276" medic="true" />
+        <linespawn startX="236.1139" startY="1830.8975" startZ="7.4141" endX="236.3620" endY="1802.6598" endZ="7.4141" />
+    </spawngroup>
+	
+    <spawngroup type="police">
+        <class id="19" skin="280" weapons="27,6" />
+        <class id="20" skin="281" weapons="27,6" />
+        <class id="21" skin="282" weapons="27,6" />
+        <class id="22" skin="283" weapons="27,6" />
+        <class id="23" skin="284" weapons="27,6" />
+        <class id="24" skin="285" weapons="27,6" />
+        <class id="25" skin="286" weapons="27,6" />
+        <class id="26" skin="288" weapons="27,6" />
+        <class id="27" skin="246" weapons="27,6" />
+        <class id="28" skin="275" weapons="24,12" medic="true" />
+        <linespawn startX="240.7006" startY="1860.3549" startZ="8.7578" endX="240.2447" endY="1843.9711" endZ="8.7578" />
+        <linespawn startX="262.5329" startY="1850.7712" startZ="8.7578" endX="262.4048" endY="1872.0902" endZ="8.7578" />
+    </spawngroup>
+	
+    <vehicle model="583" posX="303.1669" posY="1856.8157" posZ="7.3735" rotZ="269.8915" />
+    <!-- tug -->
+    <vehicle model="583" posX="288.5635" posY="1838.0925" posZ="7.3735" rotZ="90.0084" />
+    <!-- forklift -->
+    <vehicle model="455" posX="292.1649" posY="1816.7781" posZ="5.2966" rotZ="89.9380" />
+    <!-- bigtruck -->
+    <vehicle model="500" posX="250.0213" posY="1851.8928" posZ="8.9877" rotZ="0.7202" />
+    <!-- mesa -->
+    <vehicle model="530" posX="258.2811" posY="1858.4617" posZ="8.5579" rotZ="359.2342" />
+    <!-- forklift -->
+    <vehicle model="485" posX="204.4126" posY="1871.8490" posZ="12.8406" rotZ="269.9963" />
+    <!-- baggageinside -->
+    <vehicle model="485" posX="204.4803" posY="1863.7417" posZ="12.8406" rotZ="269.4197" />
+    <!-- baggageinside -->
+    <vehicle model="485" posX="204.8254" posY="1859.1261" posZ="12.8406" rotZ="270.7773" />
+    <!-- baggageinside -->
+    <vehicle model="583" posX="221.8046" posY="1854.5204" posZ="12.5339" rotZ="357.9152" />
+    <!-- tuginside -->
+    <vehicle model="583" posX="213.6140" posY="1853.8013" posZ="12.4818" rotZ="1.4956" />
+    <!-- tuginside -->
+    <vehicle model="583" posX="222.0894" posY="1870.0920" posZ="12.7875" rotZ="89.4719" />
+    <!-- tuginside -->
+    <vehicle model="583" posX="218.0974" posY="1855.2688" posZ="12.5924" rotZ="359.7826" />
+    <!-- tugoutside -->
+    <vehicle model="485" posX="204.5439" posY="1867.7172" posZ="12.8406" rotZ="268.3628" />
+    <!-- baggageoutside -->
+    <vehicle model="583" posX="131.6164" posY="1935.5697" posZ="18.9137" rotZ="178.2392" />
+    <!-- tugoutside -->
+    <vehicle model="583" posX="135.6164" posY="1935.5697" posZ="18.9128" rotZ="178.2392" />
+    <!-- tugoutside -->
+    <vehicle model="485" posX="282.5462" posY="1814.4000" posZ="17.3406" rotZ="88.0213" />
+    <!-- baggageoutside -->
+    <vehicle model="485" posX="276.4262" posY="1808.7560" posZ="17.3406" rotZ="358.5230" />
+    <!-- baggageoutside -->
+    <vehicle model="485" posX="140.1052" posY="1936.1160" posZ="18.9689" rotZ="178.1925" />
+    <!-- baggageoutside -->
+    <vehicle model="485" posX="127.6311" posY="1936.1040" posZ="18.9719" rotZ="177.1334" />
+    <!-- baggageoutside -->
+	
+    <pickup posX="244.6849" posY="1858.7109" posZ="14.0840" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- coparmour -->
+    <pickup posX="268.4451" posY="1884.2373" posZ="-30.0938" type="custom" model="370" respawn="30000" jetpack="true" />
+    <!-- jetpack -->
+    <pickup posX="268.5153" posY="1891.2520" posZ="-12.8603" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- armourbottom(terrorist) -->
+    <pickup posX="220.1820" posY="1822.7550" posZ="7.5216" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- bgarmour -->
+    <pickup posX="266.2813" posY="1816.398" posZ="1.594" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- 39Area51 -->
+    <pickup posX="275.169" posY="1859.699" posZ="9.81" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- 40Area51 -->
+    <pickup posX="247.016" posY="1859.22" posZ="14.08" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- 58Area51 -->
+    <pickup posX="255.36" posY="1802.007" posZ="7.47" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- 67Area51 -->
+    <pickup posX="292.46" posY="1817.89" posZ="1.015" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- 71Area51 -->
+    <pickup posX="102.0159" posY="1901.1531" posZ="33.8984" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- ArmourOutside -->
+    <pickup posX="263.0227" posY="1878.9073" posZ="-30.3906" type="37" amount="50" respawn="30000" synced="true" />
+    <!-- flamethrower(rightatthebottom) -->
+    <pickup posX="276.5279" posY="1886.5530" posZ="8.4375" type="28" amount="80" respawn="15000" synced="true" />
+    <!-- uzijetpacktop -->
+    <pickup posX="271.6212" posY="1873.7330" posZ="8.7578" type="32" amount="80" respawn="30000" synced="false" />
+    <!-- uziterrorist -->
+    <pickup posX="330.1199" posY="1848.1210" posZ="7.7266" type="26" amount="24" respawn="20000" synced="true" />
+    <!-- sawnoff -->
+    <pickup posX="287.9067" posY="1824.1339" posZ="7.7340" type="26" amount="24" respawn="20000" synced="true" />
+    <!-- sawnoff -->
+    <pickup posX="275.7653" posY="1841.6360" posZ="9.3473" type="28" amount="80" respawn="20000" synced="true" />
+    <!-- uzionduct(incorridor) -->
+    <pickup posX="293.8852" posY="1820.1926" posZ="4.7109" type="28" amount="80" respawn="20000" synced="true" />
+    <!-- uziunderstairs -->
+    <pickup posX="272.7304" posY="1816.0725" posZ="1.0078" type="30" amount="80" respawn="40000" synced="true" />
+    <!-- ak -->
+    <pickup posX="245.4331" posY="1818.4679" posZ="7.5547" type="28" amount="80" respawn="7000" synced="false" />
+    <!-- toproommiddle -->
+    <pickup posX="239.1696" posY="1834.3403" posZ="8.0865" type="27" amount="24" respawn="15000" synced="true" />
+    <!-- shotgspa -->
+    <pickup posX="246.3053" posY="1830.4159" posZ="12.2121" type="37" amount="50" respawn="25000" synced="true" />
+    <!-- topflamethrower -->
+    <pickup posX="239.4735" posY="1836.7117" posZ="10.7606" type="29" amount="80" respawn="20000" synced="true" />
+    <!-- mp5 -->
+    <pickup posX="255.3534" posY="1802.6709" posZ="7.4713" type="32" amount="80" respawn="9999999" synced="false" />
+    <!-- bguarduzi -->
+    <pickup posX="244.8132" posY="1877.1115" posZ="8.7578" type="32" amount="80" respawn="9999999" synced="false" />
+    <!-- copuzi -->
+    <pickup posX="297.8289" posY="1846.622" posZ="7.7266" type="27" amount="40" respawn="30000" synced="true" />
+    <!-- 86Area51(+1z) -->
+    <pickup posX="163.9067" posY="1849.6705" posZ="33.8984" type="27" amount="15" respawn="30000" synced="true" />
+    <!-- CombatShotgunOutside -->
+    <pickup posX="162.1602" posY="1935.1891" posZ="33.8984" type="28" amount="200" respawn="30000" synced="true" />
+    <!-- MicroSMGOutside -->
+    <pickup posX="111.4570" posY="1814.4930" posZ="33.8984" type="32" amount="100" respawn="30000" synced="false" />
+    <!-- Tec9Outside -->
+    <pickup posX="259.9716" posY="1807.7046" posZ="33.8984" type="29" amount="80" respawn="30000" synced="true" />
+    <!-- MP5Outside -->
+    <pickup posX="264.84" posY="1895.21" posZ="33.89" type="31" amount="200" respawn="30000" synced="true" />
+    <teleport minX="82" minY="1798" minZ="17.6" maxX="97" maxY="1942" maxZ="500" message="" teleX="97.5643" teleY="1920.4034" teleZ="18.1709" teleRot="267.3321" vehicles="true" interior="0" />
+	
+    <teleport minX="82" minY="1942" minZ="17.6" maxX="293" maxY="1962" maxZ="500" message="" teleX="232.8058" teleY="1927.2909" teleZ="17.6406" teleRot="181.1084" vehicles="true" interior="0" />
+    <teleport minX="286" minY="1798" minZ="17.6" maxX="293" maxY="1942" maxZ="500" message="" teleX="282.9717" teleY="1820.8510" teleZ="17.6406" teleRot="89.6375" vehicles="true" interior="0" />
+    <teleport minX="82" minY="1780" minZ="17.6" maxX="286" maxY="1798" maxZ="500" message="" teleX="210.5844" teleY="1801.2509" teleZ="17.6406" teleRot="355.0099" vehicles="true" interior="0" />
+    <teleport minX="97" minY="1789" minZ="75" maxX="293" maxY="1961" maxZ="300" message="" teleX="213.6958" teleY="1874.7875" teleZ="17.6406" teleRot="174.5749" vehicles="true" interior="0" />
+	
+    <object model="969" posX="265.51" posY="1820.82" posZ="9.63" rotX="90.00" rotY="0.00" rotZ="180.30" />
+    <!-- fence2 -->
+    <object model="969" posX="257.04" posY="1827.36" posZ="9.58" rotX="90.00" rotY="0.00" rotZ="1.04" />
+    <!-- fence1 -->
+    <object id="object (a51_jetdoor) (1)" model="3095" posX="268.66882324219" posY="1884.1352539063" posZ="16.065633773804" rotX="0" rotY="0" rotZ="88.840026855469" />
+</map>

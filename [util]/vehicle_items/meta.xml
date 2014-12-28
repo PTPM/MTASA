@@ -1,0 +1,4 @@
+﻿<meta>
+	<info name="Single player vehicle items simulator" type="script" version="1.0.0" />
+	<script src="items.lua" type="server" />
+</meta>

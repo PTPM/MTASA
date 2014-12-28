@@ -1,0 +1,541 @@
+﻿<map mod="ptpm" version="1.0">
+
+    <wardrobe playerX="-2229.3877" playerY="-1741.4910" playerZ="480.8772" playerRot="153" camX="-2231.7322" camY="-1744.2053" camZ="480.3524" interior="0" />
+	
+    <safezone posX="-1634.9736" posY="-2239.0676" posZ="31.4766" exclusion="100" enabled="true" />
+	
+    <intel north="-1390" south="-1930" west="1130" east="1835" feature="Mt. Chiliad" />
+	
+    <spawngroup type="psycho">
+        <class id="0" skin="230" weapons="18,5;30,100;26,80" />
+        <class id="1" skin="212" weapons="18,5;30,100;26,80" />
+        <class id="2" skin="200" weapons="18,5;30,100;37,80" />
+        <class id="3" skin="137" weapons="18,5;30,100;37,80" />
+        <linespawn startX="-2040" startY="-2554" startZ="30" endX="-2050" endY="-2550" endZ="30" />
+        <cantdrive models="430" />
+    </spawngroup>
+
+    <spawngroup type="terrorist">
+        <class id="4" skin="181" weapons="26,150;31,400;37,300" />
+        <class id="5" skin="183" weapons="26,150;31,400;18,10" />
+        <class id="6" skin="179" weapons="26,150;33,30;37,300" />
+        <class id="7" skin="191" weapons="26,150;22,200;16,10" />
+        <class id="8" skin="111" weapons="26,150;22,200;18,10" />
+        <class id="9" skin="73" weapons="26,150;33,30;23,300" />
+        <class id="10" skin="100" weapons="23,150;31,400;37,300" />
+        <class id="11" skin="274" weapons="46,1;23,100;41,300" medic="true" />
+        <spawn posX="-2818.0095" posY="-1517.0559" posZ="140.8438" rot="267.4933" />
+        <spawn posX="-2817.9077" posY="-1518.6733" posZ="140.8438" rot="266.2962" />
+        <spawn posX="-2817.9270" posY="-1520.3000" posZ="140.8438" rot="264.8419" />
+        <spawn posX="-2817.8613" posY="-1522.2753" posZ="140.8438" rot="262.7049" />
+        <spawn posX="-2817.8523" posY="-1524.4056" posZ="140.8438" rot="265.0107" />
+        <spawn posX="-2817.9915" posY="-1526.8164" posZ="140.8438" rot="262.9298" />
+        <spawn posX="-2817.9590" posY="-1529.1571" posZ="140.8438" rot="264.2394" />
+        <spawn posX="-2809.3828" posY="-1517.5955" posZ="140.8438" rot="267.9760" />
+        <spawn posX="-2808.8022" posY="-1521.2811" posZ="140.8438" rot="268.0885" />
+        <spawn posX="-2808.7705" posY="-1524.7393" posZ="140.8438" rot="268.4580" />
+    </spawngroup>
+	
+    <spawngroup type="pm">
+        <class id="12" skin="147" weapons="15,1;41,1000;46,1" />
+        <spawn posX="-1985.1062" posY="-1550.1643" posZ="88.0002" rot="270" />
+        <!-- -->
+        <cantpickup models="38,35" />
+        <cantdrive models="593,476,511,497,447,522,468,510,432" />
+    </spawngroup>
+	
+    <spawngroup type="bodyguard">
+        <class id="13" skin="163" weapons="23,100;28,200;46,1" />
+        <class id="14" skin="164" weapons="23,100;28,200;46,1" />
+        <class id="15" skin="165" weapons="23,100;28,200;46,1" />
+        <class id="16" skin="166" weapons="23,100;28,200;46,1" />
+        <class id="17" skin="141" weapons="23,100;28,200;46,1" />
+        <class id="18" skin="276" weapons="46,1;23,100;41,300" medic="true" />
+        <linespawn startX="-2006.9596" startY="-1518.3007" startZ="85.1718" endX="-2007.4741" endY="-1562.4833" endZ="88.7751" />
+        <cantdrive models="430" />
+    </spawngroup>
+	
+    <spawngroup type="police">
+        <class id="19" skin="280" weapons="24,100;31,200;41,300" />
+        <class id="20" skin="281" weapons="24,100;29,200;41,300" />
+        <class id="21" skin="282" weapons="24,100;29,200;41,300" />
+        <class id="22" skin="283" weapons="24,100;29,200;41,300" />
+        <class id="23" skin="284" weapons="24,100;29,200;41,300" />
+        <class id="24" skin="285" weapons="24,100;31,200;41,300" />
+        <class id="25" skin="286" weapons="24,100;31,200;41,300" />
+        <class id="26" skin="288" weapons="24,100;31,200;41,300" />
+        <class id="27" skin="246" weapons="24,100;29,200;41,300" />
+        <class id="28" skin="275" weapons="46,1;24,100;41,300" medic="true" />
+        <linespawn startX="-2408.7991" startY="-2180.7649" startZ="33.2891" endX="-2406.7439" endY="-2192.7683" endZ="33.2891" />
+        <linespawn startX="-2368.5933" startY="-2161.9119" startZ="35.5307" endX="-2398.5989" endY="-2161.1355" endZ="35.5019" />
+    </spawngroup>
+
+
+
+	<vehicle id="vehicle (Police SF) (1)" paintjob="0" model="597" plate="LHEJU7A" interior="0" dimension="0" posX="-2373.6489257813" posY="-2189.11328125" posZ="33.29700088501" rotX="0" rotY="0" rotZ="306.18991088867" />
+    <vehicle id="vehicle (Police SF) (2)" paintjob="0" model="597" plate="UHQ7562" interior="0" dimension="0" posX="-2386.7321777344" posY="-2190.5678710938" posZ="33.159099578857" rotX="0" rotY="0" rotZ="271.76330566406" />
+    <vehicle id="vehicle (Police SF) (3)" paintjob="0" model="597" plate="TCUP7IY" interior="0" dimension="0" posX="-2399.0864" posY="-2193.6462" posZ="33.1591" rotZ="291.7810" />
+    <vehicle id="vehicle (Police SF) (4)" paintjob="0" model="597" plate="EEUW7L8" interior="0" dimension="0" posX="-2407.3229980469" posY="-2203.2778320313" posZ="33.159099578857" rotX="0" rotY="0" rotZ="354.44641113281" />
+    <vehicle id="vehicle (Enforcer) (1)" paintjob="0" model="427" plate="F730J1A" interior="0" dimension="0" posX="-2397.4343" posY="-2167.4753" posZ="33.5371" rotZ="269.6390" />
+    <vehicle id="vehicle (S.W.A.T.) (1)" paintjob="0" model="601" plate="Y9HDI7X" interior="0" dimension="0" posX="-2372.1985" posY="-2168.1006" posZ="33.2743" rotZ="266.6502" />
+    <vehicle id="vehicle (Enforcer) (2)" paintjob="0" model="427" plate="TFWQ6E1" interior="0" dimension="0" posX="-2382.5354" posY="-2167.6113" posZ="33.5371" rotZ="270.1384" />
+    <vehicle id="vehicle (Police Ranger) (1)" paintjob="0" model="599" plate="LVL7JVX" interior="0" dimension="0" posX="-2377.6465" posY="-2228.4419" posZ="33.6742" rotZ="353.7873" />
+    <vehicle id="vehicle (Police Ranger) (2)" paintjob="0" model="599" plate="RHG40R5" interior="0" dimension="0" posX="-2386.4207" posY="-2227.5403" posZ="33.6742" rotZ="359.7560" />
+    <vehicle id="vehicle (Police Ranger) (3)" paintjob="0" model="599" plate="972KD6D" interior="0" dimension="0" posX="-2394.6575" posY="-2226.2749" posZ="33.6742" rotZ="354.7045" />
+    <vehicle id="vehicle (Police Ranger) (4)" paintjob="0" model="599" plate="0XYRQFB" interior="0" dimension="0" posX="-2406.1470" posY="-2224.0122" posZ="33.6742" rotZ="358.4010" />
+    <vehicle id="vehicle (HPV1000) (1)" paintjob="0" model="523" plate="SAN02M0" interior="0" dimension="0" posX="-2378.3643" posY="-2209.2053" posZ="32.9494" rotZ="326.5068" />
+    <vehicle id="vehicle (HPV1000) (2)" paintjob="0" model="523" plate="NK566NQ" interior="0" dimension="0" posX="-2366.6592" posY="-2197.8884" posZ="33.1939" rotZ="289.0352" />
+    <vehicle id="vehicle (Buffalo) (1)" paintjob="0" model="402" plate="8V8VSQ7" interior="0" dimension="0" posX="-2815.9453" posY="-1512.4061" posZ="139.2291" rotZ="272.2700" />
+    <vehicle id="vehicle (Buffalo) (2)" paintjob="0" model="402" plate="8S10TOZ" interior="0" dimension="0" posX="-2815.9370" posY="-1536.1644" posZ="139.2291" rotZ="277.8143" />
+    <vehicle id="vehicle (Buffalo) (3)" paintjob="0" model="402" plate="N80QVE4" interior="0" dimension="0" posX="-2815.3403320313" posY="-1506.3225097656" posZ="139.22909545898" rotX="0" rotY="0" rotZ="268.9072265625" />
+    <vehicle id="vehicle (Leviathan) (1)" paintjob="0" model="417" plate="58NOSQ2" interior="0" dimension="0" posX="-2390.6204" posY="-2204.1663" posZ="33.3788" rotZ="117.7673" />
+    <vehicle id="vehicle (Cargobob) (1)" paintjob="0" model="548" plate="48SDC1A" interior="0" dimension="0" posX="-1885.5654296875" posY="-1533.38671875" posZ="23.650100708008" rotX="0" rotY="0" rotZ="173.78723144531" />
+    <vehicle id="vehicle (Cargobob) (2)" paintjob="0" model="548" plate="GT2LDXU" interior="0" dimension="0" posX="-1827.62890625" posY="-1572.0693359375" posZ="23.650100708008" rotX="0" rotY="0" rotZ="121.49230957031" />
+    <vehicle id="vehicle (Monster 1) (1)" paintjob="0" model="444" plate="Q6T8B12" interior="0" dimension="0" posX="-1990.9423828125" posY="-1454.939453125" posZ="88.081497192383" rotX="354.04504394531" rotY="3.969970703125" rotZ="141.16333007813" />
+    <vehicle id="vehicle (Monster 1) (2)" paintjob="0" model="444" plate="84CSOC2" interior="0" dimension="0" posX="-1983.23046875" posY="-1459.712890625" posZ="87.54419708252" rotX="0" rotY="0" rotZ="120.89904785156" />
+    <vehicle id="vehicle (Monster 1) (3)" paintjob="0" model="444" plate="3Q2MONZ" interior="0" dimension="0" posX="-1982.142578125" posY="-1469.33984375" posZ="87.153198242188" rotX="0" rotY="0" rotZ="100.93139648438" />
+    <vehicle id="vehicle (Monster 1) (4)" paintjob="0" model="444" plate="V6036AT" interior="0" dimension="0" posX="-1982.9599609375" posY="-1479.0107421875" posZ="86.687690734863" rotX="356.03002929688" rotY="0" rotZ="103.07922363281" />
+    <vehicle id="vehicle (Monster 1) (5)" paintjob="0" model="444" plate="75KTXMV" interior="0" dimension="0" posX="-1982.5185546875" posY="-1490.3037109375" posZ="86.17790222168" rotX="0" rotY="0" rotZ="79.315795898438" />
+    <vehicle id="vehicle (Rustler) (1)" paintjob="0" model="476" plate="9ODQPVU" interior="0" dimension="0" posX="-1960.9373" posY="-1597.9121" posZ="88.3799" rotZ="179.5480" safezone_excluded="true" />
+    <vehicle id="vehicle (Rustler) (2)" paintjob="0" model="476" plate="4AZG8HT" interior="0" dimension="0" posX="-1973.8771972656" posY="-1594.1390380859" posZ="88.937599182129" rotZ="180.31860351563" rotX="0" rotY="0" safezone_excluded="true" />
+    <vehicle id="vehicle (Rustler) (3)" paintjob="0" model="476" plate="PA3QYF7" interior="0" dimension="0" posX="-2379.8350" posY="-2286.5393" posZ="17.5274" rotZ="123.2685" safezone_excluded="true" />
+    <vehicle id="vehicle (Rustler) (4)" paintjob="0" model="476" plate="3MS6CC7" interior="0" dimension="0" posX="-2373.2949" posY="-2296.2078" posZ="19.4991" rotZ="125.2730" safezone_excluded="true" />
+    <vehicle id="vehicle (Rustler) (5)" paintjob="0" model="476" plate="2JXCOA4" interior="0" dimension="0" posX="-2910.7421875" posY="-1371.8874511719" posZ="13.038200378418" rotX="0" rotY="0" rotZ="140.75952148438" safezone_excluded="true" />
+    <vehicle id="vehicle (Beagle) (1)" paintjob="0" model="511" plate="MZBGZ5M" interior="0" dimension="0" posX="-2198.734375" posY="-2131.287109375" posZ="50.698921203613" rotZ="208.31018066406" rotX="0" rotY="7.9400634765625" safezone_excluded="true" />
+    <vehicle id="vehicle (Beagle) (2)" paintjob="0" model="511" plate="O0HH3WF" interior="0" dimension="0" posX="-2910.859375" posY="-1408.5966796875" posZ="13.007399559021" rotX="0" rotY="0" rotZ="149.66668701172" safezone_excluded="true" />
+    <vehicle id="vehicle (Dodo) (1)" paintjob="0" model="593" plate="3Y640NV" interior="0" dimension="0" posX="-2136.7048" posY="-2056.8174" posZ="63.9174" rotZ="172.2179" safezone_excluded="true" />
+    <vehicle id="vehicle (Dodo) (2)" paintjob="0" model="593" plate="XXEUTUP" interior="0" dimension="0" posX="-2915.7021" posY="-1861.3938" posZ="32.5474" rotZ="10.3758" safezone_excluded="true" />
+    <vehicle id="vehicle (Dodo) (3)" paintjob="0" model="593" plate="9ZQKU1Z" interior="0" dimension="0" posX="-2881.3857421875" posY="-1508.7197265625" posZ="137.25880432129" rotX="0" rotY="0" rotZ="54.599609375" safezone_excluded="true" />
+    <vehicle id="vehicle (Landstalker) (1)" paintjob="0" model="400" plate="TQJU8X6" interior="0" dimension="0" posX="-2815.0845" posY="-1541.7048" posZ="139.6682" rotZ="285.3298" />
+    <vehicle id="vehicle (Landstalker) (2)" paintjob="0" model="400" plate="G4W07KT" interior="0" dimension="0" posX="-2812.6074" posY="-1547.8026" posZ="140.1286" rotZ="281.6122" />
+    <vehicle id="vehicle (Landstalker) (3)" paintjob="0" model="400" plate="H4SLNU9" interior="0" dimension="0" posX="-2800.6596679688" posY="-1502.7919921875" posZ="139.42520141602" rotX="0" rotY="0" rotZ="269.46716308594" />
+    <vehicle id="vehicle (Landstalker) (4)" paintjob="0" model="400" plate="8OMD8Q2" interior="0" dimension="0" posX="-2818.9877929688" posY="-1497.6381835938" posZ="139.42520141602" rotX="0" rotY="0" rotZ="264.57275390625" />
+    <vehicle id="vehicle (Landstalker) (5)" paintjob="0" model="400" plate="CUARNZD" interior="0" dimension="0" posX="-2818.3213" posY="-1491.7410" posZ="139.4252" rotZ="266.7462" />
+    <vehicle id="vehicle (ZR-350) (1)" paintjob="0" model="477" plate="OJWAH2A" interior="0" dimension="0" posX="-2776.93359375" posY="-1527.822265625" posZ="139.50059509277" rotX="0" rotY="0" rotZ="69.703491210938" />
+    <vehicle id="vehicle (ZR-350) (2)" paintjob="0" model="477" plate="BRLQ4BT" interior="0" dimension="0" posX="-2773.4927" posY="-1510.8029" posZ="138.3987" rotZ="81.8501" />
+    <vehicle id="vehicle (ZR-350) (3)" paintjob="0" model="477" plate="U7XJESI" interior="0" dimension="0" posX="-2774.7124023438" posY="-1519.5970458984" posZ="139.00770568848" rotX="0" rotY="0" rotZ="76.238037109375" />
+    <vehicle id="vehicle (Sanchez) (1)" paintjob="0" model="468" plate="H629LUO" interior="0" dimension="0" posX="-2802.5268554688" posY="-1513.7642822266" posZ="139.0491027832" rotX="0" rotY="0" rotZ="268.43444824219" />
+    <vehicle id="vehicle (Sanchez) (2)" paintjob="0" model="468" plate="ZH5UZUF" interior="0" dimension="0" posX="-2802.6350" posY="-1516.0708" posZ="139.0491" rotZ="269.2060" />
+    <vehicle id="vehicle (Sanchez) (3)" paintjob="0" model="468" plate="9ZXSRPR" interior="0" dimension="0" posX="-2802.1323" posY="-1518.5948" posZ="139.0491" rotZ="268.7362" />
+    <vehicle id="vehicle (Sanchez) (4)" paintjob="0" model="468" plate="WXH59CD" interior="0" dimension="0" posX="-2802.0961914063" posY="-1520.9675292969" posZ="139.0491027832" rotX="0" rotY="0" rotZ="270.64270019531" />
+    <vehicle id="vehicle (Sanchez) (5)" paintjob="0" model="468" plate="U2L5O4D" interior="0" dimension="0" posX="-2808.7568359375" posY="-1530.3388671875" posZ="140.60369873047" rotX="0" rotY="0" rotZ="181.82373046875" />
+    <vehicle id="vehicle (Comet) (1)" paintjob="0" model="480" plate="5RREBZB" interior="0" dimension="0" posX="-2007.7883300781" posY="-1499.8796386719" posZ="83.71647644043" rotX="0" rotY="0" rotZ="208.39294433594" />
+    <vehicle id="vehicle (Comet) (2)" paintjob="0" model="480" plate="2228APM" interior="0" dimension="0" posX="-2006.7740478516" posY="-1512.1594238281" posZ="84.59765625" rotX="0" rotY="0" rotZ="209.62713623047" />
+    <vehicle id="vehicle (Comet) (3)" paintjob="0" model="480" plate="UK5RVY6" interior="0" dimension="0" posX="-2007.6162109375" posY="-1506.0615234375" posZ="84.104598999023" rotX="0" rotY="0" rotZ="208.53271484375" />
+    <vehicle id="vehicle (Huntley) (1)" paintjob="0" model="579" plate="23486E4" interior="0" dimension="0" posX="-1996.2604" posY="-1451.8334" posZ="87.3171" rotZ="145.0126" />
+    <vehicle id="vehicle (Huntley) (2)" paintjob="0" model="579" plate="3WOFNPP" interior="0" dimension="0" posX="-1982.9970703125" posY="-1496.6962890625" posZ="85.795402526855" rotX="0" rotY="0" rotZ="84.523315429688" />
+    <vehicle id="vehicle (Huntley) (3)" paintjob="0" model="579" plate="BKRXCUE" interior="0" dimension="0" posX="-1970.9150390625" posY="-1509.794921875" posZ="88.162368774414" rotX="352.05993652344" rotY="0" rotZ="89.533081054688" />
+    <vehicle id="vehicle (Huntley) (4)" paintjob="0" model="579" plate="31J9SBN" interior="0" dimension="0" posX="-1965.3681640625" posY="-1520.505859375" posZ="90.07869720459" rotX="0" rotY="0" rotZ="150.38635253906" />
+    <vehicle id="vehicle (Police SF) (5)" paintjob="0" model="597" plate="2LV2FCH" interior="0" dimension="0" posX="-1999.3564453125" posY="-1580.0863037109" posZ="85.937301635742" rotX="0" rotY="0" rotZ="182.47192382813" />
+    <vehicle id="vehicle (Police SF) (6)" paintjob="0" model="597" plate="K19VJLM" interior="0" dimension="0" posX="-2000.0877685547" posY="-1560.3305664063" posZ="85.691902160645" rotX="0" rotY="0" rotZ="180.76550292969" />
+    <vehicle id="vehicle (Police SF) (7)" paintjob="0" model="597" plate="9EH87CY" interior="0" dimension="0" posX="-1991.5380859375" posY="-1571.0322265625" posZ="86.028198242188" rotX="0" rotY="0" rotZ="185.65246582031" />
+    <vehicle id="vehicle (Stretch) (1)" paintjob="0" model="409" plate="LOVEPTPM" interior="0" dimension="0" posX="-1999.9849853516" posY="-1570.3062744141" posZ="85.848243713379" rotX="0" rotY="0" rotZ="182.44866943359" />
+    <vehicle id="vehicle (Quadbike) (1)" paintjob="0" model="471" plate="U8M3MH6" interior="0" dimension="0" posX="-2002.6436767578" posY="-1601.8527832031" posZ="86.64289855957" rotX="0" rotY="0" rotZ="232.26110839844" />
+    <vehicle id="vehicle (Quadbike) (2)" paintjob="0" model="471" plate="CPI2GIU" interior="0" dimension="0" posX="-2003.291015625" posY="-1606.0263671875" posZ="86.960403442383" rotX="0" rotY="0" rotZ="231.47973632813" />
+    <vehicle id="vehicle (Sanchez) (6)" paintjob="0" model="468" plate="FXLPH1W" interior="0" dimension="0" posX="-2028.8818359375" posY="-1450.58203125" posZ="90.352203369141" rotX="0" rotY="0" rotZ="218.04565429688" />
+    <vehicle id="vehicle (Dumper) (1)" paintjob="0" model="406" plate="UJU5FIT" interior="0" dimension="0" posX="-1902.9091796875" posY="-1627.7783203125" posZ="22.507699966431" rotX="0" rotY="0" rotZ="180.07141113281" />
+    <vehicle id="vehicle (Dumper) (2)" paintjob="0" model="406" plate="QG4MXVN" interior="0" dimension="0" posX="-1823.0953" posY="-1651.3756" posZ="22.5013" rotZ="88.6411" />
+    <vehicle id="vehicle (Dumper) (3)" paintjob="0" model="406" plate="JPPVZIY" interior="0" dimension="0" posX="-1930.1533203125" posY="-1703.4931640625" posZ="22.501300811768" rotX="0" rotY="0" rotZ="271.07116699219" />
+    <vehicle id="vehicle (Admiral) (1)" paintjob="0" model="445" plate="YBNIO6G" interior="0" dimension="0" posX="-1893.796875" posY="-1693.05078125" posZ="21.732599258423" rotX="0" rotY="0" rotZ="271.56005859375" />
+    <vehicle id="vehicle (Admiral) (2)" paintjob="0" model="445" plate="WB2FXJO" interior="0" dimension="0" posX="-1857.556640625" posY="-1623.6875" posZ="21.942100524902" rotX="0" rotY="0" rotZ="184.55932617188" />
+    <vehicle id="vehicle (Trashmaster) (1)" paintjob="0" model="408" plate="8WFUI8N" interior="0" dimension="0" posX="-1890.78125" posY="-1750.5693359375" posZ="22.5" rotX="0" rotY="0" rotZ="303.57421875" />
+    <vehicle id="vehicle (Buffalo) (4)" paintjob="0" model="402" plate="JQPEZWX" interior="0" dimension="0" posX="-2329.0087890625" posY="-1822.3349609375" posZ="436.55960083008" rotX="0" rotY="0" rotZ="7.7618408203125" />
+    <vehicle id="vehicle (Cheetah) (1)" paintjob="0" model="415" plate="OJIVB2X" interior="0" dimension="0" posX="-2390.166015625" posY="-1866.525390625" posZ="404.79818725586" rotX="0" rotY="0" rotZ="100.93139648438" />
+    <vehicle id="vehicle (Bobcat) (1)" paintjob="0" model="422" plate="KBDY2GF" interior="0" dimension="0" posX="-2413.509765625" posY="-1824.7919921875" posZ="415.18969726563" rotX="0" rotY="0" rotZ="37.880859375" />
+    <vehicle id="vehicle (Mountain Bike) (1)" paintjob="0" model="510" plate="D185IAP" interior="0" dimension="0" posX="-2433.0751953125" posY="-1812.8017578125" posZ="411.31549072266" rotX="0" rotY="0" rotZ="112.03295898438" />
+    <vehicle id="vehicle (Clover) (1)" paintjob="0" model="542" plate="HNLFADF" interior="0" dimension="0" posX="-2478.9873046875" posY="-1798.2783203125" posZ="406.02398681641" rotX="0" rotY="0" rotZ="47.373046875" />
+    <vehicle id="vehicle (Stallion) (1)" paintjob="0" model="439" plate="LVLF0OL" interior="0" dimension="0" posX="-2517.1328125" posY="-1726.7822265625" posZ="402.23400878906" rotX="0" rotY="0" rotZ="11.964111328125" />
+    <vehicle id="vehicle (Glendale) (1)" paintjob="0" model="466" plate="2U80HSS" interior="0" dimension="0" posX="-2533.1794" posY="-1667.5564" posZ="401.2926" rotZ="21.7438" />
+    <vehicle id="vehicle (Sandking) (1)" paintjob="0" model="495" plate="86WF0XF" interior="0" dimension="0" posX="-2379.7205" posY="-1454.8885" posZ="385.4920" rotZ="278.6467" />
+    <vehicle id="vehicle (Feltzer) (1)" paintjob="0" model="533" plate="RO2MOXB" interior="0" dimension="0" posX="-2262.1548" posY="-1485.7367" posZ="378.7948" rotZ="232.9437" />
+    <vehicle id="vehicle (Mountain Bike) (2)" paintjob="0" model="510" plate="4HPVR78" interior="0" dimension="0" posX="-2222.3479" posY="-1570.4625" posZ="378.9842" rotZ="191.5209" />
+    <vehicle id="vehicle (Mountain Bike) (3)" paintjob="0" model="510" plate="UFRUG3A" interior="0" dimension="0" posX="-2197.8594" posY="-1617.2303" posZ="364.7445" rotZ="5.3690" />
+    <vehicle id="vehicle (NRG-500) (1)" paintjob="0" model="522" plate="2ABJ1IH" interior="0" dimension="0" posX="-2370.2078" posY="-1388.3630" posZ="358.6595" rotZ="70.8725" />
+    <vehicle id="vehicle (Buffalo) (5)" paintjob="0" model="402" plate="YGJHH3I" interior="0" dimension="0" posX="-2551.8943" posY="-1484.2795" posZ="360.0536" rotZ="54.6059" />
+    <vehicle id="vehicle (Mountain Bike) (4)" paintjob="0" model="510" plate="8I980XB" interior="0" dimension="0" posX="-2519.6372" posY="-1435.1702" posZ="350.3658" rotZ="345.0096" />
+    <vehicle id="vehicle (Monster 1) (6)" paintjob="0" model="444" plate="TNIE3NN" interior="0" dimension="0" posX="-2366.9658" posY="-1360.9087" posZ="300.2356" rotZ="277.0966" />
+    <vehicle id="vehicle (Cheetah) (2)" paintjob="0" model="415" plate="H380NID" interior="0" dimension="0" posX="-2345.7637" posY="-1302.6483" posZ="310.0619" rotZ="7.7477" />
+    <vehicle id="vehicle (Bobcat) (2)" paintjob="0" model="422" plate="AZO1CFZ" interior="0" dimension="0" posX="-2507.0757" posY="-1277.4647" posZ="273.5067" rotZ="126.0685" />
+    <vehicle id="vehicle (Coach) (1)" paintjob="0" model="437" plate="G7MY3TC" interior="0" dimension="0" posX="-2605.8606" posY="-1273.6674" posZ="218.7426" rotZ="3.9074" />
+    <vehicle id="vehicle (Clover) (2)" paintjob="0" model="542" plate="X7MI6C3" interior="0" dimension="0" posX="-2553.5691" posY="-1105.9164" posZ="175.3665" rotZ="179.9735" />
+    <vehicle id="vehicle (Stallion) (2)" paintjob="0" model="439" plate="A5UQ6VE" interior="0" dimension="0" posX="-2703.5315" posY="-1289.5621" posZ="152.5028" rotZ="137.3071" />
+    <vehicle id="vehicle (Police Maverick) (1)" paintjob="0" model="497" plate="RZTHLZW" interior="0" dimension="0" posX="-2774.0544" posY="-1286.4609" posZ="124.5967" rotZ="39.2780" />
+    <vehicle id="vehicle (Police Maverick) (2)" paintjob="0" model="497" plate="ED3AYQW" interior="0" dimension="0" posX="-2474.6621" posY="-1096.1312" posZ="138.1811" rotZ="313.2358" />
+    <vehicle id="vehicle (Glendale) (2)" paintjob="0" model="466" plate="MYSORPW" interior="0" dimension="0" posX="-2362.5823" posY="-1154.0608" posZ="173.9808" rotZ="306.7439" />
+    <vehicle id="vehicle (Maverick) (1)" paintjob="0" model="487" plate="58LTI6Z" interior="0" dimension="0" color="126,1,1,0" posX="-2816.529296875" posY="-1521.2763671875" posZ="147.03840637207" rotX="0" rotY="0" rotZ="180.09338378906" />
+    <vehicle id="vehicle (Sandking) (2)" paintjob="0" model="495" plate="0VCR50D" interior="0" dimension="0" posX="-2711.8933" posY="-1614.2540" posZ="239.9628" rotZ="349.7456" />
+    <vehicle id="vehicle (Police Maverick) (3)" paintjob="0" model="497" plate="HSS7XCK" interior="0" dimension="0" posX="-2411.9590" posY="-2219.1670" posZ="33.5541" rotZ="326.0417" />
+    <vehicle id="vehicle (Police Maverick) (4)" paintjob="0" model="497" plate="ZD9FJGX" interior="0" dimension="0" posX="-2363.5859" posY="-2177.6099" posZ="33.9019" rotZ="264.7794" />
+    <vehicle id="vehicle (Feltzer) (2)" paintjob="0" model="533" plate="I2CYFEQ" interior="0" dimension="0" posX="-2768.3931" posY="-1698.3556" posZ="141.3911" rotZ="157.8846" />
+    <vehicle id="vehicle (Dumper) (4)" paintjob="0" model="406" plate="F80L2UJ" interior="0" dimension="0" posX="-2783.2685546875" posY="-1774.1357421875" posZ="142.9630279541" rotZ="167.99743652344" rotX="0" rotY="0" />
+    <vehicle id="vehicle (Mountain Bike) (5)" paintjob="0" model="510" plate="D3THUPL" interior="0" dimension="0" posX="-2665.6899" posY="-1998.3688" posZ="90.0705" rotZ="184.0617" />
+    <vehicle id="vehicle (Huntley) (5)" paintjob="0" model="579" plate="KTBBDHK" interior="0" dimension="0" posX="-2659.1877" posY="-2100.5525" posZ="74.4871" rotZ="210.1969" />
+    <vehicle id="vehicle (Sanchez) (7)" paintjob="0" model="468" plate="O1AUH43" interior="0" dimension="0" posX="-2625.7700" posY="-2152.8767" posZ="70.0461" rotZ="255.7048" />
+    <vehicle id="vehicle (Taxi) (1)" paintjob="0" model="420" plate="JOVNGAV" interior="0" dimension="0" posX="-2564.8586" posY="-2147.1194" posZ="64.0474" rotZ="280.0340" />
+    <vehicle id="vehicle (Buffalo) (6)" paintjob="0" model="402" plate="6Y59OQK" interior="0" dimension="0" posX="-2701.6343" posY="-1871.1652" posZ="138.0615" rotZ="266.7029" />
+    <vehicle id="vehicle (Cheetah) (3)" paintjob="0" model="415" plate="5PV0E1V" interior="0" dimension="0" posX="-2628.1370" posY="-1994.1829" posZ="126.1365" rotZ="202.6443" />
+    <vehicle id="vehicle (Bobcat) (3)" paintjob="0" model="422" plate="VGUO8NM" interior="0" dimension="0" posX="-2499.8386" posY="-2080.8879" posZ="124.3502" rotZ="274.9414" />
+    <vehicle id="vehicle (Clover) (3)" paintjob="0" model="542" plate="S869609" interior="0" dimension="0" posX="-2662.8860" posY="-1772.7054" posZ="242.2616" rotZ="106.4483" />
+    <vehicle id="vehicle (Glendale) (3)" paintjob="0" model="466" plate="U7W14V4" interior="0" dimension="0" posX="-2654.4348" posY="-1725.3420" posZ="257.3291" rotZ="245.6479" />
+    <vehicle id="vehicle (Sandking) (3)" paintjob="0" model="495" plate="4LEJY4F" interior="0" dimension="0" posX="-2502.3315" posY="-1896.5430" posZ="298.4514" rotZ="20.4675" />
+    <vehicle id="vehicle (Sanchez) (8)" paintjob="0" model="468" plate="XNNZ3A3" interior="0" dimension="0" posX="-2372.2952" posY="-1926.5311" posZ="304.0593" rotZ="84.8233" />
+    <vehicle id="vehicle (Mountain Bike) (6)" paintjob="0" model="510" plate="EJB327Z" interior="0" dimension="0" posX="-2419.5854" posY="-1956.3926" posZ="303.1055" rotZ="34.7233" />
+    <vehicle id="vehicle (Monster 1) (7)" paintjob="0" model="444" plate="7CXZKO1" interior="0" dimension="0" posX="-2593.5637" posY="-1607.4014" posZ="342.7477" rotZ="204.6164" />
+    <vehicle id="vehicle (Mountain Bike) (7)" paintjob="0" model="510" plate="FU16NOK" interior="0" dimension="0" posX="-2528.1829" posY="-1808.8088" posZ="376.3380" rotZ="6.1249" />
+    <vehicle id="vehicle (Feltzer) (3)" paintjob="0" model="533" plate="Y437AFS" interior="0" dimension="0" posX="-2067.1248" posY="-1958.8745" posZ="56.3403" rotZ="324.2487" />
+    <vehicle id="vehicle (Police Ranger) (5)" paintjob="0" model="599" plate="YKZFSL3" interior="0" dimension="0" posX="-2400.6294" posY="-2226.0034" posZ="33.6742" rotZ="358.1456" />
+    <vehicle id="vehicle (Huntley) (6)" paintjob="0" model="579" plate="5LS889D" interior="0" dimension="0" posX="-2763.0491" posY="-2043.7616" posZ="38.6436" rotZ="57.7693" />
+    <vehicle id="vehicle (Buffalo) (7)" paintjob="0" model="402" plate="S8SD6OV" interior="0" dimension="0" posX="-2863.9075" posY="-1935.4927" posZ="37.1799" rotZ="41.7784" />
+    <vehicle id="vehicle (Sanchez) (9)" paintjob="0" model="468" plate="G7WYQUJ" interior="0" dimension="0" posX="-2916.9001" posY="-1460.2668" posZ="10.6689" rotZ="0.0485" />
+    <vehicle id="vehicle (Cheetah) (4)" paintjob="0" model="415" plate="M32F87O" interior="0" dimension="0" posX="-2893.2280" posY="-1244.9945" posZ="9.3406" rotZ="43.7233" />
+    <vehicle id="vehicle (Sanchez) (10)" paintjob="0" model="468" plate="TVSR6P1" interior="0" dimension="0" posX="-2796.9351" posY="-1127.3652" posZ="15.4319" rotZ="314.0134" />
+    <vehicle id="vehicle (Bobcat) (4)" paintjob="0" model="422" plate="8009V5T" interior="0" dimension="0" posX="-2547.3735" posY="-959.8969" posZ="21.6547" rotZ="293.5425" />
+    <vehicle id="vehicle (Bandito) (1)" paintjob="0" model="568" plate="8H4IG3O" interior="0" dimension="0" posX="-2349.0300" posY="-1022.7355" posZ="15.6469" rotZ="222.8083" />
+    <vehicle id="vehicle (Clover) (4)" paintjob="0" model="542" plate="82KCASA" interior="0" dimension="0" posX="-2194.1802" posY="-1167.0858" posZ="15.5153" rotZ="205.4655" />
+    <vehicle id="vehicle (Stallion) (3)" paintjob="0" model="439" plate="MH86RII" interior="0" dimension="0" posX="-2006.0137" posY="-1394.5394" posZ="26.5551" rotZ="227.4891" />
+    <vehicle id="vehicle (Sandking) (4)" paintjob="0" model="495" plate="TXXROUJ" interior="0" dimension="0" posX="-1929.0791" posY="-1590.6270" posZ="28.7886" rotZ="168.2822" />
+    <vehicle id="vehicle (Predator) (2)" paintjob="0" model="430" plate="7L1YHLG" interior="0" dimension="0" posX="-1618.3999" posY="-1705.3264" posZ="-0.4953" rotZ="304.4674" />
+    <vehicle id="vehicle (Monster 1) (8)" paintjob="0" model="444" plate="3UBOQ80" interior="0" dimension="0" posX="-1651.466796875" posY="-2235.2119140625" posZ="30.881401062012" rotX="7.9400634765625" rotY="358.01501464844" rotZ="170.82641601563" />
+    <vehicle id="vehicle (Police SF) (8)" paintjob="0" model="597" plate="MCKSRT3" interior="0" dimension="0" posX="-1642.0263671875" posY="-2251.7197265625" posZ="31.395399093628" rotX="0" rotY="0" rotZ="91.829223632813" />
+    <vehicle id="vehicle (Sanchez) (11)" paintjob="0" model="468" plate="AVALP7R" interior="0" dimension="0" posX="-1635.94921875" posY="-2228.0966796875" posZ="29.737499237061" rotX="0" rotY="0" rotZ="281.92016601563" />
+    <vehicle id="vehicle (Predator) (3)" paintjob="0" model="430" plate="UNZH7Z2" interior="0" dimension="0" posX="-1824.5341796875" posY="-1531.9375" posZ="-0.21220000088215" rotX="0" rotY="0" rotZ="28.203125" />
+    <vehicle id="vehicle (Predator) (4)" paintjob="0" model="430" plate="6Q37UCF" interior="0" dimension="0" posX="-2047.3980712891" posY="-1299.1976318359" posZ="-0.076899997889996" rotX="0" rotY="0" rotZ="15.888671875" />
+    <vehicle id="vehicle (Predator) (5)" paintjob="0" model="430" plate="52K43AQ" interior="0" dimension="0" posX="-2278.2468" posY="-1021.8701" posZ="-0.2242" rotZ="56.1533" />
+    <vehicle id="vehicle (Predator) (6)" paintjob="0" model="430" plate="WYVL5R4" interior="0" dimension="0" posX="-2694.3008" posY="-1011.9853" posZ="-0.2535" rotZ="96.8734" />
+    <vehicle id="vehicle (Predator) (7)" paintjob="0" model="430" plate="OFERCU0" interior="0" dimension="0" posX="-2969.2698" posY="-1305.8879" posZ="0.2027" rotZ="143.6526" />
+    <vehicle id="vehicle (Predator) (8)" paintjob="0" model="430" plate="V7QFC2T" interior="0" dimension="0" posX="-2975.7288" posY="-1695.6388" posZ="0.1748" rotZ="183.8137" />
+    <vehicle id="vehicle (Predator) (9)" paintjob="0" model="430" plate="GJQTH7U" interior="0" dimension="0" posX="-2801.0063" posY="-2279.6108" posZ="0.1118" rotZ="140.5747" />
+    <vehicle id="vehicle (Predator) (10)" paintjob="0" model="430" plate="Q37S3PZ" interior="0" dimension="0" posX="-2727.3528" posY="-2759.5715" posZ="-0.4926" rotZ="210.7893" />
+    <vehicle id="vehicle (Predator) (11)" paintjob="0" model="430" plate="L8T7D1Y" interior="0" dimension="0" posX="-1885.7413" posY="-2792.8152" posZ="0.0144" rotZ="211.0767" />
+    <vehicle id="vehicle (Predator) (12)" paintjob="0" model="430" plate="7B806NV" interior="0" dimension="0" posX="-1383.3831" posY="-1746.7831" posZ="-0.2763" rotZ="234.0696" />
+    <vehicle id="vehicle (Predator) (13)" paintjob="0" model="430" plate="TXKP4Q9" interior="0" dimension="0" posX="-1338.1444" posY="-1919.2219" posZ="-0.2657" rotZ="195.1976" />
+    <vehicle id="vehicle (Predator) (14)" paintjob="0" model="430" plate="8U3C80U" interior="0" dimension="0" posX="-1432.0155" posY="-2068.5459" posZ="-0.2944" rotZ="139.2095" />
+    <vehicle id="vehicle (Predator) (15)" paintjob="0" model="430" plate="35BP3EW" interior="0" dimension="0" posX="-1540.0782" posY="-2301.7292" posZ="-0.2051" rotZ="14.4143" />
+    <vehicle id="vehicle (Predator) (16)" paintjob="0" model="430" plate="MD9HRRJ" interior="0" dimension="0" posX="-1499.2396" posY="-2304.6470" posZ="-0.2479" rotZ="12.6757" />
+    <vehicle id="vehicle (Predator) (17)" paintjob="0" model="430" plate="FBZMJV3" interior="0" dimension="0" posX="-1198.3932" posY="-2230.8638" posZ="-0.2033" rotZ="168.3618" />
+    <vehicle id="vehicle (Predator) (18)" paintjob="0" model="430" plate="XG56C36" interior="0" dimension="0" posX="-1176.7382" posY="-2738.7830" posZ="-0.2185" rotZ="228.2159" />
+    <vehicle id="vehicle (Reefer) (1)" paintjob="0" model="453" plate="4M3YF1W" interior="0" dimension="0" posX="-1483.0880" posY="-1675.0219" posZ="-0.1841" rotZ="247.2354" />
+    <vehicle id="vehicle (Sanchez) (12)" paintjob="0" model="468" plate="OZ0L1VP" interior="0" dimension="0" posX="-2795.4951171875" posY="-1572.93359375" posZ="141.08030700684" rotX="0" rotY="0" rotZ="257.08557128906" />
+    <vehicle id="vehicle (Sanchez) (13)" paintjob="0" model="468" plate="7UE4E3C" interior="0" dimension="0" posX="-2797.3134765625" posY="-1418.2861328125" posZ="136.23120117188" rotX="0" rotY="0" rotZ="268.64318847656" />
+    <vehicle id="vehicle (Sanchez) (14)" paintjob="0" model="468" plate="U7HW9XN" interior="0" dimension="0" posX="-2849.8018" posY="-1465.7086" posZ="135.6819" rotZ="151.1253" />
+    <vehicle id="vehicle (Sanchez) (15)" paintjob="0" model="468" plate="WTIGLW8" interior="0" dimension="0" posX="-2828.9736328125" posY="-1523.4180908203" posZ="138.95680236816" rotX="0" rotY="0" rotZ="180.01745605469" />
+    <vehicle id="vehicle (Sanchez) (16)" paintjob="0" model="468" plate="SSN1MIY" interior="0" dimension="0" posX="-2831.3967" posY="-1523.8119" posZ="138.7413" rotZ="184.6001" />
+    <vehicle id="vehicle (Police SF) (9)" paintjob="0" model="597" plate="2L33F07" interior="0" dimension="0" posX="-1640.2782" posY="-2223.4880" posZ="30.7684" rotZ="99.1813" />
+    <vehicle id="vehicle (Police SF) (10)" paintjob="0" model="597" plate="RZLV9ZK" interior="0" dimension="0" posX="-1646.998046875" posY="-2241.8115234375" posZ="30.394199371338" rotX="0" rotY="0" rotZ="146.52001953125" />
+    <vehicle id="vehicle (Police SF) (11)" paintjob="0" model="597" plate="IGYAFWB" interior="0" dimension="0" posX="-1646.5533" posY="-2209.4268" posZ="33.4216" rotZ="96.6930" />
+    <vehicle id="vehicle (Police SF) (12)" paintjob="0" model="597" plate="AK9A8JV" interior="0" dimension="0" posX="-1635.1289" posY="-2257.8247" posZ="31.9754" rotZ="90.1367" />
+    <vehicle id="vehicle (Sultan) (1)" paintjob="0" model="560" plate="XNN6KHE" interior="0" dimension="0" posX="-2204.5273" posY="-2254.1033" posZ="30.4835" rotZ="232.4917" />
+    <vehicle id="vehicle (Mesa) (1)" paintjob="0" model="500" plate="UO6YH7W" interior="0" dimension="0" posX="-2189.9773" posY="-2265.2559" posZ="30.8450" rotZ="232.6713" />
+    <vehicle id="vehicle (Patriot) (1)" paintjob="0" model="470" plate="E1P6101" interior="0" dimension="0" posX="-2121.7600" posY="-2290.9282" posZ="30.7350" rotZ="141.5620" />
+    <vehicle id="vehicle (BF Injection) (1)" paintjob="0" model="424" plate="2LVXKPD" interior="0" dimension="0" posX="-2144.5654296875" posY="-2379.9052734375" posZ="30.472200393677" rotZ="231.46545410156" rotX="0" rotY="0" />
+    <vehicle id="vehicle (Quadbike) (3)" paintjob="0" model="471" plate="UTPNNGJ" interior="0" dimension="0" posX="-2149.0315" posY="-2543.7908" posZ="30.1922" rotZ="320.5326" />
+    <vehicle id="vehicle (Sultan) (2)" paintjob="0" model="560" plate="QURJX5P" interior="0" dimension="0" posX="-2099.9846" posY="-2477.3682" posZ="30.4300" rotZ="231.1153" />
+    <vehicle id="vehicle (Mesa) (2)" paintjob="0" model="500" plate="03UCAUU" interior="0" dimension="0" posX="-2048.88671875" posY="-2508.78125" posZ="31.431499481201" rotX="0" rotY="0" rotZ="318.17504882813" />
+    <vehicle id="vehicle (Patriot) (2)" paintjob="0" model="470" plate="M1F6MQQ" interior="0" dimension="0" posX="-2018.4684" posY="-2404.5127" posZ="30.7350" rotZ="136.3184" />
+    <vehicle id="vehicle (BF Injection) (2)" paintjob="0" model="424" plate="T588ZUG" interior="0" dimension="0" posX="-2033.7391" posY="-2322.8545" posZ="30.4722" rotZ="356.7208" />
+    <vehicle id="vehicle (Quadbike) (4)" paintjob="0" model="471" plate="AFJR58K" interior="0" dimension="0" posX="-2096.1592" posY="-2250.7637" posZ="30.2000" rotZ="143.9510" />
+    <vehicle id="vehicle (Regina) (1)" paintjob="0" model="479" plate="YD46RSS" interior="0" dimension="0" posX="-2674.1904" posY="-2620.5491" posZ="7.6349" rotZ="205.3137" />
+    <vehicle id="vehicle (Sultan) (3)" paintjob="0" model="560" plate="HC3N254" interior="0" dimension="0" posX="-2307.9810" posY="-2770.9529" posZ="14.1795" rotZ="245.7099" />
+    <vehicle id="vehicle (Mesa) (3)" paintjob="0" model="500" plate="66D8X7D" interior="0" dimension="0" posX="-2031.8894" posY="-2757.1421" posZ="50.3928" rotZ="286.0391" />
+    <vehicle id="vehicle (Patriot) (3)" paintjob="0" model="470" plate="11MTRLQ" interior="0" dimension="0" posX="-1836.8688" posY="-2744.2781" posZ="3.8960" rotZ="107.3600" />
+    <vehicle id="vehicle (BF Injection) (3)" paintjob="0" model="424" plate="8TVKC09" interior="0" dimension="0" posX="-1627.7050" posY="-2688.4871" posZ="48.3863" rotZ="145.8459" />
+    <vehicle id="vehicle (Quadbike) (5)" paintjob="0" model="471" plate="KPCVDIC" interior="0" dimension="0" posX="-1606.4072" posY="-2713.3533" posZ="48.1085" rotZ="52.6981" />
+    <vehicle id="vehicle (Regina) (2)" paintjob="0" model="479" plate="ULZCQT6" interior="0" dimension="0" posX="-1576.3538" posY="-2728.9341" posZ="48.4478" rotZ="144.6998" />
+    <vehicle id="vehicle (Sultan) (4)" paintjob="0" model="560" plate="GPUL0KH" interior="0" dimension="0" posX="-1560.0487" posY="-2739.5662" posZ="48.3488" rotZ="147.1556" />
+    <vehicle id="vehicle (Mesa) (4)" paintjob="0" model="500" plate="RK3E8S4" interior="0" dimension="0" posX="-1471.2964" posY="-2638.4380" posZ="43.4053" rotZ="299.8403" />
+    <vehicle id="vehicle (Quadbike) (7)" paintjob="0" model="471" plate="F080V7N" interior="0" dimension="0" posX="-1132.4354" posY="-2278.6941" posZ="35.7064" rotZ="4.4214" />
+    <vehicle id="vehicle (Patriot) (8)" paintjob="0" model="470" plate="3CF7I4D" interior="0" dimension="0" posX="-1720.3026" posY="-1919.9163" posZ="99.3501" rotZ="99.5456" />
+    <vehicle id="vehicle (BF Injection) (8)" paintjob="0" model="424" plate="89E557W" interior="0" dimension="0" posX="-1487.8038" posY="-2176.7732" posZ="1.6579" rotZ="170.4320" />
+    <vehicle id="vehicle (Rhino) (1)" paintjob="0" model="432" plate="FTAJ0MP" interior="0" dimension="0" posX="-2346.1594" posY="-1611.3301" posZ="483.7525" rotZ="220.7568" />
+    <vehicle id="vehicle (Rustler) (6)" paintjob="0" model="476" plate="3SY5LRW" interior="0" dimension="0" posX="-2913.4541015625" posY="-1279.509765625" posZ="12.342000007629" rotX="0" rotY="0" rotZ="170.91979980469" />
+    <vehicle id="vehicle (Rustler) (7)" paintjob="0" model="476" plate="IF5EBQ6" interior="0" dimension="0" posX="-2858.0154" posY="-1979.7379" posZ="39.1694" rotZ="210.8610" />
+    <vehicle id="vehicle (Buffalo) (9)" paintjob="0" model="402" plate="2L4NL61" interior="0" dimension="0" color="30 30" posX="-2245.3557" posY="-1737.0740" posZ="479.8342" rotZ="14.1842" />
+    <vehicle id="vehicle (Monster 1) (9)" paintjob="0" model="444" plate="AZOS24B" interior="0" dimension="0" color="32 53" posX="-1795.8589" posY="-2344.1697" posZ="34.8878" rotZ="156.9109" />
+    <vehicle id="vehicle (Monster 1) (10)" paintjob="0" model="444" plate="2HPXQ68" interior="0" dimension="0" color="32 53" posX="-1865.8369" posY="-2650.0090" posZ="54.6716" rotZ="258.8762" />
+    <vehicle id="vehicle (Sultan) (13)" paintjob="0" model="560" plate="NK7QWOC" interior="0" dimension="0" color="33 0" posX="-1388.8885" posY="-2917.0947" posZ="47.2753" rotZ="15.3225" />
+    <vehicle id="vehicle (Quadbike) (10)" paintjob="0" model="471" plate="7X1U3EF" interior="0" dimension="0" color="120 112" posX="-2234.0500" posY="-2056.3655" posZ="119.6710" rotZ="121.3874" />
+    <vehicle id="vehicle (Quadbike) (11)" paintjob="0" model="471" plate="DYVU99P" interior="0" dimension="0" color="120 112" posX="-2351.0264" posY="-2105.7593" posZ="112.2228" rotZ="97.6164" />
+    <vehicle id="vehicle (BF Injection) (9)" paintjob="0" model="424" plate="P2TKFTI" interior="0" dimension="0" color="6 16" posX="-2445.3860" posY="-2564.5083" posZ="51.4624" rotZ="21.0933" />
+    <vehicle id="vehicle (BF Injection) (10)" paintjob="0" model="424" plate="KCJAT1P" interior="0" dimension="0" color="6 16" posX="-2247.6382" posY="-2671.7041" posZ="58.5689" rotZ="240.7580" />
+    <vehicle id="vehicle (BF Injection) (11)" paintjob="0" model="424" plate="Y5NG8UN" interior="0" dimension="0" color="6 16" posX="-2012.4364" posY="-2637.6135" posZ="58.0760" rotZ="279.4527" />
+ 
+    <vehicle id="vehicle (Rustler) (8)" paintjob="0" model="476" plate="0FSBT6U" interior="0" dimension="0" posX="-2874.0844726563" posY="-1490.8009033203" posZ="137.62281799316" rotX="0" rotY="0" rotZ="51.4345703125" safezone_excluded="true" />
+
+	<vehicle id="vehicle (Mesa) (2)" paintjob="0" model="500" plate="03UCAUU" interior="0" dimension="0" posX="-2063.7741699219" posY="-2565.7175292969" posZ="30.844999313354" rotX="0" rotY="0" rotZ="324.53552246094" />
+    <vehicle id="vehicle (Mesa) (2)" paintjob="0" model="500" plate="03UCAUU" interior="0" dimension="0" posX="-2059.6708984375" posY="-2569.0302734375" posZ="30.844999313354" rotX="0" rotY="0" rotZ="324.53063964844" />
+    <vehicle id="vehicle (Hotdog) (1)" paintjob="3" model="588" plate="ML9W R9I" interior="0" dimension="0" posX="-2078.3195800781" posY="-2555.1311035156" posZ="30.321895599365" rotX="0" rotY="0" rotZ="318.31530761719" />
+    <vehicle id="vehicle (Mountain Bike) (8)" paintjob="3" model="510" plate="0HY0 XE1" interior="0" dimension="0" posX="-2038.1276855469" posY="-2526.9545898438" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14422607422" />
+    <vehicle id="vehicle (Mountain Bike) (9)" paintjob="3" model="510" plate="NESZ 932" interior="0" dimension="0" posX="-2035.4530029297" posY="-2528.8012695313" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14270019531" />
+    <vehicle id="vehicle (Mountain Bike) (10)" paintjob="3" model="510" plate="PFZD J9P" interior="0" dimension="0" posX="-2032.7781982422" posY="-2530.6479492188" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14270019531" />
+    <vehicle id="vehicle (Mountain Bike) (11)" paintjob="3" model="510" plate="J2ZW JVP" interior="0" dimension="0" posX="-2036.8979492188" posY="-2536.6159667969" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14270019531" />
+    <vehicle id="vehicle (Tractor) (1)" paintjob="3" model="531" plate="ROZZ RMV" interior="0" dimension="0" posX="-2058.5405273438" posY="-2541.212890625" posZ="30.631452560425" rotX="0" rotY="0" rotZ="324.27026367188" />
+    <vehicle id="vehicle (Hustler) (1)" paintjob="3" model="545" plate="1590 UXK" interior="0" dimension="0" posX="-2065.9421386719" posY="-2502.2680664063" posZ="30.643909454346" rotX="0" rotY="0" rotZ="141.20422363281" />
+    <vehicle id="vehicle (Pony) (1)" paintjob="3" model="413" plate="M3A3 YOH" interior="0" dimension="0" posX="-2063.515625" posY="-2528.7934570313" posZ="30.77499961853" rotX="0" rotY="0" rotZ="316.33032226563" />
+    <vehicle id="vehicle (Pony) (2)" paintjob="3" model="413" plate="KWRS JB0" interior="0" dimension="0" posX="-2067.1789550781" posY="-2525.4958496094" posZ="30.77499961853" rotX="0" rotY="0" rotZ="316.32934570313" />
+    <vehicle id="vehicle (Pony) (3)" paintjob="3" model="413" plate="GRR0 UHD" interior="0" dimension="0" posX="-2089.365234375" posY="-2542.7880859375" posZ="30.77499961853" rotX="0" rotY="0" rotZ="316.32934570313" />
+    <vehicle id="vehicle (BF Injection) (1)" paintjob="0" model="424" plate="2LVXKPD" interior="0" dimension="0" posX="-2148.7902832031" posY="-2441.2802734375" posZ="30.472227096558" rotZ="142.14074707031" rotX="0" rotY="0" />
+    <vehicle id="vehicle (BF Injection) (1)" paintjob="0" model="424" plate="2LVXKPD" interior="0" dimension="0" posX="-2233.076171875" posY="-2423.0949707031" posZ="31.546844482422" rotZ="231.4599609375" rotX="350.07501220703" rotY="0" />
+
+    <vehicle id="vehicle (Bobcat) (5)" paintjob="3" model="422" plate="9UEU OEO" interior="0" dimension="0" posX="-1261.4775390625" posY="-2059.5739746094" posZ="22.946395874023" rotX="0" rotY="0" rotZ="154.64544677734" />
+    <vehicle id="vehicle (Bobcat) (6)" paintjob="3" model="422" plate="NKDT 8W8" interior="0" dimension="0" posX="-1258.1499023438" posY="-2052.3142089844" posZ="22.946395874023" rotX="0" rotY="0" rotZ="154.6435546875" />
+    <vehicle id="vehicle (Dune) (1)" paintjob="3" model="573" plate="VKYS Z3U" interior="0" dimension="0" posX="-1175.2644042969" posY="-2639.3354492188" posZ="12.423254013062" rotX="0" rotY="0" rotZ="89.594970703125" />
+    <vehicle id="vehicle (Stallion) (4)" paintjob="3" model="439" plate="JFQ2 2QG" interior="0" dimension="0" posX="-1208.5375976563" posY="-2639.8359375" posZ="10.198816299438" rotX="0" rotY="0" rotZ="59.819946289063" />
+    <vehicle id="vehicle (Stallion) (5)" paintjob="3" model="439" plate="OONN 6ZL" interior="0" dimension="0" posX="-1084.8406982422" posY="-2857.7629394531" posZ="67.71492767334" rotX="0" rotY="0" rotZ="91.574829101563" />
+    <vehicle id="vehicle (Squalo) (1)" paintjob="3" model="446" plate="84PT SEM" interior="0" dimension="0" posX="-1933.4261474609" posY="-1445.9595947266" posZ="0" rotX="0" rotY="0" rotZ="300.18017578125" />
+    <vehicle id="vehicle (Squalo) (2)" paintjob="3" model="446" plate="BJNG FUX" interior="0" dimension="0" posX="-1668.9886474609" posY="-1685.1721191406" posZ="0" rotX="0" rotY="0" rotZ="284.29956054688" />
+    <vehicle id="vehicle (Squalo) (3)" paintjob="3" model="446" plate="B0SN 3BC" interior="0" dimension="0" posX="-1659.2869873047" posY="-1690.0380859375" posZ="0" rotX="0" rotY="0" rotZ="284.29870605469" />
+    <vehicle id="vehicle (Squalo) (4)" paintjob="3" model="446" plate="CAHW 5UN" interior="0" dimension="0" posX="-1255.9743652344" posY="-1957.5642089844" posZ="0" rotX="0" rotY="0" rotZ="124.77893066406" />
+    <vehicle id="vehicle (Squalo) (5)" paintjob="3" model="446" plate="W925 JPC" interior="0" dimension="0" posX="-1208.0708007813" posY="-1978.9552001953" posZ="0" rotX="0" rotY="0" rotZ="172.50708007813" />
+    <vehicle id="vehicle (Squalo) (6)" paintjob="3" model="446" plate="OW2T 0Z2" interior="0" dimension="0" posX="-1214.044921875" posY="-1981.8878173828" posZ="0" rotX="0" rotY="0" rotZ="172.50183105469" />
+    <vehicle id="vehicle (Raindance) (1)" paintjob="3" model="563" plate="98NS EII" interior="0" dimension="0" posX="-1220.4270019531" posY="-1979.5775146484" posZ="31.488414764404" rotX="0" rotY="0" rotZ="123.60974121094" />
+
+    <vehicle id="vehicle (Squalo) (7)" paintjob="3" model="446" plate="8GF8 BDM" interior="0" dimension="0" posX="-1170.3928222656" posY="-2881.6098632813" posZ="0" rotX="0" rotY="0" rotZ="242.61547851563" />
+    <vehicle id="vehicle (Squalo) (8)" paintjob="3" model="446" plate="HPYB 6M5" interior="0" dimension="0" posX="-1170.951171875" posY="-2890.0478515625" posZ="0" rotX="0" rotY="0" rotZ="242.61108398438" />
+    <vehicle id="vehicle (Squalo) (9)" paintjob="3" model="446" plate="9W54 QQP" interior="0" dimension="0" posX="-1171.62890625" posY="-2900.0625" posZ="0" rotX="0" rotY="0" rotZ="242.61108398438" />
+    <vehicle id="vehicle (Squalo) (10)" paintjob="3" model="446" plate="KKLP TIY" interior="0" dimension="0" posX="-2655.4230957031" posY="-2169.6838378906" posZ="0" rotX="0" rotY="0" rotZ="91.890930175781" />
+    <vehicle id="vehicle (Squalo) (11)" paintjob="3" model="446" plate="QSZW 3G3" interior="0" dimension="0" posX="-2828.3850097656" posY="-2507.8610839844" posZ="0" rotX="0" rotY="0" rotZ="61.979370117188" />
+    <vehicle id="vehicle (Squalo) (12)" paintjob="3" model="446" plate="L1W4 VCQ" interior="0" dimension="0" posX="-2823.4382324219" posY="-2525.5661621094" posZ="0" rotX="0" rotY="0" rotZ="61.979370117188" />
+    <vehicle id="vehicle (Squalo) (13)" paintjob="3" model="446" plate="8ARM LR2" interior="0" dimension="0" posX="-2826.0627441406" posY="-2516.4135742188" posZ="0" rotX="0" rotY="0" rotZ="61.979370117188" />
+    <vehicle id="vehicle (Squalo) (14)" paintjob="3" model="446" plate="BUDS 66G" interior="0" dimension="0" posX="-2655.3544921875" posY="-2178.8547363281" posZ="0" rotX="0" rotY="0" rotZ="91.8896484375" />
+    <vehicle id="vehicle (Dumper) (4)" paintjob="0" model="406" plate="F80L2UJ" interior="0" dimension="0" posX="-2328.0173339844" posY="-1672.7481689453" posZ="484.70907592773" rotZ="277.66735839844" rotX="0" rotY="0" />
+    <vehicle id="vehicle (Rustler) (6)" paintjob="0" model="476" plate="3SY5LRW" interior="0" dimension="0" posX="-2910.4038085938" posY="-1296.1491699219" posZ="12.342000007629" rotX="0" rotY="0" rotZ="170.91979980469" />
+    <vehicle id="vehicle (Rustler) (6)" paintjob="0" model="476" plate="3SY5LRW" interior="0" dimension="0" posX="-2907.1430664063" posY="-1313.072265625" posZ="12.342000007629" rotX="0" rotY="0" rotZ="172.90478515625" />
+
+	
+	<pickup id="pickup (Parachute) (1)" type="46" interior="0" amount="1" respawn="30000" dimension="0" posX="-2237.1941" posY="-1710.5507" posZ="480.8812" synced="false" />
+    <pickup id="pickup (armor) (1)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-2467.4795" posY="-1218.7037" posZ="254.1941" synced="false" />
+    <pickup id="pickup (armor) (2)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-1986.3958" posY="-1504.4312" posZ="85.2055" synced="false" />
+    <pickup id="pickup (armor) (3)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-2380.3877" posY="-1637.3463" posZ="491.8316" synced="false" />
+    <pickup id="pickup (armor) (4)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-2440.0886" posY="-2159.2776" posZ="35.8599" synced="false" />
+    <pickup id="pickup (armor) (5)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-2856.3803710938" posY="-1520.0452880859" posZ="138.18403625488" synced="false" />
+    <pickup id="pickup (armor) (6)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-1849.2826" posY="-1667.7755" posZ="27.6797" synced="false" />
+    <pickup id="pickup (armor) (7)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-1632.9254" posY="-2248.7239" posZ="34.6684" synced="false" />
+    <pickup id="pickup (armor) (8)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-2092.0" posY="-2330.0" posZ="31.0" synced="false" />
+    <pickup id="pickup (armor) (9)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-2303.0" posY="-1606.0" posZ="484.0" synced="false" />
+    <pickup id="pickup (Parachute) (2)" type="46" interior="0" amount="1" respawn="30000" dimension="0" posX="-2350.0" posY="-1586.0" posZ="485.0" synced="false" />
+    <pickup id="pickup (Minigun) (1)" type="38" interior="0" amount="300" respawn="400000" dimension="0" posX="-2554.5864257813" posY="-1027.7780761719" posZ="99.864593505859" synced="true" />
+    <pickup id="pickup (Minigun) (2)" type="38" interior="0" amount="300" respawn="400000" dimension="0" posX="-2716.2944335938" posY="-2099.5991210938" posZ="15.511032104492" synced="true" />
+    <pickup id="pickup (Minigun) (3)" type="38" interior="0" amount="1000" respawn="9999999" dimension="0" posX="-2433.8513183594" posY="-1884.9459228516" posZ="364.00164794922" synced="true" />
+    <pickup id="pickup (MP5) (1)" type="29" interior="0" amount="300" respawn="10000" dimension="0" posX="-2135.7476" posY="-1242.1997" posZ="29.1718" synced="true" />
+    <pickup id="pickup (MP5) (2)" type="29" interior="0" amount="300" respawn="10000" dimension="0" posX="-1907.4188" posY="-1500.9512" posZ="25.4219" synced="true" />
+    <pickup id="pickup (Silenced) (1)" type="23" interior="0" amount="50" respawn="30000" dimension="0" posX="-2172.2546" posY="-1843.6069" posZ="214.8233" synced="true" />
+    <pickup id="pickup (Chainsaw) (1)" type="9" interior="0" amount="1" respawn="9999999" dimension="0" posX="-2437.1436" posY="-1616.6068" posZ="520.9243" synced="false" />
+    <pickup id="pickup (AK-47) (1)" type="30" interior="0" amount="160" respawn="30000" dimension="0" posX="-1968.0" posY="-923.0" posZ="32.0" synced="true" />
+    <pickup id="pickup (Deagle) (1)" type="24" interior="0" amount="50" respawn="30000" dimension="0" posX="-1870.0" posY="-1625.0" posZ="22.0" synced="true" />
+    <pickup id="pickup (Fire Extinguisher) (1)" type="42" interior="0" amount="3000" respawn="30000" dimension="0" posX="-1627.0" posY="-2692.0" posZ="49.0" synced="true" />
+    <pickup id="pickup (Flamethrower) (1)" type="37" interior="0" amount="300" respawn="30000" dimension="0" posX="-1358.0" posY="-2115.0" posZ="30.0" synced="true" />
+    <pickup id="pickup (Flamethrower) (2)" type="37" interior="0" amount="300" respawn="30000" dimension="0" posX="-601.4012" posY="-1068.6" posZ="23.6667" synced="true" />
+    <pickup id="pickup (Flamethrower) (4)" type="37" interior="0" amount="300" respawn="30000" dimension="0" posX="-1100.3" posY="-1640.4" posZ="76.4" synced="true" />
+    <pickup id="pickup (Uzi) (1)" type="28" interior="0" amount="120" respawn="30000" dimension="0" posX="-2038.0" posY="-2562.0" posZ="31.0" synced="true" />
+    <pickup id="pickup (M4) (1)" type="31" interior="0" amount="200" respawn="30000" dimension="0" posX="-2244.42" posY="-2561.49" posZ="31.92" synced="true" />
+    <pickup id="pickup (Grenade) (1)" type="16" interior="0" amount="15" respawn="30000" dimension="0" posX="-2802.17" posY="-1857.13" posZ="132.78" synced="true" />
+    <pickup id="pickup (Molotov) (1)" type="18" interior="0" amount="15" respawn="30000" dimension="0" posX="-1883.97" posY="-1637.19" posZ="21.75" synced="true" />
+    <pickup id="pickup (AK-47) (2)" type="30" interior="0" amount="200" respawn="30000" dimension="0" posX="-1805.63" posY="-1668.25" posZ="23.71" synced="true" />
+    <pickup id="pickup (MP5) (3)" type="29" interior="0" amount="200" respawn="30000" dimension="0" posX="-2910.29" posY="-1168.89" posZ="3.69" synced="true" />
+    <pickup id="pickup (Sniper) (1)" type="34" interior="0" amount="20" respawn="40000" dimension="0" posX="-1065.6610" posY="-1157.2533" posZ="129.2188" synced="true" />
+    <pickup id="pickup (Sniper) (2)" type="34" interior="0" amount="30" respawn="50000" dimension="0" posX="-1955.8247" posY="-1514.1563" posZ="42.5692" synced="true" />
+    <pickup id="pickup (Sniper) (3)" type="34" interior="0" amount="35" respawn="60000" dimension="0" posX="34.2412" posY="-1524.8169" posZ="-0.6653" synced="true" />
+    <pickup id="pickup (AK-47) (3)" type="30" interior="0" amount="100" respawn="10000" dimension="0" posX="-2362.4902" posY="-1562.1139" posZ="485.2821" synced="true" />
+    <pickup id="pickup (AK-47) (4)" type="30" interior="0" amount="150" respawn="10000" dimension="0" posX="-1637.3337" posY="-2233.2131" posZ="31.4766" synced="true" />
+    <pickup id="pickup (Minigun) (4)" type="38" interior="0" amount="500" respawn="300000" dimension="0" posX="50.8250" posY="-1019.4810" posZ="18.4685" synced="true" />
+    <pickup id="pickup (Minigun) (5)" type="38" interior="0" amount="500" respawn="450000" dimension="0" posX="-1202.1648" posY="-2554.7898" posZ="23.7149" synced="true" />
+    <pickup id="pickup (Rocket Launcher) (1)" type="35" interior="0" amount="5" respawn="300000" dimension="0" posX="-1718.9562988281" posY="-1661.6370849609" posZ="9.2353534698486" synced="true" />
+    <pickup id="pickup (Rocket Launcher) (2)" type="35" interior="0" amount="10" respawn="370000" dimension="0" posX="-1379.5378" posY="-825.7098" posZ="81.7927" synced="true" />
+    <pickup id="pickup (Rocket Launcher) (3)" type="35" interior="0" amount="7" respawn="320000" dimension="0" posX="-2411.8081054688" posY="-1687.0133056641" posZ="453.61911010742" synced="true" />
+    <pickup id="pickup (Molotov) (2)" type="18" interior="0" amount="5" respawn="30000" dimension="0" posX="-1795.0339" posY="-1599.4187" posZ="21.7500" synced="true" />
+    <pickup id="pickup (Molotov) (3)" type="18" interior="0" amount="10" respawn="35000" dimension="0" posX="-650.8707" posY="-837.3129" posZ="103.9770" synced="true" />
+    <pickup id="pickup (Molotov) (4)" type="18" interior="0" amount="15" respawn="40000" dimension="0" posX="-316.9090" posY="-1775.6058" posZ="13.4780" synced="true" />
+    <pickup id="pickup (Grenade) (2)" type="16" interior="0" amount="10" respawn="40000" dimension="0" posX="-1948.2723" posY="-1195.1027" posZ="34.8594" synced="true" />
+    <pickup id="pickup (Grenade) (3)" type="16" interior="0" amount="5" respawn="25000" dimension="0" posX="-2058.4263" posY="-1574.0569" posZ="141.1011" synced="true" />
+    <pickup id="pickup (Grenade) (4)" type="16" interior="0" amount="7" respawn="30000" dimension="0" posX="-1047.4786" posY="-912.6324" posZ="129.2119" synced="true" />
+
+    <pickup id="pickup (Combat Shotgun) (1)" type="27" interior="0" amount="50" respawn="60000" dimension="0" posX="-1233.3237304688" posY="-1989.3870849609" posZ="22.248140335083" rotX="0" rotY="0" rotZ="0" />
+    <pickup id="pickup (Sniper) (4)" type="34" interior="0" amount="30" respawn="60000" dimension="0" posX="-1272.2573242188" posY="-2039.0693359375" posZ="22.840425491333" rotX="0" rotY="0" rotZ="0" />
+
+	
+    <object id="attach1" model="9586" interior="0" dimension="0" posX="-2900.9794921875" posY="-2426.2060546875" posZ="13.91759967804" rotX="0" rotY="0" rotZ="90"/>
+    <object id="attach1" model="9590" interior="0" dimension="0" posX="-2900.9670" posY="-2417.5939" posZ="5.6371" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="9361" interior="0" dimension="0" posX="-2914.7358" posY="-2459.1796" posZ="15.7722" rotX="0.0" rotY="0.0" rotZ="45.0" />
+    <object id="attach1" model="14412" interior="0" dimension="0" posX="-2900.9633789063" posY="-2486.0751953125" posZ="12.29640007019" rotX="0" rotY="0" rotZ="90" doublesided="true"/>
+    <object id="attach1" model="3399" interior="0" dimension="0" posX="-2899.9841" posY="-2460.9858" posZ="0.6434" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="3399" interior="0" dimension="0" posX="-2900.0043" posY="-2458.8857" posZ="0.6284" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="970" interior="0" dimension="0" posX="-2895.3454" posY="-2459.8857" posZ="-2.5723" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="9585" interior="0" dimension="0" posX="-2900.9252" posY="-2423.8430" posZ="3.8262" rotX="0.0" rotY="0.0" rotZ="90.0" doublesided="true"/>
+    <object id="attach1" model="9584" interior="0" dimension="0" posX="-2900.9494" posY="-2499.1176" posZ="23.0635" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="9698" interior="0" dimension="0" posX="-2899.7824" posY="-2487.6130" posZ="25.9482" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="8613" interior="0" dimension="0" posX="-2912.9851" posY="-2477.0571" posZ="16.1453" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="14407" interior="0" dimension="0" posX="-2893.9877" posY="-2481.0756" posZ="22.6998" rotX="0.0" rotY="0.0" rotZ="90.8" />
+    <object id="attach1" model="14395" interior="0" dimension="0" posX="-2888.0891" posY="-2482.7104" posZ="27.7505" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="8885" interior="0" dimension="0" posX="-2902.9785" posY="-2451.1940" posZ="1.3549" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="8885" interior="0" dimension="0" posX="-2897.4262" posY="-2451.1992" posZ="4.7565" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="8885" interior="0" dimension="0" posX="-2891.9755" posY="-2451.1887" posZ="8.1902" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="8885" interior="0" dimension="0" posX="-2892.5776" posY="-2451.2431" posZ="1.3686" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="3502" interior="0" dimension="0" posX="-2901.7253" posY="-2410.5185" posZ="2.3547" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="3568" interior="0" dimension="0" posX="-2897.8137" posY="-2447.1259" posZ="-1.1593" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="3524" interior="0" dimension="0" posX="-2889.5393" posY="-2447.4243" posZ="1.7848" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="18259" interior="0" dimension="0" posX="-2906.0068359375" posY="-2385.0588378906" posZ="-0.39059999585152" rotX="0" rotY="0" rotZ="87.396240234375" />
+    <object id="attach1" model="3565" interior="0" dimension="0" posX="-2890.4711" posY="-2425.4560" posZ="-0.7568" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3565" interior="0" dimension="0" posX="-2893.0876" posY="-2425.4558" posZ="-0.7676" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3565" interior="0" dimension="0" posX="-2890.4738" posY="-2425.4799" posZ="1.9404" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3570" interior="0" dimension="0" posX="-2911.2954" posY="-2425.1240" posZ="-0.7495" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3573" interior="0" dimension="0" posX="-2905.0302" posY="-2410.4350" posZ="0.6204" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="3570" interior="0" dimension="0" posX="-2908.8027" posY="-2428.0656" posZ="-0.7657" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3575" interior="0" dimension="0" posX="-2899.5629" posY="-2424.1911" posZ="0.5867" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="3630" interior="0" dimension="0" posX="-2908.3447" posY="-2412.9331" posZ="2.1187" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="3722" interior="0" dimension="0" posX="-2891.5947" posY="-2406.6811" posZ="2.3747" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="5261" interior="0" dimension="0" posX="-2909.4516" posY="-2404.8845" posZ="0.1956" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="5262" interior="0" dimension="0" posX="-2909.0253" posY="-2410.3881" posZ="6.2265" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="5269" interior="0" dimension="0" posX="-2904.6472" posY="-2407.5903" posZ="0.9601" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="8885" interior="0" dimension="0" posX="-2892.0415" posY="-2434.3051" posZ="1.4425" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3568" interior="0" dimension="0" posX="-2911.7924" posY="-2447.0688" posZ="0.4095" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="3570" interior="0" dimension="0" posX="-2911.3542" posY="-2425.1372" posZ="1.9316" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3570" interior="0" dimension="0" posX="-2903.6337" posY="-2427.8354" posZ="1.9402" rotX="0.0" rotY="0.0" rotZ="359.3" />
+    <object id="attach1" model="3570" interior="0" dimension="0" posX="-2895.6752" posY="-2425.4870" posZ="1.9402" rotX="0.0" rotY="0.0" rotZ="89.6" />
+    <object id="attach1" model="897" interior="0" dimension="0" posX="-2905.3710" posY="-2438.3134" posZ="-3.0913" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="2929" interior="0" dimension="0" posX="-2893.0722" posY="-2517.4809" posZ="8.5838" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="2930" interior="0" dimension="0" posX="-2890.7714" posY="-2461.8637" posZ="-0.7598" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="2930" interior="0" dimension="0" posX="-2889.1582" posY="-2461.8896" posZ="-0.7995" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="9819" interior="0" dimension="0" posX="-2907.1320" posY="-2484.4472" posZ="29.9009" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="9818" interior="0" dimension="0" posX="-2900.9997" posY="-2484.2412" posZ="30.7412" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="8572" interior="0" dimension="0" posX="-2891.0507" posY="-2494.1350" posZ="25.9355" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="3569" interior="0" dimension="0" posX="-2903.248046875" posY="-2337.5927734375" posZ="15.5625" rotX="0" rotY="0" rotZ="270" />
+    <object id="attach1" model="8075" interior="0" dimension="0" posX="-2907.5771484375" posY="-2422.1801757813" posZ="17.204599380493" rotX="0" rotY="0" rotZ="270" />
+    <object id="attach1" model="10773" interior="0" dimension="0" posX="-2908.5126" posY="-2447.2128" posZ="15.9311" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="12930" interior="0" dimension="0" posX="-2909.7749" posY="-2446.9309" posZ="13.9594" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="12930" interior="0" dimension="0" posX="-2907.6442" posY="-2446.9184" posZ="14.0041" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="18257" interior="0" dimension="0" posX="-2886.2675" posY="-2446.5947" posZ="13.2065" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="17055" interior="0" dimension="0" posX="-2906.7187" posY="-2526.0881" posZ="15.5410" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="9245" interior="0" dimension="0" posX="-2889.7424" posY="-2426.8349" posZ="24.2762" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="3578" interior="0" dimension="0" posX="-2912.4033" posY="-2415.2871" posZ="21.9095" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="3578" interior="0" dimension="0" posX="-2902.7348" posY="-2415.2958" posZ="21.9095" rotX="0.0" rotY="0.0" rotZ="180.0" />
+    <object id="attach1" model="18257" interior="0" dimension="0" posX="-2891.9230" posY="-2437.6352" posZ="12.6989" rotX="0.0" rotY="0.0" rotZ="179.6" />
+    <object id="attach1" model="18257" interior="0" dimension="0" posX="-2884.6159" posY="-2447.7934" posZ="13.2065" rotX="0.0" rotY="0.0" rotZ="91.1" />
+    <object id="attach1" model="17055" interior="0" dimension="0" posX="-2895.1962" posY="-2526.3229" posZ="15.5410" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3884" interior="0" dimension="0" posX="-2900.4274" posY="-2486.6418" posZ="33.4332" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="3277" interior="0" dimension="0" posX="-2900.4521" posY="-2486.7172" posZ="33.3899" rotX="0.0" rotY="0.0" rotZ="194.6" />
+    <object id="attach1" model="14459" interior="0" dimension="0" posX="-2900.9470" posY="-2490.7031" posZ="9.9957" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="14407" interior="0" dimension="0" posX="-2907.9433" posY="-2506.8232" posZ="3.8953" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="8885" interior="0" dimension="0" posX="-2907.7990" posY="-2497.7602" posZ="6.3804" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3566" interior="0" dimension="0" posX="-2892.6945" posY="-2500.0246" posZ="5.3163" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="3569" interior="0" dimension="0" posX="-2902.0922" posY="-2482.9501" posZ="5.3163" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="18257" interior="0" dimension="0" posX="-2895.1855" posY="-2497.4204" posZ="2.9277" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="18260" interior="0" dimension="0" posX="-2902.6691" posY="-2497.3173" posZ="4.5259" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3565" interior="0" dimension="0" posX="-2912.9577636719" posY="-2482.408203125" posZ="4.3006000518799" rotX="0" rotY="0" rotZ="90" />
+    <object id="attach1" model="3565" interior="0" dimension="0" posX="-2889.5712890625" posY="-2482.6772460938" posZ="4.3006000518799" rotX="0" rotY="0" rotZ="90" />
+    <object id="attach1" model="3565" interior="0" dimension="0" posX="-2898.826171875" posY="-2489.7133789063" posZ="4.3006000518799" rotX="0" rotY="0" rotZ="90" />
+    <object id="attach1" model="18257" interior="0" dimension="0" posX="-2906.0932617188" posY="-2492.0847167969" posZ="2.7276999950409" rotX="0" rotY="0" rotZ="1.395263671875" />
+    <object id="attach1" model="18257" interior="0" dimension="0" posX="-2902.6481" posY="-2469.7172" posZ="2.7277" rotX="0.0" rotY="0.0" rotZ="180.2" />
+    <object id="attach1" model="18257" interior="0" dimension="0" posX="-2894.5051" posY="-2480.4746" posZ="2.9277" rotX="0.0" rotY="0.0" rotZ="359.2" />
+    <object id="attach1" model="925" interior="0" dimension="0" posX="-2914.0817" posY="-2501.4628" posZ="8.1786" rotX="0.0" rotY="0.0" rotZ="90.0" />
+    <object id="attach1" model="18257" interior="0" dimension="0" posX="-2904.6264" posY="-2516.5380" posZ="7.1167" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="3796" interior="0" dimension="0" posX="-2908.0625" posY="-2476.0380859375" posZ="2.958300113678" rotX="0" rotY="0" rotZ="5.9099731445313" />
+    <object id="attach1" model="3761" interior="0" dimension="0" posX="-2909.2543" posY="-2469.6079" posZ="9.0907" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="3761" interior="0" dimension="0" posX="-2890.0908" posY="-2499.6279" posZ="9.0657" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="3761" interior="0" dimension="0" posX="-2888.2148" posY="-2474.3154" posZ="9.0648" rotX="0.0" rotY="0.0" rotZ="0.0" />
+    <object id="attach1" model="929" interior="0" dimension="0" posX="-2896.0217" posY="-2472.1215" posZ="8.0528" rotX="0.0" rotY="0.0" rotZ="270.0" />
+    <object id="attach1" model="929" interior="0" dimension="0" posX="-2902.0537" posY="-2464.2363" posZ="3.9137" rotX="0.0" rotY="0.0" rotZ="359.3" />
+    <object id="attach1" model="929" interior="0" dimension="0" posX="-2898.2797851563" posY="-2466.5483398438" posZ="3.9137001037598" rotX="0" rotY="0" rotZ="359.296875" />
+    <object id="attach1" model="16349" interior="0" dimension="0" posX="-2910.2739" posY="-2465.2939" posZ="4.9761" rotX="0.0" rotY="0.0" rotZ="337.5" />
+    <object id="attach1" model="16444" interior="0" dimension="0" posX="-2906.5234" posY="-2466.5610" posZ="3.1568" rotX="0.0" rotY="0.0" rotZ="348.7" />
+    <object id="attach1" model="5986" interior="0" dimension="0" posX="-1394.700073" posY="-2737.722656" posZ="94.454933" rotX="0" rotY="0" rotZ="270" />
+    <object id="attach1" model="2929" interior="0" dimension="0" posX="-1391.538696" posY="-2729.938232" posZ="89.740944" rotX="0" rotY="0" rotZ="90.2409" />
+    <object id="attach1" model="5822" interior="0" dimension="0" posX="-1395.752930" posY="-2736.695313" posZ="86.633812" rotX="0" rotY="0" rotZ="276.0934" />
+    <object id="attach1" model="2929" interior="0" dimension="0" posX="-1391.557129" posY="-2727.572998" posZ="89.745232" rotX="0" rotY="0" rotZ="90.2409" />
+    <object id="attach1" model="5822" interior="0" dimension="0" posX="-1377.727051" posY="-2716.296875" posZ="100.408150" rotX="0" rotY="0" rotZ="276.0934" />
+    <object id="attach1" model="6102" interior="0" dimension="0" posX="-1231.572021" posY="-1924.278564" posZ="7.584078" rotX="0" rotY="0" rotZ="303.75" />
+    <object id="attach1" model="5822" interior="0" dimension="0" posX="-1243.021240" posY="-1926.279541" posZ="3.904521" rotX="0" rotY="0" rotZ="128.1246" />
+    <object id="attach1" model="3361" interior="0" dimension="0" posX="-1185.534180" posY="-1963.030884" posZ="14.909491" rotX="0" rotY="0" rotZ="33.75" />
+    <object id="attach1" model="3361" interior="0" dimension="0" posX="-1180.844116" posY="-1959.888794" posZ="11.159510" rotX="0" rotY="0" rotZ="33.75" />
+    <object id="attach1" model="3776" interior="0" dimension="0" posX="-1345.151367" posY="-1510.978271" posZ="30.946987" rotX="0" rotY="0" rotZ="0" />
+    <object id="attach1" model="3776" interior="0" dimension="0" posX="-919.398193" posY="-1088.529541" posZ="105.813828" rotX="0" rotY="0" rotZ="326.25" />
+    <object id="attach1" model="18259" interior="0" dimension="0" posX="-1268.360107" posY="-2045.176880" posZ="21.754488" rotX="0" rotY="0" rotZ="63.9076" />
+    <object id="object (dead_tied_cop) (1)" model="3092" interior="0" dimension="0" posX="-2409.773193" posY="-2183.314941" posZ="34.226871" rotX="0" rotY="0" rotZ="270" />
+    <object id="object (kmb_frontgate) (1)" model="2909" interior="0" dimension="0" posX="-1198.160889" posY="-1973.060181" posZ="1.308082" rotX="0" rotY="0" rotZ="303.75" />
+    <object id="object (wongs_erection) (1)" model="3030" interior="0" dimension="0" posX="-1236.063721" posY="-1991.852783" posZ="21.247726" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (kmb_frontgate) (2)" model="2909" interior="0" dimension="0" posX="-1192.803345" posY="-1969.477539" posZ="1.327233" rotX="0" rotY="0" rotZ="303.75" />
+    <object id="object (shamheliprt1) (1)" model="6973" interior="0" dimension="0" posX="-1233.19" posY="-1967.91" posZ="24.61" rotX="0.00" rotY="0.00" rotZ="214.02" />
+    <object id="object (cityhallblok_LAn) (1)" model="3997" interior="0" dimension="0" posX="-1226.334473" posY="-1899.111084" posZ="-4.665723" rotX="0" rotY="0" rotZ="303.75" />
+    <object id="object (concpipe_SFXRF) (1)" model="3865" interior="0" dimension="0" posX="-1217.70" posY="-1982.42" posZ="22.71" rotX="270.00" rotY="0.00" rotZ="247.32" />
+    <object id="object (concpipe_SFXRF) (2)" model="3865" interior="0" dimension="0" posX="-1217.69" posY="-1982.42" posZ="20.70" rotX="90.00" rotY="0.00" rotZ="270.88" />
+    <object id="object (concpipe_SFXRF) (3)" model="3865" interior="0" dimension="0" posX="-1224.97" posY="-1972.34" posZ="22.71" rotX="270.00" rotY="0.00" rotZ="9.80" />
+    <object id="object (concpipe_SFXRF) (4)" model="3865" interior="0" dimension="0" posX="-1224.97" posY="-1972.34" posZ="20.70" rotX="90.00" rotY="0.00" rotZ="9.80" />
+    <object id="object (gnhtelgrnd_lvs) (1)" model="8661" interior="0" dimension="0" posX="-1219.22" posY="-1989.07" posZ="-14.50" rotX="90.00" rotY="0.00" rotZ="33.24" />
+    <object id="object (gnhtelgrnd_lvs) (2)" model="8661" interior="0" dimension="0" posX="-1186.51" posY="-1967.45" posZ="-14.50" rotX="90.00" rotY="0.00" rotZ="394.40" />
+    <object id="object (gnhtelgrnd_lvs) (3)" model="8661" interior="0" dimension="0" posX="-1163.62" posY="-1951.94" posZ="-14.56" rotX="90.00" rotY="0.00" rotZ="33.46" />
+    <object id="object (gnhtelgrnd_lvs) (4)" model="8661" interior="0" dimension="0" posX="-1274.53" posY="-1835.68" posZ="-14.56" rotX="-270.00" rotY="0.00" rotZ="213.88" />
+    <object id="object (gnhtelgrnd_lvs) (5)" model="8661" interior="0" dimension="0" posX="-1304.02" posY="-1854.80" posZ="-14.66" rotX="90.00" rotY="0.00" rotZ="213.43" />
+    <object id="object (gnhtelgrnd_lvs) (6)" model="8661" interior="0" dimension="0" posX="-1309.31" posY="-1882.16" posZ="-14.64" rotX="90.00" rotY="0.00" rotZ="304.11" />
+    <object id="object (gnhtelgrnd_lvs) (7)" model="8661" interior="0" dimension="0" posX="-1287.13" posY="-1915.31" posZ="-14.63" rotX="90.00" rotY="0.00" rotZ="303.34" />
+    <object id="object (gnhtelgrnd_lvs) (8)" model="8661" interior="0" dimension="0" posX="-1246.90" posY="-1983.34" posZ="-14.69" rotX="90.00" rotY="0.00" rotZ="303.18" />
+    <object id="object (gnhtelgrnd_lvs) (9)" model="8661" interior="0" dimension="0" posX="-1269.29" posY="-1950.22" posZ="-14.68" rotX="90.00" rotY="0.00" rotZ="304.46" />
+    <object id="object (Electricgate) (1)" model="969" interior="0" dimension="0" posX="-1277.28" posY="-1932.91" posZ="-4.86" rotX="0.00" rotY="90.00" rotZ="211.64" />
+    <object id="object (Electricgate) (2)" model="969" interior="0" dimension="0" posX="-1274.97" posY="-1931.27" posZ="-4.78" rotX="0.00" rotY="90.00" rotZ="214.90" />
+    <object id="object (gnhtelgrnd_lvs) (10)" model="8661" interior="0" dimension="0" posX="-1231.73" posY="-1962.64" posZ="0.46" rotX="360.00" rotY="0.00" rotZ="123.06" />
+    <object id="object (gnhtelgrnd_lvs) (11)" model="8661" interior="0" dimension="0" posX="-1223.43" posY="-1957.17" posZ="-9.51" rotX="90.00" rotY="0.00" rotZ="122.88" />
+    <object id="object (gnhtelgrnd_lvs) (12)" model="8661" interior="0" dimension="0" posX="-1242.63" posY="-1945.99" posZ="-19.53" rotX="0.00" rotY="-90.00" rotZ="303.64" />
+
+	<object id="attach1" model="8075" interior="0" dimension="0" posX="-2898.005859375" posY="-2467.5637207031" posZ="17.204599380493" rotX="0" rotY="0" rotZ="180.27014160156" />
+    <object id="object (CJ_FLAG1) (1)" model="2047" interior="0" dimension="0" posX="-2811.4465332031" posY="-1526.3337402344" posZ="141.78866577148" rotX="0" rotY="0" rotZ="270.42565917969" />
+
+    <object id="object (CE_beerpile01) (3)" model="3378" interior="0" dimension="0" posX="-2886.3269042969" posY="-2376.0598144531" posZ="14.376413345337" rotX="0" rotY="0" rotZ="0" doublesided="true"/>
+    <object id="object (CE_beerpile01) (5)" model="3378" interior="0" dimension="0" posX="-2886.275390625" posY="-2398.6083984375" posZ="16.726415634155" rotX="0" rotY="0" rotZ="0" doublesided="true"/>
+    <object id="object (CE_beerpile01) (6)" model="3378" interior="0" dimension="0" posX="-2894.9177246094" posY="-2361.9387207031" posZ="14.376413345337" rotX="0" rotY="0" rotZ="89.325012207031" doublesided="true"/>
+    <object id="object (CE_beerpile01) (7)" model="3378" interior="0" dimension="0" posX="-2908.9602050781" posY="-2370.2475585938" posZ="16.676404953003" rotX="0" rotY="0" rotZ="359.99932861328" doublesided="true"/>
+    <object id="object (CE_beerpile01) (8)" model="3378" interior="0" dimension="0" posX="-2915.4348144531" posY="-2395.4575195313" posZ="14.376413345337" rotX="0" rotY="0" rotZ="359.99450683594" doublesided="true"/>
+    <object id="object (CE_beerpile01) (9)" model="3378" interior="0" dimension="0" posX="-2901.5456542969" posY="-2387.1435546875" posZ="14.376413345337" rotX="0" rotY="0" rotZ="89.31884765625" doublesided="true"/>
+    <object id="object (CE_beerpile01) (10)" model="3378" interior="0" dimension="0" posX="-2886.326171875" posY="-2376.0595703125" posZ="16.701412200928" rotX="0" rotY="0" rotZ="0" doublesided="true"/>
+    <object id="object (CE_beerpile01) (11)" model="3378" interior="0" dimension="0" posX="-2894.9169921875" posY="-2361.9384765625" posZ="16.701427459717" rotX="0" rotY="0" rotZ="89.324340820313" doublesided="true"/>
+    <object id="object (CE_beerpile01) (12)" model="3378" interior="0" dimension="0" posX="-2908.9599609375" posY="-2370.2470703125" posZ="14.35139465332" rotX="0" rotY="0" rotZ="359.99450683594" doublesided="true"/>
+    <object id="object (CE_beerpile01) (13)" model="3378" interior="0" dimension="0" posX="-2899.91796875" posY="-2378.5678710938" posZ="14.35139465332" rotX="0" rotY="0" rotZ="359.99450683594" doublesided="true"/>
+    <object id="object (CE_beerpile01) (14)" model="3378" interior="0" dimension="0" posX="-2899.8957519531" posY="-2375.8137207031" posZ="16.726385116577" rotX="0" rotY="0" rotZ="359.99450683594" doublesided="true"/>
+    <object id="object (CE_beerpile01) (15)" model="3378" interior="0" dimension="0" posX="-2906.7507324219" posY="-2387.0546875" posZ="16.701412200928" rotX="0" rotY="0" rotZ="89.313354492188" doublesided="true"/>
+    <object id="object (CE_beerpile01) (16)" model="3378" interior="0" dimension="0" posX="-2894.9169921875" posY="-2361.9384765625" posZ="19.026433944702" rotX="0" rotY="0" rotZ="89.324340820313" doublesided="true"/>
+    <object id="object (CE_beerpile01) (17)" model="3378" interior="0" dimension="0" posX="-2894.91796875" posY="-2378.5107421875" posZ="14.35139465332" rotX="0" rotY="0" rotZ="359.99450683594" doublesided="true"/>
+    <object id="object (CE_beerpile01) (18)" model="3378" interior="0" dimension="0" posX="-2894.91796875" posY="-2378.5107421875" posZ="16.676393508911" rotX="0" rotY="0" rotZ="359.99450683594" doublesided="true"/>
+    <object id="object (CE_beerpile01) (19)" model="3378" interior="0" dimension="0" posX="-2891.5563964844" posY="-2404.0393066406" posZ="14.376413345337" rotX="0" rotY="0" rotZ="359.99450683594" doublesided="true"/>
+    <object id="object (CE_beerpile01) (20)" model="3378" interior="0" dimension="0" posX="-2891.630859375" posY="-2405.5576171875" posZ="16.751415252686" rotX="0" rotY="0" rotZ="359.99450683594" doublesided="true"/>
+    <object id="object (CE_beerpile01) (21)" model="3378" interior="0" dimension="0" posX="-2898.4541015625" posY="-2401.1125488281" posZ="14.376413345337" rotX="0" rotY="0" rotZ="89.31884765625" doublesided="true"/>
+    <object id="object (CE_beerpile01) (22)" model="3378" interior="0" dimension="0" posX="-2902.458984375" posY="-2401.1494140625" posZ="16.726419448853" rotX="0" rotY="0" rotZ="89.313354492188" doublesided="true"/>
+    <object id="object (CE_beerpile01) (23)" model="3378" interior="0" dimension="0" posX="-2906.75" posY="-2387.0546875" posZ="19.001411437988" rotX="0" rotY="0" rotZ="89.313354492188" doublesided="true"/>
+    <object id="object (CE_beerpile01) (24)" model="3378" interior="0" dimension="0" posX="-2908.9599609375" posY="-2370.2470703125" posZ="19.026399612427" rotX="0" rotY="0" rotZ="359.99450683594" doublesided="true"/>
+    <object id="object (CE_beerpile01) (25)" model="3378" interior="0" dimension="0" posX="-2914.8920898438" posY="-2364.8913574219" posZ="14.35139465332" rotX="0" rotY="0" rotZ="359.99450683594" doublesided="true"/>
+    <object id="object (luxorpillar02_lvs) (1)" model="3441" interior="0" dimension="0" posX="-2884.5727539063" posY="-2408.9172363281" posZ="14.982164382935" rotX="0" rotY="0" rotZ="0" />
+
+    <object id="object (sfse_roadblock5) (1)" model="4526" interior="0" dimension="0" posX="-1029.0159912109" posY="-2858.1101074219" posZ="68.433456420898" rotX="0" rotY="0" rotZ="242.525390625" />
+    <object id="object (DockBarr1_LA) (3)" model="3578" interior="0" dimension="0" posX="-1152.2604980469" posY="-2639.2641601563" posZ="10.437748908997" rotX="0" rotY="0" rotZ="89.684936523438" />
+    <object id="object (sfse_roadblock5) (2)" model="4526" interior="0" dimension="0" posX="-1196.2233886719" posY="-2355.7392578125" posZ="19.158355712891" rotX="1.9849853515625" rotY="0" rotZ="222.27026367188" />
+    <object id="object (sfse_roadblock5) (3)" model="4526" interior="0" dimension="0" posX="-1589.6997070313" posY="-1606.5098876953" posZ="37.247535705566" rotX="1.9830322265625" rotY="0" rotZ="289.98474121094" />
+    <object id="object (sfse_roadblock5) (4)" model="4526" interior="0" dimension="0" posX="-2870.1687011719" posY="-918.24194335938" posZ="10.174098968506" rotX="359.99255371094" rotY="0" rotZ="301.89404296875" />
+    <object id="object (chinaTgate) (3)" model="2930" interior="0" dimension="0" posX="-1840.9158935547" posY="-1695.4182128906" posZ="34.13842010498" rotX="0" rotY="0" rotZ="125.59497070313" />
+    <object id="object (subwaygate) (2)" model="971" interior="0" dimension="0" posX="-1831.9598388672" posY="-1708.7994384766" posZ="22.623052597046" rotX="0" rotY="0" rotZ="33.880004882813" />
+    <object id="object (ws_apgate) (1)" model="988" interior="0" dimension="0" posX="-1834.3837890625" posY="-1703.1079101563" posZ="22.22812461853" rotX="0" rotY="0" rotZ="33.880004882813" />
+
+	
+    <boundarycorner posX="-3050" posY="-915" />
+    <boundarycorner posX="-2778" posY="-915" />
+    <boundarycorner posX="-2695" posY="-845" />
+    <boundarycorner posX="-2595" posY="-815" />
+    <boundarycorner posX="-2445" posY="-835" />
+    <boundarycorner posX="-2165" posY="-1037" />
+    <boundarycorner posX="-1975" posY="-1335" />
+    <!--<boundarycorner posX="-1995" posY="-1485" />-->
+    <boundarycorner posX="-1572" posY="-1625" />
+    <boundarycorner posX="-1572" posY="-1655" />
+    <boundarycorner posX="-1480" posY="-1635" />
+    <boundarycorner posX="-1285" posY="-1745" />
+    <!--<boundarycorner posX="-1205" posY="-1905" />-->
+    <boundarycorner posX="-1105" posY="-2020" />
+    <boundarycorner posX="-1105" posY="-2110" />
+    <boundarycorner posX="-1200" posY="-2420" />
+    <boundarycorner posX="-1185" posY="-2540" />
+    <boundarycorner posX="-955" posY="-3050" />
+    <boundarycorner posX="-3050" posY="-3050" />
+	
+    <teleport minX="-2889.9" minY="-2348.19" minZ="-2.55" maxX="-2885.9" maxY="-2344.19" maxZ="1.55" teleX="-2900.91" teleY="-2316.72" teleZ="15.62" teleRot="180.0" vehicles="0" interior="0" message="" />
+    <pickup posX="-2887.9" posY="-2346.19" posZ="-0.55" type="custom" model="1318" respawn="30000" />
+    <!-- Arrow teleport -->
+	<teleport minX="-2890.1" minY="-2518.0" minZ="13.6" maxX="-2886.1" maxY="-2514.0" maxZ="14.6" teleX="-2893.2" teleY="-2512.5" teleZ="8.1" teleRot="0" vehicles="0" interior="0" message="" />
+	<pickup posX="-2888.0" posY="-2516.0" posZ="14.1" type="custom" model="1318" respawn="30000" /> <!-- outside going in -->
+	<teleport minX="-2895.1" minY="-2517.9" minZ="7.3" maxX="-2891.1" maxY="-2513.9" maxZ="8.9" teleX="-2890.8" teleY="-2519.0" teleZ="14.1" teleRot="180" vehicles="0" interior="0" message="" />
+	<pickup posX="-2893.1" posY="-2515.9" posZ="8.1" type="custom" model="1318" respawn="30000" /> <!-- inside coming out -->
+</map>

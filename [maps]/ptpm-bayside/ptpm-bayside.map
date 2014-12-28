@@ -1,0 +1,409 @@
+﻿<map mod="ptpm" version="1.0">
+
+    <wardrobe playerX="-2232.0784" playerY="2361.3523" playerZ="19.7882" playerRot="184" camX="-2232.0447" camY="2359.6584" camZ="20.7882" interior="0" />
+	
+    <spawngroup type="psycho">
+        <class id="0" skin="230" weapons="18,10;30,100;24,50" />
+        <class id="1" skin="212" weapons="18,10;30,100;24,50" />
+        <class id="2" skin="200" weapons="18,10;30,100;24,50" />
+        <class id="3" skin="137" weapons="18,10;30,100;24,50" />
+        <spawn posX="-905.7904" posY="1515.3550" posZ="26.3168" rot="3.0383" />
+        <spawn posX="-881.7125" posY="1532.2938" posZ="25.9114" rot="357.5102" />
+        <spawn posX="-881.5452" posY="1562.0956" posZ="25.9114" rot="157.7955" />
+        <spawn posX="-636.7081" posY="1446.7806" posZ="13.9965" rot="213.6897" />
+        <spawn posX="-743.1528" posY="1432.2576" posZ="16.0937" rot="185.0740" />
+        <cantdrive models="488,487" />
+    </spawngroup>
+	
+    <spawngroup type="terrorist">
+        <class id="4" skin="181" weapons="26,100;31,400;18,10" />
+        <class id="5" skin="183" weapons="24,100;22,200;37,100" />
+        <class id="6" skin="179" weapons="26,100;22,200;37,100" />
+        <class id="7" skin="191" weapons="24,100;31,400;25,100" />
+        <class id="8" skin="111" weapons="26,100;22,200;23,300" />
+        <class id="9" skin="73" weapons="26,100;22,200;18,10" />
+        <class id="10" skin="100" weapons="23,100;31,400;37,100" />
+        <class id="11" skin="274" weapons="4,1;23,100;41,300" medic="true" />
+        <spawn posX="-789.0142" posY="2748.7109" posZ="48.2556" rot="267.7834" />
+        <spawn posX="-789.2872" posY="2764.3579" posZ="48.2556" rot="265.7383" />
+        <spawn posX="-775.6995" posY="2764.7869" posZ="48.2556" rot="175.7971" />
+        <spawn posX="-760.1064" posY="2765.0349" posZ="48.2556" rot="177.8541" />
+        <cantdrive models="488,487" />
+    </spawngroup>
+	
+    <spawngroup type="pm">
+        <class id="12" skin="147" weapons="15,1;24,50;41,1000" />
+        <spawn posX="-2626.1106" posY="2287.6431" posZ="8.3026" rot="267.9435" />
+        <cantdrive models="522,461,488,487,476" />
+        <cantpassenger models="488,487" />
+    </spawngroup>
+	
+    <spawngroup type="bodyguard">
+        <class id="13" skin="163" weapons="23,100;28,250;46,1" />
+        <class id="14" skin="164" weapons="23,100;28,250;46,1" />
+        <class id="15" skin="165" weapons="23,100;28,250;46,1" />
+        <class id="16" skin="166" weapons="23,100;28,250;46,1" />
+        <class id="17" skin="141" weapons="23,100;28,250;46,1" />
+        <class id="18" skin="276" weapons="23,100;29,150;41,300" medic="true" />
+        <spawn posX="-2622.1106" posY="2287.6431" posZ="8.2813" rot="267.9435" />
+        <spawn posX="-2626.1106" posY="2291.6431" posZ="8.3026" rot="267.9435" />
+        <spawn posX="-2626.1106" posY="2283.6431" posZ="8.3026" rot="267.9435" />
+		<cantdrive models="476" />
+    </spawngroup>
+	
+    <spawngroup type="police">
+        <class id="19" skin="280" weapons="24,100;29,300;41,300" />
+        <class id="20" skin="281" weapons="24,100;31,300;41,300" />
+        <class id="21" skin="282" weapons="24,100;29,300;41,300" />
+        <class id="22" skin="283" weapons="24,100;29,300;41,300" />
+        <class id="23" skin="284" weapons="24,100;31,300;41,300" />
+        <class id="24" skin="285" weapons="24,100;29,300;41,300" />
+        <class id="25" skin="286" weapons="24,100;31,300;41,300" />
+        <class id="26" skin="288" weapons="24,100;31,300;41,300" />
+        <class id="27" skin="246" weapons="24,100;31,300;41,300" />
+        <class id="28" skin="275" weapons="24,100;29,150;41,300" medic="true" />
+        <spawn posX="-1393.6278" posY="2629.1965" posZ="55.9575" rot="85.2886" />
+        <spawn posX="-1393.6278" posY="2631.1965" posZ="55.9334" rot="85.2886" />
+        <spawn posX="-1393.6278" posY="2635.1965" posZ="55.9334" rot="85.2886" />
+		<cantdrive models="476" />
+    </spawngroup>
+	
+    <vehicle model="409" posX="-2617.3972" posY="2287.9070" posZ="8.0896" rotZ="181.7545" color="1 1" />
+    <vehicle model="598" posX="-2627.4165" posY="2269.2188" posZ="8.0232" rotZ="266.7369" />
+    <vehicle model="598" posX="-2627.4165" posY="2265.2188" posZ="8.0324" rotZ="266.7369" />
+    <vehicle model="582" posX="-2627.4165" posY="2261.2188" posZ="8.3254" rotZ="266.7369" />
+    <vehicle model="582" posX="-2627.4165" posY="2257.2188" posZ="8.3303" rotZ="266.7369" />
+    <vehicle model="586" posX="-2627.4165" posY="2252.2188" posZ="7.7723" rotZ="266.7369" />
+    <vehicle model="586" posX="-2600.4570" posY="2267.1765" posZ="7.8060" rotZ="85.1927" />
+    <vehicle model="490" posX="-2619.1616" posY="2249.1038" posZ="8.4888" rotZ="1.1621" color="0 0" />
+    <vehicle model="490" posX="-2615.1616" posY="2249.1038" posZ="8.5083" rotZ="1.1621" color="0 0" />
+    <vehicle model="490" posX="-2611.1616" posY="2249.1038" posZ="8.5311" rotZ="1.1621" color="0 0" />
+    <vehicle model="599" posX="-2600.5369" posY="2256.9053" posZ="8.5961" rotZ="83.2484" color="0 1" />
+    <vehicle model="599" posX="-2600.5369" posY="2261.9053" posZ="8.5961" rotZ="83.2484" color="0 1" />
+    <vehicle model="579" posX="-2611.6189" posY="2361.2979" posZ="8.7626" rotZ="180.8666" />
+    <vehicle model="488" posX="-2227.4778" posY="2326.5503" posZ="7.8119" rotZ="0.4726" />
+    <vehicle model="582" posX="-2250.9104" posY="2335.9739" posZ="4.9675" rotZ="90.1419" />
+    <vehicle model="582" posX="-2250.9104" posY="2314.9739" posZ="4.9675" rotZ="90.1419" />
+    <vehicle model="582" posX="-2250.9104" posY="2290.9739" posZ="4.9675" rotZ="90.1419" />
+    <vehicle model="582" posX="-2272.2651" posY="2291.2888" posZ="4.9752" rotZ="271.2742" />
+    <vehicle model="582" posX="-2271.7922" posY="2321.3477" posZ="4.9752" rotZ="265.9456" />
+    <vehicle model="440" posX="-2485.4751" posY="2243.5522" posZ="5.0564" rotZ="178.7853" />
+    <vehicle model="440" posX="-2476.5581" posY="2224.1558" posZ="5.0564" rotZ="0.3891" />
+    <vehicle model="525" posX="-2461.5581" posY="2224.1558" posZ="4.8337" rotZ="0.3891" />
+    <vehicle model="440" posX="-2446.5581" posY="2224.1558" posZ="5.0564" rotZ="0.3891" />
+    <vehicle model="525" posX="-2449.7415" posY="2243.2593" posZ="4.7653" rotZ="183.5897" />
+    <vehicle model="533" posX="-2528.3918" posY="2250.5315" posZ="4.7779" rotZ="335.9398" />
+    <vehicle model="496" posX="-2554.8977" posY="2269.8213" posZ="4.8492" rotZ="333.4261" />
+    <vehicle model="498" posX="-2507.0620" posY="2348.8652" posZ="5.1911" rotZ="184.4940" />
+    <vehicle model="499" posX="-2531.9714" posY="2361.4868" posZ="5.0857" rotZ="274.1389" />
+    <vehicle model="561" posX="-2435.3760" posY="2451.1841" posZ="13.7099" rotZ="183.5816" />
+    <vehicle model="579" posX="-2380.8408" posY="2420.1570" posZ="8.8159" rotZ="241.5786" />
+    <vehicle model="452" posX="-2225.3005" posY="2400.3054" posZ="-0.3447" rotZ="41.6679" />
+    <vehicle model="452" posX="-2232.1982" posY="2393.7532" posZ="-0.5344" rotZ="47.5582" />
+    <vehicle model="452" posX="-2252.7122" posY="2427.8486" posZ="-0.7253" rotZ="229.7280" />
+    <vehicle model="452" posX="-2259.4866" posY="2421.2808" posZ="-0.6638" rotZ="223.3056" />
+    <vehicle model="452" posX="-2240.6646" posY="2440.2910" posZ="-0.5497" rotZ="222.8505" />
+    <vehicle model="454" posX="-2214.5432" posY="2412.0632" posZ="-0.5518" rotZ="48.2394" />
+    <vehicle model="454" posX="-2203.7996" posY="2421.5181" posZ="-0.5467" rotZ="44.1886" />
+    <vehicle model="452" posX="-2232.6819" posY="2448.0068" posZ="-0.6695" rotZ="222.3092" />
+    <vehicle model="452" posX="-2031.9108" posY="2330.5266" posZ="-0.4385" rotZ="37.6013" />
+    <vehicle model="452" posX="-2047.2583" posY="2348.0486" posZ="-0.5216" rotZ="51.0061" />
+    <vehicle model="452" posX="-2066.1631" posY="2364.6716" posZ="-0.3981" rotZ="48.5662" />
+    <vehicle model="454" posX="-2324.1824" posY="2324.3616" posZ="-0.4747" rotZ="182.4293" />
+    <vehicle model="454" posX="-2323.7444" posY="2304.4971" posZ="-0.4288" rotZ="181.1959" />
+    <vehicle model="539" posX="-2430.7156" posY="2294.8411" posZ="4.9844" rotZ="273.4607" />
+    <vehicle model="539" posX="-2430.7156" posY="2291.8411" posZ="4.9844" rotZ="273.4607" />
+    <vehicle model="539" posX="-2337.6462" posY="2511.9531" posZ="1.0492" rotZ="311.2805" />
+    <vehicle model="539" posX="-2344.0730" posY="2533.0090" posZ="5.8212" rotZ="201.1397" />
+    <vehicle model="539" posX="-2342.6721" posY="2478.5313" posZ="4.9822" rotZ="356.0774" />
+    <vehicle model="539" posX="-2267.1240" posY="2538.7295" posZ="0.7645" rotZ="310.3779" />
+    <vehicle model="539" posX="-2226.0745" posY="2562.2002" posZ="0.5910" rotZ="189.0600" />
+    <vehicle model="508" posX="-844.6991" posY="2755.0879" posZ="46.3016" rotZ="274.1916" />
+    <vehicle model="461" posX="-787.0850" posY="2751.0583" posZ="45.3219" rotZ="263.6394" />
+    <vehicle model="461" posX="-787.0850" posY="2753.0583" posZ="45.3219" rotZ="263.6394" />
+    <vehicle model="461" posX="-787.0850" posY="2755.0583" posZ="45.3219" rotZ="263.6394" />
+    <vehicle model="586" posX="-787.0850" posY="2757.0583" posZ="45.2444" rotZ="263.6394" />
+    <vehicle model="586" posX="-787.0850" posY="2759.0583" posZ="45.2444" rotZ="263.6394" />
+    <vehicle model="586" posX="-787.0850" posY="2761.0583" posZ="45.2444" rotZ="263.6394" />
+    <vehicle model="586" posX="-778.4286" posY="2762.8728" posZ="45.2869" rotZ="175.6553" />
+    <vehicle model="499" posX="-794.7983" posY="2771.9434" posZ="45.8171" rotZ="270.9103" />
+    <vehicle model="489" posX="-782.6301" posY="2770.2417" posZ="46.0193" rotZ="178.5571" />
+    <vehicle model="510" posX="-766.3795" posY="2773.9460" posZ="45.4693" rotZ="88.7864" />
+    <vehicle model="400" posX="-735.8654" posY="2746.4185" posZ="47.3627" rotZ="88.9473" />
+    <vehicle model="566" posX="-771.6777" posY="2760.0645" posZ="45.6394" rotZ="181.9467" />
+    <vehicle model="566" posX="-767.6777" posY="2760.0645" posZ="45.6734" rotZ="181.9467" />
+    <vehicle model="566" posX="-763.6777" posY="2760.0645" posZ="45.6734" rotZ="181.9467" />
+    <vehicle model="426" posX="-753.4502" posY="2769.4856" posZ="45.5934" rotZ="179.2740" />
+    <vehicle model="496" posX="-753.6475" posY="2753.9097" posZ="45.5612" rotZ="179.2740" />
+    <vehicle model="523" posX="-1399.0782" posY="2628.5483" posZ="55.4547" rotZ="86.2291" color="0 0" />
+    <vehicle model="523" posX="-1399.0782" posY="2631.5483" posZ="55.4298" rotZ="86.2291" color="0 0" />
+    <vehicle model="523" posX="-1398.7524" posY="2634.5989" posZ="55.3784" rotZ="87.3965" color="0 0" />
+    <vehicle model="523" posX="-1399.0782" posY="2637.5483" posZ="55.3479" rotZ="86.2291" color="0 0" />
+    <vehicle model="599" posX="-1399.0782" posY="2640.5483" posZ="56.0726" rotZ="86.2291" color="0 1" />
+    <vehicle model="599" posX="-1399.0782" posY="2643.5483" posZ="56.0726" rotZ="86.2291" color="0 1" />
+    <vehicle model="599" posX="-1399.0782" posY="2646.5483" posZ="56.0726" rotZ="86.2291" color="0 1" />
+    <vehicle model="598" posX="-1399.0782" posY="2649.5483" posZ="55.5575" rotZ="86.2291" />
+    <vehicle model="598" posX="-1399.1132" posY="2653.4050" posZ="55.5575" rotZ="83.0631" />
+    <vehicle model="427" posX="-1399.2128" posY="2656.6624" posZ="55.9355" rotZ="88.5238" color="0 1" />
+    <vehicle model="525" posX="-1411.6146" posY="2584.0862" posZ="55.8259" rotZ="358.1504" />
+    <vehicle model="498" posX="-1509.9419" posY="2635.4370" posZ="56.0459" rotZ="271.1308" />
+    <vehicle model="416" posX="-1506.8044" posY="2524.6804" posZ="55.9871" rotZ="358.2826" />
+    <vehicle model="416" posX="-1522.4713" posY="2524.7461" posZ="56.0196" rotZ="355.4178" />
+    <vehicle model="471" posX="-1473.4115" posY="2558.0718" posZ="55.4109" rotZ="93.1419" />
+    <vehicle model="434" posX="-1513.5479" posY="2611.4187" posZ="55.9231" rotZ="181.0480" />
+    <vehicle model="515" posX="-1311.1251" posY="2699.8555" posZ="51.2162" rotZ="186.9698" />
+    <vehicle model="443" posX="-1303.5898" posY="2704.8848" posZ="50.8129" rotZ="185.7010" />
+    <vehicle model="437" posX="-1295.6909" posY="2709.3806" posZ="50.3125" rotZ="188.2468" />
+    <vehicle model="437" posX="-1288.0488" posY="2712.9082" posZ="50.3125" rotZ="186.0612" />
+    <vehicle model="458" posX="-1328.7637" posY="2683.2371" posZ="50.0327" rotZ="264.8892" />
+    <vehicle model="479" posX="-1328.4180" posY="2672.1318" posZ="49.9671" rotZ="83.9784" />
+    <vehicle model="543" posX="-1482.9033" posY="2697.1472" posZ="55.7859" rotZ="268.8695" />
+    <vehicle model="466" posX="-1568.8752" posY="2640.8408" posZ="55.7559" rotZ="275.4359" />
+    <vehicle model="566" posX="-1526.9126" posY="2643.0352" posZ="55.7359" rotZ="88.7390" />
+    <vehicle model="604" posX="-908.2130" posY="1524.3607" posZ="25.8341" rotZ="242.8985" />
+    <vehicle model="605" posX="-881.1156" posY="1535.4993" posZ="25.8641" rotZ="100.3809" />
+    <vehicle model="471" posX="-882.5681" posY="1558.0959" posZ="25.4891" rotZ="96.5677" />
+    <vehicle model="510" posX="-905.7840" posY="1549.5992" posZ="25.5565" rotZ="269.1096" />
+    <vehicle model="510" posX="-905.7840" posY="1547.5992" posZ="25.5877" rotZ="269.1096" />
+    <vehicle model="605" posX="-747.6981" posY="1434.8790" posZ="16.0419" rotZ="5.6460" />
+    <vehicle model="604" posX="-683.8286" posY="1446.4352" posZ="17.2208" rotZ="357.7681" />
+    <vehicle model="471" posX="-643.7973" posY="1441.5533" posZ="13.1922" rotZ="0.9903" />
+    <vehicle model="471" posX="-639.7973" posY="1441.5533" posZ="13.1922" rotZ="0.9903" />
+    <vehicle model="508" posX="-773.5403" posY="1442.8201" posZ="14.2431" rotZ="77.0221" />
+    <vehicle model="508" posX="-786.1239" posY="1430.2653" posZ="14.2391" rotZ="105.6719" />
+    <vehicle model="508" posX="-816.4190" posY="1430.5875" posZ="14.2391" rotZ="119.7935" />
+    <vehicle model="466" posX="-866.8246" posY="1566.4552" posZ="24.7067" rotZ="271.0321" />
+    <vehicle model="543" posX="-865.8282" posY="1557.5233" posZ="24.0344" rotZ="271.0321" />
+    <vehicle model="422" posX="-865.4333" posY="1550.9083" posZ="23.6031" rotZ="268.1673" />
+    <vehicle model="468" posX="-865.1005" posY="1541.8978" posZ="22.5013" rotZ="268.1673" />
+    <vehicle model="428" posX="-828.8172" posY="1497.1335" posZ="19.3231" rotZ="272.9663" />
+    <vehicle model="409" posX="-803.7704" posY="1554.8369" posZ="26.8859" rotZ="2.5376" />
+    <vehicle model="434" posX="-748.9681" posY="1585.2646" posZ="27.1102" rotZ="44.2883" />
+    <vehicle model="473" posX="-933.3691" posY="2643.8079" posZ="40.0288" rotZ="141.0726" />
+    <vehicle model="473" posX="-938.7160" posY="2648.6973" posZ="40.0746" rotZ="134.3031" />
+    <vehicle model="473" posX="-944.1625" posY="2638.5710" posZ="39.9727" rotZ="132.1796" />
+    <vehicle model="473" posX="-924.9813" posY="2650.8701" posZ="40.0334" rotZ="138.4392" />
+    <vehicle model="473" posX="-931.2401" posY="2656.1851" posZ="40.0428" rotZ="133.2486" />
+    <vehicle model="473" posX="-803.4713" posY="2236.1760" posZ="40.0641" rotZ="93.4047" />
+    <vehicle model="473" posX="-800.4301" posY="2236.7170" posZ="40.0040" rotZ="93.0059" />
+    <vehicle model="473" posX="-1379.4419" posY="2120.5103" posZ="40.1117" rotZ="238.4604" />
+    <vehicle model="473" posX="-1371.8397" posY="2114.2266" posZ="40.0630" rotZ="231.1762" />
+    <vehicle model="454" posX="-1130.1346" posY="2786.9600" posZ="40.1087" rotZ="7.4695" />
+    <vehicle model="454" posX="-1127.1704" posY="2773.0112" posZ="40.0188" rotZ="194.7168" />
+    <vehicle model="452" posX="-795.8073" posY="1812.3379" posZ="-0.4974" rotZ="357.6738" />
+    <vehicle model="452" posX="-795.4636" posY="1820.7888" posZ="-0.5477" rotZ="357.6738" />
+    <vehicle model="452" posX="-618.6606" posY="1806.2239" posZ="-0.4975" rotZ="83.7713" />
+    <vehicle model="471" posX="-2485.4055" posY="2888.6919" posZ="47.1552" rotZ="261.5725" />
+    <vehicle model="471" posX="-2485.0776" posY="2885.6428" posZ="46.3667" rotZ="261.5725" />
+    <vehicle model="471" posX="-2651.7783" posY="2873.4866" posZ="63.3754" rotZ="267.7982" />
+    <vehicle model="424" posX="-1770.8105" posY="2911.8425" posZ="58.8988" rotZ="270.6161" />
+    <vehicle model="424" posX="-1645.0304" posY="2911.5215" posZ="51.6740" rotZ="274.3626" />
+    <vehicle model="468" posX="-661.7008" posY="2302.8728" posZ="135.7820" rotZ="91.8807" />
+    <vehicle model="471" posX="-661.7008" posY="2305.8728" posZ="135.5970" rotZ="91.8807" />
+    <vehicle model="605" posX="-626.7514" posY="2696.4114" posZ="72.3250" rotZ="89.6808" />
+    <vehicle model="496" posX="-1191.8359" posY="1824.9924" posZ="41.5065" rotZ="45.6773" />
+    <vehicle model="400" posX="-1197.1248" posY="1820.7190" posZ="41.8549" rotZ="44.2226" />
+    <vehicle model="426" posX="-1201.9095" posY="1815.8517" posZ="41.5387" rotZ="43.86416" />
+    <vehicle model="401" posX="-1206.9628" posY="1811.3123" posZ="41.5866" rotZ="43.3755" />
+    <vehicle model="445" posX="-1464.9824" posY="1864.5886" posZ="32.6228" rotZ="99.2528" />
+    <vehicle model="458" posX="-1421.8660" posY="2176.8833" posZ="50.5072" rotZ="222.4018" />
+    <vehicle model="470" posX="-1507.0482" posY="1974.3456" posZ="48.5271" rotZ="358.2240" />
+    <vehicle model="426" posX="-1359.8230" posY="2065.3262" posZ="52.3233" rotZ="270.2028" />
+    <vehicle model="545" posX="-1939.6053" posY="2389.6772" posZ="49.4422" rotZ="293.4300" />
+    <vehicle model="401" posX="-1935.9838" posY="2380.2446" posZ="49.3678" rotZ="287.7526" />
+    <vehicle model="510" posX="-1420.0134" posY="2304.6655" posZ="54.4461" rotZ="202.6274" />
+    <vehicle model="471" posX="-1692.0798" posY="2395.5251" posZ="57.8204" rotZ="28.5383" />
+    <vehicle model="422" posX="-1670.0098" posY="2495.3765" posZ="87.2044" rotZ="278.4872" />
+    <vehicle model="426" posX="-1667.1249" posY="2562.6013" posZ="84.9620" rotZ="275.4769" />
+    <vehicle model="543" posX="-1669.7704" posY="2601.0649" posZ="81.2242" rotZ="273.3861" />
+    <vehicle model="471" posX="-1722.4993" posY="2671.5313" posZ="61.8078" rotZ="230.9962" />
+    <vehicle model="468" posX="-1535.6538" posY="2357.8516" posZ="46.0756" rotZ="76.3486" />
+    <vehicle model="510" posX="-1528.4764" posY="2253.9707" posZ="47.7298" rotZ="183.2276" />
+    <vehicle model="496" posX="-1479.8020" posY="1879.2155" posZ="32.4205" rotZ="185.8006" />
+    <vehicle model="533" posX="-1489.3298" posY="1879.0116" posZ="32.4328" rotZ="179.0183" />
+    <vehicle model="604" posX="-1709.7765" posY="2175.7703" posZ="19.5037" rotZ="222.0239" />
+    <vehicle model="471" posX="-1777.2389" posY="2211.7627" posZ="3.6206" rotZ="230.4211" />
+    <vehicle model="426" posX="-1930.1531" posY="2578.0037" posZ="42.7519" rotZ="260.3332" />
+    <vehicle model="471" posX="-1284.8065" posY="2041.9019" posZ="77.5186" rotZ="299.9343" />
+    <vehicle model="510" posX="-1137.7235" posY="2108.7932" posZ="85.7427" rotZ="277.3154" />
+    <vehicle model="468" posX="-1106.4080" posY="2375.2395" posZ="84.8391" rotZ="143.1450" />
+    <vehicle model="510" posX="-1211.2548" posY="2216.7107" posZ="105.6670" rotZ="120.6889" />
+    <vehicle model="471" posX="-1296.9563" posY="2514.8306" posZ="86.6672" rotZ="183.5114" />
+    <vehicle model="471" posX="-1300.9563" posY="2514.8306" posZ="86.6672" rotZ="183.5114" />
+    <vehicle model="510" posX="-1221.8347" posY="2364.8291" posZ="111.0218" rotZ="49.4197" />
+    <vehicle model="471" posX="-1172.3024" posY="2602.6140" posZ="63.0039" rotZ="234.0768" />
+    <vehicle model="498" posX="-1522.1962" posY="2584.5894" posZ="56.0459" rotZ="0.6587" />
+    <vehicle model="426" posX="-1529.5010" posY="2570.2429" posZ="55.6559" rotZ="89.1162" />
+    <vehicle model="422" posX="-2427.0713" posY="2499.3130" posZ="13.5366" rotZ="272.2987" />
+    <vehicle model="543" posX="-2473.4404" posY="2503.6873" posZ="17.2073" rotZ="87.2478" />
+    <vehicle model="466" posX="-2448.5178" posY="2523.3794" posZ="15.6871" rotZ="270.6486" />
+    <vehicle model="466" posX="-942.5275" posY="1416.3855" posZ="30.0120" rotZ="273.5908" />
+    <vehicle model="510" posX="-1038.9624" posY="1719.8768" posZ="31.1865" rotZ="91.9638" />
+    <vehicle model="543" posX="-1046.7194" posY="1542.3870" posZ="33.0423" rotZ="312.1984" />
+    <vehicle model="422" posX="-1806.3491" posY="2041.3049" posZ="9.1275" rotZ="299.2224" />
+    <vehicle model="543" posX="-1820.4222" posY="2044.4138" posZ="8.6784" rotZ="213.1046" />
+    <vehicle model="445" posX="-1931.0247" posY="2367.3440" posZ="49.4266" rotZ="294.8861" />
+    <vehicle model="440" posX="-1955.5100" posY="2376.6702" posZ="49.7126" rotZ="202.6092" />
+    <vehicle model="533" posX="-1925.8556" posY="2354.7529" posZ="48.8446" rotZ="291.8231" />
+    <vehicle model="466" posX="-2416.7332" posY="2656.5654" posZ="61.4214" rotZ="271.0320" />
+    <vehicle model="445" posX="-2675.8909" posY="2625.4021" posZ="85.8763" rotZ="302.8339" />
+    <vehicle model="487" posX="-2090.8303" posY="2312.5078" posZ="26.1791" rotZ="39.9778" />
+    <vehicle model="539" posX="-2150.3479" posY="2719.5217" posZ="161.8320" rotZ="184.9692" />
+    <vehicle model="539" posX="-2143.9875" posY="2720.3745" posZ="161.8320" rotZ="192.8026" />
+    <vehicle model="539" posX="-2136.8755" posY="2719.7070" posZ="161.8320" rotZ="166.7957" />
+    <vehicle model="539" posX="-2130.1208" posY="2718.2578" posZ="161.8320" rotZ="175.2558" />
+    <vehicle model="539" posX="-2122.9150" posY="2716.3694" posZ="161.9137" rotZ="164.2890" />
+    <vehicle model="539" posX="-2114.5193" posY="2714.4080" posZ="162.0586" rotZ="149.2488" />
+    <vehicle model="539" posX="-2107.4326" posY="2709.9800" posZ="162.1778" rotZ="178.3891" />
+	<vehicle model="476" posX="-895.4" posY="2744.2" posZ="46.5" rotZ="90.0" />
+	<vehicle model="476" posX="-895.4" posY="2761.1" posZ="46.5" rotZ="90.0" />
+	
+    <pickup posX="-2138.1853" posY="2642.8479" posZ="154.8358" type="46" amount="1" respawn="30000" synced="false" />
+    <pickup posX="-2236.5391" posY="2352.3455" posZ="4.9821" type="46" amount="1" respawn="30000" synced="false" />
+    <pickup posX="-2638.5386" posY="2263.3713" posZ="13.3930" type="armor" amount="100" respawn="30000" synced="false" />
+    <pickup posX="-1442.8461" posY="2652.9485" posZ="55.8359" type="armor" amount="100" respawn="30000" synced="false" />
+    <pickup posX="-781.9979" posY="2744.9290" posZ="48.4299" type="armor" amount="100" respawn="30000" synced="false" />
+    <pickup posX="-795.5693" posY="2026.5187" posZ="60.3906" type="armor" amount="100" respawn="30000" synced="false" />
+    <pickup posX="-806.5844" posY="2257.2332" posZ="70.1676" type="armor" amount="100" respawn="30000" synced="false" />
+    <pickup posX="-2009.9419" posY="2364.4385" posZ="7.8180" type="armor" amount="100" respawn="30000" synced="false" />
+    <pickup posX="-2616.2000" posY="2239.8098" posZ="4.9844" type="28" amount="120" respawn="30000" synced="true" />
+    <pickup posX="-2400.3379" posY="2360.7544" posZ="4.9433" type="30" amount="160" respawn="30000" synced="true" />
+    <pickup posX="-2282.8025" posY="2658.5266" posZ="59.9032" type="24" amount="50" respawn="30000" synced="true" />
+    <pickup posX="-1820.7958" posY="2060.1426" posZ="9.3511" type="9" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="-1660.5110" posY="2551.6790" posZ="85.3414" type="22" amount="200" respawn="30000" synced="true" />
+    <pickup posX="-1463.4205" posY="1872.6388" posZ="32.6328" type="42" amount="3000" respawn="30000" synced="true" />
+    <pickup posX="-886.0540" posY="1922.6598" posZ="135.7936" type="32" amount="150" respawn="30000" synced="true" />
+    <pickup posX="-867.2928" posY="1904.9644" posZ="51.4219" type="26" amount="60" respawn="30000" synced="true" />
+    <pickup posX="-1303.5846" posY="2542.5120" posZ="93.3047" type="29" amount="200" respawn="30000" synced="true" />
+    <pickup posX="-1274.0315" posY="2723.8691" posZ="50.2663" type="41" amount="400" respawn="30000" synced="true" />
+    <pickup posX="-1425.5934" posY="2170.9673" posZ="50.6250" type="24" amount="50" respawn="30000" synced="true" />
+    <pickup posX="-746.1544" posY="1590.0294" posZ="26.9746" type="30" amount="160" respawn="30000" synced="true" />
+    <pickup posX="-730.32" posY="2923.52" posZ="34.05" type="29" amount="200" respawn="30000" synced="true" />
+    <!-- bay -->
+	
+    <object model="8661" posX="-2146.01" posY="2714.04" posZ="160.83" rotX="0.00" rotY="0.00" rotZ="-2.40" />
+    <!-- platform -->
+    <object model="8661" posX="-2114.11" posY="2712.81" posZ="161.06" rotX="-0.10" rotY="1.00" rotZ="177.87" />
+    <object model="8661" posX="-2142.00" posY="2703.99" posZ="150.84" rotX="90.00" rotY="0.00" rotZ="-2.15" />
+    <object model="8661" posX="-2109.20" posY="2702.64" posZ="151.16" rotX="89.00" rotY="-90.19" rotZ="447.90" />
+    <object model="18231" posX="-2632.373291" posY="2690.729248" posZ="114.918900" rotX="0" rotY="0" rotZ="0" />
+    <!-- cave -->
+    <object model="13177" posX="-2767.049072" posY="2625.257813" posZ="120.989189" rotX="0" rotY="0" rotZ="49.8473" />
+    <object model="12825" posX="-2714.274414" posY="2726.377930" posZ="156.583969" rotX="357.4217" rotY="5.1566" rotZ="162.3295" />
+    <object model="18225" posX="-2690.29" posY="2682.83" posZ="154.45" rotX="0.00" rotY="0.00" rotZ="439.09" />
+    <object model="906" posX="-2675.37" posY="2656.04" posZ="132.17" rotX="360.00" rotY="360.00" rotZ="189.82" />
+    <object model="17071" posX="-2731.82" posY="2655.44" posZ="145.73" rotX="0.00" rotY="0.00" rotZ="276.77" />
+    <object model="900" posX="-2796.36" posY="2627.56" posZ="138.34" rotX="10.00" rotY="0.00" rotZ="13.87" />
+    <object model="899" posX="-2604.59" posY="2776.92" posZ="150.73" rotX="0.00" rotY="114.00" rotZ="105.06" />
+    <object model="900" posX="-2640.88" posY="2737.57" posZ="174.64" rotX="0.00" rotY="-9.00" rotZ="419.69" />
+    <object model="901" posX="-2658.20" posY="2728.33" posZ="174.92" rotX="0.00" rotY="0.00" rotZ="142.42" />
+    <object model="900" posX="-2772.94" posY="2599.70" posZ="109.09" rotX="40.00" rotY="360.00" rotZ="392.89" />
+    <object model="899" posX="-2795.54" posY="2592.05" posZ="109.93" rotX="46.00" rotY="0.00" rotZ="139.65" />
+    <object model="900" posX="-2700.54" posY="2680.79" posZ="99.81" rotX="90.00" rotY="0.00" rotZ="268.39" />
+    <object model="900" posX="-2704.96" posY="2700.49" posZ="112.86" rotX="270.00" rotY="57.00" rotZ="351.98" />
+    <object model="900" posX="-2718.48" posY="2703.47" posZ="110.99" rotX="90.00" rotY="90.00" rotZ="28.28" />
+    <object model="10985" posX="-2715.13" posY="2709.25" posZ="110.40" rotX="-10.00" rotY="-27.00" rotZ="844.57" />
+    <object model="10985" posX="-2720.12" posY="2714.15" posZ="116.56" rotX="0.00" rotY="318.00" rotZ="456.99" />
+    <object model="900" posX="-2711.47" posY="2703.45" posZ="118.27" rotX="0.00" rotY="-41.00" rotZ="95.28" />
+    <object model="4881" posX="-2693.46" posY="2707.03" posZ="114.24" rotX="0.00" rotY="-6.00" rotZ="558.04" />
+    <object model="10985" posX="-2712.27" posY="2721.30" posZ="123.48" rotX="4.00" rotY="201.00" rotZ="275.65" />
+    <object model="901" posX="-2705.84" posY="2716.06" posZ="122.22" rotX="270.00" rotY="190.00" rotZ="249.11" />
+    <object model="906" posX="-2713.12" posY="2721.84" posZ="117.30" rotX="90.00" rotY="0.00" rotZ="277.31" />
+    <object model="880" posX="-2703.16" posY="2720.88" posZ="117.49" rotX="0.00" rotY="196.00" rotZ="293.44" />
+    <object model="897" posX="-2703.89" posY="2725.57" posZ="121.67" rotX="-5.00" rotY="0.00" rotZ="391.92" />
+    <object model="900" posX="-2721.24" posY="2713.51" posZ="133.02" rotX="262.00" rotY="84.00" rotZ="343.69" />
+    <object model="18225" posX="-2793.68" posY="2631.83" posZ="115.66" rotX="0.00" rotY="0.00" rotZ="205.83" />
+    <object model="18226" posX="-2728.11" posY="2635.18" posZ="105.08" rotX="0.00" rotY="0.00" rotZ="291.48" />
+    <object model="17034" posX="-2761.81" posY="2619.09" posZ="119.92" rotX="-40.00" rotY="0.00" rotZ="375.05" />
+    <object model="899" posX="-2714.05" posY="2681.23" posZ="115.31" rotX="0.00" rotY="90.00" rotZ="315.92" />
+    <object model="906" posX="-2716.30" posY="2683.15" posZ="101.39" rotX="0.00" rotY="0.00" rotZ="251.30" />
+    <object model="10985" posX="-2781.33" posY="2647.32" posZ="135.66" rotX="0.00" rotY="177.00" rotZ="139.60" />
+    <object model="10985" posX="-2767.77" posY="2638.16" posZ="135.61" rotX="0.00" rotY="175.00" rotZ="189.44" />
+    <object model="10985" posX="-2749.46" posY="2640.25" posZ="134.65" rotX="0.00" rotY="176.00" rotZ="191.98" />
+    <object model="10985" posX="-2772.21" posY="2662.05" posZ="135.59" rotX="0.00" rotY="180.00" rotZ="129.54" />
+    <object model="10985" posX="-2762.55" posY="2654.77" posZ="134.69" rotX="0.00" rotY="176.00" rotZ="166.31" />
+    <object model="10985" posX="-2743.15" posY="2653.09" posZ="133.90" rotX="0.00" rotY="182.00" rotZ="160.11" />
+    <object model="10985" posX="-2761.84" posY="2676.19" posZ="134.72" rotX="1.00" rotY="175.00" rotZ="154.47" />
+    <object model="10985" posX="-2743.78" posY="2668.25" posZ="133.88" rotX="-4.00" rotY="182.00" rotZ="156.68" />
+    <object model="10985" posX="-2726.87" posY="2660.71" posZ="134.41" rotX="0.00" rotY="180.00" rotZ="624.13" />
+    <object model="10985" posX="-2753.11" posY="2687.56" posZ="132.87" rotX="0.00" rotY="192.00" rotZ="44.63" />
+    <object model="10985" posX="-2735.72" posY="2678.55" posZ="131.47" rotX="0.00" rotY="193.00" rotZ="47.96" />
+    <object model="10985" posX="-2721.40" posY="2675.46" posZ="132.24" rotX="-11.00" rotY="180.00" rotZ="366.79" />
+    <object model="10985" posX="-2742.11" posY="2703.08" posZ="130.98" rotX="0.00" rotY="175.00" rotZ="139.90" />
+    <object model="10985" posX="-2731.50" posY="2712.96" posZ="130.05" rotX="0.00" rotY="197.00" rotZ="376.40" />
+    <object model="896" posX="-2754.09" posY="2660.77" posZ="138.12" rotX="0.00" rotY="0.00" rotZ="208.91" />
+    <object model="906" posX="-2732.84" posY="2670.03" posZ="134.87" rotX="180.00" rotY="180.00" rotZ="567.25" />
+    <object model="906" posX="-2735.00" posY="2670.72" posZ="134.72" rotX="0.00" rotY="0.00" rotZ="302.52" />
+    <object model="10985" posX="-2727.19" posY="2649.37" posZ="129.09" rotX="0.00" rotY="220.00" rotZ="318.07" />
+    <object model="10985" posX="-2716.98" posY="2664.12" posZ="132.92" rotX="0.00" rotY="580.00" rotZ="662.53" />
+    <object model="900" posX="-2740.58" posY="2642.92" posZ="134.94" rotX="0.00" rotY="50.00" rotZ="311.85" />
+    <object model="10985" posX="-2713.38" posY="2675.50" posZ="126.70" rotX="4.00" rotY="276.00" rotZ="736.57" />
+    <object model="900" posX="-2696.81" posY="2689.58" posZ="116.15" rotX="0.00" rotY="-12.00" rotZ="153.92" />
+    <object model="900" posX="-2677.70" posY="2685.04" posZ="118.97" rotX="90.00" rotY="90.00" rotZ="501.74" />
+    <object model="900" posX="-2688.11" posY="2697.58" posZ="124.49" rotX="80.00" rotY="90.00" rotZ="611.29" />
+    <object model="10984" posX="-2682.06" posY="2698.98" posZ="118.01" rotX="-2.00" rotY="217.00" rotZ="20.46" />
+    <object model="10985" posX="-2691.04" posY="2689.66" posZ="123.36" rotX="0.00" rotY="200.00" rotZ="2.31" />
+    <object model="906" posX="-2683.45" posY="2697.40" posZ="116.53" rotX="0.00" rotY="-9.00" rotZ="92.20" />
+    <object model="10985" posX="-2708.87" posY="2691.27" posZ="127.47" rotX="4.00" rotY="176.00" rotZ="105.83" />
+    <object model="900" posX="-2702.20" posY="2679.83" posZ="128.85" rotX="90.00" rotY="90.00" rotZ="254.19" />
+    <object model="750" posX="-2686.23" posY="2680.19" posZ="114.07" rotX="0.00" rotY="0.00" rotZ="186.96" />
+    <object model="906" posX="-2715.43" posY="2671.26" posZ="115.74" rotX="0.00" rotY="0.00" rotZ="395.48" />
+    <object model="906" posX="-2752.36" posY="2629.20" posZ="136.46" rotX="0.00" rotY="1.00" rotZ="189.57" />
+    <object model="900" posX="-2712.20" posY="2703.37" posZ="130.06" rotX="90.00" rotY="90.00" rotZ="86.92" />
+    <object model="10985" posX="-2738.24" posY="2694.79" posZ="131.19" rotX="7.00" rotY="178.00" rotZ="53.27" />
+    <object model="10985" posX="-2725.66" posY="2691.32" posZ="129.88" rotX="6.00" rotY="180.00" rotZ="114.42" />
+    <object model="906" posX="-2716.85" posY="2689.29" posZ="130.66" rotX="0.00" rotY="0.00" rotZ="618.18" />
+    <object model="751" posX="-2727.11" posY="2674.37" posZ="132.74" rotX="0.00" rotY="281.00" rotZ="46.76" />
+    <object model="906" posX="-2722.85" posY="2684.29" posZ="131.31" rotX="90.00" rotY="10.00" rotZ="337.22" />
+    <object model="906" posX="-2723.96" posY="2679.47" posZ="130.64" rotX="0.00" rotY="0.00" rotZ="76.58" />
+    <object model="906" posX="-2717.35" posY="2700.80" posZ="130.29" rotX="0.00" rotY="0.00" rotZ="296.74" />
+    <object model="901" posX="-2730.84" posY="2700.60" posZ="131.34" rotX="0.00" rotY="0.00" rotZ="181.18" />
+    <object model="906" posX="-2778.11" posY="2634.00" posZ="138.86" rotX="0.00" rotY="90.00" rotZ="118.49" />
+    <object model="3502" posX="-2748.88" posY="2636.09" posZ="124.26" rotX="0.00" rotY="0.00" rotZ="303.14" />
+    <object model="906" posX="-2759.00" posY="2632.41" posZ="120.73" rotX="0.00" rotY="0.00" rotZ="376.17" />
+    <object model="3502" posX="-2742.50" posY="2641.80" posZ="125.66" rotX="-18.00" rotY="3.00" rotZ="504.81" />
+    <object model="906" posX="-2738.00" posY="2650.45" posZ="123.46" rotX="-30.00" rotY="0.00" rotZ="212.44" />
+    <object model="17031" posX="-2767.37" posY="2667.76" posZ="110.55" rotX="0.00" rotY="-3.00" rotZ="299.09" />
+    <object model="17031" posX="-2744.16" posY="2687.61" posZ="102.80" rotX="0.00" rotY="25.00" rotZ="155.83" />
+    <object model="900" posX="-2747.01" posY="2711.53" posZ="126.11" rotX="14.00" rotY="15.00" rotZ="330.91" />
+    <object model="906" posX="-2753.89" posY="2682.78" posZ="115.48" rotX="0.00" rotY="0.00" rotZ="53.93" />
+    <object model="906" posX="-2728.65" posY="2713.00" posZ="121.24" rotX="0.00" rotY="0.00" rotZ="192.70" />
+    <object model="906" posX="-2777.58" posY="2643.44" posZ="117.85" rotX="0.00" rotY="-16.00" rotZ="301.83" />
+    <object model="16093" posX="-2723.53" posY="2655.85" posZ="127.54" rotX="0.00" rotY="0.00" rotZ="246.73" />
+    <object model="906" posX="-2723.38" posY="2661.74" posZ="125.15" rotX="-12.00" rotY="-23.00" rotZ="330.97" />
+    <object model="906" posX="-2753.19" posY="2635.65" posZ="118.59" rotX="0.00" rotY="1.00" rotZ="255.58" />
+    <object model="750" posX="-2747.68" posY="2637.31" posZ="113.31" rotX="1.00" rotY="36.00" rotZ="177.82" />
+	
+    <task type="mini" posX="-1129.0217" posY="2778.4697" posZ="40.0431" size="9.0" time="60000" />
+    <task type="radar" posX="-733.6649" posY="1546.3295" posZ="39.0033" size="9.0" time="70000" />
+    <task type="weapons" posX="-796.8117" posY="2257.5828" posZ="58.9766" size="9.0" time="70000" />
+    <task type="hpBonus" posX="-1216.3088" posY="2434.2947" posZ="115.1691" size="9.0" time="70000" />
+    <task type="accelerateTime" posX="-2641.5833" posY="2873.0366" posZ="68.4197" size="9.0" time="80000" />
+    <task type="medic" posX="-1514.8112" posY="2524.7930" posZ="53.7881" size="9.0" time="60000" />
+	
+    <teleport minX="-831.32" minY="1979.88" minZ="8.25" maxX="-829.32" maxY="1981.88" maxZ="10.25" message="" teleX="-841.19" teleY="1975.66" teleZ="22.92" teleRot="190.29" vehicles="false" interior="0" />
+    <!-- damup -->
+    <pickup posX="-830.32" posY="1980.88" posZ="9.25" type="custom" model="1318" respawn="30000" />
+    <!-- Arrow teleport -->
+    <teleport minX="-1511.0693" minY="2611.7107" minZ="53.7089" maxX="-1506.8912" maxY="2616.2776" maxZ="57.7089" message="" teleX="316.4593" teleY="-167.2180" teleZ="999.5938" teleRot="355.2000" vehicles="false" interior="6" />
+    <!-- ammunation -->
+	
+    <boundarycorner posX="-553.0270" posY="3000.8625" />
+    <boundarycorner posX="-584.4830" posY="2663.6394" />
+    <boundarycorner posX="-626.4634" posY="2616.6738" />
+    <boundarycorner posX="-605.6426" posY="2542.6421" />
+    <boundarycorner posX="-540.2054" posY="2421.2415" />
+    <boundarycorner posX="-584.3135" posY="2082.1304" />
+    <boundarycorner posX="-564.4887" posY="1982.1769" />
+    <boundarycorner posX="-604.3043" posY="1833.2241" />
+    <boundarycorner posX="-614.2675" posY="1749.8739" />
+    <boundarycorner posX="-674.0517" posY="1648.0240" />
+    <boundarycorner posX="-581.2726" posY="1425.0466" />
+    <boundarycorner posX="-658.8559" posY="1375.5868" />
+    <boundarycorner posX="-1156.9523" posY="1333.9946" />
+    <boundarycorner posX="-1331.9359" posY="1522.0693" />
+    <boundarycorner posX="-1484.1357" posY="1536.4950" />
+    <boundarycorner posX="-3112.8860" posY="1929.2531" />
+    <boundarycorner posX="-2915.1362" posY="3066.7915" />
+    <boundarycorner posX="-1225.7935" posY="3063.6782" />
+</map>

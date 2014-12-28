@@ -1,0 +1,7 @@
+﻿<meta>
+	<info author="uhm ptpm" description="name generator" type="script" version="0.1" />
+
+	<script src="namegen.lua" type="server"/>
+	
+	<export function="namegen" type="server"/>
+</meta>

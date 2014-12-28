@@ -1,0 +1,185 @@
+﻿<map mod="ptpm" version="1.0">
+
+	<wardrobe playerX="2716.3630" playerY="2773.5920" playerZ="78.6567" playerRot="271" camX="2725.8916" camY="2773.3691" camZ="82.4849" interior="0" />
+	<intel north="2775.7010" south="2696.0000" west="2580.3762" east="2663.7210" feature="the Factory" />
+
+	<spawngroup type="psycho" >
+		<class id="0" skin="230" weapons="46,1;4,1" />
+		<class id="1" skin="212" weapons="46,1;9,1" />
+		<class id="2" skin="200" weapons="46,1;4,1" />
+		<class id="3" skin="137" weapons="46,1;9,1" />
+		<spawn posX="2528.4448" posY="2842.1965" posZ="10.8203" rot="183.3978" />
+		<spawn posX="2515.9875" posY="2842.5305" posZ="10.8203" rot="180.5777" />
+		<spawn posX="2509.1711" posY="2843.4131" posZ="10.8203" rot="268.6017" />
+		<spawn posX="2521.8770" posY="2842.2339" posZ="10.8203" rot="183.0609" />
+		<cantdrive models="497" />
+		<cantpickup models="16" />
+	</spawngroup>
+	
+	<spawngroup type="terrorist">
+		<class id="4" skin="181" weapons="34,10;29,200;23,200" />
+		<class id="5" skin="183" weapons="4,1;31,200;23,200" />
+		<class id="6" skin="179" weapons="33,20;29,200;23,200" />
+		<class id="7" skin="191" weapons="34,10;29,200;23,200" />
+		<class id="8" skin="111" weapons="34,10;29,200;23,200" />
+		<class id="9" skin="73" weapons="33,20;29,200;23,200" />
+		<class id="10" skin="100" weapons="9,1;29,200;34,10" />
+		<class id="11" skin="274" weapons="33,20;41,500;23,300" medic="true" />
+		<spawn posX="2577.7578" posY="2726.6963" posZ="10.9844" rot="90" />
+		<spawn posX="2559.3774" posY="2721.0574" posZ="12.8249" rot="90" />
+		<spawn posX="2580.2273" posY="2724.5161" posZ="12.8249" rot="90" />
+		<cantdrive models="497" />
+		<cantpickup models="16" />
+	</spawngroup>
+	
+	<spawngroup type="pm" >
+		<class id="12" skin="147" weapons="24,50;41,1000;15,1" />
+		<spawn posX="2590.1729" posY="2716.7988" posZ="10.8203" rot="270" />
+		<cantdrive models="497" />
+		<cantpickup models="38" />
+	</spawngroup>
+	
+	<spawngroup type="bodyguard" >
+		<class id="13" skin="163" weapons="23,100;32,150;8,1" />
+		<class id="14" skin="164" weapons="23,100;32,150;8,1" />
+		<class id="15" skin="165" weapons="23,100;32,150;5,1" />
+		<class id="16" skin="166" weapons="23,100;32,150;5,1" />
+		<class id="17" skin="141" weapons="23,100;32,150;5,1" />
+		<class id="18" skin="276" weapons="23,100;29,150;4,1" medic="true" />
+		<linespawn startX="2591.6321" startY="2688.8950" startZ="10.8203" endX="2664.3562" endY="2695.1318" endZ="10.8203" />
+		<cantdrive models="497" />
+		<cantpickup models="16" />
+	</spawngroup>
+	
+	<spawngroup type="police" >
+		<class id="19" skin="280" weapons="22,150;5,1;41,500" />
+		<class id="20" skin="281" weapons="22,150;33,20;41,500" />
+		<class id="21" skin="282" weapons="22,150;5,1;41,500" />
+		<class id="22" skin="283" weapons="22,150;33,20;41,500" />
+		<class id="23" skin="284" weapons="22,150;5,1;41,500" />
+		<class id="24" skin="285" weapons="22,150;34,10;41,500" />
+		<class id="25" skin="286" weapons="22,150;3,1;41,500" />
+		<class id="26" skin="288" weapons="22,150;34,10;41,500" />
+		<class id="27" skin="246" weapons="22,150;3,1;41,500" />
+		<class id="28" skin="275" weapons="46,1;24,30;41,700" medic="true" />
+		<spawn posX="2601.9514" posY="2776.3391" posZ="25.8222" rot="90" />
+		<spawn posX="2600.4026" posY="2762.8782" posZ="25.8222" rot="90" />
+		<spawn posX="2595.5671" posY="2730.2466" posZ="23.8222" rot="90" />
+		<cantdrive models="497" />
+		<cantpickup models="16,38" />
+	</spawngroup>
+
+	<vehicle model="406" posX="2505.5500" posY="2760.2651" posZ="12.3425" rotZ="179.4631" />
+	<vehicle model="443" posX="2512.4919" posY="2835.0757" posZ="11.4532" rotZ="180.3246" />
+	<vehicle model="427" posX="2503.3325" posY="2787.8613" posZ="10.9521" rotZ="269.9564" />
+	<vehicle model="427" posX="2570.3340" posY="2791.7527" posZ="10.9521" rotZ="178.7526" />
+	<vehicle model="470" posX="2561.9915" posY="2748.2803" posZ="10.5422" rotZ="359.5681" />
+	<vehicle model="470" posX="2528.8533" posY="2758.5618" posZ="10.5416" rotZ="179.0937" />
+	<vehicle model="440" posX="2576.1768" posY="2844.3333" posZ="10.5474" rotZ="178.8111" />
+	<vehicle model="440" posX="2583.8079" posY="2844.1221" posZ="10.5477" rotZ="183.6698" />
+	
+	<pickup posX="2595.8142" posY="2800.9294" posZ="10.8203" type="5" amount="1" respawn="9999999" synced="false" />
+	<pickup posX="2545.9714" posY="2835.8591" posZ="10.8203" type="4" amount="1" respawn="9999999" synced="false" />
+	<pickup posX="2600.6570" posY="2839.2419" posZ="10.8203" type="6" amount="1" respawn="9999999" synced="false" />
+	<pickup posX="2498.2437" posY="2846.8425" posZ="10.8203" type="6" amount="1" respawn="9999999" synced="false" />
+	<pickup posX="2501.5305" posY="2808.1370" posZ="14.8222" type="15" amount="1" respawn="9999999" synced="false" />
+	<pickup posX="2595.2852" posY="2793.9775" posZ="10.8203" type="7" amount="1" respawn="9999999" synced="false" />
+	<pickup posX="2671.8967" posY="2742.4424" posZ="10.8203" type="3" amount="1" respawn="9999999" synced="false" />
+	<pickup posX="2684.9927" posY="2746.5610" posZ="20.3222" type="9" amount="1" respawn="9999999" synced="false" />
+	<pickup posX="2687.4436" posY="2697.0200" posZ="22.9472" type="22" amount="30" respawn="80000" synced="true" />
+	<pickup posX="2679.2783" posY="2828.9963" posZ="21.3222" type="24" amount="30" respawn="80000" synced="true" />
+	<pickup posX="2622.1323" posY="2846.8206" posZ="17.6896" type="23" amount="30" respawn="80000" synced="true" />
+	<pickup posX="2716.4761" posY="2812.8069" posZ="10.8203" type="25" amount="20" respawn="80000" synced="true" />
+	<pickup posX="2585.6960" posY="2685.4495" posZ="17.8222" type="29" amount="70" respawn="80000" synced="true" />
+	<pickup posX="2713.4595" posY="2829.3901" posZ="21.3222" type="41" amount="150" respawn="80000" synced="true" />
+	<pickup posX="2621.5950" posY="2824.7966" posZ="23.4219" type="30" amount="60" respawn="80000" synced="true" />
+	<pickup posX="2712.8132" posY="2801.0391" posZ="32.3222" type="27" amount="30" respawn="80000" synced="true" />
+	<pickup posX="2627.4026" posY="2801.0151" posZ="32.3222" type="24" amount="25" respawn="80000" synced="true" />
+	<pickup posX="2634.0830" posY="2816.4875" posZ="36.3222" type="9" amount="1" respawn="9999999" synced="false" />
+	<pickup posX="2739.7002" posY="2676.9153" posZ="13.5703" type="41" amount="250" respawn="80000" synced="true" />
+	<pickup posX="2593.2100" posY="2825.7139" posZ="19.9922" type="9" amount="1" respawn="9999999" synced="false" />
+	<pickup posX="2672.7546" posY="2799.2024" posZ="14.2559" type="16" amount="10" respawn="30000" synced="true" />
+	<pickup posX="2521.6868" posY="2815.1060" posZ="24.9536" type="34" amount="25" respawn="30000" synced="true" />
+	<pickup posX="2593.9360" posY="2791.9773" posZ="19.3222" type="29" amount="200" respawn="50000" synced="false" />
+	<pickup posX="2618.9014" posY="2721.3450" posZ="36.5386" type="26" amount="10" respawn="500000" synced="true" />
+	<pickup posX="2627.5886" posY="2841.0479" posZ="10.8203" type="armor" amount="100" respawn="30000" synced="false" />
+	<pickup posX="2664.2690" posY="2707.9507" posZ="24.9536" type="armor" amount="100" respawn="30000" synced="false" />
+	<pickup posX="2628.7437" posY="2829.0151" posZ="24.0722" type="armor" amount="100" respawn="30000" synced="false" />
+	<pickup posX="2747.6797" posY="2751.9473" posZ="14.0722" type="armor" amount="100" respawn="30000" synced="false" />
+	<pickup posX="2600.6387" posY="2805.4133" posZ="14.2559" type="armor" amount="100" respawn="30000" synced="false" />
+	<pickup posX="2613.6655" posY="2805.5562" posZ="19.9922" type="armor" amount="100" respawn="30000" synced="false" />
+	<pickup posX="2500.3523" posY="2853.8577" posZ="18.8222" type="armor" amount="100" respawn="30000" synced="false" />
+	<pickup posX="2561.0339" posY="2711.7415" posZ="12.8249" type="armor" amount="100" respawn="30000" synced="false" />
+	<pickup posX="2557.337" posY="2817.809" posZ="10.82" type="armor" amount="100" respawn="30000" synced="false" /> <!-- 68LasVenturas(factory) -->
+	<pickup posX="2509.7891" posY="2690.5923" posZ="74.8281" type="46" amount="1" respawn="30000" synced="false" />
+	<pickup posX="2721.7253" posY="2773.7546" posZ="74.8281" type="46" amount="1" respawn="30000" synced="false" />
+	
+	<object model="1635" posX="2607.10" posY="2802.67" posZ="23.92" rotX="0.00" rotY="0.00" rotZ="449.39" /> <!-- bluewalkwayfandouble -->
+	<object model="3399" posX="2688.31" posY="2676.71" posZ="18.22" rotX="0.00" rotY="0.00" rotZ="539.69" /> <!-- doublestairpart2 -->
+	<object model="3399" posX="2696.77" posY="2676.70" posZ="14.22" rotX="0.00" rotY="0.00" rotZ="180.33" /> <!-- doublestairpart1 -->
+	<object model="1617" posX="2681.29" posY="2708.08" posZ="20.44" rotX="0.00" rotY="0.00" rotZ="359.55" /> <!-- singlefanladderpart2 -->
+	<object model="1617" posX="2681.29" posY="2712.07" posZ="17.95" rotX="0.00" rotY="0.00" rotZ="360.12" /> <!-- singlefanladderpart1 -->
+	<object model="8572" posX="2690.36" posY="2712.89" posZ="24.34" rotX="0.00" rotY="0.00" rotZ="179.36" /> <!-- bluething1stairs -->
+	<object model="1635" posX="2584.97" posY="2687.13" posZ="18.82" rotX="0.00" rotY="0.00" rotZ="179.74" /> <!-- fencedoublefanclimb -->
+	<object model="984" posX="2593.89" posY="2787.66" posZ="18.92" rotX="31.00" rotY="180.00" rotZ="180.74" /> <!-- fenceramp1 -->
+	<object model="984" posX="2593.81" posY="2787.62" posZ="18.92" rotX="31.00" rotY="180.00" rotZ="180.78" /> <!-- fenceramp2 -->
+	<object model="1617" posX="2561.49" posY="2701.27" posZ="19.82" rotX="0.00" rotY="0.00" rotZ="360.00" /> <!-- yellowtowerlandfan -->
+	<object model="1635" posX="2617.22" posY="2824.78" posZ="23.92" rotX="0.00" rotY="0.00" rotZ="179.06" /> <!-- doublefanbluewalk2 -->
+	<object model="983" posX="2624.50" posY="2828.35" posZ="20.22" rotX="0.00" rotY="270.00" rotZ="179.89" /> <!-- fencepath1 -->
+	<object model="8572" posX="2624.18" posY="2825.33" posZ="34.02" rotX="0.00" rotY="0.00" rotZ="270.52" /> <!-- staircornertop -->
+	<object model="8572" posX="2626.07" posY="2829.10" posZ="30.57" rotX="0.00" rotY="0.00" rotZ="540.53" /> <!-- staircornerbottom -->
+	<object model="4106" posX="2655.14" posY="2830.24" posZ="25.87" rotX="2.00" rotY="0.00" rotZ="90.42" /> <!-- staircornerwalkway -->
+	
+	
+	<boundarycorner posX="2497.0315" posY="2616.2991" />
+	<boundarycorner posX="2497.0315" posY="2857.8171" />
+	<boundarycorner posX="2749.5913" posY="2857.8171" />
+	<boundarycorner posX="2749.5913" posY="2616.2991" />
+	
+	<teleport minX="2586.5" minY="2637.5" minZ="10" maxX="2588.5" maxY="2639.5" maxZ="11" message="" teleX="2589.4565" teleY="2638.3140" teleZ="109.1749" teleRot="267" vehicles="false" interior="0" /> <!-- tower1up -->
+	<teleport minX="2595.5" minY="2637.5" minZ="109" maxX="2597.5" maxY="2639.5" maxZ="110" message="" teleX="2585.5278" teleY="2638.7070" teleZ="10.8203" teleRot="86" vehicles="false" interior="0" /> <!-- tower1down -->
+	<teleport minX="2499.5" minY="2689.5" minZ="10" maxX="2501.5" maxY="2691.5" maxZ="11" message="" teleX="2503.0115" teleY="2690.4963" teleZ="74.8281" teleRot="267" vehicles="false" interior="0" /> <!-- tower2up -->
+	<teleport minX="2500.5" minY="2689.5" minZ="76" maxX="2502.5" maxY="2691.5" maxZ="77" message="" teleX="2503.3506" teleY="2690.4451" teleZ="10.8130" teleRot="183" vehicles="false" interior="0" /> <!-- tower2down -->
+	<teleport minX="2711.5" minY="2772.5" minZ="10" maxX="2713.5" maxY="2774.5" maxZ="11" message="" teleX="2715.1074" teleY="2773.7234" teleZ="74.8281" teleRot="266" vehicles="false" interior="0" /> <!-- tower3up -->
+	<teleport minX="2712.5" minY="2772.5" minZ="76" maxX="2714.5" maxY="2774.5" maxZ="77" message="" teleX="2715.3704" teleY="2773.9868" teleZ="10.8203" teleRot="183" vehicles="false" interior="0" /> <!-- tower3down -->
+	<teleport minX="2631.5" minY="2834.5" minZ="24" maxX="2633.5" maxY="2836.5" maxZ="25" message="" teleX="2632.4780" teleY="2835.6714" teleZ="122.9219" teleRot="185" vehicles="false" interior="0" /> <!-- tower4up -->
+	<teleport minX="2631.5" minY="2828.5" minZ="122" maxX="2633.5" maxY="2830.5" maxZ="123" message="" teleX="2632.7471" teleY="2837.5491" teleZ="21.3222" teleRot="359" vehicles="false" interior="0" /> <!-- tower4down -->
+	<teleport minX="2561.5" minY="2722.5" minZ="24" maxX="2563.5" maxY="2724.5" maxZ="25" message="" teleX="2562.5586" teleY="2726.2371" teleZ="10.9844" teleRot="357" vehicles="false" interior="0" /> <!-- jumpdown -->
+	<teleport minX="2656.5" minY="2642.5" minZ="36" maxX="2658.5" maxY="2644.5" maxZ="37" message="" teleX="2657.2871" teleY="2640.6255" teleZ="10.8203" teleRot="182" vehicles="false" interior="0" /> <!-- vat1down -->
+	<teleport minX="2656.5" minY="2642.5" minZ="10" maxX="2658.5" maxY="2644.5" maxZ="11" message="" teleX="2657.7510" teleY="2646.1182" teleZ="35.2998" teleRot="358" vehicles="false" interior="0" /> <!-- vat1up -->
+	<teleport minX="2570.5" minY="2642.5" minZ="10" maxX="2572.5" maxY="2644.5" maxZ="11" message="" teleX="2571.1497" teleY="2646.0725" teleZ="35.2054" teleRot="354" vehicles="false" interior="0" /> <!-- vat2up -->
+	<teleport minX="2570.5" minY="2642.5" minZ="36" maxX="2572.5" maxY="2644.5" maxZ="37" message="" teleX="2571.2136" teleY="2639.6768" teleZ="10.8203" teleRot="182" vehicles="false" interior="0" /> <!-- vat2down -->
+	<teleport minX="2593.5" minY="2703.5" minZ="25" maxX="2595.5" maxY="2705.5" maxZ="26" message="" teleX="2582.8018" teleY="2703.7966" teleZ="22.9507" teleRot="89" vehicles="false" interior="0" /> <!-- jump -->
+	<teleport minX="2497.5" minY="2604.5" minZ="0" maxX="2570.5" maxY="2617.5" maxZ="50" message="Not allowed there." teleX="2534.9709" teleY="2654.6030" teleZ="10.8203" teleRot="310" vehicles="true" interior="0" />
+	<teleport minX="2486.5" minY="2616.5" minZ="0" maxX="2498.5" maxY="2690.5" maxZ="50" message="Not allowed there." teleX="2534.9709" teleY="2654.6030" teleZ="10.8203" teleRot="310" vehicles="true" interior="0" />
+	<teleport minX="2701.5" minY="2616.5" minZ="0" maxX="2751.5" maxY="2665.5" maxZ="50" message="Not allowed there." teleX="2700.0085" teleY="2667.0061" teleZ="10.8203" teleRot="40" vehicles="true" interior="0" />
+	<pickup posX="2588.2605" posY="2638.3950" posZ="10.8203" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport tower1up -->
+	<pickup posX="2596.5459" posY="2639.5417" posZ="109.1719" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport tower1down -->
+	<pickup posX="2500.9050" posY="2690.5930" posZ="10.8130" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport tower2up -->
+	<pickup posX="2501.8999" posY="2690.5073" posZ="76.3477" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport tower2down -->
+	<pickup posX="2712.9880" posY="2773.6062" posZ="10.8203" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport tower3up -->
+	<pickup posX="2713.9329" posY="2773.6626" posZ="76.3477" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport tower3down -->
+	<pickup posX="2632.5691" posY="2835.5771" posZ="24.0722" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport tower4up -->
+	<pickup posX="2632.7910" posY="2829.0107" posZ="122.9219" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport tower4down -->
+	<pickup posX="2562.6965" posY="2723.4463" posZ="24.5847" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport jumpdown -->
+	<pickup posX="2594.9651" posY="2704.3398" posZ="25.8222" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport jump -->
+	<pickup posX="2657.3386" posY="2643.4771" posZ="10.8203" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport vatup1 -->
+	<pickup posX="2657.4480" posY="2643.9399" posZ="36.3002" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport vatdown1 -->
+	<pickup posX="2571.1626" posY="2643.6943" posZ="10.8203" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport vatup2 -->
+	<pickup posX="2571.0520" posY="2643.8240" posZ="36.1447" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport vatdown2 -->
+		
+	<camera id="1" camX="2560.75" camY="2802.48" camZ="39.02" pointX="2551.11" pointY="2763.02" pointZ="11.81" /> <!-- Factory: car park -->
+	<camera id="2" camX="2575.59" camY="2627.20" camZ="114.96" pointX="2590.50" pointY="2636.69" pointZ="109.16" /> <!-- south tower -->
+	<camera id="3" camX="2717.45" camY="2825.68" camZ="43.14" pointX="2700.01" pointY="2818.94" pointZ="38.32" /> <!-- roof -->
+	<camera id="4" camX="2592.97" camY="2735.62" camZ="39.02" pointX="2607.10" pointY="2729.20" pointZ="36.53" /> <!-- heli pad -->
+	<camera id="5" camX="2499.32" camY="2682.92" camZ="80.83" pointX="2503.92" pointY="2691.66" pointZ="74.82" /> <!-- west tower -->
+	<camera id="6" camX="2616.12" camY="2849.19" camZ="23.36" pointX="2608.20" pointY="2843.75" pointZ="19.99" /> <!-- warehouse -->
+	<camera id="7" camX="2675.27" camY="2746.42" camZ="39.02" pointX="2688.49" pointY="2711.36" pointZ="38.02" /> <!-- blue funnels -->
+	<camera id="8" camX="2720.31" camY="2764.34" camZ="81.06" pointX="2715.96" pointY="2771.00" pointZ="74.82" /> <!-- east tower -->
+	<cameraMount posX="2646.9653" posY="2732.7468" posZ="10.8203" message="Security Camera One" usesIDs="1,2,3,4,5,6,7,8" playerX="2651.9653" playerY="2732.7468" playerZ="10.8203" />
+	<cameraMount posX="2593.1851" posY="2634.8979" posZ="10.8203" message="Security Camera Two" usesIDs="1,2,3,4,5,6,7,8" playerX="2593.1851" playerY="2629.8979" playerZ="10.8203" />
+	<cameraMount posX="2503.0945" posY="2778.1670" posZ="10.8203" message="Security Camera Three" usesIDs="1,2,3,4,5,6,7,8" playerX="2503.0945" playerY="2773.1670" playerZ="10.8203" />
+	<cameraMount posX="2583.3950" posY="2851.6719" posZ="10.8203" message="Security Camera Four" usesIDs="1,2,3,4,5,6,7,8" playerX="2583.3950" playerY="2853.6719" playerZ="10.8203" />
+	<cameraMount posX="2690.3066" posY="2730.1680" posZ="10.8203" message="Security Camera Five" usesIDs="1,2,3,4,5,6,7,8" playerX="2690.3066" playerY="2727.1680" playerZ="10.8203" />
+	
+</map>

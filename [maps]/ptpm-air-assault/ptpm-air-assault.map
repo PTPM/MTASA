@@ -1,0 +1,410 @@
+﻿<map mod="ptpm" version="1.0">
+
+    <wardrobe playerX="-1741.70" playerY="-580.56" playerZ="34.77" playerRot="90" camX="-1747.14" camY="-580.14" camZ="38.67" interior="0" />
+	
+    <spawngroup type="psycho">
+        <class id="0" skin="230" weapons="22,12" />
+        <class id="1" skin="212" weapons="22,12" />
+        <class id="2" skin="200" weapons="22,12" />
+        <class id="3" skin="137" weapons="22,12" />
+        <linespawn startX="1522.6" startY="1332.6" startZ="10.8" endX="1522.6" endY="1499.6" endZ="10.8" />
+        <linespawn startX="-2303.9" startY="-1621.2" startZ="483.8" endX="-2322.6" endY="-1648.4" endZ="483.7" />
+        <cantdrive models="476,425,520,447" />
+    </spawngroup>
+	
+    <spawngroup type="terrorist">
+        <class id="4" skin="181" weapons="22,12;29,300" />
+        <class id="5" skin="183" weapons="22,12;29,300" />
+        <class id="6" skin="179" weapons="22,12;29,300" />
+        <class id="7" skin="191" weapons="22,12;29,300" />
+        <class id="8" skin="111" weapons="22,12;29,300" />
+        <class id="9" skin="73" weapons="22,12;29,300" />
+        <class id="10" skin="100" weapons="22,12;29,300" />
+        <linespawn startX="250.0" startY="2533.0" startZ="17.0" endX="30.0" endY="2533.0" endZ="17.0" />
+    </spawngroup>
+	
+    <spawngroup type="pm">
+        <class id="12" skin="147" weapons="15,1;41,100" />
+        <spawn posX="1555.7" posY="-1248.0" posZ="277.8" rot="296.2" />
+        <cantdrive models="519,425,520,447" />
+    </spawngroup>
+	
+    <spawngroup type="bodyguard">
+        <class id="13" skin="163" weapons="22,12;29,300" />
+        <class id="14" skin="164" weapons="22,12;29,300" />
+        <class id="15" skin="165" weapons="22,12;29,300" />
+        <class id="16" skin="166" weapons="22,12;29,300" />
+        <class id="17" skin="141" weapons="22,12;29,300" />
+        <linespawn startX="1800.0" startY="-2620.0" startZ="14.0" endX="1900.0" endY="-2620.0" endZ="14.0" />
+        <linespawn startX="1900.0" startY="-2450.0" startZ="13.6" endX="1800.0" endY="-2450.0" endZ="13.6" />
+    </spawngroup>
+	
+    <spawngroup type="police">
+        <class id="19" skin="280" weapons="22,12;29,300" />
+        <class id="20" skin="281" weapons="22,12;29,300" />
+        <class id="21" skin="282" weapons="22,12;29,300" />
+        <class id="22" skin="283" weapons="22,12;29,300" />
+        <class id="23" skin="284" weapons="22,12;29,300" />
+        <class id="24" skin="285" weapons="22,12;29,300" />
+        <class id="25" skin="286" weapons="22,12;29,300" />
+        <class id="26" skin="288" weapons="22,12;29,300" />
+        <class id="27" skin="246" weapons="22,12;29,300" />
+        <linespawn startX="-1342.0" startY="92.0" startZ="14.0" endX="-1273.3" endY="164.9" endZ="14.0" />
+        <!-- rot 406 -->
+        <cantdrive models="425,520,447" />
+    </spawngroup>
+	
+    <vehicle model="577" posX="1586.9" posY="1190.6" posZ="10.8872" rotX="0.0" rotY="0.0" rotZ="180.0" color="42 42 0 0" />
+    <!--at400-->
+    <vehicle model="519" posX="1477.0" posY="1792.0" posZ="11.8126" rotX="0.0" rotY="0.0" rotZ="180.0" color="0 0 0 0" />
+    <!--shamal-->
+    <vehicle model="519" posX="1477.0" posY="1742.0" posZ="11.8126" rotX="0.0" rotY="0.0" rotZ="180.0" color="0 0 0 0" />
+    <!--shamal-->
+    <vehicle model="519" posX="1477.0" posY="1692.0" posZ="11.8126" rotX="0.0" rotY="0.0" rotZ="180.0" color="0 0 0 0" />
+    <!--shamal-->
+    <vehicle model="519" posX="1477.0" posY="1642.0" posZ="11.8126" rotX="0.0" rotY="0.0" rotZ="180.0" color="0 0 0 0" />
+    <!--shamal-->
+    <vehicle model="519" posX="1477.0" posY="1592.0" posZ="11.8126" rotX="0.0" rotY="0.0" rotZ="180.0" color="0 0 0 0" />
+    <!--shamal-->
+    <vehicle model="519" posX="1477.0" posY="1542.0" posZ="11.8126" rotX="0.0" rotY="0.0" rotZ="180.0" color="0 0 0 0" />
+    <!--shamal-->
+    <vehicle model="519" posX="1477.0" posY="1492.0" posZ="11.8204" rotX="0.0" rotY="0.0" rotZ="180.0" color="0 0 0 0" />
+    <!--shamal-->
+    <vehicle model="519" posX="1477.0" posY="1442.0" posZ="11.8204" rotX="0.0" rotY="0.0" rotZ="180.0" color="0 0 0 0" />
+    <!--shamal-->
+    <vehicle model="519" posX="1477.0" posY="1392.0" posZ="11.8204" rotX="0.0" rotY="0.0" rotZ="180.0" color="0 0 0 0" />
+    <!--shamal-->
+    <vehicle model="519" posX="1477.0" posY="1342.0" posZ="11.8204" rotX="0.0" rotY="0.0" rotZ="180.0" color="0 0 0 0" />
+    <!--shamal-->
+    <vehicle model="548" posX="-2333.3" posY="-1604.9" posZ="485.6237" rotX="0.0" rotY="0.0" rotZ="0.0" color="0 0 0 0" />
+    <!--cargobob-->
+    <vehicle model="513" posX="-2340.4" posY="-1633.2" posZ="484.4843" rotX="0.0" rotY="0.0" rotZ="0.0" color="0 0 0 0" />
+    <!--stunt-->
+    <vehicle model="512" posX="-2304.9" posY="-1651.2" posZ="484.2325" rotX="0.0" rotY="0.0" rotZ="0.0" color="0 0 0 0" />
+    <!--cropdust-->
+    <vehicle model="417" posX="-2292.3" posY="-1639.0" posZ="483.7" rotX="0.0" rotY="0.0" rotZ="0.0" color="0 0 0 0" />
+    <!--leviathn-->
+    <vehicle model="593" posX="1580.0" posY="-1250.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="0.0" color="6 65 0 0" />
+    <!--dodo-->
+    <vehicle model="487" posX="1580.0" posY="-1230.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="6 65 0 0" />
+    <!--maverick-->
+    <vehicle model="511" posX="1560.0" posY="-1230.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="180.0" color="6 65 0 0" />
+    <!--beagle-->
+    <vehicle model="513" posX="1560.0" posY="-1250.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="270.0" color="6 65 0 0" />
+    <!--stunt-->
+    <vehicle model="476" posX="1986.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1971.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1986.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1971.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1956.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1941.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1956.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1941.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1926.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1911.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1926.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1911.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1896.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1881.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1896.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1881.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1866.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1851.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1866.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1851.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1836.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1821.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1836.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1821.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1806.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1791.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1806.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1791.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1776.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1761.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1776.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1761.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1746.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1731.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1746.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1731.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1716.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1701.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1716.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1701.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1686.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1671.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1686.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1671.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1656.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1641.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1656.0" posY="-2501.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="1641.0" posY="-2485.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="23.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="33.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="43.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="53.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="63.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="73.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="83.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="93.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="103.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="113.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="123.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="133.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="143.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="153.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="163.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="173.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="183.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="193.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="203.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="213.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="223.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="233.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="243.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="253.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="263.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="273.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="283.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="293.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="303.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="313.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="323.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="333.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="343.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="353.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="363.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="373.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="383.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="393.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="403.0" posY="2512.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="413.0" posY="2490.0" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="85 85 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1298.0" posY="205.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1305.5" posY="177.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1313.0" posY="190.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1320.5" posY="162.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1328.0" posY="175.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1335.5" posY="147.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1343.0" posY="160.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1350.5" posY="132.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1358.0" posY="145.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1365.5" posY="117.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1373.0" posY="130.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1380.5" posY="102.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1388.0" posY="115.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1395.5" posY="87.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1403.0" posY="100.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1410.5" posY="72.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1418.0" posY="85.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1425.5" posY="57.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1433.0" posY="70.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1440.5" posY="42.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1448.0" posY="55.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1455.5" posY="27.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1463.0" posY="40.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1470.5" posY="12.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1478.0" posY="25.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1485.5" posY="-2.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1493.0" posY="10.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1500.5" posY="-17.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1508.0" posY="-5.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1515.5" posY="-32.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1523.0" posY="-20.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1530.5" posY="-47.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1538.0" posY="-35.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1545.5" posY="-62.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1553.0" posY="-50.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1560.5" posY="-77.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1568.0" posY="-65.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1575.5" posY="-92.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1583.0" posY="-80.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1590.5" posY="-107.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1598.0" posY="-95.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1605.5" posY="-122.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1613.0" posY="-110.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1620.5" posY="-137.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1628.0" posY="-125.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1635.5" posY="-152.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1643.0" posY="-140.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1650.5" posY="-167.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1658.0" posY="-155.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1665.5" posY="-182.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1673.0" posY="-170.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1680.5" posY="-197.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1688.0" posY="-185.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1695.5" posY="-212.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1703.0" posY="-200.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1710.5" posY="-227.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1718.0" posY="-215.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1725.5" posY="-242.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1733.0" posY="-230.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="476" posX="-1740.5" posY="-257.5" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="315.0" color="79 79 0 0" />
+    <!--rustler-->
+    <vehicle model="497" posX="-1200.0" posY="174.0" posZ="14.3" rotX="0.0" rotY="0.0" rotZ="356.9" color="79 79 0 0" />
+    <!--polmav-->
+    <vehicle model="497" posX="-1210.0" posY="184.0" posZ="14.3" rotX="0.0" rotY="0.0" rotZ="356.9" color="79 79 0 0" />
+    <!--polmav-->
+    <vehicle model="497" posX="-1220.0" posY="194.0" posZ="14.3" rotX="0.0" rotY="0.0" rotZ="356.9" color="79 79 0 0" />
+    <!--polmav-->
+    <vehicle model="425" posX="-311.5" posY="-1414.4" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="324.4" color="0 0 0 0" />
+    <!--hunter-->
+    <vehicle model="520" posX="2328.8" posY="52.7" posZ="34.6" rotX="0.0" rotY="0.0" rotZ="177.5" color="0 0 0 0" />
+    <!--hydra-->
+    <vehicle model="447" posX="-1271.2" posY="499.1" posZ="18.4" rotX="0.0" rotY="0.0" rotZ="263.0" color="0 0 0 0" />
+    <!--seaspar-->
+    <vehicle model="447" posX="-1424.2" posY="500.2" posZ="18.4" rotX="0.0" rotY="0.0" rotZ="267.5" color="0 0 0 0" />
+    <!--seaspar-->
+	
+    <boundarycorner posX="-3000.0" posY="-3000.0" />
+    <boundarycorner posX="-3000.0" posY="3000.0" />
+    <boundarycorner posX="3000.0" posY="3000.0" />
+    <boundarycorner posX="3000.0" posY="-3000.0" />
+</map>

@@ -1,0 +1,11 @@
+﻿<meta>
+	<info author="Remp" type="map" gamemodes="ptpm" name="Las Venturas" version="1.0" />
+	<map src="ptpm-lv.map"/>
+	<settings>
+		<setting name="*mapType" value="city" />
+		<setting name="*weathers" value="[[1,2,7,9,13,17,3,11,18,5,24]]" />
+		<setting name="*roundtime" value="[900000]" /> <!-- 15 mins -->
+		<setting name="*pmHealthBonus" value="[1]" />
+		<setting name="*medicHealthBonus" value="[true]" />
+	</settings>
+</meta>
