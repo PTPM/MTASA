@@ -1,0 +1,11 @@
+﻿<meta>
+	<info author="Remp" type="map" gamemodes="ptpm" name="Countryside" version="1.0" />
+	<map src="ptpm-country.map"/>
+	<settings>
+		<setting name="*mapType" value="country" />
+		<setting name="*weathers" value="[[4,1,9,15,20,3,5]]" />
+		<setting name="*roundtime" value="[900000]" /> <!-- 15 mins -->
+		<setting name="*pmHealthBonus" value="[1]" />
+		<setting name="*medicHealthBonus" value="[true]" />
+	</settings>
+</meta>

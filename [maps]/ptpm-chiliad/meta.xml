@@ -1,0 +1,19 @@
+﻿<meta>
+	<info author="Remp" type="map" gamemodes="ptpm" name="Mt. Chiliad" version="1.0" />
+	<map src="ptpm-chiliad.map"/>
+	<settings>
+		<setting name="*mapType" value="country" />
+		<setting name="*weathers" value="[[4,1,9,15,20,3,5]]" />
+		<setting name="*roundtime" value="[900000]" /> <!-- 15 mins -->
+		<setting name="*pmHealthBonus" value="[1]" />
+		<setting name="*medicHealthBonus" value="[true]" />
+	</settings>
+<!--
+	<script src="chiliad.lua" type="client"/>
+	<file src="landbit28.dff"/>
+	<file src="landbit13.dff"/>
+	<file src="landbit28.col"/>
+	<file src="landbit13.col"/>
+	<file src="null.txd"/>
+-->
+</meta>

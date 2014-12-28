@@ -1,0 +1,15 @@
+﻿<meta>
+    <info author="Remp" name="Spectator" version="1.0.0" type="misc"/>
+
+	<script src="spec.lua" type="server"/>
+	<script src="spec_client.lua" type="client"/>
+	
+	<file src="left.png" type="client"/>
+	<file src="right.png" type="client"/>
+	
+	<export function="spectateStart" type="server"/>
+	<export function="spectateStop" type="server"/>
+	<export function="setTarget" type="server"/>
+	<export function="setSpectateList" type="server"/>
+	<export function="isPlayerSpectating" type="server"/>
+</meta>

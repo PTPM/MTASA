@@ -1,0 +1,716 @@
+﻿<map edf:definitions="editor_main">
+    <wardrobe playerX="1600.18" playerY="-1286.08" playerZ="41.87" playerRot="289.5" camX="1608.69" camY="-1284.90" camZ="45.39" interior="0" />
+
+	<intel north="-1390" south="-1930" west="1130" east="1835" feature="Los Santos" />
+	
+    <spawngroup type="psycho">
+        <class id="0" skin="230" weapons="18,10;30,100;26,80" />
+        <class id="1" skin="212" weapons="18,10;30,100;26,80" />
+        <class id="2" skin="200" weapons="18,10;30,100;37,80" />
+        <class id="3" skin="137" weapons="18,10;30,100;37,80" />
+		<spawn posX="1410.6904296875" posY="-1452.4127197266" posZ="20.041631698608" rotZ="224" />
+		<spawn posX="1080.4479980469" posY="-1898.4783935547" posZ="17.132213592529" rotZ="38" />
+		<spawn posX="1329.5726318359" posY="-1324.7266845703" posZ="18.480762481689" rotZ="268" />
+		<spawn posX="1678.4287109375" posY="-1509.3499755859" posZ="18.155651092529" rotZ="255.99993896484" />
+		<spawn posX="1885.724609375" posY="-1362.3839111328" posZ="18.749401092529" rotZ="90" />
+		<spawn posX="1761.4110107422" posY="-1720.0902099609" posZ="18.046276092529" rotZ="124" />
+		<spawn posX="1670.5557861328" posY="-2127.2861328125" posZ="18.81715965271" rotZ="294" />
+		<spawn posX="1858.75" posY="-2036.9029541016" posZ="18.495519638062" rotZ="0" />
+		<spawn posX="1975.9416503906" posY="-1667.6397705078" posZ="21.01166343689" rotZ="268" />
+		<spawn posX="2146.5024414063" posY="-1602.5455322266" posZ="20.896289825439" rotZ="158" />
+		<spawn posX="2282.8415527344" posY="-1787.3225097656" posZ="21.487781524658" rotZ="88" />
+		<spawn posX="2006.3928222656" posY="-1964.2514648438" posZ="16.302892684937" rotZ="0" />
+		<spawn posX="1953.7553710938" posY="-2183.4936523438" posZ="16.608776092529" rotZ="274" />
+		<spawn posX="2259.2202148438" posY="-2451.8486328125" posZ="18.124235153198" rotZ="86" />
+		<spawn posX="2495.3002929688" posY="-2243.2333984375" posZ="18.491422653198" rotZ="0" />
+		<spawn posX="2442.9841308594" posY="-2074.5334472656" posZ="19.889451980591" rotZ="182" />
+		<spawn posX="2513.2551269531" posY="-1952.5657958984" posZ="16.444477081299" rotZ="0" />
+		<spawn posX="2517.650390625" posY="-1694.4971923828" posZ="18.10807800293" rotZ="48" />
+		<spawn posX="1228.9213867188" posY="-1244.8823242188" posZ="18.760408401489" rotZ="229.99993896484" />
+		<spawn posX="1039.3648681641" posY="-1372.8890380859" posZ="17.970680236816" rotZ="274" />
+		<spawn posX="923.03326416016" posY="-1303.6711425781" posZ="17.916229248047" rotZ="179.99993896484" />
+		<spawn posX="974.08947753906" posY="-1819.9682617188" posZ="18.702526092529" rotZ="0" />
+		<spawn posX="800.41979980469" posY="-1619.6756591797" posZ="19.147529602051" rotZ="274" />
+		<spawn posX="662.59619140625" posY="-1656.9760742188" posZ="22.007213592529" rotZ="86" />
+		<spawn posX="434.63879394531" posY="-1737.9138183594" posZ="17.16188621521" rotZ="270" />
+		<spawn posX="607.86145019531" posY="-1339.6710205078" posZ="20.546276092529" rotZ="244" />
+    </spawngroup>
+	
+	
+    <spawngroup type="terrorist">
+        <class id="4" skin="181" weapons="26,300;31,400;18,10" />
+        <class id="5" skin="183" weapons="26,300;22,200;37,300" />
+        <class id="6" skin="179" weapons="26,300;22,200;37,300" />
+        <class id="7" skin="191" weapons="26,300;31,300;18,10" />
+        <class id="8" skin="111" weapons="26,300;22,200;23,300" />
+        <class id="9" skin="73" weapons="26,300;31,400;23,300" />
+        <class id="10" skin="100" weapons="23,300;31,300;37,300" />
+        <class id="11" skin="274" weapons="0,0;23,100;41,300" medic="true" />
+        <linespawn startX="2769.70" startY="-1630.79" startZ="21.36" endX="2792.17" endY="-1631.03" endZ="21.36" />
+		<linespawn startX="2769.62" startY="-1636.85" startZ="21.36" endX="2789.67" endY="-1637.14" endZ="21.36" />
+		<linespawn startX="2769.21" startY="-1643.76" startZ="21.36" endX="2790.98" endY="-1643.65" endZ="21.36" />
+    </spawngroup>
+
+	
+    <spawngroup type="pm">
+        <class id="12" skin="147" weapons="15,1;41,1000;0,0" />
+        <spawn posX="1326.43" posY="-1871.92" posZ="22.65" rot="0" />
+        <cantdrive models="417" />
+    </spawngroup>
+
+	
+    <spawngroup type="bodyguard">
+        <class id="13" skin="163" weapons="23,100;28,200;0,0" />
+        <class id="14" skin="164" weapons="23,100;28,200;0,0" />
+        <class id="15" skin="165" weapons="23,100;28,200;0,0" />
+        <class id="16" skin="166" weapons="23,100;28,200;0,0" />
+        <class id="17" skin="141" weapons="23,100;28,200;0,0" />
+        <class id="18" skin="276" weapons="0,0;23,100;41,300" medic="true" />
+        <linespawn startX="1363.31" startY="-1886.26" startZ="22.66" endX="1346.78" endY="-1885.45" endZ="22.64" />
+		<linespawn startX="1354.62" startY="-1877.98" startZ="22.65" endX="1323.30" endY="-1877.62" endZ="22.65" />
+		<linespawn startX="1335.53" startY="-1884.89" startZ="22.64" endX="1334.93" endY="-1868.22" endZ="22.65" />
+    </spawngroup>
+
+	
+    <spawngroup type="police">
+        <class id="19" skin="280" weapons="24,100;31,200;41,300" />
+        <class id="20" skin="281" weapons="24,100;29,200;41,300" />
+        <class id="21" skin="282" weapons="24,100;29,200;41,300" />
+        <class id="22" skin="283" weapons="24,100;31,200;41,300" />
+        <class id="23" skin="284" weapons="24,100;29,200;41,300" />
+        <class id="24" skin="285" weapons="24,100;31,200;41,300" />
+        <class id="25" skin="286" weapons="24,100;29,200;41,300" />
+        <class id="26" skin="288" weapons="24,100;31,200;41,300" />
+        <class id="27" skin="246" weapons="24,100;29,200;41,300" />
+        <class id="28" skin="275" weapons="0,0;24,100;41,300" medic="true" />
+        <linespawn startX="1589.40" startY="-1707.72" startZ="19.87" endX="1585.09" endY="-1639.82" endZ="19.87" />
+		<linespawn startX="1600.18" startY="-1707.86" startZ="19.87" endX="1595.26" endY="-1640.17" endZ="19.87" />
+    </spawngroup>
+	
+	
+	<boundarycorner posX="560" posY="-2220" />
+	<boundarycorner posX="226" posY="-2155" />
+	<boundarycorner posX="226" posY="-2154" />
+	<boundarycorner posX="60" posY="-1971" />
+	<boundarycorner posX="72" posY="-1484" />
+	<boundarycorner posX="360" posY="-1268" />
+	<boundarycorner posX="808" posY="-1152" />
+	<boundarycorner posX="1378" posY="-1152" />
+	<boundarycorner posX="1434" posY="-1170" />
+	<boundarycorner posX="1740" posY="-1170" />
+	<boundarycorner posX="2060" posY="-1253" />
+	<boundarycorner posX="2060" posY="-1388" />
+	<boundarycorner posX="2107" posY="-1402" />
+	<boundarycorner posX="2107" posY="-1486" />
+	<boundarycorner posX="2204" posY="-1522" />
+	<boundarycorner posX="2276" posY="-1545" />
+	<boundarycorner posX="2413" posY="-1545" />
+	<boundarycorner posX="2461" posY="-1585" />
+	<boundarycorner posX="2769" posY="-1577" />
+	<boundarycorner posX="2770" posY="-1497" />
+	<boundarycorner posX="2976" posY="-1497" />
+	<boundarycorner posX="2976" posY="-2223" />
+	<boundarycorner posX="2885" posY="-2327" />
+	<boundarycorner posX="2885" posY="-2830" />
+	<boundarycorner posX="1370" posY="-2830" />
+	<boundarycorner posX="810" posY="-2272" />
+	
+	
+	<!-- <water posX1="20" posY1="-2870" posZ1="15.5" posX2="2998" posY2="-2870" posZ2="15.5" posX3="20" posY3="-1152" posZ3="15.5" posX4="2998" posY4="-1152" posZ4="15.5" />	-->
+
+
+    <object id="object (cuntw_roadblock04ld) (2)" doublesided="false" model="4508" interior="0" dimension="0" posX="2740.3549804688" posY="-1576.2463378906" posZ="19.231172561646" rotX="0" rotY="14.5" rotZ="267.99560546875" />
+    <object id="object (cuntw_roadblock04ld) (4)" doublesided="false" model="4508" interior="0" dimension="0" posX="2723.0297851563" posY="-1576.2271728516" posZ="19.481168746948" rotX="0" rotY="15.24853515625" rotZ="267.99499511719" />
+    <object id="object (sfw_roadblock1ld) (1)" doublesided="false" model="4510" interior="0" dimension="0" posX="2339.0671386719" posY="-1547.5604248047" posZ="27.571598052979" rotX="359.75054931641" rotY="356.24993896484" rotZ="271.48364257813" />
+    <object id="object (sfw_roadblock1ld) (2)" doublesided="false" model="4510" interior="0" dimension="0" posX="1854.8798828125" posY="-1228.828125" posZ="20.746572494507" rotX="0.72509765625" rotY="6.7401123046875" rotZ="271.40625" />
+    <object id="object (cn2_roadblock04ld) (1)" doublesided="false" model="4517" interior="0" dimension="0" posX="1929.9775390625" posY="-1261.291015625" posZ="18.265968322754" rotX="349.99694824219" rotY="0" rotZ="91.99951171875" />
+    <object id="object (cn2_roadblock04ld) (2)" doublesided="false" model="4517" interior="0" dimension="0" posX="1715.5556640625" posY="-1230.0400390625" posZ="17.740976333618" rotX="349.99145507813" rotY="0" rotZ="180.74157714844" />
+    <object id="object (cn2_roadblock04ld) (3)" doublesided="false" model="4517" interior="0" dimension="0" posX="1453.9833984375" posY="-1208.16015625" posZ="17.97846031189" rotX="349.99145507813" rotY="0.252685546875" rotZ="182.04345703125" />
+    <object id="object (sfw_roadblock1ld) (4)" doublesided="false" model="4510" interior="0" dimension="0" posX="1354.619140625" posY="-1209.2197265625" posZ="20.796571731567" rotX="0.7305908203125" rotY="6.7401123046875" rotZ="271.40625" />
+    <object id="object (cn2_roadblock04ld) (4)" doublesided="false" model="4517" interior="0" dimension="0" posX="1215.7548828125" posY="-1228.857421875" posZ="17.853462219238" rotX="349.99145507813" rotY="0.252685546875" rotZ="180.791015625" />
+    <object id="object (cn2_roadblock04ld) (5)" doublesided="false" model="4517" interior="0" dimension="0" posX="1057.6806640625" posY="-1229.8369140625" posZ="17.678464889526" rotX="353.49060058594" rotY="0.2471923828125" rotZ="182.021484375" />
+    <object id="object (cn2_roadblock04ld) (6)" doublesided="false" model="4517" interior="0" dimension="0" posX="942.9892578125" posY="-1233.2744140625" posZ="17.453468322754" rotX="355.49560546875" rotY="0.24169921875" rotZ="182.01049804688" />
+    <object id="object (cn2_roadblock04ld) (7)" doublesided="false" model="4517" interior="0" dimension="0" posX="796.607421875" posY="-1208.7333984375" posZ="17.678464889526" rotX="352.98522949219" rotY="0.24169921875" rotZ="182.021484375" />
+    <object id="object (sfw_roadblock1ld) (5)" doublesided="false" model="4510" interior="0" dimension="0" posX="634.7470703125" posY="-1273.5302734375" posZ="20.646574020386" rotX="359.74731445313" rotY="6.7401123046875" rotZ="271.52160644531" />
+    <object id="object (cn2_roadblock04ld) (8)" doublesided="false" model="4517" interior="0" dimension="0" posX="115.7861328125" posY="-1476.267578125" posZ="19.32063293457" rotX="341.86157226563" rotY="353.41918945313" rotZ="144.44274902344" />
+    <object id="object (EasBeBrij1_LAe2) (1)" doublesided="false" model="17550" interior="0" dimension="0" posX="1874.8779296875" posY="-1629.1572265625" posZ="25.919631958008" rotX="0.2471923828125" rotY="0.4998779296875" rotZ="285.99609375" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="2044.470703125" posY="-1793.9814453125" posZ="22.76007270813" rotX="13.238525390625" rotY="359.736328125" rotZ="359.54406738281" />
+    <object id="object (cw2_phroofstuf) (3)" doublesided="true" model="18262" interior="0" dimension="0" posX="2039.8662109375" posY="-1778.3544921875" posZ="22.863258361816" rotX="19.984130859375" rotY="0" rotZ="359.99145507813" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="2022.689453125" posY="-1777.4111328125" posZ="25.688245773315" rotX="352.97424316406" rotY="0" rotZ="356.48986816406" />
+    <object id="object (vgsSstairs03_lvs) (1)" doublesided="false" model="8613" interior="0" dimension="0" posX="2015.779296875" posY="-1767.3818359375" posZ="20.802240371704" rotX="0" rotY="0" rotZ="270.25" />
+    <object id="object (cw2_bikelog) (4)" doublesided="false" model="18367" interior="0" dimension="0" posX="2291.1826171875" posY="-2007.56640625" posZ="24.11008644104" rotX="6.229248046875" rotY="359.736328125" rotZ="7.7618408203125" />
+    <object id="object (vgEhshade01_lvs) (2)" doublesided="false" model="8838" interior="0" dimension="0" posX="2366.0637207031" posY="-2025.1883544922" posZ="17.674140930176" rotX="0" rotY="19.75" rotZ="0" />
+    <object id="object (vgEhshade01_lvs) (3)" doublesided="false" model="8838" interior="0" dimension="0" posX="2391.658203125" posY="-2002.5615234375" posZ="14.449125289917" rotX="359.75830078125" rotY="17.742919921875" rotZ="89.071655273438" />
+    <object id="object (vgEhshade01_lvs) (4)" doublesided="false" model="8838" interior="0" dimension="0" posX="2317.6423339844" posY="-1953.1561279297" posZ="18.924125671387" rotX="359.99621582031" rotY="0.49276733398438" rotZ="359.24438476563" />
+    <object id="object (cw2_bikelog) (6)" doublesided="false" model="18367" interior="0" dimension="0" posX="2399.4819335938" posY="-1957.08203125" posZ="21.610029220581" rotX="11.22802734375" rotY="359.73083496094" rotZ="359.52758789063" />
+    <object id="object (cw2_bikelog) (8)" doublesided="false" model="18367" interior="0" dimension="0" posX="2426.314453125" posY="-1975.404296875" posZ="17.885112762451" rotX="353.48059082031" rotY="181.00659179688" rotZ="307.61065673828" />
+    <object id="object (des_wjetty) (1)" doublesided="true" model="11496" interior="0" dimension="0" posX="2221.0048828125" posY="-2021.953125" posZ="24.518863677979" rotX="0" rotY="0" rotZ="313.9892578125" />
+    <object id="object (cxref_woodstair) (1)" doublesided="false" model="3361" interior="0" dimension="0" posX="2287.16015625" posY="-2044.142578125" posZ="22.720756530762" rotX="0" rotY="0" rotZ="270.24719238281" />
+    <object id="object (des_wjetty) (2)" doublesided="true" model="11496" interior="0" dimension="0" posX="2231.5361328125" posY="-2011.7451171875" posZ="24.543863296509" rotX="0" rotY="0" rotZ="313.9892578125" />
+    <object id="object (w7bark01) (2)" doublesided="false" model="18256" interior="0" dimension="0" posX="2225.2355957031" posY="-2109.1989746094" posZ="14.620578765869" rotX="359.50228881836" rotY="354.49978637695" rotZ="51.702087402344" />
+    <object id="object (vgEhshade01_lvs) (6)" doublesided="false" model="8838" interior="0" dimension="0" posX="2287.0478515625" posY="-2040.0517578125" posZ="15.249116897583" rotX="359.98901367188" rotY="359.98352050781" rotZ="270.24169921875" />
+    <object id="object (cxref_woodstair) (2)" doublesided="false" model="3361" interior="0" dimension="0" posX="2282.888671875" posY="-2046.2672119141" posZ="18.695756912231" rotX="0" rotY="0" rotZ="44.497192382813" />
+    <object id="object (des_wjetty) (3)" doublesided="true" model="11496" interior="0" dimension="0" posX="2152.6064453125" posY="-2095.408203125" posZ="17.968852996826" rotX="0" rotY="359.99450683594" rotZ="224.99450683594" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="2148.7197265625" posY="-2099.302734375" posZ="16.318855285645" rotX="0" rotY="359.97802734375" rotZ="224.98901367188" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="2383.2255859375" posY="-2080.2490234375" posZ="20.345659255981" rotX="6.4764404296875" rotY="0" rotZ="86.731567382813" />
+    <object id="object (cw2_bikelog) (4)" doublesided="false" model="18367" interior="0" dimension="0" posX="2431.455078125" posY="-2143.3271484375" posZ="17.860109329224" rotX="0.24029541015625" rotY="359.73791503906" rotZ="268.48431396484" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="2663.4235839844" posY="-2147.6110839844" posZ="21.882385253906" rotX="342.232421875" rotY="1.3096008300781" rotZ="177.38415527344" />
+    <object id="object (lhroofst14) (2)" doublesided="false" model="5822" interior="0" dimension="0" posX="2663.2116699219" posY="-2109.7036132813" posZ="39.948329925537" rotX="0" rotY="0" rotZ="3" />
+    <object id="object (cw2_bikelog) (4)" doublesided="false" model="18367" interior="0" dimension="0" posX="2674.248046875" posY="-2138.5063476563" posZ="23.060102462769" rotX="334.08898925781" rotY="175.25524902344" rotZ="221.90425109863" />
+    <object id="object (cw2_bikelog) (4)" doublesided="false" model="18367" interior="0" dimension="0" posX="2663.2451171875" posY="-2160.6435546875" posZ="14.835098266602" rotX="330.10070800781" rotY="175.07263183594" rotZ="1.021728515625" />
+    <object id="object (cxrf_a51_stairs) (2)" doublesided="false" model="3399" interior="0" dimension="0" posX="2724.1064453125" posY="-2191.173828125" posZ="32.654151916504" rotX="0.2471923828125" rotY="179.74731445313" rotZ="359.49462890625" />
+    <object id="object (cos_sbanksteps01) (1)" doublesided="false" model="12958" interior="0" dimension="0" posX="2751.6870117188" posY="-2189.806640625" posZ="42.037300109863" rotX="0" rotY="0" rotZ="179.99993896484" />
+    <object id="object (laxrf_refinerypipe) (1)" doublesided="false" model="3675" interior="0" dimension="0" posX="2742.0280761719" posY="-2187.470703125" posZ="34.521194458008" rotX="0" rotY="90" rotZ="180.25006103516" />
+    <object id="object (laxrf_refinerypipe) (3)" doublesided="false" model="3675" interior="0" dimension="0" posX="2747.2995605469" posY="-2187.4370117188" posZ="36.771331787109" rotX="0.44235229492188" rotY="129.748046875" rotZ="178.58721923828" />
+    <object id="object (vegasaircon1) (1)" doublesided="false" model="3470" interior="0" dimension="0" posX="2752.2321777344" posY="-2214.7612304688" posZ="45.222743988037" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (lasdkrt1_LA01) (1)" doublesided="false" model="3565" interior="0" dimension="0" posX="2634.3708496094" posY="-2214.6428222656" posZ="13.802005767822" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (lasdkrt1_LA01) (2)" doublesided="false" model="3565" interior="0" dimension="0" posX="2634.3955078125" posY="-2217.1430664063" posZ="13.802005767822" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (lasdkrt1_LA01) (3)" doublesided="false" model="3565" interior="0" dimension="0" posX="2634.349609375" posY="-2214.6025390625" posZ="16.427007675171" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (sw_jetty) (1)" doublesided="false" model="12990" interior="0" dimension="0" posX="2715.4626464844" posY="-2500.2453613281" posZ="26.904754638672" rotX="3.25" rotY="0" rotZ="0" />
+    <object id="object (sw_jetty) (2)" doublesided="true" model="12990" interior="0" dimension="0" posX="2682.0866699219" posY="-2422.8107910156" posZ="21.104755401611" rotX="345.28167724609" rotY="176.38116455078" rotZ="87.079437255859" />
+    <object id="object (sw_jetty) (3)" doublesided="true" model="12990" interior="0" dimension="0" posX="2367.4990234375" posY="-2046.62109375" posZ="20.50475692749" rotX="0.736083984375" rotY="179.99450683594" rotZ="0" />
+    <object id="object (sw_jetty) (3)" doublesided="true" model="12990" interior="0" dimension="0" posX="2220.4580078125" posY="-1947.0146484375" posZ="19.154777526855" rotX="2.999267578125" rotY="178.23669433594" rotZ="270.087890625" />
+    <object id="object (cw2_bikelog) (7)" doublesided="false" model="18367" interior="0" dimension="0" posX="2016.7861328125" posY="-2131.7158203125" posZ="17.385051727295" rotX="353.47961425781" rotY="358.97827148438" rotZ="182.35656738281" />
+    <object id="object (cxref_woodstair) (1)" doublesided="false" model="3361" interior="0" dimension="0" posX="2035.3916015625" posY="-2058.1962890625" posZ="31.395761489868" rotX="0" rotY="0" rotZ="270.24719238281" />
+    <object id="object (cxref_woodstair) (1)" doublesided="false" model="3361" interior="0" dimension="0" posX="2035.4116210938" posY="-2064.26953125" posZ="27.370758056641" rotX="0" rotY="0" rotZ="270.24719238281" />
+    <object id="object (cn2_jetty1) (1)" doublesided="false" model="16502" interior="0" dimension="0" posX="2002.65234375" posY="-2091.7216796875" posZ="22.363388061523" rotX="4.735107421875" rotY="2.7520751953125" rotZ="359.76928710938" />
+    <object id="object (vegasaircon1) (2)" doublesided="false" model="3470" interior="0" dimension="0" posX="2161.3359375" posY="-2272.7290039063" posZ="22.879554748535" rotX="0" rotY="0" rotZ="134" />
+    <object id="object (vegasaircon1) (3)" doublesided="false" model="3470" interior="0" dimension="0" posX="2168.7109375" posY="-2265.4008789063" posZ="22.879554748535" rotX="0" rotY="0" rotZ="133.99475097656" />
+    <object id="object (sw_jetty) (3)" doublesided="true" model="12990" interior="0" dimension="0" posX="2066.6875" posY="-2051.240234375" posZ="19.47979927063" rotX="21.24755859375" rotY="0.0054931640625" rotZ="179.99450683594" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="1708.875" posY="-2199.712890625" posZ="15.618835449219" rotX="0" rotY="359.97802734375" rotZ="89.483642578125" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="1663.9611816406" posY="-2199.7707519531" posZ="15.618835449219" rotX="0" rotY="359.98352050781" rotZ="89.483642578125" />
+    <object id="object (shamheliprt04) (2)" doublesided="false" model="6976" interior="0" dimension="0" posX="1664.0693359375" posY="-2203.806640625" posZ="16.846715927124" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (shamheliprt04) (3)" doublesided="false" model="6976" interior="0" dimension="0" posX="1708.1514892578" posY="-2203.7897949219" posZ="16.821716308594" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cxref_woodstair) (1)" doublesided="false" model="3361" interior="0" dimension="0" posX="1905.8341064453" posY="-1776.2370605469" posZ="22.67081451416" rotX="0" rotY="0" rotZ="359.74719238281" />
+    <object id="object (cxref_woodstair) (1)" doublesided="false" model="3361" interior="0" dimension="0" posX="1911.8581542969" posY="-1776.2546386719" posZ="18.645818710327" rotX="0" rotY="0" rotZ="359.74182128906" />
+    <object id="object (shamheliprt04) (5)" doublesided="false" model="6976" interior="0" dimension="0" posX="1875.6417236328" posY="-1699.1398925781" posZ="33.521545410156" rotX="0" rotY="0" rotZ="179.75006103516" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1697.0035400391" posY="-1565.2602539063" posZ="23.785110473633" rotX="356.24420166016" rotY="359.74279785156" rotZ="94.972442626953" />
+    <object id="object (sw_jetty) (3)" doublesided="true" model="12990" interior="0" dimension="0" posX="1745.5888671875" posY="-1555.3189697266" posZ="34.764457702637" rotX="12.489868164063" rotY="357.9567565918" rotZ="262.4387512207" />
+    <object id="object (vgEhshade01_lvs) (1)" doublesided="false" model="8838" interior="0" dimension="0" posX="1764.9946289063" posY="-1609.5828857422" posZ="33.674171447754" rotX="0" rotY="350.5" rotZ="86" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1743.6817626953" posY="-1646.1373291016" posZ="43.160106658936" rotX="15.993988037109" rotY="359.73300170898" rotZ="103.56286621094" />
+    <object id="object (vgsSstairs03_lvs) (3)" doublesided="false" model="8613" interior="0" dimension="0" posX="1736.8173828125" posY="-1658.6015625" posZ="37.792976379395" rotX="0" rotY="0" rotZ="89.747314453125" />
+    <object id="object (scaff1_SFw) (1)" doublesided="false" model="9618" interior="0" dimension="0" posX="1741.30859375" posY="-1660.6953125" posZ="18.279535293579" rotX="359.74731445313" rotY="179.99450683594" rotZ="180.24169921875" />
+    <object id="object (xjetty01) (1)" doublesided="false" model="17068" interior="0" dimension="0" posX="1745.9724121094" posY="-1668.7541503906" posZ="16.176658630371" rotX="0" rotY="0" rotZ="179.99450683594" />
+    <object id="object (stuntramp7_las2) (1)" doublesided="false" model="5153" interior="0" dimension="0" posX="1745.7568359375" posY="-1661.3701171875" posZ="24.700773239136" rotX="0.6866455078125" rotY="23.236083984375" rotZ="89.945068359375" />
+    <object id="object (stuntramp7_las2) (4)" doublesided="false" model="5153" interior="0" dimension="0" posX="1707.4686279297" posY="-1680.9075927734" posZ="27.050752639771" rotX="0.6866455078125" rotY="23.236083984375" rotZ="0.703125" />
+    <object id="object (EasBeBrij1_LAe2) (1)" doublesided="false" model="17550" interior="0" dimension="0" posX="1743.26953125" posY="-1717.9619140625" posZ="53.919494628906" rotX="0" rotY="2.999267578125" rotZ="299.75646972656" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1679.73828125" posY="-1630.25" posZ="22.435077667236" rotX="13.238525390625" rotY="1.2744140625" rotZ="85.946044921875" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1678.9484863281" posY="-1610.1075439453" posZ="21.860094070435" rotX="357.49145507813" rotY="179.99462890625" rotZ="166.49639892578" />
+    <object id="object (cn2_jetty1) (1)" doublesided="false" model="16502" interior="0" dimension="0" posX="1785.5302734375" posY="-1404.95703125" posZ="28.579010009766" rotX="0.230712890625" rotY="346.49230957031" rotZ="178.29711914063" />
+    <object id="object (ws_scaffolding_SFX) (1)" doublesided="false" model="3867" interior="0" dimension="0" posX="1694.2138671875" posY="-1432.091796875" posZ="27.420049667358" rotX="0" rotY="0" rotZ="179.99450683594" />
+    <object id="object (ws_scaffolding_SFX) (2)" doublesided="false" model="3867" interior="0" dimension="0" posX="1676.76171875" posY="-1432.1123046875" posZ="27.420049667358" rotX="0" rotY="0" rotZ="179.99450683594" />
+    <object id="object (ws_scaffolding_SFX) (3)" doublesided="false" model="3867" interior="0" dimension="0" posX="1666.6900634766" posY="-1422.1882324219" posZ="27.420049667358" rotX="0" rotY="0" rotZ="89.994506835938" />
+    <object id="object (ws_scaffolding_SFX) (4)" doublesided="false" model="3867" interior="0" dimension="0" posX="1666.7333984375" posY="-1404.7906494141" posZ="27.420049667358" rotX="0" rotY="0" rotZ="89.994506835938" />
+    <object id="object (ws_scaffolding_SFX) (5)" doublesided="false" model="3867" interior="0" dimension="0" posX="1656.6091308594" posY="-1397.5393066406" posZ="27.420049667358" rotX="0" rotY="0" rotZ="179.99450683594" />
+    <object id="object (ws_scaffolding_SFX) (6)" doublesided="false" model="3867" interior="0" dimension="0" posX="1639.783203125" posY="-1397.4892578125" posZ="27.370050430298" rotX="0" rotY="0" rotZ="179.99450683594" />
+    <object id="object (scaff3_SFw) (1)" doublesided="false" model="9766" interior="0" dimension="0" posX="1739.6875" posY="-1431.3127441406" posZ="32.749240875244" rotX="355.25" rotY="0" rotZ="90.999938964844" />
+    <object id="object (scaff3_SFw) (2)" doublesided="false" model="9766" interior="0" dimension="0" posX="1739.9877929688" posY="-1431.3051757813" posZ="25.249248504639" rotX="355.24841308594" rotY="0" rotZ="90.994262695313" />
+    <object id="object (des_swtstairs1) (1)" doublesided="true" model="11472" interior="0" dimension="0" posX="1779.5943603516" posY="-1423.1983642578" posZ="24.109399795532" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (des_swtstairs1) (2)" doublesided="true" model="11472" interior="0" dimension="0" posX="1783.6025390625" posY="-1417.9024658203" posZ="24.134399414063" rotX="0" rotY="0" rotZ="269.75" />
+    <object id="object (stuntramp7_las2) (7)" doublesided="false" model="5153" interior="0" dimension="0" posX="1778.001953125" posY="-1431.076171875" posZ="25.246150970459" rotX="0" rotY="22.999877929688" rotZ="1.2469482421875" />
+    <object id="object (cos_sbanksteps05) (1)" doublesided="true" model="12985" interior="0" dimension="0" posX="1468.1312255859" posY="-1767.4678955078" posZ="29.812147140503" rotX="0" rotY="0" rotZ="180.50006103516" />
+    <object id="object (cos_sbanksteps06) (1)" doublesided="true" model="12987" interior="0" dimension="0" posX="1471.9520263672" posY="-1772.1510009766" posZ="23.730657577515" rotX="0" rotY="0" rotZ="270.5" />
+    <object id="object (cos_sbanksteps06) (3)" doublesided="false" model="12987" interior="0" dimension="0" posX="1494.2822265625" posY="-1767.421875" posZ="29.805652618408" rotX="0" rotY="0" rotZ="180.74987792969" />
+    <object id="object (cos_sbanksteps05) (3)" doublesided="false" model="12985" interior="0" dimension="0" posX="1490.4163818359" posY="-1772.18359375" posZ="23.712171554565" rotX="0" rotY="0" rotZ="90.499877929688" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="1363.28515625" posY="-1751.3359375" posZ="16.759967803955" rotX="0" rotY="359.97802734375" rotZ="179.98352050781" />
+    <object id="object (vgEhshade01_lvs) (1)" doublesided="false" model="8838" interior="0" dimension="0" posX="1352.6787109375" posY="-1765.1669921875" posZ="23.9225025177" rotX="0" rotY="15.99609375" rotZ="0" />
+    <object id="object (cxref_woodstair) (3)" doublesided="false" model="3361" interior="0" dimension="0" posX="1330.205078125" posY="-1770.341796875" posZ="32.105033874512" rotX="0" rotY="0" rotZ="89.747314453125" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="1337.8115234375" posY="-1795.544921875" posZ="36.105251312256" rotX="351.48010253906" rotY="0" rotZ="86.731567382813" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="1356.1490478516" posY="-1821.4080810547" posZ="38.005168914795" rotX="23.456420898438" rotY="2.7253723144531" rotZ="175.64605712891" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1331.5078125" posY="-1721.0400390625" posZ="31.543973922729" rotX="11.486206054688" rotY="0.4998779296875" rotZ="354.88586425781" />
+    <object id="object (cn2_jetty1) (1)" doublesided="false" model="16502" interior="0" dimension="0" posX="1332.5078125" posY="-1676.669921875" posZ="23.831363677979" rotX="353.17749023438" rotY="42.857666015625" rotZ="96.026000976563" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="1346.8878173828" posY="-1651.7368164063" posZ="19.755256652832" rotX="30.727905273438" rotY="0" rotZ="90.72607421875" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1412.255859375" posY="-1605.2890625" posZ="37.718925476074" rotX="11.486206054688" rotY="0.4998779296875" rotZ="182.88391113281" />
+    <object id="object (cxref_woodstair) (4)" doublesided="false" model="3361" interior="0" dimension="0" posX="1412.7446289063" posY="-1611.2530517578" posZ="42.882656097412" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cxref_woodstair) (5)" doublesided="false" model="3361" interior="0" dimension="0" posX="1417.091796875" posY="-1607.5712890625" posZ="38.807682037354" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (vgsSstairs02_lvs) (1)" doublesided="true" model="8572" interior="0" dimension="0" posX="1401.0009765625" posY="-1615.013671875" posZ="47.250122070313" rotX="0" rotY="0" rotZ="269.75" />
+    <object id="object (vgsSstairs02_lvs) (2)" doublesided="true" model="8572" interior="0" dimension="0" posX="1410.5122070313" posY="-1616.9975585938" posZ="51.700119018555" rotX="0" rotY="0" rotZ="179.74731445313" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1398.1763916016" posY="-1644.6215820313" posZ="45.618934631348" rotX="18.252044677734" rotY="182.09521484375" rotZ="355.82690429688" />
+    <object id="object (ws_scaffolding_SFX) (6)" doublesided="false" model="3867" interior="0" dimension="0" posX="1330.0372314453" posY="-1565.5291748047" posZ="27.370050430298" rotX="0" rotY="0" rotZ="171.24450683594" />
+    <object id="object (ws_scaffolding_SFX) (6)" doublesided="false" model="3867" interior="0" dimension="0" posX="1336.5837402344" posY="-1533.6492919922" posZ="27.295051574707" rotX="0" rotY="0" rotZ="354.73205566406" />
+    <object id="object (ws_scaffolding_SFX) (6)" doublesided="false" model="3867" interior="0" dimension="0" posX="1324.7810058594" posY="-1542.1403808594" posZ="27.295051574707" rotX="0" rotY="0" rotZ="78.482055664063" />
+    <object id="object (ws_scaffolding_SFX) (6)" doublesided="false" model="3867" interior="0" dimension="0" posX="1322.2158203125" posY="-1554.0244140625" posZ="27.245052337646" rotX="0" rotY="0" rotZ="76.728515625" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1339.2319335938" posY="-1555.4997558594" posZ="31.918972015381" rotX="1.9830322265625" rotY="359.98901367188" rotZ="349.23425292969" />
+    <object id="object (cn2_jetty1) (1)" doublesided="false" model="16502" interior="0" dimension="0" posX="1363.1142578125" posY="-1492.1937255859" posZ="33.406391143799" rotX="354.07330322266" rotY="28.907348632813" rotZ="249.00303649902" />
+    <object id="object (vgsSstairs03_lvs) (5)" doublesided="true" model="8613" interior="0" dimension="0" posX="1375.6986083984" posY="-1446.0783691406" posZ="33.926139831543" rotX="0" rotY="0" rotZ="180" />
+    <object id="object (CE_bridge02) (1)" doublesided="false" model="12857" interior="0" dimension="0" posX="1379.1647949219" posY="-1401.2053222656" posZ="28.721147537231" rotX="6.499755859375" rotY="359.49670410156" rotZ="359.55700683594" />
+    <object id="object (xjetty01) (2)" doublesided="false" model="17068" interior="0" dimension="0" posX="1435.8914794922" posY="-1325.7738037109" posZ="34.554828643799" rotX="1.5" rotY="0" rotZ="180" />
+    <object id="object (des_ranchjetty) (2)" doublesided="false" model="11495" interior="0" dimension="0" posX="1546.6279296875" posY="-1398.953125" posZ="16.042287826538" rotX="0" rotY="0" rotZ="269.98901367188" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="1507.1669921875" posY="-1397.6806640625" posZ="17.650005340576" rotX="0" rotY="359.97802734375" rotZ="89.983520507813" />
+    <object id="object (des_ranchjetty) (3)" doublesided="false" model="11495" interior="0" dimension="0" posX="1524.6904296875" posY="-1398.98046875" posZ="16.017288208008" rotX="0" rotY="0" rotZ="269.98901367188" />
+    <object id="object (ottos_ramp) (1)" doublesided="true" model="10245" interior="0" dimension="0" posX="1553.271484375" posY="-1411.65625" posZ="21.801115036011" rotX="0" rotY="0" rotZ="225" />
+    <object id="object (ottos_ramp) (2)" doublesided="true" model="10245" interior="0" dimension="0" posX="1534.6931152344" posY="-1411.7211914063" posZ="25.751092910767" rotX="0" rotY="0" rotZ="225" />
+    <object id="object (ottos_ramp) (3)" doublesided="true" model="10245" interior="0" dimension="0" posX="1513.2440185547" posY="-1411.7297363281" posZ="29.676090240479" rotX="0" rotY="0" rotZ="225" />
+    <object id="object (ottos_ramp) (4)" doublesided="true" model="10245" interior="0" dimension="0" posX="1494.6942138672" posY="-1411.7241210938" posZ="33.57612991333" rotX="0" rotY="0" rotZ="225" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1480.5279541016" posY="-1454.9084472656" posZ="39.743942260742" rotX="0" rotY="180" rotZ="183.03265380859" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1433.71875" posY="-1415.7867431641" posZ="33.743988037109" rotX="347.25793457031" rotY="177.94384765625" rotZ="88.578552246094" />
+    <object id="object (lhroofst14) (4)" doublesided="false" model="5822" interior="0" dimension="0" posX="1323.2592773438" posY="-1619.8627929688" posZ="29.036304473877" rotX="0" rotY="0" rotZ="94.5" />
+    <object id="object (cw2_bikelog) (8)" doublesided="false" model="18367" interior="0" dimension="0" posX="2428.9565429688" posY="-1945.7579345703" posZ="19.435089111328" rotX="355.72927856445" rotY="181.00155639648" rotZ="179.56658935547" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="1193.9412841797" posY="-1774.5146484375" posZ="16.783567428589" rotX="0" rotY="359.97802734375" rotZ="179.98352050781" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="1234.1174316406" posY="-1734.7266845703" posZ="16.783567428589" rotX="0" rotY="359.97802734375" rotZ="89.983520507813" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="1256.3475341797" posY="-1612.8970947266" posZ="25.955268859863" rotX="351.48968505859" rotY="356.96655273438" rotZ="356.27679443359" />
+    <object id="object (cxref_woodstair) (8)" doublesided="false" model="3361" interior="0" dimension="0" posX="1213.4069824219" posY="-1666.2622070313" posZ="32.316444396973" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (cxref_woodstair) (9)" doublesided="false" model="3361" interior="0" dimension="0" posX="1213.4022216797" posY="-1660.1539306641" posZ="28.266448974609" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (CE_bridge02) (1)" doublesided="false" model="12857" interior="0" dimension="0" posX="1299.3935546875" posY="-1449.759765625" posZ="24.021158218384" rotX="7.745361328125" rotY="0.2471923828125" rotZ="179.46166992188" />
+    <object id="object (shamheliprt04) (6)" doublesided="true" model="6976" interior="0" dimension="0" posX="1263.7347412109" posY="-1421.9975585938" posZ="17.328119277954" rotX="0" rotY="0" rotZ="0.5" />
+    <object id="object (shamheliprt04) (7)" doublesided="true" model="6976" interior="0" dimension="0" posX="1298.3944091797" posY="-1421.9239501953" posZ="17.328119277954" rotX="0" rotY="0" rotZ="0.4998779296875" />
+    <object id="object (stadbridge_SFS) (1)" doublesided="false" model="11095" interior="0" dimension="0" posX="1348.916015625" posY="-1256.31640625" posZ="27.430042266846" rotX="0" rotY="0" rotZ="89.49462890625" />
+    <object id="object (vgEhshade01_lvs) (1)" doublesided="false" model="8838" interior="0" dimension="0" posX="1311.9022216797" posY="-1275.6500244141" posZ="27.166248321533" rotX="0.2330322265625" rotY="21.246276855469" rotZ="90.659362792969" />
+    <object id="object (scaff1_SFw) (2)" doublesided="false" model="9618" interior="0" dimension="0" posX="1286.0224609375" posY="-1257.5263671875" posZ="14.938840866089" rotX="0" rotY="179.99450683594" rotZ="0.2471923828125" />
+    <object id="object (stuntramp7_las2) (1)" doublesided="false" model="5153" interior="0" dimension="0" posX="1282.3984375" posY="-1268.888671875" posZ="26.338274002075" rotX="0.6866455078125" rotY="23.236083984375" rotZ="180.20324707031" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="1132.5480957031" posY="-1343.0556640625" posZ="16.629108428955" rotX="0" rotY="359.97802734375" rotZ="0.4835205078125" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="1093.611328125" posY="-1361.6489257813" posZ="16.629108428955" rotX="0" rotY="359.97802734375" rotZ="179.9833984375" />
+    <object id="object (odrampbit03) (2)" doublesided="false" model="5821" interior="0" dimension="0" posX="1115.2596435547" posY="-1346.4227294922" posZ="20.399105072021" rotX="0" rotY="0" rotZ="268.24768066406" />
+    <object id="object (sw_jetty) (3)" doublesided="true" model="12990" interior="0" dimension="0" posX="1135.2757568359" posY="-1360.2150878906" posZ="24.057493209839" rotX="355.76409912109" rotY="356.99719238281" rotZ="90.028076171875" />
+    <object id="object (odrampbit03) (4)" doublesided="false" model="5821" interior="0" dimension="0" posX="1162.9284667969" posY="-1344.2355957031" posZ="26.549098968506" rotX="0" rotY="0" rotZ="88.247680664063" />
+    <object id="object (CJ_BIG_SKIP1) (2)" doublesided="false" model="1365" interior="0" dimension="0" posX="1124.390625" posY="-1634.03125" posZ="20.670330047607" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (CJ_BIG_SKIP1) (3)" doublesided="false" model="1365" interior="0" dimension="0" posX="1124.4573974609" posY="-1640.3848876953" posZ="24.495321273804" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1124.1798095703" posY="-1588.1690673828" posZ="20.973491668701" rotX="2.2322998046875" rotY="359.73602294922" rotZ="179.74066162109" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="988.13305664063" posY="-1757.8299560547" posZ="16.835378646851" rotX="0" rotY="359.97802734375" rotZ="179.97802734375" />
+    <object id="object (cxref_woodstair) (10)" doublesided="false" model="3361" interior="0" dimension="0" posX="1005.3601074219" posY="-1721.3200683594" posZ="24.884822845459" rotX="0" rotY="0" rotZ="270.75" />
+    <object id="object (cxref_woodstair) (11)" doublesided="false" model="3361" interior="0" dimension="0" posX="1005.4440307617" posY="-1727.3133544922" posZ="20.884841918945" rotX="0" rotY="0" rotZ="270.7470703125" />
+    <object id="object (vgEhshade01_lvs) (1)" doublesided="false" model="8838" interior="0" dimension="0" posX="1021.8787841797" posY="-1599.3686523438" posZ="20.631559371948" rotX="359.99761962891" rotY="16.991882324219" rotZ="90.749603271484" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="926.85223388672" posY="-1597.7864990234" posZ="28.448469161987" rotX="11.730102539063" rotY="359.72534179688" rotZ="270.53186035156" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="981.724609375" posY="-1613.8291015625" posZ="27.303155899048" rotX="359.97253417969" rotY="0.4998779296875" rotZ="52.223510742188" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1013.65234375" posY="-1591.85546875" posZ="20.748510360718" rotX="355.4736328125" rotY="359.71984863281" rotZ="180.44494628906" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="1005.8118896484" posY="-1540.9343261719" posZ="25.003156661987" rotX="29.454345703125" rotY="1.7138671875" rotZ="177.61596679688" />
+    <object id="object (des_ranchjetty) (4)" doublesided="false" model="11495" interior="0" dimension="0" posX="985.91186523438" posY="-1520.6860351563" posZ="16.296642303467" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (odrampbit) (1)" doublesided="false" model="5816" interior="0" dimension="0" posX="995.05120849609" posY="-1535.6330566406" posZ="19.811687469482" rotX="0" rotY="0" rotZ="90.5" />
+    <object id="object (cxref_woodstair) (12)" doublesided="false" model="3361" interior="0" dimension="0" posX="958.63635253906" posY="-1509.98828125" posZ="31.659818649292" rotX="0" rotY="0" rotZ="0.7470703125" />
+    <object id="object (cxref_woodstair) (13)" doublesided="false" model="3361" interior="0" dimension="0" posX="964.80432128906" posY="-1509.9051513672" posZ="27.559854507446" rotX="0" rotY="0" rotZ="0.7415771484375" />
+    <object id="object (cxref_woodstair) (14)" doublesided="false" model="3361" interior="0" dimension="0" posX="970.89508056641" posY="-1509.8321533203" posZ="23.484855651855" rotX="0" rotY="0" rotZ="0.7415771484375" />
+    <object id="object (cxref_woodstair) (15)" doublesided="false" model="3361" interior="0" dimension="0" posX="982.63201904297" posY="-1553.7609863281" posZ="22.559896469116" rotX="0" rotY="0" rotZ="180.24156188965" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="940.392578125" posY="-1501.7060546875" posZ="33.548408508301" rotX="17.46826171875" rotY="359.70336914063" rotZ="180.55480957031" />
+    <object id="object (odrampbit) (2)" doublesided="false" model="5816" interior="0" dimension="0" posX="948.27734375" posY="-1445.2458496094" posZ="26.561687469482" rotX="0" rotY="0" rotZ="270.49987792969" />
+    <object id="object (vegasaircon1) (4)" doublesided="false" model="3470" interior="0" dimension="0" posX="950.91314697266" posY="-1463.1716308594" posZ="19.779356002808" rotX="0" rotY="0" rotZ="90.999938964844" />
+    <object id="object (vegasaircon1) (5)" doublesided="false" model="3470" interior="0" dimension="0" posX="947.90893554688" posY="-1432.2919921875" posZ="19.804355621338" rotX="0" rotY="0" rotZ="269.99981689453" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="983.69348144531" posY="-1458.6953125" posZ="17.848527908325" rotX="358.47357177734" rotY="359.72058105469" rotZ="270.70971679688" />
+    <object id="object (des_wjetty) (4)" doublesided="true" model="11496" interior="0" dimension="0" posX="1000.7887573242" posY="-1461.5812988281" posZ="17.021869659424" rotX="0" rotY="359.97802734375" rotZ="90.72802734375" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="1037.7740478516" posY="-1460.1082763672" posZ="21.803140640259" rotX="351.47381591797" rotY="1.5137329101563" rotZ="178.69177246094" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="820.39788818359" posY="-1337.9163818359" posZ="20.948427200317" rotX="354.21829223633" rotY="359.71484375" rotZ="178.43487548828" />
+    <object id="object (cn2_jetty1) (1)" doublesided="false" model="16502" interior="0" dimension="0" posX="820.03155517578" posY="-1271.7657470703" posZ="24.102405548096" rotX="0.48004150390625" rotY="357.73223876953" rotZ="268.50500488281" />
+    <object id="object (des_ranchjetty) (6)" doublesided="false" model="11495" interior="0" dimension="0" posX="591.47772216797" posY="-1748.0596923828" posZ="16.065704345703" rotX="0" rotY="0" rotZ="261" />
+    <object id="object (des_ranchjetty) (7)" doublesided="false" model="11495" interior="0" dimension="0" posX="598.73358154297" posY="-1769.4545898438" posZ="16.065704345703" rotX="0" rotY="0" rotZ="80.996673583984" />
+    <object id="object (odrampbit02) (1)" doublesided="false" model="5820" interior="0" dimension="0" posX="604.21588134766" posY="-1760.4266357422" posZ="19.632642745972" rotX="0" rotY="0" rotZ="255.25006103516" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="601.06243896484" posY="-1767.9385986328" posZ="24.17342376709" rotX="353.22259521484" rotY="0.25164794921875" rotZ="260.0029296875" />
+    <object id="object (cos_sbanksteps03) (4)" doublesided="false" model="12950" interior="0" dimension="0" posX="577.59442138672" posY="-1763.9559326172" posZ="28.225587844849" rotX="0" rotY="0" rotZ="79.25" />
+    <object id="object (cos_sbanksteps03) (5)" doublesided="false" model="12950" interior="0" dimension="0" posX="583.79010009766" posY="-1765.1342773438" posZ="23.425577163696" rotX="0" rotY="0" rotZ="79.249877929688" />
+    <object id="object (cxref_woodstair) (6)" doublesided="false" model="3361" interior="0" dimension="0" posX="555.42663574219" posY="-1451.2921142578" posZ="17.525371551514" rotX="0" rotY="0" rotZ="272.75006103516" />
+    <object id="object (cxref_woodstair) (7)" doublesided="false" model="3361" interior="0" dimension="0" posX="566.74304199219" posY="-1456.4387207031" posZ="24.575401306152" rotX="0" rotY="0" rotZ="89.99658203125" />
+    <object id="object (rubbled02_SFS) (1)" doublesided="false" model="10985" interior="0" dimension="0" posX="601.75482177734" posY="-1542.7847900391" posZ="30.819324493408" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (scaff1_SFw) (1)" doublesided="false" model="9618" interior="0" dimension="0" posX="1708.1564941406" posY="-1676.3061523438" posZ="20.679529190063" rotX="359.74731445313" rotY="179.99450683594" rotZ="90.247222900391" />
+    <object id="object (stuntramp7_las2) (1)" doublesided="false" model="5153" interior="0" dimension="0" posX="1281.6994628906" posY="-1256.7952880859" posZ="21.338262557983" rotX="0.6866455078125" rotY="23.236083984375" rotZ="269.70324707031" />
+    <object id="object (nt_gasstation) (1)" doublesided="false" model="3187" interior="0" dimension="0" posX="1759.009765625" posY="-1797.689453125" posZ="55.346237182617" rotX="0" rotY="0" rotZ="139.98779296875" />
+    <object id="object (CEtruth_barn02) (1)" doublesided="false" model="13206" interior="0" dimension="0" posX="1753.9833984375" posY="-1779.115234375" posZ="51.46875" rotX="0" rotY="0" rotZ="283.99658203125" />
+    <object id="object (desn2_hutskel2) (1)" doublesided="false" model="16404" interior="0" dimension="0" posX="2101.296875" posY="-2138.189453125" posZ="20.667528152466" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (wt6suppsxc) (1)" doublesided="false" model="17000" interior="0" dimension="0" posX="1773.6439208984" posY="-1749.5288085938" posZ="51.46875" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cuntw_carport2_) (2)" doublesided="false" model="17037" interior="0" dimension="0" posX="2433.35546875" posY="-1888.974609375" posZ="25.810859680176" rotX="0" rotY="0" rotZ="53.997802734375" />
+    <object id="object (DYN_OUTHOUSE_2) (2)" doublesided="false" model="1457" interior="0" dimension="0" posX="2435.4409179688" posY="-1897.2788085938" posZ="24.853811264038" rotX="0" rotY="0" rotZ="254.75" />
+    <object id="object (trailer2_01) (1)" doublesided="false" model="3168" interior="0" dimension="0" posX="2449.6025390625" posY="-1919.49609375" posZ="16.3443775177" rotX="0" rotY="0" rotZ="253.99841308594" />
+    <object id="object (trailer5_01) (1)" doublesided="false" model="3171" interior="0" dimension="0" posX="2437.5751953125" posY="-1917.6455078125" posZ="17.914064407349" rotX="0" rotY="0" rotZ="307.99072265625" />
+    <object id="object (trailer_large4_01) (1)" doublesided="false" model="3173" interior="0" dimension="0" posX="2458.6044921875" posY="-1909.3525390625" posZ="16.489086151123" rotX="0" rotY="0" rotZ="213.99169921875" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="2427.3969726563" posY="-1907.3081054688" posZ="21.295629501343" rotX="31.695556640625" rotY="2.6422119140625" rotZ="350.83740234375" />
+    <object id="object (trailer_large1_01) (1)" doublesided="false" model="3167" interior="0" dimension="0" posX="2438.59375" posY="-1954.841796875" posZ="17.500034332275" rotX="0" rotY="0" rotZ="157.99987792969" />
+    <object id="object (sw_logcover) (2)" doublesided="false" model="3403" interior="0" dimension="0" posX="2434.2866210938" posY="-1970.4451904297" posZ="19.373701095581" rotX="0" rotY="0" rotZ="91.99951171875" />
+    <object id="object (DYN_OUTHOUSE_2) (4)" doublesided="false" model="1457" interior="0" dimension="0" posX="2435.2487792969" posY="-1969.7093505859" posZ="19.078853607178" rotX="0" rotY="0" rotZ="294.74426269531" />
+    <object id="object (des_oldwattwr_) (3)" doublesided="false" model="3252" interior="0" dimension="0" posX="2286.826171875" posY="-1990.564453125" posZ="23.828653335571" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (CE_CATshack) (2)" doublesided="false" model="12937" interior="0" dimension="0" posX="2276.4677734375" posY="-1991.2119140625" posZ="27.558097839355" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (nt_gasstation) (2)" doublesided="false" model="3187" interior="0" dimension="0" posX="2248.4050292969" posY="-1994.7882080078" posZ="28.631132125854" rotX="0" rotY="0" rotZ="203.99993896484" />
+    <object id="object (cuntw_weebarn1_) (2)" doublesided="false" model="17039" interior="0" dimension="0" posX="2297.818359375" posY="-1998.6201171875" posZ="23.227279663086" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (marketstall01_SFXRF) (1)" doublesided="false" model="3861" interior="0" dimension="0" posX="2379.6889648438" posY="-2020.8674316406" posZ="22.007211685181" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (marketstall02_SFXRF) (1)" doublesided="false" model="3862" interior="0" dimension="0" posX="2369.369140625" posY="-2020.8779296875" posZ="22.007329940796" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cuntw_shed3_) (1)" doublesided="false" model="18236" interior="0" dimension="0" posX="2399.4619140625" posY="-2028.0909423828" posZ="20.58500289917" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (CE_terminal1) (1)" doublesided="false" model="13295" interior="0" dimension="0" posX="2237.9653320313" posY="-2073.0576171875" posZ="31.379735946655" rotX="0" rotY="0" rotZ="314.5" />
+    <object id="object (drvin_projhut) (1)" doublesided="false" model="16001" interior="0" dimension="0" posX="2351.7001953125" posY="-2066.5654296875" posZ="20.330375671387" rotX="0" rotY="0" rotZ="53.739624023438" />
+    <object id="object (drvin_ticket) (1)" doublesided="false" model="16003" interior="0" dimension="0" posX="2395.7414550781" posY="-2035.5627441406" posZ="22.082618713379" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (desn2_hutskel2) (1)" doublesided="false" model="16404" interior="0" dimension="0" posX="2373.0134277344" posY="-2068.2233886719" posZ="21.842273712158" rotX="0" rotY="0" rotZ="215.99995422363" />
+    <object id="object (gasstatiohut) (1)" doublesided="false" model="11292" interior="0" dimension="0" posX="2358.7116699219" posY="-2080.9890136719" posZ="21.581533432007" rotX="0" rotY="0" rotZ="163.99719238281" />
+    <object id="object (truth_barn02) (1)" doublesided="false" model="17009" interior="0" dimension="0" posX="2373.91015625" posY="-1990.3291015625" posZ="17.302932739258" rotX="0" rotY="0" rotZ="179.49462890625" />
+    <object id="object (trailer_large3_01) (1)" doublesided="false" model="3170" interior="0" dimension="0" posX="2305.3134765625" posY="-2036.125" posZ="24.718858718872" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (des_nwt_carport) (1)" doublesided="false" model="11480" interior="0" dimension="0" posX="2396.0932617188" posY="-1936.1989746094" posZ="22.481401443481" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (truth_barn02) (1)" doublesided="false" model="17009" interior="0" dimension="0" posX="2273.7509765625" posY="-1948.80859375" posZ="20.127950668335" rotX="0" rotY="0" rotZ="179.99450683594" />
+    <object id="object (trailer_large4_01) (1)" doublesided="false" model="3173" interior="0" dimension="0" posX="2084.5910644531" posY="-2150.4145507813" posZ="18.817758560181" rotX="0" rotY="0" rotZ="101.9970703125" />
+    <object id="object (sw_logcover) (2)" doublesided="false" model="3403" interior="0" dimension="0" posX="2067.16015625" posY="-2150.392578125" posZ="21.70111656189" rotX="0" rotY="0" rotZ="91.994018554688" />
+    <object id="object (wt6suppsxc) (1)" doublesided="false" model="17000" interior="0" dimension="0" posX="2023.1741943359" posY="-1990.1395263672" posZ="33.740699768066" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (sm_airstrm_sml_) (1)" doublesided="false" model="3174" interior="0" dimension="0" posX="2022.1870117188" posY="-2025.8653564453" posZ="33.890777587891" rotX="0" rotY="1.4996337890625" rotZ="295.98815917969" />
+    <object id="object (sm_airstrm_med_) (1)" doublesided="false" model="3175" interior="0" dimension="0" posX="1489.3779296875" posY="-1461.1435546875" posZ="39.5234375" rotX="0" rotY="0" rotZ="41.98974609375" />
+    <object id="object (conhoos1) (1)" doublesided="false" model="3242" interior="0" dimension="0" posX="1856.0417480469" posY="-1770.7673339844" posZ="26.702075958252" rotX="0" rotY="0" rotZ="62" />
+    <object id="object (des_westrn9_) (1)" doublesided="false" model="3250" interior="0" dimension="0" posX="2100.693359375" posY="-2131.4248046875" posZ="18.892757415771" rotX="0" rotY="0" rotZ="271.99951171875" />
+    <object id="object (conhoos3) (1)" doublesided="false" model="3283" interior="0" dimension="0" posX="2038.1584472656" posY="-2028.6883544922" posZ="33.890777587891" rotX="0" rotY="0" rotZ="179.99993896484" />
+    <object id="object (conhoos5) (1)" doublesided="false" model="3284" interior="0" dimension="0" posX="1984.814453125" posY="-1792.7001953125" posZ="26.970476150513" rotX="0" rotY="0" rotZ="177.98950195313" />
+    <object id="object (conhoos4) (1)" doublesided="false" model="3285" interior="0" dimension="0" posX="2003.6513671875" posY="-1790.4794921875" posZ="26.969995498657" rotX="0" rotY="0" rotZ="91.99951171875" />
+    <object id="object (cxrf_savhus1_) (1)" doublesided="false" model="3355" interior="0" dimension="0" posX="2168.6435546875" posY="-1775.72265625" posZ="17.365795135498" rotX="0" rotY="0" rotZ="179.99450683594" />
+    <object id="object (des_ruin2_) (1)" doublesided="false" model="3362" interior="0" dimension="0" posX="2020.1700439453" posY="-2041.5970458984" posZ="33.865776062012" rotX="0" rotY="0" rotZ="19.9951171875" />
+    <object id="object (CE_oldhut02) (1)" doublesided="false" model="3418" interior="0" dimension="0" posX="2041.09765625" posY="-2040.2060546875" posZ="36.058986663818" rotX="0" rotY="0" rotZ="270" />
+    <object id="object (sm_airstrm_sml_) (2)" doublesided="false" model="3174" interior="0" dimension="0" posX="1987.0710449219" posY="-2081.412109375" posZ="23.540781021118" rotX="0.24996948242188" rotY="0.9990234375" rotZ="305.99371337891" />
+    <object id="object (trailer5_01) (1)" doublesided="false" model="3171" interior="0" dimension="0" posX="1863.2153320313" posY="-1784.9592285156" posZ="24.691059112549" rotX="0" rotY="0" rotZ="245.9913482666" />
+    <object id="object (des_westrn9_) (2)" doublesided="false" model="3250" interior="0" dimension="0" posX="1711.13671875" posY="-2052.6459960938" posZ="19.477735519409" rotX="0" rotY="0" rotZ="127.99951171875" />
+    <object id="object (des_oldwattwr_) (3)" doublesided="false" model="3252" interior="0" dimension="0" posX="1748.033203125" posY="-2048.9375" posZ="19.579828262329" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (CE_oldhut02) (2)" doublesided="false" model="3418" interior="0" dimension="0" posX="1746.3471679688" posY="-2031.4420166016" posZ="21.698835372925" rotX="0" rotY="0" rotZ="289.99450683594" />
+    <object id="object (ganghous02_LAx) (3)" doublesided="false" model="3648" interior="0" dimension="0" posX="1780.83203125" posY="-1799.3037109375" posZ="54.212547302246" rotX="0" rotY="0" rotZ="269.98901367188" />
+    <object id="object (des_ruin3_) (1)" doublesided="false" model="3364" interior="0" dimension="0" posX="1805.0964355469" posY="-1799.3748779297" posZ="51.268737792969" rotX="0" rotY="0" rotZ="330" />
+    <object id="object (des_ruin3_) (2)" doublesided="false" model="3364" interior="0" dimension="0" posX="1807.4018554688" posY="-1787.6973876953" posZ="50.918716430664" rotX="3.25" rotY="0" rotZ="183.99633789063" />
+    <object id="object (drvin_projhut) (4)" doublesided="false" model="16001" interior="0" dimension="0" posX="1770.3979492188" posY="-1421.8764648438" posZ="33.863254547119" rotX="0" rotY="0" rotZ="207.74514770508" />
+    <object id="object (trailer_large4_01) (1)" doublesided="false" model="3173" interior="0" dimension="0" posX="1744.2529296875" posY="-1409.2783203125" posZ="33.813251495361" rotX="0" rotY="0" rotZ="357.98950195313" />
+    <object id="object (conhoos3) (2)" doublesided="false" model="3283" interior="0" dimension="0" posX="1768.9739990234" posY="-1399.9196777344" posZ="34.113269805908" rotX="0" rotY="0" rotZ="269.74182128906" />
+    <object id="object (sw_shack02) (1)" doublesided="false" model="12991" interior="0" dimension="0" posX="1353.7265625" posY="-1841.490234375" posZ="39.371864318848" rotX="0" rotY="0" rotZ="333.99536132813" />
+    <object id="object (des_ruin2_) (1)" doublesided="false" model="3362" interior="0" dimension="0" posX="1370.3232421875" posY="-1829.9677734375" posZ="39.371864318848" rotX="0" rotY="0" rotZ="207.99865722656" />
+    <object id="object (trailer_large1_01) (1)" doublesided="false" model="3167" interior="0" dimension="0" posX="1367.9713134766" posY="-1802.4842529297" posZ="35.015625" rotX="0" rotY="0" rotZ="199.99989318848" />
+    <object id="object (conhoos5) (1)" doublesided="false" model="3284" interior="0" dimension="0" posX="1357.3308105469" posY="-1785.3901367188" posZ="36.870307922363" rotX="0" rotY="0" rotZ="77.994506835938" />
+    <object id="object (trailer5_01) (1)" doublesided="false" model="3171" interior="0" dimension="0" posX="815.95544433594" posY="-1302.0980224609" posZ="27.83522605896" rotX="0" rotY="0" rotZ="191.97764587402" />
+    <object id="object (CEtruth_barn02) (1)" doublesided="false" model="13206" interior="0" dimension="0" posX="1334.185546875" posY="-1785.3642578125" posZ="34.052032470703" rotX="0" rotY="0" rotZ="89.994506835938" />
+    <object id="object (desn2_hutskel2) (1)" doublesided="false" model="16404" interior="0" dimension="0" posX="1367.9150390625" posY="-1841.1235351563" posZ="41.321636199951" rotX="0" rotY="0" rotZ="306" />
+    <object id="object (marketstall04_SFXRF) (2)" doublesided="false" model="3860" interior="0" dimension="0" posX="1326.3359375" posY="-1656.6982421875" posZ="23.034091949463" rotX="0" rotY="0" rotZ="91.994018554688" />
+    <object id="object (cuntw_shed3_01) (1)" doublesided="false" model="18274" interior="0" dimension="0" posX="1326.9152832031" posY="-1643.1385498047" posZ="21.761762619019" rotX="0" rotY="0" rotZ="179.99450683594" />
+    <object id="object (cxrf_savhus1_) (1)" doublesided="false" model="3355" interior="0" dimension="0" posX="1408.2880859375" posY="-1289.2841796875" posZ="32.398456573486" rotX="0" rotY="0" rotZ="179.99450683594" />
+    <object id="object (sm_airstrm_med_) (2)" doublesided="false" model="3175" interior="0" dimension="0" posX="1334.4564208984" posY="-1618.3991699219" posZ="34.149757385254" rotX="0" rotY="0" rotZ="305.99377441406" />
+    <object id="object (trailer2_01) (1)" doublesided="false" model="3168" interior="0" dimension="0" posX="998.15393066406" posY="-1653.7202148438" posZ="26.950000762939" rotX="0" rotY="0" rotZ="131.98840332031" />
+    <object id="object (drvin_projhut) (1)" doublesided="false" model="16001" interior="0" dimension="0" posX="1341.8916015625" posY="-1600.88671875" posZ="34.339172363281" rotX="0" rotY="0" rotZ="295.74096679688" />
+    <object id="object (des_westrn9_) (1)" doublesided="false" model="3250" interior="0" dimension="0" posX="1380.45703125" posY="-1465.4873046875" posZ="37.201553344727" rotX="0" rotY="0" rotZ="291.99462890625" />
+    <object id="object (CE_oldhut02) (1)" doublesided="false" model="3418" interior="0" dimension="0" posX="1383.7197265625" posY="-1266.6998291016" posZ="34.594776153564" rotX="0" rotY="0" rotZ="34" />
+    <object id="object (des_westrn11_) (3)" doublesided="false" model="3253" interior="0" dimension="0" posX="1379.6181640625" posY="-1459.8525390625" posZ="37.276557922363" rotX="0" rotY="0" rotZ="292.9833984375" />
+    <object id="object (trailer_large3_01) (1)" doublesided="false" model="3170" interior="0" dimension="0" posX="1375.6499023438" posY="-1289.3010253906" posZ="32.480949401855" rotX="0" rotY="0" rotZ="23.990600585938" />
+    <object id="object (CE_oldhut1) (1)" doublesided="false" model="3414" interior="0" dimension="0" posX="1396.8986816406" posY="-1329.2601318359" posZ="36.797435760498" rotX="0" rotY="0" rotZ="91" />
+    <object id="object (des_westrn9_) (1)" doublesided="false" model="3250" interior="0" dimension="0" posX="1377.8995361328" posY="-1320.3901367188" posZ="34.098403930664" rotX="0" rotY="0" rotZ="56.249542236328" />
+    <object id="object (des_rnchbhous) (1)" doublesided="false" model="11494" interior="0" dimension="0" posX="1374.7424316406" posY="-1342.7574462891" posZ="34.6484375" rotX="0" rotY="0" rotZ="224.73083496094" />
+    <object id="object (conhoos3) (2)" doublesided="false" model="3283" interior="0" dimension="0" posX="1018.5094604492" posY="-1662.5615234375" posZ="27.393714904785" rotX="0" rotY="0" rotZ="343.74108886719" />
+    <object id="object (des_oldwattwr_) (3)" doublesided="false" model="3252" interior="0" dimension="0" posX="1470.9792480469" posY="-1466.2399902344" posZ="39.5234375" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (trailer_large4_01) (1)" doublesided="false" model="3173" interior="0" dimension="0" posX="1488.2082519531" posY="-1476.7237548828" posZ="39.398429870605" rotX="0" rotY="0" rotZ="151.99499511719" />
+    <object id="object (sm_airstrm_med_) (1)" doublesided="false" model="3175" interior="0" dimension="0" posX="823.76531982422" posY="-1290.3480224609" posZ="27.684959411621" rotX="0" rotY="0" rotZ="51.9775390625" />
+    <object id="object (sm_airstrm_sml_) (1)" doublesided="false" model="3174" interior="0" dimension="0" posX="1409.9560546875" posY="-1519.5166015625" posZ="35.470306396484" rotX="0" rotY="1.4996337890625" rotZ="345.98693847656" />
+    <object id="object (trailer2_01) (1)" doublesided="false" model="3168" interior="0" dimension="0" posX="1418.9755859375" posY="-1530.0029296875" posZ="35.495307922363" rotX="0" rotY="0" rotZ="341.99340820313" />
+    <object id="object (desn2_hutskel2) (1)" doublesided="false" model="16404" interior="0" dimension="0" posX="1404.1915283203" posY="-1692.177734375" posZ="40.446643829346" rotX="0" rotY="0" rotZ="309.99401855469" />
+    <object id="object (cuntw_carport2_) (2)" doublesided="false" model="17037" interior="0" dimension="0" posX="1392.1904296875" posY="-1685.90625" posZ="41.038349151611" rotX="0" rotY="0" rotZ="177.98950195313" />
+    <object id="object (sm_airstrm_sml_) (1)" doublesided="false" model="3174" interior="0" dimension="0" posX="1403.6959228516" posY="-1692.5802001953" posZ="38.371864318848" rotX="0" rotY="1.4996337890625" rotZ="40.239044189453" />
+    <object id="object (cuntw_shed3_) (2)" doublesided="false" model="18236" interior="0" dimension="0" posX="1246.8804931641" posY="-1691.2005615234" posZ="33.604675292969" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cuntw_shed3_01) (1)" doublesided="false" model="18274" interior="0" dimension="0" posX="1277.5408935547" posY="-1678.544921875" posZ="33.611770629883" rotX="0" rotY="0" rotZ="329.99450683594" />
+    <object id="object (drvin_projhut) (1)" doublesided="false" model="16001" interior="0" dimension="0" posX="1276.7032470703" posY="-1654.0764160156" posZ="33.8046875" rotX="0" rotY="0" rotZ="335.74096679688" />
+    <object id="object (drvin_projhut) (1)" doublesided="false" model="16001" interior="0" dimension="0" posX="1259.1759033203" posY="-1694.3253173828" posZ="33.8046875" rotX="0" rotY="0" rotZ="179.73669433594" />
+    <object id="object (sm_airstrm_med_) (2)" doublesided="false" model="3175" interior="0" dimension="0" posX="937.12286376953" posY="-1511.3815917969" posZ="32.971862792969" rotX="0" rotY="0" rotZ="179.9921875" />
+    <object id="object (trailer_large1_01) (1)" doublesided="false" model="3167" interior="0" dimension="0" posX="1220.7165527344" posY="-1694.2270507813" posZ="33.715545654297" rotX="0" rotY="0" rotZ="63.999847412109" />
+    <object id="object (gasstatiohut) (1)" doublesided="false" model="11292" interior="0" dimension="0" posX="1189.3618164063" posY="-1787.0313720703" posZ="34.09264755249" rotX="0" rotY="0" rotZ="359.99475097656" />
+    <object id="object (trailer2_01) (1)" doublesided="false" model="3168" interior="0" dimension="0" posX="996.46789550781" posY="-1666.7836914063" posZ="26.925001144409" rotX="0" rotY="0" rotZ="205.99633789063" />
+    <object id="object (des_westrn9_) (1)" doublesided="false" model="3250" interior="0" dimension="0" posX="1149.3536376953" posY="-1782.1037597656" posZ="32.478607177734" rotX="0" rotY="0" rotZ="0.99465942382813" />
+    <object id="object (cxrf_savhus1_) (1)" doublesided="false" model="3355" interior="0" dimension="0" posX="1122.2329101563" posY="-1795.4553222656" posZ="32.453605651855" rotX="0" rotY="0" rotZ="359.99450683594" />
+    <object id="object (des_westrn11_) (3)" doublesided="false" model="3253" interior="0" dimension="0" posX="1155.6466064453" posY="-1780.6331787109" posZ="33.078643798828" rotX="0" rotY="0" rotZ="1.235107421875" />
+    <object id="object (CE_CATshack) (2)" doublesided="false" model="12937" interior="0" dimension="0" posX="1148.2375488281" posY="-1818.5670166016" posZ="35.333427429199" rotX="0" rotY="0" rotZ="180" />
+    <object id="object (trailer_large4_01) (1)" doublesided="false" model="3173" interior="0" dimension="0" posX="1119.42578125" posY="-1652.2083740234" posZ="27.710945129395" rotX="0" rotY="0" rotZ="135.99169921875" />
+    <object id="object (trailer_large1_01) (1)" doublesided="false" model="3167" interior="0" dimension="0" posX="1057.2448730469" posY="-1653.9735107422" posZ="27.660945892334" rotX="0" rotY="0" rotZ="33.995361328125" />
+    <object id="object (CJ_BIG_SKIP1) (2)" doublesided="false" model="1365" interior="0" dimension="0" posX="1124.3951416016" posY="-1604.3170166016" posZ="20.670330047607" rotX="0" rotY="0" rotZ="179.99993896484" />
+    <object id="object (cw2_bikelog) (1)" doublesided="false" model="18367" interior="0" dimension="0" posX="1022.0471191406" posY="-1596.9567871094" posZ="22.723529815674" rotX="6.7235107421875" rotY="359.71878051758" rotZ="90.25" />
+    <object id="object (trailer_large4_01) (1)" doublesided="false" model="3173" interior="0" dimension="0" posX="1281.267578125" posY="-1508.1416015625" posZ="29.28125" rotX="0" rotY="0" rotZ="0.4888916015625" />
+    <object id="object (des_oldwattwr_) (1)" doublesided="false" model="3252" interior="0" dimension="0" posX="1289.1962890625" posY="-1510.67578125" posZ="31.271873474121" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (trailer5_01) (1)" doublesided="false" model="3171" interior="0" dimension="0" posX="949.12915039063" posY="-1519.1331787109" posZ="33.021865844727" rotX="0" rotY="0" rotZ="301.98767089844" />
+    <object id="object (CE_logbarn02) (1)" doublesided="false" model="3419" interior="0" dimension="0" posX="1220.9854736328" posY="-1499.3687744141" posZ="29.156671524048" rotX="0" rotY="0" rotZ="89.492553710938" />
+    <object id="object (drvin_projhut) (1)" doublesided="false" model="16001" interior="0" dimension="0" posX="1237.5708007813" posY="-1509.7847900391" posZ="29.312076568604" rotX="0" rotY="0" rotZ="179.98962402344" />
+    <object id="object (desn2_hutskel2) (1)" doublesided="false" model="16404" interior="0" dimension="0" posX="1300.9854736328" posY="-1473.4986572266" posZ="31.056020736694" rotX="0" rotY="0" rotZ="139.9990234375" />
+    <object id="object (conhoos5) (1)" doublesided="false" model="3284" interior="0" dimension="0" posX="1326.6185302734" posY="-1297.9899902344" posZ="36.59375" rotX="0" rotY="0" rotZ="89.994506835938" />
+    <object id="object (conhoos4) (2)" doublesided="false" model="3285" interior="0" dimension="0" posX="1292.0900878906" posY="-1297.9365234375" posZ="36.585559844971" rotX="0" rotY="0" rotZ="179.99993896484" />
+    <object id="object (sw_shack02) (1)" doublesided="false" model="12991" interior="0" dimension="0" posX="1316.2415771484" posY="-1356.9079589844" posZ="34.614059448242" rotX="0" rotY="0" rotZ="333.99536132813" />
+    <object id="object (sw_shack02) (1)" doublesided="false" model="12991" interior="0" dimension="0" posX="1327.2124023438" posY="-1351.8621826172" posZ="34.614059448242" rotX="0" rotY="0" rotZ="59.995361328125" />
+    <object id="object (DYN_GARRAGE2) (1)" doublesided="false" model="1483" interior="0" dimension="0" posX="1320.25" posY="-1358.9124755859" posZ="36.413436889648" rotX="356.5" rotY="0" rotZ="154.24450683594" />
+    <object id="object (trailer5_01) (1)" doublesided="false" model="3171" interior="0" dimension="0" posX="1167.0219726563" posY="-1312.6330566406" posZ="30.417198181152" rotX="0" rotY="0" rotZ="23.983154296875" />
+    <object id="object (sm_airstrm_sml_) (1)" doublesided="false" model="3174" interior="0" dimension="0" posX="1153.1887207031" posY="-1316.4327392578" posZ="30.434944152832" rotX="0" rotY="1.4996337890625" rotZ="151.99240112305" />
+    <object id="object (des_ranchjetty) (8)" doublesided="false" model="11495" interior="0" dimension="0" posX="2779.8251953125" posY="-1646.8236083984" posZ="16.187265396118" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (des_ranchjetty) (9)" doublesided="false" model="11495" interior="0" dimension="0" posX="2782.1145019531" posY="-1626.6063232422" posZ="16.187265396118" rotX="0" rotY="0" rotZ="269.75" />
+    <object id="object (vgsSstairs04_lvs) (3)" doublesided="true" model="8615" interior="0" dimension="0" posX="2791.7761230469" posY="-1636.6539306641" posZ="22.340768814087" rotX="0" rotY="0" rotZ="265" />
+    <object id="object (des_ranchjetty) (10)" doublesided="false" model="11495" interior="0" dimension="0" posX="2801.8293457031" posY="-1648.1219482422" posZ="16.187265396118" rotX="0" rotY="0" rotZ="90.25" />
+    <object id="object (des_ranchjetty) (11)" doublesided="false" model="11495" interior="0" dimension="0" posX="2796.5241699219" posY="-1617.0622558594" posZ="16.162265777588" rotX="0" rotY="0" rotZ="341.99731445313" />
+    <object id="object (helipad) (1)" doublesided="false" model="3928" interior="0" dimension="0" posX="1315.2373046875" posY="-1873" posZ="21.729806900024" rotX="0" rotY="0" rotZ="359.74731445313" />
+    <object id="object (a51_gatecontrol) (1)" doublesided="false" model="16093" interior="0" dimension="0" posX="1329.1666259766" posY="-1882.5417480469" posZ="21.412088394165" rotX="0" rotY="0" rotZ="179.99993896484" />
+    <object id="object (a51_gatecontrol) (3)" doublesided="false" model="16093" interior="0" dimension="0" posX="1360.0076904297" posY="-1895.4781494141" posZ="21.412088394165" rotX="0" rotY="0" rotZ="89.994506835938" />
+    <object id="object (sfse_roadblock5) (1)" doublesided="false" model="4526" interior="0" dimension="0" posX="1604.0098876953" posY="-1368.7888183594" posZ="29.693767547607" rotX="0" rotY="0" rotZ="312.5" />
+    <object id="object (cn2_roadblock04ld) (9)" doublesided="false" model="4517" interior="0" dimension="0" posX="2430.4094238281" posY="-1691.4671630859" posZ="20.115127563477" rotX="345.5" rotY="0" rotZ="180.75001525879" />
+    <object id="object (cn2_roadblock03ld) (1)" doublesided="false" model="4516" interior="0" dimension="0" posX="2112.59375" posY="-1641.478515625" posZ="19.543378829956" rotX="349" rotY="0" rotZ="180.50006103516" />
+    <object id="object (cn2_roadblock02ld) (1)" doublesided="false" model="4515" interior="0" dimension="0" posX="2230.0395507813" posY="-1599.7611083984" posZ="17.588304519653" rotX="0" rotY="0" rotZ="159" />
+    <object id="object (cn2_roadblock01ld) (1)" doublesided="false" model="4514" interior="0" dimension="0" posX="2642.5100097656" posY="-1565.1711425781" posZ="19.086545944214" rotX="350.75" rotY="0" rotZ="178" />
+    <object id="object (helix_barrier) (2)" doublesided="false" model="981" interior="0" dimension="0" posX="2809.9528808594" posY="-1488.5803222656" posZ="16.993253707886" rotX="14.996337890625" rotY="0" rotZ="90" />
+    <object id="object (cn2_roadblock02ld) (2)" doublesided="false" model="4515" interior="0" dimension="0" posX="2205.3586425781" posY="-1610.4140625" posZ="18.613288879395" rotX="353.5" rotY="0" rotZ="166.99963378906" />
+    <object id="object (cn2_roadblock03ld) (2)" doublesided="false" model="4516" interior="0" dimension="0" posX="2045.8159179688" posY="-1463.2684326172" posZ="19.218383789063" rotX="348.99719238281" rotY="0" rotZ="89.749877929688" />
+    <object id="object (cn2_roadblock03ld) (3)" doublesided="false" model="4516" interior="0" dimension="0" posX="1987.1270751953" posY="-1413.2290039063" posZ="19.193384170532" rotX="348.99169921875" rotY="0" rotZ="178.49731445313" />
+    <object id="object (cn2_roadblock03ld) (4)" doublesided="false" model="4516" interior="0" dimension="0" posX="1934.3350830078" posY="-1340.9586181641" posZ="19.168384552002" rotX="348.98620605469" rotY="0" rotZ="90.244842529297" />
+    <object id="object (sfse_roadblock5) (2)" doublesided="false" model="4526" interior="0" dimension="0" posX="502.88342285156" posY="-1277.7742919922" posZ="17.005002975464" rotX="0" rotY="0" rotZ="274.4951171875" />
+    <object id="object (des_gravelpile06) (1)" doublesided="false" model="16305" interior="0" dimension="0" posX="1482.8212890625" posY="-1777.4969482422" posZ="22.539709091187" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="1715.1875" posY="-1679.8046875" posZ="31.505905151367" rotX="357.72583007813" rotY="0" rotZ="267.47863769531" />
+    <object id="object (shamheliprt04) (4)" doublesided="false" model="6976" interior="0" dimension="0" posX="1707.9931640625" posY="-1673.896484375" posZ="32.669452667236" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (sw_jetty) (4)" doublesided="false" model="12990" interior="0" dimension="0" posX="2676.8874511719" posY="-2188.5393066406" posZ="26.460245132446" rotX="0" rotY="355.75" rotZ="89.75" />
+    <object id="object (sw_jetty) (5)" doublesided="false" model="12990" interior="0" dimension="0" posX="2703.1640625" posY="-2188.6120605469" posZ="26.360246658325" rotX="359.75073242188" rotY="355.49993896484" rotZ="269.72766113281" />
+    <vehicle id="vehicle (Leviathan) (1)" paintjob="3" model="417" plate="EGVZQ6Z" interior="0" dimension="0" color="18,18,0,0" posX="2802.2937011719" posY="-1639.8148193359" posZ="28.58749961853" rotX="0" rotY="0" rotZ="85" />
+    <vehicle id="vehicle (Leviathan) (2)" paintjob="3" model="417" plate="QOGWG4P" interior="0" dimension="0" color="18,18,0,0" posX="2809.5651855469" posY="-1610.0125732422" posZ="28.61251449585" rotX="0" rotY="0" rotZ="71.495727539063" />
+    <vehicle id="vehicle (Dinghy) (1)" paintjob="2" model="473" plate="U44OSF3" interior="0" dimension="0" color="80,49,18,18" posX="2771.5554199219" posY="-1622.3621826172" posZ="15.352159500122" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (3)" paintjob="3" model="473" plate="T5GP59Q" interior="0" dimension="0" posX="2775.5444335938" posY="-1622.5050048828" posZ="15.344658851624" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (4)" paintjob="3" model="473" plate="LU77K0W" interior="0" dimension="0" posX="2779.5668945313" posY="-1622.75390625" posZ="15.344658851624" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (5)" paintjob="3" model="473" plate="PQ42JR1" interior="0" dimension="0" posX="2783.7680664063" posY="-1622.9809570313" posZ="15.344658851624" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (6)" paintjob="3" model="473" plate="PEOV22N" interior="0" dimension="0" posX="2788.3410644531" posY="-1622.5705566406" posZ="15.344658851624" rotX="0" rotY="0" rotZ="11" />
+    <vehicle id="vehicle (Dinghy) (9)" paintjob="3" model="473" plate="4QHRDW8" interior="0" dimension="0" posX="2781.4194335938" posY="-1591.8569335938" posZ="15.344658851624" rotX="0" rotY="0" rotZ="277.99993896484" />
+    <vehicle id="vehicle (Dinghy) (10)" paintjob="3" model="473" plate="AI2SFRX" interior="0" dimension="0" posX="2781.1579589844" posY="-1588.1772460938" posZ="15.344658851624" rotX="0" rotY="0" rotZ="268.748046875" />
+    <vehicle id="vehicle (Dinghy) (11)" paintjob="3" model="473" plate="DV9MSEC" interior="0" dimension="0" posX="2781.4775390625" posY="-1584.3273925781" posZ="15.350270271301" rotX="0.13421630859375" rotY="359.99853515625" rotZ="258.74768066406" />
+    <vehicle id="vehicle (Speeder) (1)" paintjob="3" model="452" plate="6DSQDED" interior="0" dimension="0" posX="2817.8894042969" posY="-1644.3280029297" posZ="15.136536598206" rotX="0" rotY="0" rotZ="268" />
+    <vehicle id="vehicle (Speeder) (2)" paintjob="3" model="452" plate="9BFMOLV" interior="0" dimension="0" posX="2817.685546875" posY="-1648.3212890625" posZ="15.136536598206" rotX="0" rotY="0" rotZ="267.99499511719" />
+    <vehicle id="vehicle (Speeder) (3)" paintjob="3" model="452" plate="F51MLAR" interior="0" dimension="0" posX="2809.111328125" posY="-1654.4985351563" posZ="15.136536598206" rotX="0" rotY="0" rotZ="177.99499511719" />
+    <vehicle id="vehicle (Speeder) (4)" paintjob="3" model="452" plate="1KBK4N4" interior="0" dimension="0" posX="2802.7119140625" posY="-1654.7082519531" posZ="15.136536598206" rotX="0" rotY="0" rotZ="177.99499511719" />
+    <vehicle id="vehicle (Speeder) (5)" paintjob="3" model="452" plate="HUL7A59" interior="0" dimension="0" posX="2795.861328125" posY="-1654.8957519531" posZ="15.136536598206" rotX="0" rotY="0" rotZ="177.99499511719" />
+    <vehicle id="vehicle (Dinghy) (12)" paintjob="3" model="473" plate="07G9W2N" interior="0" dimension="0" posX="2768.5366210938" posY="-1651.1141357422" posZ="15.344658851624" rotX="0" rotY="0" rotZ="177.99993896484" />
+    <vehicle id="vehicle (Dinghy) (13)" paintjob="3" model="473" plate="PERALMR" interior="0" dimension="0" posX="2772.2880859375" posY="-1651.1904296875" posZ="15.344658851624" rotX="0" rotY="0" rotZ="177.99499511719" />
+    <vehicle id="vehicle (Dinghy) (14)" paintjob="3" model="473" plate="EMT9ZW5" interior="0" dimension="0" posX="2776.5974121094" posY="-1651.2728271484" posZ="15.344658851624" rotX="0" rotY="0" rotZ="177.99499511719" />
+    <vehicle id="vehicle (Dinghy) (15)" paintjob="3" model="473" plate="3ALHOEQ" interior="0" dimension="0" posX="2780.4675292969" posY="-1651.1300048828" posZ="15.344658851624" rotX="0" rotY="0" rotZ="177.99499511719" />
+    <vehicle id="vehicle (Dinghy) (16)" paintjob="3" model="473" plate="74JCHAW" interior="0" dimension="0" posX="2784.4685058594" posY="-1651.1075439453" posZ="15.344658851624" rotX="0" rotY="0" rotZ="177.99499511719" />
+    <vehicle id="vehicle (Dinghy) (17)" paintjob="3" model="473" plate="VAYGL7D" interior="0" dimension="0" posX="2788.7236328125" posY="-1651.0172119141" posZ="15.344658851624" rotX="0" rotY="0" rotZ="177.99499511719" />
+    <vehicle id="vehicle (Dinghy) (18)" paintjob="3" model="473" plate="FHIS2YQ" interior="0" dimension="0" posX="2791.6010742188" posY="-1619.4354248047" posZ="15.344658851624" rotX="0" rotY="0" rotZ="27.998657226563" />
+    <vehicle id="vehicle (Dinghy) (19)" paintjob="3" model="473" plate="2LNJ42L" interior="0" dimension="0" posX="2793.3452148438" posY="-1613.4489746094" posZ="15.344658851624" rotX="0" rotY="0" rotZ="27.998657226563" />
+    <vehicle id="vehicle (Dinghy) (20)" paintjob="3" model="473" plate="XEC1JTW" interior="0" dimension="0" posX="2795.3920898438" posY="-1607.5137939453" posZ="15.344658851624" rotX="0" rotY="0" rotZ="27.998657226563" />
+    <vehicle id="vehicle (Dinghy) (21)" paintjob="3" model="473" plate="KLK0TDZ" interior="0" dimension="0" posX="2802.3940429688" posY="-1597.3089599609" posZ="15.344658851624" rotX="0" rotY="0" rotZ="23.998657226563" />
+    <vehicle id="vehicle (Dinghy) (22)" paintjob="3" model="473" plate="H1SSECE" interior="0" dimension="0" posX="2799.94921875" posY="-1603.3525390625" posZ="15.344658851624" rotX="0" rotY="0" rotZ="23.994140625" />
+    <vehicle id="vehicle (Dinghy) (23)" paintjob="3" model="473" plate="VZ47NW4" interior="0" dimension="0" posX="2784.078125" posY="-1581.0401611328" posZ="15.350270271301" rotX="0.1318359375" rotY="359.99450683594" rotZ="251.74450683594" />
+    <vehicle id="vehicle (Coastguard) (1)" paintjob="3" model="472" plate="W5XNL42" interior="0" dimension="0" posX="1602.6662597656" posY="-1606.7893066406" posZ="15.557417869568" rotX="0" rotY="0" rotZ="90" />
+    <vehicle id="vehicle (Coastguard) (2)" paintjob="3" model="472" plate="9SPO5Z2" interior="0" dimension="0" posX="1602.4215087891" posY="-1617.8128662109" posZ="15.557417869568" rotX="0" rotY="0" rotZ="90" />
+    <vehicle id="vehicle (Coastguard) (4)" paintjob="3" model="472" plate="MC5H1T2" interior="0" dimension="0" posX="1564.0037841797" posY="-1607.4018554688" posZ="15.557417869568" rotX="0" rotY="0" rotZ="157.24682617188" />
+    <vehicle id="vehicle (Coastguard) (5)" paintjob="3" model="472" plate="PI50TSN" interior="0" dimension="0" posX="1570.3659667969" posY="-1608.5922851563" posZ="15.557417869568" rotX="0" rotY="0" rotZ="158.24670410156" />
+    <vehicle id="vehicle (Dinghy) (25)" paintjob="3" model="473" plate="ICR7HNH" interior="0" dimension="0" posX="1597.7889404297" posY="-1635.1398925781" posZ="15.343755722046" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (27)" paintjob="3" model="473" plate="GK0U7B6" interior="0" dimension="0" posX="1605.0671386719" posY="-1629.0959472656" posZ="15.349842071533" rotX="0.159423828125" rotY="359.99829101563" rotZ="91.247192382813" />
+    <vehicle id="vehicle (Dinghy) (28)" paintjob="3" model="473" plate="113ZVII" interior="0" dimension="0" posX="1560.5695800781" posY="-1635.4473876953" posZ="15.343755722046" rotX="0" rotY="0" rotZ="92.5" />
+    <vehicle id="vehicle (Dinghy) (29)" paintjob="3" model="473" plate="T90K92E" interior="0" dimension="0" posX="1584.5183105469" posY="-1635.2026367188" posZ="15.343755722046" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (30)" paintjob="3" model="473" plate="46T57F5" interior="0" dimension="0" posX="1574.6240234375" posY="-1635.05078125" posZ="15.343755722046" rotX="0" rotY="0" rotZ="88" />
+    <vehicle id="vehicle (Dinghy) (31)" paintjob="3" model="473" plate="9SLQ23I" interior="0" dimension="0" posX="1606.5181884766" posY="-1642.5924072266" posZ="15.343755722046" rotX="0" rotY="0" rotZ="270.74719238281" />
+    <vehicle id="vehicle (Dinghy) (32)" paintjob="3" model="473" plate="JKHA11Q" interior="0" dimension="0" posX="1627.0347900391" posY="-1647.4892578125" posZ="15.343755722046" rotX="0" rotY="0" rotZ="90.746948242188" />
+    <vehicle id="vehicle (Dinghy) (33)" paintjob="3" model="473" plate="GPVJX9Q" interior="0" dimension="0" posX="1606.40625" posY="-1654.591796875" posZ="15.343755722046" rotX="0" rotY="0" rotZ="270.7470703125" />
+    <vehicle id="vehicle (Dinghy) (35)" paintjob="3" model="473" plate="NX76S7K" interior="0" dimension="0" posX="1606.474609375" posY="-1666.0947265625" posZ="15.343755722046" rotX="0" rotY="0" rotZ="270.7470703125" />
+    <vehicle id="vehicle (Dinghy) (36)" paintjob="3" model="473" plate="L3NNK4R" interior="0" dimension="0" posX="1632.2786865234" posY="-1669.7149658203" posZ="15.343755722046" rotX="0" rotY="2" rotZ="88.7470703125" />
+    <vehicle id="vehicle (Dinghy) (37)" paintjob="3" model="473" plate="BDVQB6S" interior="0" dimension="0" posX="1606.4581298828" posY="-1678.5864257813" posZ="15.343755722046" rotX="0" rotY="0" rotZ="270.7470703125" />
+    <vehicle id="vehicle (Dinghy) (39)" paintjob="3" model="473" plate="6Q70SUK" interior="0" dimension="0" posX="1606.6142578125" posY="-1691.3229980469" posZ="15.343755722046" rotX="0" rotY="0" rotZ="270.7470703125" />
+    <vehicle id="vehicle (Dinghy) (40)" paintjob="3" model="473" plate="DOPTFAW" interior="0" dimension="0" posX="1636.7174072266" posY="-1691.3708496094" posZ="15.343755722046" rotX="0" rotY="0" rotZ="86.7470703125" />
+    <vehicle id="vehicle (Dinghy) (41)" paintjob="3" model="473" plate="4EPJJ5D" interior="0" dimension="0" posX="1606.6529541016" posY="-1705.5386962891" posZ="15.343755722046" rotX="0" rotY="0" rotZ="270.7470703125" />
+    <vehicle id="vehicle (Coastguard) (6)" paintjob="3" model="472" plate="I1PN63J" interior="0" dimension="0" posX="1573.9447021484" posY="-1719.0382080078" posZ="15.496883392334" rotX="0" rotY="0" rotZ="135.74670410156" />
+    <vehicle id="vehicle (Coastguard) (7)" paintjob="3" model="472" plate="13UOT4A" interior="0" dimension="0" posX="1592.490234375" posY="-1718.203125" posZ="15.496883392334" rotX="0" rotY="0" rotZ="230.24047851563" />
+    <vehicle id="vehicle (Dinghy) (43)" paintjob="3" model="473" plate="XSCOT1G" interior="0" dimension="0" posX="1600.5408935547" posY="-1716.5125732422" posZ="15.343755722046" rotX="0" rotY="0" rotZ="180.7470703125" />
+    <vehicle id="vehicle (Dinghy) (2)" paintjob="3" model="473" plate="R2ES9RW" interior="0" dimension="0" posX="1285.3536376953" posY="-1859.3944091797" posZ="15.396873474121" rotX="0" rotY="0" rotZ="89" />
+    <vehicle id="vehicle (Dinghy) (7)" paintjob="3" model="473" plate="GECVEWF" interior="0" dimension="0" color="56,86,0,0" posX="1289.84375" posY="-1877.4208984375" posZ="15.396873474121" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (8)" paintjob="3" model="473" plate="JNAYEOW" interior="0" dimension="0" posX="1320.3947753906" posY="-1840.3094482422" posZ="15.396873474121" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (24)" paintjob="3" model="473" plate="5SJUFPI" interior="0" dimension="0" color="56,87,0,0" posX="1301.17578125" posY="-1877.44140625" posZ="15.396873474121" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (46)" paintjob="3" model="473" plate="CF7D7W5" interior="0" dimension="0" color="56,106,0,0" posX="1307.2138671875" posY="-1860.4951171875" posZ="15.396873474121" rotX="0" rotY="0" rotZ="272.74658203125" />
+    <vehicle id="vehicle (Dinghy) (47)" paintjob="3" model="473" plate="BRBHKGW" interior="0" dimension="0" color="56,61,0,0" posX="1318.625" posY="-1860.5791015625" posZ="15.396873474121" rotX="0" rotY="0" rotZ="272.74658203125" />
+    <vehicle id="vehicle (Dinghy) (48)" paintjob="3" model="473" plate="W8HQTQU" interior="0" dimension="0" color="56,126,0,0" posX="1330.875" posY="-1861.8681640625" posZ="15.396873474121" rotX="0" rotY="0" rotZ="252.24060058594" />
+    <vehicle id="vehicle (Dinghy) (49)" paintjob="3" model="473" plate="JSWPXMK" interior="0" dimension="0" color="56,65,0,0" posX="1341.677734375" posY="-1866.767578125" posZ="15.396873474121" rotX="0" rotY="0" rotZ="245.23681640625" />
+    <vehicle id="vehicle (Dinghy) (50)" paintjob="3" model="473" plate="FRMU4E2" interior="0" dimension="0" posX="1380.7613525391" posY="-1853.8199462891" posZ="15.396873474121" rotX="0" rotY="0" rotZ="4.2421875" />
+    <vehicle id="vehicle (Dinghy) (51)" paintjob="3" model="473" plate="5929PBW" interior="0" dimension="0" color="56,62,0,0" posX="1351.8134765625" posY="-1872.5166015625" posZ="15.396873474121" rotX="0" rotY="0" rotZ="239.73815917969" />
+    <vehicle id="vehicle (Dinghy) (52)" paintjob="3" model="473" plate="UZV68I4" interior="0" dimension="0" color="56,22,0,0" posX="1363.1279296875" posY="-1878.1572265625" posZ="15.396873474121" rotX="0" rotY="0" rotZ="246.73645019531" />
+    <vehicle id="vehicle (Dinghy) (53)" paintjob="3" model="473" plate="9E0C5LY" interior="0" dimension="0" posX="1567.9825439453" posY="-1890.4348144531" posZ="15.396873474121" rotX="0" rotY="0" rotZ="0.9862060546875" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" posX="1343.8345947266" posY="-1756.1876220703" posZ="15.396873474121" rotX="0" rotY="0" rotZ="359.73083496094" />
+    <vehicle id="vehicle (Dinghy) (55)" paintjob="3" model="473" plate="KK89ILN" interior="0" dimension="0" color="56,10,0,0" posX="1395.822265625" posY="-1899.3271484375" posZ="15.396873474121" rotX="0" rotY="0" rotZ="37.732543945313" />
+    <vehicle id="vehicle (Dinghy) (59)" paintjob="3" model="473" plate="AX1D11Q" interior="0" dimension="0" color="56,93,0,0" posX="1377.9619140625" posY="-1899.7490234375" posZ="15.396873474121" rotX="0" rotY="0" rotZ="20.978393554688" />
+    <vehicle id="vehicle (Dinghy) (60)" paintjob="3" model="473" plate="B56N2BT" interior="0" dimension="0" posX="1367.748046875" posY="-1899.2121582031" posZ="15.396873474121" rotX="0" rotY="0" rotZ="359.97839355469" />
+    <vehicle id="vehicle (Coastguard) (8)" paintjob="3" model="472" plate="QQBJI86" interior="0" dimension="0" posX="1418.7698974609" posY="-1898.3685302734" posZ="15.577737808228" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Coastguard) (10)" paintjob="3" model="472" plate="00YRP1H" interior="0" dimension="0" posX="1435.1240234375" posY="-1902.884765625" posZ="15.577737808228" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Coastguard) (11)" paintjob="3" model="472" plate="KMH8M73" interior="0" dimension="0" posX="1435.05859375" posY="-1915.8154296875" posZ="15.577737808228" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Leviathan) (3)" paintjob="3" model="417" plate="1633CNO" interior="0" dimension="0" color="3,3,0,0" posX="1314.18359375" posY="-1873.0361328125" posZ="22.729511260986" rotX="0" rotY="0" rotZ="270" />
+    <vehicle id="vehicle (Dinghy) (61)" paintjob="3" model="473" plate="MXSZ4WD" interior="0" dimension="0" posX="2650.6635742188" posY="-1581.8070068359" posZ="15.407850265503" rotX="0" rotY="0" rotZ="182" />
+    <vehicle id="vehicle (Dinghy) (62)" paintjob="3" model="473" plate="70TSWHJ" interior="0" dimension="0" posX="2631.9194335938" posY="-1582.4428710938" posZ="15.407850265503" rotX="0" rotY="0" rotZ="191.99951171875" />
+    <vehicle id="vehicle (Dinghy) (63)" paintjob="3" model="473" plate="T3Q41GT" interior="0" dimension="0" posX="2814.4877929688" posY="-1871.9180908203" posZ="15.416939735413" rotX="0" rotY="0" rotZ="181.4970703125" />
+    <vehicle id="vehicle (Dinghy) (64)" paintjob="3" model="473" plate="M7MLT6P" interior="0" dimension="0" posX="2814.3981933594" posY="-1861.658203125" posZ="15.416939735413" rotX="0" rotY="0" rotZ="359.494140625" />
+    <vehicle id="vehicle (Dinghy) (65)" paintjob="3" model="473" plate="OB6HBHG" interior="0" dimension="0" posX="2782.5217285156" posY="-1955.5853271484" posZ="15.396877288818" rotX="0" rotY="0" rotZ="179.73913574219" />
+    <vehicle id="vehicle (Speeder) (7)" paintjob="3" model="452" plate="5QEUBD9" interior="0" dimension="0" posX="2793.609375" posY="-1903.3922119141" posZ="15.207938194275" rotX="0" rotY="0" rotZ="80.74755859375" />
+    <vehicle id="vehicle (Speeder) (9)" paintjob="3" model="452" plate="5HND110" interior="0" dimension="0" posX="2744.8500976563" posY="-1985.6145019531" posZ="15.207938194275" rotX="0" rotY="0" rotZ="258.74401855469" />
+    <vehicle id="vehicle (Dinghy) (66)" paintjob="3" model="473" plate="HF2FPJW" interior="0" dimension="0" posX="2734.3415527344" posY="-2104.4929199219" posZ="15.396877288818" rotX="0" rotY="0" rotZ="89.736267089844" />
+    <vehicle id="vehicle (Speeder) (10)" paintjob="3" model="452" plate="6W40MAL" interior="0" dimension="0" posX="2782.2265625" posY="-2091.01953125" posZ="15.207938194275" rotX="0" rotY="0" rotZ="224.736328125" />
+    <vehicle id="vehicle (Dinghy) (70)" paintjob="3" model="473" plate="SHV18EU" interior="0" dimension="0" posX="2646.3996582031" posY="-2100.3916015625" posZ="15.396877288818" rotX="0" rotY="0" rotZ="181.73034667969" />
+    <vehicle id="vehicle (Dinghy) (72)" paintjob="3" model="473" plate="PTZL4X9" interior="0" dimension="0" posX="2458.6416015625" posY="-2078.3662109375" posZ="15.405563354492" rotX="0.4732666015625" rotY="359.99499511719" rotZ="181.73028564453" />
+    <vehicle id="vehicle (Dinghy) (74)" paintjob="3" model="473" plate="UZH2R0C" interior="0" dimension="0" posX="2437.6650390625" posY="-2078.7138671875" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="181.72485351563" />
+    <vehicle id="vehicle (Speeder) (11)" paintjob="3" model="452" plate="9KH41LH" interior="0" dimension="0" posX="2428.3564453125" posY="-2118.5205078125" posZ="14.953896522522" rotX="0" rotY="0" rotZ="0.736083984375" />
+    <vehicle id="vehicle (Dinghy) (76)" paintjob="3" model="473" plate="JUL8DI8" interior="0" dimension="0" posX="2321.693359375" posY="-2042.1240234375" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="179.71984863281" />
+    <vehicle id="vehicle (Predator) (1)" paintjob="3" model="430" plate="57MTJNG" interior="0" dimension="0" posX="2247.1674804688" posY="-2156.33984375" posZ="14.996879577637" rotX="0" rotY="0" rotZ="314.49462890625" />
+    <vehicle id="vehicle (Dinghy) (80)" paintjob="3" model="473" plate="5TT3V8F" interior="0" dimension="0" posX="2241.0051269531" posY="-2154.0520019531" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="315.71411132813" />
+    <vehicle id="vehicle (Dinghy) (81)" paintjob="3" model="473" plate="P05XKQP" interior="0" dimension="0" posX="2190.9890136719" posY="-2236.5283203125" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="223.71459960938" />
+    <vehicle id="vehicle (Speeder) (13)" paintjob="3" model="452" plate="8VP0S22" interior="0" dimension="0" posX="2240.3818359375" posY="-2244.6130371094" posZ="14.953896522522" rotX="0" rotY="0" rotZ="44.736083984375" />
+    <vehicle id="vehicle (Dinghy) (82)" paintjob="3" model="473" plate="RB3VGTZ" interior="0" dimension="0" posX="2159.6791992188" posY="-2301.974609375" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="223.71459960938" />
+    <vehicle id="vehicle (Dinghy) (83)" paintjob="3" model="473" plate="W55AWQQ" interior="0" dimension="0" posX="2184.5705566406" posY="-2287.3737792969" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="45.714599609375" />
+    <vehicle id="vehicle (Dinghy) (85)" paintjob="3" model="473" plate="H39MBUL" interior="0" dimension="0" posX="2193.064453125" posY="-2278.8156738281" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="45.714111328125" />
+    <vehicle id="vehicle (Dinghy) (87)" paintjob="3" model="473" plate="Y0Z90UM" interior="0" dimension="0" posX="2198.53125" posY="-2273.3837890625" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="45.714111328125" />
+    <vehicle id="vehicle (Dinghy) (90)" paintjob="3" model="473" plate="JPKQHY1" interior="0" dimension="0" posX="2420.4521484375" posY="-2260.05859375" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="43.709106445313" />
+    <vehicle id="vehicle (Dinghy) (91)" paintjob="3" model="473" plate="JDNR1H9" interior="0" dimension="0" posX="2488.4516601563" posY="-2242.29296875" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="359.70959472656" />
+    <vehicle id="vehicle (Dinghy) (94)" paintjob="3" model="473" plate="DCUCIQB" interior="0" dimension="0" posX="2550.94140625" posY="-2242.7075195313" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="359.70886230469" />
+    <vehicle id="vehicle (Launch) (1)" paintjob="3" model="595" plate="R0KSMAE" interior="0" dimension="0" posX="2503.3041992188" posY="-2209.3928222656" posZ="15.499641418457" rotX="0" rotY="0" rotZ="178" />
+    <vehicle id="vehicle (Launch) (3)" paintjob="3" model="595" plate="64LB5FT" interior="0" dimension="0" posX="2714.5454101563" posY="-2238.2612304688" posZ="15.499641418457" rotX="0" rotY="0" rotZ="357.74182128906" />
+    <vehicle id="vehicle (Dinghy) (96)" paintjob="3" model="473" plate="9FBFJVT" interior="0" dimension="0" posX="2624.625" posY="-2206.5498046875" posZ="15.396877288818" rotX="0" rotY="0" rotZ="181.73034667969" />
+    <vehicle id="vehicle (Dinghy) (99)" paintjob="3" model="473" plate="PUMDPME" interior="0" dimension="0" posX="2756.1879882813" posY="-2218.0458984375" posZ="15.396877288818" rotX="0" rotY="0" rotZ="89.725341796875" />
+    <vehicle id="vehicle (Dinghy) (103)" paintjob="3" model="473" plate="SKQS4RX" interior="0" dimension="0" posX="2802.3369140625" posY="-2392.7329101563" posZ="15.396877288818" rotX="0" rotY="0" rotZ="179.47027587891" />
+    <vehicle id="vehicle (Speeder) (16)" paintjob="3" model="452" plate="NG14L1Q" interior="0" dimension="0" posX="2776.4213867188" posY="-2385.1323242188" posZ="15.207938194275" rotX="0" rotY="0" rotZ="88.736083984375" />
+    <vehicle id="vehicle (Launch) (4)" paintjob="3" model="595" plate="F5ED1GH" interior="0" dimension="0" posX="2772.619140625" posY="-2520.7841796875" posZ="15.499641418457" rotX="0" rotY="0" rotZ="0.4833984375" />
+    <vehicle id="vehicle (Dinghy) (105)" paintjob="3" model="473" plate="TVOD3D8" interior="0" dimension="0" posX="2650.0751953125" posY="-2440.6811523438" posZ="15.396877288818" rotX="0" rotY="0" rotZ="181.71984863281" />
+    <vehicle id="vehicle (Dinghy) (106)" paintjob="3" model="473" plate="5OXGB9L" interior="0" dimension="0" posX="2629.4118652344" posY="-2440.8095703125" posZ="15.396877288818" rotX="0" rotY="0" rotZ="179.71936035156" />
+    <vehicle id="vehicle (Launch) (5)" paintjob="3" model="595" plate="FUNDQIZ" interior="0" dimension="0" posX="2511.72265625" posY="-2553.3229980469" posZ="15.499641418457" rotX="0" rotY="0" rotZ="89.7333984375" />
+    <vehicle id="vehicle (Dinghy) (109)" paintjob="3" model="473" plate="G8DMER8" interior="0" dimension="0" posX="2469.0112304688" posY="-2645.6376953125" posZ="15.396877288818" rotX="0" rotY="0" rotZ="179.46166992188" />
+    <vehicle id="vehicle (Dinghy) (110)" paintjob="3" model="473" plate="C570KFV" interior="0" dimension="0" posX="2386.0654296875" posY="-2648.3056640625" posZ="15.396877288818" rotX="0" rotY="0" rotZ="91.461181640625" />
+    <vehicle id="vehicle (Dinghy) (112)" paintjob="3" model="473" plate="5WVZGTZ" interior="0" dimension="0" posX="2401.0778808594" posY="-2491.4572753906" posZ="15.396877288818" rotX="0" rotY="0" rotZ="315.46166992188" />
+    <vehicle id="vehicle (Speeder) (19)" paintjob="3" model="452" plate="OSJWF94" interior="0" dimension="0" posX="2499.1804199219" posY="-2426.0078125" posZ="15.207938194275" rotX="0" rotY="0" rotZ="44.730834960938" />
+    <vehicle id="vehicle (Speeder) (20)" paintjob="3" model="452" plate="DNY8K8A" interior="0" dimension="0" posX="2506.6567382813" posY="-2418.8142089844" posZ="15.207938194275" rotX="0" rotY="0" rotZ="44.730834960938" />
+    <vehicle id="vehicle (Dinghy) (114)" paintjob="3" model="473" plate="0HP2TEH" interior="0" dimension="0" posX="2358.83984375" posY="-2326.5615234375" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="43.709106445313" />
+    <vehicle id="vehicle (Dinghy) (115)" paintjob="3" model="473" plate="N88H59V" interior="0" dimension="0" posX="2266.3645019531" posY="-2385.7241210938" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="223.70910644531" />
+    <vehicle id="vehicle (Dinghy) (116)" paintjob="3" model="473" plate="IZPPEPS" interior="0" dimension="0" posX="2265.5971679688" posY="-2451.5991210938" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="179.70910644531" />
+    <vehicle id="vehicle (Dinghy) (117)" paintjob="3" model="473" plate="1N7Z9S9" interior="0" dimension="0" posX="2263.1247558594" posY="-2640.1254882813" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="91.708862304688" />
+    <vehicle id="vehicle (Launch) (7)" paintjob="3" model="595" plate="8LGNM36" interior="0" dimension="0" posX="2203.5288085938" posY="-2584.3298339844" posZ="15.499641418457" rotX="0" rotY="0" rotZ="268.47790527344" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="2327.8095703125" posY="-2010.0146484375" posZ="14.953896522522" rotX="0" rotY="0" rotZ="268.73107910156" />
+    <vehicle id="vehicle (Dinghy) (120)" paintjob="3" model="473" plate="V5G65AV" interior="0" dimension="0" posX="2443.1633300781" posY="-1979.4696044922" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="268.46740722656" />
+    <vehicle id="vehicle (Dinghy) (124)" paintjob="3" model="473" plate="ALXO9TM" interior="0" dimension="0" posX="2505.5571289063" posY="-1944.8446044922" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="358.20373535156" />
+    <vehicle id="vehicle (Dinghy) (125)" paintjob="3" model="473" plate="U9YP66J" interior="0" dimension="0" posX="2439.9716796875" posY="-1898.7019042969" posZ="15.405563354492" rotX="0.47125244140625" rotY="355.99438476563" rotZ="1.7469482421875" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="2402.5498046875" posY="-1928.32421875" posZ="15.405563354492" rotX="0.4669189453125" rotY="355.98999023438" rotZ="0.9942626953125" />
+    <vehicle id="vehicle (Vortex) (1)" paintjob="3" model="539" plate="S4NZ1LH" interior="0" dimension="0" posX="2396.2258300781" posY="-1936.4339599609" posZ="20.687696456909" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Vortex) (2)" paintjob="3" model="539" plate="4I52M41" interior="0" dimension="0" posX="2357.1533203125" posY="-1941.609375" posZ="21.937696456909" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Vortex) (3)" paintjob="3" model="539" plate="DJIW5D7" interior="0" dimension="0" posX="2296.06640625" posY="-1997.109375" posZ="25.062721252441" rotX="0" rotY="0" rotZ="87.4951171875" />
+    <vehicle id="vehicle (Vortex) (4)" paintjob="3" model="539" plate="QW7EZMC" interior="0" dimension="0" posX="2746.7905273438" posY="-2453.6752929688" posZ="16.181224822998" rotX="0" rotY="0" rotZ="269.4951171875" />
+    <vehicle id="vehicle (Vortex) (5)" paintjob="3" model="539" plate="2VW8TXZ" interior="0" dimension="0" posX="2472.3210449219" posY="-1748.3431396484" posZ="16.73593711853" rotX="0" rotY="0" rotZ="359.49462890625" />
+    <vehicle id="vehicle (Vortex) (6)" paintjob="3" model="539" plate="TCDAD9I" interior="0" dimension="0" posX="2435.4060058594" posY="-1949.9365234375" posZ="18.200033187866" rotX="0" rotY="0" rotZ="103.49462890625" />
+    <vehicle id="vehicle (Vortex) (7)" paintjob="3" model="539" plate="CPA33X2" interior="0" dimension="0" posX="2372.4611816406" posY="-2067.8579101563" posZ="20.892499923706" rotX="0" rotY="0" rotZ="125.00012207031" />
+    <vehicle id="vehicle (Dinghy) (76)" paintjob="3" model="473" plate="JUL8DI8" interior="0" dimension="0" posX="2154.4567871094" posY="-1992.6817626953" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="45.719970703125" />
+    <vehicle id="vehicle (Vortex) (3)" paintjob="3" model="539" plate="DJIW5D7" interior="0" dimension="0" posX="2198.0888671875" posY="-1970.4068603516" posZ="15.987726211548" rotX="0" rotY="0" rotZ="89.4951171875" />
+    <vehicle id="vehicle (Dinghy) (76)" paintjob="3" model="473" plate="JUL8DI8" interior="0" dimension="0" posX="2190.1870117188" posY="-1836.1258544922" posZ="15.405563354492" rotX="0.472412109375" rotY="359.99450683594" rotZ="90.969604492188" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="2303.3383789063" posY="-1775.4066162109" posZ="14.953896522522" rotX="0" rotY="0" rotZ="0.7310791015625" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="2403.7194824219" posY="-1644.3413085938" posZ="15.405563354492" rotX="0.218017578125" rotY="359.24011230469" rotZ="180.21435546875" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="2054.5583496094" posY="-1764.6331787109" posZ="15.405563354492" rotX="0.468017578125" rotY="359.74011230469" rotZ="0.96368408203125" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="2039.8645019531" posY="-1825.9520263672" posZ="15.405563354492" rotX="0.468017578125" rotY="0.2401123046875" rotZ="179.70965576172" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="2063.0317382813" posY="-1966.0073242188" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="179.70886230469" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="2065.9685058594" posY="-1663.3244628906" posZ="15.405563354492" rotX="0.4669189453125" rotY="359.736328125" rotZ="268.96130371094" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="2187.9919433594" posY="-1617.7623291016" posZ="14.953896522522" rotX="0" rotY="0" rotZ="162.73059082031" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="2068.73828125" posY="-1562.7486572266" posZ="15.405563354492" rotX="0.4669189453125" rotY="359.736328125" rotZ="180.20617675781" />
+    <vehicle id="vehicle (Vortex) (3)" paintjob="3" model="539" plate="DJIW5D7" interior="0" dimension="0" posX="2101.5642089844" posY="-2138.7602539063" posZ="19.337732315063" rotX="0" rotY="0" rotZ="89.49462890625" />
+    <vehicle id="vehicle (Vortex) (3)" paintjob="3" model="539" plate="DJIW5D7" interior="0" dimension="0" posX="2066.5827636719" posY="-2150.5910644531" posZ="19.337732315063" rotX="0" rotY="0" rotZ="359.49462890625" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="2007.8050537109" posY="-2076.1271972656" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="179.70886230469" />
+    <vehicle id="vehicle (Leviathan) (4)" paintjob="3" model="417" plate="IQHDOY2" interior="0" dimension="0" posX="1990.2457275391" posY="-2315.3552246094" posZ="15.896896362305" rotX="0" rotY="0" rotZ="90.5" />
+    <vehicle id="vehicle (Skimmer) (1)" paintjob="3" model="460" plate="A2UPT5F" interior="0" dimension="0" posX="1889.2819824219" posY="-2632.2939453125" posZ="17.241411209106" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Skimmer) (2)" paintjob="3" model="460" plate="PCR7GY8" interior="0" dimension="0" posX="1823.5205078125" posY="-2632.4792480469" posZ="17.141397476196" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Skimmer) (3)" paintjob="3" model="460" plate="SAK45E5" interior="0" dimension="0" posX="1682.9287109375" posY="-2631.6845703125" posZ="17.26639175415" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1889.5046386719" posY="-2082.6042480469" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="269.70892333984" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1768.7536621094" posY="-2127.9438476563" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="1.7088623046875" />
+    <vehicle id="vehicle (Vortex) (3)" paintjob="3" model="539" plate="DJIW5D7" interior="0" dimension="0" posX="1665.7248535156" posY="-2087.1501464844" posZ="16.66272354126" rotX="0" rotY="0" rotZ="359.49462890625" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1698.9814453125" posY="-2196.8447265625" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="1.7083740234375" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="1651.126953125" posY="-2196.421875" posZ="14.953896522522" rotX="0" rotY="0" rotZ="89.478149414063" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="1744.6533203125" posY="-2055.66015625" posZ="14.953896522522" rotX="0" rotY="0" rotZ="266.97326660156" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1948.8709716797" posY="-1966.4929199219" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="269.20434570313" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1838.6457519531" posY="-1854.5250244141" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="181.70434570313" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="1852.3251953125" posY="-1863.236328125" posZ="14.953896522522" rotX="0" rotY="0" rotZ="88.972778320313" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1929.828125" posY="-1596.8322753906" posZ="15.405563354492" rotX="0.4669189453125" rotY="359.736328125" rotZ="178.96124267578" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1963.0145263672" posY="-1536.2438964844" posZ="15.405563354492" rotX="0.4669189453125" rotY="359.736328125" rotZ="92.956237792969" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1845.3388671875" posY="-1580.2368164063" posZ="15.405563354492" rotX="0.4669189453125" rotY="359.736328125" rotZ="92.955322265625" />
+    <vehicle id="vehicle (Vortex) (13)" paintjob="3" model="539" plate="FVMJDK0" interior="0" dimension="0" posX="1873.8935546875" posY="-1766.64453125" posZ="25.516056060791" rotX="0" rotY="0" rotZ="179.74731445313" />
+    <vehicle id="vehicle (Vortex) (14)" paintjob="3" model="539" plate="SXPDWGA" interior="0" dimension="0" posX="1854.0018310547" posY="-1778.4432373047" posZ="25.516056060791" rotX="0" rotY="0" rotZ="87.747314453125" />
+    <vehicle id="vehicle (Vortex) (15)" paintjob="3" model="539" plate="5RLNQZJ" interior="0" dimension="0" posX="1799.5217285156" posY="-1771.9033203125" posZ="51.861003875732" rotX="0" rotY="0" rotZ="90.494384765625" />
+    <vehicle id="vehicle (Vortex) (16)" paintjob="3" model="539" plate="JZ1ZOJJ" interior="0" dimension="0" color="17,6,0,0" posX="1799.5687255859" posY="-1766.0209960938" posZ="51.861003875732" rotX="0" rotY="0" rotZ="90.494384765625" />
+    <vehicle id="vehicle (Vortex) (17)" paintjob="3" model="539" plate="MUEA2I0" interior="0" dimension="0" color="7,40,0,0" posX="1799.7980957031" posY="-1759.853515625" posZ="51.861003875732" rotX="0" rotY="0" rotZ="90.494384765625" />
+    <vehicle id="vehicle (Vortex) (18)" paintjob="3" model="539" plate="C42T5JE" interior="0" dimension="0" color="80,16,0,0" posX="1799.5720214844" posY="-1753.8586425781" posZ="51.861003875732" rotX="0" rotY="0" rotZ="90.494384765625" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1705.689453125" posY="-1688.017578125" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="181.70288085938" />
+    <vehicle id="vehicle (Coastguard) (12)" paintjob="3" model="472" plate="VIJPAX4" interior="0" dimension="0" posX="1796.6098632813" posY="-1692.7424316406" posZ="15.357604980469" rotX="0" rotY="0" rotZ="228" />
+    <vehicle id="vehicle (Coastguard) (14)" paintjob="3" model="472" plate="5PVR6QI" interior="0" dimension="0" posX="1771.6334228516" posY="-1691.7955322266" posZ="15.357604980469" rotX="0" rotY="0" rotZ="119.99926757813" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1715.1556396484" posY="-1874.3712158203" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="358.95294189453" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="1657.4033203125" posY="-1837.8289794922" posZ="14.953896522522" rotX="0" rotY="0" rotZ="3.2227783203125" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1748.5454101563" posY="-1528.1374511719" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="287.70288085938" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1749.423828125" posY="-1490.6798095703" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="237.69897460938" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1800.4375" posY="-1421.1220703125" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="269.6923828125" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1890.8634033203" posY="-1364.9622802734" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="177.6923828125" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1864.4302978516" posY="-1365.5539550781" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="177.68731689453" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="1737.2231445313" posY="-1398.7999267578" posZ="14.953896522522" rotX="0" rotY="0" rotZ="178.72277832031" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1730.0520019531" posY="-1331.3481445313" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="61.6923828125" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1835.3624267578" posY="-1244.2357177734" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="177.68823242188" />
+    <vehicle id="vehicle (Launch) (8)" paintjob="3" model="595" plate="BQY096A" interior="0" dimension="0" posX="1911.6870117188" posY="-1265.4555664063" posZ="15.536437988281" rotX="0" rotY="0" rotZ="48" />
+    <vehicle id="vehicle (Vortex) (19)" paintjob="3" model="539" plate="GS9W3FY" interior="0" dimension="0" color="7,40,0,0" posX="1809.1157226563" posY="-1548.1975097656" posZ="38.335971832275" rotX="0" rotY="0" rotZ="265.99444580078" />
+    <vehicle id="vehicle (Vortex) (20)" paintjob="3" model="539" plate="XMKZET2" interior="0" dimension="0" posX="1984.66796875" posY="-1799.3427734375" posZ="25.466053009033" rotX="0" rotY="0" rotZ="266.49536132813" />
+    <vehicle id="vehicle (Vortex) (8)" paintjob="3" model="539" plate="8QWM8VX" interior="0" dimension="0" posX="1388.9248046875" posY="-1886.4873046875" posZ="16.824518203735" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" posX="1384.0654296875" posY="-1628.9541015625" posZ="15.396873474121" rotX="0" rotY="0" rotZ="89.730834960938" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="1460.2001953125" posY="-1507.283203125" posZ="14.953896522522" rotX="0" rotY="0" rotZ="88.972778320313" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="1502.6173095703" posY="-1370.1500244141" posZ="14.953896522522" rotX="0" rotY="0" rotZ="359.97277832031" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1627.4301757813" posY="-1510.5046386719" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="91.6923828125" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1627.5715332031" posY="-1278.3114013672" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="269.44201660156" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" posX="1404.0078125" posY="-1501.35546875" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="165.72875976563" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" posX="1426.2593994141" posY="-1387.6300048828" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="91.728759765625" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" posX="1412.14453125" posY="-1300.365234375" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="269.71984863281" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" posX="1365.3897705078" posY="-1225.5541992188" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="180.96954345703" />
+    <vehicle id="vehicle (Coastguard) (10)" paintjob="3" model="472" plate="00YRP1H" interior="0" dimension="0" posX="1360.091796875" posY="-1658.6884765625" posZ="15.577737808228" rotX="0" rotY="0" rotZ="180" />
+    <vehicle id="vehicle (Dinghy) (45)" paintjob="3" model="473" plate="FOMN19D" interior="0" dimension="0" color="56,3,0,0" posX="1157.5583496094" posY="-1831.2878417969" posZ="15.396873474121" rotX="0" rotY="0" rotZ="269" />
+    <vehicle id="vehicle (Dinghy) (45)" paintjob="3" model="473" plate="FOMN19D" interior="0" dimension="0" color="56,6,0,0" posX="1094.0325927734" posY="-1878.8189697266" posZ="15.396873474121" rotX="0" rotY="0" rotZ="180.99468994141" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" color="1,3,0,0" posX="1252.6600341797" posY="-1697.6729736328" posZ="14.953896522522" rotX="0" rotY="0" rotZ="92.722778320313" />
+    <vehicle id="vehicle (Dinghy) (45)" paintjob="3" model="473" plate="FOMN19D" interior="0" dimension="0" color="56,106,0,0" posX="1024.8549804688" posY="-1692.806640625" posZ="15.396873474121" rotX="0" rotY="0" rotZ="268.99475097656" />
+    <vehicle id="vehicle (Dinghy) (45)" paintjob="3" model="473" plate="FOMN19D" interior="0" dimension="0" color="56,93,0,0" posX="1226.6826171875" posY="-1557.4248046875" posZ="15.396873474121" rotX="0" rotY="0" rotZ="178.48937988281" />
+    <vehicle id="vehicle (Coastguard) (10)" paintjob="3" model="472" plate="00YRP1H" interior="0" dimension="0" color="40,3,3,0" posX="1225.9484863281" posY="-1533.1834716797" posZ="15.577737808228" rotX="0" rotY="0" rotZ="0.25" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" posX="1270.6569824219" posY="-1480.1038818359" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="91.728759765625" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" posX="1270.9418945313" posY="-1493.0971679688" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="91.724853515625" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,44,0,0" posX="1154.2132568359" posY="-1465.5706787109" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="19.724853515625" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,3,0,0" posX="1102.8067626953" posY="-1464.9821777344" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="335.72045898438" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,44,0,0" posX="1093.9287109375" posY="-1314.6815185547" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="181.72045898438" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,83,0,0" posX="1104.2021484375" posY="-1314.5322265625" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="181.71936035156" />
+    <vehicle id="vehicle (Coastguard) (10)" paintjob="3" model="472" plate="00YRP1H" interior="0" dimension="0" color="1,3,0,0" posX="1285.3465576172" posY="-1359.7761230469" posZ="15.577737808228" rotX="0" rotY="2" rotZ="180.24719238281" />
+    <vehicle id="vehicle (Coastguard) (10)" paintjob="3" model="472" plate="00YRP1H" interior="0" dimension="0" color="1,3,0,0" posX="1284.9566650391" posY="-1296.0955810547" posZ="15.577737808228" rotX="0" rotY="1.99951171875" rotZ="2.2471923828125" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,83,0,0" posX="1291.6514892578" posY="-1232.2222900391" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="181.71936035156" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,6,0,0" posX="979.54840087891" posY="-1266.4227294922" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="181.71936035156" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,18,0,0" posX="972.99639892578" posY="-1266.4877929688" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="181.71936035156" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" color="1,3,0,0" posX="1026.0080566406" posY="-1353.2938232422" posZ="14.953896522522" rotX="0" rotY="0" rotZ="0.2142333984375" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" color="1,2,0,0" posX="969.67926025391" posY="-1521.7198486328" posZ="14.953896522522" rotX="0" rotY="0" rotZ="90.214233398438" />
+    <vehicle id="vehicle (Dinghy) (45)" paintjob="3" model="473" plate="FOMN19D" interior="0" dimension="0" color="56,3,0,0" posX="957.22637939453" posY="-1748.7199707031" posZ="15.396873474121" rotX="0" rotY="0" rotZ="180.99475097656" />
+    <vehicle id="vehicle (Dinghy) (45)" paintjob="3" model="473" plate="FOMN19D" interior="0" dimension="0" color="56,103,0,0" posX="953.28692626953" posY="-1608.98828125" posZ="15.396873474121" rotX="0" rotY="0" rotZ="180.99426269531" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,86,0,0" posX="921.99194335938" posY="-1293.6025390625" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="89.719482421875" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,53,0,0" posX="849.10394287109" posY="-1303.8953857422" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="355.71435546875" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" color="86,106,0,0" posX="865.28771972656" posY="-1376.498046875" posZ="14.953896522522" rotX="0" rotY="0" rotZ="180.21423339844" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,53,0,0" posX="831.01531982422" posY="-1452.9560546875" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="355.45983886719" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,114,0,0" posX="887.88482666016" posY="-1548.7790527344" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="180.20733642578" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,118,0,0" posX="779.05462646484" posY="-1601.271484375" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="358.20324707031" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,118,0,0" posX="822.58715820313" posY="-1699.8225097656" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="358.1982421875" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" color="1,79,0,0" posX="945.39227294922" posY="-1815.0718994141" posZ="14.953896522522" rotX="0" rotY="0" rotZ="352.71911621094" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" color="123,6,0,0" posX="678.14721679688" posY="-1269.8845214844" posZ="14.953896522522" rotX="0" rotY="358" rotZ="91.714233398438" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" color="123,6,0,0" posX="678.10162353516" posY="-1282.1337890625" posZ="14.953896522522" rotX="0" rotY="357.99499511719" rotZ="90.9638671875" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,0,0,0" posX="727.66241455078" posY="-1296.3487548828" posZ="15.405692100525" rotX="0.49957275390625" rotY="357.99444580078" rotZ="181.4775390625" />
+    <vehicle id="vehicle (Coastguard) (10)" paintjob="3" model="472" plate="00YRP1H" interior="0" dimension="0" color="1,3,0,0" posX="768.11810302734" posY="-1382.7702636719" posZ="15.352741241455" rotX="0" rotY="0.74951171875" rotZ="268.74719238281" />
+    <vehicle id="vehicle (Coastguard) (10)" paintjob="3" model="472" plate="00YRP1H" interior="0" dimension="0" color="1,3,0,0" posX="734.46374511719" posY="-1348.8450927734" posZ="15.577737808228" rotX="0.25" rotY="359.99951171875" rotZ="359.74206542969" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,118,0,0" posX="703.423828125" posY="-1476.8671875" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="90.1982421875" />
+    <vehicle id="vehicle (Vortex) (9)" paintjob="3" model="539" plate="SRXOPXZ" interior="0" dimension="0" posX="702.84124755859" posY="-1469.8193359375" posZ="17.34531211853" rotX="0" rotY="0" rotZ="0" />
+    <vehicle id="vehicle (Vortex) (10)" paintjob="3" model="539" plate="AICNQGN" interior="0" dimension="0" posX="702.73559570313" posY="-1450.5446777344" posZ="17.34531211853" rotX="0" rotY="0" rotZ="179.25006103516" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" color="1,43,0,0" posX="688.29754638672" posY="-1570.3664550781" posZ="14.953896522522" rotX="0" rotY="357.99499511719" rotZ="270.96130371094" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,118,0,0" posX="660.17883300781" posY="-1661.9891357422" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="90.19775390625" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,118,0,0" posX="768.25561523438" posY="-1736.0341796875" posZ="15.410758018494" rotX="0.5958251953125" rotY="359.99328613281" rotZ="90.19775390625" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,118,0,0" posX="639.60339355469" posY="-1779.845703125" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="170.19763183594" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,118,0,0" posX="765.26013183594" posY="-1819.30859375" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="170.19470214844" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,3,0,0" posX="560.36151123047" posY="-1572.4497070313" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="90.19775390625" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,106,0,0" posX="513.81719970703" posY="-1463.3387451172" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="358.19775390625" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" color="1,44,0,0" posX="523.51019287109" posY="-1357.8273925781" posZ="14.953896522522" rotX="0" rotY="1.9949951171875" rotZ="18.961303710938" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,112,0,0" posX="482.7126159668" posY="-1324.1208496094" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="32.192749023438" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,17,0,0" posX="437.78399658203" posY="-1745.4401855469" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="268.19470214844" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,6,0,0" posX="380.88888549805" posY="-2029.7958984375" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="358.19274902344" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,6,0,0" posX="132.71577453613" posY="-1508.2751464844" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="237.69281005859" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,103,0,0" posX="238.18455505371" posY="-1461.97265625" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="321.68927001953" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="1,86,0,0" posX="349.52291870117" posY="-1359.8084716797" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="207.18511962891" />
+    <vehicle id="vehicle (Vortex) (11)" paintjob="3" model="539" plate="P38GFV4" interior="0" dimension="0" posX="1168.9353027344" posY="-1698.4484863281" posZ="21.884439468384" rotX="0" rotY="0" rotZ="178" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" posX="1587.1834716797" posY="-2343.130859375" posZ="14.953896522522" rotX="0" rotY="0" rotZ="1.4781494140625" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1447.7158203125" posY="-2287.5837402344" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="89.708374023438" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" color="56,3,0,0" posX="1338.8991699219" posY="-2394.1884765625" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="179.70343017578" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" color="56,103,0,0" posX="1190.7847900391" posY="-2320.3503417969" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="179.70343017578" />
+    <vehicle id="vehicle (Mountain Bike) (1)" paintjob="3" model="510" plate="RYNEHAR" interior="0" dimension="0" posX="2433.1552734375" posY="-1974.0124511719" posZ="18.245874404907" rotX="0" rotY="0" rotZ="110" />
+    <vehicle id="vehicle (Mountain Bike) (2)" paintjob="3" model="510" plate="0SSGHE0" interior="0" dimension="0" posX="2378.5129394531" posY="-1988.3149414063" posZ="18.248777389526" rotX="0" rotY="0" rotZ="178" />
+    <vehicle id="vehicle (Mountain Bike) (3)" paintjob="3" model="510" plate="31T3BKA" interior="0" dimension="0" posX="2371.8745117188" posY="-1988.4421386719" posZ="18.248777389526" rotX="0" rotY="0" rotZ="177.99499511719" />
+    <vehicle id="vehicle (Sanchez) (1)" paintjob="3" model="468" plate="XDZGL3Z" interior="0" dimension="0" posX="2375.0708007813" posY="-1988.4510498047" posZ="18.312936782837" rotX="0" rotY="0" rotZ="178" />
+    <vehicle id="vehicle (Sanchez) (2)" paintjob="3" model="468" plate="832AHOB" interior="0" dimension="0" posX="2278.1909179688" posY="-1947.666015625" posZ="20.978750228882" rotX="0" rotY="0" rotZ="178" />
+    <vehicle id="vehicle (BMX) (1)" paintjob="3" model="481" plate="RHGXTX9" interior="0" dimension="0" posX="2268.0017089844" posY="-1947.8073730469" posZ="20.827526092529" rotX="0" rotY="0" rotZ="176.99993896484" />
+    <vehicle id="vehicle (Mountain Bike) (4)" paintjob="3" model="510" plate="ORNQBW8" interior="0" dimension="0" posX="2136.8874511719" posY="-1764.9766845703" posZ="18.262601852417" rotX="0" rotY="0" rotZ="184" />
+    <vehicle id="vehicle (Mountain Bike) (5)" paintjob="3" model="510" plate="PHARW3D" interior="0" dimension="0" posX="1753.8740234375" posY="-1781.380859375" posZ="52.16459274292" rotX="0" rotY="0" rotZ="279.99755859375" />
+    <vehicle id="vehicle (Bike) (1)" paintjob="3" model="509" plate="U5JZVOW" interior="0" dimension="0" posX="1752.6199951172" posY="-1778.2424316406" posZ="52.068546295166" rotX="0" rotY="0" rotZ="282" />
+    <vehicle id="vehicle (Mountain Bike) (6)" paintjob="3" model="510" plate="QWRJT1V" interior="0" dimension="0" posX="1731.1923828125" posY="-1643.4747314453" posZ="42.16459274292" rotX="0" rotY="0" rotZ="177.99499511719" />
+    <vehicle id="vehicle (Mountain Bike) (7)" paintjob="3" model="510" plate="SSDOJ30" interior="0" dimension="0" posX="1334.517578125" posY="-1779.3665771484" posZ="35.472919464111" rotX="0" rotY="0" rotZ="90" />
+    <vehicle id="vehicle (Sanchez) (4)" paintjob="3" model="468" plate="MBDXF36" interior="0" dimension="0" posX="1334.2807617188" posY="-1783.1986083984" posZ="35.537075042725" rotX="0" rotY="0" rotZ="90" />
+    <vehicle id="vehicle (Mountain Bike) (8)" paintjob="3" model="510" plate="6X6S4CE" interior="0" dimension="0" posX="1334.9830322266" posY="-1789.6062011719" posZ="35.472919464111" rotX="0" rotY="0" rotZ="90" />
+    <vehicle id="vehicle (Vortex) (8)" paintjob="3" model="539" plate="8QWM8VX" interior="0" dimension="0" posX="1367.5181884766" posY="-1841.5217285156" posZ="39.979480743408" rotX="0" rotY="0" rotZ="33.994995117188" />
+    <vehicle id="vehicle (Vortex) (8)" paintjob="3" model="539" plate="8QWM8VX" interior="0" dimension="0" posX="1341.025390625" posY="-1518.4677734375" posZ="33.814064025879" rotX="0" rotY="0" rotZ="79.992431640625" />
+    <vehicle id="vehicle (Vortex) (8)" paintjob="3" model="539" plate="8QWM8VX" interior="0" dimension="0" color="79,86,0,0" posX="1373.3186035156" posY="-1342.7979736328" posZ="35.049961090088" rotX="0" rotY="0" rotZ="89.992431640625" />
+    <vehicle id="vehicle (Vortex) (8)" paintjob="3" model="539" plate="8QWM8VX" interior="0" dimension="0" color="22,1,0,0" posX="1396.5905761719" posY="-1332.3232421875" posZ="35.049961090088" rotX="0" rotY="0" rotZ="182.23901367188" />
+    <vehicle id="vehicle (Mountain Bike) (9)" paintjob="3" model="510" plate="ZYBTNUB" interior="0" dimension="0" posX="1383.2427978516" posY="-1268.2575683594" posZ="33.24613571167" rotX="0" rotY="0" rotZ="172" />
+    <object id="object (cxrf_a51_stairs) (1)" doublesided="true" model="3399" interior="0" dimension="0" posX="1505.7401123047" posY="-1397.7293701172" posZ="20.245170593262" rotX="0" rotY="0" rotZ="180" />
+    <object id="object (ammotrn_obj) (1)" doublesided="false" model="3066" interior="0" dimension="0" posX="1419.8288574219" posY="-1499.3831787109" posZ="20.462017059326" rotX="0" rotY="0" rotZ="77.25" />
+    <object id="object (shamheliprt04) (4)" doublesided="false" model="6976" interior="0" dimension="0" posX="1725.4957275391" posY="-1661.326171875" posZ="44.219486236572" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cxrf_savhus1_) (1)" doublesided="false" model="3355" interior="0" dimension="0" posX="1719.9593505859" posY="-2024.5983886719" posZ="19.395805358887" rotX="0" rotY="0" rotZ="229.99450683594" />
+    <vehicle id="vehicle (Vortex) (12)" paintjob="3" model="539" plate="NA698AV" interior="0" dimension="0" posX="1799.5389404297" posY="-1748.396484375" posZ="52.118751525879" rotX="0" rotY="0" rotZ="90" />
+    <vehicle id="vehicle (Mountain Bike) (5)" paintjob="3" model="510" plate="PHARW3D" interior="0" dimension="0" posX="1752.1766357422" posY="-1774.8483886719" posZ="52.16459274292" rotX="0" rotY="0" rotZ="279.99755859375" />
+    <vehicle id="vehicle (Mountain Bike) (5)" paintjob="3" model="510" plate="PHARW3D" interior="0" dimension="0" posX="1754.7297363281" posY="-1784.669921875" posZ="52.16459274292" rotX="0" rotY="0" rotZ="279.99755859375" />
+    <vehicle id="vehicle (Dinghy) (128)" paintjob="3" model="473" plate="6HUEH9S" interior="0" dimension="0" posX="1840.1472167969" posY="-2111.3232421875" posZ="15.405563354492" rotX="0.4669189453125" rotY="0.2362060546875" rotZ="179.70892333984" />
+    <vehicle id="vehicle (Speeder) (21)" paintjob="3" model="452" plate="IS7Y4RJ" interior="0" dimension="0" color="1,100,0,0" posX="996.28857421875" posY="-1379.2164306641" posZ="14.953896522522" rotX="0" rotY="0" rotZ="179.71423339844" />
+    <vehicle id="vehicle (Vortex) (21)" paintjob="3" model="539" plate="2HVL14U" interior="0" dimension="0" posX="1327.7902832031" posY="-1343.9462890625" posZ="18.513969421387" rotX="0" rotY="0" rotZ="272" />
+    <vehicle id="vehicle (Vortex) (22)" paintjob="3" model="539" plate="EERB2EV" interior="0" dimension="0" posX="1327.6822509766" posY="-1307.296875" posZ="18.513969421387" rotX="0" rotY="0" rotZ="270.24951171875" />
+    <vehicle id="vehicle (Dinghy) (54)" paintjob="3" model="473" plate="MRQXRWZ" interior="0" dimension="0" color="56,93,0,0" posX="1178.0875244141" posY="-1356.8709716797" posZ="15.405692100525" rotX="0.4998779296875" rotY="359.99450683594" rotZ="270.96936035156" />
+    <vehicle id="vehicle (Dinghy) (45)" paintjob="3" model="473" plate="FOMN19D" interior="0" dimension="0" color="56,3,0,0" posX="1327.0601806641" posY="-1424.3059082031" posZ="15.396873474121" rotX="0" rotY="0" rotZ="272.48937988281" />
+    <vehicle id="vehicle (Dinghy) (45)" paintjob="3" model="473" plate="FOMN19D" interior="0" dimension="0" color="56,93,0,0" posX="1197.693359375" posY="-1653.8828125" posZ="15.396873474121" rotX="0" rotY="0" rotZ="272.48840332031" />
+    <vehicle id="vehicle (Dinghy) (45)" paintjob="3" model="473" plate="FOMN19D" interior="0" dimension="0" color="56,93,0,0" posX="1285.1525878906" posY="-1584.3668212891" posZ="15.396873474121" rotX="0" rotY="0" rotZ="226.48834228516" />
+    <object id="object (cw2_phroofstuf) (4)" doublesided="true" model="18262" interior="0" dimension="0" posX="1744.7524414063" posY="-1652.8948974609" posZ="30.780916213989" rotX="19.725830078125" rotY="0" rotZ="177.47863769531" />
+</map>

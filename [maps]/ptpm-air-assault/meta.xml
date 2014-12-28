@@ -1,0 +1,13 @@
+﻿<meta>
+	<info author="Remp" type="map" gamemodes="ptpm" name="Air Assault" version="1.0" />
+	<map src="ptpm-air-assault.map"/>
+	<settings>
+		<setting name="*mapType" value="country" />
+		<setting name="*weathers" value="[[4,1,9,15,20,3,5]]" />
+		<setting name="*roundtime" value="[900000]" /> <!-- 15 mins -->
+		<setting name="*pmAbandonedHealthPenalty" value="[2]" />
+		<setting name="*vehicleLaunch" value="[true]" />
+		<setting name="*pmWaterDeath" value="[true]" />
+		<setting name="*disableClouds" value="[true]"/>
+	</settings>
+</meta>

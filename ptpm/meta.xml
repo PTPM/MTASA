@@ -1,0 +1,81 @@
+﻿<meta>
+	<info name="Protect the Prime Minister" type="gamemode" version="1.1" />
+	
+	<script src="globals.lua" type="server"/>
+	<script src="globals.lua" type="client"/>
+	
+	<script src="main_server.lua" type="server"/>
+	<script src="main_client.lua" type="client"/>
+	
+	<script src="util_server.lua" type="server"/>
+	<script src="loader.lua" type="server"/>
+	<script src="player_spawn.lua" type="server"/>
+	<script src="endgame.lua" type="server"/>
+	
+	<script src="admin.lua" type="server"/>
+	
+	<script src="id.lua" type="server"/>
+	
+	<script src="worldbounds.lua" type="server"/>
+	<script src="tasks.lua" type="server"/>
+	<script src="teleports.lua" type="server"/>
+	<script src="safezones.lua" type="server"/>
+	<script src="objectives.lua" type="server"/>
+	<script src="pickups.lua" type="server"/>
+	<script src="vehicles.lua" type="server"/>
+	<script src="cameras.lua" type="server"/>
+	<script src="vehicle_blips.lua" type="client"/>
+	
+	<script src="class_selection_server.lua" type="server"/>
+	<script src="class_selection_client.lua" type="client"/>
+	
+	<script src="blips_client.lua" type="client"/>
+	<script src="help_client.lua" type="client"/>
+
+	<!--
+	<script src="admin_gui_server.lua" type="server"/>
+	<script src="admin_gui.lua" type="client"/>
+	-->
+	
+	<file src="images/ptpm-default.png"/>
+	<file src="images/ptpm-a51.png"/>
+	<file src="images/ptpm-air-assault.png"/>
+	<file src="images/ptpm-bayside.png"/>
+	<file src="images/ptpm-chiliad.png"/>
+	<file src="images/ptpm-desert.png"/>
+	<file src="images/ptpm-bayside.png"/>
+	<file src="images/ptpm-factory.png"/>
+	<file src="images/ptpm-ls.png"/>
+	<file src="images/ptpm-lshydra.png"/>
+	<file src="images/ptpm-lv.png"/>
+	<file src="images/ptpm-lvobj.png"/>
+	<file src="images/ptpm-sf.png"/>
+	<!--
+	<file src="images/ptpm-country.png"/>
+	-->
+	<file src="images/white_dot.png"/>
+	
+	<!-- PTPM REQUIRED -->
+	<include resource="helpmanager" />
+	<include resource="missiontimer" />
+	<include resource="scoreboard" />
+	<include resource="spectator" />
+	<include resource="votemanager" />
+	<!-- Keep ptpm_login as a seperate resource -->
+	
+	<!-- PTPM specific (bundled with)-->
+	<include resource="drawbounds" />
+	<include resource="namegen" />
+	<include resource="vehicle_items" />
+	
+	<!-- Gameplay (default) -->
+	<include resource="defaultstats" />
+	<include resource="interiors" />
+	<include resource="parachute" />
+	<include resource="realdriveby" />
+	
+	<!-- Gameplay (download) -->
+	<!--<include resource="heligrab" />-->
+	<!--<include resource="mabako-services" />-->
+	<!--<include resource="vending" />-->
+</meta>

@@ -1,0 +1,714 @@
+﻿<map mod="ptpm" version="1.0">
+
+    <wardrobe playerX="-346.3293" playerY="1626.5712" playerZ="136.3119" playerRot="0.0" camX="-341.3293" camY="1629.5712" camZ="141.3119" interior="0" />
+	
+    <safezone posX="191" posY="1870" posZ="17" exclusion="250" enabled="false" />
+	
+    <intel north="1847.22" south="1148.61" west="-137.95" east="385.1" feature="the desert" />
+	
+    <spawngroup type="psycho">
+        <class id="0" skin="230" weapons="24,100;10,1;18,5" />
+        <class id="1" skin="212" weapons="24,100;10,1;18,5" />
+        <class id="2" skin="200" weapons="24,100;10,1;18,5" />
+        <class id="3" skin="137" weapons="24,100;10,1;18,5" />
+        <linespawn startX="-82.2612" startY="1383.4824" startZ="10.2407" endX="-77.5519" endY="1347.3890" endZ="10.8599" />
+        <cantdrive models="476,577,512" />
+    </spawngroup>
+	
+    <spawngroup type="terrorist">
+        <class id="4" skin="181" weapons="22,100;25,100;4,1" />
+        <class id="5" skin="183" weapons="22,100;25,100;4,1" />
+        <class id="6" skin="179" weapons="22,100;25,100;4,1" />
+        <class id="7" skin="191" weapons="22,100;25,100;4,1" />
+        <class id="8" skin="111" weapons="22,100;25,100;4,1" />
+        <class id="9" skin="73" weapons="22,100;25,100;4,1" />
+        <class id="10" skin="100" weapons="22,100;25,100;4,1" />
+        <class id="11" skin="274" weapons="22,100;25,100;4,1" medic="true" />
+        <linespawn startX="-294.2874" startY="1531.7491" startZ="75.3594" endX="-345.4248" endY="1530.7903" endZ="75.3570" />
+        <cantdrive models="577" />
+    </spawngroup>
+	
+    <spawngroup type="pm">
+        <class id="12" skin="147" weapons="15,1;41,300;46,1" />
+        <spawn posX="-158.2105" posY="2269.3345" posZ="430" rot="304.3342" />
+        <!--<spawn posX="-158.2105" posY="2269.3345" posZ="35" rot="304.3342" />-->
+        <cantdrive models="any" />
+        <cantpickup models="38,35,36" />
+    </spawngroup>
+	
+    <spawngroup type="bodyguard">
+        <class id="13" skin="163" weapons="23,100;32,75;41,300" />
+        <class id="14" skin="164" weapons="23,100;32,75;41,300" />
+        <class id="15" skin="165" weapons="23,100;32,75;41,300" />
+        <class id="16" skin="166" weapons="23,100;32,75;41,300" />
+        <class id="17" skin="141" weapons="23,100;32,75;41,300" />
+        <class id="18" skin="276" weapons="23,100;4,1;41,300" medic="true" />
+        <linespawn startX="124.5988" startY="1916.5383" startZ="18.9541" endX="165.6270" endY="1917.3433" endZ="18.4533" />
+        <cantdrive models="522,577" />
+    </spawngroup>
+	
+    <spawngroup type="police">
+        <class id="19" skin="280" weapons="27,100;31,200;41,300" />
+        <class id="20" skin="281" weapons="27,100;29,200;41,300" />
+        <class id="21" skin="282" weapons="27,100;29,200;41,300" />
+        <class id="22" skin="283" weapons="27,100;31,200;41,300" />
+        <class id="23" skin="284" weapons="27,100;31,200;41,300" />
+        <class id="24" skin="285" weapons="27,100;29,200;41,300" />
+        <class id="25" skin="286" weapons="27,100;31,200;41,300" />
+        <class id="26" skin="288" weapons="27,100;29,200;41,300" />
+        <class id="27" skin="246" weapons="27,100;29,200;41,300" />
+        <class id="28" skin="275" weapons="24,100;4,1;41,300" medic="true" />
+        <linespawn startX="-388.2652" startY="2253.8987" startZ="42.0938" endX="-376.3261" endY="2202.0403" endZ="42.0938" />
+        <cantdrive models="476,522,577" />
+    </spawngroup>
+	
+    <vehicle model="599" posX="-373.4946" posY="2229.2224" posZ="42.8695" rotZ="103.8068" />
+    <!-- Cop -->
+    <vehicle model="599" posX="-372.0769" posY="2223.4812" posZ="42.8695" rotZ="103.3467" />
+    <!-- Cop -->
+    <vehicle model="599" posX="-370.6270" posY="2217.8696" posZ="42.8695" rotZ="102.8179" />
+    <!-- Cop -->
+    <vehicle model="599" posX="-369.5875" posY="2212.5266" posZ="42.8695" rotZ="104.3322" />
+    <!-- Cop -->
+    <vehicle model="604" posX="-392.1177" posY="2234.2717" posZ="42.3497" rotZ="286.7657" />
+    <!-- Car -->
+    <vehicle model="605" posX="-393.1129" posY="2239.7837" posZ="42.3797" rotZ="286.0437" />
+    <!-- Car -->
+    <vehicle model="604" posX="-378.9341" posY="2252.8047" posZ="42.4044" rotZ="103.4142" />
+    <!-- Vehicle -->
+    <vehicle model="471" posX="-333.4667" posY="1513.3398" posZ="74.9344" rotZ="179.6975" />
+    <!-- Terrorororor -->
+    <vehicle model="508" posX="-315.4058" posY="1515.2224" posZ="75.8070" rotZ="179.3794" />
+    <!-- TerrorRV -->
+    <vehicle model="510" posX="-320.9330" posY="1513.6566" posZ="75.0552" rotZ="184.2828" />
+    <!-- Terror -->
+    <vehicle model="510" posX="-324.0143" posY="1514.1841" posZ="75.0552" rotZ="192.7250" />
+    <!-- TerrorBike -->
+    <vehicle model="568" posX="-327.4584" posY="1514.8817" posZ="75.3344" rotZ="177.9374" />
+    <!-- Terror -->
+    <vehicle model="568" posX="-330.8202" posY="1515.2344" posZ="75.3344" rotZ="178.2083" />
+    <!-- Terror -->
+    <vehicle model="568" posX="-287.6006" posY="1519.2936" posZ="75.3344" rotZ="223.3827" />
+    <!-- Terror -->
+    <vehicle model="468" posX="-306.1739" posY="1535.9799" posZ="75.3225" rotZ="276.8695" />
+    <!-- Dirtyt -->
+    <vehicle model="468" posX="-313.9410" posY="1538.3921" posZ="75.3225" rotZ="182.0586" />
+    <!-- No -->
+    <vehicle model="468" posX="-344.7124" posY="1521.8835" posZ="75.1194" rotZ="280.9128" />
+    <!-- Molll -->
+    <vehicle model="468" posX="-345.1044" posY="1519.1165" posZ="75.1194" rotZ="288.5814" />
+    <!-- Bike -->
+    <vehicle model="476" posX="291.1415" posY="2541.4473" posZ="17.9907" rotZ="179.1035" safezone_excluded="true" />
+    <!-- Muster -->
+    <vehicle model="476" posX="325.2618" posY="2538.6426" posZ="17.9779" rotZ="175.0817" safezone_excluded="true" />
+    <!-- Muster -->
+    <vehicle model="476" posX="344.1243" posY="2541" posZ="17.9386" rotZ="180" safezone_excluded="true" />
+    <!-- rustler1 -->
+    <vehicle model="476" posX="358.3794" posY="2541" posZ="17.8690" rotZ="180" safezone_excluded="true" />
+    <!-- rustler2 -->
+    <vehicle model="476" posX="372.5980" posY="2541" posZ="17.7092" rotZ="180" safezone_excluded="true" />
+    <!-- rustler3 -->
+    <vehicle model="476" posX="425" posY="2484" posZ="17.6545" rotZ="90" safezone_excluded="true" />
+    <!-- rustler1runwayeast -->
+    <vehicle model="476" posX="425" posY="2500" posZ="17.6545" rotZ="90" safezone_excluded="true" />
+    <!-- rustler2runwayeast -->
+    <vehicle model="476" posX="425" posY="2516" posZ="17.6545" rotZ="90" safezone_excluded="true" />
+    <!-- rustler3runwayeast -->
+    <vehicle model="476" posX="-68" posY="2484" posZ="17.6545" rotZ="270" safezone_excluded="true" />
+    <!-- rustler1runwaywest -->
+    <vehicle model="476" posX="-68" posY="2500" posZ="17.6545" rotZ="270" safezone_excluded="true" />
+    <!-- rustler2runwaywest -->
+    <vehicle model="476" posX="-68" posY="2516" posZ="17.6623" rotZ="270" safezone_excluded="true" />
+    <!-- rustler3runwaywest -->
+    <vehicle model="604" posX="343.1581" posY="2468.4836" posZ="16.4044" rotZ="349.2015" />
+    <!-- Glendale -->
+    <vehicle model="478" posX="512.5175" posY="2375.1328" posZ="30.3565" rotZ="142.5418" />
+    <!-- Truck -->
+    <vehicle model="566" posX="528.4246" posY="2364.9326" posZ="30.3750" rotZ="147.6309" />
+    <!-- Car -->
+    <vehicle model="605" posX="-97.8073" posY="1340.7292" posZ="10.2958" rotZ="6.0542" />
+    <!-- Sadde -->
+    <vehicle model="605" posX="-91.7327" posY="1341.2476" posZ="10.4660" rotZ="10.7399" />
+    <!-- Sadler -->
+    <vehicle model="604" posX="-85.6100" posY="1340.5928" posZ="10.6584" rotZ="7.9968" />
+    <!-- Vsel -->
+    <vehicle model="604" posX="-79.2864" posY="1341.6671" posZ="10.8949" rotZ="9.1289" />
+    <!-- Vehicle -->
+    <vehicle model="604" posX="-7.1971" posY="1366.4293" posZ="9.0919" rotZ="147.0334" />
+    <!-- Vehicke -->
+    <vehicle model="470" posX="128.4070" posY="1935.4491" posZ="19.3773" rotZ="177.1867" />
+    <!-- Patrio -->
+    <vehicle model="470" posX="135.0211" posY="1936.2513" posZ="19.3812" rotZ="176.6158" />
+    <!-- Partio -->
+    <vehicle model="470" posX="141.6795" posY="1935.5112" posZ="19.3740" rotZ="178.8926" />
+    <!-- Patrrr -->
+    <vehicle model="470" posX="177.6861" posY="1934.6136" posZ="18.1918" rotZ="181.7777" />
+    <!-- Pattt -->
+    <vehicle model="470" posX="160.9952" posY="1905.5656" posZ="18.8236" rotZ="354.6314" />
+    <!-- Patrrr -->
+    <vehicle model="512" posX="226.0780" posY="1912.1439" posZ="18.2746" rotZ="88.5602" />
+    <!-- Croppy -->
+    <vehicle model="605" posX="-306.4304" posY="1321.1613" posZ="54.1605" rotZ="71.6058" />
+    <!-- Vejoc -->
+    <vehicle model="604" posX="-308.1725" posY="1313.7946" posZ="53.8849" rotZ="56.4391" />
+    <!-- Vee -->
+    <vehicle model="604" posX="-302.0185" posY="1763.0840" posZ="42.6075" rotZ="267.4570" />
+    <!-- Car0r -->
+    <vehicle model="605" posX="-290.8565" posY="1757.5781" posZ="42.6375" rotZ="93.9924" />
+    <vehicle model="605" posX="-302.7458" posY="1749.1565" posZ="42.6375" rotZ="269.6189" />
+    <vehicle model="605" posX="265.3379" posY="1385.5450" posZ="10.5359" rotZ="355.3102" />
+    <!-- VehicleSadlshit -->
+    <vehicle model="605" posX="278.3898" posY="1394.5453" posZ="10.5359" rotZ="3.6282" />
+    <!-- Sadlshit -->
+    <vehicle model="604" posX="-37.5037" posY="2343.7458" posZ="24.0606" rotZ="186.5129" />
+    <!-- Glenshit -->
+    <vehicle model="604" posX="-29.4181" posY="2342.6941" posZ="24.0606" rotZ="179.2358" />
+    <!-- Glenshit -->
+    <vehicle model="510" posX="-436.9597" posY="1528.6982" posZ="34.8475" rotZ="78.4875" />
+    <!-- MountainBike -->
+    <vehicle model="510" posX="-437.1234" posY="1523.3080" posZ="34.6724" rotZ="89.7792" />
+    <!-- MountainBike -->
+    <vehicle model="605" posX="-461.2624" posY="1840.4432" posZ="79.9587" rotZ="5.2061" />
+    <!-- Sadlshit -->
+    <vehicle model="556" posX="-650.4379" posY="2064.0884" posZ="59.5792" rotZ="254.1844" />
+    <!-- MonsterTruck -->
+    <vehicle model="471" posX="-639.3491" posY="2044.7014" posZ="59.7625" rotZ="306.4698" />
+    <!-- QUAD -->
+    <vehicle model="471" posX="-651.7520" posY="2049.6462" posZ="59.7625" rotZ="318.2614" />
+    <!-- QUAD -->
+    <vehicle model="604" posX="-56.6189" posY="2071.8889" posZ="17.4345" rotZ="272.0660" />
+    <!-- Glenshit -->
+    <vehicle model="525" posX="-42.8314" posY="2072.4724" posZ="17.4948" rotZ="272.8621" />
+    <!-- Towtruck -->
+    <vehicle model="437" posX="139.1421" posY="2402.3652" posZ="16.7344" rotZ="183.3682" />
+    <!-- Bus -->
+    <vehicle model="605" posX="546.0180" posY="2273.2808" posZ="34.9028" rotZ="163.6258" />
+    <!-- Sadlshit -->
+    <vehicle model="489" posX="613.8723" posY="1695.1948" posZ="7.3523" rotZ="126.8590" />
+    <!-- Rancher -->
+    <vehicle model="605" posX="579.9173" posY="1694.9648" posZ="6.9422" rotZ="125.5006" />
+    <!-- Sadlshit -->
+    <vehicle model="489" posX="441.1465" posY="1452.1217" posZ="7.2231" rotZ="180.1733" />
+    <!-- Rancher -->
+    <vehicle model="468" posX="419.9347" posY="1396.7889" posZ="7.3459" rotZ="275.6075" />
+    <!-- Sanchez -->
+    <vehicle model="568" posX="158.9563" posY="1289.6885" posZ="20.9563" rotZ="119.3067" />
+    <!-- Bandito -->
+    <vehicle model="508" posX="-28.1202" posY="1392.3749" posZ="9.6219" rotZ="115.3400" />
+    <!-- Camper -->
+    <vehicle model="604" posX="-105.6378" posY="1657.1228" posZ="18.8539" rotZ="1.5408" />
+    <!-- Glenshit -->
+    <vehicle model="525" posX="-103.1216" posY="1680.6563" posZ="19.5318" rotZ="353.2779" />
+    <!-- Towtruck -->
+    <vehicle model="468" posX="-307.9980" posY="2278.7800" posZ="69.6415" rotZ="118.5181" />
+    <!-- Sanchez -->
+    <vehicle model="437" posX="-511.9582" posY="2342.5620" posZ="69.3647" rotZ="42.4001" />
+    <!-- Bus -->
+    <vehicle model="566" posX="-653.6816" posY="2453.1689" posZ="108.6267" rotZ="235.7774" />
+    <!-- Tahoma -->
+    <vehicle model="508" posX="-520.7234" posY="2559.4729" posZ="53.8641" rotZ="273.0922" />
+    <!-- Camper -->
+    <vehicle model="605" posX="-270.1139" posY="2528.6023" posZ="33.8798" rotZ="180.0996" />
+    <!-- Sadlshit -->
+    <vehicle model="510" posX="9.6867" posY="2566.6843" posZ="16.2358" rotZ="275.5639" />
+    <!-- MountainBike -->
+    <vehicle model="506" posX="405.6807" posY="2451.9543" posZ="16.2921" rotZ="0.2241" />
+    <!-- SuperGT -->
+    <vehicle model="604" posX="-137.3023" posY="1495.3257" posZ="20.7419" rotZ="185.5890" />
+    <!-- Glenshit -->
+    <vehicle model="605" posX="307.2332" posY="2224.7744" posZ="34.8696" rotZ="279.0383" />
+    <!-- Sadlshit -->
+    <vehicle model="443" posX="159.0350" posY="1794.4323" posZ="18.3910" rotZ="267.3149" />
+    <!-- Packer -->
+    <vehicle model="443" posX="217.6115" posY="1794.5244" posZ="18.3910" rotZ="90.9282" />
+    <!-- Packer -->
+    <vehicle model="566" posX="185.3955" posY="1779.2295" posZ="17.5406" rotZ="38.4860" color="0 0" />
+    <!-- Tahoma -->
+    <vehicle model="508" posX="-305.7203" posY="1582.0869" posZ="75.8094" rotZ="314.6775" />
+    <!-- Camper -->
+    <vehicle model="568" posX="-298.0320" posY="1577.2061" posZ="75.3344" rotZ="314.9534" />
+    <!-- Bandito -->
+    <vehicle model="568" posX="-294.2787" posY="1570.9336" posZ="75.3344" rotZ="315.6023" />
+    <!-- Bandito -->
+    <vehicle model="468" posX="-289.3582" posY="1565.8213" posZ="75.1194" rotZ="311.6503" />
+    <!-- Sancher -->
+    <vehicle model="468" posX="-283.7643" posY="1561.8212" posZ="75.1194" rotZ="311.5244" />
+    <!-- Sanchez -->
+    <vehicle model="605" posX="-169.6647" posY="2530.4236" posZ="26.4662" rotZ="172.2570" />
+    <!-- Sadlshit -->
+    <vehicle model="605" posX="-179.5176" posY="2523.3569" posZ="26.8840" rotZ="270.6300" />
+    <!-- Sadlshit -->
+    <vehicle model="605" posX="-95.7158" posY="1578.8989" posZ="18.8114" rotZ="316.8269" />
+    <!-- Sadlshit -->
+    <vehicle model="605" posX="-88.9240" posY="1587.0151" posZ="20.0805" rotZ="148.3202" />
+    <!-- Sadlshit -->
+    <vehicle model="471" posX="159.6595" posY="1503.9028" posZ="10.1609" rotZ="260.0487" />
+    <!-- QUAD -->
+    <vehicle model="522" posX="-329.8607" posY="1996.8251" posZ="131.1838" rotZ="353.8627" />
+    <!-- NRG-500 -->
+    <vehicle model="468" posX="-323.8958" posY="1994.4108" posZ="131.2834" rotZ="267.4394" />
+    <!-- Sanchez(newnew) -->
+    <vehicle model="468" posX="-102.9670" posY="1409.7643" posZ="8.8757" rotZ="11.1346" />
+    <!-- sanchez -->
+    <vehicle model="510" posX="-95.2224" posY="1387.8547" posZ="9.8359" rotZ="284.0279" />
+    <!-- mtbike -->
+    <vehicle model="471" posX="-336.6664" posY="1513.8232" posZ="74.9344" rotZ="178.8342" />
+    <!-- QUAD -->
+    <vehicle model="471" posX="-339.6753" posY="1513.9998" posZ="74.9344" rotZ="179.2734" />
+    <!-- QUAD -->
+    <vehicle model="468" posX="-345.4217" posY="1515.9220" posZ="75.1194" rotZ="107.6245" />
+    <!-- sanchez -->
+    <vehicle model="468" posX="-346.7638" posY="1505.9716" posZ="75.2987" rotZ="177.2721" />
+    <!-- sanchez -->
+    <vehicle model="468" posX="-287.3348" posY="1563.5139" posZ="75.1194" rotZ="320.7873" />
+    <!-- sanchez -->
+    <vehicle model="568" posX="-301.5450" posY="1579.9359" posZ="75.3344" rotZ="316.1707" />
+    <!-- bandito -->
+    <vehicle model="508" posX="-265.3403" posY="1542.6632" posZ="75.8094" rotZ="314.8934" />
+    <!-- journey -->
+    <vehicle model="508" posX="-270.2007" posY="1547.4906" posZ="75.8094" rotZ="315.5843" />
+    <!-- journey(lastofthetspawns) -->
+    <vehicle model="599" posX="-392.1603" posY="2195.9368" posZ="42.8016" rotZ="281.4015" />
+    <!-- copcar -->
+    <vehicle model="599" posX="-388.5154" posY="2190.1953" posZ="42.8007" rotZ="278.1221" />
+    <!-- copcar -->
+    <vehicle model="599" posX="-392.4467" posY="2221.1265" posZ="42.8148" rotZ="285.0713" />
+    <!-- copcar -->
+    <vehicle model="599" posX="-381.2379" posY="2262.0291" posZ="42.8695" rotZ="185.7649" />
+    <!-- copcar -->
+    <vehicle model="604" posX="-411.5871" posY="2261.4980" posZ="42.3497" rotZ="284.0798" />
+    <!-- glenshit -->
+    <vehicle model="604" posX="-437.5620" posY="2245.5037" posZ="42.3497" rotZ="178.6818" />
+    <!-- glenshit -->
+    <vehicle model="604" posX="-415.2881" posY="2221.1184" posZ="42.3497" rotZ="272.4201" />
+    <!-- glenshit -->
+    <vehicle model="605" posX="-406.4722" posY="2227.7639" posZ="42.3758" rotZ="335.6204" />
+    <!-- sadlshit -->
+    <vehicle model="470" posX="172.7931" posY="1934.1707" posZ="18.3819" rotZ="181.9308" />
+    <!-- patriot -->
+    <vehicle model="470" posX="183.1861" posY="1934.7625" posZ="17.9781" rotZ="180.3658" />
+    <!-- patriot -->
+    <vehicle model="470" posX="204.4802" posY="1873.1158" posZ="13.2570" rotZ="269.8959" />
+    <!-- patriot -->
+    <vehicle model="470" posX="190.9326" posY="1871.0653" posZ="17.7506" rotZ="1.4515" />
+    <!-- patriot -->
+    <vehicle model="433" posX="190.6840" posY="1880.8751" posZ="18.2106" rotZ="1.4526" />
+    <!-- armytruck -->
+    <vehicle model="433" posX="190.4281" posY="1890.9606" posZ="18.2106" rotZ="1.4538" />
+    <!-- armytruck -->
+    <vehicle model="470" posX="190.1387" posY="1902.3572" posZ="17.7506" rotZ="1.4542" />
+    <!-- patriot -->
+    <vehicle model="512" posX="222.9974" posY="1877.2621" posZ="18.2746" rotZ="349.3912" />
+    <!-- duster -->
+    <vehicle model="512" posX="225.3865" posY="1890.0095" posZ="18.2746" rotZ="349.4016" />
+    <!-- duster -->
+    <vehicle model="468" posX="-210.1860" posY="1910.3212" posZ="39.2012" rotZ="148.5330" />
+    <!-- sanchez -->
+    <vehicle model="468" posX="392.0377" posY="2078.8513" posZ="17.4006" rotZ="1.7270" />
+    <!-- sanchez -->
+    <vehicle model="468" posX="343.2761" posY="1800.8895" posZ="18.0707" rotZ="318.2888" />
+    <!-- sanchez -->
+    <vehicle model="468" posX="15.4727" posY="1736.3965" posZ="21.9552" rotZ="285.8096" />
+    <!-- sanchez -->
+    <vehicle model="443" posX="414.7962" posY="955.8672" posZ="30.6290" rotZ="241.2664" />
+    <!-- Packer -->
+    <vehicle model="604" posX="838.2132" posY="2465.1345" posZ="30.1882" rotZ="117.3449" />
+    <vehicle model="605" posX="795.1725" posY="2413.9941" posZ="15.7123" rotZ="183.1105" />
+    <vehicle model="566" posX="769.8999" posY="2340.4568" posZ="12.4400" rotZ="180.9902" />
+    <vehicle model="508" posX="901.7408" posY="2328.5530" posZ="11.2703" rotZ="180.3398" />
+    <vehicle model="400" posX="902.0013" posY="2232.7798" posZ="10.9564" rotZ="181.8236" />
+    <!-- landstal -->
+    <vehicle model="424" posX="900.8930" posY="2143.1997" posZ="10.6675" rotZ="182.6698" />
+    <vehicle model="478" posX="757.0711" posY="2102.5811" posZ="8.5285" rotZ="358.1468" />
+    <vehicle model="471" posX="681.3440" posY="1951.3121" posZ="5.1141" rotZ="181.1861" />
+    <!-- train -->
+    <vehicle model="468" posX="685.1196" posY="1951.0209" posZ="5.2991" rotZ="180.4845" />
+    <!-- train -->
+    <vehicle model="468" posX="688.0167" posY="1951.0138" posZ="5.2991" rotZ="181.9976" />
+    <!-- train -->
+    <vehicle model="471" posX="690.9780" posY="1951.3625" posZ="5.1141" rotZ="183.3431" />
+    <!-- train -->
+    <vehicle model="443" posX="729.9453" posY="1869.5992" posZ="6.4022" rotZ="205.5516" />
+    <!-- train -->
+    <vehicle model="443" posX="728.1098" posY="1864.0717" posZ="6.4753" rotZ="206.6182" />
+    <!-- train -->
+    <vehicle model="463" posX="614.8901" posY="1689.1740" posZ="12.0813" rotZ="215.8332" />
+    <!-- hidebike -->
+    <vehicle model="599" posX="-652.0114" posY="1193.4659" posZ="14.6510" rotZ="287.1533" />
+    <!-- terminus -->
+    <vehicle model="599" posX="-656.6796" posY="1198.3301" posZ="14.1797" rotZ="292.0036" />
+    <!-- terminus -->
+    <vehicle model="470" posX="-639.3463" posY="1162.0695" posZ="14.1278" rotZ="229.2976" />
+    <!-- terminus -->
+    <vehicle model="470" posX="-640.6520" posY="1153.1771" posZ="14.0696" rotZ="240.7832" />
+    <!-- terminus -->
+    <vehicle model="516" posX="678.9440" posY="2196.0518" posZ="23.1461" rotZ="181.7497" />
+    <!-- nebula -->
+    <vehicle model="579" posX="812.5190" posY="1992.6683" posZ="9.1395" rotZ="173.1010" />
+    <!-- huntley -->
+    <vehicle model="568" posX="701.6065" posY="1948.9017" posZ="5.5141" rotZ="183.0978" />
+    <!-- bandito -->
+    <vehicle model="470" posX="780.0374" posY="1877.6465" posZ="5.0562" rotZ="269.2345" />
+    <!-- patriot -->
+    <vehicle model="458" posX="902.0481" posY="1877.3051" posZ="10.7905" rotZ="179.7795" />
+    <!-- solair -->
+    <vehicle model="551" posX="676.4182" posY="1729.2784" posZ="6.8722" rotZ="310.8552" />
+    <!-- merit -->
+    <vehicle model="489" posX="798.0359" posY="1695.3804" posZ="5.6414" rotZ="265.5924" />
+    <!-- rancher -->
+    <vehicle model="467" posX="789.6333" posY="1678.0112" posZ="5.1512" rotZ="89.1847" />
+    <!-- oceanic -->
+    <vehicle model="446" posX="-80.0669" posY="487.7204" posZ="-0.5299" rotZ="98.9804" />
+    <vehicle model="468" posX="798.0046" posY="2240.2544" posZ="9.4591" rotZ="209.5868" />
+    <!-- sanchez -->
+    <vehicle model="525" posX="673.1003" posY="1594.6523" posZ="5.4729" rotZ="170.4411" />
+    <!-- towtruck -->
+    <vehicle model="604" posX="776.2334" posY="1557.4261" posZ="6.6550" rotZ="303.0466" />
+    <!-- glen -->
+    <vehicle model="605" posX="682.3124" posY="1412.2334" posZ="13.0659" rotZ="13.4228" />
+    <!-- sadlshit -->
+    <vehicle model="478" posX="777.9928" posY="1397.0499" posZ="20.3543" rotZ="181.4007" />
+    <!-- walton -->
+    <vehicle model="566" posX="825.2336" posY="1217.8518" posZ="27.6556" rotZ="187.8956" />
+    <!-- taloma -->
+    <vehicle model="489" posX="576.2413" posY="1246.0880" posZ="12.0789" rotZ="28.5967" />
+    <!-- rancher -->
+    <vehicle model="585" posX="708.8505" posY="1203.0743" posZ="13.0934" rotZ="85.1022" />
+    <!-- emperor -->
+    <vehicle model="458" posX="507.0561" posY="1112.0461" posZ="14.8101" rotZ="356.1344" />
+    <!-- solair -->
+    <vehicle model="424" posX="494.6823" posY="1119.0626" posZ="14.4083" rotZ="355.9106" />
+    <!-- bfinj -->
+    <vehicle model="506" posX="401.0060" posY="1163.4678" posZ="7.7042" rotZ="269.3647" />
+    <!-- supergt -->
+    <vehicle model="516" posX="400.3200" posY="1149.5994" posZ="8.2185" rotZ="268.8035" />
+    <!-- nebula -->
+    <vehicle model="508" posX="315.0375" posY="1161.9280" posZ="9.1731" rotZ="86.8744" />
+    <!-- journey -->
+    <vehicle model="419" posX="295.8253" posY="1147.3025" posZ="8.5159" rotZ="269.8992" />
+    <!-- esperanto -->
+    <vehicle model="468" posX="634.7539" posY="1228.6328" posZ="11.4713" rotZ="122.3248" />
+    <!-- sanchez -->
+    <vehicle model="448" posX="174.9599" posY="1173.5681" posZ="14.4280" rotZ="142.6513" />
+    <!-- pizzaboy -->
+    <vehicle model="424" posX="178.2996" posY="1170.6022" posZ="14.6050" rotZ="142.6743" color="3 6" />
+    <!-- bfinj -->
+    <vehicle model="495" posX="531.3890" posY="668.0421" posZ="4.0516" rotZ="329.5020" />
+    <!-- sandking -->
+    <vehicle model="400" posX="521.3588" posY="673.8175" posZ="4.0935" rotZ="328.8015" />
+    <!-- landstal -->
+    <vehicle model="554" posX="343.6065" posY="747.8186" posZ="6.4167" rotZ="92.6852" />
+    <!-- yosemite -->
+    <vehicle model="579" posX="128.6116" posY="718.1661" posZ="6.2780" rotZ="122.3895" />
+    <!-- huntley -->
+    <vehicle model="551" posX="-139.7703" posY="583.8871" posZ="2.3539" rotZ="16.3734" />
+    <!-- merit -->
+    <vehicle model="525" posX="782.5097" posY="695.8967" posZ="11.4129" rotZ="103.7606" />
+    <!-- towtruck -->
+    <vehicle model="605" posX="-407.6429" posY="623.2076" posZ="16.1751" rotZ="264.7849" />
+    <!-- sadlshit -->
+    <vehicle model="566" posX="-283.6242" posY="680.6658" posZ="18.2636" rotZ="309.0658" />
+    <!-- taloma -->
+    <vehicle model="508" posX="-122.8863" posY="768.9604" posZ="21.6245" rotZ="330.0441" />
+    <!-- journey -->
+    <vehicle model="489" posX="85.2580" posY="807.2419" posZ="34.1790" rotZ="301.7183" />
+    <!-- rancher -->
+    <vehicle model="500" posX="290.9921" posY="802.0983" posZ="15.3907" rotZ="23.7794" />
+    <!-- mesa -->
+    <vehicle model="604" posX="-385.4826" posY="750.0555" posZ="25.0559" rotZ="329.7118" />
+    <!-- glen -->
+    <vehicle model="470" posX="-318.2691" posY="844.3259" posZ="14.3522" rotZ="272.0210" />
+    <!-- patriot -->
+    <vehicle model="554" posX="-312.7302" posY="824.4495" posZ="14.4372" rotZ="273.0023" />
+    <!-- yosemite -->
+    <vehicle model="605" posX="-391.4470" posY="1012.1808" posZ="10.7923" rotZ="54.3129" />
+    <!-- sad -->
+    <vehicle model="478" posX="138.9227" posY="899.3122" posZ="20.9906" rotZ="288.5594" />
+    <!-- walton -->
+    <vehicle model="556" posX="212.1735" posY="974.6084" posZ="27.9195" rotZ="333.7029" />
+    <!-- monstera -->
+    <vehicle model="470" posX="113.4447" posY="1067.7861" posZ="13.7194" rotZ="177.5960" />
+    <!-- patriot -->
+    <vehicle model="468" posX="-19.4109" posY="706.7399" posZ="20.7902" rotZ="121.5846" />
+    <!-- sanchez -->
+    <vehicle model="556" posX="761.5104" posY="1040.3561" posZ="29.8761" rotZ="231.0159" />
+    <!-- monster -->
+    <vehicle model="448" posX="181.7333" posY="1168.7413" posZ="14.4280" rotZ="141.8946" color="3 6" />
+    <!-- pizzaboy -->
+    <vehicle model="434" posX="-276.6193" posY="985.6359" posZ="20.3360" rotZ="270.9423" />
+    <!-- hotknife -->
+    <vehicle model="599" posX="-210.8648" posY="999.4500" posZ="20.0435" rotZ="89.7964" color="0 1" />
+    <!-- copcarru -->
+    <vehicle model="599" posX="-210.9043" posY="995.1942" posZ="19.9584" rotZ="89.5294" color="0 1" />
+    <!-- copcarru -->
+    <vehicle model="599" posX="-211.0630" posY="990.9757" posZ="19.8731" rotZ="89.4680" color="0 1" />
+    <!-- copcarru -->
+    <vehicle model="599" posX="-227.4120" posY="992.8058" posZ="19.9181" rotZ="269.8940" color="0 1" />
+    <!-- copcarru -->
+    <vehicle model="599" posX="-227.4198" posY="997.4986" posZ="19.9583" rotZ="268.9711" color="0 1" />
+    <!-- copcarru -->
+    <vehicle model="424" posX="26.1608" posY="973.0208" posZ="19.4773" rotZ="260.4325" />
+    <!-- bfinj -->
+    <vehicle model="525" posX="-53.6380" posY="923.9610" posZ="21.9353" rotZ="94.1115" />
+    <!-- towtruck -->
+    <vehicle model="495" posX="-100.8763" posY="976.8270" posZ="20.3888" rotZ="359.1267" />
+    <!-- sandking -->
+    <vehicle model="458" posX="3.6329" posY="1083.5742" posZ="19.7195" rotZ="90.1482" />
+    <!-- solair -->
+    <vehicle model="419" posX="-83.8296" posY="1077.0717" posZ="19.6722" rotZ="0.2300" />
+    <!-- esperanto -->
+    <vehicle model="439" posX="-77.4747" posY="1077.5347" posZ="19.7422" rotZ="1.0599" />
+    <!-- stallion -->
+    <vehicle model="551" posX="-165.4307" posY="1085.1846" posZ="19.6222" rotZ="2.5791" />
+    <!-- merit -->
+    <vehicle model="585" posX="-231.7890" posY="1084.1042" posZ="19.4391" rotZ="1.4741" />
+    <!-- emperor -->
+    <vehicle model="416" posX="-303.8193" posY="1036.0305" posZ="19.8933" rotZ="269.1934" />
+    <!-- ambul -->
+    <vehicle model="416" posX="-316.2111" posY="1057.2214" posZ="20.0418" rotZ="267.8399" />
+    <!-- ambul -->
+    <vehicle model="554" posX="-359.1689" posY="1128.5206" posZ="19.8704" rotZ="268.4344" />
+    <!-- yosemite -->
+    <vehicle model="475" posX="-260.7447" posY="1158.8090" posZ="19.6493" rotZ="89.3095" />
+    <!-- sabre -->
+    <vehicle model="579" posX="-172.7996" posY="1142.1024" posZ="19.8408" rotZ="271.3307" />
+    <!-- huntley -->
+    <vehicle model="504" posX="-128.4020" posY="1135.3990" posZ="19.6822" rotZ="1.3775" />
+    <!-- bloodra -->
+    <vehicle model="400" posX="-52.2261" posY="1167.4504" posZ="19.7537" rotZ="179.1451" />
+    <!-- landstal -->
+    <vehicle model="542" posX="-30.4338" posY="1166.6561" posZ="19.2463" rotZ="359.9251" />
+    <!-- clover -->
+    <vehicle model="467" posX="66.9436" posY="1193.1268" posZ="18.6271" rotZ="89.9775" />
+    <!-- oceanic -->
+    <vehicle model="504" posX="-15.2056" posY="1204.7896" posZ="19.2994" rotZ="89.0830" />
+    <!-- bloodra -->
+    <vehicle model="500" posX="-77.1586" posY="1222.3790" posZ="19.9622" rotZ="181.5723" />
+    <!-- mesa -->
+    <vehicle model="400" posX="-84.5881" posY="1222.0951" posZ="19.8783" rotZ="181.2472" />
+    <!-- landstal -->
+    <vehicle model="424" posX="-176.7979" posY="1217.2242" posZ="19.5894" rotZ="269.2904" />
+    <!-- bfinj -->
+    <vehicle model="516" posX="-214.6400" posY="1214.5306" posZ="19.6422" rotZ="181.9335" />
+    <!-- nebula -->
+    <vehicle model="437" posX="-290.7144" posY="1143.0774" posZ="19.9922" rotZ="90.7188" />
+    <!-- coach -->
+    <vehicle model="406" posX="824.6457" posY="832.2698" posZ="12.0427" rotZ="18.8625" color="1 1" />
+    <!-- dumper -->
+    <vehicle model="486" posX="833.1371" posY="832.9565" posZ="12.2964" rotZ="18.6695" color="1 1" />
+    <!-- dozer -->
+    <vehicle model="455" posX="833.4152" posY="869.2450" posZ="13.4551" rotZ="203.8206" color="32 74" />
+    <!-- flatbed -->
+    <vehicle model="406" posX="745.3128" posY="780.1634" posZ="-6.6884" rotZ="323.2658" color="1 1" />
+    <!-- dum -->
+    <vehicle model="455" posX="702.4598" posY="734.1238" posZ="-6.2358" rotZ="339.9949" color="32 74" />
+    <!-- flat -->
+    <vehicle model="486" posX="709.8955" posY="736.0938" posZ="-6.4562" rotZ="350.4632" color="1 1" />
+    <!-- doz -->
+    <vehicle model="486" posX="735.5754" posY="950.4409" posZ="-7.1448" rotZ="243.4660" color="1 1" />
+    <!-- doz -->
+    <vehicle model="406" posX="745.3817" posY="934.8342" posZ="-6.6983" rotZ="37.8115" color="1 1" />
+    <!-- dum -->
+    <vehicle model="406" posX="522.0106" posY="993.4375" posZ="-8.7846" rotZ="220.1714" color="1 1" />
+    <!-- dum -->
+    <vehicle model="455" posX="530.4317" posY="996.5425" posZ="-7.6037" rotZ="222.0809" color="32 74" />
+    <!-- flat -->
+    <vehicle model="406" posX="708.8864" posY="928.8096" posZ="-17.9118" rotZ="209.9132" color="1 1" />
+    <!-- dum -->
+    <vehicle model="486" posX="686.6681" posY="985.3293" posZ="-12.4741" rotZ="343.8343" color="1 1" />
+    <!-- doz -->
+    <vehicle model="406" posX="736.5869" posY="805.5381" posZ="-17.9794" rotZ="350.5965" color="1 1" />
+    <!-- dum -->
+    <vehicle model="455" posX="672.4702" posY="764.0448" posZ="-18.1482" rotZ="293.5681" color="32 74" />
+    <!-- flat -->
+    <vehicle model="406" posX="516.4689" posY="969.8781" posZ="-23.5961" rotZ="228.3357" color="1 1" />
+    <!-- dum -->
+    <vehicle model="406" posX="471.9847" posY="872.6871" posZ="-28.4510" rotZ="289.6999" color="1 1" />
+    <!-- dum -->
+    <vehicle model="486" posX="471.3339" posY="881.1882" posZ="-29.1428" rotZ="286.1142" color="1 1" />
+    <!-- doz -->
+    <vehicle model="455" posX="546.6434" posY="822.3059" posZ="-28.8859" rotZ="136.3987" color="32 74" />
+    <!-- flat -->
+    <vehicle model="455" posX="595.2134" posY="752.1271" posZ="-14.7954" rotZ="63.8993" color="32 74" />
+    <!-- flat -->
+    <vehicle model="406" posX="695.3762" posY="828.2486" posZ="-29.4336" rotZ="238.9176" color="1 1" />
+    <!-- dum -->
+    <vehicle id="desert_crashed_plane" model="577" posX="-158.2105" posY="2269.3345" posZ="400" rotZ="304.3342" />
+    <!-- crashedplane -->
+    <vehicle model="468" posX="260.4699" posY="2890.9055" posZ="10.7842" rotZ="215.2125" />
+    <vehicle model="468" posX="-240.5511" posY="2609.4597" posZ="62.4631" rotZ="182.6147" />
+    <vehicle model="470" posX="-228.8781" posY="2595.0679" posZ="62.8131" rotZ="359.1931" />
+    <vehicle model="604" posX="-173.4756" posY="2708.0059" posZ="62.5171" rotZ="2.5124" />
+    <vehicle model="605" posX="-277.6752" posY="2726.5486" posZ="62.4076" rotZ="266.6577" />
+    <vehicle model="452" posX="-430.2229" posY="1162.9980" posZ="-0.4851" rotZ="9.7545" />
+    <vehicle model="452" posX="-637.7228" posY="862.1175" posZ="-0.5644" rotZ="314.2047" />
+    <vehicle model="452" posX="-648.9202" posY="866.5754" posZ="-0.5381" rotZ="229.1254" />
+    <vehicle model="506" posX="-688.8719" posY="952.1824" posZ="11.9561" rotZ="272.5952" />
+	
+    <pickup posX="-140.2877" posY="1496.0981" posZ="21.3760" type="6" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="-137.3183" posY="1500.3707" posZ="20.3800" type="6" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="-102.5674" posY="1368.8951" posZ="10.2734" type="9" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="540.9449" posY="2358.8433" posZ="30.9870" type="10" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="553.3507" posY="2274.7832" posZ="34.4340" type="14" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="23.6597" posY="1363.0038" posZ="9.1719" type="7" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="6.1200" posY="1382.3802" posZ="9.1781" type="5" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="-21.2242" posY="1390.1115" posZ="9.1719" type="11" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="-171.3368" posY="2526.1011" posZ="26.2891" type="9" amount="1" respawn="9999999" synced="false" />
+    <!-- Chainsaw -->
+    <pickup posX="-168.2105" posY="2521.9858" posZ="25.3978" type="6" amount="1" respawn="9999999" synced="false" />
+    <!-- Shovel -->
+    <pickup posX="-88.1425" posY="1579.7565" posZ="19.9543" type="9" amount="1" respawn="9999999" synced="false" />
+    <!-- Chainsaw -->
+    <pickup posX="-93.6178" posY="1586.4666" posZ="19.5323" type="6" amount="1" respawn="9999999" synced="false" />
+    <!-- Shovel -->
+    <pickup posX="-333.0277" posY="2219.3123" posZ="42.4885" type="6" amount="1" respawn="9999999" synced="false" />
+    <!-- Shovel -->
+    <pickup posX="-335.9626" posY="2225.1255" posZ="42.4871" type="14" amount="1" respawn="9999999" synced="false" />
+    <!-- Flowers -->
+    <pickup posX="304.1429" posY="2228.8489" posZ="34.7733" type="6" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="314.1726" posY="2222.2141" posZ="35.7107" type="41" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="-590.3543" posY="2018.4451" posZ="60.3828" type="5" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="-377.7772" posY="2243.2141" posZ="42.6185" type="3" amount="1" respawn="9999999" synced="false" />
+    <!-- Nightstick(copweapon) -->
+    <pickup posX="102.0130" posY="1900.9927" posZ="33.8984" type="28" amount="150" respawn="9999999" synced="false" />
+    <!-- Uzis -->
+    <pickup posX="162.0741" posY="1934.7688" posZ="33.8984" type="28" amount="150" respawn="9999999" synced="false" />
+    <!-- Uzis -->
+    <pickup posX="-329.5251" posY="1860.5280" posZ="44.5668" type="29" amount="300" respawn="30000" synced="true" />
+    <!-- MP5 -->
+    <pickup posX="-220.5080" posY="1801.8065" posZ="103.7095" type="32" amount="100" respawn="30000" synced="true" />
+    <!-- SMG -->
+    <pickup posX="-98.1209" posY="2270.3389" posZ="122.4016" type="37" amount="300" respawn="9999999" synced="true" />
+    <!-- Flamethrower(pmspawn?) -->
+    <pickup posX="-83.6319" posY="1525.7402" posZ="17.2205" type="24" amount="50" respawn="30000" synced="true" />
+    <!-- DessertEagleontopoflonelyshack -->
+    <pickup posX="-127.1452" posY="2258.0967" posZ="28.3973" type="29" amount="300" respawn="10000" synced="true" />
+    <!-- MP5(campfire) -->
+    <pickup posX="278.0169" posY="2023.8375" posZ="17.6406" type="32" amount="100" respawn="30000" synced="true" />
+    <!-- SMG -->
+    <pickup posX="246.4423" posY="1411.0696" posZ="23.3703" type="37" amount="300" respawn="30000" synced="true" />
+    <!-- Flamethrower -->
+    <pickup posX="246.7062" posY="1385.9924" posZ="23.3750" type="37" amount="300" respawn="30000" synced="true" />
+    <!-- Flamethrower -->
+    <pickup posX="215.0238" posY="1468.0563" posZ="23.7344" type="37" amount="300" respawn="30000" synced="true" />
+    <!-- Flamethrower -->
+    <pickup posX="487.3661" posY="1535.1282" posZ="1.0032" type="24" amount="50" respawn="30000" synced="true" />
+    <!-- DesertEagle -->
+    <pickup posX="-480.4825" posY="2180.6299" posZ="41.8672" type="24" amount="50" respawn="30000" synced="true" />
+    <pickup posX="136.8696" posY="1875.2312" posZ="22.4375" type="27" amount="60" respawn="30000" synced="true" />
+    <pickup posX="-336.0703" posY="1293.3424" posZ="53.6643" type="30" amount="150" respawn="30000" synced="true" />
+    <pickup posX="-653.5152" posY="2040.8524" posZ="60.3906" type="30" amount="150" respawn="30000" synced="true" />
+    <pickup posX="-127.5074" posY="1926.5990" posZ="15.3981" type="23" amount="50" respawn="30000" synced="true" />
+    <pickup posX="-35.9747" posY="2349.6221" posZ="24.3026" type="32" amount="100" respawn="30000" synced="true" />
+    <!-- Tec-9(new) -->
+    <pickup posX="-149.8675" posY="1596.4629" posZ="17.4454" type="28" amount="100" respawn="30000" synced="true" />
+    <!-- MicroUzi -->
+    <pickup posX="-152.0274" posY="1320.9338" posZ="13.8111" type="24" amount="50" respawn="30000" synced="true" />
+    <!-- DesertEagle -->
+    <pickup posX="-249.2702" posY="1314.6149" posZ="36.9502" type="28" amount="100" respawn="30000" synced="true" />
+    <!-- MicroUzi -->
+    <pickup posX="1.5069" posY="1517.4351" posZ="12.7500" type="23" amount="50" respawn="30000" synced="true" />
+    <!-- SilencedPistol -->
+    <pickup posX="161.8201" posY="1504.1044" posZ="10.5859" type="24" amount="50" respawn="30000" synced="true" />
+    <!-- DesertEagle -->
+    <pickup posX="392.8684" posY="1430.7505" posZ="7.7917" type="32" amount="100" respawn="30000" synced="true" />
+    <!-- Tec9 -->
+    <pickup posX="548.5426" posY="2273.8989" posZ="34.7579" type="24" amount="50" respawn="30000" synced="true" />
+    <!-- DesertEagle -->
+    <pickup posX="399.8705" posY="2429.5833" posZ="16.4885" type="25" amount="60" respawn="30000" synced="true" />
+    <!-- Shotgun(regular) -->
+    <pickup posX="113.2080" posY="2406.0139" posZ="17.3938" type="30" amount="150" respawn="30000" synced="true" />
+    <!-- AK47 -->
+    <pickup posX="414.3580" posY="2533.0876" posZ="23.3131" type="27" amount="60" respawn="30000" synced="true" />
+    <!-- CombatShotgun -->
+    <pickup posX="-338.3566" posY="1985.2874" posZ="131.4921" type="37" amount="6660" respawn="200000" synced="true" />
+    <!-- Flamethrower(lotsofammo) -->
+    <pickup posX="-258.8873" posY="2042.0297" posZ="48.1047" type="32" amount="100" respawn="30000" synced="true" />
+    <!-- Tec-9 -->
+    <pickup posX="-149.3102" posY="1989.7598" posZ="30.4239" type="28" amount="100" respawn="30000" synced="true" />
+    <!-- MicroUzi -->
+    <pickup posX="-285.3163" posY="1262.9303" posZ="24.8750" type="26" amount="60" respawn="30000" synced="true" />
+    <!-- Sawnoff -->
+    <pickup posX="-56.4050" posY="1294.1333" posZ="12.1404" type="26" amount="60" respawn="30000" synced="true" />
+    <!-- Sawn-off -->
+    <pickup posX="541.1504" posY="2361.0249" posZ="33.9793" type="26" amount="60" respawn="30000" synced="true" />
+    <!-- Sawnoff -->
+    <pickup posX="605.8316" posY="2147.7361" posZ="41.3062" type="32" amount="100" respawn="30000" synced="true" />
+    <!-- Tec-9 -->
+    <pickup posX="492.0047" posY="1719.7748" posZ="11.2410" type="24" amount="50" respawn="30000" synced="true" />
+    <!-- DesertEagle -->
+    <pickup posX="165.1940" posY="1283.6234" posZ="20.7728" type="24" amount="50" respawn="30000" synced="true" />
+    <!-- DesertEagle -->
+    <pickup posX="-343.2186" posY="1546.4620" posZ="80.4334" type="26" amount="60" respawn="60000" synced="false" />
+    <!-- SAWNOFF -->
+    <pickup posX="-336.2724" posY="1595.2528" posZ="95.5666" type="27" amount="60" respawn="60000" synced="false" />
+    <!-- CombatShotgun -->
+    <pickup posX="-346.5265" posY="1584.6504" posZ="95.5346" type="28" amount="100" respawn="60000" synced="false" />
+    <!-- Uzi -->
+    <pickup posX="-357.0659" posY="1594.8313" posZ="95.5090" type="30" amount="150" respawn="60000" synced="false" />
+    <!-- AK-47 -->
+    <pickup posX="-185.0072" posY="1886.8285" posZ="115.7031" type="38" amount="300" respawn="400000" synced="true" />
+    <!-- Minigun -->
+    <pickup posX="-371.6570" posY="2128.8850" posZ="133.1797" type="38" amount="300" respawn="400000" synced="true" />
+    <!-- Minigun(newset) -->
+    <pickup posX="-347.2831" posY="1600.8020" posZ="165.7395" type="38" amount="10000" respawn="9999999" synced="true" />
+    <!-- Minigun -->
+    <pickup posX="24.0" posY="969.0" posZ="20.0" type="25" amount="50" respawn="30000" synced="true" />
+    <!-- 17Desert -->
+    <pickup posX="-639.0" posY="1181.0" posZ="13.0" type="22" amount="100" respawn="30000" synced="true" />
+    <!-- 30Desert(maybe) -->
+    <pickup posX="36.0" posY="1372.0" posZ="9.0" type="24" amount="50" respawn="30000" synced="true" />
+    <!-- 38Desert -->
+    <pickup posX="119.0" posY="2409.0" posZ="17.0" type="28" amount="120" respawn="30000" synced="true" />
+    <!-- 57Desert(maybe) -->
+    <pickup posX="-149.78" posY="1903.17" posZ="43.36" type="16" amount="15" respawn="30000" synced="true" />
+    <pickup posX="-427.36" posY="2505.86" posZ="124.30" type="35" amount="20" respawn="180000" synced="true" />
+    <pickup posX="248.47" posY="1457.66" posZ="43.09" type="36" amount="20" respawn="180000" synced="true" />
+    <pickup posX="404.99" posY="2454.69" posZ="29.63" type="34" amount="30" respawn="30000" synced="true" />
+    <pickup posX="639.30" posY="1685.29" posZ="6.99" type="18" amount="20" respawn="30000" synced="true" />
+    <pickup posX="237.88" posY="1716.71" posZ="25.53" type="31" amount="200" respawn="30000" synced="true" />
+    <pickup posX="252.0" posY="2616.0" posZ="17.0" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- 32Desert(maybe) -->
+    <pickup posX="108.48" posY="1919.29" posZ="18.56" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- 48Desert -->
+    <pickup posX="-225.6758" posY="1394.256" posZ="172.0143" type="46" amount="1" respawn="30000" synced="false" />
+    <!-- 77Desert -->
+    <pickup posX="-86.2668" posY="2267.6125" posZ="124.8475" type="46" amount="1" respawn="30000" synced="false" />
+    <!-- Parachute -->
+    <pickup posX="-361.4214" posY="1595.8302" posZ="76.4161" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- Armor -->
+    <pickup posX="-504.9502" posY="2027.8844" posZ="43.7017" type="armor" amount="100" respawn="30000" synced="false" />
+    <!-- Armour -->
+    <pickup posX="-352.3621" posY="1601.4336" posZ="164.5686" type="46" amount="1" respawn="30000" synced="false" />
+    <!-- ParachuteMaybe -->
+	
+
+    <boundarycorner posX="-634.0388" posY="2895.2231" />
+    <boundarycorner posX="251.7172" posY="2900.4526" />
+    <boundarycorner posX="874.7372" posY="2637.7559" />
+    <boundarycorner posX="921.7761" posY="2398.6565" />
+    <boundarycorner posX="918.6545" posY="1559.0461" />
+    <boundarycorner posX="946.9723" posY="724.9121" />
+    <boundarycorner posX="507.7694" posY="614.5123" />
+    <boundarycorner posX="-184.9747" posY="328.2566" />
+    <boundarycorner posX="-777.7744" posY="612.4661" />
+    <boundarycorner posX="-732.8721" posY="996.5380" />
+    <boundarycorner posX="-643.0497" posY="1300.4855" />
+    <boundarycorner posX="-575.7174" posY="1438.2563" />
+    <boundarycorner posX="-600.0096" posY="1612.9073" />
+    <boundarycorner posX="-697.2958" posY="2007.4100" />
+    <boundarycorner posX="-697.8553" posY="2115.7366" />
+    <boundarycorner posX="-661.1846" posY="2459.8916" />
+    <boundarycorner posX="-621.2362" posY="2608.1296" />
+    <teleport minX="225" minY="1869" minZ="0" maxX="230" maxY="1874" maxZ="14" message="Not allowed there." teleX="213.3158" teleY="1868.9786" teleZ="13.1406" teleRot="0" vehicles="true" interior="0" />
+	
+    <task type="mini" posX="614.88" posY="1257.94" posZ="33.78" size="15.0" time="90000" />
+    <task type="keys" posX="609.08" posY="875.71" posZ="-46" size="15.0" time="60000" />
+    <task type="hpBonus" posX="-420.45" posY="1370.42" posZ="13.00" size="15.0" time="90000" />
+    <task type="safehouse" posX="211.66" posY="1810.98" posZ="21.87" size="15.0" time="60000" />
+    <task type="medic" posX="-335.0060" posY="1054.3586" posZ="19.7392" size="15.0" time="60000" />
+    <task type="accelerateTime" posX="-263.3307" posY="2587.1316" posZ="63.5703" size="15.0" time="80000" />
+    <task type="radar" posX="266.0210" posY="2878.8621" posZ="12.7538" size="15.0" time="70000" />
+	
+    <object id="object (a51_jetdoor) (1)" model="3095" posX="268.66882324219" posY="1884.1352539063" posZ="16.065633773804" rotX="0" rotY="0" rotZ="88.840026855469" />
+</map>

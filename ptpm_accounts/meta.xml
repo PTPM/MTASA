@@ -1,0 +1,31 @@
+﻿<meta>
+	<info name="PTPM Account manager" version="1.0.1" />
+	
+	<script src="globals.lua" type="server"/>
+	<script src="globals.lua" type="client"/>
+
+	<script src="accounts.lua" type="server"/>
+	<script src="util.lua" type="server"/>
+	
+	<script src="data.lua" type="server"/>
+	<script src="stats.lua" type="server"/>
+	
+	<export function="searchDatabaseForPlayer" type="server"/>
+	
+	<export function="registerUsername" type="server"/>
+	<export function="loginUsername" type="server"/>
+	<export function="logoutPlayer" type="server"/>
+	
+	<export function="getSensitiveUserdata" type="server"/>
+	<export function="setSensitiveUserdata" type="server"/>
+	
+	<!-- -->
+	
+	<export function="setUserdata" type="server"/>
+	<export function="getUserdata" type="server"/>
+	
+	<export function="getPlayerStat" type="server"/>
+	<export function="setPlayerStat" type="server"/>
+	<export function="getPlayerStats" type="server"/>
+	<export function="savePlayerStats" type="server"/>
+</meta>

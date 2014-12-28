@@ -1,0 +1,13 @@
+﻿<meta>
+	<info author="Remp" type="map" gamemodes="ptpm" name="Factory" version="1.0" />
+	<map src="ptpm-factory.map"/>
+	<settings>
+		<setting name="*mapType" value="city" />
+		<setting name="*weathers" value="[[1,2,7,9,13,17,3,11,18,5,24]]" />
+		<setting name="*roundtime" value="[900000]" /> <!-- 15 mins -->
+		<setting name="*pmHealthBonus" value="[false]" />
+		<setting name="*medicHealthBonus" value="[false]" />
+		<setting name="*teamSpecificRadar" value="[true]" />
+		<setting name="*displayDistanceToPM" value="[true]" />
+	</settings>
+</meta>
