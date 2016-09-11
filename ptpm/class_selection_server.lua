@@ -336,7 +336,7 @@ end
 function reclassCommand( thePlayer, commandName, className )
 	if data.roundEnded then return end
 	
-	if not antiSpam( thePlayer ) then return end
+	--if not antiSpam( thePlayer ) then return end
 
 	local classID = getPlayerClassID( thePlayer )
 	if not classID then return end
@@ -436,25 +436,27 @@ function swapclass( thePlayer, commandName, otherName )
 		return outputChatBox( "You must be the Prime Minister to use this.", thePlayer, unpack( colourPersonal ) )
 	end
 	
-	local otherPlayer = getPlayerFromName( otherName )
-	if otherPlayer == nil then
-		return outputChatBox( "Usage: /swapclass <person>", thePlayer, unpack( colourPersonal ) )
-	elseif otherPlayer == false then
-		return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colourPersonal ) )
-	elseif not getPlayerClassID( otherPlayer ) then
-		return outputChatBox( "That person has not yet selected a class.", thePlayer, unpack( colourPersonal ) )
-	elseif otherPlayer == thePlayer then
-		return outputChatBox( "You are the Prime Minister.", thePlayer, unpack( colourPersonal ) )
-	elseif options.swapclass.target then
-		return outputChatBox( "You may not swapclass with two people at once.", thePlayer, unpack( colourPersonal ) )
-	end
+  if(otherName) then
+    local otherPlayer = getPlayerFromNameSection( otherName )
+    if otherPlayer == nil then
+      return outputChatBox( "Usage: /swapclass <person>", thePlayer, unpack( colourPersonal ) )
+    elseif otherPlayer == false then
+      return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colourPersonal ) )
+    elseif not getPlayerClassID( otherPlayer ) then
+      return outputChatBox( "That person has not yet selected a class.", thePlayer, unpack( colourPersonal ) )
+    elseif otherPlayer == thePlayer then
+      return outputChatBox( "You are the Prime Minister.", thePlayer, unpack( colourPersonal ) )
+    elseif options.swapclass.target then
+      return outputChatBox( "You may not swapclass with two people at once.", thePlayer, unpack( colourPersonal ) )
+    end  
 	
-	drawStaticTextToScreen( "draw", otherPlayer, "swapText", "The Prime Minister wants to swapclass with you.\nType /y to accept or /n to decline.", "screenX-340", "screenY-60", 320, 40, colourImportant, 1, "clear" )
+    drawStaticTextToScreen( "draw", otherPlayer, "swapText", "The Prime Minister wants to swapclass with you.\nType /y to accept or /n to decline.", "screenX-340", "screenY-60", 320, 40, colourImportant, 1, "clear" )
 
-	options.swapclass.target = otherPlayer
-	options.swapclass.timer = setTimer( swapclassOffer, 15000, 1, false, otherPlayer )
-	
-	outputChatBox( "Swapclass offer sent to " .. getPlayerName( otherPlayer ), thePlayer, unpack( colourPersonal ) )
+    options.swapclass.target = otherPlayer
+    options.swapclass.timer = setTimer( swapclassOffer, 15000, 1, false, otherPlayer )
+    
+    outputChatBox( "Swapclass offer sent to " .. getPlayerName( otherPlayer ), thePlayer, unpack( colourPersonal ) )
+  end
 end
 
 

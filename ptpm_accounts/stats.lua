@@ -27,7 +27,7 @@ function savePlayerStats( thePlayer, username )
 	if not username or not playerStats[thePlayer] then return false end
 	
 	local updateStr = ""
-	for column, data in pairs( playerStats[thePlayer] ) do
+	for column, data in pairs( playerStats[thePlayer] ) do    
 		if doesColumnExistOnDatabase( "playerstats", column ) and column ~= "username" then
 			local sData = tostring( data )
 			if sData == "true" then data = "1"
@@ -35,11 +35,11 @@ function savePlayerStats( thePlayer, username )
 			else data = sData
 			end
 			
-			updateStr = escapeStr( column ) .. " = '" .. escapeStr( sData ) .. "' "
+			updateStr = updateStr .. escapeStr( column ) .. " = '" .. escapeStr( sData ) .. "', "
 		end
 	end
 	
-	local result = executeSQLQuery( "UPDATE playerstats SET " .. updateStr .. "WHERE username = '" .. escapeStr( username ) .. "'" )
+	local result = executeSQLQuery( "UPDATE playerstats SET " .. string.sub(updateStr, 1, -3) .. "WHERE username = '" .. escapeStr( username ) .. "'" )
 	if result then
 		return true
 	else
@@ -54,7 +54,7 @@ function getPlayerStats( thePlayer )
 	return false
 end
 
-function setPlayerStat( thePlayer, data, value )
+function setPlayerStatistic( thePlayer, data, value )
 	local username = getSensitiveUserdata( thePlayer, "username" )
 	if not username then return false end
 	
@@ -67,7 +67,7 @@ function setPlayerStat( thePlayer, data, value )
 	return false
 end
 
-function getPlayerStat( thePlayer, data )
+function getPlayerStatistic( thePlayer, data )
 	local username = getSensitiveUserdata( thePlayer, "username" )
 	if not username then return false end
 	

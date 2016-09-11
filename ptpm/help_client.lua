@@ -28,7 +28,7 @@
 					}, 
 					{name = "Communication",
 					 children = {
-									{desc = "All <player> parameters take complete or unambiguous fragments of player nicknames.\n\n\n-  /pm <player> <message> - to send a personal message to the specified player\n\n-  /adminchat <message> (or press 'U') - to send a message directly to all admins on the server (you wont see the message, but it will be sent!)\n\n-  /me <message>\n\n-  /teamsay <message> (or press 'Y') - to send a message to your team mates"}
+									{desc = "All <player> parameters take complete or unambiguous fragments of player nicknames.\n\n\n-  /pm <player> <message> - to send a personal message to the specified player\n\n-  /me <message>\n\n-  /teamsay <message> (or press 'Y') - to send a message to your team mates"}
 								}
 					},
 					{name = "Infomation",
@@ -38,7 +38,7 @@
 					},
 					{name = "Cheaters",
 					 children = {
-									{desc = "All <player> parameters take complete or unambiguous fragments of player nicknames.\n\n\n-  /report <player> <reason> - to report a disruptive player to the admins\n\n-  /adminchat <message> (or press 'U') - to send a message directly to all admins on the server (you wont see the message, but it will be sent!)"}
+									{desc = "/report - to report a disruptive player to the admins"}
 								}
 					}					
 				}
@@ -52,25 +52,26 @@
 					},		
 					{name = "In-game",
 					 children = {
-									{desc = "If you need to contact an admin in-game use one of the following:\n\n\n- If you know them by name, simply /pm <name> <message> to speak directly to them.\n\n- /report <name> <reason> can be used to report any disruptive players to all available admins.\n\n- Pressing 'U' and typing your message will also be shown to all available admins (though you will not see it).\n\n\nAdmins will always be happy to talk to you, so feel free to speak up in the main game chat!"}
+									{desc = "If you need to contact an admin in-game use one of the following:\n\n\n- If you know them by name, simply /pm <name> <message> to speak directly to them.\n\n- /report can be used to report any disruptive players to all available admins.\n\n\nAdmins will always be happy to talk to you, so feel free to speak up in the main game chat!"}
 								}
 					}							
 				}
 	},
 	{name = "Who are we?",
 	 children = {
-					{desc = [[Protect the Prime Minister - MTA
-
+					{desc = [[Administrators:
+- Snowy (Number)
+- uhm
+- fredro
+- NUB
 					
 Scripters:
-
 - Remp
 - Awwu
 - uhm
-
+- Snowy (Number)
 
 Contributors:
-
 - Timberwolf
 - Rambopappa
 - antario
@@ -79,9 +80,7 @@ Contributors:
 - Raid
 - mattdy
 
-
 Special Thanks:
-
 - Spark]]}
 				}
 	}

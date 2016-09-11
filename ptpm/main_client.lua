@@ -309,3 +309,17 @@ function getDistanceToPM()
 		return "-No Prime Minister-"
 	end
 end
+
+addEventHandler("onClientVehicleDamage", root,
+function(attacker)
+  if attacker and getElementType(attacker) == "player" then
+      local driver = getVehicleController(source)
+      if driver then
+          local attackerTeam = getPlayerTeam(attacker)
+          local driverTeam = getPlayerTeam(driver)
+          if attackerTeam and driverTeam and attackerTeam == driverTeam and getTeamFriendlyFire(driverTeam) == false then
+              cancelEvent()
+          end
+      end
+  end
+end)

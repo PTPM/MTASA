@@ -133,7 +133,8 @@ function setPlayerClass( thePlayer, class )
 		local teamName = teamMemberName[classes[getPlayerClassID( thePlayer )].type]
 
 		if tableSize( getElementsByType( "player" ) ) <= 8 or (class and classes[class].type == "pm") then
-			outputChatBox( playerName .. " is nolonger " .. teamName .. ".", root, getPlayerColour( thePlayer ) )
+      local r, g, b = getPlayerColour( thePlayer )
+			outputChatBox( playerName .. " is nolonger " .. teamName .. ".", root, r, g, b, false )
 		end
 	end
 
@@ -168,8 +169,8 @@ function setPlayerClass( thePlayer, class )
 		currentPM = thePlayer 
 		--exports.ptpm_accounts:setPlayerAccountData(thePlayer,{["pmCount"] = ">+1"})
 		if isRunning( "ptpm_accounts" ) then
-			local pmcount = exports.ptpm_accounts:getPlayerStat( thePlayer, "pmcount" ) or 0
-			exports.ptpm_accounts:setPlayerStat( thePlayer, "pmcount", pmcount + 1 )
+			local pmcount = exports.ptpm_accounts:getPlayerStatistic( thePlayer, "pmcount" ) or 0
+			exports.ptpm_accounts:setPlayerStatistic( thePlayer, "pmcount", pmcount + 1 )
 		end
 	end
 	
@@ -179,7 +180,8 @@ function setPlayerClass( thePlayer, class )
 	sendGameText( thePlayer, string, 7000, --[[sampTextdrawColours.y]] classColours[classType], nil, 1.3, nil, nil, 3 )
 	
 	if #getElementsByType( "player" ) <= 8 or classes[class].type == "pm" then
-		outputChatBox( playerName .. " is now " .. teamName .. ".", root, getPlayerColour( thePlayer ) )
+    local r, g, b = getPlayerColour( thePlayer );
+		outputChatBox( playerName .. " is now " .. teamName .. ".", root, r, g, b, false )
 	end
 
 	-- if heligrab is running, we want to drop from the heli when we reclass
@@ -257,9 +259,9 @@ function makePlayerSpawn( thePlayer )
 	setPlayerControllable( thePlayer, true )
 	
 	-- Ignore this tricky check, required if ptpm_accounts is running
-	if isPlayerFrozen( thePlayer ) then
-		setPedFrozen( thePlayer, true )
-	end
+	--if isPlayerFrozen( thePlayer ) then
+	--	setElementFrozen( thePlayer, true )
+	--end
 	
 	createPlayerBlip( thePlayer )
 		
@@ -294,6 +296,15 @@ function makePlayerSpawn( thePlayer )
 		end
 	end
 	
+	
+	
+	classID = getPlayerClassID( thePlayer )	
+	if classes and classID and classes[classID].type == "pm" then
+		--loadBodyguards()
+		--addEventHandler("onPlayerVehicleEnter", thePlayer, onPMVehicleEnter)
+		--addEventHandler("onPlayerVehicleExit", thePlayer, onPMVehicleExit)
+	end
+	
 end
 
 
@@ -311,11 +322,30 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 		killerTeam = (getElementType(killer) == "player" and classes[getPlayerClassID( killer )].type or "")
 		
 		if killer ~= source then
+      local pmKills = getElementData(killer, "ptpm.pmKills") or 0
+      
 			if isRunning( "ptpm_accounts" ) then
-				local pmkills = exports.ptpm_accounts:getPlayerStat( killer, "pmkills" ) or 0
-				exports.ptpm_accounts:setPlayerStat( killer, "pmkills", pmkills + 1 )
-			end
+				pmKills = (exports.ptpm_accounts:getPlayerStatistic( killer, "pmkills" ) or pmKills) + 1
+				exports.ptpm_accounts:setPlayerStatistic( killer, "pmkills", pmKills )
+			else
+        pmKills = pmKills + 1
+      end
+      
+      setElementData( killer, "ptpm.score.pmKills", string.format( "%d", pmKills ) )
+      setElementData( killer, "ptpm.pmKills", pmKills, false )
 		end
+    
+    local pmLosses = getElementData( source, "ptpm.pmLosses" ) or 0
+    
+    if isRunning( "ptpm_accounts" ) then
+      pmLosses = (exports.ptpm_accounts:getPlayerStatistic( source, "pmlosses" ) or pmLosses) + 1
+      exports.ptpm_accounts:setPlayerStatistic( source, "pmlosses", pmLosses )
+    else
+      pmLosses = pmLosses + 1
+    end
+    
+    setElementData( source, "ptpm.score.pmLosses", string.format( "%d", pmLosses ) )
+    setElementData( source, "ptpm.pmLosses", pmLosses, false)
 		
 		clearTask()
 		clearObjective()
@@ -337,20 +367,40 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 			
 			everyoneViewsBody( killer, source, getElementInterior( source ) )
 			
-			if isRunning( "ptpm_accounts" ) then
-				local players = getElementsByType( "player" )
-				for _, p in ipairs( players ) do
-					if p and isElement( p ) and isPlayerActive( p ) then
-						local classID = getPlayerClassID( p )
-						if classID then
-							if classes[classID].type == "terrorist" then
-								local roundswon = exports.ptpm_accounts:getPlayerStat( p, "roundswon" ) or 0
-								exports.ptpm_accounts:setPlayerStat( p, "roundswon", roundswon + 1 )
-							end
-						end
-					end
-				end
-			end
+			
+      local players = getElementsByType( "player" )
+      for _, p in ipairs( players ) do
+        if p and isElement( p ) and isPlayerActive( p ) then
+          local classID = getPlayerClassID( p )
+          if classID then
+            if classes[classID].type == "terrorist" then
+              local roundsWon = getElementData( p, "ptpm.roundsWon" ) or 0
+              
+              if isRunning( "ptpm_accounts" ) then
+                roundsWon = (exports.ptpm_accounts:getPlayerStatistic( p, "roundswon" ) or roundsWon) + 1
+                exports.ptpm_accounts:setPlayerStatistic( p, "roundswon", roundsWon )
+              else
+                roundsWon = roundsWon + 1
+              end
+              
+              setElementData( p, "ptpm.score.roundsWon", string.format( "%d", roundsWon ) )
+              setElementData( p, "ptpm.roundsWon", roundsWon, false)
+            elseif classes[classID].type == "pm" or classes[classID].type == "bodyguard" or classes[classID].type == "police" then
+              local roundsLost = getElementData( p, "ptpm.roundsLost" ) or 0
+    
+              if isRunning( "ptpm_accounts" ) then        
+                roundsLost = (exports.ptpm_accounts:getPlayerStatistic( p, "roundslost" ) or roundsLost) + 1
+                exports.ptpm_accounts:setPlayerStatistic( p, "roundslost", roundsLost )
+              else
+                roundsLost = roundsLost + 1
+              end
+              
+              setElementData( p, "ptpm.score.roundsLost", string.format( "%d", roundsLost ) )
+              setElementData( p, "ptpm.roundsLost", roundsLost, false)
+            end
+          end
+        end
+      end
 			
 			data.roundEnded = true
 			options.endGamePrepareTimer = setTimer( endGame, 3000, 1 )
@@ -386,11 +436,11 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 		end		
 	
 		if isRunning( "ptpm_accounts" ) then
-			local beststreak = exports.ptpm_accounts:getPlayerStat( source, "beststreak" ) or 0
-			local currentstreak = getElementData( source, "ptpm.consecutiveKills" )
+			local beststreak = exports.ptpm_accounts:getPlayerStatistic( source, "beststreak" ) or 0
+			local currentstreak = getElementData( source, "ptpm.consecutiveKills" ) or 0
 			
 			if currentstreak > beststreak then
-				exports.ptpm_accounts:setPlayerStat( source, "beststreak", currentstreak )
+				exports.ptpm_accounts:setPlayerStatistic( source, "beststreak", currentstreak )
 			end
 		end
 		setElementData( source, "ptpm.consecutiveKills", 0, false )
@@ -399,19 +449,21 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 		--local deaths = exports.ptpm_accounts:getPlayerAccountData(source,"deaths")
 		--if deaths then
 		--	exports.ptpm_accounts:setPlayerAccountData(source,{["deaths"] = tonumber(deaths) + 1})
-		--end		
-		
-		local roundDeaths = getElementData( source, "ptpm.roundDeaths" )
-		roundDeaths = (roundDeaths or 0) + 1
-		setElementData( source, "ptpm.score.deaths", string.format( "%d (%d)", (deaths and deaths + 1 or 0), roundDeaths ) )
-		setElementData( source, "ptpm.roundDeaths", roundDeaths, false )
+		--end
+    
+    local deaths = getElementData( source, "ptpm.deaths" ) or 0
+    
+    if isRunning( "ptpm_accounts" ) then
+			deaths = (exports.ptpm_accounts:getPlayerStatistic( source, "deaths" ) or deaths) + 1
+			exports.ptpm_accounts:setPlayerStatistic( source, "deaths", deaths )
+		else
+      deaths = deaths + 1
+    end
+    
+		setElementData( source, "ptpm.score.deaths", string.format( "%d", deaths ) )
+		setElementData( source, "ptpm.deaths", deaths, false )
 		--playerInfo[source].roundDeaths = (playerInfo[source].roundDeaths or 0) + 1
 		--setElementData( source, "deaths", string.format("%d (%d)",(deaths and deaths + 1 or 0),playerInfo[source].roundDeaths))
-		
-		if isRunning( "ptpm_accounts" ) then
-			local deaths = exports.ptpm_accounts:getPlayerStat( source, "deaths" ) or 0
-			exports.ptpm_accounts:setPlayerStat( source, "deaths", deaths + 1 )
-		end
 		
 		
 		if killer ~= source and getElementType(killer) == "player" and classes[getPlayerClassID( killer )] then
@@ -425,25 +477,28 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 			--end	
 			
 			local consecutiveKills = getElementData( killer, "ptpm.consecutiveKills" )
-			local roundKills = getElementData( killer, "ptpm.roundKills" )
+			local kills = getElementData( killer, "ptpm.kills" ) or 0
 			
 			if isPlayerInSameTeam( source, killer ) and playerTeam ~= "psycho" then
 				consecutiveKills = consecutiveKills - 1
 				--playerInfo[killer].consecutiveKills = playerInfo[killer].consecutiveKills - 1
-			else
-				roundKills = (roundKills or 0) + 1
-				setElementData( killer, "ptpm.score.kills", string.format( "%d (%d)",(kills and kills + 1 or 0), roundKills ) )
+			else				
 				--playerInfo[killer].roundKills = (playerInfo[killer].roundKills or 0) + 1
 				--setElementData( killer, "kills", string.format("%d (%d)",(kills and kills + 1 or 0),playerInfo[killer].roundKills))
 				
 				if isRunning( "ptpm_accounts" ) then
-					local kills = exports.ptpm_accounts:getPlayerStat( killer, "kills" ) or 0
-					exports.ptpm_accounts:setPlayerStat( killer, "kills", kills + 1 )
+					kills = (exports.ptpm_accounts:getPlayerStatistic( killer, "kills" ) or kills) + 1
+					exports.ptpm_accounts:setPlayerStatistic( killer, "kills", kills )          
 					if currentPM and currentPM == killer then
-						local killsaspm = exports.ptpm_accounts:getPlayerStat( killer, "killsaspm" ) or 0
-						exports.ptpm_accounts:setPlayerStat( killer, "killsaspm", killsaspm + 1 )
+						local killsaspm = exports.ptpm_accounts:getPlayerStatistic( killer, "killsaspm" ) or 0
+						exports.ptpm_accounts:setPlayerStatistic( killer, "killsaspm", killsaspm + 1 )
 					end
-				end
+				else
+          kills = kills + 1
+        end
+                
+        setElementData( killer, "ptpm.score.kills", string.format( "%d", kills ) )
+        setElementData( killer, "ptpm.kills", kills, false )
 			end
 			
 			
@@ -495,7 +550,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 				end
 			end
 			setElementData( killer, "ptpm.consecutiveKills", consecutiveKills, false )
-			setElementData( killer, "ptpm.roundKills", roundKills, false )
+			setElementData( killer, "ptpm.kills", kills, false )
 		end	
 	--end
 	

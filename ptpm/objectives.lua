@@ -74,24 +74,52 @@ function checkObjectives( players, tick )
 				everyoneViewsBody( currentPM, currentPM, getElementInterior( currentPM ) )
 			
 				sendGameText( root, "The Prime Minister completed objectives!", 7000, classColours["pm"], nil, 1.4, nil, nil, 3 )
+        
+        local pmWins = getElementData( currentPM, "ptpm.pmWins" ) or 0
 				
 				if isRunning( "ptpm_accounts" ) then
-					local pmvictory = exports.ptpm_accounts:getPlayerStat( currentPM, "pmvictory" ) or 0
-					exports.ptpm_accounts:setPlayerStat( currentPM, "pmvictory", pmvictory + 1 )
+					pmWins = (exports.ptpm_accounts:getPlayerStatistic( currentPM, "pmvictory" ) or pmWins) + 1
+          exports.ptpm_accounts:setPlayerStatistic( currentPM, "pmvictory", pmWins )
+        else
+          pmWins = pmWins + 1
+        end
+        
+        setElementData( currentPM, "ptpm.score.pmWins", string.format( "%d", pmWins ) )
+        setElementData( currentPM, "ptpm.pmWins", pmWins, false )
 					
-					local players = getElementsByType( "player" )
-					for _, p in ipairs( players ) do
-						if p and isElement( p ) and isPlayerActive( p ) then
-							local classID = getPlayerClassID( p )
-							if classID then
-								if classes[classID].type == "pm" or classes[classID].type == "bodyguard" or classes[classID].type == "police" then
-									local roundswon = exports.ptpm_accounts:getPlayerStat( p, "roundswon" ) or 0
-									exports.ptpm_accounts:setPlayerStat( p, "roundswon", roundswon + 1 )
-								end
-							end
-						end
-					end
-				end
+        local players = getElementsByType( "player" )
+        for _, p in ipairs( players ) do
+          if p and isElement( p ) and isPlayerActive( p ) then
+            local classID = getPlayerClassID( p )
+            if classID then
+              if classes[classID].type == "pm" or classes[classID].type == "bodyguard" or classes[classID].type == "police" then
+                local roundsWon = getElementData( p, "ptpm.roundsWon" ) or 0
+      
+                if isRunning( "ptpm_accounts" ) then        
+                  roundsWon = (exports.ptpm_accounts:getPlayerStatistic( p, "roundswon" ) or roundsWon) + 1
+                  exports.ptpm_accounts:setPlayerStatistic( p, "roundswon", roundsWon )
+                else
+                  roundsWon = roundsWon + 1
+                end
+                
+                setElementData( p, "ptpm.score.roundsWon", string.format( "%d", roundsWon ) )
+                setElementData( p, "ptpm.roundsWon", roundsWon, false)
+              elseif classes[classID].type == "terrorist" then
+                local roundsLost = getElementData( p, "ptpm.roundsLost" ) or 0
+      
+                if isRunning( "ptpm_accounts" ) then        
+                  roundsLost = (exports.ptpm_accounts:getPlayerStatistic( p, "roundslost" ) or roundsLost) + 1
+                  exports.ptpm_accounts:setPlayerStatistic( p, "roundslost", roundsLost )
+                else
+                  roundsLost = roundsLost + 1
+                end
+                
+                setElementData( p, "ptpm.score.roundsLost", string.format( "%d", roundsLost ) )
+                setElementData( p, "ptpm.roundsLost", roundsLost, false)
+              end
+            end
+          end
+        end
 				
 				data.roundEnded = true
 				options.endGamePrepareTimer = setTimer( endGame, 3000, 1 )
@@ -100,24 +128,52 @@ function checkObjectives( players, tick )
 					everyoneViewsBody( currentPM, currentPM, getElementInterior( currentPM ) )
 				
 					sendGameText( root, "The Prime Minister completed objectives!", 7000, classColours["pm"], nil, 1.4, nil, nil, 3 )
+          
+          local pmWins = getElementData( currentPM, "ptpm.pmWins" ) or 0
 					
 					if isRunning( "ptpm_accounts" ) then
-						local pmvictory = exports.ptpm_accounts:getPlayerStat( currentPM, "pmvictory" ) or 0
-						exports.ptpm_accounts:setPlayerStat( currentPM, "pmvictory", pmvictory + 1 )
-						
-						local players = getElementsByType( "player" )
+            pmWins = (exports.ptpm_accounts:getPlayerStatistic( currentPM, "pmvictory" ) or pmWins) + 1
+            exports.ptpm_accounts:setPlayerStatistic( currentPM, "pmvictory", pmWins )					
+					else
+            pmWins = pmWins + 1
+          end
+          
+          setElementData( currentPM, "ptpm.score.pmWins", string.format( "%d", pmWins ) )
+          setElementData( currentPM, "ptpm.pmWins", pmWins, false)
+          
+          local players = getElementsByType( "player" )
 						for _, p in ipairs( players ) do
 							if p and isElement( p ) and isPlayerActive( p ) then
 								local classID = getPlayerClassID( p )
 								if classID then
 									if classes[classID].type == "pm" or classes[classID].type == "bodyguard" or classes[classID].type == "police" then
-										local roundswon = exports.ptpm_accounts:getPlayerStat( p, "roundswon" ) or 0
-										exports.ptpm_accounts:setPlayerStat( p, "roundswon", roundswon + 1 )
-									end
+										local roundsWon = getElementData( p, "ptpm.roundsWon" ) or 0
+                    
+                    if isRunning( "ptpm_accounts" ) then
+                      roundsWon = (exports.ptpm_accounts:getPlayerStatistic( p, "roundswon" ) or roundsWon) + 1
+                      exports.ptpm_accounts:setPlayerStatistic( p, "roundswon", roundsWon )					
+                    else
+                      roundsWon = roundsWon + 1
+                    end
+                    
+                    setElementData( p, "ptpm.score.roundsWon", string.format( "%d", roundsWon ) )
+                    setElementData( p, "ptpm.roundsWon", roundsWon, false)
+									elseif classes[classID].type == "terrorist" then
+                    local roundsLost = getElementData( p, "ptpm.roundsLost" ) or 0
+          
+                    if isRunning( "ptpm_accounts" ) then        
+                      roundsLost = (exports.ptpm_accounts:getPlayerStatistic( p, "roundslost" ) or roundsLost) + 1
+                      exports.ptpm_accounts:setPlayerStatistic( p, "roundslost", roundsLost )
+                    else
+                      roundsLost = roundsLost + 1
+                    end
+                    
+                    setElementData( p, "ptpm.score.roundsLost", string.format( "%d", roundsLost ) )
+                    setElementData( p, "ptpm.roundsLost", roundsLost, false)
+                  end
 								end
 							end
 						end
-					end
 					
 					data.roundEnded = true
 					options.endGamePrepareTimer = setTimer( endGame, 3000, 1 )

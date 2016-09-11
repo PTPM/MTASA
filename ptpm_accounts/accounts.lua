@@ -34,17 +34,22 @@ function prepareUserDatabase()
 	---- Combat
 	addColumnToDatabase( "playerstats", "kills", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "deaths", "INT UNSIGNED", 0 )
+	addColumnToDatabase( "playerstats", "damage", "BIGINT UNSIGNED", 0 )
+  addColumnToDatabase( "playerstats", "damagetaken", "BIGINT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "beststreak", "INT UNSIGNED", 0 )
-	addColumnToDatabase( "playerstats", "vehiclesdestroyed", "INT UNSIGNED", 0 )
+  addColumnToDatabase( "playerstats", "hphealed", "BIGINT UNSIGNED", 0 )
+	--addColumnToDatabase( "playerstats", "vehiclesdestroyed", "INT UNSIGNED", 0 )
 	---- Prime Minister
 	addColumnToDatabase( "playerstats", "pmcount", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "pmkills", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "pmvictory", "INT UNSIGNED", 0 )
+	addColumnToDatabase( "playerstats", "pmlosses", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "killsaspm", "INT UNSIGNED", 0 )
 	---- Rounds
 	addColumnToDatabase( "playerstats", "roundsplayed", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "roundswon", "INT UNSIGNED", 0 )
-	---- Other
+	addColumnToDatabase( "playerstats", "roundslost", "INT UNSIGNED", 0 )
+	---- Other	
 	addColumnToDatabase( "playerstats", "joindate", "BIGINT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "timeplaying", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "longestsession", "INT UNSIGNED", 0 )
@@ -229,6 +234,6 @@ end
 addEventHandler( "onResourceStop", resourceRoot, clearPlayers )
 
 function clearPlayer()
-	logoutPlayer( source, false ) -- ptpm already saves stats on player quit
+	logoutPlayer( source ) -- ptpm already saves stats on player quit
 end
 addEventHandler( "onPlayerQuit", root, clearPlayer )

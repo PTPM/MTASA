@@ -16,23 +16,21 @@ function resetPlayerColour( thePlayer )
 end
 
 
-function getPlayerColour( thePlayer )
+function getPlayerColour( thePlayer )	
 	if not getPlayerClassID( thePlayer ) then return 96, 96, 96, 0 end
-	
 	local classType = classes[getPlayerClassID( thePlayer )].type 
 	local colourR, colourG, colourB, colourA = 0, 0, 0, 255
+	--if classType == "terrorist" then
+	--	colourA = 96
+	--elseif classType == "bodyguard" then
+	--	colourA = 72
+	--elseif classType == "police" or classType == "psycho" then
+	--	colourA = 80
+	--elseif classType == "pm" and data.tasks.pmRadarTime and data.tasks.pmRadarTime > 0 then
+	--	colourA = 0
+	--end
 	
-	if classType == "terrorist" then
-		colourA = 96
-	elseif classType == "bodyguard" then
-		colourA = 72
-	elseif classType == "police" or classType == "psycho" then
-		colourA = 80
-	elseif classType == "pm" and data.tasks.pmRadarTime and data.tasks.pmRadarTime > 0 then
-		colourA = 0
-	end
-	
-	colourR, colourG, colourB = unpack( classColours[classType .. (classes[getPlayerClassID( thePlayer )].medic == true and "m" or "")] )
+	colourR, colourG, colourB = unpack( classColours[classType .. (classes[tonumber(getPlayerClassID( thePlayer ))].medic == true and "m" or "")] )
 	return colourR, colourG, colourB, colourA
 end
 
@@ -62,7 +60,6 @@ function removePlayerBlip( thePlayer )
 	setElementData( thePlayer, "ptpm.blip", nil )
 end
 
-
 -- creates a blip for the player (or if one already exists, resets it to its default colour/order)
 function createPlayerBlip( thePlayer )
 
@@ -71,13 +68,15 @@ function createPlayerBlip( thePlayer )
 	local x, y, z = getElementPosition( thePlayer )
 	local r, g, b, a = getPlayerColour( thePlayer )
 	
-	local classType, ordering = classes[getPlayerClassID( thePlayer )].type, 1
+	local classType, ordering, blipSize = classes[tonumber(getPlayerClassID( thePlayer ))].type, 1, 2
 	if classType == "psycho" or classType == "police" then ordering = 1 -- psychos and cops are least important
 	elseif classType == "terrorist" or classType == "bodyguard" then ordering = 2 -- terrorists and bodyguards are equal
-	elseif classType == "pm" then ordering = 3 -- pm is the most important
+  elseif classType == "pm" then
+    ordering = 3 -- pm is the most important
+    blipSize = 3
 	end
 
-	setElementData( thePlayer, "ptpm.blip", { r, g, b, a, ordering } )
+	setElementData( thePlayer, "ptpm.blip", { r, g, b, a, ordering, blipSize } )
 	
 	if options.teamSpecificRadar then
 		setupTeamSpecificRadar( thePlayer )
@@ -296,6 +295,18 @@ function playerHealPlayer( medic, patient, distance )
 	if medicine <= 0 then
 		return outputChatBox( "There is nothing you can do.", medic, unpack( colourPersonal ) )
 	end
+  
+  local hpHealed = getElementData( medic, "ptpm.hpHealed" ) or 0
+  
+  if isRunning( "ptpm_accounts" ) then
+    hpHealed = (exports.ptpm_accounts:getPlayerStatistic( medic, "hphealed" ) or hpHealed) + medicine*effectiveness
+    exports.ptpm_accounts:setPlayerStatistic( medic, "hphealed", hpHealed )
+  else
+    hpHealed = hpHealed + medicine*effectiveness
+  end
+  
+  setElementData( medic, "ptpm.score.hpHealed", string.format( "%d", hpHealed ) )
+  setElementData( medic, "ptpm.hpHealed", hpHealed, false )
 	
 	local text = string.format("Initial health - Medic: %.3f, Patient: %.3f, Medicine: %.3f", medicHealth, patientHealth, medicine)
 	outputChatBox( text, medic, unpack( colourPersonal ) )
@@ -475,7 +486,7 @@ addEventHandler( "onPlayerInteriorHit", root,
 					if interiorBlip then
 						destroyElement( interiorBlip )
 					end
-					interiorBlip = createBlip( x, y, z, 0, 3, r, g, b, a, 4, root )
+					interiorBlip = createBlip( x, y, z, 0, 3, r, g, b, a, 4, 99999.0, root )
 					setElementData( currentPM, "ptpm.interiorBlip", interiorBlip, false )
 					--playerInfo[currentPM].interiorBlip = createBlip( x, y, z, 0, 3, r, g, b, a, 4, root )	
 			
@@ -484,7 +495,7 @@ addEventHandler( "onPlayerInteriorHit", root,
 					
 					
 					local blip = getElementData( currentPM, "ptpm.blip" ) -- NOTE: ??
-					setElementData( currentPM, "ptpm.blip", { blip[1], blip[2], blip[3], 0, blip[5] } )	-- NOTE: ??
+					setElementData( currentPM, "ptpm.blip", { blip[1], blip[2], blip[3], 0, blip[5], blip[6] } )	-- NOTE: ??
 				-- moving back outside from an interior
 				elseif destinationInteriorID == 0 and pmInterior ~= 0 then
 				--elseif tonumber(getElementData( destinationInterior, "interior") ) == 0 and playerInfo and playerInfo[currentPM] and playerInfo[currentPM].currentInterior ~= 0 then
@@ -500,7 +511,7 @@ addEventHandler( "onPlayerInteriorHit", root,
 					--	playerInfo[currentPM].interiorBlip = nil
 						
 						local r, g, b, a = getPlayerColour( currentPM )
-						setElementData( currentPM, "ptpm.blip", { r, g, b, a, 3 } )	
+						setElementData( currentPM, "ptpm.blip", { r, g, b, a, 3, 3 } )	
 					end
 				end
 			end
@@ -623,8 +634,8 @@ function showOps( thePlayer )
 		outputChatBox( "Online operator(s): " .. sOps, thePlayer, unpack( colourPersonal ) )
 	end
 end
-addCommandHandler( "ops", showOps )
-addCommandHandler( "admins", showOps )
+--addCommandHandler( "ops", showOps )
+--addCommandHandler( "admins", showOps )
 
 
 function attach(ob1,ob2,x1,y1,z1,rx1,ry1,rz1,x2,y2,z2,rx2,ry2,rz2)
@@ -665,7 +676,8 @@ end
 
 
 function getPlayerClassID( player )
-	if player and isElement( player ) and isPlayerActive( player ) then
+	if player and isElement( player ) --and isPlayerActive( player )
+	then
 		return getElementData( player, "ptpm.classID" ) or false
 	end
 	return false
@@ -725,7 +737,7 @@ function isPlayerFrozen( player )
 		end
 		return false
 	else
-		return isPedFrozen( player )
+		return isElementFrozen( player )
 	end
 end
 
@@ -733,12 +745,12 @@ end
 function setPlayerFrozen( player, frozen )
 	if isRunning( "ptpm_accounts" ) then
 		if player and isElement( player ) and isPlayerActive( player ) then -- Note: is isPlayerActive good here?
-			setPedFrozen( player, frozen )
+			setElementFrozen( player, frozen )
 			return exports.ptpm_accounts:setSensitiveUserdata( player, "frozen", frozen ) or false
 		end
 		return false
 	else
-		return setPedFrozen( player, frozen )
+		return setElementFrozen( player, frozen )
 	end
 end
 

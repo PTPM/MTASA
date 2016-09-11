@@ -15,7 +15,7 @@ function addColumnToDatabase( database, column, definition, default )
 	
 	-- if anyone find another way to check if column exists feel free to fix
 	local exists = executeSQLQuery( "SELECT " .. escapeStr( column ) .. " FROM " .. escapeStr( database ) ) -- can't avoid the error print in server log :(
-	if not exists then
+	if type(exists) ~= "table" then
 		outputDebugString( "NOTE: Ignore 'no such column' error above, it's fixed", 0, 255, 0, 0 )
 		executeSQLQuery( "ALTER TABLE " .. escapeStr( database ) .. " ADD " .. escapeStr( column ) .. " " .. escapeStr( definition ) .. escapeStr( default ) )
 		outputServerLog( "- New column '" .. column .. "' (" .. definition .. default .. ") added to database '" .. database .. "'" )

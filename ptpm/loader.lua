@@ -99,7 +99,7 @@ function ptpmMapStart( map )
 		data.safezone[value].enabled = (getElementData( value, "enabled" ) == "true")
 		data.safezone[value].zone = createColSphere( data.safezone[value].posX, data.safezone[value].posY, data.safezone[value].posZ, data.safezone[value].exclusion/2)
 		data.safezone[value].marker = createMarker( data.safezone[value].posX, data.safezone[value].posY, data.safezone[value].posZ, "cylinder", data.safezone[value].exclusion, 0, 0, 170, 128, root )
-		data.safezone[value].blip = createBlip( data.safezone[value].posX, data.safezone[value].posY, data.safezone[value].posZ, 0, 3, 0, 0, 170, 255, 0, 999, root )
+		data.safezone[value].blip = createBlip( data.safezone[value].posX, data.safezone[value].posY, data.safezone[value].posZ, 0, 3, 0, 0, 170, 255, 0, 200, root )
 		setElementParent( data.safezone[value].marker, value )
 		setElementParent( data.safezone[value].blip, value )
 		setElementParent( data.safezone[value].zone, value )
@@ -113,8 +113,7 @@ function ptpmMapStart( map )
 	
 	local spawnGroupTable = getElementsByType( "spawngroup", runningMapRoot )
 	for _, value in ipairs( spawnGroupTable ) do
-		local classType = getElementData( value, "type" )
-
+		local classType = getElementData( value, "type" )		
 		for _, class in ipairs ( getElementsByType( "class", value ) ) do
 		    local classID = tonumber(getElementID(class))
 			classes[classID] = {}
@@ -246,7 +245,7 @@ function ptpmMapStart( map )
 		data.tasks[value].time = tonumber(getElementData( value, "time" )) or 60000
 		data.tasks[value].taskArea = createColTube( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" ))-(tonumber(getElementData( value, "size" ))/2), tonumber(getElementData( value, "size" ))/2, tonumber(getElementData( value, "size" )) )
 		data.tasks[value].marker = createMarker( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), "cylinder", tonumber(getElementData( value, "size" )), 170, 0, 0, 128, root )
-		data.tasks[value].blip = createBlip( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), 0, 3, 170, 0, 0, 255, 0, 9999, root )
+		data.tasks[value].blip = createBlip( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), 0, 3, 170, 0, 0, 255, 0, 200, root )
 		data.tasks[value].desc = getElementData( value, "desc" ) or taskDesc[taskType]
 		data.tasks[value].finishText = getElementData( value, "finishText" ) or taskFinishText[taskType]
 		
@@ -467,10 +466,11 @@ function ptpmMapStart( map )
 			options.playerPrepareTimer = nil
 		end,
 	4000, 1, currentPlayers )
+	
+	--loadMapBots(map)
 
 end
 addEventHandler( "onGamemodeMapStart", root, ptpmMapStart )
-
 -- compcheck
 addEvent( "onGamemodeMapStop", false )
 function ptpmMapStop( map )
@@ -612,12 +612,12 @@ function resetPlayer( thePlayer )
 		local sessionjoin = getElementData( thePlayer, "ptpm.sessionjoin" ) or now
 		local sessionlength = now - sessionjoin
 		
-		local timeplaying = exports.ptpm_accounts:getPlayerStat( thePlayer, "timeplaying" ) or 0
-		exports.ptpm_accounts:setPlayerStat( thePlayer, "timeplaying", timeplaying + sessionlength )
+		local timeplaying = exports.ptpm_accounts:getPlayerStatistic( thePlayer, "timeplaying" ) or 0
+		exports.ptpm_accounts:setPlayerStatistic( thePlayer, "timeplaying", timeplaying + sessionlength )
 		
-		local longestsession = exports.ptpm_accounts:getPlayerStat( thePlayer, "longestsession" ) or 0
+		local longestsession = exports.ptpm_accounts:getPlayerStatistic( thePlayer, "longestsession" ) or 0
 		if sessionlength > longestsession then
-			exports.ptpm_accounts:setPlayerStat( thePlayer, "longestsession", sessionlength )
+			exports.ptpm_accounts:setPlayerStatistic( thePlayer, "longestsession", sessionlength )
 		end
 	end
 	

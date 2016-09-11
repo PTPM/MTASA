@@ -8,8 +8,8 @@ addEventHandler( "onClientAvailable", localPlayer,
 		for _, p in ipairs( getElementsByType( "player" ) ) do
 			if p and isElement( p ) then
 				local b = getElementData( p, "ptpm.blip" )
-				if b then				
-					playerBlips[p] = createBlipAttachedTo( p, 0, 2, b[1], b[2], b[3], b[4], b[5] )
+				if b then          
+					playerBlips[p] = createBlipAttachedTo( p, 0, b[6], b[1], b[2], b[3], b[4], b[5] )
 				end
 			end
 		end
@@ -24,13 +24,14 @@ addEventHandler( "onClientElementDataChange", root,
 			-- create blip
 			if not oldValue and newValue then
 				if not playerBlips[source] then
-					playerBlips[source] = createBlipAttachedTo( source, 0, 2, newValue[1], newValue[2], newValue[3], newValue[4], newValue[5] )
+					playerBlips[source] = createBlipAttachedTo( source, 0, newValue[6], newValue[1], newValue[2], newValue[3], newValue[4], newValue[5] )
 				end
 			-- update data
 			elseif oldValue and newValue then
 				if playerBlips[source] then
 					setBlipColor( playerBlips[source], newValue[1], newValue[2], newValue[3], newValue[4] )
 					setBlipOrdering( playerBlips[source], newValue[5] )
+          setBlipSize( playerBlips[source], newValue[6] )
 				end
 			-- delete blip
 			else

@@ -35,14 +35,14 @@ function endGame()
 	if isRunning( "ptpm_accounts" ) then
 		for _, p in ipairs( getElementsByType( "player" ) ) do
 			if p and isElement( p ) and isPlayerActive( p ) then
-				local beststreak = exports.ptpm_accounts:getPlayerStat( p, "beststreak" ) or 0
-				local currentstreak = getElementData( p, "ptpm.consecutiveKills" )
+				local beststreak = exports.ptpm_accounts:getPlayerStatistic( p, "beststreak" ) or 0
+				local currentstreak = getElementData( p, "ptpm.consecutiveKills" ) or 0
 				if currentstreak > beststreak then
-					exports.ptpm_accounts:setPlayerStat( p, "beststreak", currentstreak )
+					exports.ptpm_accounts:setPlayerStatistic( p, "beststreak", currentstreak )
 				end
 				
-				local roundsplayed = exports.ptpm_accounts:getPlayerStat( p, "roundsplayed" ) or 0
-				exports.ptpm_accounts:setPlayerStat( p, "roundsplayed", roundsplayed + 1 )
+				local roundsplayed = exports.ptpm_accounts:getPlayerStatistic( p, "roundsplayed" ) or 0
+				exports.ptpm_accounts:setPlayerStatistic( p, "roundsplayed", roundsplayed + 1 )
 			end
 		end
 	end

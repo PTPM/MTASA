@@ -24,8 +24,8 @@
 	<export function="setUserdata" type="server"/>
 	<export function="getUserdata" type="server"/>
 	
-	<export function="getPlayerStat" type="server"/>
-	<export function="setPlayerStat" type="server"/>
+	<export function="getPlayerStatistic" type="server"/>
+	<export function="setPlayerStatistic" type="server"/>
 	<export function="getPlayerStats" type="server"/>
 	<export function="savePlayerStats" type="server"/>
 </meta>

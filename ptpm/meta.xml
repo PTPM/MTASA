@@ -12,6 +12,8 @@
 	<script src="player_spawn.lua" type="server"/>
 	<script src="endgame.lua" type="server"/>
 	
+	
+	
 	<script src="admin.lua" type="server"/>
 	
 	<script src="id.lua" type="server"/>
@@ -31,6 +33,8 @@
 	
 	<script src="blips_client.lua" type="client"/>
 	<script src="help_client.lua" type="client"/>
+	<script src="bots_client.lua" type="client"/>
+	<script src="bots.lua" type="server"/>
 
 	<!--
 	<script src="admin_gui_server.lua" type="server"/>
@@ -73,6 +77,8 @@
 	<include resource="interiors" />
 	<include resource="parachute" />
 	<include resource="realdriveby" />
+	
+	<export function="getPlayerColour" type="server"/>
 	
 	<!-- Gameplay (download) -->
 	<!--<include resource="heligrab" />-->

@@ -76,7 +76,7 @@ function camOff( thePlayer )
 	--playerInfo[thePlayer].currentCameraID = nil
 	--playerInfo[thePlayer].gettingOffCamera = true
 	
-	setElementPosition( thePlayer, 	data.cameraMounts[activeCamera].posX,
+	setElementPosition( thePlayer, 	data.cameraMounts[activeCamera].posX + 3,
 									data.cameraMounts[activeCamera].posY,
 									data.cameraMounts[activeCamera].posZ )
 	setCameraTarget( thePlayer, thePlayer )
