@@ -120,26 +120,26 @@
     <!-- sparrow1 -->
     <vehicle model="447" posX="1568.8612" posY="-1238.7914" posZ="277.8883" rotZ="49.2131" color="75 2" safezone_excluded="true" />
     <!-- sparrow2 -->
-    <vehicle model="497" posX="1987" posY="-2286.9893" posZ="13.8119" rotZ="85.8866" color="0 1" />
-    <vehicle model="497" posX="1987" posY="-2314.5679" posZ="13.8119" rotZ="86.7669" color="0 1" />
-    <vehicle model="497" posX="1992" posY="-2400" posZ="13.8119" rotZ="90.2958" color="0 1" />
-    <vehicle model="497" posX="1992" posY="-2375" posZ="13.8119" rotZ="77.8665" color="0 1" />
+    <vehicle model="497" posX="1987" posY="-2286.9893" posZ="13.8119" rotZ="85.8866" color="0 1" safezone_excluded="true" />
+    <vehicle model="497" posX="1987" posY="-2314.5679" posZ="13.8119" rotZ="86.7669" color="0 1" safezone_excluded="true" />
+    <vehicle model="497" posX="1992" posY="-2400" posZ="13.8119" rotZ="90.2958" color="0 1" safezone_excluded="true" />
+    <vehicle model="497" posX="1992" posY="-2375" posZ="13.8119" rotZ="77.8665" color="0 1" safezone_excluded="true" />
     <!-- policemav -->
-    <vehicle model="497" posX="1992" posY="-2350" posZ="13.8119" rotZ="94.8186" color="0 1" />
+    <vehicle model="497" posX="1992" posY="-2350" posZ="13.8119" rotZ="94.8186" color="0 1" safezone_excluded="true" />
     <!-- policemav2 -->
-    <vehicle model="519" posX="1596.1857" posY="-2450" posZ="14.5548" rotZ="0.0000" color="1 1" />
+    <vehicle model="519" posX="1596.1857" posY="-2450" posZ="14.5548" rotZ="0.0000" color="1 1" safezone_excluded="true" />
     <!-- shamal -->
-    <vehicle model="519" posX="1559.7833" posY="-2450" posZ="14.5548" rotZ="0.0000" color="1 1" />
+    <vehicle model="519" posX="1559.7833" posY="-2450" posZ="14.5548" rotZ="0.0000" color="1 1" safezone_excluded="true" />
     <!-- shamal -->
-    <vehicle model="476" posX="1516.4668" posY="-2455" posZ="14.7248" rotZ="359.9142" color="7 6" />
+    <vehicle model="476" posX="1516.4668" posY="-2455" posZ="14.7248" rotZ="359.9142" color="7 6" safezone_excluded="true" />
     <!-- rustler -->
-    <vehicle model="476" posX="1486.6560" posY="-2455" posZ="14.7248" rotZ="359.9445" color="1 6" />
+    <vehicle model="476" posX="1486.6560" posY="-2455" posZ="14.7248" rotZ="359.9445" color="1 6" safezone_excluded="true" />
     <!-- rustler -->
-    <vehicle model="511" posX="1457.6503" posY="-2446.1963" posZ="15.0706" rotZ="0.0000" color="4 90" />
+    <vehicle model="511" posX="1457.6503" posY="-2446.1963" posZ="15.0706" rotZ="0.0000" color="4 90" safezone_excluded="true" />
     <!-- beagle -->
-    <vehicle model="511" posX="1442.9895" posY="-2493.7166" posZ="15.0706" rotZ="270.0598" color="7 68" />
+    <vehicle model="511" posX="1442.9895" posY="-2493.7166" posZ="15.0706" rotZ="270.0598" color="7 68" safezone_excluded="true" />
     <!-- beaglerunway -->
-    <vehicle model="577" posX="1470.1775" posY="-2593.4873" posZ="13.6216" rotZ="269.6879" color="8 7" />
+    <vehicle model="577" posX="1470.1775" posY="-2593.4873" posZ="13.6216" rotZ="269.6879" color="8 7" safezone_excluded="true" />
     <!-- massivefuckingplane -->
     <vehicle model="608" posX="1489.0352" posY="-2590" posZ="14.1199" rotZ="180.2330" color="1 76" />
     <!-- stairsforplane -->

@@ -146,7 +146,7 @@
     <!-- Pattt -->
     <vehicle model="470" posX="160.9952" posY="1905.5656" posZ="18.8236" rotZ="354.6314" />
     <!-- Patrrr -->
-    <vehicle model="512" posX="226.0780" posY="1912.1439" posZ="18.2746" rotZ="88.5602" />
+    <vehicle model="512" posX="226.0780" posY="1912.1439" posZ="18.2746" rotZ="88.5602" safezone_excluded="true" />
     <!-- Croppy -->
     <vehicle model="605" posX="-306.4304" posY="1321.1613" posZ="54.1605" rotZ="71.6058" />
     <!-- Vejoc -->
@@ -298,9 +298,9 @@
     <!-- armytruck -->
     <vehicle model="470" posX="190.1387" posY="1902.3572" posZ="17.7506" rotZ="1.4542" />
     <!-- patriot -->
-    <vehicle model="512" posX="222.9974" posY="1877.2621" posZ="18.2746" rotZ="349.3912" />
+    <vehicle model="512" posX="222.9974" posY="1877.2621" posZ="18.2746" rotZ="349.3912" safezone_excluded="true" />
     <!-- duster -->
-    <vehicle model="512" posX="225.3865" posY="1890.0095" posZ="18.2746" rotZ="349.4016" />
+    <vehicle model="512" posX="225.3865" posY="1890.0095" posZ="18.2746" rotZ="349.4016" safezone_excluded="true" />
     <!-- duster -->
     <vehicle model="468" posX="-210.1860" posY="1910.3212" posZ="39.2012" rotZ="148.5330" />
     <!-- sanchez -->
@@ -533,7 +533,7 @@
     <!-- flat -->
     <vehicle model="406" posX="695.3762" posY="828.2486" posZ="-29.4336" rotZ="238.9176" color="1 1" />
     <!-- dum -->
-    <vehicle id="desert_crashed_plane" model="577" posX="-158.2105" posY="2269.3345" posZ="400" rotZ="304.3342" />
+    <vehicle id="desert_crashed_plane" model="577" posX="-158.2105" posY="2269.3345" posZ="400" rotZ="304.3342" safezone_excluded="true" />
     <!-- crashedplane -->
     <vehicle model="468" posX="260.4699" posY="2890.9055" posZ="10.7842" rotZ="215.2125" />
     <vehicle model="468" posX="-240.5511" posY="2609.4597" posZ="62.4631" rotZ="182.6147" />

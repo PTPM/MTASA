@@ -88,9 +88,9 @@
     <vehicle id="vehicle (Buffalo) (1)" paintjob="0" model="402" plate="8V8VSQ7" interior="0" dimension="0" posX="-2815.9453" posY="-1512.4061" posZ="139.2291" rotZ="272.2700" />
     <vehicle id="vehicle (Buffalo) (2)" paintjob="0" model="402" plate="8S10TOZ" interior="0" dimension="0" posX="-2815.9370" posY="-1536.1644" posZ="139.2291" rotZ="277.8143" />
     <vehicle id="vehicle (Buffalo) (3)" paintjob="0" model="402" plate="N80QVE4" interior="0" dimension="0" posX="-2815.3403320313" posY="-1506.3225097656" posZ="139.22909545898" rotX="0" rotY="0" rotZ="268.9072265625" />
-    <vehicle id="vehicle (Leviathan) (1)" paintjob="0" model="417" plate="58NOSQ2" interior="0" dimension="0" posX="-2390.6204" posY="-2204.1663" posZ="33.3788" rotZ="117.7673" />
-    <vehicle id="vehicle (Cargobob) (1)" paintjob="0" model="548" plate="48SDC1A" interior="0" dimension="0" posX="-1885.5654296875" posY="-1533.38671875" posZ="23.650100708008" rotX="0" rotY="0" rotZ="173.78723144531" />
-    <vehicle id="vehicle (Cargobob) (2)" paintjob="0" model="548" plate="GT2LDXU" interior="0" dimension="0" posX="-1827.62890625" posY="-1572.0693359375" posZ="23.650100708008" rotX="0" rotY="0" rotZ="121.49230957031" />
+    <vehicle id="vehicle (Leviathan) (1)" paintjob="0" model="417" plate="58NOSQ2" interior="0" dimension="0" posX="-2390.6204" posY="-2204.1663" posZ="33.3788" rotZ="117.7673" safezone_excluded="true" />
+    <vehicle id="vehicle (Cargobob) (1)" paintjob="0" model="548" plate="48SDC1A" interior="0" dimension="0" posX="-1885.5654296875" posY="-1533.38671875" posZ="23.650100708008" rotX="0" rotY="0" rotZ="173.78723144531" safezone_excluded="true" />
+    <vehicle id="vehicle (Cargobob) (2)" paintjob="0" model="548" plate="GT2LDXU" interior="0" dimension="0" posX="-1827.62890625" posY="-1572.0693359375" posZ="23.650100708008" rotX="0" rotY="0" rotZ="121.49230957031" safezone_excluded="true" />
     <vehicle id="vehicle (Monster 1) (1)" paintjob="0" model="444" plate="Q6T8B12" interior="0" dimension="0" posX="-1990.9423828125" posY="-1454.939453125" posZ="88.081497192383" rotX="354.04504394531" rotY="3.969970703125" rotZ="141.16333007813" />
     <vehicle id="vehicle (Monster 1) (2)" paintjob="0" model="444" plate="84CSOC2" interior="0" dimension="0" posX="-1983.23046875" posY="-1459.712890625" posZ="87.54419708252" rotX="0" rotY="0" rotZ="120.89904785156" />
     <vehicle id="vehicle (Monster 1) (3)" paintjob="0" model="444" plate="3Q2MONZ" interior="0" dimension="0" posX="-1982.142578125" posY="-1469.33984375" posZ="87.153198242188" rotX="0" rotY="0" rotZ="100.93139648438" />
@@ -159,13 +159,13 @@
     <vehicle id="vehicle (Coach) (1)" paintjob="0" model="437" plate="G7MY3TC" interior="0" dimension="0" posX="-2605.8606" posY="-1273.6674" posZ="218.7426" rotZ="3.9074" />
     <vehicle id="vehicle (Clover) (2)" paintjob="0" model="542" plate="X7MI6C3" interior="0" dimension="0" posX="-2553.5691" posY="-1105.9164" posZ="175.3665" rotZ="179.9735" />
     <vehicle id="vehicle (Stallion) (2)" paintjob="0" model="439" plate="A5UQ6VE" interior="0" dimension="0" posX="-2703.5315" posY="-1289.5621" posZ="152.5028" rotZ="137.3071" />
-    <vehicle id="vehicle (Police Maverick) (1)" paintjob="0" model="497" plate="RZTHLZW" interior="0" dimension="0" posX="-2774.0544" posY="-1286.4609" posZ="124.5967" rotZ="39.2780" />
-    <vehicle id="vehicle (Police Maverick) (2)" paintjob="0" model="497" plate="ED3AYQW" interior="0" dimension="0" posX="-2474.6621" posY="-1096.1312" posZ="138.1811" rotZ="313.2358" />
+    <vehicle id="vehicle (Police Maverick) (1)" paintjob="0" model="497" plate="RZTHLZW" interior="0" dimension="0" posX="-2774.0544" posY="-1286.4609" posZ="124.5967" rotZ="39.2780" safezone_excluded="true" />
+    <vehicle id="vehicle (Police Maverick) (2)" paintjob="0" model="497" plate="ED3AYQW" interior="0" dimension="0" posX="-2474.6621" posY="-1096.1312" posZ="138.1811" rotZ="313.2358" safezone_excluded="true" />
     <vehicle id="vehicle (Glendale) (2)" paintjob="0" model="466" plate="MYSORPW" interior="0" dimension="0" posX="-2362.5823" posY="-1154.0608" posZ="173.9808" rotZ="306.7439" />
-    <vehicle id="vehicle (Maverick) (1)" paintjob="0" model="487" plate="58LTI6Z" interior="0" dimension="0" color="126,1,1,0" posX="-2816.529296875" posY="-1521.2763671875" posZ="147.03840637207" rotX="0" rotY="0" rotZ="180.09338378906" />
+    <vehicle id="vehicle (Maverick) (1)" paintjob="0" model="487" plate="58LTI6Z" interior="0" dimension="0" color="126,1,1,0" posX="-2816.529296875" posY="-1521.2763671875" posZ="147.03840637207" rotX="0" rotY="0" rotZ="180.09338378906" safezone_excluded="true" />
     <vehicle id="vehicle (Sandking) (2)" paintjob="0" model="495" plate="0VCR50D" interior="0" dimension="0" posX="-2711.8933" posY="-1614.2540" posZ="239.9628" rotZ="349.7456" />
-    <vehicle id="vehicle (Police Maverick) (3)" paintjob="0" model="497" plate="HSS7XCK" interior="0" dimension="0" posX="-2411.9590" posY="-2219.1670" posZ="33.5541" rotZ="326.0417" />
-    <vehicle id="vehicle (Police Maverick) (4)" paintjob="0" model="497" plate="ZD9FJGX" interior="0" dimension="0" posX="-2363.5859" posY="-2177.6099" posZ="33.9019" rotZ="264.7794" />
+    <vehicle id="vehicle (Police Maverick) (3)" paintjob="0" model="497" plate="HSS7XCK" interior="0" dimension="0" posX="-2411.9590" posY="-2219.1670" posZ="33.5541" rotZ="326.0417" safezone_excluded="true" />
+    <vehicle id="vehicle (Police Maverick) (4)" paintjob="0" model="497" plate="ZD9FJGX" interior="0" dimension="0" posX="-2363.5859" posY="-2177.6099" posZ="33.9019" rotZ="264.7794" safezone_excluded="true" />
     <vehicle id="vehicle (Feltzer) (2)" paintjob="0" model="533" plate="I2CYFEQ" interior="0" dimension="0" posX="-2768.3931" posY="-1698.3556" posZ="141.3911" rotZ="157.8846" />
     <vehicle id="vehicle (Dumper) (4)" paintjob="0" model="406" plate="F80L2UJ" interior="0" dimension="0" posX="-2783.2685546875" posY="-1774.1357421875" posZ="142.9630279541" rotZ="167.99743652344" rotX="0" rotY="0" />
     <vehicle id="vehicle (Mountain Bike) (5)" paintjob="0" model="510" plate="D3THUPL" interior="0" dimension="0" posX="-2665.6899" posY="-1998.3688" posZ="90.0705" rotZ="184.0617" />
@@ -247,8 +247,8 @@
     <vehicle id="vehicle (Patriot) (8)" paintjob="0" model="470" plate="3CF7I4D" interior="0" dimension="0" posX="-1720.3026" posY="-1919.9163" posZ="99.3501" rotZ="99.5456" />
     <vehicle id="vehicle (BF Injection) (8)" paintjob="0" model="424" plate="89E557W" interior="0" dimension="0" posX="-1487.8038" posY="-2176.7732" posZ="1.6579" rotZ="170.4320" />
     <vehicle id="vehicle (Rhino) (1)" paintjob="0" model="432" plate="FTAJ0MP" interior="0" dimension="0" posX="-2346.1594" posY="-1611.3301" posZ="483.7525" rotZ="220.7568" />
-    <vehicle id="vehicle (Rustler) (6)" paintjob="0" model="476" plate="3SY5LRW" interior="0" dimension="0" posX="-2913.4541015625" posY="-1279.509765625" posZ="12.342000007629" rotX="0" rotY="0" rotZ="170.91979980469" />
-    <vehicle id="vehicle (Rustler) (7)" paintjob="0" model="476" plate="IF5EBQ6" interior="0" dimension="0" posX="-2858.0154" posY="-1979.7379" posZ="39.1694" rotZ="210.8610" />
+    <vehicle id="vehicle (Rustler) (6)" paintjob="0" model="476" plate="3SY5LRW" interior="0" dimension="0" posX="-2913.4541015625" posY="-1279.509765625" posZ="12.342000007629" rotX="0" rotY="0" rotZ="170.91979980469" safezone_excluded="true" />
+    <vehicle id="vehicle (Rustler) (7)" paintjob="0" model="476" plate="IF5EBQ6" interior="0" dimension="0" posX="-2858.0154" posY="-1979.7379" posZ="39.1694" rotZ="210.8610" safezone_excluded="true" />
     <vehicle id="vehicle (Buffalo) (9)" paintjob="0" model="402" plate="2L4NL61" interior="0" dimension="0" color="30 30" posX="-2245.3557" posY="-1737.0740" posZ="479.8342" rotZ="14.1842" />
     <vehicle id="vehicle (Monster 1) (9)" paintjob="0" model="444" plate="AZOS24B" interior="0" dimension="0" color="32 53" posX="-1795.8589" posY="-2344.1697" posZ="34.8878" rotZ="156.9109" />
     <vehicle id="vehicle (Monster 1) (10)" paintjob="0" model="444" plate="2HPXQ68" interior="0" dimension="0" color="32 53" posX="-1865.8369" posY="-2650.0090" posZ="54.6716" rotZ="258.8762" />
@@ -287,7 +287,7 @@
     <vehicle id="vehicle (Squalo) (4)" paintjob="3" model="446" plate="CAHW 5UN" interior="0" dimension="0" posX="-1255.9743652344" posY="-1957.5642089844" posZ="0" rotX="0" rotY="0" rotZ="124.77893066406" />
     <vehicle id="vehicle (Squalo) (5)" paintjob="3" model="446" plate="W925 JPC" interior="0" dimension="0" posX="-1208.0708007813" posY="-1978.9552001953" posZ="0" rotX="0" rotY="0" rotZ="172.50708007813" />
     <vehicle id="vehicle (Squalo) (6)" paintjob="3" model="446" plate="OW2T 0Z2" interior="0" dimension="0" posX="-1214.044921875" posY="-1981.8878173828" posZ="0" rotX="0" rotY="0" rotZ="172.50183105469" />
-    <vehicle id="vehicle (Raindance) (1)" paintjob="3" model="563" plate="98NS EII" interior="0" dimension="0" posX="-1220.4270019531" posY="-1979.5775146484" posZ="31.488414764404" rotX="0" rotY="0" rotZ="123.60974121094" />
+    <vehicle id="vehicle (Raindance) (1)" paintjob="3" model="563" plate="98NS EII" interior="0" dimension="0" posX="-1220.4270019531" posY="-1979.5775146484" posZ="31.488414764404" rotX="0" rotY="0" rotZ="123.60974121094" safezone_excluded="true" />
 
     <vehicle id="vehicle (Squalo) (7)" paintjob="3" model="446" plate="8GF8 BDM" interior="0" dimension="0" posX="-1170.3928222656" posY="-2881.6098632813" posZ="0" rotX="0" rotY="0" rotZ="242.61547851563" />
     <vehicle id="vehicle (Squalo) (8)" paintjob="3" model="446" plate="HPYB 6M5" interior="0" dimension="0" posX="-1170.951171875" posY="-2890.0478515625" posZ="0" rotX="0" rotY="0" rotZ="242.61108398438" />
@@ -298,8 +298,8 @@
     <vehicle id="vehicle (Squalo) (13)" paintjob="3" model="446" plate="8ARM LR2" interior="0" dimension="0" posX="-2826.0627441406" posY="-2516.4135742188" posZ="0" rotX="0" rotY="0" rotZ="61.979370117188" />
     <vehicle id="vehicle (Squalo) (14)" paintjob="3" model="446" plate="BUDS 66G" interior="0" dimension="0" posX="-2655.3544921875" posY="-2178.8547363281" posZ="0" rotX="0" rotY="0" rotZ="91.8896484375" />
     <vehicle id="vehicle (Dumper) (4)" paintjob="0" model="406" plate="F80L2UJ" interior="0" dimension="0" posX="-2328.0173339844" posY="-1672.7481689453" posZ="484.70907592773" rotZ="277.66735839844" rotX="0" rotY="0" />
-    <vehicle id="vehicle (Rustler) (6)" paintjob="0" model="476" plate="3SY5LRW" interior="0" dimension="0" posX="-2910.4038085938" posY="-1296.1491699219" posZ="12.342000007629" rotX="0" rotY="0" rotZ="170.91979980469" />
-    <vehicle id="vehicle (Rustler) (6)" paintjob="0" model="476" plate="3SY5LRW" interior="0" dimension="0" posX="-2907.1430664063" posY="-1313.072265625" posZ="12.342000007629" rotX="0" rotY="0" rotZ="172.90478515625" />
+    <vehicle id="vehicle (Rustler) (6)" paintjob="0" model="476" plate="3SY5LRW" interior="0" dimension="0" posX="-2910.4038085938" posY="-1296.1491699219" posZ="12.342000007629" rotX="0" rotY="0" rotZ="170.91979980469" safezone_excluded="true" />
+    <vehicle id="vehicle (Rustler) (6)" paintjob="0" model="476" plate="3SY5LRW" interior="0" dimension="0" posX="-2907.1430664063" posY="-1313.072265625" posZ="12.342000007629" rotX="0" rotY="0" rotZ="172.90478515625" safezone_excluded="true" />
 
 	
 	<pickup id="pickup (Parachute) (1)" type="46" interior="0" amount="1" respawn="30000" dimension="0" posX="-2237.1941" posY="-1710.5507" posZ="480.8812" synced="false" />
