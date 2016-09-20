@@ -453,15 +453,25 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
     
     local deaths = getElementData( source, "ptpm.deaths" ) or 0
     
-    if isRunning( "ptpm_accounts" ) then
-			deaths = (exports.ptpm_accounts:getPlayerStatistic( source, "deaths" ) or deaths) + 1
-			exports.ptpm_accounts:setPlayerStatistic( source, "deaths", deaths )
-		else
-      deaths = deaths + 1
+	
+	-- fixes annoying case when you get killed in accident after pm dies (by fredro & snowy)
+	if killer == source and data.roundEnded == true and classes[getPlayerClassID( killer )].type ~= "pm" then
+      -- do nothing, it was an accident that the player couldn't prevent
+    else    
+      local deaths = getElementData( source, "ptpm.deaths" ) or 0
+      
+      if isRunning( "ptpm_accounts" ) then
+        deaths = (exports.ptpm_accounts:getPlayerStatistic( source, "deaths" ) or deaths) + 1
+        exports.ptpm_accounts:setPlayerStatistic( source, "deaths", deaths )
+      else
+        deaths = deaths + 1
+      end
+      
+      setElementData( source, "ptpm.score.deaths", string.format( "%d", deaths ) )
+      setElementData( source, "ptpm.deaths", deaths, false )      
     end
-    
-		setElementData( source, "ptpm.score.deaths", string.format( "%d", deaths ) )
-		setElementData( source, "ptpm.deaths", deaths, false )
+	
+	
 		--playerInfo[source].roundDeaths = (playerInfo[source].roundDeaths or 0) + 1
 		--setElementData( source, "deaths", string.format("%d (%d)",(deaths and deaths + 1 or 0),playerInfo[source].roundDeaths))
 		
