@@ -33,8 +33,14 @@
 	
 	<script src="blips_client.lua" type="client"/>
 	<script src="help_client.lua" type="client"/>
-	<script src="bots_client.lua" type="client"/>
-	<script src="bots.lua" type="server"/>
+	
+	<!--<script src="bots_client.lua" type="client"/>
+	<script src="bots.lua" type="server"/>-->
+	
+	<script src="ptpmAI_client.lua" type="client"/>
+	<script src="ptpmAI_server.lua" type="server"/>
+	
+	
 
 	<!--
 	<script src="admin_gui_server.lua" type="server"/>
@@ -77,6 +83,7 @@
 	<include resource="interiors" />
 	<include resource="parachute" />
 	<include resource="realdriveby" />
+	<include resource="slothbot" />
 	
 	<export function="getPlayerColour" type="server"/>
 	
