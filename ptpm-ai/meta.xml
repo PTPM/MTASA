@@ -1,5 +1,5 @@
 <meta>
-	<info author="Slothman" name="Slothbot" version="2.7" type="script" edf:definition="edf/Slothbot.edf"/>>
+	<info author="uhm" type="script" name="PTPM AI" description="Spice up your PTPM experience by adding highly intelligent AI!" version="0.1"  edf:definition="edf/Slothbot.edf"/>
 	<file src="edf/flag/flag.png" />
 	<file src="edf/flag/goflagx.txd"/>
 	<file src="edf/flag/kmb_goflag.col"/>
@@ -7,6 +7,9 @@
 
 	<script src="sbclient.lua" type="client"/>
 	<script src="sbserver.lua"/>
+	
+	<script src="ptpm_ai_implementation_client.lua" type="client"/>
+	<script src="ptpm_ai_implementation_server.lua"/>
 
 	<export function="spawnBot" type="server"/>
 	<export function="setBotHunt" type="server"/>
@@ -25,3 +28,11 @@
 	<export function="getTimers" type="client"/>
 
 </meta>
+
+
+<!--
+	Original author: "uhm" from the PTPM and MTASA Community 
+	Date: 24 September 2016
+	Description: Implementation of Slothbot MTA AI for PTPM
+	Released under MIT License ©2016 uhm
+-->
