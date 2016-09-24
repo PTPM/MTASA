@@ -47,7 +47,7 @@
 	 children = {
 					{name = "Website/IRC",
 					 children = {
-									{desc = "If you want to contact us about anything try one of the following:\n\nWebsite: http://sparksptpm.co.uk/\n\nIRC: connect to irc.gtanet.com on port 6667 and join the channel #ptpm"}
+									{desc = "If you want to contact us about anything try one of the following:\n\nWebsite: https://ptpm.uk/\n\nIRC: connect to irc.gtanet.com on port 6667 and join the channel #ptpm"}
 								}
 					},		
 					{name = "In-game",
