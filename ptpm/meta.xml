@@ -1,5 +1,12 @@
 ﻿<meta>
-	<info name="Protect the Prime Minister" type="gamemode" version="1.1" />
+	<info name="Protect the Prime Minister" type="gamemode" version="1.2" />
+	
+	 <settings>
+         <setting name="*maxAI" value="30" friendlyname="Max AI" desc="AIs will be replaced by actual players as they join" />
+     </settings>
+	
+	
+	
 	
 	<script src="globals.lua" type="server"/>
 	<script src="globals.lua" type="client"/>
