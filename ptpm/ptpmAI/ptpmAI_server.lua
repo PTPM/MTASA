@@ -1,5 +1,5 @@
 -- PTPM AI
--- an implementation of Slothbot by Slothman for PTPM
+-- an implementation of NPC HLC by CrystalMV for PTPM
 
 maxAI = get("maxAI")
 ai = {}
@@ -55,7 +55,7 @@ function ptpmAiMapStart( map )
 		end
 		
 		-- Spawning...
-		theBot = exports.slothbot:spawnBot ( spawnX,spawnY,spawnZ +1, spawnRot, getElementData( classes[randClass].class, "skin" ), spawnInterior, 0, theTeam, theRandomWep, "guarding")
+		-- theBot = exports.slothbot:spawnBot ( spawnX,spawnY,spawnZ +1, spawnRot, getElementData( classes[randClass].class, "skin" ), spawnInterior, 0, theTeam, theRandomWep, "guarding")
 		table.insert(ai.bots, theBot)
 		terroristAIBasicStrategy ( theBot )
 		
@@ -90,7 +90,7 @@ function terroristAIBasicStrategy( theBot )
 		if (getDistanceBetweenPoints3D(meX, meY, meZ,  pmX, pmY, pmZ) > 100) then
 			-- Yes, need a vehicle
 			if isPedInVehicle ( theBot ) then
-				exports.slothbot:setBotFollow (theBot, currentPM)
+				-- exports.slothbot:setBotFollow (theBot, currentPM)
 			else 
 				-- Find nearby vehicle
 				local possibleVehs = {}
@@ -110,10 +110,10 @@ function terroristAIBasicStrategy( theBot )
 		elseif (getDistanceBetweenPoints3D(meX, meY, meZ,  pmX, pmY, pmZ) < 40) then
 			-- Yes, and it's so close, will focus PM
 			-- exports.slothbot:setBotChase (theBot, currentPM)
-			exports.slothbot:setBotFollow (theBot, currentPM)
+			
 		else
 			-- Yes, engage combat mode
-			exports.slothbot:setBotFollow (theBot, currentPM)
+			-- exports.slothbot:setBotFollow (theBot, currentPM)
 		end
 	
 	

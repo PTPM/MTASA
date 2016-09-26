@@ -3,10 +3,10 @@
 	
 	 <settings>
          <setting name="*maxAI" value="30" friendlyname="Max AI" desc="AIs will be replaced by actual players as they join" />
+		 <setting name="*check_collisions" value="all" />
      </settings>
 	
-	
-	
+
 	
 	<script src="globals.lua" type="server"/>
 	<script src="globals.lua" type="client"/>
@@ -18,8 +18,6 @@
 	<script src="loader.lua" type="server"/>
 	<script src="player_spawn.lua" type="server"/>
 	<script src="endgame.lua" type="server"/>
-	
-	
 	
 	<script src="admin.lua" type="server"/>
 	
@@ -44,8 +42,20 @@
 	<!--<script src="bots_client.lua" type="client"/>
 	<script src="bots.lua" type="server"/>-->
 	
-	<script src="ptpmAI_client.lua" type="client"/>
-	<script src="ptpmAI_server.lua" type="server"/>
+	<script src="ptpmAI/ptpmAI_client.lua" type="client"/>
+	<script src="ptpmAI/ptpmAI_server.lua" type="server"/>
+	
+	<script src="ptpmAI/traffic.lua"    />
+	<script src="ptpmAI/load_paths.lua" />
+	<script src="ptpmAI/node_lanes.lua" />
+	<script src="ptpmAI/trafficmap.lua" />
+	<script src="ptpmAI/generate.lua"   />
+	<script src="ptpmAI/ai.lua"         />
+	<script src="ptpmAI/zoffsets.lua"   />
+
+	<script src="ptpmAI/bytedata.lua"   />
+
+	<script src="ptpmAI/f_density.lua"  />
 	
 	
 
@@ -90,7 +100,10 @@
 	<include resource="interiors" />
 	<include resource="parachute" />
 	<include resource="realdriveby" />
-	<include resource="slothbot" />
+	
+	<include resource="npc_hlc"/>
+	<include resource="server_coldata"/>
+	
 	
 	<export function="getPlayerColour" type="server"/>
 	
