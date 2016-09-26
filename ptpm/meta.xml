@@ -45,13 +45,12 @@
 	<script src="ptpmAI/ptpmAI_client.lua" type="client"/>
 	<script src="ptpmAI/ptpmAI_server.lua" type="server"/>
 	
-	<script src="ptpmAI/traffic.lua"    />
 	<script src="ptpmAI/load_paths.lua" />
 	<script src="ptpmAI/node_lanes.lua" />
 	<script src="ptpmAI/trafficmap.lua" />
-	<script src="ptpmAI/generate.lua"   />
 	<script src="ptpmAI/ai.lua"         />
 	<script src="ptpmAI/zoffsets.lua"   />
+	<script src="ptpmAI/traffic.lua"   />
 
 	<script src="ptpmAI/bytedata.lua"   />
 

@@ -9,21 +9,21 @@ function initTraffic()
 	traffic_initialized = true
 end
 
-function startTrafficInitialization()
-	traffic_initialization = coroutine.create(initTraffic)
-	keepLoadingTraffic()
-end
-addEventHandler("onResourceStart",resourceRoot,startTrafficInitialization)
+-- function startTrafficInitialization()
+	-- traffic_initialization = coroutine.create(initTraffic)
+	-- keepLoadingTraffic()
+-- end
+-- addEventHandler("onResourceStart",resourceRoot,startTrafficInitialization)
 
-function keepLoadingTraffic()
-	if traffic_initialized then
-		traffic_initialized = nil
-		last_yield = nil
-		return
-	end
-	coroutine.resume(traffic_initialization)
-	setTimer(keepLoadingTraffic,50,1)
-end
+-- function keepLoadingTraffic()
+	-- if traffic_initialized then
+		-- traffic_initialized = nil
+		-- last_yield = nil
+		-- return
+	-- end
+	-- coroutine.resume(traffic_initialization)
+	-- setTimer(keepLoadingTraffic,50,1)
+-- end
 
 function checkThreadYieldTime()
 	local this_time = getTickCount()
