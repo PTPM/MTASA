@@ -25,10 +25,12 @@ addEventHandler( "onClientRender",root,
 				y = y + 28
 				
 				-- Armor
-				dxDrawRectangle ( x - (armorWidth/2), y - (armorHeight/2), armorWidth, armorHeight , tocolor(222,222,222, 200) )
+				local colorValue = math.floor(getPedArmor(v)/100 * 222)
+				dxDrawRectangle ( x - (armorWidth/2), y - (armorHeight/2), armorWidth, armorHeight , tocolor(colorValue,colorValue,colorValue, 200) )
 				
 				-- HP
-				dxDrawRectangle ( x - (armorWidth/2) + 5, y - (armorHeight/2) +5, armorWidth-10, armorHeight-10 , tocolor(0,255,0, 200) )
+				local hpWidth =   math.floor(getElementHealth (v) / 100 * (armorWidth-10))
+				dxDrawRectangle ( x - (armorWidth/2) + 5, y - (armorHeight/2) +5, hpWidth, armorHeight-10 , tocolor(0,255,0, 200) )
                end
             end
          end
