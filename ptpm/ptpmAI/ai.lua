@@ -12,7 +12,7 @@ function initPedRouteData(ped)
 	ped_conns[ped] = {}
 	ped_drivespeed[ped] = {}
 	addEventHandler("onElementDestroy",ped,uninitPedRouteDataOnDestroy)
-	addEventHandler("npc_hlc:onNPCTaskDone",ped,continuePedRoute)
+	--addEventHandler("npc_hlc:onNPCTaskDone",ped,continuePedRoute) handled in ptpmAI
 end
 
 function uninitPedRouteDataOnDestroy()
