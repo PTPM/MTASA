@@ -17,7 +17,7 @@ function makeNPCWalkToPos(npc,x,y,z,maxtime)
 	if check_cols then
 		local box = call(server_coldata,"createModelIntersectionBox",model,x,y,z,rot)
 		local boxprev = call(server_coldata,"getElementIntersectionBox",npc)
-		move = not call(server_coldata"doesModelBoxIntersect",box,getElementDimension(npc),boxprev)
+		move = not call(server_coldata,"doesModelBoxIntersect",box,getElementDimension(npc),boxprev)
 	end
 	if move then
 		setElementPosition(npc,x,y,z,false)
