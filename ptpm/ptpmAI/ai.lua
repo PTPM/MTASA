@@ -44,7 +44,7 @@ function addNodeToPedRoute(ped,nodeid,nb)
 		return
 	end
 	local n0num,n2num = n1num-1,n1num+1
-	local prevnode = ped_nodes[ped][n1num]
+	local prevnode = ped_nodes[ped][n1num]	
 	local connid = node_conns[prevnode][nodeid]
 	local lane = ped_lane[ped]
 	ped_nodes[ped][n2num] = nodeid

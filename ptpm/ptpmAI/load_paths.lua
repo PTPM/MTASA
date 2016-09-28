@@ -14,24 +14,24 @@ function loadPaths()
 	for mapnum,mapname in ipairs(maplist) do
 		local starttime = getTickCount()
 		if loadPathMapFile(mapname) then
-			outputServerLog("Loaded path map "..mapname.." in "..getTickCount()-starttime.." ms")
+			outputDebugString("Loaded path map "..mapname.." in "..getTickCount()-starttime.." ms")
 		end
 	end
-	outputServerLog("Loaded all path maps in "..getTickCount()-starttime.." ms")
+	outputDebugString("Loaded all path maps in "..getTickCount()-starttime.." ms")
 end
 
 function getPathMapList()
 	local maps = {}
 	local maplist = xmlLoadFile("ptpmAI/paths/maplist.xml")
 	if not maplist then
-		outputDebugString("Failed to open path maps list: paths/maplist.xml",2)
+		outputDebugString("Failed to open path maps list: ptpmAI/paths/maplist.xml",2)
 		return
 	end
 	local mapnodes = xmlNodeGetChildren(maplist)
 	for mapnum,mapnode in ipairs(mapnodes) do
 		local filename = xmlNodeGetAttribute(mapnode,"src")
 		if filename then
-			filename = "paths/maps/"..filename
+			filename = "ptpmAI/paths/maps/"..filename
 			if fileExists(filename) then
 				table.insert(maps,filename)
 			else
