@@ -110,7 +110,9 @@ function taskFinished(task)
 				if theVeh==nil or getVehicleOccupant(theVeh)==false then
 					-- these bots only drive themselves! 
 					outputDebugString( "Ped found a veh" )
-					warpPedIntoVehicle(source, nextTask[2], 0) 					
+					warpPedIntoVehicle(source, nextTask[2], 0) 
+
+					-- Now that they're in a vehicle, drive to the nearest node to initiate navigation
 				else 
 					-- find a new vehicle
 					outputDebugString( "Ped went to a vehicle but it was in use. Looking for a new one..." )

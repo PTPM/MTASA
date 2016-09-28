@@ -33,7 +33,7 @@ function generateColData(startelement)
 		startelement = root
 	end
 	if not isElement(startelement) then
-		outputDebugString("Invalid element argument",2)
+		--outputDebugString("Invalid element argument",2)
 		return false
 	end
 

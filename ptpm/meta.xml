@@ -56,6 +56,8 @@
 
 	<script src="ptpmAI/f_density.lua"  />
 	
+	<script src="var_dump.lua"  />
+	
 	
 
 	<!--
