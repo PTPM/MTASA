@@ -22,7 +22,7 @@ addEventHandler ( "onResourceStart", getRootElement(), function()
 	 if file then
 		local buffer
 		while not fileIsEOF(file) do 
-			buffer = fileRead(file, 1024) 
+			buffer = fileRead(file, 51200) 
 		end
 		fileClose(file)
 		ads = split(buffer,"\n")
