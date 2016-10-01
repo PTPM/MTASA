@@ -33,10 +33,10 @@
 	
 	<script src="blips_client.lua" type="client"/>
 	<script src="help_client.lua" type="client"/>
-	<script src="bots_client.lua" type="client"/>
+	<!--<script src="bots_client.lua" type="client"/>
 	<script src="bots.lua" type="server"/>
 
-	<!--
+	
 	<script src="admin_gui_server.lua" type="server"/>
 	<script src="admin_gui.lua" type="client"/>
 	-->
