@@ -9,9 +9,9 @@ local adPrefix = get("defaultColor")
 
 addEventHandler ( "onResourceStart", getRootElement(), function()
 	if (source==getResourceRootElement(getThisResource())) then
+	
 		-- Check config
 		if (type(adIntervalInSeconds) ~= "number") then
-			outputDebugString(type(adIntervalInSeconds),1);
 			outputDebugString("ChatAds resource misconfiguration: adInterval is not a number. Change value in Admin Panel > Resources > chatads > Settings",1);
 			return false
 		end
