@@ -202,7 +202,7 @@ function findTarget(dir)
 	-- from race
 	for i=1,#players do
 		pos = ((pos + dir - 1) % #players ) + 1
-		if players[pos] ~= localPlayer and isElement(players[pos]) and not isPlayerDead(players[pos]) then
+		if players[pos] ~= localPlayer and isElement(players[pos]) and not isPedDead(players[pos]) then
 			return players[pos]
 		end
 	end
@@ -214,7 +214,7 @@ function spectateUpdate()
 	if spec.active then
 		if spec.target then
 			if isElement(spec.target) then
-				if not isPlayerDead(spec.target) then
+				if not isPedDead(spec.target) then
 					local dim = getElementDimension(spec.target)
 						
 					if dim and getElementDimension(localPlayer) ~= dim then
