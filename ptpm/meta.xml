@@ -38,6 +38,7 @@
 	
 	<script src="blips_client.lua" type="client"/>
 	<script src="help_client.lua" type="client"/>
+<<<<<<< HEAD
 	
 	<!--<script src="bots_client.lua" type="client"/>
 	<script src="bots.lua" type="server"/>-->
@@ -59,8 +60,12 @@
 	<script src="var_dump.lua"  />
 	
 	
+=======
+	<!--<script src="bots_client.lua" type="client"/>
+	<script src="bots.lua" type="server"/>
+>>>>>>> master
 
-	<!--
+	
 	<script src="admin_gui_server.lua" type="server"/>
 	<script src="admin_gui.lua" type="client"/>
 	-->
