@@ -176,9 +176,9 @@ addEventHandler("onPlayerWasted",root,
 			if getElementType(killer) == "vehicle" then
 				local driver = getVehicleController(killer)
 				if driver then
-					outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." was killed by "..getPTPMPlayerAsIrcColorCode(driver) ..getPlayerName(driver).." in a "..getVehicleName(killer))
+					outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source)..color_ServerStuffSpecial.." was killed by "..getPTPMPlayerAsIrcColorCode(driver) ..getPlayerName(driver)..color_ServerStuffSpecial.." in a "..getVehicleName(killer))
 				else
-					outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." was killed by a "..getVehicleName(killer))
+					outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source)..color_ServerStuffSpecial.." was killed by a "..getVehicleName(killer))
 				end
 			elseif getElementType(killer) == "player" then
 				if weapon == 37 then
@@ -186,12 +186,12 @@ addEventHandler("onPlayerWasted",root,
 						weapon = 88
 					end
 				end
-				outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." was killed by "..getPTPMPlayerAsIrcColorCode(killer) ..getPlayerName(killer).." ("..(getWeaponNameFromID(weapon) or weapons[weapon] or "?")..")")
+				outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source)..color_ServerStuffSpecial.." was killed by "..getPTPMPlayerAsIrcColorCode(killer) ..getPlayerName(killer)..color_ServerStuffSpecial.." ("..(getWeaponNameFromID(weapon) or weapons[weapon] or "?")..")")
 			else
-				outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." died")
+				outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source)..color_ServerStuffSpecial.." died")
 			end
 		else
-			outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." died")
+			outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source)..color_ServerStuffSpecial.." died")
 		end
 	end
 )
