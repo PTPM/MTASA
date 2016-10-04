@@ -61,12 +61,12 @@ addEventHandler("onResourceStart",resourceRoot,
 		function checkVersion (res,version)
 			if res ~= "ERROR" and version then
 				if getNumberFromVersion(version) > getNumberFromVersion(getResourceInfo(getThisResource(),"version")) then
-					outputDebugString("the irc resource is outdated, newest version: "..version)
-					setTimer(outputIRC,10000,1,"The irc resource is outdated, newest version: "..version)
+					--outputDebugString("the irc resource is outdated, newest version: "..version)
+					--setTimer(outputIRC,10000,1,"The irc resource is outdated, newest version: "..version)
 				end
 			end
 		end
-		callRemote("http://community.mtasa.com/mta/resources.php",checkVersion,"version","irc")
+		--callRemote("http://community.mtasa.com/mta/resources.php",checkVersion,"version","irc")
 		
 		-- Start the ads.
 		addEvent("onIRCPlayerDelayedJoin",true)
