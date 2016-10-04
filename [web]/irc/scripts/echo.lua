@@ -1,4 +1,11 @@
 ﻿---------------------------------------------------------------------
+-- Project: irc for PTPM
+-- Author: uhm
+-- Version: 1.0
+-- Date: 4 October 2016
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+-- ORIGINAL VERSION
 -- Project: irc
 -- Author: MCvarial
 -- Contact: mcvarial@gmail.com
@@ -10,12 +17,42 @@
 -- Echo
 ------------------------------------
 local messages = {}
+local color_ServerStuff = "14"
+local color_ServerStuffSpecial = "15"
+
+function getPTPMPlayerAsIrcColorCode(playerElement)
+	local r,g,b,a = exports.ptpm:getPlayerColour(source)
+	
+	-- Psycho
+	if r==255 and g==128 and b==0 then return "07"
+	
+	-- Terrorists
+	elseif r==255 and g==0 and b==175 then return "06"
+	elseif r==255 and g==64 and b==207 then return "06"
+	
+	-- PM
+	elseif r==255 and g==255 and b==64 then return "08"
+	
+	-- Bodyguard
+	elseif r==0 and g==128 and b==0 then return "03"
+	elseif r==80 and g==176 and b==80 then return "03"
+	
+	-- Cop
+	elseif r==80 and g==80 and b==207 then return "12"
+	elseif r==128 and g==128 and b==239 then return "12"
+	
+	-- Unspawned
+	else
+		return "14"
+	end
+	
+end
 
 addEventHandler("onResourceStart",root,
 	function (resource)
 		if get("*irc-onResourceStart") ~= "true" then return end
 		if getResourceInfo(resource,"type") ~= "map" then
-			outputIRC("07* Resource '"..getResourceName(resource).."' started!")
+			outputIRC(color_ServerStuff .. "* Resource '"..getResourceName(resource).."' started!")
 		end
 		if resource == getThisResource() then
 			for i,player in ipairs (getElementsByType("player")) do
@@ -29,7 +66,7 @@ addEventHandler("onResourceStop",root,
 	function (resource)
 		if get("*irc-onResourceStop") ~= "true" then return end
 		if getResourceInfo(resource,"type") ~= "map" then
-			outputIRC("07* Resource '"..(getResourceName(resource) or "?").."' stopped!")
+			outputIRC(color_ServerStuff .. "* Resource '"..(getResourceName(resource) or "?").."' stopped!")
 		end
 	end
 )
@@ -38,7 +75,7 @@ addEventHandler("onPlayerJoin",root,
 	function ()
 		if get("*irc-onPlayerJoin") ~= "true" then return end
 		messages[source] = 0
-		outputIRC("03*** "..getPlayerName(source).." joined the game.")
+		outputIRC(color_ServerStuff .. "*** "..getPlayerName(source).." joined the game.")
 	end
 )
 
@@ -48,12 +85,12 @@ addEventHandler("onPlayerQuit",root,
 		messages[source] = nil
 		if reason then
 			if element then
-				outputIRC("02*** "..getPlayerName(source).." was "..quit.." from the game by "..getPlayerName(element).." ("..reason..")")
+				outputIRC(color_ServerStuffSpecial .. "*** "..getPlayerName(source).." was "..quit.." from the game by "..getPlayerName(element).." ("..reason..")")
 			else
-				outputIRC("02*** "..getPlayerName(source).." was "..quit.." from the game by Console ("..reason..")")
+				outputIRC(color_ServerStuffSpecial .. "*** "..getPlayerName(source).." was "..quit.." from the game by Console ("..reason..")")
 			end
 		else
-			outputIRC("02*** "..getPlayerName(source).." left the game ("..quit..")")
+			outputIRC(color_ServerStuff .. "*** "..getPlayerName(source).." left the game ("..quit..")")
 		end
 	end
 )
@@ -64,7 +101,7 @@ addEventHandler("onPlayerChangeNick",root,
 		setTimer(function (player,oldNick)
 			local newNick = getPlayerName(player)
 			if newNick ~= oldNick then
-				outputIRC("13* "..oldNick.." is now known as "..newNick)
+				outputIRC(color_ServerStuff .. "* "..oldNick.." is now known as "..newNick)
 			end
 		end,100,1,source,oldNick)
 	end
@@ -78,12 +115,12 @@ addEventHandler("onPlayerMute",root,
 		if result and result[1] then
 			local admin = result[1]["admin"] or "console"
 			if result[1]["reason"] then
-				outputIRC("12* "..getPlayerName(source).." has been muted by "..admin.." ("..result[1]["reason"]..")")
+				outputIRC(color_ServerStuffSpecial .. "* "..getPlayerName(source).." has been muted by "..admin.." ("..result[1]["reason"]..")")
 			else
-				outputIRC("12* "..getPlayerName(source).." has been muted by "..admin)
+				outputIRC(color_ServerStuffSpecial .. "* "..getPlayerName(source).." has been muted by "..admin)
 			end
 		else
-			outputIRC("12* "..getPlayerName(source).." has been muted")
+			outputIRC(color_ServerStuffSpecial .. "* "..getPlayerName(source).." has been muted")
 		end
 	end
 )
@@ -91,7 +128,7 @@ addEventHandler("onPlayerMute",root,
 addEventHandler("onPlayerUnmute",root,
 	function ()
 		if get("*irc-onPlayerUnmute") ~= "true" then return end
-		outputIRC("12* "..getPlayerName(source).." has been unmuted")
+		outputIRC(color_ServerStuffSpecial .. "* "..getPlayerName(source).." has been unmuted")
 	end
 )
 
@@ -100,20 +137,20 @@ addEventHandler("onPlayerChat",root,
 		if get("*irc-onPlayerChat") ~= "true" then return end
 		messages[source] = messages[source] + 1
 		if type == 0 then
-			outputIRC("07"..getPlayerName(source)..": "..message)
+			outputIRC("07"..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source)..": "..message)
 		elseif type == 1 then
-			outputIRC("06* "..getPlayerName(source).." "..message)
+			outputIRC("06* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." "..message)
 		elseif type == 2 then
 			local team = getPlayerTeam(source)
 			if not team then return end
 			if get("*irc-logteammessages") == "/" then return end
 			if get("*irc-logteammessages") == "*" then
-				outputIRC("07("..getTeamName(team)..")"..getPlayerName(source)..": "..message)
+				outputIRC("07("..getTeamName(team)..") "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source)..": "..message)
 			else
 				for i,channel in pairs (ircGetChannels()) do
 					if ircIsEchoChannel(channel) then
 						local server = getElementParent(channel)
-						ircRaw(server,"PRIVMSG "..tostring(get("*irc-logteammessages"))..ircGetChannelName(channel).." :07("..getTeamName(team)..")"..getPlayerName(source)..": "..message)
+						ircRaw(server,"PRIVMSG "..tostring(get("*irc-logteammessages"))..ircGetChannelName(channel).." :07" .. getPTPMPlayerAsIrcColorCode(source) .."("..getTeamName(team)..") "..getPlayerName(source)..": "..message)
 					end
 				end
 			end
@@ -139,9 +176,9 @@ addEventHandler("onPlayerWasted",root,
 			if getElementType(killer) == "vehicle" then
 				local driver = getVehicleController(killer)
 				if driver then
-					outputIRC("04* "..getPlayerName(source).." was killed by "..getPlayerName(driver).." in a "..getVehicleName(killer))
+					outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." was killed by "..getPTPMPlayerAsIrcColorCode(driver) ..getPlayerName(driver).." in a "..getVehicleName(killer))
 				else
-					outputIRC("04* "..getPlayerName(source).." was killed by an "..getVehicleName(killer))
+					outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." was killed by a "..getVehicleName(killer))
 				end
 			elseif getElementType(killer) == "player" then
 				if weapon == 37 then
@@ -149,52 +186,12 @@ addEventHandler("onPlayerWasted",root,
 						weapon = 88
 					end
 				end
-				outputIRC("04* "..getPlayerName(source).." was killed by "..getPlayerName(killer).." ("..(getWeaponNameFromID(weapon) or weapons[weapon] or "?")..")("..bodyparts[bodypart]..")")
+				outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." was killed by "..getPTPMPlayerAsIrcColorCode(killer) ..getPlayerName(killer).." ("..(getWeaponNameFromID(weapon) or weapons[weapon] or "?")..")")
 			else
-				outputIRC("04* "..getPlayerName(source).." died")
+				outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." died")
 			end
 		else
-			outputIRC("04* "..getPlayerName(source).." died")
-		end
-	end
-)
-
-addEvent("onPlayerRaceWasted")
-addEventHandler("onPlayerRaceWasted",root,
-	function (vehicle)
-		if get("*irc-onPlayerRaceWasted") ~= "true" then return end
-		if #getAlivePlayers() == 1 and currentmode ~= "Sprint" then
-			outputIRC("12* "..getPlayerName(getAlivePlayers()[1]).." won the deathmatch!")
-		end
-	end
-)
-		
-addEvent("onPlayerFinish",true)
-addEventHandler("onPlayerFinish",root,
-	function (rank,time)
-		if get("*irc-onPlayerFinish") ~= "true" then return end
-		outputIRC("12* "..getPlayerName(source).." finished (rank: "..rank.." time: "..msToTimeStr(time)..")")
-	end
-)
-
-addEvent("onGamemodeMapStart",true)
-addEventHandler("onGamemodeMapStart",root,
-	function (res)
-		if get("*irc-onGamemodeMapStart") ~= "true" then return end
-		outputIRC("12* Map started: "..(getResourceInfo(res, "name") or getResourceName(res)))
-		local resource = getResourceFromName("mapratings")
-		if resource and getResourceState(resource) == "running" and exports.mapratings:getMapRating(getResourceName(res)) and exports.mapratings:getMapRating(getResourceName(res)).average then
-			outputIRC("07* Rating: "..exports.mapratings:getMapRating(getResourceName(res)).average)
-		end
-	end
-)
-
-addEvent("onPlayerToptimeImprovement",true)
-addEventHandler("onPlayerToptimeImprovement",root,
-	function (newPos,newTime,oldPos,oldTime)
-		if get("*irc-onPlayerToptimeImprovement") ~= "true" then return end
-		if newPos == 1 then
-			outputIRC("07* New record: "..msToTimeStr(newTime).." by "..getPlayerName(source).."!")
+			outputIRC(color_ServerStuffSpecial .. "* "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source).." died")
 		end
 	end
 )
@@ -202,14 +199,14 @@ addEventHandler("onPlayerToptimeImprovement",root,
 addEventHandler("onBan",root,
 	function (ban)
 		if get("*irc-onBan") ~= "true" then return end
-		outputIRC("12* Ban added by "..(getPlayerName(source) or "Console")..": name: "..(getBanNick(ban) or "/")..", ip: "..(getBanIP(ban) or "/")..", serial: "..(getBanSerial(ban) or "/")..", banned by: "..(getBanAdmin(ban) or "/").." banned for: "..(getBanReason(ban) or "/"))
+		ircRaw(ircGetChannelServer(channel),"NOTICE %"..tostring(ircGetChannelName(channel)).." :" .. color_ServerStuffSpecial .."* Ban added by "..(getPlayerName(source) or "Console")..": name: "..(getBanNick(ban) or "/")..", ip: "..(getBanIP(ban) or "/")..", serial: "..(getBanSerial(ban) or "/")..", banned by: "..(getBanAdmin(ban) or "/").." banned for: "..(getBanReason(ban) or "/"))
 	end
 )
 
 addEventHandler("onUnban",root,
 	function (ban)
 		if get("*irc-onUnban") ~= "true" then return end
-		outputIRC("12* Ban removed by "..(getPlayerName(source) or "Console")..": name: "..(getBanNick(ban) or "/")..", ip: "..(getBanIP(ban) or "/")..", serial: "..(getBanSerial(ban) or "/")..", banned by: "..(getBanAdmin(ban) or "/").." banned for: "..(getBanReason(ban) or "/"))
+		ircRaw(ircGetChannelServer(channel),"NOTICE %"..tostring(ircGetChannelName(channel)).." :" .. color_ServerStuffSpecial .."* Ban removed by "..(getPlayerName(source) or "Console")..": name: "..(getBanNick(ban) or "/")..", ip: "..(getBanIP(ban) or "/")..", serial: "..(getBanSerial(ban) or "/")..", banned by: "..(getBanAdmin(ban) or "/").." banned for: "..(getBanReason(ban) or "/"))
 	end
 )
 
@@ -221,9 +218,9 @@ addEventHandler("onPlayerFreeze",root,
 	function (state)
 		if get("*irc-onPlayerFreeze") ~= "true" then return end
 		if state then
-			outputIRC("12* "..getPlayerName(source).." was frozen!")
+			outputIRC(color_ServerStuffSpecial .."* "..getPlayerName(source).." was frozen!")
 		else
-			outputIRC("12* "..getPlayerName(source).." was unfrozen!")
+			outputIRC(color_ServerStuffSpecial .."* "..getPlayerName(source).." was unfrozen!")
 		end
 	end
 )
