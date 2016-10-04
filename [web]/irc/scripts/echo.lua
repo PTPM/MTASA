@@ -71,6 +71,14 @@ addEventHandler("onResourceStop",root,
 	end
 )
 
+addEvent("onGamemodeMapStart",true)
+addEventHandler("onGamemodeMapStart",root,
+	function (res)
+		if get("*irc-onGamemodeMapStart") ~= "true" then return end
+		outputIRC(color_ServerStuffSpecial.."* Map started: "..(getResourceInfo(res, "name") or getResourceName(res)))
+	end
+)
+
 addEventHandler("onPlayerJoin",root,
 	function ()
 		if get("*irc-onPlayerJoin") ~= "true" then return end
