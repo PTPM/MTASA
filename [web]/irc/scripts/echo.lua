@@ -21,7 +21,7 @@ local color_ServerStuff = "14"
 local color_ServerStuffSpecial = "15"
 
 function getPTPMPlayerAsIrcColorCode(playerElement)
-	local r,g,b,a = exports.ptpm:getPlayerColour(source)
+	local r,g,b,a = exports.ptpm:getPlayerColour(playerElement)
 	
 	-- Psycho
 	if r==255 and g==128 and b==0 then return "07"
