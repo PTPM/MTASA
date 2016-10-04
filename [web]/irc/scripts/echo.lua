@@ -145,7 +145,7 @@ addEventHandler("onPlayerChat",root,
 			if not team then return end
 			if get("*irc-logteammessages") == "/" then return end
 			if get("*irc-logteammessages") == "*" then
-				outputIRC("07("..getTeamName(team)..") "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source)..": "..message)
+				outputIRC("07(TEAM) "..getPTPMPlayerAsIrcColorCode(source) .. getPlayerName(source)..": "..message)
 			else
 				for i,channel in pairs (ircGetChannels()) do
 					if ircIsEchoChannel(channel) then
