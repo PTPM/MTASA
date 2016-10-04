@@ -17,7 +17,7 @@ addEventHandler("onSockOpened",root,
 				if servers[server][5] then
 					ircRaw(server,"PASS "..servers[server][5])
 				end
-				ircRaw(server,"USER echobot MCvarial MCv :Echobot by MCvarial")
+				ircRaw(server,"USER grimlock MCvarial MCv :#PTPM.echo based on Echobot by MCvarial")
 				ircRaw(server,"NICK "..info[4])
 				return
 			end
