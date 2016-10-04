@@ -158,7 +158,7 @@ addEventHandler("onPlayerChat",root,
 				for i,channel in pairs (ircGetChannels()) do
 					if ircIsEchoChannel(channel) then
 						local server = getElementParent(channel)
-						ircRaw(server,"PRIVMSG "..tostring(get("*irc-logteammessages"))..ircGetChannelName(channel).." :07" .. getPTPMPlayerAsIrcColorCode(source) .."("..getTeamName(team)..") "..getPlayerName(source)..": "..message)
+						ircRaw(server,"PRIVMSG "..tostring(get("*irc-logteammessages"))..ircGetChannelName(channel).." :07" .. getPTPMPlayerAsIrcColorCode(source) .."(TEAM) "..getPlayerName(source)..": "..message)
 					end
 				end
 			end
