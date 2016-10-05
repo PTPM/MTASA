@@ -1,0 +1,7 @@
+<meta>
+	<info author="Gode" type="script" name="Anti-flood" />
+	<script src="server.lua" type="server"></script>
+	<settings>
+		<setting name="*timeBetweenMsg" value="1" group="Anti-flood" />
+	</settings>
+</meta>
