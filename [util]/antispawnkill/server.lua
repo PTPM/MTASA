@@ -22,10 +22,12 @@ function removePlayerInvulnerability(player)
 end
 
 addEventHandler("onPlayerSpawn", getRootElement(), function()
-	antispawnkill.Table[source] = true
-	setElementAlpha(source, antispawnkill.Opacity)
-	setElementData(source, "antispawnkill", true)
-	setTimer(removePlayerInvulnerability, ((antispawnkill.Time)*1000), 1, source)
+	if getElementDimension(source) == 0 then
+		aantispawnkill.Table[source] = true
+		setElementAlpha(source, antispawnkill.Opacity)
+		setElementData(source, "antispawnkill", true)
+		setTimer(removePlayerInvulnerability, ((antispawnkill.Time)*1000), 1, source)
+	end
 end)
 
 addEventHandler("onPlayerStealthKill", getRootElement(), function(player)

@@ -3,5 +3,6 @@
 	<script src="server.lua" type="server"></script>
 	<settings>
 		<setting name="*timeBetweenMsg" value="1" group="Anti-flood" />
+		<setting name="*maxWarnings" value="3" group="Anti-flood" />
 	</settings>
 </meta>

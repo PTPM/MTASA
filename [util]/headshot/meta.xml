@@ -1,0 +1,8 @@
+<meta>
+	<info author="Gode" type="script" name="Headshot For Specifics Weapons" />
+	<script src="client.lua" type="client" />
+	<script src="server.lua" type="server" />
+	<settings>
+		<setting name="*allowedWeapons" value="[['34','33']]" desc="Format: [['value1','value2']])" group="Allowed Weapons" />
+	</settings>
+</meta>
