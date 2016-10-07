@@ -37,9 +37,3 @@ function outputHeadshot(killer, weapon, bodypart)
 	end
 end
 addEventHandler("onPlayerKillMessage", getRootElement(), outputHeadshot)
-
-
-addCommandHandler("c", function(player,cmd)
-	local x, y, z = getElementPosition(player)
-	createPed(0, x, y, z)
-end)
