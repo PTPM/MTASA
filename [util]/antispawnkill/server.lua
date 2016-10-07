@@ -23,7 +23,7 @@ end
 
 addEventHandler("onPlayerSpawn", getRootElement(), function()
 	if getElementDimension(source) == 0 then
-		aantispawnkill.Table[source] = true
+		antispawnkill.Table[source] = true
 		setElementAlpha(source, antispawnkill.Opacity)
 		setElementData(source, "antispawnkill", true)
 		setTimer(removePlayerInvulnerability, ((antispawnkill.Time)*1000), 1, source)
