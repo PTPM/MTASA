@@ -12,6 +12,8 @@
 	<script src="player_spawn.lua" type="server"/>
 	<script src="endgame.lua" type="server"/>
 	
+	<script src="mapvote_client.lua" type="client"/>
+	
 	
 	
 	<script src="admin.lua" type="server"/>
@@ -58,12 +60,27 @@
 	-->
 	<file src="images/white_dot.png"/>
 	
+	<!-- New mapvote -->
+	<file src="mapvoteimages/map-pic-A51.png" />
+	<file src="mapvoteimages/map-pic-Air.png" />
+	<file src="mapvoteimages/map-pic-Bay.png" />
+	<file src="mapvoteimages/map-pic-Chiliad.png" />
+	<file src="mapvoteimages/map-pic-Country.png" />
+	<file src="mapvoteimages/map-pic-Desert.png" />
+	<file src="mapvoteimages/map-pic-Factory.png" />
+	<file src="mapvoteimages/map-pic-LS.png" />
+	<file src="mapvoteimages/map-pic-LSH.png" />
+	<file src="mapvoteimages/map-pic-LV.png" />
+	<file src="mapvoteimages/map-pic-LVOBJ.png" />
+	<file src="mapvoteimages/map-pic-SF.png" />
+	<file src="mapvoteimages/map-pic-_randomMap.png" />
+	
 	<!-- PTPM REQUIRED -->
 	<include resource="helpmanager" />
 	<include resource="missiontimer" />
 	<include resource="scoreboard" />
 	<include resource="spectator" />
-	<include resource="votemanager" />
+	<!--<include resource="votemanager" />-->
 	<!-- Keep ptpm_login as a seperate resource -->
 	
 	<!-- PTPM specific (bundled with)-->
@@ -73,7 +90,7 @@
 	
 	<!-- Gameplay (default) -->
 	<include resource="defaultstats" />
-	<include resource="interiors" />
+	<!-- <include resource="interiors" /> -->
 	<include resource="parachute" />
 	<include resource="realdriveby" />
 	
