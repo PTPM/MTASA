@@ -1,4 +1,5 @@
 ﻿local lastVoteCount = 0
+local lastMap = nil
 
 -- compcheck
 function endGame()
@@ -51,10 +52,63 @@ function endGame()
 		exports.missiontimer:setMissionTimerFrozen( data.timer, true )
 	end
 	
-	startEndOfRoundMapvote()
+	startEndOfRoundPTPMMapvote()
+end
+
+function getMapvoteObject( resourceName )
+	if 		resourceName=="ptpm-a51" 				then return { name="Area 51", image="mapvoteimages/map-pic-A51.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-air-assault" 		then return { name="Air Assault", image="mapvoteimages/map-pic-Air.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-bayside" 			then return { name="Bayside", image="mapvoteimages/map-pic-Bay.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-chiliad" 			then return { name="Mt. Chiliad", image="mapvoteimages/map-pic-Chiliad.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-country" 			then return { name="Countryside", image="mapvoteimages/map-pic-Country.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-desert" 			then return { name="Desert", image="mapvoteimages/map-pic-Desert.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-factory" 			then return { name="Factory", image="mapvoteimages/map-pic-Factory.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-ls"					then return { name="Los Santos", image="mapvoteimages/map-pic-LS.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-lshydra" 			then return { name="Los Santos Hydra", image="mapvoteimages/map-pic-LSH.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-lv" 				then return { name="Las Venturas", image="mapvoteimages/map-pic-LV.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-lvobj" 				then return { name="Las Venturas Objectives", image="mapvoteimages/map-pic-LVOBJ.png", votes=0,youVoted=false,hasWon=false} 
+	elseif 	resourceName=="ptpm-sf" 				then return { name="San Fierro", image="mapvoteimages/map-pic-SF.png", votes=0,youVoted=false,hasWon=false} 
+	else return nil end
 end
 
 
+function startEndOfRoundPTPMMapvote()
+	local currentMap = getResourceName(exports.mapmanager:getRunningGamemodeMap())
+	
+	-- Which maps?
+	local maps = {}
+	local mapTable = exports.mapmanager:getMapsCompatibleWithGamemode( thisResource )
+	
+	outputDebugString("currentMap = " .. currentMap)
+	outputDebugString("rand = " .. getResourceName(mapTable[math.random( 1, #mapTable )]))	
+	
+	table.insert(maps, getMapvoteObject(getResourceName(mapTable[math.random( 1, #mapTable )])))
+	
+	if currentMap==lastMap then
+		table.insert(maps, getMapvoteObject(getResourceName(mapTable[math.random( 1, #mapTable )])))
+	else
+		local mapObj = getMapvoteObject(currentMap)
+		mapObj.name = mapObj.name .. " (Rematch)"
+		table.insert(maps, mapObj)
+		lastMap = currentMap
+	end
+	
+	table.insert(maps, {
+		name = "Random Map",
+		image = "mapvoteimages/map-pic-_randomMap.png",
+		votes = 0,
+		youVoted = false,
+		hasWon = false
+	})
+	
+	-- Trigger client event
+	triggerClientEvent ( getRootElement(), "onGreeting", resourceRoot, maps )	
+	
+	outputDebugString("Triggered client")
+
+end
+
+-- LEGACY:
 function startEndOfRoundMapvote()
 	exports.votemanager:stopPoll() -- stop possible callvotes
 

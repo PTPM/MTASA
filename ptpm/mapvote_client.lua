@@ -13,34 +13,11 @@ local voteCounterHeight = voteCounterWidth / 1.666
 local containerOffsetFromTop = screenHeight - (voteButtonHeight * 1.1) -- keep 10% margin at bottom
 local isMapVoteRunning = false
 local voteButtonsAbsolutePos = {}
+local mapsClientCache = {}
 
 
 function renderMapVote ( )
-
-	maps = {}
-	table.insert( maps, {
-		name = "Area 51",
-		image = "mapvoteimages/map-pic-A51.png",
-		votes = 0,
-		youVoted = false,
-		hasWon = false
-	})
-	table.insert( maps, {
-		name = "Los Santos",
-		image = "mapvoteimages/map-pic-LS.png",
-		votes = 1,
-		youVoted = true,
-		hasWon = false
-	})
-	table.insert( maps, {
-		name = "Random Map",
-		image = "mapvoteimages/map-pic-_randomMap.png",
-		votes = 4,
-		youVoted = false,
-		hasWon = true
-	})
-
-	for key,value in pairs(maps) do 
+	for key,value in pairs(mapsClientCache) do 
 		local i = tonumber(key)-1
 		local xPosImage = containerOffsetFromLeft + (i * (voteButtonMarginX + voteButtonWidth)) + (voteButtonMarginX /2)
 		local yPosImage = containerOffsetFromTop
@@ -65,7 +42,11 @@ function renderMapVote ( )
 	end
 end
 
-function startMapVote()
+function startMapVote( maps )
+	outputDebugString("Mapvote started")
+	
+	mapsClientCache = maps
+	
 	showCursor ( true )
 	isMapVoteRunning = true
 	
@@ -79,6 +60,8 @@ function endMapVote()
 	
 	removeEventHandler("onClientRender", getRootElement(), renderMapVote)
 	removeEventHandler ( "onClientClick", getRootElement(), countMapVote )
+	
+	mapsClientCache = nil
 end
 
 function countMapVote ( button, state, absoluteX, absoluteY, worldX, worldY, worldZ, clickedElement )
@@ -93,4 +76,6 @@ function countMapVote ( button, state, absoluteX, absoluteY, worldX, worldY, wor
 end
 
 
-addEventHandler("onClientResourceStart",resourceRoot, startMapVote)
+
+addEvent( "onGreeting", true )
+addEventHandler( "onGreeting", localPlayer, startMapVote )
