@@ -161,6 +161,12 @@ function closePTPMMapVote()
 		end
 	end
 	
+	-- Absolute final fallback
+	if highestVoteMap == nil or getResourceFromName(highestVoteMap)==false then 
+		outputDebugString("ERROR LOADING MAP: " .. highestVoteMap);
+		highestVoteMap = "ptpm-sf" 
+	end
+	outputDebugString("Loading map: " .. highestVoteMap);
 	exports.mapmanager:changeGamemodeMap( getResourceFromName ( highestVoteMap ), thisResource ) 
 end
 
