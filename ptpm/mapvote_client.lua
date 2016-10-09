@@ -5,7 +5,7 @@ local containerOffsetFromLeft = (screenWidth - containerMaxWidth) / 2
 
 local voteButtonMarginX = containerMaxWidth/3 * 0.05		-- where 3 is the number of voting buttons
 local voteButtonWidth = containerMaxWidth/3 * 0.95
-local voteButtonHeight = voteButtonWidth / 1.6992481203007518796992481203008 --preserving aspect ratio
+local voteButtonHeight = voteButtonWidth / 1.6992481203007518796992481203008 --preserving aspect ratio (of 452*266 px)
 
 local voteCounterWidth = voteButtonWidth * 0.15
 local voteCounterHeight = voteCounterWidth / 1.666 
@@ -89,8 +89,6 @@ function countMapVote ( button, state, absoluteX, absoluteY, worldX, worldY, wor
 			if absoluteX > v.startX and absoluteX < v.endX and absoluteY > v.startY and absoluteY < v.endY then
 				-- OK, voted for {k}
 				triggerServerEvent ( "ptpmMapVoteResult", resourceRoot, k )
-				
-				-- Unset youVoted for all maps
 				thisClientVotedFor = k
 				
 				-- Prevent vote spam, 2 seconds until next vote is allowed
