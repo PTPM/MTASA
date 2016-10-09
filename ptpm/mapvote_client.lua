@@ -93,7 +93,7 @@ function countMapVote ( button, state, absoluteX, absoluteY, worldX, worldY, wor
 				
 				-- Prevent vote spam, 2 seconds until next vote is allowed
 				playerHasJustVoted = true
-				setTimer(function() playerHasJustVoted = false end, 2000, 1 )
+				setTimer(function() playerHasJustVoted = false end, 500, 1 )
 			end
 		end
 	end
