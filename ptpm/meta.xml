@@ -80,7 +80,6 @@
 	<include resource="missiontimer" />
 	<include resource="scoreboard" />
 	<include resource="spectator" />
-	<!--<include resource="votemanager" />-->
 	<!-- Keep ptpm_login as a seperate resource -->
 	
 	<!-- PTPM specific (bundled with)-->
