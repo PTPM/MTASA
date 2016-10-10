@@ -242,13 +242,15 @@ function makePlayerSpawn( thePlayer )
 		setElementData( thePlayer, "ptpm.currentInterior", randomSpawns[classType][randNum].interior, false )
 		--playerInfo[thePlayer].currentInterior = randomSpawns[classType][randNum].interior
 		options.plan = false
+		setPedArmor( thePlayer, 100 )
+	else
+		setPedArmor( thePlayer, 0 )
 	end
 	
 	
 	setPlayerMoney( thePlayer, options.pocketMoney )
 	setElementHealth( thePlayer, classes[class].initialHP )
-	setPedArmor( thePlayer, 0 )
-
+	
 
 	if classes[class].type == "bodyguard" or classes[class].type == "police" then
 		if options.plan then 
