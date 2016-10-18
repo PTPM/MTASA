@@ -60,7 +60,7 @@
 	-->
 	<file src="images/white_dot.png"/>
 	
-	<!-- New mapvote -->
+	<!-- Mapvote2 -->
 	<file src="mapvoteimages/map-pic-A51.png" />
 	<file src="mapvoteimages/map-pic-Air.png" />
 	<file src="mapvoteimages/map-pic-Bay.png" />
@@ -74,6 +74,9 @@
 	<file src="mapvoteimages/map-pic-LVOBJ.png" />
 	<file src="mapvoteimages/map-pic-SF.png" />
 	<file src="mapvoteimages/map-pic-_randomMap.png" />
+	
+	<!-- Spawn Select 2 -->
+	<script src="spawn_select_client.lua" type="client"/>
 	
 	<!-- PTPM REQUIRED -->
 	<include resource="helpmanager" />
