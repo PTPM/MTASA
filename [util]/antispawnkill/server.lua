@@ -16,6 +16,7 @@ function removePlayerInvulnerability(player)
 	if player and getElementType(player) == "player" then
 		setElementAlpha(player, 255)
 		setElementData(player, "antispawnkill", false)
+		antispawnkill.Table[player] = false
 		return true
 	end
 	return false
@@ -31,7 +32,7 @@ addEventHandler("onPlayerSpawn", getRootElement(), function()
 end)
 
 addEventHandler("onPlayerStealthKill", getRootElement(), function(player)
-	if antispawnkill.Table[player] then
+	if getElementData(player, "antispawnkill") then
 		cancelEvent()
 	end
 end)
