@@ -107,6 +107,18 @@
 	<file src="spawnselectimages/ptpm-skins-288.png" />
 	<file src="spawnselectimages/ptpm-skins-73.png" />
 	
+	<file src="spawnselectimages/asset_background_classes.png"/>
+	<file src="spawnselectimages/asset_background_pm.png"/>
+	<file src="spawnselectimages/asset_choosebutton_goodguy.png"/>
+	<file src="spawnselectimages/asset_choosebutton_neutral.png"/>
+	<file src="spawnselectimages/asset_choosebutton_pm.png"/>
+	<file src="spawnselectimages/asset_choosebutton_terrorist.png"/>
+	<file src="spawnselectimages/asset_circle_border_bg.png"/>
+	<file src="spawnselectimages/asset_circle_border_cop.png"/>
+	<file src="spawnselectimages/asset_circle_border_pm.png"/>
+	<file src="spawnselectimages/asset_circle_border_terrorist.png"/>
+	<file src="spawnselectimages/asset_white_circle.png"/>
+	
 	<!-- PTPM REQUIRED -->
 	<include resource="helpmanager" />
 	<include resource="missiontimer" />

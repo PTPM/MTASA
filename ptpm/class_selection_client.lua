@@ -78,42 +78,12 @@ addEventHandler( "updateClassSelectionScreen", root, updateClassSelectionScreen 
 
 
 function renderClassSelectionInfo()
-	if interfaceToggle then
-	-- dxDrawText ( string text, int left, int top [, int right=left, int bottom=top, int color=white, float scale=1, string font="default", string alignX="left", string alignY="top", bool clip=false, bool wordBreak=false, bool postGUI] )
-		local scale = 1.0
-		if screenX < 900 then
-			scale = screenX/900
-		end
-		local s = function( value )
-			return value*scale
-		end
 	
-		local right = (dxGetTextWidth( class_selection_text.availability, s(2), "bankgothic" ) > dxGetTextWidth( class_selection_text.classtype, s(1.5), "bankgothic" ) and
-							dxGetTextWidth( class_selection_text.availability, s(2), "bankgothic" ) or dxGetTextWidth( class_selection_text.classtype, s(1.5), "bankgothic" ) ) + s(5)
-		local bottom = dxGetFontHeight( s(1.5), "bankgothic" ) + dxGetFontHeight( s(2), "bankgothic" ) + (dxGetFontHeight( s(1), "default" )*8) + s(5)
-	
-		-- render black boxes behind the text to give some contrast on particularly bright areas of the map
-		dxDrawRectangle( s(25), screenY-s(265), right, bottom, tocolor( 0, 0, 0, 100 ), false )
-		dxDrawText( class_selection_text.classtype, s(30), screenY-s(260), s(250), s(150), tocolor( unpack( class_selection_text.classtypecolour ) ), s(1.5), "bankgothic", "left", "top", false, false, false )
-		dxDrawText( class_selection_text.availability, s(30), screenY-s(220), s(250), s(150), tocolor( unpack( class_selection_text.classtypecolour ) ), s(2), "bankgothic", "left", "top", false, false, false )
-		dxDrawText( class_selection_text.information, s(30), screenY-s(160), s(250), s(150), tocolor( 255, 255, 255 ), s(1), "default", "left", "top", false, false, false )
-	end
 end
 
 
 function renderClassSelectionDescription()
-	if interfaceToggle then
-		local scale = 1.0
-		if screenX < 900 then
-			scale = screenX/900
-		end
-		local s = function( value )
-			return value*scale
-		end
-	
-		dxDrawRectangle( screenX-s(305), screenY-s(265), s(295), s(255), tocolor( 0, 0, 0, 100 ), false )	
-		dxDrawText( class_selection_text.description, screenX-s(300), screenY-s(260), screenX-s(10), screenY-s(10), tocolor( 255, 255, 255 ), s(1), "default", "center", "center", false, true, false )
-	end
+
 end
 
 
