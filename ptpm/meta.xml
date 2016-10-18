@@ -77,6 +77,35 @@
 	
 	<!-- Spawn Select 2 -->
 	<script src="spawn_select_client.lua" type="client"/>
+	<file src="spawnselectimages/ptpm-skins-100.png" />
+	<file src="spawnselectimages/ptpm-skins-111.png" />
+	<file src="spawnselectimages/ptpm-skins-137.png" />
+	<file src="spawnselectimages/ptpm-skins-141.png" />
+	<file src="spawnselectimages/ptpm-skins-147.png" />
+	<file src="spawnselectimages/ptpm-skins-163.png" />
+	<file src="spawnselectimages/ptpm-skins-164.png" />
+	<file src="spawnselectimages/ptpm-skins-165.png" />
+	<file src="spawnselectimages/ptpm-skins-166.png" />
+	<file src="spawnselectimages/ptpm-skins-179.png" />
+	<file src="spawnselectimages/ptpm-skins-181.png" />
+	<file src="spawnselectimages/ptpm-skins-183.png" />
+	<file src="spawnselectimages/ptpm-skins-191.png" />
+	<file src="spawnselectimages/ptpm-skins-200.png" />
+	<file src="spawnselectimages/ptpm-skins-212.png" />
+	<file src="spawnselectimages/ptpm-skins-230.png" />
+	<file src="spawnselectimages/ptpm-skins-246.png" />
+	<file src="spawnselectimages/ptpm-skins-274.png" />
+	<file src="spawnselectimages/ptpm-skins-275.png" />
+	<file src="spawnselectimages/ptpm-skins-276.png" />
+	<file src="spawnselectimages/ptpm-skins-280.png" />
+	<file src="spawnselectimages/ptpm-skins-281.png" />
+	<file src="spawnselectimages/ptpm-skins-282.png" />
+	<file src="spawnselectimages/ptpm-skins-283.png" />
+	<file src="spawnselectimages/ptpm-skins-284.png" />
+	<file src="spawnselectimages/ptpm-skins-285.png" />
+	<file src="spawnselectimages/ptpm-skins-286.png" />
+	<file src="spawnselectimages/ptpm-skins-288.png" />
+	<file src="spawnselectimages/ptpm-skins-73.png" />
 	
 	<!-- PTPM REQUIRED -->
 	<include resource="helpmanager" />
