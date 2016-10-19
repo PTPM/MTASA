@@ -13,19 +13,9 @@ local widthToHeightRatios = {
 }
 
 
-local voteButtonMarginX = containerMaxWidth/3 * 0.05		-- where 3 is the number of voting buttons
-local voteButtonWidth = containerMaxWidth/3 * 0.95
-local voteButtonHeight = voteButtonWidth / 1.6992481203007518796992481203008 --preserving aspect ratio (of 452*266 px)
-
-local voteCounterWidth = voteButtonWidth * 0.15
-local voteCounterHeight = voteCounterWidth / 1.666 
-
-local isMapVoteRunning = false
-local playerHasJustVoted = false
-local voteButtonsAbsolutePos = {}
-local mapsClientCache = {}
-local thisClientVotedFor = nil
-local voteCountDown = 15
+local isStartOfRoundSpawnSelectRunning = false
+local playerHasJustClicked = false
+local spawnTimeCountDown = 15
 
 local pmCircleSize = containerMaxWidth / widthToHeightRatios.asset_background_pm * 1.1
 local pmSkinPortraitSize = pmCircleSize * 0.95
@@ -41,6 +31,7 @@ local pmButtonOffsetFromTop = pmTextOffsetFromTop + dxGetFontHeight ( pmTextFont
 
 local chooseButtonFontSize = 1.2 * fontModifier
 local chooseButtonWidth = containerMaxWidth * 0.13
+local chooseButtonHeight = chooseButtonWidth / widthToHeightRatios.asset_choosebutton
 
 local teamsContainerWidth = containerMaxWidth * 0.48 -- is 50% minus margin
 local teamsContainerHeight = teamsContainerWidth / widthToHeightRatios.asset_background_classes
@@ -66,24 +57,57 @@ local allowedSkinsTerrorists = {181,183,191,111,73,100,179,274}
 local roundCountDownOffsetFromTop = teamsContainerOffsetFromTop + teamsContainerHeight * 1.06
 local roundCountDownFontSize = chooseButtonFontSize
 
+-- Class for dxClickableElement
+local dxClickableElement = {}
+dxClickableElement.__index = dxClickableElement
+function dxClickableElement.create(elementId)
+	local el = {}
+	setmetatable(el, dxClickableElement)
+	el.id = elementId
+	el.startX = -1
+	el.startY = -1
+	el.endX = -1
+	el.endY = -1
+	el.hovered = false
+	el.selected = false
+end
+
+function dxClickableElement:setAbsPos(x1,y1,x2,y2)
+	self.startX = x1
+	self.startY = x1
+	self.endX = x2
+	self.endY = x2
+end
+
 
 function renderSpawnSelect ( )
-	-- General backgrouns
+	-- General backgrounds
 	dxDrawRectangle ( 0,0, screenWidth,screenHeight, 0x99000000)
 
 	-- PM
 	dxDrawImage ( containerOffsetFromLeft, pmContainerOffsetFromTop, containerMaxWidth, containerMaxWidth / widthToHeightRatios.asset_background_pm, "spawnselectimages/asset_background_pm.png")
 	
+	dxClickableElement["pmButton"] =   { startX = pmTextOffsetFromLeft, startY = pmButtonOffsetFromTop, endX = pmTextOffsetFromLeft+chooseButtonWidth, endY = pmButtonOffsetFromTop+chooseButtonHeight }
 	dxDrawImage ( pmContainerOffsetFromLeft, pmContainerOffsetFromTop, pmCircleSize, pmCircleSize, "spawnselectimages/asset_white_circle.png")
 	dxDrawImage ( pmContainerOffsetFromLeft, pmContainerOffsetFromTop, pmSkinPortraitSize, pmSkinPortraitSize, "spawnselectimages/ptpm-skins-147.png")
 	dxDrawImage ( pmContainerOffsetFromLeft, pmContainerOffsetFromTop, pmCircleSize, pmCircleSize, "spawnselectimages/asset_circle_border_pm.png")
 	
+	dxClickableElement["pmFace"] = { startX = pmContainerOffsetFromLeft, startY = pmContainerOffsetFromTop, endX = pmContainerOffsetFromLeft+pmCircleSize, endY = pmContainerOffsetFromTop+pmCircleSize }
+	
+	--outputDebugString("pmButton.isHovered " .. (dxClickableElement["pmButton"].isHovered and "true" or "false"))
+	
+	-- if dxClickableElementtates["pmButton"].isHovered then
+		-- outputDebugString("is hovered")
+		-- dxDrawImage ( pmTextOffsetFromLeft, pmButtonOffsetFromTop, chooseButtonWidth, chooseButtonHeight, "spawnselectimages/asset_choosebutton_neutral.png", 90)
+	-- else
+		dxDrawImage ( pmTextOffsetFromLeft, pmButtonOffsetFromTop, chooseButtonWidth, chooseButtonHeight, "spawnselectimages/asset_choosebutton_neutral.png")
+	-- end
+	
+	dxDrawText ( "Choose", pmTextOffsetFromLeft, pmButtonOffsetFromTop, pmTextOffsetFromLeft+chooseButtonWidth, pmButtonOffsetFromTop + chooseButtonHeight, 0xFFFFFFFF, chooseButtonFontSize, "default-bold", "center", "center", true)
+	
 	dxDrawText ( "The Prime Minister", pmTextOffsetFromLeft , pmTextOffsetFromTop, nil, nil, 0xFFFFFFFF, pmTextFontSize, "default-bold")
 	dxDrawText ( "You and two others are in the election of this round.", pmTextOffsetFromLeft , pmTextElectionOffsetFromTop, nil, nil, 0xFFDDDDDD, pmElectionTextHeight, "default")
-	
-	dxDrawImage ( pmTextOffsetFromLeft, pmButtonOffsetFromTop, chooseButtonWidth, chooseButtonWidth / widthToHeightRatios.asset_choosebutton, "spawnselectimages/asset_choosebutton_neutral.png")
-	dxDrawText ( "Choose", pmTextOffsetFromLeft, pmButtonOffsetFromTop, pmTextOffsetFromLeft+chooseButtonWidth, pmButtonOffsetFromTop + chooseButtonWidth / widthToHeightRatios.asset_choosebutton, 0xFFFFFFFF, chooseButtonFontSize, "default-bold", "center", "center", true)
-	
+	 
 	-- Good Guys
 	dxDrawText("PROTECT", containerOffsetFromLeft, teamHeaderOffsetFromTop, containerOffsetFromLeft + teamsContainerWidth, nil, 0xFFFFFFFF, teamHeaderFontSize, "default-bold", "center") 
 	dxDrawImage ( containerOffsetFromLeft, teamsContainerOffsetFromTop, teamsContainerWidth, teamsContainerHeight, "spawnselectimages/asset_background_classes.png")
@@ -95,16 +119,26 @@ function renderSpawnSelect ( )
 		local skinBorder = "spawnselectimages/asset_circle_border_bg.png"
 		if row > 0 then skinBorder = "spawnselectimages/asset_circle_border_cop.png" end
 		
-		dxDrawImage ( skinButtonsOffsetFromLeft + (skinCircleSize * col) + (skinButtonMargin * col), skinButtonsOffsetFromTop + (skinCircleSize * row) + (skinButtonMargin * row), skinCircleSize, skinCircleSize, "spawnselectimages/asset_white_circle.png")
-		dxDrawImage ( skinButtonsOffsetFromLeft + (skinCircleSize * col) + (skinButtonMargin * col), skinButtonsOffsetFromTop + (skinCircleSize * row) + (skinButtonMargin * row), skinPortraitSize, skinPortraitSize, "spawnselectimages/ptpm-skins-" .. skinId .. ".png")
-		dxDrawImage ( skinButtonsOffsetFromLeft + (skinCircleSize * col) + (skinButtonMargin * col), skinButtonsOffsetFromTop + (skinCircleSize * row) + (skinButtonMargin * row), skinCircleSize, skinCircleSize, skinBorder)
+		local x = skinButtonsOffsetFromLeft + (skinCircleSize * col) + (skinButtonMargin * col)
+		local y = skinButtonsOffsetFromTop + (skinCircleSize * row) + (skinButtonMargin * row)
+		
+		dxDrawImage ( x,y, skinCircleSize, skinCircleSize, "spawnselectimages/asset_white_circle.png")
+		dxDrawImage ( x,y, skinPortraitSize, skinPortraitSize, "spawnselectimages/ptpm-skins-" .. skinId .. ".png")
+		dxDrawImage ( x,y, skinCircleSize, skinCircleSize, skinBorder)
+		
+		dxClickableElement["goodGuyFace-" .. k] = { startX = x, startY = y, endX = x+skinCircleSize, endY = y+skinCircleSize }
 	end
 	
 	dxDrawText("May Lana", skinButtonsOffsetFromLeft, skinDetailsOffsetFromTop, nil, nil, 0xFFFFFFFF, skinDetailsFontSize, "default-bold") 
 	dxDrawText("Silenced Pistol\nSpraycan\nParachute", skinButtonsOffsetFromLeft, skinDetailsOffsetFromTop + dxGetFontHeight ( skinDetailsFontSize, "default-bold" ), nil, nil, 0xFFFFFFFF, skinDetailsFontSize, "default") 
 	
-	dxDrawImage ( skinButtonsOffsetFromLeft + skinButtonsCalculatedWidth - chooseButtonWidth, skinDetailsOffsetFromTop, chooseButtonWidth, chooseButtonWidth / widthToHeightRatios.asset_choosebutton, "spawnselectimages/asset_choosebutton_neutral.png")
-	dxDrawText ( "Choose", skinButtonsOffsetFromLeft + skinButtonsCalculatedWidth - chooseButtonWidth, skinDetailsOffsetFromTop, skinButtonsOffsetFromLeft + skinButtonsCalculatedWidth - chooseButtonWidth+chooseButtonWidth, skinDetailsOffsetFromTop + chooseButtonWidth / widthToHeightRatios.asset_choosebutton, 0xFFFFFFFF, chooseButtonFontSize, "default-bold", "center", "center", true)
+	local chooseButtonGoodGuysX = skinButtonsOffsetFromLeft + skinButtonsCalculatedWidth - chooseButtonWidth
+	local chooseButtonGoodGuysY = skinDetailsOffsetFromTop
+	
+	dxDrawImage ( chooseButtonGoodGuysX, chooseButtonGoodGuysY, chooseButtonWidth, chooseButtonHeight, "spawnselectimages/asset_choosebutton_neutral.png")
+	dxDrawText ( "Choose", chooseButtonGoodGuysX, chooseButtonGoodGuysY, chooseButtonGoodGuysX+chooseButtonWidth, chooseButtonGoodGuysY + chooseButtonHeight, 0xFFFFFFFF, chooseButtonFontSize, "default-bold", "center", "center", true)
+	
+	dxClickableElement["goodGuyButton"] = { startX = chooseButtonGoodGuysX, startY = chooseButtonGoodGuysY, endX = chooseButtonGoodGuysX+chooseButtonWidth, endY = chooseButtonGoodGuysY+chooseButtonHeight }
 	
 	-- Terrorists
 	dxDrawText("ATTACK", containerOffsetFromLeft + containerMaxWidth - teamsContainerWidth, teamHeaderOffsetFromTop, containerOffsetFromLeft + containerMaxWidth, nil, 0xFFFFFFFF, teamHeaderFontSize, "default-bold", "center") 
@@ -113,22 +147,81 @@ function renderSpawnSelect ( )
 	for k,skinId in ipairs(allowedSkinsTerrorists) do
 		local col = (k-1)%4
 		local row = math.floor((k-1)/4)
+		
+		local x = containerMaxWidth - teamsContainerWidth + skinButtonsOffsetFromLeft + (skinCircleSize * col) + (skinButtonMargin * col)
+		local y = skinButtonsOffsetFromTop + (skinCircleSize * row) + (skinButtonMargin * row)
 				
-		dxDrawImage ( containerMaxWidth - teamsContainerWidth + skinButtonsOffsetFromLeft + (skinCircleSize * col) + (skinButtonMargin * col), skinButtonsOffsetFromTop + (skinCircleSize * row) + (skinButtonMargin * row), skinCircleSize, skinCircleSize, "spawnselectimages/asset_white_circle.png")
-		dxDrawImage ( containerMaxWidth - teamsContainerWidth +skinButtonsOffsetFromLeft + (skinCircleSize * col) + (skinButtonMargin * col), skinButtonsOffsetFromTop + (skinCircleSize * row) + (skinButtonMargin * row), skinPortraitSize, skinPortraitSize, "spawnselectimages/ptpm-skins-" .. skinId .. ".png")
-		dxDrawImage ( containerMaxWidth - teamsContainerWidth +skinButtonsOffsetFromLeft + (skinCircleSize * col) + (skinButtonMargin * col), skinButtonsOffsetFromTop + (skinCircleSize * row) + (skinButtonMargin * row), skinCircleSize, skinCircleSize, "spawnselectimages/asset_circle_border_terrorist.png")
+		dxDrawImage ( x,y, skinCircleSize, skinCircleSize, "spawnselectimages/asset_white_circle.png")
+		dxDrawImage ( x,y, skinPortraitSize, skinPortraitSize, "spawnselectimages/ptpm-skins-" .. skinId .. ".png")
+		dxDrawImage ( x,y, skinCircleSize, skinCircleSize, "spawnselectimages/asset_circle_border_terrorist.png")
+		
+		dxClickableElement["badGuyFace-" .. k] = { startX = x, startY = y, endX = x+skinCircleSize, endY = y+skinCircleSize }
 	end
 	
 	dxDrawText("Token Black", containerMaxWidth - teamsContainerWidth +skinButtonsOffsetFromLeft, skinDetailsOffsetFromTop, nil, nil, 0xFFFFFFFF, skinDetailsFontSize, "default-bold") 
 	dxDrawText("Silenced Pistol\nSpraycan\nParachute", containerMaxWidth - teamsContainerWidth +skinButtonsOffsetFromLeft, skinDetailsOffsetFromTop + dxGetFontHeight ( skinDetailsFontSize, "default-bold" ), nil, nil, 0xFFFFFFFF, skinDetailsFontSize, "default") 
 	
-	dxDrawImage ( containerMaxWidth - teamsContainerWidth +skinButtonsOffsetFromLeft + skinButtonsCalculatedWidth - chooseButtonWidth, skinDetailsOffsetFromTop, chooseButtonWidth, chooseButtonWidth / widthToHeightRatios.asset_choosebutton, "spawnselectimages/asset_choosebutton_neutral.png")
-	dxDrawText ( "Choose", containerMaxWidth - teamsContainerWidth +skinButtonsOffsetFromLeft + skinButtonsCalculatedWidth - chooseButtonWidth, skinDetailsOffsetFromTop, containerMaxWidth - teamsContainerWidth +skinButtonsOffsetFromLeft + skinButtonsCalculatedWidth - chooseButtonWidth+chooseButtonWidth, skinDetailsOffsetFromTop + chooseButtonWidth / widthToHeightRatios.asset_choosebutton, 0xFFFFFFFF, chooseButtonFontSize, "default-bold", "center", "center", true)
+	local chooseButtonBadGuysX = containerMaxWidth - teamsContainerWidth + skinButtonsOffsetFromLeft + skinButtonsCalculatedWidth - chooseButtonWidth
+	local chooseButtonBadGuysY = skinDetailsOffsetFromTop
+	local xSpecial = containerMaxWidth - teamsContainerWidth +chooseButtonBadGuysX+chooseButtonWidth --I... forgot why not just chooseButtonBadGuysX + chooseButtonWidth
+
 	
+	dxDrawImage ( chooseButtonBadGuysX, chooseButtonBadGuysY, chooseButtonWidth, chooseButtonHeight, "spawnselectimages/asset_choosebutton_neutral.png")
+	dxDrawText ( "Choose", chooseButtonBadGuysX, chooseButtonBadGuysY, chooseButtonBadGuysX+chooseButtonWidth, chooseButtonBadGuysY + chooseButtonHeight, 0xFFFFFFFF, chooseButtonFontSize, "default-bold", "center", "center", true)
+	
+	dxClickableElement["badGuyButton"] = { startX = chooseButtonBadGuysX, startY = chooseButtonBadGuysX, endX = chooseButtonBadGuysX+chooseButtonWidth, endY = chooseButtonBadGuysX+chooseButtonHeight }
 	
 	-- Countdown
 	
 	dxDrawText("Assemble your teams! Round starts in 15 seconds.", containerOffsetFromLeft, roundCountDownOffsetFromTop, containerOffsetFromLeft + containerMaxWidth, nil, 0xFFFFFFFF, roundCountDownFontSize, "default", "center") 
 end
 
-addEventHandler("onClientRender", getRootElement(), renderSpawnSelect)
+function onClickHandler ( button, state, absoluteX, absoluteY )
+	if playerHasJustClicked then return nil end
+    if isStartOfRoundSpawnSelectRunning and state=="up" then
+		for k,v in pairs(dxClickableElement) do
+			if absoluteX > v.startX and absoluteX < v.endX and absoluteY > v.startY and absoluteY < v.endY then
+		
+				outputChatBox("Clicked: " .. k)
+				-- dxClickableElementtates
+				
+				playerHasJustClicked = true
+				setTimer(function() playerHasJustClicked = false end, 500, 1 )
+			end
+		end
+	end
+end
+
+function onMouseOverHandler ( _, _, absoluteX, absoluteY )
+
+	-- if isStartOfRoundSpawnSelectRunning then
+		-- for k,v in pairs(dxClickableElement) do
+			-- if absoluteX > v.startX and absoluteX < v.endX and absoluteY > v.startY and absoluteY < v.endY then
+				-- dxClickableElementtates[k].isHovered = true
+			-- end
+		-- end
+	-- end
+end
+
+function startSpawnSelect(  )
+	
+	if source~= getResourceRootElement(getThisResource()) then do return end end
+	
+	
+	showCursor ( true )
+	isStartOfRoundSpawnSelectRunning = true
+	setPlayerHudComponentVisible ( "all" , false )
+	
+	addEventHandler("onClientRender", getRootElement(), renderSpawnSelect)
+	addEventHandler ( "onClientClick", getRootElement(), onClickHandler )
+	addEventHandler ( "onClientCursorMove", getRootElement(), onMouseOverHandler )
+	
+	spawnTimeCountDown = 15
+	setTimer(function() 
+		spawnTimeCountDown = spawnTimeCountDown-1
+		if spawnTimeCountDown<0 then spawnTimeCountDown = 0 end
+	end, 1000, spawnTimeCountDown )
+end
+
+
+addEventHandler( "onClientResourceStart", getRootElement( ), startSpawnSelect)
