@@ -19,9 +19,13 @@ end
 
 function makeHeadshot(attacker, weapon, bodypart, loss)
 	if findNumber(headshot.allowedWeapons, weapon) then
-		killPed(source, attacker, weapon, 9)
-		setPedHeadless(source, true)
-		setTimer(setPedHeadless, 900, 1, source, false)
+		if getPedArmor ( source ) then
+			setPedArmor ( source, 0 )
+		else
+			killPed(source, attacker, weapon, 9)
+			setPedHeadless(source, true)
+			setTimer(setPedHeadless, 900, 1, source, false)
+		end
 	end
 end
 addEvent("onClientsideHeadshot", true)
