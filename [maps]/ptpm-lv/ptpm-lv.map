@@ -499,43 +499,45 @@
 	
     <object model="987" posX="2132.19" posY="1621.70" posZ="999.81" rotX="0.00" rotY="0.00" rotZ="357.76" />
     <!-- fenceblock -->
-    <object model="3294" posX="2036.85" posY="2380.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2380.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2386.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2386.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2392.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2392.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2398.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2398.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2404.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2404.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2410.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2410.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2416.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2416.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2422.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2422.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="9093" posX="2044.95" posY="2371.71" posZ="143.10" rotX="0.00" rotY="251.00" rotZ="268.96" />
-    <!-- 1 -->
-    <object model="9093" posX="2044.92" posY="2368.40" posZ="144.25" rotX="180.00" rotY="71.00" rotZ="449.38" />
-    <!-- 2 -->
-    <object model="9093" posX="2044.91" posY="2365.11" posZ="145.37" rotX="180.00" rotY="70.00" rotZ="89.55" />
-    <!-- 3 -->
-    <object model="9093" posX="2044.94" posY="2361.72" posZ="146.00" rotX="180.00" rotY="90.00" rotZ="269.90" />
-    <!-- 4 -->
-    <object model="9093" posX="2044.96" posY="2358.15" posZ="146.01" rotX="180.00" rotY="90.00" rotZ="270.19" />
-    <!-- 5 -->
-    <object model="9093" posX="2050.22" posY="2359.59" posZ="146.57" rotX="180.00" rotY="110.00" rotZ="360.18" />
-    <!-- 6 -->
-    <object model="9093" posX="2053.53" posY="2359.64" posZ="147.76" rotX="180.00" rotY="110.00" rotZ="360.30" />
-    <!-- 7 -->
-    <object model="9093" posX="2056.86" posY="2359.73" posZ="148.91" rotX="180.00" rotY="107.00" rotZ="360.19" />
-    <!-- 8 -->
-    <object model="9093" posX="2060.17" posY="2359.69" posZ="149.40" rotX="180.00" rotY="90.00" rotZ="359.49" />
-    <!-- 9 -->
-    <object model="9093" posX="2063.57" posY="2359.69" posZ="149.40" rotX="180.00" rotY="90.00" rotZ="359.49" />
-    <!-- 10 -->
-	
+    <object id="object (odrampbit03) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="5821" doublesided="false" scale="1" dimension="0" posX="2196.1765" posY="1133.8854" posZ="15.58762" rotX="0" rotY="0" rotZ="242"></object>
+    <object id="object (shamheliprt04) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="6976" doublesided="true" scale="1" dimension="0" posX="2185.2908" posY="1087.4019" posZ="12.61094" rotX="0" rotY="0" rotZ="153"></object>
+    <object id="object (vgwstnewall6904) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="7921" doublesided="false" scale="1" dimension="0" posX="2192.1567" posY="1132.8291" posZ="18.245" rotX="90" rotY="355.187" rotZ="247.313"></object>
+    <object id="object (nt_aircon1dbl) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="1635" doublesided="false" scale="1" dimension="0" posX="2491.9346" posY="2115.1167" posZ="25.6579" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (nt_aircon1dbl) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="1635" doublesided="false" scale="1" dimension="0" posX="2480.9102" posY="2115.0947" posZ="25.6579" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (gen_roofbit1) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="1687" doublesided="false" scale="1" dimension="0" posX="2483.606" posY="2121.8606" posZ="20.28659" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (telgrphpoleall) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="1307" doublesided="false" scale="1" dimension="0" posX="2180.7676" posY="1475.5215" posZ="0.66252" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="1346" doublesided="false" scale="1" dimension="0" posX="2180.8296" posY="1494.7191" posZ="11.17132" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (acbox4_SFS) (1)" breakable="false" interior="0" collisions="true" alpha="0" model="3800" doublesided="false" scale="1" dimension="0" posX="2180.738" posY="1475.4941" posZ="18.48752" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (chinawning69b) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="9859" doublesided="false" scale="1" dimension="0" posX="2157.7371" posY="1473.8595" posZ="9.28343" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="1346" doublesided="false" scale="1" dimension="0" posX="2179.9688" posY="1497.4038" posZ="11.17132" rotX="0" rotY="0" rotZ="121.25"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (3)" breakable="false" interior="0" collisions="true" alpha="255" model="1346" doublesided="false" scale="1" dimension="0" posX="2215.5247" posY="1510.0293" posZ="11.37132" rotX="0" rotY="0" rotZ="180.25"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (4)" breakable="false" interior="0" collisions="true" alpha="255" model="1346" doublesided="false" scale="1" dimension="0" posX="2226.1577" posY="1509.9628" posZ="11.37132" rotX="0" rotY="0" rotZ="180.247"></object>
+    <object id="object (comms01) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="3940" doublesided="false" scale="1" dimension="0" posX="2217.0273" posY="1485.4072" posZ="18.61346" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (nt_aircon1dbl) (3)" breakable="false" interior="0" collisions="true" alpha="255" model="1635" doublesided="false" scale="1" dimension="0" posX="1964.6809" posY="2331.8206" posZ="25.75781" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (vgstlgraphpole) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="3447" doublesided="false" scale="1" dimension="0" posX="1968.3416" posY="2329.2842" posZ="17.14343" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (nt_aircon1dbl) (4)" breakable="false" interior="0" collisions="true" alpha="255" model="1635" doublesided="false" scale="1" dimension="0" posX="1971.3555" posY="2331.8303" posZ="25.75781" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (des_quarryhut1) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="16310" doublesided="false" scale="1" dimension="0" posX="1999.8711" posY="2335.7444" posZ="22.15156" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (ws_scaffolding_SFX) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="3867" doublesided="false" scale="1" dimension="0" posX="1986.3477" posY="2334.9785" posZ="13.7138" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (ws_scaffolding_SFX) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="3867" doublesided="false" scale="1" dimension="0" posX="1965.5737" posY="2335.0439" posZ="13.7138" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (des_swtstairs1) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="1974.1741" posY="2304.8027" posZ="15.70579" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (nt_aircon1_01) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="1617" doublesided="false" scale="1" dimension="0" posX="1948.7192" posY="2327.0205" posZ="13.76708" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (gen_roofbit2) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="1688" doublesided="false" scale="1" dimension="0" posX="1949.5713" posY="2316.5859" posZ="16.47865" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (vgsfrates08) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="8335" doublesided="false" scale="1" dimension="0" posX="1667.4023" posY="2392.1943" posZ="9.8861" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (roofshitlan2) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="4588" doublesided="false" scale="1" dimension="0" posX="1660.2708" posY="2329.8792" posZ="21.52702" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (lasntrk1) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="3566" doublesided="false" scale="1" dimension="0" posX="1489.9969" posY="2135.2502" posZ="12.38393" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (lasnfltrail) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="3567" doublesided="false" scale="1" dimension="0" posX="1489.7935" posY="2128.978" posZ="10.77406" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (lasntrk2) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="3568" doublesided="false" scale="1" dimension="0" posX="1490.3107" posY="2096.3486" posZ="12.38393" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (lasntrk3) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="3569" doublesided="false" scale="1" dimension="0" posX="1490.0236" posY="2122.7571" posZ="12.38393" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (lasnfltrail) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="3567" doublesided="false" scale="1" dimension="0" posX="1490.0981" posY="2090.6025" posZ="10.77406" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (des_swtstairs1) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="1459.6788" posY="2135.6042" posZ="23.03162" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (des_swtstairs1) (3)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="1459.5881" posY="2164.0281" posZ="23.03162" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (des_swtstairs1) (4)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="1459.6611" posY="2107.3506" posZ="23.03162" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (comms01) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="3940" doublesided="false" scale="1" dimension="0" posX="2199.948" posY="2065.10913" posZ="8.29002" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (des_swtstairs1) (5)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="2177.2256" posY="2065.5376" posZ="20.66267" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (des_swtstairs1) (6)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="2173.0212" posY="2067.8127" posZ="25.93767" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (des_swtstairs1) (7)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="2183.0757" posY="2062.1245" posZ="14.78767" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (des_swtstairs1) (8)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="2172.8677" posY="2051.541" posZ="14.78767" rotX="0" rotY="0" rotZ="270"></object>
+
 	
     <boundarycorner posX="3034.0212" posY="2994.7202" />
     <boundarycorner posX="963.8895" posY="2994.7202" />
