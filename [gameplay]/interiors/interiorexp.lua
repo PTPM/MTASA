@@ -328,16 +328,28 @@ addEventHandler("onPlayerStealthKill", root,
 
 
 -- addCommandHandler("ti", 
--- 	function(player, command, i) 
--- 		local interior = getInteriorFromID(i, true)
+-- 	function(player, command, i, count, r) 
+-- 		local id = i
+
+-- 		-- bodge to allow for the ids with spaces in the format "name (number)"
+-- 		if count and tonumber(count) and tonumber(count) > 0 then
+-- 			id = id .. " (" .. tostring(count) .. ")"
+-- 		end
+
+-- 		local interior = getInteriorFromID(id, r == nil)
 
 -- 		if interior == nil then
+-- 			outputChatBox("Could not find marker " .. i)
 -- 			return
 -- 		end
 
 -- 		local entX, entY, entZ = getElementData(interior, "posX"), getElementData(interior, "posY"), getElementData(interior, "posZ")
+-- 		local int = getElementData(interior, "interior")
+-- 		local dim = getElementData(interior, "dimension")
 
--- 		setElementPosition(player, entX, entY, entZ)
+-- 		setElementPosition(player, entX, entY, entZ + 0.5)
+-- 		setElementInterior(player, int)
+-- 		setElementDimension(player, dim)
 -- 	end
 -- )
 
@@ -346,6 +358,7 @@ addEventHandler("onPlayerStealthKill", root,
 -- 		local x, y, z = getElementPosition(player)
 -- 		local closestDistance = 9999
 -- 		local closestID = ""
+-- 		local closestType = ""
 
 -- 		for interiorID, interiorTypeTable in pairs(interiors[resource]) do
 -- 			local interior = interiorTypeTable["entry"]
@@ -356,6 +369,7 @@ addEventHandler("onPlayerStealthKill", root,
 -- 			if d < closestDistance then
 -- 				closestDistance = d
 -- 				closestID = interiorID
+-- 				closestType = "entry"
 -- 			end
 
 -- 			interior = interiorTypeTable["return"]
@@ -366,6 +380,7 @@ addEventHandler("onPlayerStealthKill", root,
 -- 			if d < closestDistance then
 -- 				closestDistance = d
 -- 				closestID = interiorID
+-- 				closestType = "return"
 -- 			end			
 -- 		end
 
@@ -374,6 +389,8 @@ addEventHandler("onPlayerStealthKill", root,
 -- 			return
 -- 		end
 
--- 		outputChatBox("Closest teleport: " .. closestID)
+-- 		local _,_,rz = getElementRotation(player)
+
+-- 		outputChatBox("Closest teleport: " .. closestType .. " " .. closestID .. " (rot: " .. rz .. ")")
 -- 	end
 -- )
