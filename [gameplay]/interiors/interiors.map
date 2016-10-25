@@ -3,10 +3,16 @@
 <interiorReturn	refid="SPECIAL1"	posX="-224.733"	posY="1395.82"	posZ="172.05"	rotation="0"	interior="0"	dimension="0"	/>
 <interiorEntry	id="SPECIAL2"	posX="2896.57"	posY="57.2165"	posZ="0"	rotation="0"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="SPECIAL2"	posX="2980.16"	posY="76.1581"	posZ="0"	rotation="0"	interior="0"	dimension="1"	/>
+
+<interiorEntry	id="SPECIAL3"	posX="-1749.35"	posY="869.279"	posZ="24.0593"	rotation="180"	dimension="0"	interior="0"	/>
+<interiorReturn	refid="SPECIAL3"	posX="-1753.75"	posY="883.965"	posZ="294.645"	rotation="0"	dimension="0"	interior="0"	/>
+
+<!--
 <interiorEntry	id="SPECIAL3"	posX="-1749.35"	posY="869.279"	posZ="24.0593"	rotation="0"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="SPECIAL3"	posX="-1753.85"	posY="885.679"	posZ="295.059"	rotation="0"	interior="0"	dimension="2"	/>
 <interiorEntry	id="SPECIAL4"	posX="-1753.75"	posY="883.965"	posZ="294.645"	rotation="0"	dimension="0"	interior="0"	/>
-<interiorReturn	refid="SPECIAL4"	posX="-1749.38"	posY="865.158"	posZ="24.1455"	rotation="0"	interior="0"	dimension="3"	/>
+<interiorReturn	refid="SPECIAL4"	posX="-1749.38"	posY="865.158"	posZ="24.1455"	rotation="0"	interior="0"	dimension="3"	/>-->
+
 <interiorEntry	id="ABATOIR"	posX="966.608"	posY="2160.68"	posZ="9.82222"	rotation="180"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="ABATOIR"	posX="965.38"	posY="2159.33"	posZ="1010.02"	rotation="270"	interior="1"	dimension="0"	/>
 <interiorEntry	id="AMMUN1"	posX="1368.35"	posY="-1279.06"	posZ="12.55"	rotation="-0.100006"	dimension="0"	interior="0"	/>
