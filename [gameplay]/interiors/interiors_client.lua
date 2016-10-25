@@ -53,9 +53,9 @@
 
 local interiors = {}
 local lookups = {
-	coliders = {},
+	colliders = {},
 	resources = {},
-	interiorFromColider = {},
+	interiorFromCollider = {},
 
 	opposite = { 
 		["interiorReturn"] = "entry",
@@ -68,7 +68,8 @@ local lookups = {
 }
 
 local outputColour = {255, 128, 0}
-local allowPlayerTeleporting = true
+local allowPlayerToTeleport = true
+local targetCollider = nil
 local settings = {}
 
 
@@ -76,6 +77,7 @@ addEvent("doWarpPlayerToInterior", true)
 addEvent("onClientInteriorHit")
 addEvent("onClientInteriorWarped")
 addEvent("updateClientSettings", true)
+addEvent("playerLoadingGround", true)
 
 
 addEventHandler("onClientResourceStart", root,
@@ -94,8 +96,8 @@ addEventHandler("onClientResourceStop", root,
 		end
 
 		for id, interiorTable in pairs(interiors[resource]) do
-			local entryCollider = lookups.coliders[interiorTable["entry"]]
-			local returnCollider = lookups.coliders[interiorTable["return"]]
+			local entryCollider = lookups.colliders[interiorTable["entry"]]
+			local returnCollider = lookups.colliders[interiorTable["return"]]
 
 			if entryCollider then
 				destroyElement(entryCollider)
@@ -158,7 +160,7 @@ function interiorCreateColliders(resource)
 	end
 
 	for interiorID, interiorTypeTable in pairs(interiors[resource]) do
-		-- create entry coliders
+		-- create entry colliders
 		local entryInterior = interiorTypeTable["entry"]
 		local entX, entY, entZ = tonumber(getElementData(entryInterior, "posX")), tonumber(getElementData(entryInterior, "posY")), tonumber(getElementData(entryInterior, "posZ"))
 		local dimension = tonumber(getElementData(entryInterior, "dimension")) or 0
@@ -169,11 +171,11 @@ function interiorCreateColliders(resource)
 		setElementInterior ( col, interior )
 		setElementDimension ( col, dimension )
 
-		lookups.coliders[entryInterior] = col
-		lookups.interiorFromColider[col] = entryInterior
+		lookups.colliders[entryInterior] = col
+		lookups.interiorFromCollider[col] = entryInterior
 		addEventHandler("onClientColShapeHit", col, colshapeHit) 
 
-		---create return coliders
+		---create return colliders
 		local returnInterior = interiorTypeTable["return"]
 		
 		if getElementData(entryInterior, "oneway" ) ~= "true" then 
@@ -187,26 +189,11 @@ function interiorCreateColliders(resource)
 			setElementInterior(col, interior)
 			setElementDimension(col, dimension)
 
-			lookups.interiorFromColider[col] = returnInterior
-			lookups.coliders[returnInterior] = col
+			lookups.interiorFromCollider[col] = returnInterior
+			lookups.colliders[returnInterior] = col
 			addEventHandler("onClientColShapeHit", col, colshapeHit) 
 		end
 	end
-end
-
-function getInteriorMarker(elementInterior)
-	if not isElement(elementInterior) then 
-		outputDebugString("getInteriorName: Invalid variable specified as interior. Element expected, got " .. type(elementInterior) .. ".", 0, unpack(outputColour)) 
-		return false 
-	end
-
-	local interiorType = getElementType(elementInterior)
-	if interiorType == "interiorEntry" or interiorType == "interiorReturn" then
-		return interiorMarkers[elementInterior] or false
-	end
-
-	outputDebugString("getInteriorName: Bad element specified. Interior expected, got " .. interiorType .. ".", 0, unpack(outputColour))
-	return false
 end
 
 
@@ -215,72 +202,116 @@ function colshapeHit(player, matchingDimension)
 		return 
 	end
 
-	if (not matchingDimension) or isPedInVehicle(player) or doesPedHaveJetPack(player) or (not isPedOnGround(player)) or getControlState("aim_weapon") or (not allowPlayerTeleporting) then 
+	if (not matchingDimension) or isPedInVehicle(player) or doesPedHaveJetPack(player) or (not isPedOnGround(player)) or 
+		getControlState("aim_weapon") or (not allowPlayerToTeleport) or (source == targetCollider) then 
 		return 
 	end
 
-	local interior = lookups.interiorFromColider[source]
+	local interior = lookups.interiorFromCollider[source]
 	local id = getElementData(interior, lookups.idDataName[getElementType(interior)]) 
 	local resource = lookups.resources[interior]
 
 	local eventNotCancelled = triggerEvent("onClientInteriorHit", interior)
 	if eventNotCancelled then
+ 		local oppositeType = lookups.opposite[getElementType(interior)]
+ 		local targetInterior = interiors[resource][id][oppositeType]
+
+ 		-- save the target collider so when we hit it we can ignore the event
+		targetCollider = lookups.colliders[targetInterior]
+
 		triggerServerEvent("doTriggerServerEvents", localPlayer, interior, getResourceName(resource), id)
+
+		-- just in case the teleport event is cancelled by the server (and won't be cleared when we check for ground loading)
+		-- we'll clear this anyway after a few seconds
+		setTimer(
+			function()
+				targetCollider = nil
+			end,
+		2000, 1)
 	end
 end
 
-addEventHandler("doWarpPlayerToInterior", localPlayer,
-	function(interior, resource, id)
-		resource = getResourceFromName(resource)
-		local oppositeType = lookups.opposite[getElementType(interior)]
-		local targetInterior = interiors[resource][id][oppositeType]
-		
-		local x = tonumber(getElementData(targetInterior, "posX"))
-		local y = tonumber(getElementData(targetInterior, "posY"))
-		local z = tonumber(getElementData(targetInterior, "posZ")) + 1
-		local dim = tonumber(getElementData(targetInterior, "dimension"))
-		local int = tonumber(getElementData(targetInterior, "interior"))
-		local rot = tonumber(getElementData(targetInterior, "rotation"))
 
-		if (not x) or (not y) or (not z) or (not dim) or (not int) or (not rot) then
-			outputDebugString(string.format("doWarpPlayerToInterior: Invalid warp data: %s %s %s %s %s %s", tostring(x), tostring(y), tostring(z), tostring(dim), tostring(int), tostring(rot)), 0, unpack(outputColour))
-			return
-		end
+addEventHandler("playerLoadingGround", localPlayer,
+	function(interior)
+		allowPlayerToTeleport = false
 
-		toggleAllControls(false, true, false)
-		fadeCamera(false, 1.0)
-		setTimer(setPlayerInsideInterior, 1000, 1, source, int, dim, rot, x, y, z, interior)
-		allowPlayerTeleporting = false
-
-		setTimer(
-			function() 
-				allowPlayerTeleporting = true
-			end, 
-		3500, 1)
+		pauseUntilWorldHasLoaded(triggerGroundLoaded, interior)
 	end
 )
 
-function setPlayerInsideInterior(player, int, dim, rot, x, y, z, interior)
-	setElementInterior(player, int)
-	setCameraInterior(int)
-	setElementDimension(player, dim)
+function pauseUntilWorldHasLoaded(fn, ...)
+	local x, y, z = getElementPosition(localPlayer)
+	
+	if loadingTimer and isTimer(loadingTimer) then
+		return
+	end
 
-	setPedRotation(player, rot % 360)
-	setTimer(
-		function(p) 
-			if isElement(p) then 
-				setCameraTarget(p) 
-			end 
+	-- save the original gravity
+	local savedGravity
+
+	savedGravity = getGravity()
+	--setGravity(0)
+
+	local attempts = 0
+	local foundGround = false
+	
+	-- call the function once the environment has loaded
+	loadingTimer = setTimer(
+		function(arguments)
+			-- hard limit to use as a fallback in case we can't detect a collision
+			attempts = attempts + 1
+			
+			local x, y = getElementPosition(localPlayer)
+
+			if attempts > 40 or foundGround then
+				--outputDebugString("pauseUntilWorldHasLoaded loaded after " .. tostring(attempts) .. " attempts")
+			
+				if savedGravity and getGravity() == 0 then
+					--setGravity(savedGravity)
+				end
+				
+				if type(fn) == "function" then
+					fn(unpack(arguments))
+				end
+				
+				killTimer(loadingTimer)
+				loadingTimer = nil
+			end
+			
+			-- ground has loaded, set that we are done so the timer ticks once more before breaking
+			-- this gives us a 100ms grace period
+			if (not isLineOfSightClear(x, y, z + 5, x, y, z - 5, true, false, false, true, false, true, false, localPlayer)) then
+				foundGround = true
+			end
 		end, 
-	200, 1, player)
+	100, 0, {...})
+end
 
-	setElementPosition(player, x, y, z)
-	toggleAllControls(true, true, false)
-	setTimer(fadeCamera, 500, 1, true, 1.0)
+function triggerGroundLoaded(interior) 
+	triggerServerEvent("onPlayerGroundLoaded", localPlayer, interior)
 
-	triggerEvent("onClientInteriorWarped", interior)
-	triggerServerEvent("onInteriorWarped", interior, player)
-	triggerServerEvent("onPlayerInteriorWarped", player, interior)
+	allowPlayerToTeleport = true
+	targetCollider = nil
+
+ 	triggerEvent("onClientInteriorWarped", interior)
+end
+
+
+
+function getInteriorMarker(elementInterior)
+	if not isElement(elementInterior) then 
+		outputDebugString("getInteriorMarker: Invalid variable specified as interior. Element expected, got " .. type(elementInterior) .. ".", 0, unpack(outputColour)) 
+		return false 
+	end
+
+	local interiorType = getElementType(elementInterior)
+	if interiorType == "interiorEntry" or interiorType == "interiorReturn" then
+		return interiorMarkers[elementInterior] or false
+	end
+
+	outputDebugString("getInteriorMarker: Bad element specified. Interior expected, got " .. interiorType .. ".", 0, unpack(outputColour))
+	return false
 end
 
 function getInteriorName(interior)
@@ -298,6 +329,3 @@ function getInteriorName(interior)
 		return false
 	end
 end
-
-
-

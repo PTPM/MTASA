@@ -46,6 +46,7 @@ addEvent("onPlayerInteriorWarped", true)
 addEvent("onInteriorHit")
 addEvent("onInteriorWarped", true)
 addEvent("onClientReady", true)
+addEvent("onPlayerGroundLoaded", true)
 
 
 addEventHandler("onResourceStart", root,
@@ -151,34 +152,38 @@ function interiorCreateMarkers (resource)
 	end
 end
 
-function getInteriorMarker(elementInterior)
-	if not isElement(elementInterior) then 
-		outputDebugString("getInteriorName: Invalid variable specified as interior.  Element expected, got " .. type(elementInterior) .. ".", 0, unpack(outputColour)) 
-		return false 
-	end
-
-	local elemType = getElementType(elementInterior)
-	if elemType == "interiorEntry" or elemType == "interiorReturn" then
-		return lookups.markers[elementInterior] or false
-	end
-
-	outputDebugString("getInteriorName: Bad element specified.  Interior expected, got " .. elemType .. ".", 0, unpack(outputColour))
-	return false
-end
-
-
 
 addEventHandler("doTriggerServerEvents", root,
 	function(interior, resource, id)
+		-- already teleporting somewhere
+		if getElementData(client, "interiors.teleporting") then
+			return
+		end
+
 		local playerEventNotCanceled = triggerEvent("onPlayerInteriorHit", client, interior, resource, id)
 		local eventNotCanceled = triggerEvent("onInteriorHit", interior, client)
 
 		if playerEventNotCanceled and eventNotCanceled then
-			triggerClientEvent(client, "doWarpPlayerToInterior", client, interior, resource, id)
-			setTimer(setPlayerInsideInterior, 1000, 1, client, interior, resource, id)
+			setElementData(client, "interiors.teleporting", true, false)
+
+			setElementFrozen(client, true)
+			toggleAllControls(client, false, true, false)
+			fadeCamera(client, false, 1)
+
+			setTimer(fadeIntoWarpComplete, 1000, 1, client, interior, resource, id)
 		end
 	end
 )
+
+function fadeIntoWarpComplete(player, interior, resource, id) 
+	if not isElement(player) then
+		return
+	end
+
+	setPlayerInsideInterior(player, interior, resource, id)
+
+	triggerClientEvent(player, "playerLoadingGround", player, interior)
+end
 
 
 function setPlayerInsideInterior(player, interior, resource, id)
@@ -188,11 +193,67 @@ function setPlayerInsideInterior(player, interior, resource, id)
 
 	local oppositeType = lookups.opposite[getElementType(interior)]
 	local targetInterior = interiors[getResourceFromName(resource) or getThisResource()][id][oppositeType]
-	local dim = tonumber(getElementData(targetInterior, "dimension")) or 0
-	local int = tonumber(getElementData(targetInterior, "interior")) or 0
+
+	local x = tonumber(getElementData(targetInterior, "posX"))
+	local y = tonumber(getElementData(targetInterior, "posY"))
+	local z = tonumber(getElementData(targetInterior, "posZ")) + 1
+	local dim = tonumber(getElementData(targetInterior, "dimension"))
+	local int = tonumber(getElementData(targetInterior, "interior"))
+	local rot = tonumber(getElementData(targetInterior, "rotation"))
+
+	if (not x) or (not y) or (not z) or (not dim) or (not int) or (not rot) then
+		outputDebugString(string.format("setPlayerInsideInterior: Invalid warp data: %s %s %s %s %s %s", tostring(x), tostring(y), tostring(z), tostring(dim), tostring(int), tostring(rot)), 0, unpack(outputColour))
+		return
+	end	
 
 	setElementInterior(player, int)
+	setCameraInterior(player, int)
 	setElementDimension(player, dim)
+
+	setElementRotation(player, 0, 0, rot % 360, "default", true)
+
+	setTimer(
+		function(p) 
+			if isElement(p) then 
+				setCameraTarget(p) 
+			end 
+		end, 
+	200, 1, player)
+
+	setElementPosition(player, x, y, z)
+end
+
+addEventHandler("onPlayerGroundLoaded", root,
+	function(interior)
+		if not getElementData(client, "interiors.teleporting") then
+			return
+		end
+
+		setElementFrozen(client, false)
+		toggleAllControls(client, true, true, false)	
+		fadeCamera(client, true, 1)
+
+		setElementData(client, "interiors.teleporting", false, false)
+
+		triggerEvent("onInteriorWarped", interior, client)
+ 		triggerEvent("onPlayerInteriorWarped", client, interior)
+	end
+)
+
+
+function getInteriorMarker(elementInterior)
+	if not isElement(elementInterior) then 
+		outputDebugString("getInteriorMarker: Invalid variable specified as interior.  Element expected, got " .. type(elementInterior) .. ".", 0, unpack(outputColour)) 
+		return false 
+	end
+
+	local elemType = getElementType(elementInterior)
+	if elemType == "interiorEntry" or elemType == "interiorReturn" then
+		return lookups.markers[elementInterior] or false
+	end
+
+	outputDebugString("getInteriorMarker: Bad element specified.  Interior expected, got " .. elemType .. ".", 0, unpack(outputColour))
+	return false
 end
 
 
@@ -212,26 +273,28 @@ function getInteriorName(interior)
 	end
 end
 
-
-
-
-addCommandHandler("ti", function(player, command, i) 
-	local interior
-
+function getInteriorFromID(id, entry)
 	for interiorID, interiorTypeTable in pairs(interiors[resource]) do
-		if interiorID == i then
-			interior = interiorTypeTable
+		if interiorID == id then
+			return interiorTypeTable[entry and "entry" or "return"]
 		end
 	end
-	
-	if interior == nil then
-		return
-	end
 
-	local entryInterior = interior["entry"]
-	local entX,entY,entZ = getElementData ( entryInterior, "posX" ),getElementData ( entryInterior, "posY" ),getElementData ( entryInterior, "posZ" )
-	outputDebugString(entryInterior)
-	setElementPosition(player, entX, entY, entZ)
+	return nil
 end
-)
+
+
+-- addCommandHandler("ti", 
+-- 	function(player, command, i) 
+-- 		local interior = getInteriorFromID(i, true)
+
+-- 		if interior == nil then
+-- 			return
+-- 		end
+
+-- 		local entX, entY, entZ = getElementData(interior, "posX"), getElementData(interior, "posY"), getElementData(interior, "posZ")
+
+-- 		setElementPosition(player, entX, entY, entZ)
+-- 	end
+-- )
 
