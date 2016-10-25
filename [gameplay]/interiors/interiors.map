@@ -188,8 +188,8 @@
 <interiorReturn	refid="FDPIZA (5)"	posX="372.35"	posY="-133.55"	posZ="1000.45"	rotation="-180"	interior="5"	dimension="4"	/>
 <interiorEntry	id="FDPIZA (6)"	posX="2105.32"	posY="-1806.49"	posZ="12.6941"	rotation="-0.100006"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="FDPIZA (6)"	posX="372.35"	posY="-133.55"	posZ="1000.45"	rotation="92"	interior="5"	dimension="5"	/>
-<interiorEntry	id="FDPIZA (7)"	posX="-1808.69"	posY="945.863"	posZ="23.8648"	rotation="-0.100006"	dimension="0"	interior="0"	/>
-<interiorReturn	refid="FDPIZA (7)"	posX="372.35"	posY="-133.55"	posZ="1000.45"	rotation="3824.59"	interior="5"	dimension="6"	/>
+<interiorEntry	id="FDPIZA (7)"	posX="-1808.69"	posY="945.863"	posZ="23.8648"	rotation="225"	dimension="0"	interior="0"	/>
+<interiorReturn	refid="FDPIZA (7)"	posX="372.35"	posY="-133.55"	posZ="1000.45"	rotation="0"	interior="5"	dimension="6"	/>
 <interiorEntry	id="FDPIZA (8)"	posX="-1721.13"	posY="1359.01"	posZ="6.19634"	rotation="-0.100006"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="FDPIZA (8)"	posX="372.35"	posY="-133.55"	posZ="1000.45"	rotation="96"	interior="5"	dimension="7"	/>
 <interiorEntry	id="FDPIZA (9)"	posX="2638.58"	posY="1849.97"	posZ="10.0231"	rotation="-0.100006"	dimension="0"	interior="0"	/>

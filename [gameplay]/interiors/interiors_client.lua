@@ -70,10 +70,11 @@ local lookups = {
 local outputColour = {255, 128, 0}
 local allowPlayerToTeleport = true
 local targetCollider = nil
+local immunityTimer = nil
+local targetColliderTimer = nil
 local settings = {}
 
 
-addEvent("doWarpPlayerToInterior", true)
 addEvent("onClientInteriorHit")
 addEvent("onClientInteriorWarped")
 addEvent("updateClientSettings", true)
@@ -221,37 +222,41 @@ function colshapeHit(player, matchingDimension)
 
 		triggerServerEvent("doTriggerServerEvents", localPlayer, interior, getResourceName(resource), id)
 
+		if targetColliderTimer and isTimer(targetColliderTimer) then
+			killTimer(targetColliderTimer)
+		end
+
 		-- just in case the teleport event is cancelled by the server (and won't be cleared when we check for ground loading)
 		-- we'll clear this anyway after a few seconds
-		setTimer(
+		targetColliderTimer = setTimer(
 			function()
 				targetCollider = nil
+				targetColliderTimer = nil
 			end,
-		2000, 1)
+		1500, 1)
 	end
 end
 
 
 addEventHandler("playerLoadingGround", localPlayer,
-	function(interior)
+	function(interior, posX, posY, posZ)
+		-- this is the first point we can be sure we are being teleported
 		allowPlayerToTeleport = false
+		teleportImmunityActive = true
 
-		pauseUntilWorldHasLoaded(triggerGroundLoaded, interior)
+		if immunityTimer and isTimer(immunityTimer) then
+			killTimer(immunityTimer)
+			immunityTimer = nil
+		end
+
+		pauseUntilWorldHasLoaded({x = posX, y = posY, z = posZ}, triggerGroundLoaded, interior)
 	end
 )
 
-function pauseUntilWorldHasLoaded(fn, ...)
-	local x, y, z = getElementPosition(localPlayer)
-	
+function pauseUntilWorldHasLoaded(data, fn, ...)
 	if loadingTimer and isTimer(loadingTimer) then
 		return
 	end
-
-	-- save the original gravity
-	local savedGravity
-
-	savedGravity = getGravity()
-	--setGravity(0)
 
 	local attempts = 0
 	local foundGround = false
@@ -262,15 +267,9 @@ function pauseUntilWorldHasLoaded(fn, ...)
 			-- hard limit to use as a fallback in case we can't detect a collision
 			attempts = attempts + 1
 			
-			local x, y = getElementPosition(localPlayer)
-
-			if attempts > 40 or foundGround then
+			if attempts > 30 or foundGround then
 				--outputDebugString("pauseUntilWorldHasLoaded loaded after " .. tostring(attempts) .. " attempts")
-			
-				if savedGravity and getGravity() == 0 then
-					--setGravity(savedGravity)
-				end
-				
+
 				if type(fn) == "function" then
 					fn(unpack(arguments))
 				end
@@ -281,7 +280,7 @@ function pauseUntilWorldHasLoaded(fn, ...)
 			
 			-- ground has loaded, set that we are done so the timer ticks once more before breaking
 			-- this gives us a 100ms grace period
-			if (not isLineOfSightClear(x, y, z + 5, x, y, z - 5, true, false, false, true, false, true, false, localPlayer)) then
+			if (not isLineOfSightClear(data.x, data.y, data.z + 1, data.x, data.y, data.z - 5, true, false, false, true, false, true, false, localPlayer)) then
 				foundGround = true
 			end
 		end, 
@@ -295,6 +294,13 @@ function triggerGroundLoaded(interior)
 	targetCollider = nil
 
  	triggerEvent("onClientInteriorWarped", interior)
+
+ 	immunityTimer = setTimer(
+ 		function()
+ 			teleportImmunityActive = false
+ 			immunityTimer = nil
+ 		end,
+ 	settings.teleportImmunityLength, 1)
 end
 
 
@@ -316,7 +322,7 @@ end
 
 function getInteriorName(interior)
 	if not isElement(interior) then 
-		outputDebugString("getInteriorName: Invalid variable specified as interior.  Element expected, got " .. type(interior) .. ".", 0, unpack(outputColour)) 
+		outputDebugString("getInteriorName: Invalid variable specified as interior. Element expected, got " .. type(interior) .. ".", 0, unpack(outputColour)) 
 		return false 
 	end
 
@@ -325,7 +331,25 @@ function getInteriorName(interior)
 	if looksups.idDataName[interiorType] then
 		return getElementData(interior, lookups.idDataName[interiorType])
 	else
-		outputDebugString("getInteriorName: Bad element specified.  Interior expected, got " .. interiorType .. ".", 0, unpack(outputColour))
+		outputDebugString("getInteriorName: Bad element specified. Interior expected, got " .. interiorType .. ".", 0, unpack(outputColour))
 		return false
 	end
 end
+
+
+addEventHandler("onClientPlayerChoke", localPlayer, 
+	function(weaponID, responsiblePed)
+		if settings.immuneWhileTeleporting and teleportImmunityActive then
+			cancelEvent()
+		end
+	end
+)
+
+addEventHandler("onClientPlayerDamage", localPlayer,
+	function(attacker)
+		if settings.immuneWhileTeleporting and teleportImmunityActive then
+			cancelEvent()
+		end
+	end
+)
+

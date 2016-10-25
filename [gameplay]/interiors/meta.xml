@@ -10,4 +10,9 @@
 	<export function="getInteriorName" type="server" />
 	<export function="getInteriorMarker" type="client" />
 	<export function="getInteriorName" type="client" />
+
+	<settings>
+		<setting name="*immuneWhileTeleporting" value="[true]" desc="Make players immune to damage while they are teleporting"/>
+		<setting name="*teleportImmunityLength" value="[2000]" desc="How long (in ms) players will remain immune after teleporting"/>
+	</settings>
 </meta>

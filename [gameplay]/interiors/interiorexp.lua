@@ -27,6 +27,9 @@ interior = {
 
 local resourceName = getResourceName(resource)
 local settings = {
+	immuneWhileTeleporting = get("immuneWhileTeleporting") == true,
+	teleportImmunityLength = get("teleportImmunityLength") or 1000,
+
 	name = 
 		function(name, access)
 			return access .. resourceName .. "." .. name
@@ -36,6 +39,14 @@ local settings = {
 addEventHandler("onSettingChange", root, 
 	function(setting, oldValue, newValue)	
 		--outputDebugString("Interior setting " .. setting .. " is " .. newValue)
+
+		if setting == settings.name("immuneWhileTeleporting", "*") then
+			settings.immuneWhileTeleporting = fromJSON(newValue)
+			triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
+		elseif setting == settings.name("teleportImmunityLength", "*") then
+			settings.teleportImmunityLength = fromJSON(newValue)
+			triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
+		end
 	end
 )
 
@@ -64,10 +75,16 @@ addEventHandler("onResourceStop", root,
 		end
 
 		for id, interiorTable in pairs(interiors[resource]) do
-			local interior1 = interiorTable["entry"]
-			local interior2 = interiorTable["return"]
-			destroyElement(lookups.markers[interior1])
-			destroyElement(lookups.markers[interior2])
+			local entryMarker = lookups.markers[interiorTable["entry"]]
+			local returnMarker = lookups.markers[interiorTable["return"]]
+
+			if entryMarker then
+				destroyElement(entryMarker)
+			end
+
+			if returnMarker then
+				destroyElement(returnMarker)
+			end
 		end
 
 		interiors[resource] = nil
@@ -166,6 +183,11 @@ addEventHandler("doTriggerServerEvents", root,
 		if playerEventNotCanceled and eventNotCanceled then
 			setElementData(client, "interiors.teleporting", true, false)
 
+			if getElementData(client, "interiors.teleportImmunity") and isTimer(getElementData(client, "interiors.teleportImmunity")) then
+				killTimer(getElementData(client, "interiors.teleportImmunity"))
+				setElementData(client, "interiors.teleportImmunity", false, false)
+			end
+
 			setElementFrozen(client, true)
 			toggleAllControls(client, false, true, false)
 			fadeCamera(client, false, 1)
@@ -180,9 +202,9 @@ function fadeIntoWarpComplete(player, interior, resource, id)
 		return
 	end
 
-	setPlayerInsideInterior(player, interior, resource, id)
+	local x, y, z = setPlayerInsideInterior(player, interior, resource, id)
 
-	triggerClientEvent(player, "playerLoadingGround", player, interior)
+	triggerClientEvent(player, "playerLoadingGround", player, interior, x, y, z)
 end
 
 
@@ -221,6 +243,8 @@ function setPlayerInsideInterior(player, interior, resource, id)
 	200, 1, player)
 
 	setElementPosition(player, x, y, z)
+
+	return x, y, z
 end
 
 addEventHandler("onPlayerGroundLoaded", root,
@@ -237,6 +261,16 @@ addEventHandler("onPlayerGroundLoaded", root,
 
 		triggerEvent("onInteriorWarped", interior, client)
  		triggerEvent("onPlayerInteriorWarped", client, interior)
+
+ 		local timer = setTimer(
+ 			function(p)
+ 				if isElement(p) then
+ 					setElementData(client, "interiors.teleportImmunity", false, false)
+ 				end
+ 			end,
+ 		settings.teleportImmunityLength, 1)
+
+ 		setElementData(client, "interiors.teleportImmunity", timer, false)
 	end
 )
 
@@ -284,6 +318,15 @@ function getInteriorFromID(id, entry)
 end
 
 
+addEventHandler("onPlayerStealthKill", root,
+	function(target)
+		if settings.immuneWhileTeleporting and (getElementData(target, "interiors.teleporting") or getElementData(target, "interiors.teleportImmunity")) then
+			cancelEvent()
+		end
+	end
+)
+
+
 -- addCommandHandler("ti", 
 -- 	function(player, command, i) 
 -- 		local interior = getInteriorFromID(i, true)
@@ -298,3 +341,39 @@ end
 -- 	end
 -- )
 
+-- addCommandHandler("nearestt", 
+-- 	function(player)
+-- 		local x, y, z = getElementPosition(player)
+-- 		local closestDistance = 9999
+-- 		local closestID = ""
+
+-- 		for interiorID, interiorTypeTable in pairs(interiors[resource]) do
+-- 			local interior = interiorTypeTable["entry"]
+-- 			local tX, tY, tZ = tonumber(getElementData(interior, "posX")), tonumber(getElementData(interior, "posY")), tonumber(getElementData(interior, "posZ"))
+
+-- 			local d = getDistanceBetweenPoints3D(x, y, z, tX, tY, tZ)
+
+-- 			if d < closestDistance then
+-- 				closestDistance = d
+-- 				closestID = interiorID
+-- 			end
+
+-- 			interior = interiorTypeTable["return"]
+-- 			tX, tY, tZ = tonumber(getElementData(interior, "posX")), tonumber(getElementData(interior, "posY")), tonumber(getElementData(interior, "posZ"))
+
+-- 			d = getDistanceBetweenPoints3D(x, y, z, tX, tY, tZ)
+
+-- 			if d < closestDistance then
+-- 				closestDistance = d
+-- 				closestID = interiorID
+-- 			end			
+-- 		end
+
+-- 		if #closestID == 0 then
+-- 			outputDebugString("Could not find any teleport points")
+-- 			return
+-- 		end
+
+-- 		outputChatBox("Closest teleport: " .. closestID)
+-- 	end
+-- )
