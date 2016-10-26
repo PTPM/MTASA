@@ -497,7 +497,6 @@
     <pickup posX="2265.9739" posY="1623.4060" posZ="94.9219" type="46" amount="1" respawn="30000" synced="false" />
     <!-- para -->
 	
-    <object model="987" posX="2132.19" posY="1621.70" posZ="999.81" rotX="0.00" rotY="0.00" rotZ="357.76" />
     <!-- fenceblock -->
     <object id="object (odrampbit03) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="5821" doublesided="false" scale="1" dimension="0" posX="2196.1765" posY="1133.8854" posZ="15.58762" rotX="0" rotY="0" rotZ="242"></object>
     <object id="object (shamheliprt04) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="6976" doublesided="true" scale="1" dimension="0" posX="2185.2908" posY="1087.4019" posZ="12.61094" rotX="0" rotY="0" rotZ="153"></object>
