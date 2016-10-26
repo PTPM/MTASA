@@ -1,0 +1,121 @@
+<map>
+	<!--
+	objectid = object vending_type
+	
+	1302 = vendmachfd
+	1309 = vendmach
+	1977 = vendin3
+	1775 = CJ_SPRUNK1
+	1776 = CJ_CANDYVENDOR
+	956 = CJ_EXT_CANDY
+	955 = CJ_EXT_SPRUNK
+	1340 = chillidogcart
+	1341 = icescart_prop
+	1342 = noodlecart_prop
+	-->
+	<vending_machine vending_type="vendmachfd" posX="-2420.18" posY="985.945" posZ="44.2969" rotZ="-90" />
+	<vending_machine vending_type="vendmach" posX="-2420.22" posY="984.578" posZ="44.2969" rotZ="-90" />
+	<vending_machine vending_type="vendin3" posX="316.875" posY="-140.352" posZ="998.586" rotZ="90" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="2225.2" posY="-1153.42" posZ="1025.91" rotZ="90" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="2155.91" posY="1606.77" posZ="1000.05" rotZ="-90" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="2576.7" posY="-1284.43" posZ="1061.09" rotZ="90" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="2222.2" posY="1606.77" posZ="1000.05" rotZ="-90" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="-19.0391" posY="-57.8359" posZ="1003.63" rotZ="0" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="-16.1172" posY="-91.6406" posZ="1003.63" rotZ="0" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="-32.4453" posY="-186.695" posZ="1003.63" rotZ="0" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="-35.7266" posY="-140.227" posZ="1003.63" rotZ="0" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="495.969" posY="-24.3203" posZ="1000.73" rotZ="0" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="501.828" posY="-1.42969" posZ="1000.73" rotZ="0" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="373.828" posY="-178.141" posZ="1000.73" rotZ="0" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="2503.1" posY="1243.7" posZ="10.8" rotZ="0" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="501.8" posY="-1.5" posZ="1000.6" rotZ="180" />
+	<vending_machine vending_type="CJ_SPRUNK1" posX="2086.1" posY="2071.4" posZ="11.0" rotZ="270" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="330.68" posY="178.5" posZ="1020.07" rotZ="0" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="331.922" posY="178.5" posZ="1020.07" rotZ="0" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="350.906" posY="206.086" posZ="1008.48" rotZ="-90" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="361.562" posY="158.617" posZ="1008.48" rotZ="0" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="371.594" posY="178.453" posZ="1020.07" rotZ="0" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="374.891" posY="188.977" posZ="1008.48" rotZ="0" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="2155.84" posY="1607.88" posZ="1000.06" rotZ="-90" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="2202.45" posY="1617.01" posZ="1000.06" rotZ="360" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="2209.24" posY="1621.21" posZ="1000.06" rotZ="0" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="2222.37" posY="1602.64" posZ="1000.06" rotZ="-90" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="-36.1484" posY="-57.875" posZ="1003.63" rotZ="360" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="-17.5469" posY="-91.7109" posZ="1003.63" rotZ="360" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="-16.5312" posY="-140.297" posZ="1003.63" rotZ="360" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="-33.875" posY="-186.766" posZ="1003.63" rotZ="360" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="500.562" posY="-1.36719" posZ="1000.73" rotZ="0" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="379.039" posY="-178.883" posZ="1000.73" rotZ="90" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="500.6" posY="-1.5" posZ="1000.6" rotZ="180" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="374.8" posY="188.7" posZ="1008.3" rotZ="180" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="371.5" posY="178.4" posZ="1019.9" rotZ="180" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="331.9" posY="178.4" posZ="1019.9" rotZ="180" />
+	<vending_machine vending_type="CJ_CANDYVENDOR" posX="330.9" posY="178.4" posZ="1019.9" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="1634.11" posY="-2237.53" posZ="12.8906" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="2480.86" posY="-1959.27" posZ="12.9609" rotZ="360" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="2139.52" posY="-1161.48" posZ="23.3594" rotZ="-90" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="2153.23" posY="-1016.15" posZ="62.2344" rotZ="308.132" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="-1350.12" posY="493.859" posZ="10.5859" rotZ="-90" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="-2229.19" posY="286.414" posZ="34.7031" rotZ="0" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="1659.46" posY="1722.86" posZ="10.2188" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="2647.7" posY="1129.66" posZ="10.2188" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="1398.84" posY="2222.61" posZ="10.4219" rotZ="0" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="-1455.12" posY="2591.66" posZ="55.2344" rotZ="0" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="-76.0312" posY="1227.99" posZ="19.125" rotZ="-90" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="-253.742" posY="2599.76" posZ="62.2422" rotZ="-90" />
+	<vending_machine vending_type="CJ_EXT_CANDY" posX="662.43" posY="-552.164" posZ="15.7109" rotZ="360" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="1789.21" posY="-1369.27" posZ="15.1641" rotZ="90" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="1729.79" posY="-1943.05" posZ="12.9453" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="2060.12" posY="-1897.64" posZ="12.9297" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="1928.73" posY="-1772.45" posZ="12.9453" rotZ="-90" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="2325.98" posY="-1645.13" posZ="14.2109" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="2352.18" posY="-1357.16" posZ="23.7734" rotZ="-90" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="1154.73" posY="-1460.89" posZ="15.1562" rotZ="90" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-1350.12" posY="492.289" posZ="10.5859" rotZ="-90" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-2118.97" posY="-423.648" posZ="34.7266" rotZ="75.0001" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-2118.62" posY="-422.414" posZ="34.7266" rotZ="75.0001" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-2097.27" posY="-398.336" posZ="34.7266" rotZ="0" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-2092.09" posY="-490.055" posZ="34.7266" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-2063.27" posY="-490.055" posZ="34.7266" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-2005.65" posY="-490.055" posZ="34.7266" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-2034.46" posY="-490.055" posZ="34.7266" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-2068.56" posY="-398.336" posZ="34.7266" rotZ="360" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-2039.85" posY="-398.336" posZ="34.7266" rotZ="360" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-2011.14" posY="-398.336" posZ="34.7266" rotZ="360" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-1980.79" posY="142.664" posZ="27.0703" rotZ="90" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="2319.99" posY="2532.85" posZ="10.2188" rotZ="180" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="1520.15" posY="1055.27" posZ="10" rotZ="90" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-862.828" posY="1536.61" posZ="21.9844" rotZ="0" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-14.7031" posY="1175.36" posZ="18.9531" rotZ="0" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="-253.742" posY="2597.95" posZ="62.2422" rotZ="-90" />
+	<vending_machine vending_type="CJ_EXT_SPRUNK" posX="201.016" posY="-107.617" posZ="0.898438" rotZ="90" />
+	<vending_machine vending_type="chillidogcart" posX="1589.7" posY="-1287.27" posZ="17.6406" rotZ="180" />
+	<vending_machine vending_type="chillidogcart" posX="1000.48" posY="-1849.04" posZ="12.7969" rotZ="160" />
+	<vending_machine vending_type="chillidogcart" posX="388.859" posY="-2071.66" posZ="7.94531" rotZ="180" />
+	<vending_machine vending_type="chillidogcart" posX="-2691.68" posY="384.492" posZ="4.48438" rotZ="225" />
+	<vending_machine vending_type="chillidogcart" posX="-2146.52" posY="-424.773" posZ="35.3281" rotZ="64" />
+	<vending_machine vending_type="chillidogcart" posX="-2094.23" posY="-396.461" posZ="35.6562" rotZ="39" />
+	<vending_machine vending_type="chillidogcart" posX="-2036.32" posY="-396.758" posZ="35.6562" rotZ="9" />
+	<vending_machine vending_type="chillidogcart" posX="2537.82" posY="2137.12" posZ="10.8594" rotZ="90" />
+	<vending_machine vending_type="chillidogcart" posX="1558.2" posY="979.445" posZ="10.9453" rotZ="270" />
+	<vending_machine vending_type="chillidogcart" posX="2144.64" posY="1441.93" posZ="10.8516" rotZ="180" />
+	<vending_machine vending_type="chillidogcart" posX="-799.781" posY="1624.22" posZ="27.125" rotZ="200" />
+	<vending_machine vending_type="chillidogcart" posX="-197.492" posY="2659.91" posZ="62.8203" rotZ="270" />
+	<vending_machine vending_type="chillidogcart" posX="-2199.99" posY="-2386.89" posZ="30.7188" rotZ="250" />
+	<vending_machine vending_type="chillidogcart" posX="2328.0" posY="2421.3" posZ="10.8" rotZ="180" />
+	<vending_machine vending_type="icescart_prop" posX="-2286.54" posY="147.633" posZ="35.3203" rotZ="315" />
+	<vending_machine vending_type="icescart_prop" posX="-2384.23" posY="-584.008" posZ="132.109" rotZ="270" />
+	<vending_machine vending_type="icescart_prop" posX="2538.03" posY="2153.7" posZ="10.7344" rotZ="90" />
+	<vending_machine vending_type="icescart_prop" posX="2295.71" posY="2250.1" posZ="10.7344" rotZ="90" />
+	<vending_machine vending_type="icescart_prop" posX="1030.59" posY="1362.59" posZ="10.8125" rotZ="0" />
+	<vending_machine vending_type="icescart_prop" posX="2125.13" posY="1442.08" posZ="10.7031" rotZ="0" />
+	<vending_machine vending_type="icescart_prop" posX="2175.09" posY="1523.41" posZ="10.7344" rotZ="0" />
+	<vending_machine vending_type="noodlecart_prop" posX="-2515.79" posY="-15.6172" posZ="25.6328" rotZ="325" />
+	<vending_machine vending_type="noodlecart_prop" posX="-2151.84" posY="-435.562" posZ="35.2891" rotZ="44.0" />
+	<vending_machine vending_type="noodlecart_prop" posX="-2193.77" posY="605.188" posZ="35.2109" rotZ="15" />
+	<vending_machine vending_type="noodlecart_prop" posX="-2194.02" posY="613.406" posZ="35.2109" rotZ="175" />
+	<vending_machine vending_type="noodlecart_prop" posX="-2197.59" posY="613.406" posZ="35.2109" rotZ="155" />
+	<vending_machine vending_type="noodlecart_prop" posX="-2181.48" posY="613.703" posZ="35.2109" rotZ="155" />
+	<vending_machine vending_type="noodlecart_prop" posX="-2187.15" posY="614.547" posZ="35.2109" rotZ="170" />
+	<vending_machine vending_type="noodlecart_prop" posX="2536.12" posY="2290.85" posZ="10.8594" rotZ="90" />	
+</map>

@@ -1,9 +1,0 @@
-<meta>
-	<info author="Gode" type="script" name="Anti-spawn kill" />
-	<script src="server.lua" type="server"></script>
-	<script src="client.lua" type="client"></script>
-	<settings>
-		<setting name="*time" value="5" group="Anti-spawn kill" />
-		<setting name="*opacity" value="175" group="Anti-spawn kill" />
-	</settings>
-</meta>
