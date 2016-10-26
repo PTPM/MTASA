@@ -83,7 +83,7 @@ addEvent("playerLoadingGround", true)
 
 addEventHandler("onClientResourceStart", root,
 	function(resource)
-		triggerServerEvent("onClientReady", localPlayer)
+		triggerServerEvent("onClientReady", resourceRoot)
 
 		interiorLoadElements(getResourceRootElement(resource), resource)
 		interiorCreateColliders(resource)		

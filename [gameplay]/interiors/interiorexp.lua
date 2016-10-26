@@ -91,7 +91,7 @@ addEventHandler("onResourceStop", root,
 	end 
 )
 
-addEventHandler("onClientReady", root,
+addEventHandler("onClientReady", resourceRoot,
 	function()
 		triggerClientEvent(client, "updateClientSettings", resourceRoot, settings)
 	end

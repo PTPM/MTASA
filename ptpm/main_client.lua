@@ -6,7 +6,7 @@ local currentPM = nil
 
 addEventHandler( "onClientResourceStart", resourceRoot,
 	function()
-		triggerServerEvent( "onClientReady", localPlayer )
+		triggerServerEvent( "onClientReady", resourceRoot )
 	end
 )
 
