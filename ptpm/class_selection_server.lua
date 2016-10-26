@@ -1,6 +1,6 @@
 ﻿-- compcheck
 -- call the client and initiate the class selection screen
-function initClassSelection( thePlayer )
+function initClassSelectionLegacy( thePlayer )
 
 	if not data	then return end
 	
