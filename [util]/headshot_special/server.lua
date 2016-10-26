@@ -19,7 +19,7 @@ end
 
 function makeHeadshot(attacker, weapon, bodypart, loss)
 	if findNumber(headshot.allowedWeapons, weapon) then
-		if getPedArmor ( source ) then
+		if getPedArmor ( source ) and getPedArmor ( source ) > 0 then
 			setPedArmor ( source, 0 )
 		else
 			killPed(source, attacker, weapon, 9)
