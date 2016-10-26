@@ -557,7 +557,6 @@
     <boundarycorner posX="2833.66" posY="596.02" />
     <boundarycorner posX="3034.0212" posY="525.6904" />
 	
-    <object model="987" posX="2132.19" posY="1621.70" posZ="999.81" rotX="0.00" rotY="0.00" rotZ="357.76" />
     <!-- fenceblock -->
     <object model="3294" posX="2036.85" posY="2380.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2380.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
     <!-- test -->

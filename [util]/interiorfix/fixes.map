@@ -1,0 +1,7 @@
+﻿<map>
+    <!-- fixes being able to jump onto a ledge in the burgershot bathroom and warp through the ceiling -->
+    <object id="object (vegasmashfnce_Gate) (1)" breakable="true" interior="10" alpha="255" model="1553" doublesided="true" scale="1" dimension="0" posX="365.08701" posY="-62.84" posZ="1004.43" rotX="0" rotY="90" rotZ="90"></object>
+
+    <!-- fixes being able to jump through the vent hole in caligulas -->
+    <object model="987" posX="2132.19" posY="1621.70" posZ="999.81" rotX="0.00" rotY="0.00" rotZ="357.76" interior="1" />
+</map>
