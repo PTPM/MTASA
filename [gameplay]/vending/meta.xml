@@ -1,0 +1,45 @@
+<meta>
+	<info author="Remp" name="Vending Machines" type="script" version="1.0.2" />
+	<script src="vending_s.lua" type="server" />
+	<script src="vending_c.lua" type="client" />
+	
+	<map src="machines.map" />
+	
+	<file src="sprunk.wav" />
+	<file src="food.wav" />
+	<file src="eating.wav" />
+	
+	<!-- 'machine' can be a "vending_machine" element or a vending machine object (placed via mta) -->
+
+	<!-- call this when you create a vending machine (mid-game), all existing vending machine are automatically plotted when this resource is started -->
+	<!-- you can set element data "dont_plot_machine" to stop the machine being automatically plotted allowing you to plot it when you prefer (and to whoever you prefer) with plotMachine -->
+	<!-- 	plotMachine(machine) - clientside - plots the machine onto the grid to be accessible for local player only -->
+	<!-- 	plotMachineServer(player,machine) - serverside - plots the machine onto the grid to be accessible for player only -->
+		
+	<!-- 	disableMachine(machine) - clientside - disables (un-plots) the vending machine from the grid for the local player -->
+	<!-- 	disableMachineServer(player,machine) - serverside - disables the vending machine from the grid for the specified player -->
+	
+	<!-- force the player to use the vending machine (will not move them infront of it, can be used from anywhere) -->
+	<!-- 	useVendingMachine(machine) - clientside - makes the local player use the vending machine (remote players also see them using it) -->
+	<!-- 	useVendingMachineServer(player,machine) - serverside - makes the player use the vending machine -->
+		
+	<!-- forcibly stop the player using the machine -->
+	<!-- if used clientside on a remote player it will stop them using the vending machine for the local player only, they will continue for everyone else -->
+	<!-- 	stopVendingMachineAnimation(local_player) - clientside - forces the local player to stop using the vending machine (remote players also see them stop) -->
+	<!-- 	stopVendingMachineAnimationServer(player) - serverside - forces the player to stop using the vending machine -->
+		
+	<!-- 	isPlayerInFrontOfVendingMachine - clientside - check if the local player is in front of a vending machine, returns the machine they are in front of or false -->
+	
+	<!-- 	isPlayerUsingVendingMachine - clientside - check if the local player is using a vending machine, returns the machine they are using or false -->
+	<export function="plotMachine" type="client"/>
+	<export function="plotMachineServer" type="server"/>
+	<export function="disableMachine" type="client"/>
+	<export function="disableMachineServer" type="server"/>
+	<export function="useVendingMachine" type="client"/>
+	<export function="useVendingMachineServer" type="server"/>
+	<export function="stopVendingMachineAnimation" type="client"/>
+	<export function="stopVendingMachineAnimationServer" type="server"/>
+	
+	<export function="isPlayerInFrontOfVendingMachine" type="client"/>
+	<export function="isPlayerUsingVendingMachine" type="client"/>
+</meta>
