@@ -2,7 +2,7 @@
 
 local options = {}
 local classes = {}
-currentPM = nil
+local currentPM = nil
 
 addEventHandler( "onClientResourceStart", resourceRoot,
 	function()
