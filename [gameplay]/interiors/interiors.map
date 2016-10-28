@@ -226,8 +226,8 @@
 <interiorReturn	refid="GF3"	posX="292.89"	posY="309.90"	posZ="999.15"	rotation="85"	interior="3"	dimension="0"	/>
 <interiorEntry	id="GF4"	posX="-1800.21"	posY="1200.576"	posZ="25.119"	rotation="180"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="GF4"	posX="300.239"	posY="300.584"	posZ="999.15"	rotation="0"	interior="4"	dimension="0"	/>
-<interiorEntry	id="GF5"	posX="-1390.186"	posY="2638.72"	posZ="55.98"	rotation="180"	dimension="0"	interior="0"	/>
-<interiorReturn	refid="GF5"	posX="322.25"	posY="302.42"	posZ="999.15"	rotation="0"	interior="5"	dimension="0"	/>
+<interiorEntry	id="GF5"	posX="-1390.186"	posY="2638.22"	posZ="54.98"	rotation="180"	dimension="0"	interior="0"	/>
+<interiorReturn	refid="GF5"	posX="322.25"	posY="302.92"	posZ="998.15"	rotation="0"	interior="5"	dimension="0"	/>
 <interiorEntry	id="GF6"	posX="2037.22"	posY="2721.81"	posZ="11.29"	rotation="0"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="GF6"	posX="343.74"	posY="305.0347"	posZ="999.15"	rotation="270"	interior="6"	dimension="0"	/>
 <interiorEntry	id="GYM1"	posX="2229.63"	posY="-1721.63"	posZ="12.6529"	rotation="135"	dimension="0"	interior="0"	/>
