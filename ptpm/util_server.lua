@@ -62,21 +62,25 @@ end
 
 -- creates a blip for the player (or if one already exists, resets it to its default colour/order)
 function createPlayerBlip( thePlayer )
-
-	if not getPlayerClassID( thePlayer ) then return end
+	if not getPlayerClassID( thePlayer ) then 
+		return 
+	end
 	
 	local x, y, z = getElementPosition( thePlayer )
 	local r, g, b, a = getPlayerColour( thePlayer )
 	
 	local classType, ordering, blipSize = classes[tonumber(getPlayerClassID( thePlayer ))].type, 1, 2
-	if classType == "psycho" or classType == "police" then ordering = 1 -- psychos and cops are least important
-	elseif classType == "terrorist" or classType == "bodyguard" then ordering = 2 -- terrorists and bodyguards are equal
-  elseif classType == "pm" then
-    ordering = 3 -- pm is the most important
-    blipSize = 3
+
+	if classType == "psycho" or classType == "police" then 
+		ordering = 1 -- psychos and cops are least important
+	elseif classType == "terrorist" or classType == "bodyguard" then 
+		ordering = 2 -- terrorists and bodyguards are equal
+  	elseif classType == "pm" then
+    	ordering = 3 -- pm is the most important
+    	blipSize = 3
 	end
 
-	setElementData( thePlayer, "ptpm.blip", { r, g, b, a, ordering, blipSize } )
+	setElementData( thePlayer, "ptpm.blip", { r, g, b, a, ordering, blipSize, getElementInterior(thePlayer) } )
 	
 	if options.teamSpecificRadar then
 		setupTeamSpecificRadar( thePlayer )
@@ -477,8 +481,8 @@ addEventHandler( "onPlayerInteriorHit", root,
 			if destinationInterior then
 				local destinationInteriorID = tonumber( getElementData( destinationInterior, "interior" ) )
 				local pmInterior = getElementData( currentPM, "ptpm.currentInterior" )
+
 				if destinationInteriorID ~= 0 and pmInterior == 0 then
-				--if tonumber(getElementData( destinationInterior, "interior") ) ~= 0 and playerInfo and playerInfo[currentPM] and playerInfo[currentPM].currentInterior == 0 then
 					-- show new marker
 					local x, y, z = getElementPosition( currentPM )
 					local r, g, b, a = getPlayerColour( currentPM )
@@ -486,35 +490,45 @@ addEventHandler( "onPlayerInteriorHit", root,
 					if interiorBlip then
 						destroyElement( interiorBlip )
 					end
-					interiorBlip = createBlip( x, y, z, 0, 3, r, g, b, a, 4, 99999.0, root )
+					-- x, y, z, icon, size, r, g, b, a, ordering, visibleDistance, visibleTo
+					interiorBlip = createBlip( x, y, z, 0, 4, r, g, b, a, 4, 99999.0, root )
+					setElementID(interiorBlip, "ptpm.blip.interior")
 					setElementData( currentPM, "ptpm.interiorBlip", interiorBlip, false )
-					--playerInfo[currentPM].interiorBlip = createBlip( x, y, z, 0, 3, r, g, b, a, 4, root )	
-			
+
 					setElementData( currentPM, "ptpm.currentInterior", destinationInteriorID, false )
-					--playerInfo[currentPM].currentInterior = tonumber(getElementData( destinationInterior, "interior") )
 					
-					
-					local blip = getElementData( currentPM, "ptpm.blip" ) -- NOTE: ??
-					setElementData( currentPM, "ptpm.blip", { blip[1], blip[2], blip[3], 0, blip[5], blip[6] } )	-- NOTE: ??
+					-- hide pm blip
+					--local blip = getElementData( currentPM, "ptpm.blip" )
+					--setElementData( currentPM, "ptpm.blip", { blip[1], blip[2], blip[3], 0, blip[5], blip[6] } )
+
 				-- moving back outside from an interior
 				elseif destinationInteriorID == 0 and pmInterior ~= 0 then
-				--elseif tonumber(getElementData( destinationInterior, "interior") ) == 0 and playerInfo and playerInfo[currentPM] and playerInfo[currentPM].currentInterior ~= 0 then
 					-- hide new marker
 					setElementData( currentPM, "ptpm.currentInterior", 0, false )
-					--playerInfo[currentPM].currentInterior = tonumber(getElementData( destinationInterior, "interior") )
+
 					local interiorBlip = getElementData( currentPM, "ptpm.interiorBlip" )
 					if interiorBlip then
 						destroyElement( interiorBlip )
 						setElementData( currentPM, "ptpm.interiorBlip", nil, false )
-					--if playerInfo[currentPM].interiorBlip then
-					--	destroyElement(playerInfo[currentPM].interiorBlip)
-					--	playerInfo[currentPM].interiorBlip = nil
-						
-						local r, g, b, a = getPlayerColour( currentPM )
-						setElementData( currentPM, "ptpm.blip", { r, g, b, a, 3, 3 } )	
+
+						-- re-show the pm blip
+						--local r, g, b, a = getPlayerColour( currentPM )
+						--setElementData( currentPM, "ptpm.blip", { r, g, b, a, 3, 3 } )	
 					end
 				end
 			end
+		end		
+	end
+)
+
+
+addEventHandler("onPlayerInteriorWarped", root,
+	function()
+		local blipData = getElementData(source, "ptpm.blip")
+
+		if blipData then
+			blipData[7] = getElementInterior(source)
+			setElementData(source, "ptpm.blip", blipData)
 		end
 	end
 )
