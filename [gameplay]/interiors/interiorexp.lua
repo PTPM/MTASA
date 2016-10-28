@@ -13,6 +13,11 @@ local lookups = {
 	}
 }
 local outputColour = {255, 128, 0}
+local offset = {
+	xVariance = 0.8,
+	yVariance = 0.8
+}
+
 
 --[[format:
 interior = { 
@@ -29,6 +34,7 @@ local resourceName = getResourceName(resource)
 local settings = {
 	immuneWhileTeleporting = get("immuneWhileTeleporting") == true,
 	teleportImmunityLength = get("teleportImmunityLength") or 1000,
+	offsetTeleportPosition = get("offsetTeleportPosition") == true,
 
 	name = 
 		function(name, access)
@@ -46,6 +52,8 @@ addEventHandler("onSettingChange", root,
 		elseif setting == settings.name("teleportImmunityLength", "*") then
 			settings.teleportImmunityLength = fromJSON(newValue)
 			triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
+		elseif setting == settings.name("offsetTeleportPosition", "*") then
+			settings.offsetTeleportPosition = fromJSON(newValue)
 		end
 	end
 )
@@ -242,9 +250,27 @@ function setPlayerInsideInterior(player, interior, resource, id)
 		end, 
 	200, 1, player)
 
+	if settings.offsetTeleportPosition then
+		-- some markers are in such small locations you can't safely offset the position e.g. the tower in sf
+		local preventOffset = getElementData(targetInterior, "preventOffset")
+
+		if not preventOffset then
+			x, y, z = getAdjustedPosition(x, y, z, rot)
+		end
+	end
+
 	setElementPosition(player, x, y, z)
 
 	return x, y, z
+end
+
+-- adjust the position slightly forward and to either side
+function getAdjustedPosition(x, y, z, rot)
+	local m = Matrix(Vector3(x, y, z), Vector3(0, 0, rot))
+
+	local position = m:transformPosition(Vector3((math.random() * offset.xVariance) - (offset.xVariance / 2), math.random() * offset.yVariance, 0))
+
+	return position:getX(), position:getY(), position:getZ()
 end
 
 addEventHandler("onPlayerGroundLoaded", root,
