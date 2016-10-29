@@ -197,8 +197,10 @@ addEventHandler( "onClientMapStart", root,
 			x, y = 640, 538
 			mapName = "images/ptpm-default.png"
 		end
-		transition = guiCreateStaticImage( screenX/2-(x/2), screenY/2-(y/2), x, y, mapName, false )
+		transition = guiCreateStaticImage( screenX/2-(x/2), screenY/2-(y/2) - 15, x, y, mapName, false )
 		currentPM = nil
+
+		showHelpMessage(((screenY / 2) - (y / 2)) + y)
 	end
 )
 
@@ -209,6 +211,8 @@ function hideTransitionImage()
 		destroyElement( transition )
 		transition = nil
 	end
+
+	hideHelpMessage()
 end
 addEventHandler( "onClientMapStarted", root, hideTransitionImage )
 

@@ -263,79 +263,75 @@ end
 
 
 
-
+-- #00f6ff blue, #00ffae green
 local helper = {
-	draw = false, 
-	text = "", 
-	alpha = 0, 
-	step = 7,
 	messages = {
-		"Tip:  Don't know what to do?  Type /duty or press F9",
-		"Tip:  The Prime Minister is shown in yellow",
-		"Tip:  Want to change your team?  Type /reclass <team>",
-		"Tip:  Are you a medic?  You can heal people with /heal",
-		"Tip:  Want a full list of the commands?  Press F9 and click 'ptpm'",
-		"Tip:  Use right click to driveby (when you have a driveby weapon)",
-		"Tip:  Tap 'jump' underneath a helicopter to grab on",
-		"Tip:  What is ptpm? Press F9 and click 'ptpm' to find out",
-		"Tip:  Press 'F11' to see the map",
-		"Tip:  Low on health?  Try a vending machine",
-		"Tip:  Press 'Y' to chat with your team",
-		"Tip:  Watch out for Psychopaths, they will kill anyone"
-	}
+		"Visit #00ffaehttps://PTPM.uk#ffffff for strategy tips! (members only!)",
+		"Don't know what to do? Type /#00ffaeduty#ffffff or press #00ffaeF9",
+		"Join the community at #00ffaehttps://PTPM.uk#ffffff!",
+		"Press '#00ffaeY#ffffff' to chat with your team",
+		"Check out #00ffaehttps://PTPM.uk/scoreboard#ffffff for the player list outside of MTA!",
+		"The #ffff40Prime Minister#ffffff is shown in #ffff40yellow",
+		"Check out #00ffaehttps://PTPM.uk#ffffff to see your League and compare it to others!",
+		"What is PTPM? Press #00ffaeF9#ffffff and click '#00ffaePTPM#ffffff' to find out",
+		"Are you Silver, Gold or even Platinum? Find out at #00ffaehttps://PTPM.uk/stats#ffffff!",
+		"Want to change your team? Type /#00ffaereclass <team>",
+		"Check out #00ffaehttps://PTPM.uk#ffffff for PTPM fanfictions and songs starring YOU!",
+		"Are you playing as a #00ffaemedic#ffffff? You can heal people with /#00ffaeheal",
+		"There's a #00ffaeminigun#ffffff? Find out more at #00ffaehttps://PTPM.uk#ffffff!",
+		"Want a full list of the commands? Press #00ffaeF9#ffffff and click '#00ffaePTPM#ffffff'",
+		"Show off your ingame skills to the community on #00ffaehttps://PTPM.uk#ffffff!",
+		"Use #00ffaeright click#ffffff to #00ffaedriveby#ffffff (when you have a driveby weapon)",
+		"Cool screenshots and videos of PTPM gameplay at #00ffaehttps://PTPM.uk#ffffff!",
+		"Tap '#00ffaejump#ffffff' underneath a helicopter to grab on",
+	},
+
+	current = 0,
+	width = 0,
+	drawing = false,
+	yPos = 0
 }
 
---addEventHandler("onClientResourceStart",resourceRoot,
-addEventHandler( "onClientAvailable", localPlayer,
+addEventHandler("onClientAvailable", localPlayer,
 	function()
 		helper.current = math.random(1,#helper.messages)
-		
-		
-		setTimer(drawHelperText,math.random(80,110)*1000,1)
 	end
 )
 
-
-function drawHelperText()
-	setTimer( drawHelperText, math.random( 80, 110 )*1000, 1 )
-
-	if not getElementData( localPlayer, "ptpm.classID" ) then
-		return 
+function showHelpMessage(minY) 
+	if helper.drawing then
+		return
 	end
-	
+
+	helper.width = dxGetTextWidth(helper.messages[helper.current], 1, "default-bold")
+	helper.yPos = minY
+	helper.drawing = true
+
+	addEventHandler("onClientRender", root, drawHelpMessage)
+end
+
+function hideHelpMessage()
+	if not helper.drawing then
+		return
+	end
+
+	helper.drawing = false
+	removeEventHandler("onClientRender", root, drawHelpMessage)
+
 	helper.current = (helper.current % #helper.messages) + 1
-	helper.draw = true
-	
-	setTimer(function() helper.step = -7 end, 8000, 1)
+end
+
+function drawHelpMessage()
+	dxDrawText(helper.messages[helper.current], screenX / 2 - helper.width / 2, helper.yPos, screenX / 2 + helper.width / 2, helper.yPos + 10, 0xFFFFFFFF, 1, "default", "center", "center", false, false, false, true)
 end
 
 
-addEventHandler("onClientRender",root,
-	function()
-		if helper.draw then
-			if helper.step > 0 then
-				if helper.alpha < 255 then
-					helper.alpha = helper.alpha + helper.step
-					if helper.alpha >= 255 then 
-						helper.alpha = 255 
-						helper.step = 0
-					end
-				end
-			elseif helper.step < 0 then
-				if helper.alpha > 0 then
-					helper.alpha = helper.alpha + helper.step
-					if helper.alpha <= 0 then 
-						helper.alpha = 0 
-						helper.step = 7
-						helper.draw = false
-					end
-				end
-			end
-		
-			local width = dxGetTextWidth(helper.messages[helper.current], 1, "default-bold")
-		--	dxDrawRectangle(screenX/2 - width/2 - 10, screenY - 30, width + 20, 30, tocolor(0,0,0,150), false)
-			dxDrawText(helper.messages[helper.current], screenX/2 - width/2 + 1, screenY - 55 + 1, screenX/2 + width/2 + 1, screenY, tocolor(0,0,0,helper.alpha), 1, "default-bold", "center", "center", true, true, false)
-			dxDrawText(helper.messages[helper.current], screenX/2 - width/2, screenY - 55, screenX/2 + width/2, screenY, tocolor(160,32,240,helper.alpha), 1, "default-bold", "center", "center", true, true, false)
-		end
-	end
-)
+-- addCommandHandler("nm",
+-- 	function()
+-- 		if not helper.drawing then
+-- 			showHelpMessage(screenY/2-(538/2)+538)
+-- 		end
+
+-- 		helper.current = (helper.current % #helper.messages) + 1
+-- 	end
+-- )
