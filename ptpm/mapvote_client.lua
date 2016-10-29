@@ -17,9 +17,35 @@ local voteButtonsAbsolutePos = {}
 local mapsClientCache = {}
 local thisClientVotedFor = nil
 local voteCountDown = 10
+local colours = {
+	voted = tocolor(0, 77, 69, 187),
+	default = tocolor(0, 0, 0, 187),
+	grey = tocolor(200, 200, 200, 255)
+}
 
+
+-- used for testing
+-- addEventHandler("onClientRender", root,
+-- 	function()
+-- 		mapsClientCache = {
+-- 			{ name = "Bayside", image = "mapvoteimages/map-pic-Bay.png", votes = 0, youVoted = false, res = "ptpm-bayside" },
+-- 			{ name = "Mt. Chiliad", image = "mapvoteimages/map-pic-Chiliad.png", votes = 0, youVoted = false, res = "ptpm-chiliad" },
+-- 			{ name = "Countryside", image = "mapvoteimages/map-pic-Country.png", votes = 0, youVoted = false, res = "ptpm-country" }
+-- 		}
+-- 		renderMapVote()
+-- 	end
+-- )
 
 function renderMapVote ( )
+	local cursorX, cursorY = getCursorPosition()
+
+	if not cursorX or not cursorY then
+		return
+	end
+
+	cursorX = cursorX * screenWidth
+	cursorY = cursorY * screenHeight
+
 	for key,value in pairs(mapsClientCache) do 
 		local i = tonumber(key)-1
 		local xPosImage = containerOffsetFromLeft + (i * (voteButtonMarginX + voteButtonWidth)) + (voteButtonMarginX /2)
@@ -27,26 +53,28 @@ function renderMapVote ( )
 		
 		local xPosVoteCounter = xPosImage + voteButtonWidth * 0.03
 		local yPosVoteCounter = yPosImage + voteButtonHeight - voteCounterHeight - voteButtonWidth * 0.03
-		local voteColor = 0xBB000000
-		
-		if thisClientVotedFor==key then
-			 voteColor = 0xBB004D45
-		 end
-		
+
 		voteButtonsAbsolutePos[key] = { startX = xPosImage, startY = yPosImage, endX = xPosImage+voteButtonWidth, endY = yPosImage+voteButtonHeight }
 		
 		local x = "seconds"
 		if voteCountDown==1 then x = "second" end
-		
+
 		dxDrawText ( "Click to vote for the next map (" .. voteCountDown .. " " .. x .." left)", containerOffsetFromLeft , containerOffsetFromTop * 0.90 ,containerOffsetFromLeft + containerMaxWidth , containerOffsetFromTop , 0xFFFFFFFF , 1.8, "default", "center", "center", true )
-		
-		dxDrawImage (  xPosImage , yPosImage, voteButtonWidth, voteButtonHeight, value.image )
-		dxDrawRectangle ( xPosVoteCounter , yPosVoteCounter , voteCounterWidth, voteCounterHeight, voteColor )
+
+		if (cursorX >= xPosImage) and (cursorX <= (xPosImage + voteButtonWidth)) and (cursorY >= yPosImage) and (cursorY <= (yPosImage + voteButtonHeight)) then
+			dxDrawRectangle(xPosImage - 1, yPosImage - 1, voteButtonWidth + 2, voteButtonHeight + 2, colours.grey)
+			dxDrawImage (  xPosImage , yPosImage, voteButtonWidth, voteButtonHeight, value.image, 0, 0, 0, tocolor(255, 255, 255, 235) )
+		else
+			dxDrawImage (  xPosImage , yPosImage, voteButtonWidth, voteButtonHeight, value.image )
+		end
+
+		dxDrawRectangle ( xPosVoteCounter , yPosVoteCounter , voteCounterWidth, voteCounterHeight, thisClientVotedFor == key and colours.voted or colours.default )
 		dxDrawText ( value.votes, xPosVoteCounter , yPosVoteCounter ,xPosVoteCounter + voteCounterWidth , yPosVoteCounter + voteCounterHeight , 0xFFFFFFFF , 1.5, "default-bold", "center", "center", true )
 		dxDrawText ( value.name, xPosVoteCounter + (voteCounterWidth * 1.09) , yPosVoteCounter , xPosImage + (voteButtonWidth * 0.97) , yPosVoteCounter + voteCounterHeight , 0xFFFFFFFF , 1.5, "default", "left", "center", true )
 		
 	end
 end
+
 
 function startMapVote( maps )
 	
