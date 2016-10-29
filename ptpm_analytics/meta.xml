@@ -1,0 +1,6 @@
+<meta>
+	<info author="PTPM" type="script" name="PTPM Analytics" description="NoSQL Data logging"/>
+	<script src="ptpm_analytics_client.lua" type="client"/>
+	<script src="ptpm_analytics_server.lua" type="server"/>
+	<download_priority_group>0</download_priority_group>	
+</meta>

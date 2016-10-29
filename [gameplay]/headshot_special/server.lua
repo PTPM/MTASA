@@ -1,24 +1,7 @@
 headshot = {}
-headshot.allowedWeapons = get("allowedWeapons") or {"34","33"}
-
-addEventHandler("onSettingChange", getRootElement(), function(setting, oldV, newV)
-	local resName = getResourceName(getThisResource())
-	if setting == "*"..resName..".allowedWeapons" then
-		headshot.allowedWeapons = newV
-	end
-end)
-
-function findNumber(table, number)
-	for i, num in ipairs(table) do
-		if tonumber(num) == tonumber(number) then
-			return true
-		end
-	end
-	return false
-end
 
 function makeHeadshot(attacker, weapon, bodypart, loss)
-	if findNumber(headshot.allowedWeapons, weapon) then
+	if weapon==34 and bodypart==9 then
 		if getPedArmor ( source ) and getPedArmor ( source ) > 0 then
 			setPedArmor ( source, 0 )
 		else
@@ -33,7 +16,7 @@ addEventHandler("onClientsideHeadshot", getRootElement(), makeHeadshot)
 addEventHandler("onPlayerDamage", getRootElement(), makeHeadshot)
 
 function outputHeadshot(killer, weapon, bodypart)
-	if bodypart == 9 and findNumber(headshot.allowedWeapons, weapon) then
+	if weapon==34 and bodypart==9 then
 		cancelEvent()
 		local r2, g2, b2, a2 = exports.ptpm:getPlayerColour(killer)
 		local r1, g1, b1, a1 = exports.ptpm:getPlayerColour(source)

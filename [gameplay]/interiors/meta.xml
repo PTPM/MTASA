@@ -14,5 +14,6 @@
 	<settings>
 		<setting name="*immuneWhileTeleporting" value="[true]" desc="Make players immune to damage while they are teleporting"/>
 		<setting name="*teleportImmunityLength" value="[2000]" desc="How long (in ms) players will remain immune after teleporting"/>
+		<setting name="*offsetTeleportPosition" value="[true]" desc="When teleporting randomly offset the teleport position slightly to help prevent people getting stuck together"/>
 	</settings>
 </meta>

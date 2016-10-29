@@ -1,13 +1,13 @@
 <map>
 <!-- comms tower in the desert -->
 <interiorEntry	id="SPECIAL1"	posX="-225.433"	posY="1397.02"	posZ="69.0501"	rotation="0"	dimension="0"	interior="0"	/>
-<interiorReturn	refid="SPECIAL1"	posX="-224.733"	posY="1395.82"	posZ="172.05"	rotation="0"	interior="0"	dimension="0"	/>
+<interiorReturn	refid="SPECIAL1"	posX="-224.733"	posY="1395.82"	posZ="172.05"	rotation="0"	interior="0"	dimension="0" preventOffset="true"	/>
 <!-- nothing? -->
 <interiorEntry	id="SPECIAL2"	posX="2896.57"	posY="57.2165"	posZ="0"	rotation="0"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="SPECIAL2"	posX="2980.16"	posY="76.1581"	posZ="0"	rotation="0"	interior="0"	dimension="1"	/>
 <!-- sf tower -->
 <interiorEntry	id="SPECIAL3"	posX="-1749.35"	posY="869.279"	posZ="24.0593"	rotation="180"	dimension="0"	interior="0"	/>
-<interiorReturn	refid="SPECIAL3"	posX="-1753.75"	posY="883.965"	posZ="294.645"	rotation="0"	dimension="0"	interior="0"	/>
+<interiorReturn	refid="SPECIAL3"	posX="-1753.75"	posY="883.965"	posZ="294.645"	rotation="0"	dimension="0"	interior="0" preventOffset="true"	/>
 
 <!--
 <interiorEntry	id="SPECIAL3"	posX="-1749.35"	posY="869.279"	posZ="24.0593"	rotation="0"	dimension="0"	interior="0"	/>
@@ -226,8 +226,8 @@
 <interiorReturn	refid="GF3"	posX="292.89"	posY="309.90"	posZ="999.15"	rotation="85"	interior="3"	dimension="0"	/>
 <interiorEntry	id="GF4"	posX="-1800.21"	posY="1200.576"	posZ="25.119"	rotation="180"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="GF4"	posX="300.239"	posY="300.584"	posZ="999.15"	rotation="0"	interior="4"	dimension="0"	/>
-<interiorEntry	id="GF5"	posX="-1390.186"	posY="2638.72"	posZ="55.98"	rotation="180"	dimension="0"	interior="0"	/>
-<interiorReturn	refid="GF5"	posX="322.25"	posY="302.42"	posZ="999.15"	rotation="0"	interior="5"	dimension="0"	/>
+<interiorEntry	id="GF5"	posX="-1390.186"	posY="2638.22"	posZ="54.98"	rotation="180"	dimension="0"	interior="0"	/>
+<interiorReturn	refid="GF5"	posX="322.25"	posY="302.92"	posZ="998.15"	rotation="0"	interior="5"	dimension="0"	/>
 <interiorEntry	id="GF6"	posX="2037.22"	posY="2721.81"	posZ="11.29"	rotation="0"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="GF6"	posX="343.74"	posY="305.0347"	posZ="999.15"	rotation="270"	interior="6"	dimension="0"	/>
 <interiorEntry	id="GYM1"	posX="2229.63"	posY="-1721.63"	posZ="12.6529"	rotation="135"	dimension="0"	interior="0"	/>
