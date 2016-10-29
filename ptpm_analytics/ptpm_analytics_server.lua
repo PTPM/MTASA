@@ -76,10 +76,7 @@ addEventHandler( "onPlayerConnect", getRootElement(),
 	function ( playerNick )
 		-- Attach Analytics ID to client/player
 		local aID = createRandomAnalyticsID()
-		
-		outputChatBox(getPlayerName(thePlayer) .. " GETS NEW ID: " .. aID )
 		setElementData ( source, "aID", aID )
-		outputDebugString(playerNick .. " = " .. aID)
 		
 		-- Log join
 		appendToFile("joins", now() .. "," .. aID .. "," .. playerNick)
@@ -121,5 +118,11 @@ addEventHandler( "onPlayerWasted", getRootElement( ),
 	end
 )
 
+
 -- Log performance data (30 seconds after join)
--- datetime,aID,ping,exports.admin.country,screenWidth,screenHeight,mtaVersion, dxGetStatus:VideoCardName,dxGetStatus:VideoCardRAM,dxGetStatus:VideoCardName,dxGetStatus:SettingWindowed,dxGetStatus:SettingDrawDistance,dxGetStatus:Setting32BitColor,dxGetStatus:SettingFOV
+-- datetime,aID,ping,mtaVersion,screenWidth,screenHeight, dxGetStatus:VideoCardName,dxGetStatus:VideoCardRAM,dxGetStatus:VideoCardName,dxGetStatus:SettingWindowed,dxGetStatus:SettingDrawDistance,dxGetStatus:Setting32BitColor,dxGetStatus:SettingFOV
+addEvent( "logClientData", true )
+addEventHandler( "logClientData", resourceRoot, function ( dxData )
+	local aID = getPlayerAID(client)
+	appendToFile("performance", now() .. "," .. aID .. "," ..  getPlayerPing ( client )  .. "," .. getPlayerVersion ( client)  .. "," .. dxData)
+end )
