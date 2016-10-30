@@ -132,7 +132,8 @@
 	<include resource="namegen" />
 	<include resource="vehicle_items" />
 	<include resource="interiorfix"/>
-	
+	<include resource="antiflood"/>
+
 	<!-- Gameplay (default) -->
 	<include resource="defaultstats" />
 	<!-- <include resource="interiors" /> -->

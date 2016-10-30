@@ -1,8 +1,16 @@
 <meta>
 	<info author="Gode" type="script" name="Anti-flood" />
 	<script src="server.lua" type="server"></script>
+
 	<settings>
-		<setting name="*timeBetweenMsg" value="1" group="Anti-flood" />
-		<setting name="*maxWarnings" value="3" group="Anti-flood" />
+		<setting name="*timeBetweenMsg" value="[1]" group="Anti-flood" desc="How close together messages must be to be considered spam"/>
+		<setting name="*maxWarnings" value="[3]" group="Anti-flood" desc="Number of spam messages allowed before action is taken"/>
 	</settings>
+
+	<export function="shouldAllowMessage" type="server" />
+
+	<aclrequest>
+		<right name="function.kickPlayer" access="true" />
+		<right name="function.setPlayerMuted" access="true" />
+	</aclrequest>
 </meta>

@@ -647,11 +647,7 @@ function resetPlayer( thePlayer )
 		end
 	end
 	setElementData( thePlayer, "ptpm.muteTimer", nil, false )
-	
-	setElementData( thePlayer, "ptpm.spam.talkCount", nil, false )
-	setElementData( thePlayer, "ptpm.spam.lastTalkTime", nil, false )
-	setElementData( thePlayer, "ptpm.spam.repeatCount", nil, false )
-	
+
 	setElementData( thePlayer, "ptpm.score.kills", nil )
 	setElementData( thePlayer, "ptpm.score.deaths", nil )
 	
