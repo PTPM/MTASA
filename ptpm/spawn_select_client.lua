@@ -51,8 +51,9 @@ local skinButtonMargin = (teamsContainerWidth * 1/9) / 4 -- where 4 is the numbe
 local skinDetailsFontSize = 1 * fontModifier
 local skinDetailsOffsetFromTop = skinButtonsOffsetFromTop + (skinPortraitSize+skinButtonMargin) * 2 + dxGetFontHeight ( skinDetailsFontSize, "default-bold" ) * 2
 
-local allowedSkinsGood = {141,164,166,276,281,285,288,275}
-local allowedSkinsTerrorists = {181,183,191,111,73,100,179,274}
+--local allowedSkinsGood = {141,164,166,276,281,285,288,275}
+--local allowedSkinsTerrorists = {181,183,191,111,73,100,179,274}
+local spawnSelect2Classes = {}
 
 local roundCountDownOffsetFromTop = teamsContainerOffsetFromTop + teamsContainerHeight * 1.06
 local roundCountDownFontSize = chooseButtonFontSize
@@ -122,29 +123,36 @@ function renderSpawnSelect ( )
 	dxDrawText("PROTECT", containerOffsetFromLeft, teamHeaderOffsetFromTop, containerOffsetFromLeft + teamsContainerWidth, nil, 0xFFFFFFFF, teamHeaderFontSize, "default-bold", "center") 
 	dxDrawImage ( containerOffsetFromLeft, teamsContainerOffsetFromTop, teamsContainerWidth, teamsContainerHeight, "spawnselectimages/asset_background_classes.png")
 	
-	for k,skinId in ipairs(allowedSkinsGood) do
-		local col = (k-1)%4
-		local row = math.floor((k-1)/4)
-		local thisButtonId = "goodGuyFace-" .. k
-		
-		local skinBorder = "spawnselectimages/asset_circle_border_bg.png"
-		if row > 0 then skinBorder = "spawnselectimages/asset_circle_border_cop.png" end
-		
-		local x = skinButtonsOffsetFromLeft + (skinCircleSize * col) + (skinButtonMargin * col)
-		local y = skinButtonsOffsetFromTop + (skinCircleSize * row) + (skinButtonMargin * row)
-		local colorOverlay = 0xFFFFFFFF
-		
-		if dxClickableElements[thisButtonId].selected then
-			colorOverlay = 0xFFC4FEFF
-		elseif dxClickableElements[thisButtonId].hovered then
-			colorOverlay = 0xFFE1FFFF
+	local i = 1
+	for k,sc in ipairs(spawnSelect2Classes) do
+		if sc.classType=="bodyguard" or sc.classType=="police" then
+			
+			local col = (i-1)%4
+			local row = math.floor((i-1)/4)
+			local thisButtonId = "goodGuyFace-" .. i
+			
+			if sc.classType=="bodyguard" then skinBorder = "spawnselectimages/asset_circle_border_bg.png" end
+			if sc.classType=="police" then skinBorder = "spawnselectimages/asset_circle_border_cop.png" end
+			
+			local x = skinButtonsOffsetFromLeft + (skinCircleSize * col) + (skinButtonMargin * col)
+			local y = skinButtonsOffsetFromTop + (skinCircleSize * row) + (skinButtonMargin * row)
+			local colorOverlay = 0xFFFFFFFF
+			
+			if dxClickableElements[thisButtonId].selected then
+				colorOverlay = 0xFFC4FEFF
+			elseif dxClickableElements[thisButtonId].hovered then
+				colorOverlay = 0xFFE1FFFF
+			end
+			
+			dxDrawImage ( x,y, skinCircleSize, skinCircleSize, "spawnselectimages/asset_white_circle.png", 0, 0, 0, colorOverlay)
+			dxDrawImage ( x,y, skinPortraitSize, skinPortraitSize, "spawnselectimages/ptpm-skins-" .. sc.skin .. ".png")
+			dxDrawImage ( x,y, skinCircleSize, skinCircleSize, skinBorder)
+			
+			dxClickableElements[thisButtonId]:setAbsPos(x, y, x+skinCircleSize, y+skinCircleSize)
+			
+			i = i+1
+			
 		end
-		
-		dxDrawImage ( x,y, skinCircleSize, skinCircleSize, "spawnselectimages/asset_white_circle.png", 0, 0, 0, colorOverlay)
-		dxDrawImage ( x,y, skinPortraitSize, skinPortraitSize, "spawnselectimages/ptpm-skins-" .. skinId .. ".png")
-		dxDrawImage ( x,y, skinCircleSize, skinCircleSize, skinBorder)
-		
-		dxClickableElements[thisButtonId]:setAbsPos(x, y, x+skinCircleSize, y+skinCircleSize)
 	end
 	
 	dxDrawText("May Lana", skinButtonsOffsetFromLeft, skinDetailsOffsetFromTop, nil, nil, 0xFFFFFFFF, skinDetailsFontSize, "default-bold") 
@@ -170,7 +178,7 @@ function renderSpawnSelect ( )
 	
 	dxClickableElements["goodGuyButton"]:setAbsPos( chooseButtonGoodGuysX, chooseButtonGoodGuysY, chooseButtonGoodGuysX+chooseButtonWidth, chooseButtonGoodGuysY+chooseButtonHeight)
 	
-	-- Terrorists
+	--[[ Terrorists
 	dxDrawText("ATTACK", containerOffsetFromLeft + containerMaxWidth - teamsContainerWidth, teamHeaderOffsetFromTop, containerOffsetFromLeft + containerMaxWidth, nil, 0xFFFFFFFF, teamHeaderFontSize, "default-bold", "center") 
 	dxDrawImage ( containerOffsetFromLeft + containerMaxWidth, teamsContainerOffsetFromTop, -teamsContainerWidth, teamsContainerHeight, "spawnselectimages/asset_background_classes.png")
 	
@@ -218,6 +226,7 @@ function renderSpawnSelect ( )
 	dxDrawText ( "Choose", chooseButtonBadGuysX, chooseButtonBadGuysY, chooseButtonBadGuysX+chooseButtonWidth, chooseButtonBadGuysY + chooseButtonHeight, 0xFFFFFFFF, chooseButtonFontSize, "default-bold", "center", "center", true)
 	
 	dxClickableElements["badGuyButton"]:setAbsPos( chooseButtonBadGuysX, chooseButtonBadGuysY, chooseButtonBadGuysX+chooseButtonWidth, chooseButtonBadGuysY+chooseButtonHeight)
+	]]--
 	
 	-- Countdown
 	dxDrawText("Assemble your teams! Round starts in 15 seconds.", containerOffsetFromLeft, roundCountDownOffsetFromTop, containerOffsetFromLeft + containerMaxWidth, nil, 0xFFFFFFFF, roundCountDownFontSize, "default", "center") 
@@ -294,9 +303,10 @@ function onMouseOverHandler ( _, _, absoluteX, absoluteY )
 	end
 end
 
-function startSpawnSelect(  )
+function startSpawnSelect( _spawnSelect2Classes )
+
+	spawnSelect2Classes = _spawnSelect2Classes
 	
-	if source~= getResourceRootElement(getThisResource()) then do return end end
 	dxClickableElementsNames = {"pmButton","pmFace","goodGuyButton","badGuyButton"}
 	for i=1,8 do
 		table.insert(dxClickableElementsNames,"badGuyFace-"..i)
@@ -323,4 +333,7 @@ function startSpawnSelect(  )
 end
 
 
-addEventHandler( "onClientResourceStart", getRootElement( ), startSpawnSelect)
+addEvent( "ptpmSpawnSelect", true )
+addEventHandler( "ptpmSpawnSelect", localPlayer, startSpawnSelect )
+
+--addEventHandler( "onClientResourceStart", getRootElement( ), startSpawnSelect)

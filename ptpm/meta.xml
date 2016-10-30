@@ -75,7 +75,6 @@
 	<file src="mapvoteimages/map-pic-SF.png" />
 	<file src="mapvoteimages/map-pic-_randomMap.png" />
 	
-	<!-- Spawn Select 2 
 	<script src="spawn_select_client.lua" type="client"/>
 	<script src="spawn_select_server.lua" type="server"/>
 	<file src="spawnselectimages/ptpm-skins-100.png" />
@@ -118,7 +117,7 @@
 	<file src="spawnselectimages/asset_circle_border_cop.png"/>
 	<file src="spawnselectimages/asset_circle_border_pm.png"/>
 	<file src="spawnselectimages/asset_circle_border_terrorist.png"/>
-	<file src="spawnselectimages/asset_white_circle.png"/>-->
+	<file src="spawnselectimages/asset_white_circle.png"/>
 	
 	<!-- PTPM REQUIRED -->
 	<include resource="helpmanager" />
