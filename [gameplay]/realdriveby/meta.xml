@@ -3,6 +3,8 @@
 	<script src="driveby_client.lua" type="client" />
 	<script src="exports_client.lua" type="client" />
 	<script src="driveby_server.lua" type="server" />
+	<script src="shared_util.lua" type="client" />
+	<script src="shared_util.lua" type="server" />
 	
 	<!--utils-->
 	<script src="utils/textlib.lua" type="client" />

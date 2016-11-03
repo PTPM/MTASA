@@ -1,12 +1,66 @@
 ﻿local driver = false
-local shooting = false
-local helpText,helpAnimation
-lastSlot = 0
+local helpDisplay = {
+	text = nil,
+	animation = nil,
+	animationTimer = nil,
+	hideTimer = nil
+}
+
+previousWeaponSlot = 0
+local drivebyActive = false
 settings = {}
+
+local firingStatus = {
+	block = false,
+	firing = false,
+	continuousFireTimer = nil
+}
+
+
+--Tell the server the clientside script was downloaded and started
+addEventHandler("onClientResourceStart", resourceRoot,
+	function()
+		bindKey("mouse2", "down", "Toggle Driveby", "")
+		bindKey("e", "down", "Next driveby weapon", "1")
+		bindKey("q", "down", "Previous driveby weapon", "-1")
+		toggleControl("vehicle_next_weapon", false)
+		toggleControl("vehicle_previous_weapon", false)
+
+		triggerServerEvent("driveby_clientScriptLoaded", localPlayer)
+
+		helpDisplay.text = dxText:create("", 0.5, 0.85)
+		helpDisplay.text:scale(1)
+		helpDisplay.text:type("stroke", 1)
+	end
+)
+
+
+addEventHandler("onClientResourceStop", resourceRoot,
+	function()
+		toggleControl("vehicle_next_weapon", true)
+		toggleControl("vehicle_previous_weapon", true)
+	end
+)
+
+
+--Get the settings details from the server, and act appropriately according to them
+addEvent("doSendDriveBySettings", true)
+addEventHandler("doSendDriveBySettings", localPlayer,
+	function(newSettings)
+		settings = newSettings
+
+		--We change the blocked vehicles into an indexed table that's easier to check
+		local newTable = {}
+		for key, vehicleID in ipairs(settings.blockedVehicles) do
+			newTable[vehicleID] = true
+		end
+		settings.blockedVehicles = newTable	
+	end
+)
 
 
 --This function simply sets up the driveby upon vehicle entry
-local function setupDriveby( player, seat )
+local function setupDriveby(player, seat)
 	--If his seat is 0, store the fact that he's a driver
 	if seat == 0 then 
 		driver = true
@@ -14,282 +68,419 @@ local function setupDriveby( player, seat )
 		driver = false
 	end
 	--By default, we set the player's equiped weapon to nothing.
-	setPedWeaponSlot( localPlayer, 0 )
+	setPedWeaponSlot(localPlayer, 0)
+
 	if settings.autoEquip then
 		toggleDriveby()
 	end
 end
-addEventHandler( "onClientPlayerVehicleEnter", localPlayer, setupDriveby )
+addEventHandler("onClientPlayerVehicleEnter", localPlayer, setupDriveby)
 
---Tell the server the clientside script was downloaded and started
-addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()),
-	function()
-		bindKey ( "mouse2", "down", "Toggle Driveby", "" )
-		bindKey ( "e", "down", "Next driveby weapon", "1" )
-		bindKey ( "q", "down", "Previous driveby weapon", "-1" )
-		toggleControl ( "vehicle_next_weapon",false )
-		toggleControl ( "vehicle_previous_weapon",false )
-		triggerServerEvent ( "driveby_clientScriptLoaded", localPlayer )
-		helpText = dxText:create("",0.5,0.85)
-		helpText:scale(1)
-		helpText:type("stroke",1)
+
+
+--[[ slots:
+	0 -- hand
+	1 -- melee
+	2 -- handguns
+	3 -- shotguns
+	4 -- submachine guns
+	5 -- assault rifles
+	6 -- rifles
+	7 -- heavy weapons
+	8 -- projectiles
+	9 -- special 1 (spray, extinguisher, camera)
+	10 -- gifts (cane, flowers, etc)
+	11 -- special 2 (night vision, infrared, parachute)
+	12 -- detonator
+]]
+function isValidSlot(slot) 
+	-- valid slots: 2, 3, 4, 5, 6, 7
+	return slot >= 2 and slot <= 7
+end
+
+function isAllowedSlot(slot, allowedWeapons)
+	if not isValidSlot(slot) then
+		return false
 	end
-)
-
-addEventHandler("onClientResourceStop",getResourceRootElement(getThisResource()),
-	function()
-		toggleControl ( "vehicle_next_weapon",true )
-		toggleControl ( "vehicle_previous_weapon",true )
-	end
-)
-
---Get the settings details from the server, and act appropriately according to them
-addEvent ( "doSendDriveBySettings", true )
-addEventHandler("doSendDriveBySettings",localPlayer,
-	function(newSettings)
-		settings = newSettings
-		--We change the blocked vehicles into an indexed table that's easier to check
-		local newTable = {}
-		for key,vehicleID in ipairs(settings.blockedVehicles) do
-			newTable[vehicleID] = true
+	
+	for _, weaponID in ipairs(allowedWeapons) do
+		if getSlotFromWeapon(weaponID) == slot then
+			return true
 		end
-		settings.blockedVehicles = newTable
-	end
-)
+	end	
 
---This function handles the driveby toggling key.
+	return false
+end
+
+function isAllowedWeapon(id, allowedWeapons)
+	for _, weaponID in ipairs(allowedWeapons) do
+		if weaponID == id then
+			return true
+		end
+	end
+
+	return false
+end
+
+
+--This function handles the driveby toggling key (turns driveby on and off)
 function toggleDriveby()
 	--If he's not in a vehicle dont bother
-	if not isPedInVehicle( localPlayer ) then return end
+	if not isPedInVehicle(localPlayer) then 
+		return
+	end
+
 	--If its a blocked vehicle dont allow it
-	local vehicleID = getElementModel ( getPedOccupiedVehicle ( localPlayer ) )
-	if settings.blockedVehicles[vehicleID] then return end
-	--Has he got a weapon equiped?
-	local equipedWeapon = getPedWeaponSlot( localPlayer )
-	if equipedWeapon == 0 then
-		--Decide whether he is a driver or passenger
-		if ( driver ) then weaponsTable = settings.driver
-		else weaponsTable = settings.passenger end
-		--We need to get the switchTo weapon by finding any valid IDs
-		local switchTo
-		local switchToWeapon
-		local lastSlotAmmo = getPedTotalAmmo ( localPlayer, lastSlot )
-		if not lastSlotAmmo or lastSlotAmmo == 0 or getSlotFromWeapon(getPedWeapon (localPlayer,lastSlot)) == 0 then
-			for key,weaponID in ipairs(weaponsTable) do
-				local slot = getSlotFromWeapon ( weaponID )
-				local weapon = getPedWeapon ( localPlayer, slot )
-				if weapon == 1 then weapon = 0 end --If its a brass knuckle, set it to a fist to avoid confusion
-				--if the weapon the player has is valid
-				if weapon == weaponID then
-					--If the ammo isn't 0
-					if getPedTotalAmmo ( localPlayer, slot ) ~= 0 then
-						--If no switchTo slot was defined, or the slot was 4 (SMG slot takes priority)
-						if not switchTo or slot == 4 then
-							switchTo = slot
-							switchToWeapon = weaponID
-						end
-					end
-				end
-			end
-		else
-			local lastSlotWeapon = getPedWeapon ( localPlayer, lastSlot )
-			for key,weaponID in ipairs(weaponsTable) do --If our last used weapon is a valid weapon
-				if weaponID == lastSlotWeapon then
-					switchTo = lastSlot
-					switchToWeapon = lastSlotWeapon
-					break
-				end
-			end
-		end
-		--If a valid weapon was not found, dont set anything.
-		if not switchTo then return end
-		setPedDoingGangDriveby ( localPlayer, true )
-		setPedWeaponSlot( localPlayer, switchTo )
-		--Setup our driveby limiter
-		limitDrivebySpeed ( switchToWeapon )
-		--Disable look left/right keys, they seem to become accelerate/decelerate (carried over from PS2 version)
-		toggleControl ( "vehicle_look_left",false )
-		toggleControl ( "vehicle_look_right",false )
-		toggleControl ( "vehicle_secondary_fire",false )
-		toggleTurningKeys(vehicleID,false)
-		addEventHandler ( "onClientPlayerVehicleExit",localPlayer,removeKeyToggles )
-		local prevw,nextw = next(getBoundKeys ( "Previous driveby weapon" )),next(getBoundKeys ( "Next driveby weapon" ))
-		if prevw and nextw then
-			if animation then Animation:remove() end
-			helpText:text( "Press '"..prevw.."' or '"..nextw.."' to change weapon" )
-			fadeInHelp()
-			setTimer ( fadeOutHelp, 10000, 1 )
-		end
+	local vehicleID = getElementModel(getPedOccupiedVehicle(localPlayer))
+	if settings.blockedVehicles[vehicleID] then 
+		return 
+	end
+
+	if isPedDoingGangDriveby(localPlayer) or drivebyActive then
+		disableDriveby()
 	else
-		--If so, unequip it
-		setPedDoingGangDriveby ( localPlayer, false )
-		setPedWeaponSlot( localPlayer, 0 )
-		limitDrivebySpeed ( switchToWeapon )
-		toggleControl ( "vehicle_look_left",true )
-		toggleControl ( "vehicle_look_right",true )
-		toggleControl ( "vehicle_secondary_fire",true )
-		toggleTurningKeys(vehicleID,true)
-		fadeOutHelp()
-		removeEventHandler ( "onClientPlayerVehicleExit",localPlayer,removeKeyToggles )
+		enableDriveby()
 	end
 end
-addCommandHandler ( "Toggle Driveby", toggleDriveby )
+addCommandHandler("Toggle Driveby", toggleDriveby)
 
-function removeKeyToggles(vehicle)
-	toggleControl ( "vehicle_look_left",true )
-	toggleControl ( "vehicle_look_right",true )
-	toggleControl ( "vehicle_secondary_fire",true )
-	toggleTurningKeys(getElementModel(vehicle),true)
-	fadeOutHelp()
-	removeEventHandler ( "onClientPlayerVehicleExit",localPlayer,removeKeyToggles )
+function enableDriveby()
+	local allowedWeapons = settings.driver
+
+	if (not driver) then 
+		allowedWeapons = settings.passenger 
+	end
+
+	-- at this point we can assume we are currently on weapon slot 0
+	--We need to get the nextValidSlot weapon by finding any valid IDs
+	local nextValidSlot, nextValidWeapon
+	local previousSlotAmmo = getPedTotalAmmo(localPlayer, previousWeaponSlot)
+
+	-- use our previous one if it is valid
+	if previousSlotAmmo and previousSlotAmmo > 0 and isAllowedSlot(previousWeaponSlot, allowedWeapons) then
+		local previousWeapon = getPedWeapon(localPlayer, previousWeaponSlot)
+
+		if previousWeapon > 0 and isAllowedWeapon(previousWeapon, allowedWeapons) then
+			nextValidSlot = previousWeaponSlot
+			nextValidWeapon = previousWeapon
+		end
+	end
+
+	-- favour the submachine gun slot over everything else
+	if not nextValidSlot then
+		local smg = getPedWeapon(localPlayer, 4)
+
+		if smg > 0 and isAllowedWeapon(smg, allowedWeapons) and getPedTotalAmmo(localPlayer, 4) > 0 then
+			nextValidSlot = 4
+			nextValidWeapon = smg
+		end
+	end
+
+	-- previous weapon is invalid, find a new one
+	if not nextValidSlot then
+		nextValidSlot, nextValidWeapon = getNextDrivebyWeapon(0, allowedWeapons, 1)
+	end
+
+	--If a valid weapon was not found, dont set anything.
+	if not nextValidSlot then 
+		return 
+	end
+
+	drivebyActive = true
+
+	setPedDoingGangDriveby(localPlayer, true)
+	setPedWeaponSlot(localPlayer, nextValidSlot)
+
+	--Setup our driveby limiter
+	limitDrivebySpeed(nextValidWeapon)
+
+	--Disable look left/right keys, they seem to become accelerate/decelerate (carried over from PS2 version)
+	toggleControl("vehicle_look_left", false)
+	toggleControl("vehicle_look_right", false)
+	toggleControl("vehicle_secondary_fire", false)
+
+	local vehicleID = getElementModel(getPedOccupiedVehicle(localPlayer))
+	toggleTurningKeys(vehicleID, false)
+
+	-- getBoundKeys get a table of all the binds, next gets the first in the table
+	local prevWeaponKey, nextWeaponKey = next(getBoundKeys("Previous driveby weapon")), next(getBoundKeys("Next driveby weapon"))
+	if prevWeaponKey and nextWeaponKey then
+		if animation then 
+			Animation:remove() 
+		end
+
+		helpDisplay.text:text("Press '" .. prevWeaponKey .. "' or '" .. nextWeaponKey .. "' to change weapon")
+		fadeHelpInOut(true)
+		helpDisplay.hideTimer = setTimer(fadeHelpInOut, 10000, 1, false)
+	end
 end
+
+
+function disableDriveby()
+	if isPedDoingGangDriveby(localPlayer) then
+		setPedDoingGangDriveby(localPlayer, false)
+		setPedWeaponSlot(localPlayer, 0)
+	end
+
+	if not isControlEnabled("vehicle_look_left") then
+		toggleControl("vehicle_look_left", true)
+		toggleControl("vehicle_look_right", true)
+		toggleControl("vehicle_secondary_fire", true)
+	end
+
+	toggleControl("vehicle_left", true)
+	toggleControl("vehicle_right", true)
+
+	fadeHelpInOut(false)
+
+	removeDrivebySpeedLimit()
+
+	drivebyActive = false
+end
+
+addEventHandler("onClientPlayerVehicleExit", localPlayer,
+	function(vehicle, seat)
+		if isPedDoingGangDriveby(localPlayer) or drivebyActive then
+			disableDriveby()
+		end
+	end
+)
+
+addEventHandler("onClientVehicleStartExit", root,
+	function(player, seat, door)
+		if player ~= localPlayer then
+			return
+		end
+
+		if isPedDoingGangDriveby(localPlayer) then
+			disableDriveby()
+		end
+	end
+)
+
+addEventHandler("onClientPlayerWasted", localPlayer, 
+	function()
+		if isPedDoingGangDriveby(localPlayer) then
+			disableDriveby()
+		end	
+	end
+)
+
+
+addEventHandler("onClientPlayerWeaponSwitch", localPlayer, 
+	function(prevSlot, curSlot)
+		if isPedDoingGangDriveby(localPlayer) then	
+			limitDrivebySpeed(getPedWeapon(localPlayer, curSlot))
+		end
+	end
+)
 
 
 --This function handles the driveby switch weapon key
-function switchDrivebyWeapon(key,progress)
-	progress = tonumber(progress)
-	if not progress then return end
+function switchDrivebyWeapon(key, direction)
+	direction = tonumber(direction)
+	if not direction then 
+		return 
+	end
+
 	--If the fire button is being pressed dont switch
-	if shooting then return end
+	if firingStatus.firing then 
+		return 
+	end
+
 	--If he's not in a vehicle dont bother
-	if not isPedInVehicle( localPlayer ) then return end
-	--If he's not in driveby mode dont bother either
-	local currentWeapon = getPedWeapon( localPlayer )
-	if currentWeapon == 1 then currentWeapon = 0 end --If its a brass knuckle, set it to a fist to avoid confusion
+	if (not isPedInVehicle(localPlayer)) or (not isPedDoingGangDriveby(localPlayer)) then 
+		return 
+	end
+
+	local currentWeapon = getPedWeapon(localPlayer)
 	local currentSlot = getPedWeaponSlot(localPlayer)
-	if currentSlot == 0 then return end
-	if ( driver ) then weaponsTable = settings.driver
-	else weaponsTable = settings.passenger end
-	--Compile a list of the player's weapons
-	local switchTo
-	for key,weaponID in ipairs(weaponsTable) do
-		if weaponID == currentWeapon then
-			local i = key + progress
-			--We keep looping the table until we go back to our original key
-			while i ~= key do
-				nextWeapon = weaponsTable[i]
-				if nextWeapon then
-					local slot = getSlotFromWeapon ( nextWeapon )
-					local weapon = getPedWeapon ( localPlayer, slot )
-					if ( weapon == nextWeapon  ) then
-						switchToWeapon = weapon
-						switchTo = slot
-						break
-					end
-				end
-				--Go back to the beginning if there is no valid weapons left in the table
-				if not weaponsTable[i+progress] then
-					if progress < 0 then
-						i = #weaponsTable
-					else
-						i = 1
-					end
-				else
-					i = i + progress
-				end
-			end
+
+	local allowedWeapons = settings.driver
+
+	if (not driver) then 
+		allowedWeapons = settings.passenger 
+	end
+
+	local switchToSlot, switchToWeapon = getNextDrivebyWeapon(currentWeapon, allowedWeapons, direction)
+
+	--If a valid weapon was not found, dont set anything.
+	if not switchToSlot then 
+		return
+	end
+
+	previousWeaponSlot = switchToSlot
+	setPedWeaponSlot(localPlayer, switchToSlot)
+	limitDrivebySpeed(switchToWeapon)
+end
+addCommandHandler("Next driveby weapon", switchDrivebyWeapon)
+addCommandHandler("Previous driveby weapon", switchDrivebyWeapon)
+
+
+-- allowedWeapons is a table (array) of allowed weapon ids, direction is 1 or -1
+function getNextDrivebyWeapon(currentWeaponID, allowedWeapons, direction)
+	if (not direction) or (not tonumber(direction)) then
+		direction = 1
+	end
+
+	if (not isAllowedWeapon(currentWeaponID, allowedWeapons)) then
+		currentWeaponID = 0
+	end
+
+	local currentIndex = 0
+
+	for i, weaponID in ipairs(allowedWeapons) do
+		if weaponID == currentWeaponID then
+			currentIndex = i
 			break
 		end
 	end
-	--If a valid weapon was not found, dont set anything.
-	if not switchTo then return end
-	lastSlot = switchTo
-	setPedWeaponSlot( localPlayer, switchTo )
-	limitDrivebySpeed ( switchToWeapon )
+
+	for i = 0, #allowedWeapons - 1 do
+		local nextIndex = ((i * direction) + currentIndex) % #allowedWeapons
+		nextIndex = nextIndex + direction
+
+		if nextIndex <= 0 then
+			nextIndex = #allowedWeapons + nextIndex
+		end
+
+		local nextWeaponID = allowedWeapons[nextIndex]
+		local slot = getSlotFromWeapon(nextWeaponID)
+		local weapon = getPedWeapon(localPlayer, slot)
+
+		if weapon == nextWeaponID and getPedTotalAmmo(localPlayer, slot) > 0 then
+			return slot, weapon
+		end
+	end
+
+	return
 end
-addCommandHandler ( "Next driveby weapon", switchDrivebyWeapon )
-addCommandHandler ( "Previous driveby weapon", switchDrivebyWeapon )
+
+
+
 
 --Here lies the stuff that limits shooting speed (so slow weapons dont shoot ridiculously fast)
-local limiterTimer
-function limitDrivebySpeed ( weaponID )
+function limitDrivebySpeed(weaponID)
 	local speed = settings.shotdelay[tostring(weaponID)]
+
 	if not speed then 
-		if not isControlEnabled ( "vehicle_fire" ) then 
-			toggleControl ( "vehicle_fire", true )
-		end
-		removeEventHandler("onClientPlayerVehicleExit",localPlayer,unbindFire)
-		removeEventHandler("onClientPlayerWasted",localPlayer,unbindFire)
-		unbindKey ( "vehicle_fire", "both", limitedKeyPress )
+		removeDrivebySpeedLimit()
 	else
-		if isControlEnabled ( "vehicle_fire" ) then 
-			toggleControl ( "vehicle_fire", false )
-			addEventHandler("onClientPlayerVehicleExit",localPlayer,unbindFire)
-			addEventHandler("onClientPlayerWasted",localPlayer,unbindFire)
-			bindKey ( "vehicle_fire","both",limitedKeyPress,speed)
+		if isControlEnabled("vehicle_fire") then 
+			toggleControl("vehicle_fire", false)
+			bindKey("vehicle_fire", "both", limitedKeyPress, speed)
 		end
 	end
 end
 
-function unbindFire()
-	unbindKey ( "vehicle_fire", "both", limitedKeyPress )
-	if not isControlEnabled ( "vehicle_fire" ) then 
-			toggleControl ( "vehicle_fire", true )
+function removeDrivebySpeedLimit()
+	if not isControlEnabled("vehicle_fire") then 
+		toggleControl("vehicle_fire", true)
 	end
-	removeEventHandler("onClientPlayerVehicleExit",localPlayer,unbindFire)
-	removeEventHandler("onClientPlayerWasted",localPlayer,unbindFire)
+
+	unbindKey("vehicle_fire", "both", limitedKeyPress)
+
+	-- if we get out of the vehicle while holding down fire, we need to forcibly clear the timer
+	clearFiringStatus()
 end
 
-local block
-function limitedKeyPress (key,keyState,speed)
+
+function limitedKeyPress(key, keyState, speed)
 	if keyState == "down" then
-		if block == true then return end
-		shooting = true
-		pressKey ( "vehicle_fire" )
-		block = true
-		setTimer ( function() block = false end, speed, 1 )
-		limiterTimer = setTimer ( pressKey,speed, 0, "vehicle_fire" )
-	else
-		shooting = false
-		for k,timer in ipairs(getTimers()) do
-			if timer == limiterTimer then
-				killTimer ( limiterTimer )
-			end
+		if firingStatus.block then 
+			return 
 		end
+
+		firingStatus.firing = true		
+		firingStatus.block = true
+
+		pressKey("vehicle_fire")
+
+		-- don't allow any firing for the next [speed] ms
+		setTimer(
+			function() 
+				firingStatus.block = false 
+			end, 
+		speed, 1)
+
+		firingStatus.continuousFireTimer = setTimer(pressKey, speed, 0, "vehicle_fire")
+	else
+		clearFiringStatus()
 	end
 end
 
-function pressKey ( controlName )
-	setControlState ( controlName, true )
-	setTimer ( setControlState, 150, 1, controlName, false )
+function clearFiringStatus()
+	firingStatus.firing = false
+
+	if firingStatus.continuousFireTimer and isTimer(firingStatus.continuousFireTimer) then
+		killTimer(firingStatus.continuousFireTimer)
+	end
+
+	firingStatus.continuousFireTimer = nil
+end
+
+function pressKey(controlName)
+	setControlState(controlName, true)
+	setTimer(setControlState, 50, 1, controlName, false)
 end
 
 ---Left/right toggling
-local bikes = { [581]=true,[509]=true,[481]=true,[462]=true,[521]=true,[463]=true,
-	[510]=true,[522]=true,[461]=true,[448]=true,[468]=true,[586]=true }
 function toggleTurningKeys(vehicleID, state)
-	if bikes[vehicleID] then
+	local vehicleType = getVehicleType(vehicleID)
+
+	if (not vehicleType) or #vehicleType == 0 then
+		return
+	end
+
+	if vehicleType == "Bikes" or vehicleType == "BMX" then
 		if not settings.steerBikes then
-			toggleControl ( "vehicle_left", state )
-			toggleControl ( "vehicle_right", state )
+			toggleControl("vehicle_left", state)
+			toggleControl("vehicle_right", state)
 		end
 	else
 		if not settings.steerCars then
-			toggleControl ( "vehicle_left", state )
-			toggleControl ( "vehicle_right", state )
+			toggleControl("vehicle_left", state)
+			toggleControl("vehicle_right", state)
 		end
 	end
 end
 	
-function fadeInHelp()
-	if helpAnimation then helpAnimation:remove() end
-	local _,_,_,a = helpText:color()
-	if a == 255 then return end
-	helpAnimation = Animation.createAndPlay(helpText, Animation.presets.dxTextFadeIn(300))
-	setTimer ( function() helpText:color(255,255,255,255) end, 300, 1 )
+
+function fadeHelpInOut(fadingIn)
+	removeHelp()
+
+	local _, _, _, a = helpDisplay.text:color()
+
+	-- are we already in the state we want to be in?
+	if (fadingIn and a == 255) or ((not fadingIn) and a == 0) then 
+		return 
+	end
+
+	if fadingIn then
+		helpDisplay.animation = Animation.createAndPlay(helpDisplay.text, Animation.presets.dxTextFadeIn(300))
+	else
+		helpDisplay.animation = Animation.createAndPlay(helpDisplay.text, Animation.presets.dxTextFadeOut(300))
+	end
+
+	helpDisplay.animationTimer = setTimer(
+		function()
+			helpDisplay.text:color(255, 255, 255, fadingIn and 255 or 0) 
+		end,
+	300, 1)
 end
 
-function fadeOutHelp()
-	if helpAnimation then helpAnimation:remove() end
-	local _,_,_,a = helpText:color()
-	if a == 0 then return end
-	helpAnimation = Animation.createAndPlay(helpText, Animation.presets.dxTextFadeOut(300))
-	setTimer ( function() helpText:color(255,255,255,0) end, 300, 1 )
-end
+function removeHelp()
+	if helpDisplay.animation then
+		helpDisplay.animation:remove()
+	end
 
-local function onWeaponSwitchWhileDriveby (prevSlot, curSlot)
-	if isPedDoingGangDriveby(source) then	
-		limitDrivebySpeed(getPedWeapon(source, curSlot))
+	if helpDisplay.animationTimer and isTimer(helpDisplay.animationTimer) then
+		killTimer(helpDisplay.animationTimer)
+		helpDisplay.animationTimer = nil
+	end
+
+	if helpDisplay.hideTimer and isTimer(helpDisplay.hideTimer) then
+		killTimer(helpDisplay.hideTimer)
+		helpDisplay.hideTimer = nil
 	end
 end
-addEventHandler ("onClientPlayerWeaponSwitch", localPlayer, onWeaponSwitchWhileDriveby)

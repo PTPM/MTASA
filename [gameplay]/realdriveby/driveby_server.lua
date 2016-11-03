@@ -7,28 +7,23 @@
 	steerBikes = get"driveby_steer_bikes" == true,
 	autoEquip = get"driveby_auto_equip" or false
 }
---Remove any BS IDs by checking them
-local validDrivebyWeapons = { [22]=true,[23]=true,[24]=true,[25]=true,
-[26]=true,[27]=true,[28]=true,[29]=true,[32]=true,[30]=true,[31]=true,
-[32]=true,[33]=true,[38]=true }
---Loop through both driveby tables and ensure they have proper IDs
-for key,weaponID in ipairs(settings.driver) do
-	if not validDrivebyWeapons[weaponID] then
-		table.remove ( settings.driver, key )
-	end
-end
-for key,weaponID in ipairs(settings.passenger) do
-	if not validDrivebyWeapons[weaponID] then
-		table.remove ( settings.driver, key )
-	end
-end
 
-
---Verifies the clientscript is downloaded before initiating
-addEvent ( "driveby_clientScriptLoaded", true )
-addEventHandler ( "driveby_clientScriptLoaded", getRootElement(),
+addEventHandler("onResourceStart", resourceRoot,
 	function()
-		triggerClientEvent ( client, "doSendDriveBySettings", client, settings )
+		--Loop through both driveby tables and ensure they have proper IDs
+		enforceValidWeapons(settings.driver)
+		enforceValidWeapons(settings.passenger)
+
+		-- sort the tables so the weapons are in the scroll order
+		table.sort(settings.driver, weaponSort)
+		table.sort(settings.passenger, weaponSort)
 	end
 )
 
+--Verifies the clientscript is downloaded before initiating
+addEvent("driveby_clientScriptLoaded", true)
+addEventHandler("driveby_clientScriptLoaded", root,
+	function()
+		triggerClientEvent(client, "doSendDriveBySettings", client, settings)
+	end
+)
