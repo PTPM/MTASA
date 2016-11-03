@@ -1,5 +1,5 @@
 ﻿<meta>
-	<info author="uhm" type="script" name="Chat Ads" description="Show your promotional messages on a configurable interval" version="1.0"/>
+	<info author="PTPM" type="script" name="Chat Ads" description="Show your promotional messages on a configurable interval" version="1.0"/>
 	<script src="chatads.lua" type="server"/>
 	<download_priority_group>0</download_priority_group>	
 	

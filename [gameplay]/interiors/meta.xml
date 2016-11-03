@@ -1,5 +1,5 @@
 <meta>
-	<info author="uhm" description="Interiors script for PTPM" edf:definition="interiors.edf" type="script" version="1.0" />
+	<info author="PTPM" description="Interiors script for PTPM, original version by Talidan" edf:definition="interiors.edf" type="script" version="1.0" />
 	<!--<info author="Talidan" description="Interiors script" edf:definition="interiors.edf" type="script" version="2.0" />-->
 	<script src="interiorexp.lua" type="server" />
 	<script src="interiors_client.lua" type="client" />
