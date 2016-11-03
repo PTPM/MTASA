@@ -27,3 +27,15 @@ addEventHandler("driveby_clientScriptLoaded", root,
 		triggerClientEvent(client, "doSendDriveBySettings", client, settings)
 	end
 )
+
+addEventHandler("onElementModelChange", root,
+	function(oldModel)
+		if getElementType(source) ~= "vehicle" then
+			return
+		end
+
+		for seat, player in pairs(getVehicleOccupants(source)) do
+			triggerClientEvent(player, "onClientVehicleModelChange", resourceRoot, getElementModel(source))
+		end
+	end
+)

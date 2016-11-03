@@ -39,6 +39,10 @@ addEventHandler("onClientResourceStop", resourceRoot,
 	function()
 		toggleControl("vehicle_next_weapon", true)
 		toggleControl("vehicle_previous_weapon", true)
+
+		if drivebyActive then
+			disableDriveby()
+		end
 	end
 )
 
@@ -200,7 +204,7 @@ function enableDriveby()
 	toggleControl("vehicle_secondary_fire", false)
 
 	local vehicleID = getElementModel(getPedOccupiedVehicle(localPlayer))
-	toggleTurningKeys(vehicleID, false)
+	disableTurningKeys(vehicleID)
 
 	-- getBoundKeys get a table of all the binds, next gets the first in the table
 	local prevWeaponKey, nextWeaponKey = next(getBoundKeys("Previous driveby weapon")), next(getBoundKeys("Next driveby weapon"))
@@ -271,6 +275,15 @@ addEventHandler("onClientPlayerWeaponSwitch", localPlayer,
 	function(prevSlot, curSlot)
 		if isPedDoingGangDriveby(localPlayer) then	
 			limitDrivebySpeed(getPedWeapon(localPlayer, curSlot))
+		end
+	end
+)
+
+addEvent("onClientVehicleModelChange", true)
+addEventHandler("onClientVehicleModelChange", resourceRoot,
+	function(newModel)
+		if drivebyActive then
+			disableDriveby()
 		end
 	end
 )
@@ -425,22 +438,22 @@ function pressKey(controlName)
 end
 
 ---Left/right toggling
-function toggleTurningKeys(vehicleID, state)
+function disableTurningKeys(vehicleID)
 	local vehicleType = getVehicleType(vehicleID)
 
 	if (not vehicleType) or #vehicleType == 0 then
 		return
 	end
 
-	if vehicleType == "Bikes" or vehicleType == "BMX" then
+	if vehicleType == "Bike" or vehicleType == "BMX" then
 		if not settings.steerBikes then
-			toggleControl("vehicle_left", state)
-			toggleControl("vehicle_right", state)
+			toggleControl("vehicle_left", false)
+			toggleControl("vehicle_right", false)
 		end
 	else
 		if not settings.steerCars then
-			toggleControl("vehicle_left", state)
-			toggleControl("vehicle_right", state)
+			toggleControl("vehicle_left", false)
+			toggleControl("vehicle_right", false)
 		end
 	end
 end
