@@ -201,6 +201,8 @@ addEventHandler("doTriggerServerEvents", root,
 			fadeCamera(client, false, 1)
 
 			setTimer(fadeIntoWarpComplete, 1000, 1, client, interior, resource, id)
+		else
+			triggerClientEvent(client, "onPlayerInteriorHitCancelled", client, interior)
 		end
 	end
 )

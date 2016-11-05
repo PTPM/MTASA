@@ -71,7 +71,6 @@ local outputColour = {255, 128, 0}
 local allowPlayerToTeleport = true
 local targetCollider = nil
 local immunityTimer = nil
-local targetColliderTimer = nil
 local settings = {}
 
 
@@ -79,6 +78,7 @@ addEvent("onClientInteriorHit")
 addEvent("onClientInteriorWarped")
 addEvent("updateClientSettings", true)
 addEvent("playerLoadingGround", true)
+addEvent("onPlayerInteriorHitCancelled", true)
 
 
 addEventHandler("onClientResourceStart", root,
@@ -221,21 +221,14 @@ function colshapeHit(player, matchingDimension)
 		targetCollider = lookups.colliders[targetInterior]
 
 		triggerServerEvent("doTriggerServerEvents", localPlayer, interior, getResourceName(resource), id)
-
-		if targetColliderTimer and isTimer(targetColliderTimer) then
-			killTimer(targetColliderTimer)
-		end
-
-		-- just in case the teleport event is cancelled by the server (and won't be cleared when we check for ground loading)
-		-- we'll clear this anyway after a few seconds
-		targetColliderTimer = setTimer(
-			function()
-				targetCollider = nil
-				targetColliderTimer = nil
-			end,
-		1500, 1)
 	end
 end
+
+addEventHandler("onPlayerInteriorHitCancelled", localPlayer,
+	function(interior)
+		targetCollider = nil
+	end
+)
 
 
 addEventHandler("playerLoadingGround", localPlayer,
@@ -280,6 +273,7 @@ function pauseUntilWorldHasLoaded(data, fn, ...)
 			
 			-- ground has loaded, set that we are done so the timer ticks once more before breaking
 			-- this gives us a 100ms grace period
+			-- args: start x, y, z, end x, y, z, checkBuildings, checkVehicles, checkPeds, checkObjects, checkDummies, seeThroughStuff, ignoreSomeObjectsForCamera, ignoredElement
 			if (not isLineOfSightClear(data.x, data.y, data.z + 1, data.x, data.y, data.z - 5, true, false, false, true, false, true, false, localPlayer)) then
 				foundGround = true
 			end
