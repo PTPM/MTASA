@@ -93,8 +93,7 @@
 		<setting name="*irc-onPollStuff"                value="true" friendlyname="output onPollStuff events"               examples="true,false" />
 	</settings>
 	
-	<!-- Don't touch anything below! -->
-	<info author="uhm" version="1.0.0" type="misc" name="irc" description="Echobot for PTPM to be used on irc" />
+	<info author="PTPM" version="1.0.0" type="misc" name="irc" description="Echobot for PTPM to be used on irc" />
 	<include resource="ptpm" />
 	<!-- ORIGINAL : <info author="MCvarial" version="1.0.5" type="misc" name="irc" description="Echobot to be used on irc" />-->
 	

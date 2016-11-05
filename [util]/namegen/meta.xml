@@ -1,5 +1,5 @@
 ﻿<meta>
-	<info author="uhm ptpm" description="name generator" type="script" version="0.1" />
+	<info author="PTPM" description="name generator" type="script" version="0.1" />
 
 	<script src="namegen.lua" type="server"/>
 	
