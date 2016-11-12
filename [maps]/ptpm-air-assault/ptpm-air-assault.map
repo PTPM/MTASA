@@ -32,7 +32,7 @@
     <spawngroup type="bodyguard">
         <class id="13" skin="163" weapons="22,12;29,300" />
         <class id="14" skin="164" weapons="22,12;29,300" />
-        <class id="15" skin="165" weapons="22,12;29,300" />
+        <!-- <skin="165" weapons="22,12;29,300" /> Removed with SpawnSelect2 -->
         <class id="16" skin="166" weapons="22,12;29,300" />
         <class id="17" skin="141" weapons="22,12;29,300" />
         <linespawn startX="1800.0" startY="-2620.0" startZ="14.0" endX="1900.0" endY="-2620.0" endZ="14.0" />
@@ -42,12 +42,12 @@
     <spawngroup type="police">
         <class id="19" skin="280" weapons="22,12;29,300" />
         <class id="20" skin="281" weapons="22,12;29,300" />
-        <class id="21" skin="282" weapons="22,12;29,300" />
-        <class id="22" skin="283" weapons="22,12;29,300" />
-        <class id="23" skin="284" weapons="22,12;29,300" />
+        <!-- <skin="282" weapons="22,12;29,300" /> Removed with SpawnSelect2 -->
+        <!-- <skin="283" weapons="22,12;29,300" /> Removed with SpawnSelect2 -->
+        <!-- <skin="284" weapons="22,12;29,300" /> Removed with SpawnSelect2 -->
         <class id="24" skin="285" weapons="22,12;29,300" />
-        <class id="25" skin="286" weapons="22,12;29,300" />
-        <class id="26" skin="288" weapons="22,12;29,300" />
+        <!-- <skin="286" weapons="22,12;29,300" /> Removed with SpawnSelect2 -->
+        <!-- <skin="288" weapons="22,12;29,300" /> Removed with SpawnSelect2 -->
         <class id="27" skin="246" weapons="22,12;29,300" />
         <linespawn startX="-1342.0" startY="92.0" startZ="14.0" endX="-1273.3" endY="164.9" endZ="14.0" />
         <!-- rot 406 -->
