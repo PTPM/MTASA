@@ -119,6 +119,8 @@ function ptpmMapStart( map )
 			classes[classID] = {}
 			classes[classID].class = class
 			classes[classID].type = classType
+			classes[classID].skin = tonumber(getElementData(class, "skin"))
+			classes[classID].weapons = commaPairedStringToTable(getElementData(class, "weapons"))
 			classes[classID].medic = (getElementData( class, "medic" ) == "true")
 			classes[classID].initialHP = tonumber(getElementData( class, "initialHP" )) or 100
 		end

@@ -1,74 +1,80 @@
-﻿-- compcheck
--- call the client and initiate the class selection screen
-function initClassSelectionLegacy( thePlayer )
+﻿addEvent("onPlayerRequestSpawn", true)
 
-	if not data	then return end
-	
-	if data.roundEnded then return end
-	
-	local inClassSelection = getElementData( thePlayer, "ptpm.inClassSelection" )
-	
-	if not isPlayerActive( thePlayer ) or inClassSelection then return end
-	--if (playerInfo and playerInfo[thePlayer] and playerInfo[thePlayer].classSelection == true) or 
-	--   ((not playerInfo) or (not playerInfo[thePlayer])) then return end
-	
-	setElementData( thePlayer, "ptpm.inClassSelection", true, false )
-	--playerInfo[thePlayer].classSelection = true
-	
-	if getPlayerClassID( thePlayer ) then
-		setElementData( thePlayer, "ptpm.classID", false )
+
+-- compcheck
+-- call the client and initiate the class selection screen
+function initClassSelection(thePlayer)
+	if not data or data.roundEnded then 
+		return 
 	end
 	
-	setElementData( thePlayer, "ptpm.score.class", nil )
-	setPlayerTeam( thePlayer, nil )
-	resetPlayerColour( thePlayer )
+	if not isPlayerActive(thePlayer) or getElementData(thePlayer, "ptpm.inClassSelection") then 
+		return 
+	end
+
+	setElementData(thePlayer, "ptpm.inClassSelection", true, false)
+
+	if getPlayerClassID(thePlayer) then
+		setElementData(thePlayer, "ptpm.classID", false)
+	end
 	
-	setPlayerControllable( thePlayer, false )
+	setElementData(thePlayer, "ptpm.score.class", nil)
+	setPlayerTeam(thePlayer, nil)
+	resetPlayerColour(thePlayer)
+	
+	setPlayerControllable(thePlayer, false)
 
 	--local class = getElementData( thePlayer, "class" )
-	local classSelectID = getElementData( thePlayer, "ptpm.classSelect.id" )
-	local skin = getElementData( classes[classSelectID].class, "skin" )
-	spawnPlayer( thePlayer, data.wardrobe.playerX,
+	local classSelectID = tonumber(getElementData(thePlayer, "ptpm.classSelect.id")) or 0
+
+	local skin = getElementData(classes[classSelectID].class, "skin")
+	spawnPlayer(thePlayer, data.wardrobe.playerX,
 							data.wardrobe.playerY,
 							data.wardrobe.playerZ,
 							data.wardrobe.playerRot,
 							skin,
 							data.wardrobe.interior,
-							2000 + getPlayerId( thePlayer ) )
+							2000 + getPlayerId(thePlayer)
+				)
 	
 	--setPlayerGravity( thePlayer, 0 )
 	
-	fadeCamera( thePlayer, true )
+	fadeCamera(thePlayer, true)
 	
-	setCameraMatrix( thePlayer, data.wardrobe.camX,
+	setCameraMatrix(thePlayer, data.wardrobe.camX,
 								data.wardrobe.camY,
 								data.wardrobe.camZ,
 								data.wardrobe.playerX,
 								data.wardrobe.playerY,
-								data.wardrobe.playerZ )
-	setCameraInterior( thePlayer, data.wardrobe.interior )
+								data.wardrobe.playerZ
+					)
+	setCameraInterior(thePlayer, data.wardrobe.interior)
 	
-	bindKey( thePlayer, "arrow_l", "down", scrollClassSelection, -1 )
-	bindKey( thePlayer, "arrow_r", "down", scrollClassSelection, 1 )
-	bindKey( thePlayer, "arrow_l", "up", scrollClassSelectionInterrupt, -1)
-	bindKey( thePlayer, "arrow_r", "up", scrollClassSelectionInterrupt, 1)
-	bindKey( thePlayer, "lshift", "down", playerClassSelectionAccept )
-	bindKey( thePlayer, "rshift", "down", playerClassSelectionAccept )
-	bindKey( thePlayer, "enter", "down", playerClassSelectionAccept )
-	bindKey( thePlayer, "lctrl", "both", leftControlToggle )
-	bindKey( thePlayer, "rctrl", "both", rightControlToggle )
+	-- bindKey( thePlayer, "arrow_l", "down", scrollClassSelection, -1 )
+	-- bindKey( thePlayer, "arrow_r", "down", scrollClassSelection, 1 )
+	-- bindKey( thePlayer, "arrow_l", "up", scrollClassSelectionInterrupt, -1)
+	-- bindKey( thePlayer, "arrow_r", "up", scrollClassSelectionInterrupt, 1)
+	-- bindKey( thePlayer, "lshift", "down", playerClassSelectionAccept )
+	-- bindKey( thePlayer, "rshift", "down", playerClassSelectionAccept )
+	-- bindKey( thePlayer, "enter", "down", playerClassSelectionAccept )
+	-- bindKey( thePlayer, "lctrl", "both", leftControlToggle )
+	-- bindKey( thePlayer, "rctrl", "both", rightControlToggle )
 	
-	showPlayerHudComponent( thePlayer, "radar", false )
+	--showPlayerHudComponent( thePlayer, "radar", false )
 	
-	local weapons = getElementData( classes[classSelectID].class, "weapons" )
-	triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "create", 
-						classSelectID, 
-						classes[classSelectID].type, 
-						classes[classSelectID].medic, 
-						vetoPlayerClass( classSelectID, false ) ~= classSelectID,
-						weapons,
-						tableSize( getElementsByType( "objective", runningMapRoot ) ) > 0
-					  )
+	--local weapons = getElementData( classes[classSelectID].class, "weapons" )
+
+	triggerClientEvent(thePlayer, "enterClassSelection", root, classes, false --[[ is full]])
+
+	-- triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "create", 
+	-- 					classSelectID, 
+	-- 					classes[classSelectID].type, 
+	-- 					classes[classSelectID].medic, 
+	-- 					vetoPlayerClass( classSelectID, false ) ~= classSelectID,
+	-- 					weapons,
+	-- 					tableSize( getElementsByType( "objective", runningMapRoot ) ) > 0
+	-- 				  )
+
 	--triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "create", 
 	--					playerInfo[thePlayer].class.id, 
 	--					classes[playerInfo[thePlayer].class.id].type, 
@@ -79,250 +85,264 @@ function initClassSelectionLegacy( thePlayer )
 	--				  )
 	
 	
-	if tableSize( getElementsByType( "objective", runningMapRoot ) ) > 0 then
-		clearObjectiveTextFor( thePlayer ) 
+	if tableSize(getElementsByType("objective", runningMapRoot)) > 0 then
+		clearObjectiveTextFor(thePlayer) 
 	end
 	
-	if tableSize( getElementsByType( "task", runningMapRoot ) ) > 0 then
-		clearTaskTextFor( thePlayer )
+	if tableSize(getElementsByType("task", runningMapRoot)) > 0 then
+		clearTaskTextFor(thePlayer)
 	end
 end
 
--- compcheck
-function leftControlToggle( thePlayer, _, keystate )
-	if keystate == "down" then
-		setElementData( thePlayer, "ptpm.classSelect.lctrl", true, false )
-		--playerInfo[thePlayer].class.lctrl = true
-	else
-		setElementData( thePlayer, "ptpm.classSelect.lctrl", false, false )
-		--playerInfo[thePlayer].class.lctrl = false
+function onPlayerRequestSpawn(requestedClassID)
+	if not getElementData(client, "ptpm.inClassSelection") then
+		return
 	end
+
+	local veto = vetoPlayerClass(requestedClassID, false)
+
+	if requestedClassID ~= veto then 
+	--if true then
+		triggerClientEvent(client, "onPlayerRequestSpawnDenied", root, requestedClassID)
+		return
+	end
+
+	playerClassSelectionAccept(client, requestedClassID)
 end
+addEventHandler("onPlayerRequestSpawn", root, onPlayerRequestSpawn)
 
 -- compcheck
-function rightControlToggle( thePlayer, _, keystate )
-	if keystate == "down" then
-		setElementData( thePlayer, "ptpm.classSelect.rctrl", true, false )
-		--playerInfo[thePlayer].class.rctrl = true
-	else
-		setElementData( thePlayer, "ptpm.classSelect.rctrl", false, false )
-		--playerInfo[thePlayer].class.rctrl = false
-	end
-end
+-- function leftControlToggle( thePlayer, _, keystate )
+-- 	if keystate == "down" then
+-- 		setElementData( thePlayer, "ptpm.classSelect.lctrl", true, false )
+-- 		--playerInfo[thePlayer].class.lctrl = true
+-- 	else
+-- 		setElementData( thePlayer, "ptpm.classSelect.lctrl", false, false )
+-- 		--playerInfo[thePlayer].class.lctrl = false
+-- 	end
+-- end
+
+-- compcheck
+-- function rightControlToggle( thePlayer, _, keystate )
+-- 	if keystate == "down" then
+-- 		setElementData( thePlayer, "ptpm.classSelect.rctrl", true, false )
+-- 		--playerInfo[thePlayer].class.rctrl = true
+-- 	else
+-- 		setElementData( thePlayer, "ptpm.classSelect.rctrl", false, false )
+-- 		--playerInfo[thePlayer].class.rctrl = false
+-- 	end
+-- end
 
 -- compcheck
 -- triggered by a left/right arrow keypress, changes the currently selected class in the class selection screen
-function scrollClassSelection( thePlayer, _, _, leftOrRight )
+-- function scrollClassSelection( thePlayer, _, _, leftOrRight )
 
-	local lctrl = getElementData( thePlayer, "ptpm.classSelect.lctrl" )
-	local rctrl = getElementData( thePlayer, "ptpm.classSelect.rctrl" )
-	local ctrl = lctrl or rctrl
-	--local ctrl = playerInfo[thePlayer].class.lctrl or playerInfo[thePlayer].class.rctrl
-	local oldClassID = getElementData( thePlayer, "ptpm.classSelect.id" )
-	local nextClassID = oldClassID
-	--local oldclassid = playerInfo[thePlayer].class.id
+-- 	local lctrl = getElementData( thePlayer, "ptpm.classSelect.lctrl" )
+-- 	local rctrl = getElementData( thePlayer, "ptpm.classSelect.rctrl" )
+-- 	local ctrl = lctrl or rctrl
+-- 	--local ctrl = playerInfo[thePlayer].class.lctrl or playerInfo[thePlayer].class.rctrl
+-- 	local oldClassID = getElementData( thePlayer, "ptpm.classSelect.id" )
+-- 	local nextClassID = oldClassID
+-- 	--local oldclassid = playerInfo[thePlayer].class.id
 	
-	repeat -- NOTE: FAILS!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		nextClassID = nextClassID + leftOrRight
-		--playerInfo[thePlayer].class.id = playerInfo[thePlayer].class.id + leftOrRight
+-- 	repeat -- NOTE: FAILS!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- 		nextClassID = nextClassID + leftOrRight
+-- 		--playerInfo[thePlayer].class.id = playerInfo[thePlayer].class.id + leftOrRight
 		
-		-- wrap around
-		if nextClassID < 0 then nextClassID = #classes
-		elseif nextClassID > #classes then nextClassID = 0 end
-		--if playerInfo[thePlayer].class.id < 0 then playerInfo[thePlayer].class.id = #classes
-		--elseif playerInfo[thePlayer].class.id > #classes then playerInfo[thePlayer].class.id = 0 end
-	until 	classes[nextClassID] and (not ctrl or (classes[nextClassID].type ~= classes[oldClassID].type) or (nextClassID == oldClassID))
-	--until classes[playerInfo[thePlayer].class.id] and
-	--	((ctrl and ((classes[playerInfo[thePlayer].class.id].type ~= classes[oldclassid].type) or (playerInfo[thePlayer].class.id == oldclassid))) or
-	--	(ctrl == nil))
-	setElementData( thePlayer, "ptpm.classSelect.id", nextClassID, false )
+-- 		-- wrap around
+-- 		if nextClassID < 0 then nextClassID = #classes
+-- 		elseif nextClassID > #classes then nextClassID = 0 end
+-- 		--if playerInfo[thePlayer].class.id < 0 then playerInfo[thePlayer].class.id = #classes
+-- 		--elseif playerInfo[thePlayer].class.id > #classes then playerInfo[thePlayer].class.id = 0 end
+-- 	until 	classes[nextClassID] and (not ctrl or (classes[nextClassID].type ~= classes[oldClassID].type) or (nextClassID == oldClassID))
+-- 	--until classes[playerInfo[thePlayer].class.id] and
+-- 	--	((ctrl and ((classes[playerInfo[thePlayer].class.id].type ~= classes[oldclassid].type) or (playerInfo[thePlayer].class.id == oldclassid))) or
+-- 	--	(ctrl == nil))
+-- 	setElementData( thePlayer, "ptpm.classSelect.id", nextClassID, false )
 	
-	local skin = getElementData( classes[nextClassID].class, "skin" )
-	spawnPlayer( thePlayer, data.wardrobe.playerX,
-							data.wardrobe.playerY,
-							data.wardrobe.playerZ,
-							data.wardrobe.playerRot,
-							skin,
-							data.wardrobe.interior,
-							2000 + getPlayerId( thePlayer ) )
+-- 	local skin = getElementData( classes[nextClassID].class, "skin" )
+-- 	spawnPlayer( thePlayer, data.wardrobe.playerX,
+-- 							data.wardrobe.playerY,
+-- 							data.wardrobe.playerZ,
+-- 							data.wardrobe.playerRot,
+-- 							skin,
+-- 							data.wardrobe.interior,
+-- 							2000 + getPlayerId( thePlayer ) )
 	
-	--setPlayerGravity( thePlayer, 0 )
+-- 	--setPlayerGravity( thePlayer, 0 )
 	
-	if leftOrRight == 1 then
-		playSoundFrontEnd( thePlayer, 6 ) 
+-- 	if leftOrRight == 1 then
+-- 		playSoundFrontEnd( thePlayer, 6 ) 
 		
-		local autoLeft = getElementData( thePlayer, "ptpm.classSelect.autoLeft" )
-		if autoLeft then
-			killTimer( autoLeft )
-			setElementData( thePlayer, "ptpm.classSelect.autoLeft", nil, false )
-		end
-		--if playerInfo[thePlayer].class.autoLeft then
-		--	killTimer(playerInfo[thePlayer].class.autoLeft)
-		--	playerInfo[thePlayer].class.autoLeft = nil
-		--end
+-- 		local autoLeft = getElementData( thePlayer, "ptpm.classSelect.autoLeft" )
+-- 		if autoLeft then
+-- 			killTimer( autoLeft )
+-- 			setElementData( thePlayer, "ptpm.classSelect.autoLeft", nil, false )
+-- 		end
+-- 		--if playerInfo[thePlayer].class.autoLeft then
+-- 		--	killTimer(playerInfo[thePlayer].class.autoLeft)
+-- 		--	playerInfo[thePlayer].class.autoLeft = nil
+-- 		--end
 		
-		local autoRight = getElementData( thePlayer, "ptpm.classSelect.autoRight" )
-		if not autoRight then
-			autoRight = setTimer( scrollClassSelection, 300, 0, thePlayer, nil, nil, leftOrRight )
-			setElementData( thePlayer, "ptpm.classSelect.autoRight", autoRight, false )
-		end
-		--if not playerInfo[thePlayer].class.autoRight then
-		--	playerInfo[thePlayer].class.autoRight = setTimer(scrollClassSelection,500,0,thePlayer,nil,nil,leftOrRight)
-		--end
-	elseif leftOrRight == -1 then 
-		playSoundFrontEnd( thePlayer, 14 ) 
+-- 		local autoRight = getElementData( thePlayer, "ptpm.classSelect.autoRight" )
+-- 		if not autoRight then
+-- 			autoRight = setTimer( scrollClassSelection, 300, 0, thePlayer, nil, nil, leftOrRight )
+-- 			setElementData( thePlayer, "ptpm.classSelect.autoRight", autoRight, false )
+-- 		end
+-- 		--if not playerInfo[thePlayer].class.autoRight then
+-- 		--	playerInfo[thePlayer].class.autoRight = setTimer(scrollClassSelection,500,0,thePlayer,nil,nil,leftOrRight)
+-- 		--end
+-- 	elseif leftOrRight == -1 then 
+-- 		playSoundFrontEnd( thePlayer, 14 ) 
 		
-		local autoRight = getElementData( thePlayer, "ptpm.classSelect.autoRight" )
-		if autoRight then
-			killTimer( autoRight )
-			setElementData( thePlayer, "ptpm.classSelect.autoRight", nil, false )
-		end
-		--if playerInfo[thePlayer].class.autoRight then
-		--	killTimer(playerInfo[thePlayer].class.autoRight)
-		--	playerInfo[thePlayer].class.autoRight = nil
-		--end		
+-- 		local autoRight = getElementData( thePlayer, "ptpm.classSelect.autoRight" )
+-- 		if autoRight then
+-- 			killTimer( autoRight )
+-- 			setElementData( thePlayer, "ptpm.classSelect.autoRight", nil, false )
+-- 		end
+-- 		--if playerInfo[thePlayer].class.autoRight then
+-- 		--	killTimer(playerInfo[thePlayer].class.autoRight)
+-- 		--	playerInfo[thePlayer].class.autoRight = nil
+-- 		--end		
 		
-		local autoLeft = getElementData( thePlayer, "ptpm.classSelect.autoLeft" )
-		if not autoLeft then
-			autoLeft = setTimer( scrollClassSelection, 300, 0, thePlayer, nil, nil, leftOrRight )
-			setElementData( thePlayer, "ptpm.classSelect.autoLeft", autoLeft, false )
-		end
-		--if not playerInfo[thePlayer].class.autoLeft then
-		--	playerInfo[thePlayer].class.autoLeft = setTimer(scrollClassSelection,500,0,thePlayer,nil,nil,leftOrRight)
-		--end
-	end
+-- 		local autoLeft = getElementData( thePlayer, "ptpm.classSelect.autoLeft" )
+-- 		if not autoLeft then
+-- 			autoLeft = setTimer( scrollClassSelection, 300, 0, thePlayer, nil, nil, leftOrRight )
+-- 			setElementData( thePlayer, "ptpm.classSelect.autoLeft", autoLeft, false )
+-- 		end
+-- 		--if not playerInfo[thePlayer].class.autoLeft then
+-- 		--	playerInfo[thePlayer].class.autoLeft = setTimer(scrollClassSelection,500,0,thePlayer,nil,nil,leftOrRight)
+-- 		--end
+-- 	end
 
-	local isClassFull = (vetoPlayerClass( nextClassID, false ) ~= nextClassID)
-	--local isClassFull = (vetoPlayerClass( playerInfo[thePlayer].class.id, false ) ~= playerInfo[thePlayer].class.id)
+-- 	local isClassFull = (vetoPlayerClass( nextClassID, false ) ~= nextClassID)
+-- 	--local isClassFull = (vetoPlayerClass( playerInfo[thePlayer].class.id, false ) ~= playerInfo[thePlayer].class.id)
 	
-	if isClassFull then
-		unbindKey( thePlayer, "lshift", "down", playerClassSelectionAccept )
-		unbindKey( thePlayer, "rshift", "down", playerClassSelectionAccept )
-		unbindKey( thePlayer, "enter", "down", playerClassSelectionAccept )
-	else
-		bindKey( thePlayer, "lshift", "down", playerClassSelectionAccept )
-		bindKey( thePlayer, "rshift", "down", playerClassSelectionAccept )
-		bindKey( thePlayer, "enter", "down", playerClassSelectionAccept )
-	end
+-- 	if isClassFull then
+-- 		unbindKey( thePlayer, "lshift", "down", playerClassSelectionAccept )
+-- 		unbindKey( thePlayer, "rshift", "down", playerClassSelectionAccept )
+-- 		unbindKey( thePlayer, "enter", "down", playerClassSelectionAccept )
+-- 	else
+-- 		bindKey( thePlayer, "lshift", "down", playerClassSelectionAccept )
+-- 		bindKey( thePlayer, "rshift", "down", playerClassSelectionAccept )
+-- 		bindKey( thePlayer, "enter", "down", playerClassSelectionAccept )
+-- 	end
 
-	local weapons = getElementData( classes[nextClassID].class, "weapons" )
-	triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "sync", 
-						nextClassID, 
-						classes[nextClassID].type, 
-						classes[nextClassID].medic, 
-						isClassFull, 
-						weapons, 
-						tableSize( getElementsByType( "objective", runningMapRoot ) ) > 0
-					  )
-	--triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "sync", 
-	--					playerInfo[thePlayer].class.id, 
-	--					classes[playerInfo[thePlayer].class.id].type, 
-	--					classes[playerInfo[thePlayer].class.id].medic, 
-	--					isClassFull, 
-	--					getElementData( classes[playerInfo[thePlayer].class.id].class, "weapons" ), 
-	--					tableSize(getElementsByType( "objective", runningMapRoot )) > 0
-	--				  )
-end
+-- 	local weapons = getElementData( classes[nextClassID].class, "weapons" )
+-- 	triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "sync", 
+-- 						nextClassID, 
+-- 						classes[nextClassID].type, 
+-- 						classes[nextClassID].medic, 
+-- 						isClassFull, 
+-- 						weapons, 
+-- 						tableSize( getElementsByType( "objective", runningMapRoot ) ) > 0
+-- 					  )
+-- 	--triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "sync", 
+-- 	--					playerInfo[thePlayer].class.id, 
+-- 	--					classes[playerInfo[thePlayer].class.id].type, 
+-- 	--					classes[playerInfo[thePlayer].class.id].medic, 
+-- 	--					isClassFull, 
+-- 	--					getElementData( classes[playerInfo[thePlayer].class.id].class, "weapons" ), 
+-- 	--					tableSize(getElementsByType( "objective", runningMapRoot )) > 0
+-- 	--				  )
+-- end
 
 -- compcheck
-function scrollClassSelectionInterrupt( thePlayer, _, _, leftOrRight )
-	if leftOrRight == 1 then
-		local autoRight = getElementData( thePlayer, "ptpm.classSelect.autoRight" )
-		if autoRight then
-			killTimer( autoRight )
-			setElementData( thePlayer, "ptpm.classSelect.autoRight", nil, false )
-		end
-		--if playerInfo[thePlayer].class and playerInfo[thePlayer].class.autoRight then
-		--	killTimer(playerInfo[thePlayer].class.autoRight)
-		--	playerInfo[thePlayer].class.autoRight = nil
-		--end
-	elseif leftOrRight == -1 then
-		local autoLeft = getElementData( thePlayer, "ptpm.classSelect.autoLeft" )
-		if autoLeft then
-			killTimer( autoLeft )
-			setElementData( thePlayer, "ptpm.classSelect.autoLeft", nil, false )
-		end
-		--if playerInfo[thePlayer].class and playerInfo[thePlayer].class.autoLeft then
-		--	killTimer(playerInfo[thePlayer].class.autoLeft)
-		--	playerInfo[thePlayer].class.autoLeft = nil
-		--end
-	end
-end
+-- function scrollClassSelectionInterrupt( thePlayer, _, _, leftOrRight )
+-- 	if leftOrRight == 1 then
+-- 		local autoRight = getElementData( thePlayer, "ptpm.classSelect.autoRight" )
+-- 		if autoRight then
+-- 			killTimer( autoRight )
+-- 			setElementData( thePlayer, "ptpm.classSelect.autoRight", nil, false )
+-- 		end
+-- 		--if playerInfo[thePlayer].class and playerInfo[thePlayer].class.autoRight then
+-- 		--	killTimer(playerInfo[thePlayer].class.autoRight)
+-- 		--	playerInfo[thePlayer].class.autoRight = nil
+-- 		--end
+-- 	elseif leftOrRight == -1 then
+-- 		local autoLeft = getElementData( thePlayer, "ptpm.classSelect.autoLeft" )
+-- 		if autoLeft then
+-- 			killTimer( autoLeft )
+-- 			setElementData( thePlayer, "ptpm.classSelect.autoLeft", nil, false )
+-- 		end
+-- 		--if playerInfo[thePlayer].class and playerInfo[thePlayer].class.autoLeft then
+-- 		--	killTimer(playerInfo[thePlayer].class.autoLeft)
+-- 		--	playerInfo[thePlayer].class.autoLeft = nil
+-- 		--end
+-- 	end
+-- end
 
 -- compcheck
-function playerClassSelectionAccept( thePlayer )
-	classSelectionRemove( thePlayer )
+function playerClassSelectionAccept(thePlayer, classID)
+	classSelectionRemove(thePlayer)
 
-	playSoundFrontEnd( thePlayer, 9 )
+	playSoundFrontEnd(thePlayer, 9)
 	
 	-- the logic behind this is to avoid using the actual onPlayerSpawn event, which would be triggering every time the class selection is scrolled
 	-- actually, i dont think there is any logic
 	--doOnPlayerSpawn( thePlayer )
 	
 	-- override class if unavailable
-	local classSelectionID = getElementData( thePlayer, "ptpm.classSelect.id" )
-	local veto = vetoPlayerClass( classSelectionID, getPlayerClassID( thePlayer ) )
+	--local classSelectionID = getElementData(thePlayer, "ptpm.classSelect.id")
+	--local veto = vetoPlayerClass(classSelectionID, getPlayerClassID(thePlayer))
 	--local veto = vetoPlayerClass( playerInfo[thePlayer].class.id, getPlayerClassID( thePlayer ) )
-	if classSelectionID ~= veto then 
+	--if classSelectionID ~= veto then 
 	--if playerInfo[thePlayer].class.id ~= veto then 
-		outputChatBox( "The class you selected was full, picking something else...", thePlayer, unpack( colourImportant ) ) 
-	end
+	--	outputChatBox("The class you selected was full, picking something else...", thePlayer, unpack(colourImportant)) 
+	--end
 	
-	setPlayerClass( thePlayer, veto )
-	bindKey( thePlayer, "f4", "down", classSelectionAfterDeath )
+	setPlayerClass(thePlayer, classID)
+	bindKey(thePlayer, "f4", "down", classSelectionAfterDeath)
 end
 
 -- compcheck
-function classSelectionRemove( thePlayer )
-	local classSelection = getElementData( thePlayer, "ptpm.inClassSelection" )
-	if classSelection then
-	--if playerInfo[thePlayer].classSelection then
-		setPlayerControllable( thePlayer, true )
+function classSelectionRemove(thePlayer)
+	if getElementData(thePlayer, "ptpm.inClassSelection") then
+		setPlayerControllable(thePlayer, true)
 		
-		unbindKey( thePlayer, "arrow_l", "down", scrollClassSelection )
-		unbindKey( thePlayer, "arrow_r", "down", scrollClassSelection )
-		unbindKey( thePlayer, "lshift", "down", playerClassSelectionAccept )
-		unbindKey( thePlayer, "rshift", "down", playerClassSelectionAccept )
-		unbindKey( thePlayer, "enter", "down", playerClassSelectionAccept )
-		unbindKey( thePlayer, "lctrl", "both", leftControlToggle )
-		unbindKey( thePlayer, "rctrl", "both", rightControlToggle )
+		-- unbindKey( thePlayer, "arrow_l", "down", scrollClassSelection )
+		-- unbindKey( thePlayer, "arrow_r", "down", scrollClassSelection )
+		-- unbindKey( thePlayer, "lshift", "down", playerClassSelectionAccept )
+		-- unbindKey( thePlayer, "rshift", "down", playerClassSelectionAccept )
+		-- unbindKey( thePlayer, "enter", "down", playerClassSelectionAccept )
+		-- unbindKey( thePlayer, "lctrl", "both", leftControlToggle )
+		-- unbindKey( thePlayer, "rctrl", "both", rightControlToggle )
 		
 		-- NOTE: Errors here for event not existing clientside when doing "gamemode ptpm"
 		if runningMap then -- this fixes?
-			triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "clear" )
+			triggerClientEvent(thePlayer, "leaveClassSelection", root)
 		end
 		
-		showPlayerHudComponent( thePlayer, "radar", true )
+		--showPlayerHudComponent( thePlayer, "radar", true )
 		
-		setElementData( thePlayer, "ptpm.inClassSelection", false, false )
-		--playerInfo[thePlayer].classSelection = false
+		setElementData(thePlayer, "ptpm.inClassSelection", false, false)
 	end
 end
 
 -- compcheck
-function checkClassSelection( thePlayer )
-	--if playerInfo and playerInfo[thePlayer] then
-		local autoRight = getElementData( thePlayer, "ptpm.classSelect.autoRight" )
-		if autoRight then
-			killTimer( autoRight )
-			setElementData( thePlayer, "ptpm.classSelect.autoRight", nil, false )
-		end
-		--if playerInfo[thePlayer].class.autoRight then
-		--	killTimer(playerInfo[thePlayer].class.autoRight)
-		--	playerInfo[thePlayer].class.autoRight = nil
-		--end
+-- function checkClassSelection( thePlayer )
+-- 	--if playerInfo and playerInfo[thePlayer] then
+-- 		local autoRight = getElementData( thePlayer, "ptpm.classSelect.autoRight" )
+-- 		if autoRight then
+-- 			killTimer( autoRight )
+-- 			setElementData( thePlayer, "ptpm.classSelect.autoRight", nil, false )
+-- 		end
+-- 		--if playerInfo[thePlayer].class.autoRight then
+-- 		--	killTimer(playerInfo[thePlayer].class.autoRight)
+-- 		--	playerInfo[thePlayer].class.autoRight = nil
+-- 		--end
 
-		local autoLeft = getElementData( thePlayer, "ptpm.classSelect.autoLeft" )
-		if autoLeft then
-			killTimer( autoLeft )
-			setElementData( thePlayer, "ptpm.classSelect.autoLeft", nil, false )
-		end
-		--if playerInfo[thePlayer].class.autoLeft then
-		--	killTimer(playerInfo[thePlayer].class.autoLeft)
-		--	playerInfo[thePlayer].class.autoLeft = nil
-		--end			
-	--end
-end
+-- 		local autoLeft = getElementData( thePlayer, "ptpm.classSelect.autoLeft" )
+-- 		if autoLeft then
+-- 			killTimer( autoLeft )
+-- 			setElementData( thePlayer, "ptpm.classSelect.autoLeft", nil, false )
+-- 		end
+-- 		--if playerInfo[thePlayer].class.autoLeft then
+-- 		--	killTimer(playerInfo[thePlayer].class.autoLeft)
+-- 		--	playerInfo[thePlayer].class.autoLeft = nil
+-- 		--end			
+-- 	--end
+-- end
 
 -- compcheck
 function classSelectionAfterDeath( thePlayer )

@@ -1,14 +1,41 @@
-﻿root = getRootElement()
-resourceRoot = getResourceRootElement()
-thisResource = getThisResource()
-localPlayer = nil
+﻿thisResource = getThisResource()
 screenX, screenY = nil, nil
 do
 	if getLocalPlayer then
-		localPlayer = getLocalPlayer()
 		screenX, screenY = guiGetScreenSize()
 	end
 end
+
+classColours = {
+	["psycho"] = { 255, 128, 0 },
+	["terrorist"] = { 255, 0, 175 },
+	["terroristm"] = { 255, 64, 207 },
+	["pm"] = { 255, 255, 64 },
+	["bodyguard"] = { 0, 128, 0 },
+	["bodyguardm"] = { 80, 176, 80 },
+	["police"] = { 80, 80, 207 },
+	["policem"] = { 128, 128, 239 },
+
+	light = {
+		["psycho"] = { 255, 217, 179 },
+		["terrorist"] = { 255, 217, 243 },
+		["terroristm"] = { 255, 217, 243 },
+		["pm"] = { 255, 255, 219 },
+		["bodyguard"] = { 180, 237, 180 },
+		["bodyguardm"] = { 180, 237, 180 },
+		["police"] = { 200, 200, 255 },
+		["policem"] = { 200, 200, 255 },
+	},
+}
+
+teamMemberFriendlyName = {
+	["psycho"] = "Psychopath",
+	["bodyguard"] = "Bodyguard",
+	["police"] = "Police",
+	["pm"] = "Prime Minister",
+	["terrorist"] = "Terrorist"
+}
+
 
 __DEBUG = true
 function debugStr( dString )

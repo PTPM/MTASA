@@ -3,7 +3,9 @@
 	
 	<script src="globals.lua" type="server"/>
 	<script src="globals.lua" type="client"/>
-	
+	<script src="util_shared.lua" type="server"/>
+	<script src="util_shared.lua" type="client"/>
+
 	<script src="main_server.lua" type="server"/>
 	<script src="main_client.lua" type="client"/>
 	
@@ -13,9 +15,7 @@
 	<script src="endgame.lua" type="server"/>
 	
 	<script src="mapvote_client.lua" type="client"/>
-	
-	
-	
+
 	<script src="admin.lua" type="server"/>
 	
 	<script src="class_selection_server.lua" type="server"/>
@@ -73,49 +73,42 @@
 	<file src="mapvoteimages/map-pic-SF.png" />
 	<file src="mapvoteimages/map-pic-_randomMap.png" />
 	
-	<script src="spawn_select_client.lua" type="client"/>
-	<script src="spawn_select_server.lua" type="server"/>
-	<file src="spawnselectimages/ptpm-skins-100.png" />
-	<file src="spawnselectimages/ptpm-skins-111.png" />
-	<file src="spawnselectimages/ptpm-skins-137.png" />
-	<file src="spawnselectimages/ptpm-skins-141.png" />
-	<file src="spawnselectimages/ptpm-skins-147.png" />
-	<file src="spawnselectimages/ptpm-skins-163.png" />
-	<file src="spawnselectimages/ptpm-skins-164.png" />
-	<file src="spawnselectimages/ptpm-skins-165.png" />
-	<file src="spawnselectimages/ptpm-skins-166.png" />
-	<file src="spawnselectimages/ptpm-skins-179.png" />
-	<file src="spawnselectimages/ptpm-skins-181.png" />
-	<file src="spawnselectimages/ptpm-skins-183.png" />
-	<file src="spawnselectimages/ptpm-skins-191.png" />
-	<file src="spawnselectimages/ptpm-skins-200.png" />
-	<file src="spawnselectimages/ptpm-skins-212.png" />
-	<file src="spawnselectimages/ptpm-skins-230.png" />
-	<file src="spawnselectimages/ptpm-skins-246.png" />
-	<file src="spawnselectimages/ptpm-skins-274.png" />
-	<file src="spawnselectimages/ptpm-skins-275.png" />
-	<file src="spawnselectimages/ptpm-skins-276.png" />
-	<file src="spawnselectimages/ptpm-skins-280.png" />
-	<file src="spawnselectimages/ptpm-skins-281.png" />
-	<file src="spawnselectimages/ptpm-skins-282.png" />
-	<file src="spawnselectimages/ptpm-skins-283.png" />
-	<file src="spawnselectimages/ptpm-skins-284.png" />
-	<file src="spawnselectimages/ptpm-skins-285.png" />
-	<file src="spawnselectimages/ptpm-skins-286.png" />
-	<file src="spawnselectimages/ptpm-skins-288.png" />
-	<file src="spawnselectimages/ptpm-skins-73.png" />
-	
-	<file src="spawnselectimages/asset_background_classes.png"/>
-	<file src="spawnselectimages/asset_background_pm.png"/>
-	<file src="spawnselectimages/asset_choosebutton_goodguy.png"/>
-	<file src="spawnselectimages/asset_choosebutton_neutral.png"/>
-	<file src="spawnselectimages/asset_choosebutton_pm.png"/>
-	<file src="spawnselectimages/asset_choosebutton_terrorist.png"/>
-	<file src="spawnselectimages/asset_circle_border_bg.png"/>
-	<file src="spawnselectimages/asset_circle_border_cop.png"/>
-	<file src="spawnselectimages/asset_circle_border_pm.png"/>
-	<file src="spawnselectimages/asset_circle_border_terrorist.png"/>
-	<file src="spawnselectimages/asset_white_circle.png"/>
+	<file src="fonts/tahoma.ttf"/>
+
+	<file src="images/class_selection/ptpm-skins-100.png" />
+	<file src="images/class_selection/ptpm-skins-111.png" />
+	<file src="images/class_selection/ptpm-skins-137.png" />
+	<file src="images/class_selection/ptpm-skins-141.png" />
+	<file src="images/class_selection/ptpm-skins-147.png" />
+	<file src="images/class_selection/ptpm-skins-163.png" />
+	<file src="images/class_selection/ptpm-skins-164.png" />
+	<file src="images/class_selection/ptpm-skins-165.png" />
+	<file src="images/class_selection/ptpm-skins-166.png" />
+	<file src="images/class_selection/ptpm-skins-179.png" />
+	<file src="images/class_selection/ptpm-skins-181.png" />
+	<file src="images/class_selection/ptpm-skins-183.png" />
+	<file src="images/class_selection/ptpm-skins-191.png" />
+	<file src="images/class_selection/ptpm-skins-200.png" />
+	<file src="images/class_selection/ptpm-skins-212.png" />
+	<file src="images/class_selection/ptpm-skins-230.png" />
+	<file src="images/class_selection/ptpm-skins-246.png" />
+	<file src="images/class_selection/ptpm-skins-274.png" />
+	<file src="images/class_selection/ptpm-skins-275.png" />
+	<file src="images/class_selection/ptpm-skins-276.png" />
+	<file src="images/class_selection/ptpm-skins-280.png" />
+	<file src="images/class_selection/ptpm-skins-281.png" />
+	<file src="images/class_selection/ptpm-skins-282.png" />
+	<file src="images/class_selection/ptpm-skins-283.png" />
+	<file src="images/class_selection/ptpm-skins-284.png" />
+	<file src="images/class_selection/ptpm-skins-285.png" />
+	<file src="images/class_selection/ptpm-skins-286.png" />
+	<file src="images/class_selection/ptpm-skins-288.png" />
+	<file src="images/class_selection/ptpm-skins-73.png" />
+
+	<file src="images/class_selection/asset_choosebutton_neutral.png"/>
+	<file src="images/class_selection/asset_circle_border.png"/>
+	<file src="images/class_selection/asset_circle_border_big.png"/>
+	<file src="images/class_selection/asset_white_circle.png"/>
 	
 	<!-- PTPM REQUIRED -->
 	<include resource="helpmanager" />
