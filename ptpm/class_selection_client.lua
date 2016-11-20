@@ -28,6 +28,7 @@ local delta = 0
 local currentlySelectedPetal = nil
 local currentlySelectedFlower = nil
 
+
 addEvent("enterClassSelection", true)
 addEvent("leaveClassSelection", true)
 addEvent("updateClassSelection", true)
@@ -259,6 +260,8 @@ function enterClassSelection(classes, isFull)
 
 	bindKey("arrow_l", "down", scrollClassSelection, -1)
 	bindKey("arrow_r", "down", scrollClassSelection, 1)
+	bindKey("arrow_u", "down", scrollClassSelection, 2)
+	bindKey("arrow_d", "down", scrollClassSelection, -2)
 	bindKey("arrow_l", "up", scrollClassSelectionInterrupt, -1)
 	bindKey("arrow_r", "up", scrollClassSelectionInterrupt, 1)
 	bindKey("lshift", "down", playerClassSelectionAccept)
@@ -291,6 +294,8 @@ function leaveClassSelection()
 
 	unbindKey("arrow_l", "down", scrollClassSelection)
 	unbindKey("arrow_r", "down", scrollClassSelection)
+	unbindKey("arrow_u", "down", scrollClassSelection)
+	unbindKey("arrow_d", "down", scrollClassSelection)
 	unbindKey("arrow_l", "up", scrollClassSelectionInterrupt)
 	unbindKey("arrow_r", "up", scrollClassSelectionInterrupt)
 	unbindKey("lshift", "down", playerClassSelectionAccept)
@@ -609,11 +614,13 @@ function scrollClassSelection(key, state, dir)
 		scrollTimer = nil
 	end
 
-	scrollTimer = setTimer(scrollClassSelection, 300, 0, key, state, dir)
+	if dir == 1 or dir == -1 then
+		scrollTimer = setTimer(scrollClassSelection, 300, 0, key, state, dir)
+	end
 
 	-- if we have nothing selected, default to pm
 	if not currentlySelectedPetal and not currentlySelectedFlower then
-		if dir == -1 then
+		if dir == -1 or dir == -2 then
 			onPetalEnter(flowers.protect, flowers.protect.petals[1])
 		else
 			onPetalEnter(flowers.attack, flowers.attack.petals[1])
@@ -629,14 +636,22 @@ function scrollClassSelection(key, state, dir)
 		if dir == 1 then
 			if getSelectedFlower() == flowers.protect then
 				nextFlower = flowers.pm
-			elseif getSelectedFlower() == flowers.pm then
+			elseif getSelectedFlower() == flowers.pm or getSelectedFlower() == flowers.psycho then
 				nextFlower = flowers.attack
 			end
 		elseif dir == -1 then
 			if getSelectedFlower() == flowers.attack then
 				nextFlower = flowers.pm
-			elseif getSelectedFlower() == flowers.pm then
+			elseif getSelectedFlower() == flowers.pm or getSelectedFlower() == flowers.psycho then
 				nextFlower = flowers.protect
+			end
+		elseif dir == 2 then
+			if getSelectedFlower() == flowers.psycho or getSelectedFlower() == flowers.attack or getSelectedFlower() == flowers.protect then
+				nextFlower = flowers.pm
+			end
+		elseif dir == -2 then
+			if getSelectedFlower() == flowers.pm or getSelectedFlower() == flowers.attack or getSelectedFlower() == flowers.protect then
+				nextFlower = flowers.psycho
 			end
 		end
 
@@ -656,6 +671,11 @@ function scrollClassSelection(key, state, dir)
 			end
 		end
 
+		return
+	end
+
+	-- without holding ctrl, up/down do nothing
+	if dir == 2 or dir == -2 then
 		return
 	end
 
@@ -734,7 +754,7 @@ function onPetalEnter(flower, petal)
 		}
 
 	if flower == flowers.psycho then
-		flower.text.override.top.size = 0.65 
+		flower.text.override.top.size = 0.85 
 	end
 
 	if petal.description then
