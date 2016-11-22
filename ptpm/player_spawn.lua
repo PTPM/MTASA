@@ -1,112 +1,226 @@
-﻿function balancedness( proposedclassid, oldclassid )
-	local playersInATeamCount, dualpm, toomanybg = 0, false, false
-	local playersInATeam = {}
+﻿balance = {
+	value = 0,
+	teamPlayers = {pm = 0, terrorist = 0, bodyguard = 0, police = 0, psycho = 0},
+	totalTeamPlayers = 0,
+	full = {pm = false, terrorist = false, bodyguard = false, police = false, psycho = false},
+}
+
+function calculateBalance()
+	local playersInATeam = {pm = 0, terrorist = 0, bodyguard = 0, police = 0, psycho = 0}
 	
-	for _, value in ipairs( getElementsByType( "player" ) ) do
-		if value and isElement( value ) and getPlayerClassID( value ) then
-			local team = classes[getPlayerClassID( value )].type
-			if not playersInATeam[team] then playersInATeam[team] = 0 end
-			playersInATeam[team] = playersInATeam[team] + 1
-			if team ~= "pm" and team ~= "psychopath" then playersInATeamCount = playersInATeamCount + 1 end
+	-- current team players
+	for _, player in ipairs(getElementsByType("player")) do
+		if player and isElement(player) and getPlayerClassID(player) then
+			local team = classes[getPlayerClassID(player)].type
+
+			playersInATeam[team] = (playersInATeam[team] or 0) + 1
 		end
 	end
 
-	if proposedclassid ~= false then
-		local team = classes[proposedclassid].type
-		if not playersInATeam[team] then playersInATeam[team] = 0 end
-		playersInATeam[team] = playersInATeam[team] + 1
-	   	if team ~= "pm" and team ~= "psycho" then playersInATeamCount = playersInATeamCount + 1 end
-	end
+	balance.value = getBalanceValue(playersInATeam.bodyguard, playersInATeam.police, playersInATeam.terrorist)
+	balance.teamPlayers = playersInATeam
+	balance.totalTeamPlayers = playersInATeam.bodyguard + playersInATeam.police + playersInATeam.terrorist
 
-	if oldclassid ~= false then
-		local team = classes[oldclassid].type
-		if not playersInATeam[team] then playersInATeam[team] = 0 end
-		playersInATeam[team] = playersInATeam[team] - 1
-	   	if team ~= "pm" and team ~= "psycho" then playersInATeamCount = playersInATeamCount + 1 end
-	end
+	balance.full.pm = not isBalanced("pm")
+	balance.full.bodyguard = not isBalanced("bodyguard")
+	balance.full.police = not isBalanced("police")
+	balance.full.terrorist = not isBalanced("terrorist")
+end
 
-	if playersInATeam["pm"] and playersInATeam["pm"] > 1 then dualpm = true end
-	if playersInATeamCount == 0 then return false, dualpm, toomanybg end
-
+function getBalanceValue(totalBodyguards, totalPolice, totalTerrorists)
 	-- a bodyguard is worth 2 cops
 	-- psychos & pm do not affect balancedness
-	local balancednessx = 0.0
-	if not playersInATeam["bodyguard"] then playersInATeam["bodyguard"] = 0 end
-	if not playersInATeam["police"] then playersInATeam["police"] = 0 end
-	if not playersInATeam["terrorist"] then playersInATeam["terrorist"] = 0 end
-	balancednessx = balancednessx + 0.42 * playersInATeam["bodyguard"]
-	balancednessx = balancednessx + 0.28 * playersInATeam["police"]
-	balancednessx = balancednessx + -0.28 * playersInATeam["terrorist"]
+	local balanceValue = 0
 
-	local pain = math.abs( balancednessx ) * 100 / playersInATeamCount
-	if (playersInATeam["bodyguard"] * 100 / playersInATeamCount) > 30 then toomanybg = true end
+	balanceValue = balanceValue + (0.42 * totalBodyguards)
+	balanceValue = balanceValue + (0.28 * totalPolice)
+	balanceValue = balanceValue + (-0.28 * totalTerrorists)
 
-	return pain, dualpm, toomanybg
+	return math.abs(balanceValue) * 100 / (totalBodyguards + totalPolice + totalTerrorists)
 end
 
+function isBalanced(proposedClassId, oldClassId)
+	-- with 5 or less players we allow anything
+	if balance.totalTeamPlayers <= 5 then
+		return true
+	end
+
+	local proposedTeam
+
+	-- allows us to pass in team names ("pm", "police", etc) to check for team availability
+	if type(proposedClassId) == "string" then
+		proposedTeam = proposedClassId
+	else
+		proposedTeam = classes[proposedClassId].type
+	end
+
+	-- always allow psychos
+	if proposedTeam == "psycho" then
+		return true
+	end
+
+	-- can't have more than 1 pm, otherwise pm is always allowed
+	if proposedTeam == "pm" then
+		return balance.teamPlayers.pm == 0
+	end
+
+	-- bodyguards ard hard capped at 30% of team players
+	if proposedTeam == "bodyguard" and ((balance.teamPlayers.bodyguard * 100) / balance.totalTeamPlayers) > 30 then 
+		return false 
+	end	
+
+	local totalBodyguards = balance.teamPlayers.bodyguard
+	local totalPolice = balance.teamPlayers.police
+	local totalTerrorists = balance.teamPlayers.terrorist
+
+	if proposedTeam == "bodyguard" then
+		totalBodyguards = totalBodyguards + 1
+	elseif proposedTeam == "police" then
+		totalPolice = totalPolice + 1
+	elseif proposedTeam == "terrorist" then
+		totalTerrorists = totalTerrorists + 1
+	end
+
+	if oldClassId then
+		if classes[oldClassId].type == "bodyguard" then
+			totalBodyguards = totalBodyguards - 1
+		elseif classes[oldClassId].type == "police" then
+			totalPolice = totalPolice - 1
+		elseif classes[oldClassId].type == "terrorist" then
+			totalTerrorists = totalTerrorists - 1
+		end
+	end
+
+	return getBalanceValue(totalBodyguards, totalPolice, totalTerrorists) < balance.value
+end
+
+-- function balancedness( proposedClassID, oldClassID )
+-- 	local playersInATeamCount, dualpm, toomanybg = 0, false, false
+-- 	local playersInATeam = {pm = 0, terrorist = 0, bodyguard = 0, police = 0, psycho = 0}
+	
+-- 	-- current team players
+-- 	for _, value in ipairs( getElementsByType( "player" ) ) do
+-- 		if value and isElement( value ) and getPlayerClassID( value ) then
+-- 			local team = classes[getPlayerClassID( value )].type
+
+-- 			playersInATeam[team] = (playersInATeam[team] or 0) + 1
+
+-- 			if team ~= "pm" and team ~= "psychopath" then 
+-- 				playersInATeamCount = playersInATeamCount + 1 
+-- 			end
+-- 		end
+-- 	end
+
+-- 	-- include the proposed class in the count
+-- 	if proposedClassID ~= false then
+-- 		local team = classes[proposedClassID].type
+
+-- 		playersInATeam[team] = (playersInATeam[team] or 0) + 1
+
+-- 	   	if team ~= "pm" and team ~= "psycho" then 
+-- 	   		playersInATeamCount = playersInATeamCount + 1 
+-- 	   	end
+-- 	end
+
+-- 	-- remove the current class from the count (it is replaced with the proposed)
+-- 	if oldClassID ~= false then
+-- 		local team = classes[oldClassID].type
+
+-- 		playersInATeam[team] = (playersInATeam[team] or 1) - 1
+
+-- 	   	if team ~= "pm" and team ~= "psycho" then 
+-- 	   		playersInATeamCount = playersInATeamCount + 1 
+-- 	   	end
+-- 	end
+
+-- 	if playersInATeam["pm"] and playersInATeam["pm"] > 1 then 
+-- 		dualpm = true 
+-- 	end
+
+-- 	if playersInATeamCount == 0 then 
+-- 		return false, dualpm, toomanybg 
+-- 	end
+
+-- 	-- a bodyguard is worth 2 cops
+-- 	-- psychos & pm do not affect balancedness
+-- 	local balancednessx = 0.0
+
+-- 	balancednessx = balancednessx + (0.42 * playersInATeam["bodyguard"])
+-- 	balancednessx = balancednessx + (0.28 * playersInATeam["police"])
+-- 	balancednessx = balancednessx + (-0.28 * playersInATeam["terrorist"])
+
+-- 	local pain = math.abs( balancednessx ) * 100 / playersInATeamCount
+
+-- 	if (playersInATeam["bodyguard"] * 100 / playersInATeamCount) > 30 then 
+-- 		toomanybg = true 
+-- 	end
+
+-- 	return pain, dualpm, toomanybg
+-- end
 
 
-function vetoPlayerClass( classid, oldclassid )
-	local prebalancedness, postbalancedness, dualpm, toomanybg
-	prebalancedness, dualpm, toomanybg = balancedness( false, false )
-	postbalancedness, dualpm, toomanybg = balancedness( classid, oldclassid )
-	local playerCount = 0
+
+-- function vetoPlayerClass( classid, oldclassid )
+-- 	local prebalancedness, postbalancedness, dualpm, toomanybg
+-- 	prebalancedness, dualpm, toomanybg = balancedness( false, false )
+-- 	postbalancedness, dualpm, toomanybg = balancedness( classid, oldclassid )
+-- 	local playerCount = 0
 
 	
-	for _, value in ipairs( getElementsByType( "player" ) ) do
-		if value and isElement( value ) and getPlayerClassID( value ) then
-			local team = classes[getPlayerClassID( value )].type
-			if team ~= "pm" and team ~= "psycho" then playerCount = playerCount + 1 end
-		end
-	end
+-- 	for _, value in ipairs( getElementsByType( "player" ) ) do
+-- 		if value and isElement( value ) and getPlayerClassID( value ) then
+-- 			local team = classes[getPlayerClassID( value )].type
+-- 			if team ~= "pm" and team ~= "psycho" then playerCount = playerCount + 1 end
+-- 		end
+-- 	end
 
-	if not dualpm and ( playerCount <= 5 or postbalancedness <= 10 or postbalancedness < prebalancedness ) and ( not toomanybg or classes[classid].type ~= "bodyguard" or playerCount <= 5 ) then
-		-- everything ok
-		return classid
-	end
+-- 	if not dualpm and ( playerCount <= 5 or postbalancedness <= 10 or postbalancedness < prebalancedness ) and ( not toomanybg or classes[classid].type ~= "bodyguard" or playerCount <= 5 ) then
+-- 		-- everything ok
+-- 		return classid
+-- 	end
 
-	-- otherwise choice vetoed
-	if classes[classid].type == "psycho" then
-		return classid
-	elseif classes[classid].type == "terrorist" then
-		local randomPsychos = {}
-		for i=0, #classes, 1 do
-			if classes[i] and classes[i].type == "psycho" then
-				randomPsychos[#randomPsychos+1] = i
-			end
-		end
-		return randomPsychos[math.random(1, #randomPsychos)]
-	elseif classes[classid].type == "pm" then
-		-- spawning as pm always works unless theres already a pm
-		if not dualpm then return classid end
+-- 	-- otherwise choice vetoed
+-- 	if classes[classid].type == "psycho" then
+-- 		return classid
+-- 	elseif classes[classid].type == "terrorist" then
+-- 		local randomPsychos = {}
+-- 		for i=0, #classes, 1 do
+-- 			if classes[i] and classes[i].type == "psycho" then
+-- 				randomPsychos[#randomPsychos+1] = i
+-- 			end
+-- 		end
+-- 		return randomPsychos[math.random(1, #randomPsychos)]
+-- 	elseif classes[classid].type == "pm" then
+-- 		-- spawning as pm always works unless theres already a pm
+-- 		if not dualpm then return classid end
 		
-		local randomBodyguards = {}
-		for i=0, #classes, 1 do
-			if classes[i] and classes[i].type == "bodyguard" then
-				randomBodyguards[#randomBodyguards+1] = i
-			end
-		end
-		return vetoPlayerClass( randomBodyguards[math.random(1, #randomBodyguards)], oldclassid )
-	elseif classes[classid].type == "bodyguard" then
-		-- spawning as bodyguard only works if team balancing is ok, and !toomanybg
-		local randomCops = {}
-		for i=0, #classes, 1 do
-			if classes[i] and classes[i].type == "police" then
-				randomCops[#randomCops+1] = i
-			end
-		end
-		return vetoPlayerClass( randomCops[math.random(1, #randomCops)], oldclassid )
-	elseif classes[classid].type == "police" then
-		local randomPsychos = {}
-		for i=0, #classes, 1 do
-			if classes[i] and classes[i].type == "psycho" then
-				randomPsychos[#randomPsychos+1] = i
-			end
-		end
-		return randomPsychos[math.random(1, #randomPsychos)]
-	end
-	return classid
-end
+-- 		local randomBodyguards = {}
+-- 		for i=0, #classes, 1 do
+-- 			if classes[i] and classes[i].type == "bodyguard" then
+-- 				randomBodyguards[#randomBodyguards+1] = i
+-- 			end
+-- 		end
+-- 		return vetoPlayerClass( randomBodyguards[math.random(1, #randomBodyguards)], oldclassid )
+-- 	elseif classes[classid].type == "bodyguard" then
+-- 		-- spawning as bodyguard only works if team balancing is ok, and !toomanybg
+-- 		local randomCops = {}
+-- 		for i=0, #classes, 1 do
+-- 			if classes[i] and classes[i].type == "police" then
+-- 				randomCops[#randomCops+1] = i
+-- 			end
+-- 		end
+-- 		return vetoPlayerClass( randomCops[math.random(1, #randomCops)], oldclassid )
+-- 	elseif classes[classid].type == "police" then
+-- 		local randomPsychos = {}
+-- 		for i=0, #classes, 1 do
+-- 			if classes[i] and classes[i].type == "psycho" then
+-- 				randomPsychos[#randomPsychos+1] = i
+-- 			end
+-- 		end
+-- 		return randomPsychos[math.random(1, #randomPsychos)]
+-- 	end
+-- 	return classid
+-- end
 
 
 
@@ -190,6 +304,9 @@ function setPlayerClass( thePlayer, class )
 			exports.heligrab:SetPlayerGrabbedHeli(thePlayer,false)
 		end
 	end
+
+	-- recalculate the balance situation every time somebody spawns
+	calculateBalance()
 	
 	makePlayerSpawn( thePlayer )
 end

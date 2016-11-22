@@ -40,7 +40,7 @@ teamMemberFriendlyName = {
 __DEBUG = true
 function debugStr( dString )
 	if __DEBUG then
-		outputDebugString( dString, "STR: " .. dString, 0, 200, 200, 200 )
+		outputDebugString( "STR: " .. dString, 0, 200, 200, 200 )
 	end
 end
 
@@ -117,16 +117,20 @@ function debugFunc( name, ... )
 				if dType == "string" or dType == "number" or dType == "boolean" then
 					dString = dString .. ":" .. tostring( v )
 				elseif dType == "table" then
-					local size
+					local size = 0
 					for _, _ in pairs( v ) do
 						size = size + 1
 					end
 					dString = dString .. " size:" .. tostring( size )
+
+					for key,value in pairs(v) do
+						dString = dString .. "," .. key .. ":" .. tostring(value)
+					end
 				end
 			end
 			dString = dString .. ","
 		end
 		dString = dString .. " )"
-		outputDebugString( dString, "FUNC: " .. dString, 0, 200, 200, 200 )
+		outputDebugString( "FUNC: " .. dString, 0, 200, 200, 200 )
 	end
 end

@@ -64,7 +64,7 @@ function initClassSelection(thePlayer)
 	
 	--local weapons = getElementData( classes[classSelectID].class, "weapons" )
 
-	triggerClientEvent(thePlayer, "enterClassSelection", root, classes, false --[[ is full]])
+	triggerClientEvent(thePlayer, "enterClassSelection", root, classes, balance.full)
 
 	-- triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "create", 
 	-- 					classSelectID, 
@@ -99,9 +99,7 @@ function onPlayerRequestSpawn(requestedClassID)
 		return
 	end
 
-	local veto = vetoPlayerClass(requestedClassID, false)
-
-	if requestedClassID ~= veto then 
+	if not isBalanced(requestedClassID, false) then 
 	--if true then
 		triggerClientEvent(client, "onPlayerRequestSpawnDenied", root, requestedClassID)
 		return
@@ -110,6 +108,24 @@ function onPlayerRequestSpawn(requestedClassID)
 	playerClassSelectionAccept(client, requestedClassID)
 end
 addEventHandler("onPlayerRequestSpawn", root, onPlayerRequestSpawn)
+
+
+addCommandHandler("jt", 
+	function(player, cmd, team)
+		calculateBalance()
+		balance.full[team] = true
+		debugFunc("post", balance.full)
+		notifyTeamAvailability()
+	end
+)
+addCommandHandler("lt", 
+	function(player, cmd, team)
+		calculateBalance()
+		balance.full[team] = false
+		notifyTeamAvailability()
+	end
+)
+
 
 -- compcheck
 -- function leftControlToggle( thePlayer, _, keystate )
@@ -292,7 +308,23 @@ function playerClassSelectionAccept(thePlayer, classID)
 	--end
 	
 	setPlayerClass(thePlayer, classID)
+
+	notifyTeamAvailability()
+
 	bindKey(thePlayer, "f4", "down", classSelectionAfterDeath)
+end
+
+function notifyTeamAvailability()
+	-- local pmFull = not isBalanced("pm")
+	-- local bodyguardFull = not isBalanced("bodyguard")
+	-- local policeFull = not isBalanced("police")
+	-- local terroristFull = not isBalanced("terrorist")
+
+	for _, player in ipairs(getElementsByType("player")) do
+		if isPlayerActive(player) and getElementData(player, "ptpm.inClassSelection") then
+			triggerClientEvent(player, "updateClassSelection", player, balance.full)
+		end
+	end
 end
 
 -- compcheck
@@ -378,18 +410,18 @@ function reclassCommand( thePlayer, commandName, className )
 		return outputChatBox( "You cannot reclass while watching.", thePlayer, unpack( colourPersonal ) )
 	end
 	
-	local myclass = false
+	local proposedClass = false
 
 	if not className or #className == 0 then
 		return outputChatBox( "Usage: /reclass pm|terrorist|cop|bodyguard|psycho|tmedic|bmedic|cmedic", thePlayer, unpack( colourPersonal ) )
 	elseif tonumber( className ) ~= nil then
-		myclass = tonumber( className )
-		if myclass > #classes or myclass < 0 then -- NOTE: does this need >=
+		proposedClass = tonumber( className )
+		if proposedClass > #classes or proposedClass < 0 then
 			outputChatBox( "No such class.", thePlayer, unpack( colourPersonal ) )
 			outputChatBox( "Usage: /reclass pm|terrorist|cop|bodyguard|psycho|tmedic|bmedic|cmedic", thePlayer, unpack( colourPersonal ) )
 			return
 		end
-		--if myclass > #classes then return end
+		--if proposedClass > #classes then return end
 	else
 		local search, medic = nil,nil
 		
@@ -423,7 +455,7 @@ function reclassCommand( thePlayer, commandName, className )
 			end		
 			
 			if #potentials > 0 then
-				myclass = potentials[math.random(1, #potentials)]
+				proposedClass = potentials[math.random(1, #potentials)]
 			end
 		else
 			outputChatBox( "No such class.", thePlayer, unpack( colourPersonal ) )
@@ -432,17 +464,15 @@ function reclassCommand( thePlayer, commandName, className )
 		end
 	end
 
-	if myclass == false then return outputChatBox( "Class not available.", thePlayer, unpack( colourPersonal ) ) end
+	if proposedClass == false then 
+		return outputChatBox( "Class not available.", thePlayer, unpack( colourPersonal ) ) 
+	end
 
-	local veto = vetoPlayerClass( myclass, classID )
-	if veto == myclass then
-		setPlayerClass( thePlayer, myclass )
-	elseif veto ~= false then
-		local teamName = teamMemberName[classes[veto].type]
-	--	outputChatBox( "vetoed to " .. teamName, thePlayer, unpack( colourPersonal ) )
-		outputChatBox( "Could not spawn as " .. teamName .. ", that class is full.", thePlayer, unpack( colourPersonal ) )	
+	if isBalanced(proposedClass, classID) then
+		setPlayerClass( thePlayer, proposedClass )
 	else
-		printConsole( "VETO RETURNED INVALID_CLASS!" );
+		local teamName = teamMemberName[classes[proposedClass].type]
+		outputChatBox( "Could not spawn as " .. teamName .. ", that class is full.", thePlayer, unpack( colourPersonal ) )	
 	end
 end
 addCommandHandler( "reclass", reclassCommand )
