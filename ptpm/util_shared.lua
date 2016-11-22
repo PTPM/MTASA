@@ -29,26 +29,26 @@ function commaPairedStringToTable(str)
 end
 
 
-function weaponListToString(weapons, includeAmmo)
+function weaponListToString(weapons, includeAmmo, orderFn)
 	if #weapons == 0 then
 		return "- No Weapons -"
 	end
 
-	local str = ""
+	local texts = {}
 
 	for i, pair in ipairs(weapons) do
 		if pair[1] and pair[2] and pair[1] ~= 0 and pair[2] ~= 0 then
-			if #str > 0 then
-				str = str .. "\n"
-			end
-
-			str = str .. getWeaponNameFromID(pair[1])
+			texts[#texts + 1] = getWeaponNameFromID(pair[1])
 
 			if includeAmmo then
-				str = str .. " (" .. tostring(pair[2]) .. ")"
+				texts[#texts] = texts[#texts] .. " (" .. tostring(pair[2]) .. ")"
 			end
 		end
+	end	
+
+	if orderFn then
+		table.sort(texts, orderFn)
 	end
 
-	return str
+	return table.concat(texts, "\n")
 end

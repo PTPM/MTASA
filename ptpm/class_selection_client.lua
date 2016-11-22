@@ -22,7 +22,10 @@ local uiScale = screenY / 600
 local font = {
 	globalScalar = 1
 }
-local hiding = false
+local classSelection = {
+	visible = false,
+	hiding = false,
+}
 local lastTick = 0
 local delta = 0
 local currentlySelectedPetal = nil
@@ -177,7 +180,13 @@ addEventHandler("onClientResourceStart", resourceRoot,
 )
 
 -- called when the player is sent to the class selection screen
-function enterClassSelection(classes, isFull)
+function enterClassSelection(mapName, classes, isFull)
+	if classSelection.visible then
+		return
+	end
+
+	classSelection.visible = true
+
 	local medicDescription = string.format("%s.\nHeal other players\nwith %s/heal", colours.hex.black, colours.hex.red)
 
 	-- reset the petals
@@ -199,8 +208,8 @@ function enterClassSelection(classes, isFull)
 				outSpeed = 3.6
 			},
 			border = {src = "images/class_selection/asset_circle_border.png", size = 112},
-			image = getSkinImage(class.skin),
-			weapons = weaponListToString(class.weapons), -- todo: sort by width
+			image = getSkinImage(class.skin, class.mapSkinImage, mapName),
+			weapons = weaponListToString(class.weapons, false, textLengthSorter), -- todo: sort by width
 			title = string.format("%s%s", colours.hex[class.type], teamMemberFriendlyName[class.type]),
 			shadowSelected = true,
 			shadowOffset = 2,
@@ -295,7 +304,7 @@ function leaveClassSelection()
 
 	currentlySelectedPetal = nil
 	currentlySelectedFlower = nil
-	hiding = true
+	classSelection.hiding = true
 
 	unbindKey("arrow_l", "down", scrollClassSelection)
 	unbindKey("arrow_r", "down", scrollClassSelection)
@@ -334,7 +343,8 @@ function leaveClassSelection()
 	setTimer(
 		function()
 			removeEventHandler("onClientRender", root, drawClassSelection)
-			hiding = false
+			classSelection.hiding = false
+			classSelection.visible = false
 		end,
 	1000, 1)
 end
@@ -344,7 +354,7 @@ addEventHandler("leaveClassSelection", root, leaveClassSelection)
 -- all the setup that needs to be done once the class selection has been entered, before anything can be drawn
 function setupClassSelectionUI()
 	font.globalScalar = 1
-	hiding = false
+	classSelection.hiding = false
 
 	for _, flower in pairs(flowers) do	
 		if #flower.petals > 0 then
@@ -399,7 +409,7 @@ function drawClassSelection()
 
 	processCursorMovement()
 
-	if not hiding then
+	if not classSelection.hiding then
 		dxDrawRectangle(0, 0, screenX, screenY, tocolor(0, 0, 0, 130))
 	end
 
@@ -417,7 +427,7 @@ function drawClassSelection()
 	drawFlower(flowers.psycho)
 	--drawFlower(flowers.polls)
 
-	if hiding then
+	if classSelection.hiding then
 		font.globalScalar = math.max(0, font.globalScalar - (2.4 * delta))
 	end
 end
@@ -457,7 +467,7 @@ function drawPart(part, x, y, radius)
 	end
 
 	-- grow a little if we are hovered
-	if part.isSelected and not hiding then
+	if part.isSelected and not classSelection.hiding then
 		drawRadius = drawRadius + 10
 	end	
 
@@ -568,9 +578,13 @@ end
 local skinImages = {[100] = true, [111] = true, [137] = true, [141] = true, [147] = true, [163] = true, [164] = true, [165] = true, [166] = true, [179] = true, [181] = true, 
 [183] = true, [191] = true, [200] = true, [212] = true, [230] = true, [246] = true, [274] = true, [275] = true, [276] = true, [280] = true, [281] = true, [282] = true, 
 [283] = true, [284] = true, [285] = true, [286] = true, [288] = true, [73] = true}
-function getSkinImage(skin)
+function getSkinImage(skin, mapSkinImage, mapName)
 	if skinImages[skin] then
 		return "images/class_selection/ptpm-skins-" .. tostring(skin) .. ".png"
+	end
+
+	if mapSkinImage and mapName then
+		return ":" .. mapName .. "/ptpm-skins-" .. tostring(skin) .. ".png"
 	end
 
 	-- default (unknown) skin, todo: make an "unknown" skin image
@@ -936,6 +950,10 @@ end
 
 function getPointOnCircle(radius, rotation)
 	return radius * math.cos(math.rad(rotation)), radius * math.sin(math.rad(rotation))
+end
+
+function textLengthSorter(a, b)
+	return dxGetTextWidth(a, sfs(1.1), font.small) < dxGetTextWidth(b, sfs(1.1), font.small)
 end
 
 

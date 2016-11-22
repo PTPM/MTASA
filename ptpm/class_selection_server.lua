@@ -25,14 +25,13 @@ function initClassSelection(thePlayer)
 	setPlayerControllable(thePlayer, false)
 
 	--local class = getElementData( thePlayer, "class" )
-	local classSelectID = tonumber(getElementData(thePlayer, "ptpm.classSelect.id")) or 0
+	local classSelectID = tonumber(getElementData(thePlayer, "ptpm.classSelect.id")) or 1
 
-	local skin = getElementData(classes[classSelectID].class, "skin")
 	spawnPlayer(thePlayer, data.wardrobe.playerX,
 							data.wardrobe.playerY,
 							data.wardrobe.playerZ,
 							data.wardrobe.playerRot,
-							skin,
+							classes[classSelectID].skin,
 							data.wardrobe.interior,
 							2000 + getPlayerId(thePlayer)
 				)
@@ -64,7 +63,7 @@ function initClassSelection(thePlayer)
 	
 	--local weapons = getElementData( classes[classSelectID].class, "weapons" )
 
-	triggerClientEvent(thePlayer, "enterClassSelection", root, classes, balance.full)
+	triggerClientEvent(thePlayer, "enterClassSelection", root, runningMapName, classes, balance.full)
 
 	-- triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "create", 
 	-- 					classSelectID, 
@@ -448,7 +447,7 @@ function reclassCommand( thePlayer, commandName, className )
 		
 		if search then
 			local potentials = {}
-			for i=0, #classes, 1 do
+			for i = 1, #classes, 1 do
 				if classes[i] and classes[i].type == search and (not medic or classes[i].medic) then
 					potentials[#potentials+1] = i
 				end
