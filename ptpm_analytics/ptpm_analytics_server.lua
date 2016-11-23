@@ -3,7 +3,7 @@
 -- File management
 local files = { 
 	joins = 		"joins.log",
-	geo = 			"geo.log",
+	geo = 			"geo2.log",
 	deaths = 		"deaths.log",
 	performance = 	"performance.log"
 }
@@ -92,8 +92,9 @@ setTimer ( function()
 			local x,y,z = getElementPositionTwoDecimals ( p )
 			local interior = getElementInterior ( p )
 			local playerSkin = getElementModel ( p )
+			local currentMap = getMapName ()
 			
-			appendToFile("geo", now() .. "," .. aID .. "," .. playerSkin .. "," .. x.. "," .. y.. "," .. z.. "," .. interior)
+			appendToFile("geo", now() .. "," .. aID .. "," .. playerSkin .. "," .. x.. "," .. y.. "," .. z.. "," .. interior.. "," .. currentMap)
 		end
 	end
 end, 10000, 0)

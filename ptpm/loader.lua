@@ -110,19 +110,22 @@ function ptpmMapStart( map )
 		end
 	end
 	
-	
+	local classID = 1
 	local spawnGroupTable = getElementsByType( "spawngroup", runningMapRoot )
 	for _, value in ipairs( spawnGroupTable ) do
 		local classType = getElementData( value, "type" )		
 		for _, class in ipairs ( getElementsByType( "class", value ) ) do
-		    local classID = tonumber(getElementID(class))
+		    --local classID = tonumber(getElementID(class))
 			classes[classID] = {}
-			classes[classID].class = class
 			classes[classID].type = classType
 			classes[classID].skin = tonumber(getElementData(class, "skin"))
+			-- maps can supply their own skin images if ptpm doesn't have them by adding a "ptpm-skins-ID.png" file to their root and setting hasImage="true" on the class definition
+			classes[classID].mapSkinImage = (getElementData(class, "hasImage") == "true")
 			classes[classID].weapons = commaPairedStringToTable(getElementData(class, "weapons"))
 			classes[classID].medic = (getElementData( class, "medic" ) == "true")
 			classes[classID].initialHP = tonumber(getElementData( class, "initialHP" )) or 100
+
+			classID = classID + 1
 		end
 		
 		randomSpawns[classType] = {}
@@ -233,7 +236,7 @@ function ptpmMapStart( map )
 	end
 	
 	
-	for i=0, #classes, 1 do
+	for i = 1, #classes, 1 do
 		miniClass[i] = classes[i] and classes[i].type or ""
 	end
 	
@@ -748,6 +751,6 @@ function resetPlayerRound( thePlayer )
 end
 
 function preparePlayer( thePlayer )
-	setElementData( thePlayer, "ptpm.classSelect.id", 0, false )
+	setElementData( thePlayer, "ptpm.classSelect.id", 1, false )
 	--setPlayerControllable( thePlayer, true ) -- Element data is false by default, but this is reset to false in class selection anyway
 end

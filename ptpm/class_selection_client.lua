@@ -22,7 +22,10 @@ local uiScale = screenY / 600
 local font = {
 	globalScalar = 1
 }
-local hiding = false
+local classSelection = {
+	visible = false,
+	hiding = false,
+}
 local lastTick = 0
 local delta = 0
 local currentlySelectedPetal = nil
@@ -42,13 +45,7 @@ local flowers = {
 		radius = 105,
 		colour = tocolor(80, 80, 207, 255),
 		backgroundColour = tocolor(200, 200, 255, 255),
-		petals = {},
 		defaultPetalSize = 70,
-		rotation = {},
-		animation = {
-			inOutDir = 1,
-			inOut = 0,
-		},
 		border = {src = "images/class_selection/asset_circle_border_big.png", size = 220},
 		text = {
 			default = {
@@ -65,13 +62,9 @@ local flowers = {
 		radius = 100,
 		colour = tocolor(255, 0, 175, 255),
 		backgroundColour = tocolor(255, 204, 239, 255),
-		petals = {},
 		defaultPetalSize = 70,
-		rotation = {},
 		animation = {
 			reversePetals = true,
-			inOutDir = 1,
-			inOut = 0,
 		},
 		border = {src = "images/class_selection/asset_circle_border_big.png", size = 220},
 		text = {
@@ -89,16 +82,11 @@ local flowers = {
 		radius = 80,
 		colour = tocolor(255, 128, 0, 255),
 		backgroundColour = tocolor(255, 217, 179, 255),
-		petals = {},
 		defaultPetalSize = 60,
 		rotation = {
 			start = -180,
 			full = 180,
 			offset = 0.5,
-		},
-		animation = {
-			inOutDir = 1,
-			inOut = 0,
 		},
 		border = {src = "images/class_selection/asset_circle_border_big.png", size = 220},
 		text = {
@@ -116,7 +104,6 @@ local flowers = {
 		radius = 80,
 		colour = tocolor(255, 0, 0, 255),
 		backgroundColour = tocolor(255, 222, 222, 255),
-		petals = {},
 		defaultPetalSize = 60,
 		rotation = {
 			start = -180,
@@ -124,8 +111,6 @@ local flowers = {
 			offset = 0.5,
 		},
 		animation = {
-			inOutDir = 1,
-			inOut = 0,
 			burst = 1,
 		},
 		border = {src = "images/class_selection/asset_circle_border_big.png", size = 220},
@@ -147,12 +132,8 @@ local flowers = {
 		shadow = true,
 		postGUI = true,
 		hover = true,
-		petals = {},
 		defaultPetalSize = 0,
-		rotation = {},
 		animation = {
-			inOutDir = 1,
-			inOut = 0,
 			inSpeed = 0.6,
 			pulse = 0,
 		},
@@ -160,10 +141,18 @@ local flowers = {
 		image = "images/class_selection/ptpm-skins-147.png",
 		tooltip = {
 			text = "Enter Election",
+			default = "Enter Election",
 			alpha = 0,
 		}
 	}
 }
+
+-- common required defaults
+for _, flower in pairs(flowers) do
+	if not flower.rotation then flower.rotation = {} end
+	if not flower.animation then flower.animation = {} end
+	if not flower.petals then flower.petals = {} end
+end
 
 
 addEventHandler("onClientResourceStart", resourceRoot,
@@ -190,8 +179,14 @@ addEventHandler("onClientResourceStart", resourceRoot,
 	end
 )
 
+-- called when the player is sent to the class selection screen
+function enterClassSelection(mapName, classes, isFull)
+	if classSelection.visible then
+		return
+	end
 
-function enterClassSelection(classes, isFull)
+	classSelection.visible = true
+
 	local medicDescription = string.format("%s.\nHeal other players\nwith %s/heal", colours.hex.black, colours.hex.red)
 
 	-- reset the petals
@@ -204,6 +199,7 @@ function enterClassSelection(classes, isFull)
 	for id, class in ipairs(classes) do
 		local petal = {
 			classID = id,
+			classType = class.type,
 			colour = tocolor(unpack(classColours[class.type .. (class.medic and "m" or "")])),
 			selectedColour = tocolor(unpack(classColours.light[class.type .. (class.medic and "m" or "")])),
 			animation = {
@@ -212,8 +208,8 @@ function enterClassSelection(classes, isFull)
 				outSpeed = 3.6
 			},
 			border = {src = "images/class_selection/asset_circle_border.png", size = 112},
-			image = getSkinImage(class.skin),
-			weapons = weaponListToString(class.weapons), -- todo: sort by width
+			image = getSkinImage(class.skin, class.mapSkinImage, mapName),
+			weapons = weaponListToString(class.weapons, false, textLengthSorter), -- todo: sort by width
 			title = string.format("%s%s", colours.hex[class.type], teamMemberFriendlyName[class.type]),
 			shadowSelected = true,
 			shadowOffset = 2,
@@ -258,6 +254,8 @@ function enterClassSelection(classes, isFull)
 		end
 	end
 
+	updateClassSelection(isFull)
+
 	bindKey("arrow_l", "down", scrollClassSelection, -1)
 	bindKey("arrow_r", "down", scrollClassSelection, 1)
 	bindKey("arrow_u", "down", scrollClassSelection, 2)
@@ -274,23 +272,39 @@ function enterClassSelection(classes, isFull)
 	lastTick = getTickCount()
 
 	showCursor(true, true)
-	addEventHandler("onClientRender", root, drawFlowers)
+	addEventHandler("onClientRender", root, drawClassSelection)
 end
 addEventHandler("enterClassSelection", root, enterClassSelection)
 
 
-function updateClassSelection(classes, isFull)
-	
+-- called every time information on the screen needs updating (team availability)
+function updateClassSelection(isFull)
+	toggleFull(flowers.pm, isFull.pm)
+
+	for _, petal in ipairs(flowers.protect.petals) do
+		if petal.classType == "bodyguard" then
+			toggleFull(petal, isFull.bodyguard)
+		elseif petal.classType == "police" then
+			toggleFull(petal, isFull.police)
+		end
+	end
+
+	for _, petal in ipairs(flowers.attack.petals) do
+		if petal.classType == "terrorist" then
+			toggleFull(petal, isFull.terrorist)
+		end
+	end	
 end
 addEventHandler("updateClassSelection", root, updateClassSelection)
 
 
+-- called when the player spawns in-game and leaves the class selection
 function leaveClassSelection()
 	showCursor(false, false)
 
 	currentlySelectedPetal = nil
 	currentlySelectedFlower = nil
-	hiding = true
+	classSelection.hiding = true
 
 	unbindKey("arrow_l", "down", scrollClassSelection)
 	unbindKey("arrow_r", "down", scrollClassSelection)
@@ -304,6 +318,7 @@ function leaveClassSelection()
 
 	setPlayerHudComponentVisible("all", true)
 
+	-- set up the "out" animation on the flowers and petals
 	for _, flower in pairs(flowers) do
 		if #flower.petals > 0 then
 			local step = 1.2 / #flower.petals 
@@ -324,19 +339,22 @@ function leaveClassSelection()
 	end
 	
 	-- todo: make this safe
+	-- stop drawing once the out animation has completed
 	setTimer(
 		function()
-			removeEventHandler("onClientRender", root, drawFlowers)
-			hiding = false
+			removeEventHandler("onClientRender", root, drawClassSelection)
+			classSelection.hiding = false
+			classSelection.visible = false
 		end,
 	1000, 1)
 end
 addEventHandler("leaveClassSelection", root, leaveClassSelection)
 
 
+-- all the setup that needs to be done once the class selection has been entered, before anything can be drawn
 function setupClassSelectionUI()
 	font.globalScalar = 1
-	hiding = false
+	classSelection.hiding = false
 
 	for _, flower in pairs(flowers) do	
 		if #flower.petals > 0 then
@@ -384,14 +402,14 @@ function setupClassSelectionUI()
 end
 
 
-function drawFlowers()
+function drawClassSelection()
 	-- use the frame delta to normalised all the animation speeds
 	delta = (getTickCount() - lastTick) / 1000
 	lastTick = getTickCount()
 
 	processCursorMovement()
 
-	if not hiding then
+	if not classSelection.hiding then
 		dxDrawRectangle(0, 0, screenX, screenY, tocolor(0, 0, 0, 130))
 	end
 
@@ -409,7 +427,7 @@ function drawFlowers()
 	drawFlower(flowers.psycho)
 	--drawFlower(flowers.polls)
 
-	if hiding then
+	if classSelection.hiding then
 		font.globalScalar = math.max(0, font.globalScalar - (2.4 * delta))
 	end
 end
@@ -449,7 +467,7 @@ function drawPart(part, x, y, radius)
 	end
 
 	-- grow a little if we are hovered
-	if part.isSelected and not hiding then
+	if part.isSelected and not classSelection.hiding then
 		drawRadius = drawRadius + 10
 	end	
 
@@ -471,7 +489,7 @@ function drawPart(part, x, y, radius)
 		-- todo: calculate the border image based on the size of the part
 		-- draw a drop shadow underneath the whole part
 		if part.shadow or (part.shadowSelected and part.isSelected) then
-			dxDrawImage(x - drawRadius - 1, y - drawRadius - 1 + 3, (drawRadius + 1) * 2, (drawRadius + 1) * 2, part.border.src, 0, 0, 0, colours.black, part.postGUI)	
+			dxDrawImage(x - drawRadius - 1, y - drawRadius - 1 + 4, (drawRadius + 1) * 2, (drawRadius + 1) * 2, part.border.src, 0, 0, 0, colours.black, part.postGUI)	
 		end	
 
 		local backgroundColour = part.isSelected and part.selectedColour or part.backgroundColour
@@ -560,9 +578,13 @@ end
 local skinImages = {[100] = true, [111] = true, [137] = true, [141] = true, [147] = true, [163] = true, [164] = true, [165] = true, [166] = true, [179] = true, [181] = true, 
 [183] = true, [191] = true, [200] = true, [212] = true, [230] = true, [246] = true, [274] = true, [275] = true, [276] = true, [280] = true, [281] = true, [282] = true, 
 [283] = true, [284] = true, [285] = true, [286] = true, [288] = true, [73] = true}
-function getSkinImage(skin)
+function getSkinImage(skin, mapSkinImage, mapName)
 	if skinImages[skin] then
 		return "images/class_selection/ptpm-skins-" .. tostring(skin) .. ".png"
+	end
+
+	if mapSkinImage and mapName then
+		return ":" .. mapName .. "/ptpm-skins-" .. tostring(skin) .. ".png"
 	end
 
 	-- default (unknown) skin, todo: make an "unknown" skin image
@@ -632,7 +654,7 @@ function scrollClassSelection(key, state, dir)
 	-- holding ctrl lets you jump between flowers
 	if getKeyState("lctrl") or getKeyState("rctrl") then
 		local nextFlower = nil
-
+		-- todo: disable jumping to psychos if they aren't visible
 		if dir == 1 then
 			if getSelectedFlower() == flowers.protect then
 				nextFlower = flowers.pm
@@ -871,14 +893,15 @@ function chooseFlower(flower)
 end
 
 function onPlayerRequestSpawnDenied(classID)
+	-- this should only happen very rarely, but it's a nice failsafe to enforce the reason why they couldn't spawn
 	for _, flower in pairs(flowers) do
 		if flower.classID == classID then
-			setFull(flower)
+			toggleFull(flower, true)
 		end
 
 		for _, petal in ipairs(flower.petals) do
 			if petal.classID == classID then
-				setFull(petal)
+				toggleFull(petal, true)
 				return
 			end
 		end
@@ -887,11 +910,24 @@ end
 addEventHandler("onPlayerRequestSpawnDenied", root, onPlayerRequestSpawnDenied)
 
 -- part can be a petal or flower
-function setFull(part)
-	part.isFull = true
-	part.tooltip = {text = "Full", alpha = 0}
-end
+function toggleFull(part, full)
+	part.isFull = full
 
+	if full then
+		part.tooltip = part.tooltip or {}
+		part.tooltip.text = "Full"
+		part.tooltip.alpha = 0
+		part.tooltip.width = nil
+	else
+		if part.tooltip and part.tooltip.default then
+			part.tooltip.text = part.tooltip.default
+			part.tooltip.alpha = 0
+			part.tooltip.width = nil
+		else
+			part.tooltip = nil
+		end
+	end
+end
 
 function lerp(startValue, endValue, t)
 	return startValue + ((endValue - startValue) * t)
@@ -914,6 +950,10 @@ end
 
 function getPointOnCircle(radius, rotation)
 	return radius * math.cos(math.rad(rotation)), radius * math.sin(math.rad(rotation))
+end
+
+function textLengthSorter(a, b)
+	return dxGetTextWidth(a, sfs(1.1), font.small) < dxGetTextWidth(b, sfs(1.1), font.small)
 end
 
 

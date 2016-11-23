@@ -142,17 +142,17 @@
     <vehicle id="vehicle (Buffalo) (4)" paintjob="0" model="402" plate="JQPEZWX" interior="0" dimension="0" posX="-2329.0087890625" posY="-1822.3349609375" posZ="436.55960083008" rotX="0" rotY="0" rotZ="7.7618408203125" />
     <vehicle id="vehicle (Cheetah) (1)" paintjob="0" model="415" plate="OJIVB2X" interior="0" dimension="0" posX="-2390.166015625" posY="-1866.525390625" posZ="404.79818725586" rotX="0" rotY="0" rotZ="100.93139648438" />
     <vehicle id="vehicle (Bobcat) (1)" paintjob="0" model="422" plate="KBDY2GF" interior="0" dimension="0" posX="-2413.509765625" posY="-1824.7919921875" posZ="415.18969726563" rotX="0" rotY="0" rotZ="37.880859375" />
-    <vehicle id="vehicle (Mountain Bike) (1)" paintjob="0" model="510" plate="D185IAP" interior="0" dimension="0" posX="-2433.0751953125" posY="-1812.8017578125" posZ="411.31549072266" rotX="0" rotY="0" rotZ="112.03295898438" />
+    <!--<vehicle id="vehicle (Mountain Bike) (1)" paintjob="0" model="510" plate="D185IAP" interior="0" dimension="0" posX="-2433.0751953125" posY="-1812.8017578125" posZ="411.31549072266" rotX="0" rotY="0" rotZ="112.03295898438" />-->
     <vehicle id="vehicle (Clover) (1)" paintjob="0" model="542" plate="HNLFADF" interior="0" dimension="0" posX="-2478.9873046875" posY="-1798.2783203125" posZ="406.02398681641" rotX="0" rotY="0" rotZ="47.373046875" />
     <vehicle id="vehicle (Stallion) (1)" paintjob="0" model="439" plate="LVLF0OL" interior="0" dimension="0" posX="-2517.1328125" posY="-1726.7822265625" posZ="402.23400878906" rotX="0" rotY="0" rotZ="11.964111328125" />
     <vehicle id="vehicle (Glendale) (1)" paintjob="0" model="466" plate="2U80HSS" interior="0" dimension="0" posX="-2533.1794" posY="-1667.5564" posZ="401.2926" rotZ="21.7438" />
     <vehicle id="vehicle (Sandking) (1)" paintjob="0" model="495" plate="86WF0XF" interior="0" dimension="0" posX="-2379.7205" posY="-1454.8885" posZ="385.4920" rotZ="278.6467" />
     <vehicle id="vehicle (Feltzer) (1)" paintjob="0" model="533" plate="RO2MOXB" interior="0" dimension="0" posX="-2262.1548" posY="-1485.7367" posZ="378.7948" rotZ="232.9437" />
-    <vehicle id="vehicle (Mountain Bike) (2)" paintjob="0" model="510" plate="4HPVR78" interior="0" dimension="0" posX="-2222.3479" posY="-1570.4625" posZ="378.9842" rotZ="191.5209" />
-    <vehicle id="vehicle (Mountain Bike) (3)" paintjob="0" model="510" plate="UFRUG3A" interior="0" dimension="0" posX="-2197.8594" posY="-1617.2303" posZ="364.7445" rotZ="5.3690" />
+    <!--<vehicle id="vehicle (Mountain Bike) (2)" paintjob="0" model="510" plate="4HPVR78" interior="0" dimension="0" posX="-2222.3479" posY="-1570.4625" posZ="378.9842" rotZ="191.5209" />-->
+    <!--<vehicle id="vehicle (Mountain Bike) (3)" paintjob="0" model="510" plate="UFRUG3A" interior="0" dimension="0" posX="-2197.8594" posY="-1617.2303" posZ="364.7445" rotZ="5.3690" />-->
     <vehicle id="vehicle (NRG-500) (1)" paintjob="0" model="522" plate="2ABJ1IH" interior="0" dimension="0" posX="-2370.2078" posY="-1388.3630" posZ="358.6595" rotZ="70.8725" />
     <vehicle id="vehicle (Buffalo) (5)" paintjob="0" model="402" plate="YGJHH3I" interior="0" dimension="0" posX="-2551.8943" posY="-1484.2795" posZ="360.0536" rotZ="54.6059" />
-    <vehicle id="vehicle (Mountain Bike) (4)" paintjob="0" model="510" plate="8I980XB" interior="0" dimension="0" posX="-2519.6372" posY="-1435.1702" posZ="350.3658" rotZ="345.0096" />
+    <!--<vehicle id="vehicle (Mountain Bike) (4)" paintjob="0" model="510" plate="8I980XB" interior="0" dimension="0" posX="-2519.6372" posY="-1435.1702" posZ="350.3658" rotZ="345.0096" />-->
     <vehicle id="vehicle (Monster 1) (6)" paintjob="0" model="444" plate="TNIE3NN" interior="0" dimension="0" posX="-2366.9658" posY="-1360.9087" posZ="300.2356" rotZ="277.0966" />
     <vehicle id="vehicle (Cheetah) (2)" paintjob="0" model="415" plate="H380NID" interior="0" dimension="0" posX="-2345.7637" posY="-1302.6483" posZ="310.0619" rotZ="7.7477" />
     <vehicle id="vehicle (Bobcat) (2)" paintjob="0" model="422" plate="AZO1CFZ" interior="0" dimension="0" posX="-2507.0757" posY="-1277.4647" posZ="273.5067" rotZ="126.0685" />
@@ -168,7 +168,7 @@
     <vehicle id="vehicle (Police Maverick) (4)" paintjob="0" model="497" plate="ZD9FJGX" interior="0" dimension="0" posX="-2363.5859" posY="-2177.6099" posZ="33.9019" rotZ="264.7794" safezone_excluded="true" />
     <vehicle id="vehicle (Feltzer) (2)" paintjob="0" model="533" plate="I2CYFEQ" interior="0" dimension="0" posX="-2768.3931" posY="-1698.3556" posZ="141.3911" rotZ="157.8846" />
     <vehicle id="vehicle (Dumper) (4)" paintjob="0" model="406" plate="F80L2UJ" interior="0" dimension="0" posX="-2783.2685546875" posY="-1774.1357421875" posZ="142.9630279541" rotZ="167.99743652344" rotX="0" rotY="0" />
-    <vehicle id="vehicle (Mountain Bike) (5)" paintjob="0" model="510" plate="D3THUPL" interior="0" dimension="0" posX="-2665.6899" posY="-1998.3688" posZ="90.0705" rotZ="184.0617" />
+    <!--<vehicle id="vehicle (Mountain Bike) (5)" paintjob="0" model="510" plate="D3THUPL" interior="0" dimension="0" posX="-2665.6899" posY="-1998.3688" posZ="90.0705" rotZ="184.0617" />-->
     <vehicle id="vehicle (Huntley) (5)" paintjob="0" model="579" plate="KTBBDHK" interior="0" dimension="0" posX="-2659.1877" posY="-2100.5525" posZ="74.4871" rotZ="210.1969" />
     <vehicle id="vehicle (Sanchez) (7)" paintjob="0" model="468" plate="O1AUH43" interior="0" dimension="0" posX="-2625.7700" posY="-2152.8767" posZ="70.0461" rotZ="255.7048" />
     <vehicle id="vehicle (Taxi) (1)" paintjob="0" model="420" plate="JOVNGAV" interior="0" dimension="0" posX="-2564.8586" posY="-2147.1194" posZ="64.0474" rotZ="280.0340" />
@@ -179,9 +179,9 @@
     <vehicle id="vehicle (Glendale) (3)" paintjob="0" model="466" plate="U7W14V4" interior="0" dimension="0" posX="-2654.4348" posY="-1725.3420" posZ="257.3291" rotZ="245.6479" />
     <vehicle id="vehicle (Sandking) (3)" paintjob="0" model="495" plate="4LEJY4F" interior="0" dimension="0" posX="-2502.3315" posY="-1896.5430" posZ="298.4514" rotZ="20.4675" />
     <vehicle id="vehicle (Sanchez) (8)" paintjob="0" model="468" plate="XNNZ3A3" interior="0" dimension="0" posX="-2372.2952" posY="-1926.5311" posZ="304.0593" rotZ="84.8233" />
-    <vehicle id="vehicle (Mountain Bike) (6)" paintjob="0" model="510" plate="EJB327Z" interior="0" dimension="0" posX="-2419.5854" posY="-1956.3926" posZ="303.1055" rotZ="34.7233" />
+    <!--<vehicle id="vehicle (Mountain Bike) (6)" paintjob="0" model="510" plate="EJB327Z" interior="0" dimension="0" posX="-2419.5854" posY="-1956.3926" posZ="303.1055" rotZ="34.7233" />-->
     <vehicle id="vehicle (Monster 1) (7)" paintjob="0" model="444" plate="7CXZKO1" interior="0" dimension="0" posX="-2593.5637" posY="-1607.4014" posZ="342.7477" rotZ="204.6164" />
-    <vehicle id="vehicle (Mountain Bike) (7)" paintjob="0" model="510" plate="FU16NOK" interior="0" dimension="0" posX="-2528.1829" posY="-1808.8088" posZ="376.3380" rotZ="6.1249" />
+    <!--<vehicle id="vehicle (Mountain Bike) (7)" paintjob="0" model="510" plate="FU16NOK" interior="0" dimension="0" posX="-2528.1829" posY="-1808.8088" posZ="376.3380" rotZ="6.1249" />-->
     <vehicle id="vehicle (Feltzer) (3)" paintjob="0" model="533" plate="Y437AFS" interior="0" dimension="0" posX="-2067.1248" posY="-1958.8745" posZ="56.3403" rotZ="324.2487" />
     <vehicle id="vehicle (Police Ranger) (5)" paintjob="0" model="599" plate="YKZFSL3" interior="0" dimension="0" posX="-2400.6294" posY="-2226.0034" posZ="33.6742" rotZ="358.1456" />
     <vehicle id="vehicle (Huntley) (6)" paintjob="0" model="579" plate="5LS889D" interior="0" dimension="0" posX="-2763.0491" posY="-2043.7616" posZ="38.6436" rotZ="57.7693" />
@@ -264,10 +264,10 @@
 	<vehicle id="vehicle (Mesa) (2)" paintjob="0" model="500" plate="03UCAUU" interior="0" dimension="0" posX="-2063.7741699219" posY="-2565.7175292969" posZ="30.844999313354" rotX="0" rotY="0" rotZ="324.53552246094" />
     <vehicle id="vehicle (Mesa) (2)" paintjob="0" model="500" plate="03UCAUU" interior="0" dimension="0" posX="-2059.6708984375" posY="-2569.0302734375" posZ="30.844999313354" rotX="0" rotY="0" rotZ="324.53063964844" />
     <vehicle id="vehicle (Hotdog) (1)" paintjob="3" model="588" plate="ML9W R9I" interior="0" dimension="0" posX="-2078.3195800781" posY="-2555.1311035156" posZ="30.321895599365" rotX="0" rotY="0" rotZ="318.31530761719" />
-    <vehicle id="vehicle (Mountain Bike) (8)" paintjob="3" model="510" plate="0HY0 XE1" interior="0" dimension="0" posX="-2038.1276855469" posY="-2526.9545898438" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14422607422" />
-    <vehicle id="vehicle (Mountain Bike) (9)" paintjob="3" model="510" plate="NESZ 932" interior="0" dimension="0" posX="-2035.4530029297" posY="-2528.8012695313" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14270019531" />
-    <vehicle id="vehicle (Mountain Bike) (10)" paintjob="3" model="510" plate="PFZD J9P" interior="0" dimension="0" posX="-2032.7781982422" posY="-2530.6479492188" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14270019531" />
-    <vehicle id="vehicle (Mountain Bike) (11)" paintjob="3" model="510" plate="J2ZW JVP" interior="0" dimension="0" posX="-2036.8979492188" posY="-2536.6159667969" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14270019531" />
+    <!--<vehicle id="vehicle (Mountain Bike) (8)" paintjob="3" model="510" plate="0HY0 XE1" interior="0" dimension="0" posX="-2038.1276855469" posY="-2526.9545898438" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14422607422" />-->
+    <!--<vehicle id="vehicle (Mountain Bike) (9)" paintjob="3" model="510" plate="NESZ 932" interior="0" dimension="0" posX="-2035.4530029297" posY="-2528.8012695313" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14270019531" />-->
+    <!--<vehicle id="vehicle (Mountain Bike) (10)" paintjob="3" model="510" plate="PFZD J9P" interior="0" dimension="0" posX="-2032.7781982422" posY="-2530.6479492188" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14270019531" />-->
+    <!--<vehicle id="vehicle (Mountain Bike) (11)" paintjob="3" model="510" plate="J2ZW JVP" interior="0" dimension="0" posX="-2036.8979492188" posY="-2536.6159667969" posZ="30.320840835571" rotX="0" rotY="0" rotZ="113.14270019531" />-->
     <vehicle id="vehicle (Tractor) (1)" paintjob="3" model="531" plate="ROZZ RMV" interior="0" dimension="0" posX="-2058.5405273438" posY="-2541.212890625" posZ="30.631452560425" rotX="0" rotY="0" rotZ="324.27026367188" />
     <vehicle id="vehicle (Hustler) (1)" paintjob="3" model="545" plate="1590 UXK" interior="0" dimension="0" posX="-2065.9421386719" posY="-2502.2680664063" posZ="30.643909454346" rotX="0" rotY="0" rotZ="141.20422363281" />
     <vehicle id="vehicle (Pony) (1)" paintjob="3" model="413" plate="M3A3 YOH" interior="0" dimension="0" posX="-2063.515625" posY="-2528.7934570313" posZ="30.77499961853" rotX="0" rotY="0" rotZ="316.33032226563" />

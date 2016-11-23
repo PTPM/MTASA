@@ -3,6 +3,7 @@
 local options = {}
 local classes = {}
 currentPM = nil
+currentMapName = ""
 
 addEventHandler( "onClientResourceStart", resourceRoot,
 	function()
@@ -188,6 +189,7 @@ local transition = false
 addEvent( "onClientMapStart", true )
 addEventHandler( "onClientMapStart", root,
 	function( mapName )
+		currentMapName = mapName
 		hideTransitionImage()
 		local x, y
 		if fileExists( "images/" .. mapName .. ".png" ) then

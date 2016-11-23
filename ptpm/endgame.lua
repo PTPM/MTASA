@@ -4,7 +4,23 @@ local mapVotes = {}
 local maps = {}
 local mapVoteTimer = nil
 
--- compcheck
+
+-- this happens as soon as the round ends
+function setRoundEnded()
+	data.roundEnded = true
+
+	options.endGamePrepareTimer = setTimer( endGame, 3000, 1 )
+
+	for _, p in ipairs( getElementsByType( "player" ) ) do
+		if p and isElement( p ) and isPlayerActive( p ) then
+			if getElementData(p, "ptpm.inClassSelection") then
+				classSelectionRemove(p)
+			end
+		end
+	end
+end
+
+-- this happens once everyone has viewed the body for a few seconds
 function endGame()
 	options.endGamePrepareTimer = nil
 
@@ -32,6 +48,9 @@ function endGame()
 			triggerClientEvent( p, "sendClientMapData", p, miniClass, currentPM, options.displayDistanceToPM )
 			--exports.ptpm_accounts:saveStats(p)
 			
+			if getElementData(p, "ptpm.inClassSelection") then
+				classSelectionRemove(p)
+			end
 		end
 	end
 	
