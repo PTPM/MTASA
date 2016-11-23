@@ -53,9 +53,7 @@
     </spawngroup>
 	
     <spawngroup type="bodyguard">
-        <class id="13" skin="163" weapons="23,100;28,200;46,-1" />
         <class id="14" skin="164" weapons="23,100;28,200;46,-1" />
-        <class id="15" skin="165" weapons="23,100;28,200;46,-1" />
         <class id="16" skin="166" weapons="23,100;28,200;46,-1" />
         <class id="17" skin="141" weapons="23,100;28,200;46,-1" />
         <class id="18" skin="276" weapons="46,1;23,100;41,300" medic="true" />
@@ -63,14 +61,8 @@
     </spawngroup>
 	
     <spawngroup type="police">
-        <class id="19" skin="280" weapons="24,100;31,200;41,300" />
         <class id="20" skin="281" weapons="24,100;31,200;41,300" />
-        <class id="21" skin="282" weapons="24,100;29,200;41,300" />
-        <class id="22" skin="283" weapons="24,100;31,200;41,300" />
-        <class id="23" skin="284" weapons="24,100;29,200;41,300" />
         <class id="24" skin="285" weapons="24,100;31,200;41,300" />
-        <class id="25" skin="286" weapons="24,100;29,200;41,300" />
-        <class id="26" skin="288" weapons="24,100;29,200;41,300" />
         <class id="27" skin="246" weapons="24,100;31,200;41,300" />
         <class id="28" skin="275" weapons="46,1;24,100;41,300" medic="true" />
         <linespawn startX="-1610.3680" startY="733.6467" startZ="-4.9063" endX="-1590.5117" endY="733.6737" endZ="-4.9063" />
