@@ -1,7 +1,7 @@
 ﻿staticText = {}
 
 local options = {}
-local classes = {}
+classes = {}
 currentPM = nil
 currentMapName = ""
 

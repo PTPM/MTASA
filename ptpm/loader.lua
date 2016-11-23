@@ -453,6 +453,38 @@ function ptpmMapStart( map )
 	setPedGravity( root, 0.008 )
 
 	changeWeather()
+
+	balance.reset()
+
+	election.active = true
+	election.candidates = {}
+	election.seconds = 12
+	election.endTimer = setTimer(
+		function()
+			election.seconds = election.seconds - 1
+
+			if election.seconds <= 0 then
+				outputChatBox("Election over boys, let's go home")
+				election.active = false
+
+				spawnElection()
+
+				for _, player in ipairs(getElementsByType("player")) do
+					if player and isElement(player) and isPlayerActive(player) then
+						triggerClientEvent(player, "onElectionFinished", player, currentPM)
+					end
+				end				
+
+				election.candidates = {}
+			elseif election.seconds <= 5 then
+				for _, player in ipairs(getElementsByType("player")) do
+					if player and isElement(player) and isPlayerActive(player) then
+						triggerClientEvent(player, "onElectionCountdown", player, election.seconds)
+					end
+				end						
+			end
+		end,
+	1000, election.seconds)
 	
 	local currentPlayers = getElementsByType( "player" )
 	options.playerPrepareTimer = setTimer( 	
@@ -479,7 +511,6 @@ addEventHandler( "onGamemodeMapStart", root, ptpmMapStart )
 -- compcheck
 addEvent( "onGamemodeMapStop", false )
 function ptpmMapStop( map )
-
 	clearTask()
 	clearObjective()
 
@@ -597,6 +628,13 @@ function ptpmMapStop( map )
 		data.timer = nil
 	end
 	
+	if election.endTimer then
+		if isTimer(election.endTimer) then
+			killTimer(election.endTimer)
+		end
+
+		election.endTimer = nil
+	end
 	--drawStaticTextToScreen( "delete", root, "roundTimer" )
 end
 addEventHandler( "onGamemodeMapStop", root, ptpmMapStop )
@@ -610,6 +648,10 @@ end
 
 function resetPlayer( thePlayer )
 	resetPlayerRound( thePlayer )
+
+	if getElementData(thePlayer, "ptpm.electionCandidate") then
+		election.removeCandidate(thePlayer)
+	end
 	
 	-- Save session lengths
 	if isRunning( "ptpm_accounts" ) then
@@ -692,6 +734,8 @@ function resetPlayerRound( thePlayer )
 	setElementData( thePlayer, "ptpm.classSelect.id", nil, false )
 	setElementData( thePlayer, "ptpm.classSelect.lctrl", nil, false )
 	setElementData( thePlayer, "ptpm.classSelect.rctrl", nil, false )
+	setElementData( thePlayer, "ptpm.electionClass", nil, false)
+	setElementData( thePlayer, "ptpm.electionCandidate", nil, false)
 	
 	local autoRight = getElementData( thePlayer, "ptpm.classSelect.autoRight" )
 	if autoRight then
@@ -751,6 +795,6 @@ function resetPlayerRound( thePlayer )
 end
 
 function preparePlayer( thePlayer )
-	setElementData( thePlayer, "ptpm.classSelect.id", 1, false )
+	--setElementData( thePlayer, "ptpm.classSelect.id", 1, false )
 	--setPlayerControllable( thePlayer, true ) -- Element data is false by default, but this is reset to false in class selection anyway
 end

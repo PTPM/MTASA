@@ -3,6 +3,14 @@
 	teamPlayers = {pm = 0, terrorist = 0, bodyguard = 0, police = 0, psycho = 0},
 	totalTeamPlayers = 0,
 	full = {pm = false, terrorist = false, bodyguard = false, police = false, psycho = false},
+
+	reset = 
+		function()
+			balance.value = 0
+			balance.teamPlayers = {pm = 0, terrorist = 0, bodyguard = 0, police = 0, psycho = 0}
+			balance.totalTeamPlayers = 0
+			balance.full = {pm = false, terrorist = false, bodyguard = false, police = false, psycho = false}
+		end,
 }
 
 function calculateBalance()
@@ -10,10 +18,18 @@ function calculateBalance()
 	
 	-- current team players
 	for _, player in ipairs(getElementsByType("player")) do
-		if player and isElement(player) and getPlayerClassID(player) then
-			local team = classes[getPlayerClassID(player)].type
+		if player and isElement(player) then
+			if getPlayerClassID(player) then
+				local team = classes[getPlayerClassID(player)].type
 
-			playersInATeam[team] = (playersInATeam[team] or 0) + 1
+				playersInATeam[team] = (playersInATeam[team] or 0) + 1
+			end
+
+			if election.active and getElementData(player, "ptpm.electionClass") then
+				local team = classes[getElementData(player, "ptpm.electionClass")].type
+
+				playersInATeam[team] = (playersInATeam[team] or 0) + 1
+			end
 		end
 	end
 
@@ -40,11 +56,6 @@ function getBalanceValue(totalBodyguards, totalPolice, totalTerrorists)
 end
 
 function isBalanced(proposedClassId, oldClassId)
-	-- with 5 or less players we allow anything
-	if balance.totalTeamPlayers <= 5 then
-		return true
-	end
-
 	local proposedTeam
 
 	-- allows us to pass in team names ("pm", "police", etc) to check for team availability
@@ -62,6 +73,11 @@ function isBalanced(proposedClassId, oldClassId)
 	-- can't have more than 1 pm, otherwise pm is always allowed
 	if proposedTeam == "pm" then
 		return balance.teamPlayers.pm == 0
+	end
+
+	-- with 5 or less players we allow anything
+	if balance.totalTeamPlayers <= 5 then
+		return true
 	end
 
 	-- bodyguards ard hard capped at 30% of team players
@@ -338,7 +354,7 @@ function makePlayerSpawn( thePlayer )
 	setTimer( setCameraTarget, 100, 1, thePlayer, thePlayer ) -- ok timer
 
 	for _, pair in ipairs(classes[class].weapons) do
-		if pair[1] and pair[2] and pair[1] ~= 0 and pair[2] ~= 0 then
+		if pair[1] and pair[2] and pair[1] ~= 0 and pair[2] >= 0 then
 			giveWeapon(thePlayer, pair[1], pair[2])
 		end
 	end

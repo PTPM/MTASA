@@ -25,17 +25,28 @@ local font = {
 local classSelection = {
 	visible = false,
 	hiding = false,
+	spawnMessage = "",
 }
 local lastTick = 0
 local delta = 0
 local currentlySelectedPetal = nil
 local currentlySelectedFlower = nil
+local election = {
+	active = false,
+	countdown = 0,
+	entered = false,
+	candidates = 0,
+	cleared = false,
+}
 
 
 addEvent("enterClassSelection", true)
 addEvent("leaveClassSelection", true)
 addEvent("updateClassSelection", true)
 addEvent("onPlayerRequestSpawnDenied", true)
+addEvent("onPlayerRequestSpawnReserved", true)
+addEvent("onElectionFinished", true)
+addEvent("onElectionCountdown", true)
 
 
 local flowers = {
@@ -117,8 +128,8 @@ local flowers = {
 		text = {
 			offsetY = -0.2,
 			default = {
-				top = {text = string.format("Round\nstarts in"), size = 1.1},
-				middle = {text = string.format("%s5", colours.hex.red), size = 120 / 44},
+				top = {text = string.format("Round\nstarts"), size = 1.1},
+				middle = {text = string.format("%sSOON", colours.hex.red), size = 120 / 44},
 			}
 		}
 	},
@@ -140,7 +151,7 @@ local flowers = {
 		border = {src = "images/class_selection/asset_circle_border_big.png", size = 220},
 		image = "images/class_selection/ptpm-skins-147.png",
 		tooltip = {
-			text = "Enter Election",
+			text = "",
 			default = "Enter Election",
 			alpha = 0,
 		}
@@ -173,27 +184,50 @@ addEventHandler("onClientResourceStart", resourceRoot,
 		if not font.small then
 			font.small = "default"
 			font.smallScalar = 1
-		end		
-
-		lastTick = getTickCount()
+		end
 	end
 )
 
 -- called when the player is sent to the class selection screen
-function enterClassSelection(mapName, classes, isFull)
+function enterClassSelection(mapName, classes, isFull, electionActive, numberOfCandidates)
 	if classSelection.visible then
-		return
+		if not classSelection.hiding then
+			return
+		end
+
+		removeClassSelection()
+	end
+
+	if classSelection.hidingTimer then
+		if isTimer(classSelection.hidingTimer) then
+			killTimer(classSelection.hidingTimer)
+		end
+		classSelection.hidingTimer = nil
 	end
 
 	classSelection.visible = true
+	classSelection.hiding = false
+	classSelection.spawnMessage = "Select\nyour class"
 
-	local medicDescription = string.format("%s.\nHeal other players\nwith %s/heal", colours.hex.black, colours.hex.red)
+	election.active = electionActive
+
+	if election.active then
+		election.entered = false
+		election.candidates = numberOfCandidates
+		election.cleared = false
+	else
+		onElectionFinished()
+	end
+
+	font.globalScalar = 1
 
 	-- reset the petals
 	for _, flower in pairs(flowers) do
 		flower.petals = {}
 		flower.petalSize = flower.defaultPetalSize
 	end
+
+	local medicDescription = string.format("%s.\nHeal other players\nwith %s/heal", colours.hex.black, colours.hex.red)
 
 	-- create new petals from the class data
 	for id, class in ipairs(classes) do
@@ -209,7 +243,7 @@ function enterClassSelection(mapName, classes, isFull)
 			},
 			border = {src = "images/class_selection/asset_circle_border.png", size = 112},
 			image = getSkinImage(class.skin, class.mapSkinImage, mapName),
-			weapons = weaponListToString(class.weapons, false, textLengthSorter), -- todo: sort by width
+			weapons = weaponListToString(class.weapons, false, textLengthSorter),
 			title = string.format("%s%s", colours.hex[class.type], teamMemberFriendlyName[class.type]),
 			shadowSelected = true,
 			shadowOffset = 2,
@@ -222,35 +256,24 @@ function enterClassSelection(mapName, classes, isFull)
 		if class.type == "police" then
 			petal.flower = flowers.protect
 			petal.description = string.format("Kill the %sTerrorists", colours.hex.terrorist)
-
-			if class.medic then
-				petal.description = petal.description .. medicDescription
-			end
-
 			flowers.protect.petals[#flowers.protect.petals + 1] = petal
 		elseif class.type == "bodyguard" then
 			petal.flower = flowers.protect
-			petal.description = string.format("Protect the %sPrime Minister", colours.hex.pm)
-			
-			if class.medic then
-				petal.description = petal.description .. medicDescription
-			end
-
+			petal.description = string.format("Protect the %sPrime Minister", colours.hex.pm)			
 			flowers.protect.petals[#flowers.protect.petals + 1] = petal
 		elseif class.type == "terrorist" then
 			petal.flower = flowers.attack
 			petal.description = string.format("Kill the %sPrime Minister", colours.hex.pm)
-
-			if class.medic then
-				petal.description = petal.description .. medicDescription
-			end
-
 			flowers.attack.petals[#flowers.attack.petals + 1] = petal
 		elseif class.type == "psycho" then
 			petal.flower = flowers.psycho
 			flowers.psycho.petals[#flowers.psycho.petals + 1] = petal
 		elseif class.type == "pm" then
 			flowers.pm.classID = id
+		end
+
+		if class.medic then
+			petal.description = petal.description .. medicDescription
 		end
 	end
 
@@ -278,22 +301,34 @@ addEventHandler("enterClassSelection", root, enterClassSelection)
 
 
 -- called every time information on the screen needs updating (team availability)
-function updateClassSelection(isFull)
-	toggleFull(flowers.pm, isFull.pm)
+function updateClassSelection(isFull, numberOfCandidates)
+	if isFull then
+		--toggleFull(flowers.pm, isFull.pm)
+		flowers.pm.isFull = isFull.pm
+		setTooltip(flowers.pm)
 
-	for _, petal in ipairs(flowers.protect.petals) do
-		if petal.classType == "bodyguard" then
-			toggleFull(petal, isFull.bodyguard)
-		elseif petal.classType == "police" then
-			toggleFull(petal, isFull.police)
+		for _, petal in ipairs(flowers.protect.petals) do
+			if petal.classType == "bodyguard" then
+				toggleFull(petal, isFull.bodyguard)
+			elseif petal.classType == "police" then
+				toggleFull(petal, isFull.police)
+			end
 		end
+
+		for _, petal in ipairs(flowers.attack.petals) do
+			if petal.classType == "terrorist" then
+				toggleFull(petal, isFull.terrorist)
+			end
+		end	
 	end
 
-	for _, petal in ipairs(flowers.attack.petals) do
-		if petal.classType == "terrorist" then
-			toggleFull(petal, isFull.terrorist)
+	if numberOfCandidates and tonumber(numberOfCandidates) then
+		election.candidates = numberOfCandidates
+
+		if election.entered then
+			classSelection.spawnMessage = string.format("Election chance\n%s%d%%", colours.hex.red, math.floor(100 / election.candidates))
 		end
-	end	
+	end
 end
 addEventHandler("updateClassSelection", root, updateClassSelection)
 
@@ -338,24 +373,60 @@ function leaveClassSelection()
 		flower.animation.inOut = 0
 	end
 	
-	-- todo: make this safe
 	-- stop drawing once the out animation has completed
-	setTimer(
-		function()
-			removeEventHandler("onClientRender", root, drawClassSelection)
-			classSelection.hiding = false
-			classSelection.visible = false
-		end,
-	1000, 1)
+	classSelection.hidingTimer = setTimer(removeClassSelection,	1000, 1)
 end
 addEventHandler("leaveClassSelection", root, leaveClassSelection)
+
+function removeClassSelection()
+	removeEventHandler("onClientRender", root, drawClassSelection)
+	classSelection.hiding = false
+	classSelection.visible = false
+end
+
+
+function onElectionFinished(electedPM)
+	election.active = false
+	election.candidates = 0
+
+	if election.entered and electedPM ~= localPlayer then
+		classSelection.spawnMessage = "Select\nyour class"
+	end
+
+	setTooltip(flowers.pm)
+
+	if classSelection.visible and not classSelection.hiding then
+		if not election.cleared then
+			-- allow the polls flower to hide before we show the psychos
+			setTimer(
+				function()
+					if classSelection.visible and not classSelection.hiding then
+						election.cleared = true
+					end
+				end,
+			1000, 1)
+
+			flowers.polls.animation.inOutDir = -1
+			flowers.polls.animation.inOut = 0
+		end
+	end
+
+	election.entered = false
+end
+addEventHandler("onElectionFinished", root, onElectionFinished)
+
+
+function onElectionCountdown(seconds)
+	election.countdown = seconds
+	flowers.polls.animation.burst = 0
+	flowers.polls.text.default.top.text = string.format("Round\nstarts in")
+	flowers.polls.text.default.middle.text = string.format("%s%d", colours.hex.red, election.countdown)
+end
+addEventHandler("onElectionCountdown", root, onElectionCountdown)
 
 
 -- all the setup that needs to be done once the class selection has been entered, before anything can be drawn
 function setupClassSelectionUI()
-	font.globalScalar = 1
-	classSelection.hiding = false
-
 	for _, flower in pairs(flowers) do	
 		if #flower.petals > 0 then
 			-- calculate petal size
@@ -417,15 +488,25 @@ function drawClassSelection()
 
 	local height = flowers.pm.y + s(flowers.pm.radius)
 	dxDrawText("The Prime Minister", flowers.pm.x - s(flowers.pm.radius * 2), height, flowers.pm.x + s(flowers.pm.radius * 2), height + s(25), colours.white, sf(120/44), font.base, "center", "top", false, false, false, false, true)
-	dxDrawText("There are 5 candidates\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(40), flowers.pm.x + s(flowers.pm.radius * 2), height + s(50), colours.white, sfs(1.2), font.small, "center", "top", false, false, false, true, false)
 	
-	dxDrawText("Select\nyour class", (screenX / 2) - s(60), screenY * 0.65, (screenX / 2) + s(60), (screenY * 0.65) + s(50), colours.white, sf(2.0), font.base, "center", "top", false, true, false, false, false)
+	if election.active then
+		if election.candidates == 1 then
+			dxDrawText("There is 1 candidate\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(40), flowers.pm.x + s(flowers.pm.radius * 2), height + s(50), colours.white, sfs(1.2), font.small, "center", "top", false, false, false, true, false)	
+		else
+			dxDrawText("There are " .. tostring(election.candidates) .. " candidates\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(40), flowers.pm.x + s(flowers.pm.radius * 2), height + s(50), colours.white, sfs(1.2), font.small, "center", "top", false, false, false, true, false)
+		end
+	end
+
+	dxDrawText(classSelection.spawnMessage, (screenX / 2) - s(60), screenY * 0.65, (screenX / 2) + s(60), (screenY * 0.65) + s(50), colours.white, sf(2.0), font.base, "center", "top", false, false, false, true, false)
 
 	drawFlower(flowers.protect)
 	drawFlower(flowers.attack)
 
-	drawFlower(flowers.psycho)
-	--drawFlower(flowers.polls)
+	if election.cleared then
+		drawFlower(flowers.psycho)
+	else
+		drawFlower(flowers.polls)
+	end
 
 	if classSelection.hiding then
 		font.globalScalar = math.max(0, font.globalScalar - (2.4 * delta))
@@ -587,8 +668,8 @@ function getSkinImage(skin, mapSkinImage, mapName)
 		return ":" .. mapName .. "/ptpm-skins-" .. tostring(skin) .. ".png"
 	end
 
-	-- default (unknown) skin, todo: make an "unknown" skin image
-	return "images/class_selection/ptpm-skins-147.png"
+	-- default (unknown) skin
+	return "images/class_selection/ptpm-skins-unknown.png"
 end
 
 
@@ -632,7 +713,6 @@ function scrollClassSelection(key, state, dir)
 		if isTimer(scrollTimer) then
 			killTimer(scrollTimer)
 		end
-
 		scrollTimer = nil
 	end
 
@@ -654,7 +734,7 @@ function scrollClassSelection(key, state, dir)
 	-- holding ctrl lets you jump between flowers
 	if getKeyState("lctrl") or getKeyState("rctrl") then
 		local nextFlower = nil
-		-- todo: disable jumping to psychos if they aren't visible
+
 		if dir == 1 then
 			if getSelectedFlower() == flowers.protect then
 				nextFlower = flowers.pm
@@ -671,7 +751,7 @@ function scrollClassSelection(key, state, dir)
 			if getSelectedFlower() == flowers.psycho or getSelectedFlower() == flowers.attack or getSelectedFlower() == flowers.protect then
 				nextFlower = flowers.pm
 			end
-		elseif dir == -2 then
+		elseif dir == -2 and election.cleared then
 			if getSelectedFlower() == flowers.pm or getSelectedFlower() == flowers.attack or getSelectedFlower() == flowers.protect then
 				nextFlower = flowers.psycho
 			end
@@ -679,13 +759,6 @@ function scrollClassSelection(key, state, dir)
 
 		if nextFlower then
 			outputDebugString("moving: flower: " .. tostring(currentlySelectedFlower ~= nil) .. ", petal: " .. tostring(currentlySelectedPetal ~= nil))
-
-			--if currentlySelectedPetal then
-			--	onPetalLeave(currentlySelectedPetal.flower, currentlySelectedPetal)
-			--elseif currentlySelectedFlower then
-			--	onFlowerLeave(currentlySelectedFlower)
-			--end
-
 			if nextFlower == flowers.pm then
 				onFlowerEnter(nextFlower)
 			else
@@ -726,17 +799,12 @@ function scrollClassSelectionInterrupt(key, state, dir)
 		if isTimer(scrollTimer) then
 			killTimer(scrollTimer)
 		end
-
 		scrollTimer = nil
 	end
 end
 
 -- enter and shift
 function playerClassSelectionAccept()
-	if not currentlySelectedPetal and not currentlySelectedFlower then
-		return
-	end
-
 	if currentlySelectedFlower then
 		chooseFlower(currentlySelectedFlower)
 		return
@@ -791,13 +859,6 @@ function onPetalLeave(flower, petal)
 	outputDebugString("petal leave: " .. tostring(petal.classID))
 	petal.isPressed = false
 	petal.isSelected = false
-
-	-- for _, p in ipairs(flower.petals) do
-	-- 	if p.isHovered and p ~= petal then
-	-- 		outputDebugString("also hovering: " .. tostring(p.classID))
-	-- 		return
-	-- 	end
-	-- end
 
 	if currentlySelectedPetal == petal then
 		flower.text.override = nil
@@ -861,7 +922,6 @@ function processCursorClicks(button, state, absoluteX, absoluteY, worldX, worldY
 				flower.isPressed = false
 				chooseFlower(flower)
 			end
-
 			return
 		end
 	end
@@ -909,24 +969,67 @@ function onPlayerRequestSpawnDenied(classID)
 end
 addEventHandler("onPlayerRequestSpawnDenied", root, onPlayerRequestSpawnDenied)
 
+function onPlayerRequestSpawnReserved(classID, withdrawn)
+	outputDebugString("request spawn " .. tostring(classID) .. " " .. tostring(withdrawn and "withdrawn" or ""))
+	classSelection.spawnMessage = "Select\nyour class"
+
+	if classes[classID] == "pm" then
+		election.entered = not withdrawn
+
+		setTooltip(flowers.pm)
+
+		if not withdrawn then
+			-- force the spawn message to update
+			updateClassSelection(nil, election.candidates)
+		end
+	else
+		if not withdrawn then
+			local petal = getPetalFromClassID(classID)
+
+			if petal then
+				classSelection.spawnMessage = string.format("Spawning as\n%s", petal.title)
+			end
+		end
+	end
+end
+addEventHandler("onPlayerRequestSpawnReserved", root, onPlayerRequestSpawnReserved)
+
 -- part can be a petal or flower
 function toggleFull(part, full)
 	part.isFull = full
 
-	if full then
-		part.tooltip = part.tooltip or {}
-		part.tooltip.text = "Full"
-		part.tooltip.alpha = 0
-		part.tooltip.width = nil
+	if full then		
+		setTooltip(part, "Full")
 	else
 		if part.tooltip and part.tooltip.default then
-			part.tooltip.text = part.tooltip.default
-			part.tooltip.alpha = 0
-			part.tooltip.width = nil
+			setTooltip(part, part.tooltip.default)
 		else
 			part.tooltip = nil
 		end
 	end
+end
+
+function setTooltip(part, text)
+	if part == flowers.pm then
+		text = getPMTooltipText()
+	end
+
+	part.tooltip = part.tooltip or {}
+	part.tooltip.text = text
+	part.tooltip.alpha = 0
+	part.tooltip.width = nil
+end
+
+function getPMTooltipText()
+	if flowers.pm.isFull then
+		return "Full"
+	elseif election.entered then
+		return "Withdraw"
+	elseif not election.active then
+		return "Spawn"
+	end
+
+	return "Enter Election"
 end
 
 function lerp(startValue, endValue, t)
@@ -956,6 +1059,15 @@ function textLengthSorter(a, b)
 	return dxGetTextWidth(a, sfs(1.1), font.small) < dxGetTextWidth(b, sfs(1.1), font.small)
 end
 
+function getPetalFromClassID(classID)
+	for _, flower in pairs(flowers) do
+		for _, petal in ipairs(flower.petals) do
+			if petal.classID == classID then
+				return petal
+			end
+		end
+	end
+end
 
 addCommandHandler("reset",
 	function()
@@ -966,20 +1078,6 @@ addCommandHandler("reset",
 addCommandHandler("scale", 
 	function(command, s)
 		uiScale = tonumber(s)
-	end
-)
-
-local countdown = 5
-addCommandHandler("burst", 
-	function(command)
-		flowers.polls.animation.burst = 0
-		countdown = 5
-
-		setTimer(function()
-			countdown = countdown - 1
-			flowers.polls.animation.burst = 0
-			flowers.polls.text.default.middle.text = string.format("%s%d", colours.hex.red, countdown)
-		end, 1000, 5)
 	end
 )
 

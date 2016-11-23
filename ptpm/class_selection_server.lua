@@ -1,4 +1,49 @@
-﻿addEvent("onPlayerRequestSpawn", true)
+﻿election = {
+	active = false,
+	candidates = {},
+
+	addCandidate = 
+		function(player)
+			if not election.active or getElementData(player, "ptpm.electionCandidate") then
+				return
+			end
+
+			setElementData(player, "ptpm.electionCandidate", true, false)
+			setElementData(player, "ptpm.electionClass", nil, false)
+			table.insert(election.candidates, player)
+
+			for _, player in ipairs(getElementsByType("player")) do
+				if player and isElement(player) and isPlayerActive(player) and getElementData(player, "ptpm.inClassSelection") then
+					triggerClientEvent(player, "updateClassSelection", player, nil, #election.candidates)
+				end
+			end
+		end,
+	removeCandidate = 
+		function(player)
+			if not election.active or not getElementData(player, "ptpm.electionCandidate") then
+				return
+			end
+
+			for i, candidate in ipairs(election.candidates) do
+				if candidate == player then
+					table.remove(election.candidates, i)
+					break
+				end
+			end
+
+			setElementData(player, "ptpm.electionCandidate", nil, false)	
+
+			for _, player in ipairs(getElementsByType("player")) do
+				if player and isElement(player) and isPlayerActive(player) and getElementData(player, "ptpm.inClassSelection") then
+					triggerClientEvent(player, "updateClassSelection", player, nil, #election.candidates)
+				end
+			end		
+		end,
+}
+			
+
+
+addEvent("onPlayerRequestSpawn", true)
 
 
 -- compcheck
@@ -13,6 +58,7 @@ function initClassSelection(thePlayer)
 	end
 
 	setElementData(thePlayer, "ptpm.inClassSelection", true, false)
+	setElementData(thePlayer, "ptpm.electionClass", nil, false)
 
 	if getPlayerClassID(thePlayer) then
 		setElementData(thePlayer, "ptpm.classID", false)
@@ -63,7 +109,7 @@ function initClassSelection(thePlayer)
 	
 	--local weapons = getElementData( classes[classSelectID].class, "weapons" )
 
-	triggerClientEvent(thePlayer, "enterClassSelection", root, runningMapName, classes, balance.full)
+	triggerClientEvent(thePlayer, "enterClassSelection", root, runningMapName, classes, balance.full, election.active, #election.candidates)
 
 	-- triggerClientEvent( thePlayer, "updateClassSelectionScreen", root, "create", 
 	-- 					classSelectID, 
@@ -104,7 +150,42 @@ function onPlayerRequestSpawn(requestedClassID)
 		return
 	end
 
-	playerClassSelectionAccept(client, requestedClassID)
+	if election.active then
+		-- pm is a special case because multiple people can request it
+		if classes[requestedClassID].type == "pm" then
+			if getElementData(client, "ptpm.electionCandidate") then
+				election.removeCandidate(client)
+				triggerClientEvent(client, "onPlayerRequestSpawnReserved", root, requestedClassID, true)
+			else
+				election.addCandidate(client)
+				triggerClientEvent(client, "onPlayerRequestSpawnReserved", root, requestedClassID)
+			end
+		else
+			-- tried to reserve something else while in the pm election, so remove from election
+			if getElementData(client, "ptpm.electionCandidate") then
+				election.removeCandidate(client)
+				triggerClientEvent(client, "onPlayerRequestSpawnReserved", root, getPMClassID(), true)
+			end
+
+			-- if they select the same class again, remove their reservation
+			if getElementData(client, "ptpm.electionClass") == requestedClassID then
+				setElementData(client, "ptpm.electionClass", nil, false)
+
+				triggerClientEvent(client, "onPlayerRequestSpawnReserved", root, requestedClassID, true)
+			else
+				-- save the class choice until the election is over
+				setElementData(client, "ptpm.electionClass", requestedClassID, false)
+
+				triggerClientEvent(client, "onPlayerRequestSpawnReserved", root, requestedClassID)
+			end
+
+			-- recalculate the balance with this new class reservation
+			calculateBalance()
+			notifyTeamAvailability()
+		end
+	else
+		playerClassSelectionAccept(client, requestedClassID, true)
+	end
 end
 addEventHandler("onPlayerRequestSpawn", root, onPlayerRequestSpawn)
 
@@ -126,6 +207,46 @@ addCommandHandler("lt",
 )
 
 
+-- spawn all the players that have reserved a class during the election
+function spawnElection()
+	local pmClassID = getPMClassID()
+
+	if #election.candidates > 0 then
+		local randomCandidate = election.candidates[math.random(#election.candidates)]
+
+		if pmClassID >= 0 then
+			playerClassSelectionAccept(randomCandidate, pmClassID, true)
+		end
+
+		election.candidates = {}
+	end
+
+	for _, player in ipairs(getElementsByType("player")) do
+		if player and isElement(player) and isPlayerActive(player) then
+			if getElementData(player, "ptpm.electionClass") then
+				playerClassSelectionAccept(player, getElementData(player, "ptpm.electionClass"), false)
+
+				setElementData(player, "ptpm.electionClass", nil, false)
+			end
+
+			if getElementData(player, "ptpm.electionCandidate") then
+				if player ~= currentPM then
+					triggerClientEvent(player, "onPlayerRequestSpawnReserved", root, pmClassID, true)
+				end
+
+				setElementData(player, "ptpm.electionCandidate", nil, false)
+			end
+		end
+	end
+end
+
+function getPMClassID()
+	for i, class in ipairs(classes) do
+		if class.type == "pm" then
+			return i
+		end
+	end
+end
 -- compcheck
 -- function leftControlToggle( thePlayer, _, keystate )
 -- 	if keystate == "down" then
@@ -288,7 +409,7 @@ addCommandHandler("lt",
 -- end
 
 -- compcheck
-function playerClassSelectionAccept(thePlayer, classID)
+function playerClassSelectionAccept(thePlayer, classID, notify)
 	classSelectionRemove(thePlayer)
 
 	playSoundFrontEnd(thePlayer, 9)
@@ -308,7 +429,9 @@ function playerClassSelectionAccept(thePlayer, classID)
 	
 	setPlayerClass(thePlayer, classID)
 
-	notifyTeamAvailability()
+	if notify then
+		notifyTeamAvailability()
+	end
 
 	bindKey(thePlayer, "f4", "down", classSelectionAfterDeath)
 end
@@ -319,6 +442,7 @@ function notifyTeamAvailability()
 	-- local policeFull = not isBalanced("police")
 	-- local terroristFull = not isBalanced("terrorist")
 
+	-- todo: only notify if the team-level state is actually different 
 	for _, player in ipairs(getElementsByType("player")) do
 		if isPlayerActive(player) and getElementData(player, "ptpm.inClassSelection") then
 			triggerClientEvent(player, "updateClassSelection", player, balance.full)
@@ -347,6 +471,7 @@ function classSelectionRemove(thePlayer)
 		--showPlayerHudComponent( thePlayer, "radar", true )
 		
 		setElementData(thePlayer, "ptpm.inClassSelection", false, false)
+		setElementData(thePlayer, "ptpm.electionClass", nil, false)
 	end
 end
 
