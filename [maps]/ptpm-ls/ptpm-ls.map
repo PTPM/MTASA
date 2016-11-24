@@ -1,6 +1,6 @@
 ﻿<map mod="ptpm" version="1.0">
 
-    <wardrobe playerX="1096.5823" playerY="-841.7264" playerZ="112.0422" playerRot="343.6601" camX="1097.3323" camY="-839.7264" camZ="113.0422" interior="0" />
+    <wardrobe camX="1343.25" camY="-842.85" camZ="80.58" lookX="1430.17" lookY="-793.43" lookZ="82.24" interior="0" />
 	
     <intel north="-1390" south="-1930" west="1130" east="1835" feature="Los Santos" />
 	

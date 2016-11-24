@@ -276,7 +276,7 @@ local helper = {
 		"What is PTPM? Press #00ffaeF9#ffffff and click '#00ffaePTPM#ffffff' to find out",
 		"Are you Silver, Gold or even Platinum? Find out at #00ffaehttps://PTPM.uk/stats#ffffff!",
 		"Want to change your team? Type /#00ffaereclass <team>",
-		"Check out #00ffaehttps://PTPM.uk#ffffff for PTPM fanfictions and songs starring YOU!",
+		"Navigate the class selection from your keyboard using the #00ffaearrow keys#ffffff and holding #00ffaectrl",
 		"Are you playing as a #00ffaemedic#ffffff? You can heal people with /#00ffaeheal",
 		"There's a #00ffaeminigun#ffffff? Find out more at #00ffaehttps://PTPM.uk#ffffff!",
 		"Want a full list of the commands? Press #00ffaeF9#ffffff and click '#00ffaePTPM#ffffff'",

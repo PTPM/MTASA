@@ -1,10 +1,9 @@
 ﻿-- possibly split this up into separate files for each map element (eg: tasks.lua, objectives.lua, etc)
 -- and call the specific loading functions from here
 
--- compcheck
+
 addEvent( "onGamemodeMapStart", false )
 function ptpmMapStart( map )
-
 	options = {}
 	data = {}
 
@@ -38,6 +37,7 @@ function ptpmMapStart( map )
 	runningMap = map
 	runningMapRoot = source
 	runningMapName = getResourceName( map )
+	runningMapFriendlyName = getResourceInfo(map, "name")
 	
 	for _, v in ipairs( getElementsByType( "player" ) ) do
 		if v and isElement( v ) and isPlayerActive( v ) then
@@ -115,7 +115,6 @@ function ptpmMapStart( map )
 	for _, value in ipairs( spawnGroupTable ) do
 		local classType = getElementData( value, "type" )		
 		for _, class in ipairs ( getElementsByType( "class", value ) ) do
-		    --local classID = tonumber(getElementID(class))
 			classes[classID] = {}
 			classes[classID].type = classType
 			classes[classID].skin = tonumber(getElementData(class, "skin"))
@@ -493,7 +492,6 @@ function ptpmMapStart( map )
 			for _, value in ipairs( players ) do
 				-- Prepare active players (ignore the ones in login screen)
 				if value and isElement( value ) and isPlayerActive( value ) then
-					preparePlayer( value )
 					triggerClientEvent( value, "onClientMapStarted", value, miniClass, options.displayDistanceToPM )
 				
 					initClassSelection( value )
@@ -508,7 +506,7 @@ function ptpmMapStart( map )
 
 end
 addEventHandler( "onGamemodeMapStart", root, ptpmMapStart )
--- compcheck
+
 addEvent( "onGamemodeMapStop", false )
 function ptpmMapStop( map )
 	clearTask()
@@ -737,22 +735,6 @@ function resetPlayerRound( thePlayer )
 	setElementData( thePlayer, "ptpm.electionClass", nil, false)
 	setElementData( thePlayer, "ptpm.electionCandidate", nil, false)
 	
-	local autoRight = getElementData( thePlayer, "ptpm.classSelect.autoRight" )
-	if autoRight then
-		if isTimer( autoRight ) then
-			killTimer( autoRight )
-		end
-	end
-	setElementData( thePlayer, "ptpm.classSelect.autoRight", nil, false )
-	
-	local autoLeft = getElementData( thePlayer, "ptpm.classSelect.autoLeft" )
-	if autoLeft then
-		if isTimer( autoLeft ) then
-			killTimer( autoLeft )
-		end
-	end
-	setElementData( thePlayer, "ptpm.classSelect.autoLeft", nil, false )
-	
 	setElementData( thePlayer, "ptpm.classSelectAfterDeath", nil, false )
 	
 	local interiorBlip = getElementData( thePlayer, "ptpm.interiorBlip" )
@@ -792,9 +774,4 @@ function resetPlayerRound( thePlayer )
 	setElementData( thePlayer, "ptpm.score.class", nil )
 	
 	setPlayerTeam( thePlayer, nil )
-end
-
-function preparePlayer( thePlayer )
-	--setElementData( thePlayer, "ptpm.classSelect.id", 1, false )
-	--setPlayerControllable( thePlayer, true ) -- Element data is false by default, but this is reset to false in class selection anyway
 end

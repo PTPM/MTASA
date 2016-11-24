@@ -9,10 +9,10 @@ local mapVoteTimer = nil
 function setRoundEnded()
 	data.roundEnded = true
 
-	options.endGamePrepareTimer = setTimer( endGame, 3000, 1 )
+	options.endGamePrepareTimer = setTimer(endGame, 3000, 1)
 
-	for _, p in ipairs( getElementsByType( "player" ) ) do
-		if p and isElement( p ) and isPlayerActive( p ) then
+	for _, p in ipairs(getElementsByType("player")) do
+		if p and isElement(p) and isPlayerActive(p) then
 			if getElementData(p, "ptpm.inClassSelection") then
 				classSelectionRemove(p)
 			end

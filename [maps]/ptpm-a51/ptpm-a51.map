@@ -1,6 +1,6 @@
 ﻿<map mod="ptpm" version="1.0">
 
-    <wardrobe playerX="324.4081" playerY="1847.7921" playerZ="7.5" playerRot="90.0" camX="314.4081" camY="1847.7921" camZ="8.3" interior="0" />
+    <wardrobe camX="253.00" camY="1805.79" camZ="9.54" lookX="227.31" lookY="1901.86" lookZ="-1.02" interior="0" />
 	
     <spawngroup type="psycho">
         <class id="0" skin="230" weapons="24,15;10,1" />

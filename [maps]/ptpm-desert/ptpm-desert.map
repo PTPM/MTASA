@@ -1,6 +1,6 @@
 ﻿<map mod="ptpm" version="1.0">
 
-    <wardrobe playerX="-346.3293" playerY="1626.5712" playerZ="136.3119" playerRot="0.0" camX="-341.3293" camY="1629.5712" camZ="141.3119" interior="0" />
+    <wardrobe camX="-487.26" camY="1624.92" camZ="154.69" lookX="-394.29" lookY="1654.58" lookZ="132.82" interior="0" />
 	
     <safezone posX="191" posY="1870" posZ="17" exclusion="250" enabled="false" />
 	

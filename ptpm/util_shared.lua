@@ -52,3 +52,13 @@ function weaponListToString(weapons, includeAmmo, orderFn)
 
 	return table.concat(texts, "\n")
 end
+
+function getRunningMapFriendlyNameWrapped()
+	local the = ""
+
+	if runningMapName == "ptpm-desert" or runningMapName == "ptpm-country" or runningMapName == "ptpm-factory" then
+		the = "the "
+	end
+
+	return the .. runningMapFriendlyName
+end

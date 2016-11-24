@@ -1,6 +1,6 @@
 ﻿<map mod="ptpm" version="1.0">
 
-	<wardrobe playerX="2716.3630" playerY="2773.5920" playerZ="78.6567" playerRot="271" camX="2725.8916" camY="2773.3691" camZ="82.4849" interior="0" />
+	<wardrobe camX="2490.23" camY="2693.70" camZ="82.32" lookX="2578.73" lookY="2722.66" lookZ="45.85" interior="0" />
 	<intel north="2775.7010" south="2696.0000" west="2580.3762" east="2663.7210" feature="the Factory" />
 
 	<spawngroup type="psycho" >

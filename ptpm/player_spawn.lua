@@ -350,6 +350,7 @@ function makePlayerSpawn( thePlayer )
 	spawnPlayer( thePlayer, x, y, z, randomSpawns[classType][randNum].rot, classes[class].skin, randomSpawns[classType][randNum].interior, 0 )
 
 	setPedGravity( thePlayer, 0.008 )
+	setElementFrozen(thePlayer, false)
 	setCameraTarget( thePlayer, thePlayer )
 	setTimer( setCameraTarget, 100, 1, thePlayer, thePlayer ) -- ok timer
 

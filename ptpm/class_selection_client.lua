@@ -189,7 +189,7 @@ addEventHandler("onClientResourceStart", resourceRoot,
 )
 
 -- called when the player is sent to the class selection screen
-function enterClassSelection(mapName, classes, isFull, electionActive, numberOfCandidates)
+function enterClassSelection(mapName, friendlyMapName, classes, isFull, electionActive, numberOfCandidates)
 	if classSelection.visible then
 		if not classSelection.hiding then
 			return
@@ -208,6 +208,7 @@ function enterClassSelection(mapName, classes, isFull, electionActive, numberOfC
 	classSelection.visible = true
 	classSelection.hiding = false
 	classSelection.spawnMessage = "Select\nyour class"
+	classSelection.friendlyMapName = "in " .. friendlyMapName
 
 	election.active = electionActive
 
@@ -389,13 +390,13 @@ function onElectionFinished(electedPM)
 	election.active = false
 	election.candidates = 0
 
-	if election.entered and electedPM ~= localPlayer then
-		classSelection.spawnMessage = "Select\nyour class"
-	end
-
-	setTooltip(flowers.pm)
-
 	if classSelection.visible and not classSelection.hiding then
+		if election.entered and electedPM ~= localPlayer then
+			classSelection.spawnMessage = "Select\nyour class"
+		end
+
+		setTooltip(flowers.pm)
+
 		if not election.cleared then
 			-- allow the polls flower to hide before we show the psychos
 			setTimer(
@@ -418,9 +419,12 @@ addEventHandler("onElectionFinished", root, onElectionFinished)
 
 function onElectionCountdown(seconds)
 	election.countdown = seconds
-	flowers.polls.animation.burst = 0
-	flowers.polls.text.default.top.text = string.format("Round\nstarts in")
-	flowers.polls.text.default.middle.text = string.format("%s%d", colours.hex.red, election.countdown)
+
+	if classSelection.visible and not classSelection.hiding then
+		flowers.polls.animation.burst = 0
+		flowers.polls.text.default.top.text = string.format("Round\nstarts in")
+		flowers.polls.text.default.middle.text = string.format("%s%d", colours.hex.red, election.countdown)
+	end
 end
 addEventHandler("onElectionCountdown", root, onElectionCountdown)
 
@@ -478,6 +482,9 @@ function drawClassSelection()
 	delta = (getTickCount() - lastTick) / 1000
 	lastTick = getTickCount()
 
+	-- if they are typing, draw behind the chat
+	flowers.pm.postGUI = not isChatBoxInputActive()
+
 	processCursorMovement()
 
 	if not classSelection.hiding then
@@ -487,15 +494,25 @@ function drawClassSelection()
 	drawFlower(flowers.pm)
 
 	local height = flowers.pm.y + s(flowers.pm.radius)
-	dxDrawText("The Prime Minister", flowers.pm.x - s(flowers.pm.radius * 2), height, flowers.pm.x + s(flowers.pm.radius * 2), height + s(25), colours.white, sf(120/44), font.base, "center", "top", false, false, false, false, true)
+	dxDrawText("The Prime Minister", flowers.pm.x - s(flowers.pm.radius * 2), height, flowers.pm.x + s(flowers.pm.radius * 2), height + s(25), colours.white, sf(120/44), font.base, "center", "top", false, false, flowers.pm.postGUI, false, true)
 	
+	dxDrawText(classSelection.friendlyMapName, flowers.pm.x - s(flowers.pm.radius * 2), height + s(35), flowers.pm.x + s(flowers.pm.radius * 2), height + s(45), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
+
 	if election.active then
 		if election.candidates == 1 then
-			dxDrawText("There is 1 candidate\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(40), flowers.pm.x + s(flowers.pm.radius * 2), height + s(50), colours.white, sfs(1.2), font.small, "center", "top", false, false, false, true, false)	
+			dxDrawText("There is 1 candidate\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)	
 		else
-			dxDrawText("There are " .. tostring(election.candidates) .. " candidates\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(40), flowers.pm.x + s(flowers.pm.radius * 2), height + s(50), colours.white, sfs(1.2), font.small, "center", "top", false, false, false, true, false)
+			dxDrawText("There are " .. tostring(election.candidates) .. " candidates\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
 		end
 	end
+
+	-- if election.active then
+	-- 	if election.candidates == 1 then
+	-- 		dxDrawText("There is 1 candidate\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(40), flowers.pm.x + s(flowers.pm.radius * 2), height + s(50), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)	
+	-- 	else
+	-- 		dxDrawText("There are " .. tostring(election.candidates) .. " candidates\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(40), flowers.pm.x + s(flowers.pm.radius * 2), height + s(50), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
+	-- 	end
+	-- end
 
 	dxDrawText(classSelection.spawnMessage, (screenX / 2) - s(60), screenY * 0.65, (screenX / 2) + s(60), (screenY * 0.65) + s(50), colours.white, sf(2.0), font.base, "center", "top", false, false, false, true, false)
 
@@ -724,8 +741,10 @@ function scrollClassSelection(key, state, dir)
 	if not currentlySelectedPetal and not currentlySelectedFlower then
 		if dir == -1 or dir == -2 then
 			onPetalEnter(flowers.protect, flowers.protect.petals[1])
-		else
+		elseif dir == 1 then
 			onPetalEnter(flowers.attack, flowers.attack.petals[1])
+		elseif dir == 2 then
+			onFlowerEnter(flowers.pm)
 		end
 
 		return
@@ -885,16 +904,6 @@ function onFlowerLeave(flower)
 	currentlySelectedFlower = nil
 end
 
-function isMouseOver(x, y, radius)
-	local cX, cY = getCursorPosition()
-
-	if not cX or not cY then
-		return false
-	end
-
-	return getDistanceBetweenPoints2D(x, y, cX * screenX, cY * screenY) < radius
-end
-
 function processCursorClicks(button, state, absoluteX, absoluteY, worldX, worldY, worldZ, clickedElement)
 	if button ~= "left" then
 		return
@@ -1030,6 +1039,16 @@ function getPMTooltipText()
 	end
 
 	return "Enter Election"
+end
+
+function isMouseOver(x, y, radius)
+	local cX, cY = getCursorPosition()
+
+	if not cX or not cY then
+		return false
+	end
+
+	return getDistanceBetweenPoints2D(x, y, cX * screenX, cY * screenY) < radius
 end
 
 function lerp(startValue, endValue, t)

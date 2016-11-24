@@ -1,5 +1,5 @@
 ﻿<map mod="ptpm" version="1.0">
-    <wardrobe playerX="-1397" playerY="1482" playerZ="11.8084" playerRot="70.0" camX="-1402" camY="1479" camZ="12" interior="0" />
+    <wardrobe camX="-2783.94" camY="1757.11" camZ="28.71" lookX="-2723.00" lookY="1687.59" lookZ="66.82" interior="0" />
 	
     <intel north="475" south="-200" west="-2400" east="-1800" feature="San Fierro" />
 	

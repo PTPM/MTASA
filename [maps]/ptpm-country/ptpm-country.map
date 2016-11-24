@@ -1,6 +1,6 @@
 ﻿<map mod="ptpm" version="1.0">
 
-    <wardrobe playerX="-412.85" playerY="-424.83" playerZ="32.32" playerRot="157.5869" camX="-413.35" camY="-427.83" camZ="34.32" interior="0" />
+    <wardrobe camX="-65.99" camY="36.60" camZ="6.88" lookX="-87.49" lookY="-60.95" lookZ="11.59" interior="0" />
 	
     <intel north="185.2761" south="-201.8521" west="309.3460" east="1642.6939" feature="the countryside" />
 	

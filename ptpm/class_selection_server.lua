@@ -68,16 +68,22 @@ function initClassSelection(thePlayer)
 	
 	setPlayerControllable(thePlayer, false)
 
-	local classSelectID = tonumber(getElementData(thePlayer, "ptpm.classSelect.id")) or 1
+	local classSelectID = 1
 
-	spawnPlayer(thePlayer, data.wardrobe.playerX,
-							data.wardrobe.playerY,
-							data.wardrobe.playerZ,
-							data.wardrobe.playerRot,
-							classes[classSelectID].skin,
-							data.wardrobe.interior,
-							2000 + getPlayerId(thePlayer)
-				)
+	-- spawn the player just behind the camera
+	local vec = Vector3(data.wardrobe.camX, data.wardrobe.camY, data.wardrobe.camZ) - Vector3(data.wardrobe.lookX, data.wardrobe.lookY, data.wardrobe.lookZ)
+	vec:normalize()
+
+	spawnPlayer(thePlayer, data.wardrobe.camX + vec:getX(), 
+		data.wardrobe.camY + vec:getY(), 
+		data.wardrobe.camZ + vec:getZ(), 
+		0,
+		classes[classSelectID].skin, 
+		data.wardrobe.interior, 
+		2000 + getPlayerId(thePlayer)
+	)
+
+	setElementFrozen(thePlayer, true)
 	
 	--setPlayerGravity( thePlayer, 0 )
 	
@@ -86,13 +92,13 @@ function initClassSelection(thePlayer)
 	setCameraMatrix(thePlayer, data.wardrobe.camX,
 								data.wardrobe.camY,
 								data.wardrobe.camZ,
-								data.wardrobe.playerX,
-								data.wardrobe.playerY,
-								data.wardrobe.playerZ
+								data.wardrobe.lookX,
+								data.wardrobe.lookY,
+								data.wardrobe.lookZ
 					)
 	setCameraInterior(thePlayer, data.wardrobe.interior)
 	
-	triggerClientEvent(thePlayer, "enterClassSelection", root, runningMapName, classes, balance.full, election.active, #election.candidates)
+	triggerClientEvent(thePlayer, "enterClassSelection", root, runningMapName, getRunningMapFriendlyNameWrapped(), classes, balance.full, election.active, #election.candidates)
 	
 	if tableSize(getElementsByType("objective", runningMapRoot)) > 0 then
 		clearObjectiveTextFor(thePlayer) 

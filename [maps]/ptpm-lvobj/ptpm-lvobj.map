@@ -1,5 +1,5 @@
 ﻿<map>
-    <wardrobe playerX="1955.3408" playerY="1019.0750" playerZ="992.4688" playerRot="127.6004" camX="1953.8408" camY="1016.0750" camZ="994.4688" interior="10" />
+    <wardrobe camX="2102.63" camY="1315.40" camZ="11.52" lookX="2194.53" lookY="1278.22" lookZ="24.61" interior="0" />
 	
     <spawngroup type="psycho">
         <class id="0" skin="230" weapons="18,10;30,100;26,80" />
