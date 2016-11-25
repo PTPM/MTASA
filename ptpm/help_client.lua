@@ -3,7 +3,7 @@
 	 children = {
 					{name = "What is PTPM?",
 					 children = {
-									{desc = "Protect the Prime Minister (PTPM) is a team based mode promoting teamwork and strategy over the conventional deathmatch tactics.\n\nThe aim for the 'good guys' is for the PM to stay alive for the allotted time limit with the help of his bodyguards and the cops. The aim of the Terrorists is to murder the PM before the end of the round. Generally rounds last for 15 minutes, but it is dependant on the map. You can see the time left on the timer in the top center of the screen.\n\nThe round ends if one of the following happens:\n- The timer reaches 0 and the PM is still alive\n- The PM is killed (bad guys win)"}
+									{desc = "Protect the Prime Minister (PTPM) is a team based mode promoting teamwork and strategy over the conventional deathmatch tactics.\n\nThe aim for the 'good guys' is for the PM to stay alive for the allotted time limit with the help of his bodyguards and the cops. The aim of the Terrorists is to murder the PM before the end of the round. Generally rounds last for 15 minutes, but it is dependent on the map. You can see the time left on the timer in the top center of the screen.\n\nThe round ends if one of the following happens:\n- The timer reaches 0 and the PM is still alive\n- The PM is killed (bad guys win)"}
 --									{desc = "The aim of the game is for the PM to stay alive for the allotted time limit with the help of his bodyguards and the cops. Each map is slightly different in design requiring tactics to be varied depending on which map is being played. The aim of the terrorists is to hunt down and kill the PM before the end of the round.\n\n The game has several classes, divided into 5 teams. All classes in the same team spawn in the same \"base\". Within each team, the different classes have different weapons. Some classes have special \"medic\" powers, and usually spawn with less weaponry. Medics have a slightly paler colour so you can identify them on the radar.\n\nThere is an unarmed \"Prime Minister\" (PM) class (yellow). Closely guarding the Prime Minister is the \"bodyguard\" team (green), consisting of all the bodyguard classes. Then there are the more heavily-armed \"cops\" (blue). The \"good guys\" are allies, they fight united against the \"terrorists\" (pink) team. There are also \"psychos\" (orange) who can kill whoever they like and generally mess around."}
 								}
 					},
@@ -118,15 +118,25 @@ addEventHandler( "onClientAvailable", localPlayer,
 			
 			addEventHandler("onClientGUIClick",helpGUI[1][i],shuffleHelp,false)
 		end
+
+		-- auto select "How to play" -> "What is PTPM?"
+		shuffleHelp(helpGUI[1][1])
+		shuffleHelp(helpGUI[2][1])
 		
 	--	helpDivide.line[1] = guiCreateStaticImage(helpPos.x + helpPos.w + 5, 5, 2, helpPos.th - 10,"images/white_dot.png",false,helpTab)
 	end
 )
 
 
-function shuffleHelp(button,state)
+function shuffleHelpHandler(button,state)
 	if button == "left" and state == "up" then
-		local index = getElementData(source,"helpIndex")
+		shuffleHelp(source)
+	end
+end
+
+function shuffleHelp(element)
+	if element and isElement(element) then
+		local index = getElementData(element,"helpIndex")
 		
 		cleanScrollpanes(index[1])
 		
@@ -136,7 +146,7 @@ function shuffleHelp(button,state)
 
 		
 		if index[3].children then
-			guiLabelSetColor(source,135,206,250)
+			guiLabelSetColor(element,135,206,250)
 			
 			local level = index[1]+1
 			
@@ -211,7 +221,6 @@ function shuffleHelp(button,state)
 		end
 	end
 end
-
 
 function resetHelp(level)
 	while true do
