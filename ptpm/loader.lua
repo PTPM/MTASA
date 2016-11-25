@@ -463,7 +463,6 @@ function ptpmMapStart( map )
 			election.seconds = election.seconds - 1
 
 			if election.seconds <= 0 then
-				outputChatBox("Election over boys, let's go home")
 				election.active = false
 
 				spawnElection()
@@ -645,12 +644,12 @@ function ptpmLoginResourceStop( resource )
 end
 
 function resetPlayer( thePlayer )
-	resetPlayerRound( thePlayer )
-
 	if getElementData(thePlayer, "ptpm.electionCandidate") then
 		election.removeCandidate(thePlayer)
 	end
 	
+	resetPlayerRound( thePlayer )
+
 	-- Save session lengths
 	if isRunning( "ptpm_accounts" ) then
 		local now = getRealTime().timestamp

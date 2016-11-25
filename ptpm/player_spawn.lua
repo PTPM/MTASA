@@ -75,13 +75,20 @@ function isBalanced(proposedClassId, oldClassId)
 		return balance.teamPlayers.pm == 0
 	end
 
+	-- for testing
+	-- if proposedTeam == "terrorist" and balance.teamPlayers.terrorist > 0 and (not oldClassId or classes[oldClassId].type ~= "terrorist") then
+	-- 	return false
+	-- end
+
 	-- with 5 or less players we allow anything
 	if balance.totalTeamPlayers <= 5 then
 		return true
 	end
 
+	local oldTeam = oldClassId and classes[oldClassId].type or nil
+
 	-- bodyguards ard hard capped at 30% of team players
-	if proposedTeam == "bodyguard" and ((balance.teamPlayers.bodyguard * 100) / balance.totalTeamPlayers) > 30 then 
+	if proposedTeam == "bodyguard" and oldTeam ~= "bodyguard" and ((balance.teamPlayers.bodyguard * 100) / balance.totalTeamPlayers) > 30 then 
 		return false 
 	end	
 
@@ -698,7 +705,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 			local afterDeathTimer = setTimer(
 				function( player )
 					if player and isElement( player ) then
-						initClassSelection( player )
+						initClassSelection( player, true )
 						setElementData( player, "ptpm.afterDeathTimer", nil, false )
 					end
 				end,

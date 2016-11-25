@@ -8,13 +8,19 @@
 				return
 			end
 
+			if getElementData(player, "ptpm.electionClass") then
+				setElementData(player, "ptpm.electionClass", nil, false)
+
+				calculateBalance()
+				notifyTeamAvailability()
+			end
+
 			setElementData(player, "ptpm.electionCandidate", true, false)
-			setElementData(player, "ptpm.electionClass", nil, false)
 			table.insert(election.candidates, player)
 
-			for _, player in ipairs(getElementsByType("player")) do
-				if player and isElement(player) and isPlayerActive(player) and getElementData(player, "ptpm.inClassSelection") then
-					triggerClientEvent(player, "updateClassSelection", player, nil, #election.candidates)
+			for _, p in ipairs(getElementsByType("player")) do
+				if p and isElement(p) and isPlayerActive(p) and getElementData(p, "ptpm.inClassSelection") then
+					triggerClientEvent(p, "updateClassSelection", p, nil, #election.candidates)
 				end
 			end
 		end,
@@ -33,9 +39,9 @@
 
 			setElementData(player, "ptpm.electionCandidate", nil, false)	
 
-			for _, player in ipairs(getElementsByType("player")) do
-				if player and isElement(player) and isPlayerActive(player) and getElementData(player, "ptpm.inClassSelection") then
-					triggerClientEvent(player, "updateClassSelection", player, nil, #election.candidates)
+			for _, p in ipairs(getElementsByType("player")) do
+				if p and isElement(p) and isPlayerActive(p) and getElementData(p, "ptpm.inClassSelection") then
+					triggerClientEvent(p, "updateClassSelection", p, nil, #election.candidates)
 				end
 			end		
 		end,
@@ -46,7 +52,7 @@ addEvent("onPlayerRequestSpawn", true)
 
 
 -- call the client and initiate the class selection screen
-function initClassSelection(thePlayer)
+function initClassSelection(thePlayer, updateBalanceAndNotify)
 	if not data or data.roundEnded then 
 		return 
 	end
@@ -55,12 +61,19 @@ function initClassSelection(thePlayer)
 		return 
 	end
 
-	setElementData(thePlayer, "ptpm.inClassSelection", true, false)
 	setElementData(thePlayer, "ptpm.electionClass", nil, false)
 
 	if getPlayerClassID(thePlayer) then
 		setElementData(thePlayer, "ptpm.classID", false)
 	end
+
+	-- used e.g. when we go back to class selection after death
+	if updateBalanceAndNotify then
+		calculateBalance()
+		notifyTeamAvailability()
+	end
+
+	setElementData(thePlayer, "ptpm.inClassSelection", true, false)
 	
 	setElementData(thePlayer, "ptpm.score.class", nil)
 	setPlayerTeam(thePlayer, nil)
@@ -110,11 +123,13 @@ function initClassSelection(thePlayer)
 end
 
 function onPlayerRequestSpawn(requestedClassID)
-	if not getElementData(client, "ptpm.inClassSelection") then
+	if not getElementData(client, "ptpm.inClassSelection") or getPlayerClassID(client) then
 		return
 	end
 
-	if not isBalanced(requestedClassID, false) then 
+	-- electionClass only exists if they have reserved something in the class selection
+	-- in which case, passing it allows for switching class within the same team while that team is full
+	if not isBalanced(requestedClassID, getElementData(client, "ptpm.electionClass")) then 
 	--if true then
 		triggerClientEvent(client, "onPlayerRequestSpawnDenied", root, requestedClassID)
 		return
@@ -160,32 +175,18 @@ end
 addEventHandler("onPlayerRequestSpawn", root, onPlayerRequestSpawn)
 
 
-addCommandHandler("jt", 
-	function(player, cmd, team)
-		calculateBalance()
-		balance.full[team] = true
-		debugFunc("post", balance.full)
-		notifyTeamAvailability()
-	end
-)
-addCommandHandler("lt", 
-	function(player, cmd, team)
-		calculateBalance()
-		balance.full[team] = false
-		notifyTeamAvailability()
-	end
-)
-
-
 -- spawn all the players that have reserved a class during the election
 function spawnElection()
 	local pmClassID = getPMClassID()
 
-	if #election.candidates > 0 then
+	if #election.candidates > 0 and pmClassID >= 0 then
 		local randomCandidate = election.candidates[math.random(#election.candidates)]
 
-		if pmClassID >= 0 then
+		if randomCandidate and isElement(randomCandidate) then
 			playerClassSelectionAccept(randomCandidate, pmClassID, true)
+		else
+			-- well, shit
+			outputDebugString("Error: randomCandidate in election was invalid element")
 		end
 
 		election.candidates = {}
@@ -402,6 +403,8 @@ function swapclassOffer( accepted, thePlayer )
 			
 		setPlayerClass( currentPM, victimClass )
 		setPlayerClass( thePlayer, pmClass )	
+
+		notifyTeamAvailability()
 			
 		drawStaticTextToScreen( "delete", thePlayer, "swapText" )
 	else

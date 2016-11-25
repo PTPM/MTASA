@@ -26,6 +26,7 @@ local classSelection = {
 	visible = false,
 	hiding = false,
 	spawnMessage = "",
+	lastRequest = 0
 }
 local lastTick = 0
 local delta = 0
@@ -209,6 +210,7 @@ function enterClassSelection(mapName, friendlyMapName, classes, isFull, election
 	classSelection.hiding = false
 	classSelection.spawnMessage = "Select\nyour class"
 	classSelection.friendlyMapName = "in " .. friendlyMapName
+	classSelection.reserved = nil
 
 	election.active = electionActive
 
@@ -218,6 +220,8 @@ function enterClassSelection(mapName, friendlyMapName, classes, isFull, election
 		election.cleared = false
 	else
 		onElectionFinished()
+		-- ensure the poll flower is hidden
+		election.cleared = true
 	end
 
 	font.globalScalar = 1
@@ -271,6 +275,7 @@ function enterClassSelection(mapName, friendlyMapName, classes, isFull, election
 			flowers.psycho.petals[#flowers.psycho.petals + 1] = petal
 		elseif class.type == "pm" then
 			flowers.pm.classID = id
+			flowers.pm.classType = class.type
 		end
 
 		if class.medic then
@@ -304,7 +309,6 @@ addEventHandler("enterClassSelection", root, enterClassSelection)
 -- called every time information on the screen needs updating (team availability)
 function updateClassSelection(isFull, numberOfCandidates)
 	if isFull then
-		--toggleFull(flowers.pm, isFull.pm)
 		flowers.pm.isFull = isFull.pm
 		setTooltip(flowers.pm)
 
@@ -483,7 +487,7 @@ function drawClassSelection()
 	lastTick = getTickCount()
 
 	-- if they are typing, draw behind the chat
-	flowers.pm.postGUI = not isChatBoxInputActive()
+	flowers.pm.postGUI = not (isChatBoxInputActive() or isConsoleActive())
 
 	processCursorMovement()
 
@@ -843,8 +847,6 @@ function getSelectedFlower()
 	if currentlySelectedPetal then
 		return currentlySelectedPetal.flower
 	end
-
-	return
 end
 
 function onPetalEnter(flower, petal)
@@ -938,23 +940,28 @@ end
 addEventHandler("onClientClick", root, processCursorClicks)
 
 function choosePetal(petal)
-	if petal.isFull then
+	-- check we actually have the class selection active and that we aren't spamming selections
+	if petal.isFull or not classSelection.visible or classSelection.hiding or (getTickCount() - classSelection.lastRequest < 200) then
 		return
 	end
 
 	outputChatBox("Chosen " .. tostring(petal.title))
-
+	classSelection.lastRequest = getTickCount()
 	triggerServerEvent("onPlayerRequestSpawn", resourceRoot, petal.classID)
 end
 
 function chooseFlower(flower)
+	if not classSelection.visible or classSelection.hiding or (getTickCount() - classSelection.lastRequest < 200) then
+		return
+	end
+
 	if flower == flowers.pm then
 		if flower.isFull then
 			return
 		end
 
 		outputChatBox("Chosen pm")
-
+		classSelection.lastRequest = getTickCount()
 		triggerServerEvent("onPlayerRequestSpawn", resourceRoot, flowers.pm.classID)
 	else
 		outputChatBox("Chosen unknown flower")
@@ -981,6 +988,7 @@ addEventHandler("onPlayerRequestSpawnDenied", root, onPlayerRequestSpawnDenied)
 function onPlayerRequestSpawnReserved(classID, withdrawn)
 	outputDebugString("request spawn " .. tostring(classID) .. " " .. tostring(withdrawn and "withdrawn" or ""))
 	classSelection.spawnMessage = "Select\nyour class"
+	classSelection.reserved = (not withdrawn) and classID or nil
 
 	if classes[classID] == "pm" then
 		election.entered = not withdrawn
@@ -1005,6 +1013,18 @@ addEventHandler("onPlayerRequestSpawnReserved", root, onPlayerRequestSpawnReserv
 
 -- part can be a petal or flower
 function toggleFull(part, full)
+	-- blocks standard teams from being marked full when you have reserved one of them
+	-- this lets you still deselect or change to another class in the same team (otherwise they would be unclickable)
+	if full and part.classType and (part.classType == "terrorist" or part.classType == "police" or part.classType == "bodyguard") then
+		if classSelection.reserved then
+			local petal = getPetalFromClassID(classSelection.reserved)
+
+			if petal and petal.classType == part.classType then
+				return
+			end
+		end
+	end
+
 	part.isFull = full
 
 	if full then		
