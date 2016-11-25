@@ -53,9 +53,9 @@
     </spawngroup>
 	
     <spawngroup type="bodyguard">
-        <class id="14" skin="164" weapons="23,100;28,200;46,-1" />
-        <class id="16" skin="166" weapons="23,100;28,200;46,-1" />
-        <class id="17" skin="141" weapons="23,100;28,200;46,-1" />
+        <class id="14" skin="164" weapons="23,100;28,200;46,1" />
+        <class id="16" skin="166" weapons="23,100;28,200;46,1" />
+        <class id="17" skin="141" weapons="23,100;28,200;46,1" />
         <class id="18" skin="276" weapons="46,1;23,100;41,300" medic="true" />
         <linespawn startX="-2616.1018" startY="-318.4776" startZ="23.1227" endX="-2601.2432" endY="-293.0693" endZ="23.1227" />
     </spawngroup>
