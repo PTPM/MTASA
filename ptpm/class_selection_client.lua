@@ -300,6 +300,10 @@ function enterClassSelection(mapName, friendlyMapName, classes, isFull, election
 	setupClassSelectionUI()
 	lastTick = getTickCount()
 
+	if isRunning("killmessages") then
+		exports.killmessages:setKillMessagesVisible(false)
+	end
+
 	showCursor(true, true)
 	addEventHandler("onClientRender", root, drawClassSelection)
 end
@@ -380,6 +384,10 @@ function leaveClassSelection()
 	
 	-- stop drawing once the out animation has completed
 	classSelection.hidingTimer = setTimer(removeClassSelection,	1000, 1)
+
+	if isRunning("killmessages") then
+		exports.killmessages:setKillMessagesVisible(true)
+	end
 end
 addEventHandler("leaveClassSelection", root, leaveClassSelection)
 

@@ -6,6 +6,10 @@ end
 addEventHandler ("onClientPlayerKillMessage",getRootElement(),onClientPlayerKillMessage)
 
 function outputKillMessage ( source, wr,wg,wb,killer,kr,kg,kb,weapon,width,resource )
+	if not messagesVisible then
+		return
+	end
+
 	if not iconWidths[weapon] then 
 		if type(weapon) ~= "string" then
 			weapon = 999 

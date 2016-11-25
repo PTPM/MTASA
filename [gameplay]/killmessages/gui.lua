@@ -31,6 +31,7 @@ local contentMessages = {}
 local fadingLines = {}
 ---
 local iconOrder = {}
+messagesVisible = true
 
 
 function setupTextOnStart ( resource )
@@ -70,6 +71,20 @@ function setKillMessageStyle ( startX,startY,align,lines,fadeStart,fadeAnimTime 
 	return true
 end
 addEventHandler ( "doSetKillMessageStyle",getRootElement(),setKillMessageStyle)
+
+function setKillMessagesVisible(visible)
+	messagesVisible = visible
+
+	-- forcibly start fading all the currently visible messages
+	if not visible then
+		for line, originalTick in pairs(fadingLines) do
+			local tickDifference = getTickCount() - originalTick
+			if tickDifference < config.startFade then
+				fadingLines[line] = getTickCount() - config.startFade
+			end
+		end
+	end
+end
 
 function createKillMessageGUI()
 	local gap = config.iconHeight - config.textHeight
@@ -214,7 +229,7 @@ function()
 			destroyLine ( line )
 			setLineAlpha ( line, 1 )
 			fadingLines[line] = nil
-		elseif tickDifference >  config.startFade then
+		elseif tickDifference > config.startFade then
 			local fadeTimeDifference = tickDifference - config.startFade
 			--calculate the alpha
 			local newAlpha = 1 - fadeTimeDifference/config.fadeTime

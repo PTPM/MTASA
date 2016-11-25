@@ -62,3 +62,14 @@ function getRunningMapFriendlyNameWrapped()
 
 	return the .. runningMapFriendlyName
 end
+
+
+function isRunning( resourceName )
+	local resource = getResourceFromName( resourceName )
+	if resource then
+		if getResourceState( resource ) == "running" then
+			return true
+		end
+	end
+	return false
+end

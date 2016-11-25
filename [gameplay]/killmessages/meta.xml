@@ -122,4 +122,6 @@
 	<export function="outputKillMessage" type="client"/>
 	<export function="setKillMessageStyle" type="client"/>
 	<export function="setKillMessageStyle" type="server"/>
+	<export function="setKillMessagesVisible" type="client"/>
+
 </meta>
