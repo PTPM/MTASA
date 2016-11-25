@@ -1,5 +1,5 @@
 ﻿<meta>
-	<info author="Remp" type="map" gamemodes="ptpm" name="Las Venturas w/ objectives" version="1.0" />
+	<info author="Remp" type="map" gamemodes="ptpm" name="Las Venturas with objectives" version="1.0" />
 	<map src="ptpm-lvobj.map"/>
 	<settings>
 		<setting name="*mapType" value="city" />

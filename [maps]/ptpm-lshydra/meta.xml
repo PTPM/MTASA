@@ -1,5 +1,5 @@
 ﻿<meta>
-	<info author="Remp" type="map" gamemodes="ptpm" name="Los Santos w/ Hydra" version="1.0" />
+	<info author="Remp" type="map" gamemodes="ptpm" name="Los Santos with Hydra" version="1.0" />
 	<map src="ptpm-lshydra.map"/>
 	<settings>
 		<setting name="*mapType" value="city" />
