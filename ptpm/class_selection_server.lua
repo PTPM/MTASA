@@ -131,6 +131,7 @@ function onPlayerRequestSpawn(requestedClassID)
 	-- in which case, passing it allows for switching class within the same team while that team is full
 	if not isBalanced(requestedClassID, getElementData(client, "ptpm.electionClass")) then 
 	--if true then
+		outputChatBox("Class not available.", client, unpack(colourPersonal)) 
 		triggerClientEvent(client, "onPlayerRequestSpawnDenied", root, requestedClassID)
 		return
 	end

@@ -395,6 +395,7 @@ function removeClassSelection()
 	removeEventHandler("onClientRender", root, drawClassSelection)
 	classSelection.hiding = false
 	classSelection.visible = false
+	classSelection.hidingTimer = nil
 end
 
 
@@ -499,9 +500,7 @@ function drawClassSelection()
 
 	processCursorMovement()
 
-	if not classSelection.hiding then
-		dxDrawRectangle(0, 0, screenX, screenY, tocolor(0, 0, 0, 130))
-	end
+	dxDrawRectangle(0, 0, screenX, screenY, tocolor(0, 0, 0, 130 * font.globalScalar))
 
 	drawFlower(flowers.pm)
 
@@ -517,14 +516,6 @@ function drawClassSelection()
 			dxDrawText("There are " .. tostring(election.candidates) .. " candidates\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
 		end
 	end
-
-	-- if election.active then
-	-- 	if election.candidates == 1 then
-	-- 		dxDrawText("There is 1 candidate\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(40), flowers.pm.x + s(flowers.pm.radius * 2), height + s(50), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)	
-	-- 	else
-	-- 		dxDrawText("There are " .. tostring(election.candidates) .. " candidates\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(40), flowers.pm.x + s(flowers.pm.radius * 2), height + s(50), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
-	-- 	end
-	-- end
 
 	dxDrawText(classSelection.spawnMessage, (screenX / 2) - s(60), screenY * 0.65, (screenX / 2) + s(60), (screenY * 0.65) + s(50), colours.white, sf(2.0), font.base, "center", "top", false, false, false, true, false)
 
@@ -789,7 +780,7 @@ function scrollClassSelection(key, state, dir)
 		end
 
 		if nextFlower then
-			outputDebugString("moving: flower: " .. tostring(currentlySelectedFlower ~= nil) .. ", petal: " .. tostring(currentlySelectedPetal ~= nil))
+			--outputDebugString("moving: flower: " .. tostring(currentlySelectedFlower ~= nil) .. ", petal: " .. tostring(currentlySelectedPetal ~= nil))
 			if nextFlower == flowers.pm then
 				onFlowerEnter(nextFlower)
 			else
@@ -866,7 +857,7 @@ function onPetalEnter(flower, petal)
 		onFlowerLeave(currentlySelectedFlower)
 	end
 
-	outputDebugString("petal enter: " .. tostring(petal.classID))
+	--outputDebugString("petal enter: " .. tostring(petal.classID))
 	flower.text.override = {
 			top = {text = petal.weapons, size = 1.1},
 			middle = {text = petal.title, size = 1.5}
@@ -885,7 +876,7 @@ function onPetalEnter(flower, petal)
 end
 
 function onPetalLeave(flower, petal)
-	outputDebugString("petal leave: " .. tostring(petal.classID))
+	--outputDebugString("petal leave: " .. tostring(petal.classID))
 	petal.isPressed = false
 	petal.isSelected = false
 
@@ -901,14 +892,14 @@ function onFlowerEnter(flower)
 			onPetalLeave(currentlySelectedPetal.flower, currentlySelectedPetal)
 		end
 
-		outputDebugString("flower enter")
+		--outputDebugString("flower enter")
 		flower.isSelected = true
 		currentlySelectedFlower = flower
 	end
 end
 
 function onFlowerLeave(flower)
-	outputDebugString("flower leave")
+	--outputDebugString("flower leave")
 	flower.isPressed = false
 	flower.isSelected = false
 	currentlySelectedFlower = nil
@@ -953,7 +944,7 @@ function choosePetal(petal)
 		return
 	end
 
-	outputChatBox("Chosen " .. tostring(petal.title))
+	--outputChatBox("Chosen " .. tostring(petal.title))
 	classSelection.lastRequest = getTickCount()
 	triggerServerEvent("onPlayerRequestSpawn", resourceRoot, petal.classID)
 end
@@ -968,11 +959,11 @@ function chooseFlower(flower)
 			return
 		end
 
-		outputChatBox("Chosen pm")
+		--outputChatBox("Chosen pm")
 		classSelection.lastRequest = getTickCount()
 		triggerServerEvent("onPlayerRequestSpawn", resourceRoot, flowers.pm.classID)
 	else
-		outputChatBox("Chosen unknown flower")
+		--outputDebugString("Chosen unknown flower")
 	end
 end
 
@@ -994,7 +985,7 @@ end
 addEventHandler("onPlayerRequestSpawnDenied", root, onPlayerRequestSpawnDenied)
 
 function onPlayerRequestSpawnReserved(classID, withdrawn)
-	outputDebugString("request spawn " .. tostring(classID) .. " " .. tostring(withdrawn and "withdrawn" or ""))
+	--outputDebugString("request spawn " .. tostring(classID) .. " " .. tostring(withdrawn and "withdrawn" or ""))
 	classSelection.spawnMessage = "Select\nyour class"
 	classSelection.reserved = (not withdrawn) and classID or nil
 
@@ -1116,20 +1107,47 @@ function getPetalFromClassID(classID)
 	end
 end
 
-addCommandHandler("reset",
+
+
+
+local debugclassselect = false
+addCommandHandler("debugclassselect", 
 	function()
-		setupClassSelectionUI()
+		debugclassselect = not debugclassselect
+		outputDebugString("debugclassselect " .. tostring(debugclassselect))
+
+		if debugclassselect then
+			addEventHandler("onClientRender", root, drawClassSelectionDebug, true, "high")
+		else
+			removeEventHandler("onClientRender", root, drawClassSelectionDebug)
+		end
 	end
 )
 
-addCommandHandler("scale", 
-	function(command, s)
-		uiScale = tonumber(s)
-	end
-)
+function drawClassSelectionDebug()
+	local height = screenY - 200
+	local width = 250
 
-addCommandHandler("hide", 
-	function(command)
-		leaveClassSelection()
-	end
-)
+	dxDrawRectangle(0, height, width + 20, screenY - height, colours.black)
+
+	dxDrawText("Class Selection", 5, height + 5, 10 + width, height + 15, colours.white, 1, "default-bold")
+	dxDrawText(string.format("visible: %s hiding: %s", tostring(classSelection.visible), tostring(classSelection.hiding)), 5, height + 15, 10 + width, height + 25, colours.white, 1, "default")
+	dxDrawText(string.format("lastRequest: %s tick: %s", tostring(classSelection.lastRequest), tostring(getTickCount())), 5, height + 25, 10 + width, height + 35, colours.white, 1, "default")
+	dxDrawText(string.format("hidingTimer: %s isTimer: %s", tostring(classSelection.hidingTimer), tostring(classSelection.hidingTimer and isTimer(classSelection.hidingTimer))), 5, height + 35, 10 + width, height + 45, colours.white, 1, "default")
+	dxDrawText(string.format("reserved: %s", tostring(classSelection.reserved)), 5, height + 45, 10 + width, height + 55, colours.white, 1, "default")
+
+	dxDrawText("Font", 5, height + 60, 10 + width, height + 70, colours.white, 1, "default-bold")
+	dxDrawText(string.format("global scalar: %.1f", font.globalScalar), 50, height + 60, 10 + width - 50, height + 70, colours.white, 1, "default")
+	dxDrawText(string.format("base: %s scalar: %.1f", tostring(font.base), font.scalar), 5, height + 70, 10 + width, height + 80, colours.white, 1, "default")
+	dxDrawText(string.format("small: %s scalar: %.1f", tostring(font.small), font.smallScalar), 5, height + 80, 10 + width, height + 90, colours.white, 1, "default")
+
+	dxDrawText("Election", 5, height + 95, 10 + width, height + 105, colours.white, 1, "default-bold")
+	dxDrawText(string.format("active: %s entered: %s", tostring(election.active), tostring(election.entered)), 5, height + 105, 10 + width - 50, height + 115, colours.white, 1, "default")
+	dxDrawText(string.format("countdown: %s candidates: %s", tostring(election.countdown), tostring(election.candidates)), 5, height + 115, 10 + width - 50, height + 125, colours.white, 1, "default")
+	dxDrawText(string.format("cleared: %s", tostring(election.cleared)), 5, height + 125, 10 + width - 50, height + 135, colours.white, 1, "default")
+
+	dxDrawText("Misc", 5, height + 140, 10 + width, height + 150, colours.white, 1, "default-bold")
+	dxDrawText(string.format("uiScale: %1.f", uiScale), 5, height + 150, 10 + width - 50, height + 160, colours.white, 1, "default")
+	dxDrawText(string.format("selected flower: %s petal: %s", tostring(currentlySelectedFlower and currentlySelectedFlower.classID), tostring(currentlySelectedPetal and currentlySelectedPetal.classID)), 5, height + 160, 10 + width - 50, height + 170, colours.white, 1, "default")
+	dxDrawText(string.format("scrollTimer: %s isTimer: %s", tostring(scrollTimer), tostring(scrollTimer and isTimer(scrollTimer))), 5, height + 170, 10 + width - 50, height + 180, colours.white, 1, "default")	
+end
