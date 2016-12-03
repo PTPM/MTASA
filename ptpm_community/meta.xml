@@ -1,0 +1,9 @@
+<meta>
+	<info author="PTPM" type="script" name="PTPM.uk Community" description="Community integration (League and Donator information, using https://PTPM.uk API)"/>
+	<script src="ptpm_dot_uk.lua" type="server"/>
+	<min_mta_version server="1.4" client="1.4" />
+	
+	<aclrequest>
+		<right name="function.fetchRemote" access="true" />
+	</aclrequest>
+</meta>
