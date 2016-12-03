@@ -114,9 +114,26 @@ function isBalanced(proposedClassId, oldClassId)
 		end
 	end
 
-	return getBalanceValue(totalBodyguards, totalPolice, totalTerrorists) < balance.value
+	local newBalance = getBalanceValue(totalBodyguards, totalPolice, totalTerrorists)
+	return (newBalance <= 8) or (newBalance < balance.value)
 end
 
+-- addCommandHandler("bt", 
+-- 	function(player, cmd, bg, cop, terror, pm)
+-- 		bg = tonumber(bg) or 0
+-- 		cop = tonumber(cop) or 0
+-- 		terror = tonumber(terror) or 0
+-- 		pm = tonumber(pm) or 0
+
+-- 		-- calculate new
+-- 		balance.value = getBalanceValue(bg, cop, terror)
+-- 		balance.teamPlayers = {pm = pm, terrorist = terror, bodyguard = bg, police = cop, psycho = 0}
+-- 		balance.totalTeamPlayers = bg + cop + terror
+	
+-- 		outputDebugString(string.format("Balance: bg: %s, cop: %s, terror: %s (new: %.1f, old: %.1f)", tostring(isBalanced("bodyguard")), tostring(isBalanced("police")), tostring(isBalanced("terrorist")), getBalanceValue(bg, cop, terror), balance.value))
+
+-- 	end
+-- )
 
 -- this handles setting class element data, tracking current pm and giving reclass messages
 -- is triggered every time someone reclasses
