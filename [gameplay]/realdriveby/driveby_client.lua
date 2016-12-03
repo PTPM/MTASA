@@ -242,6 +242,9 @@ function disableDriveby()
 	drivebyActive = false
 end
 
+-- ways to leave a vehicle: player death, vehicle death, removePedFromVehicle, spawnPlayer, normal exit, being jacked, vehicle element being destroyed
+
+-- triggers if you leave normally, if you warp out (removePedFromVehicle) or if you get jacked
 addEventHandler("onClientPlayerVehicleExit", localPlayer,
 	function(vehicle, seat)
 		if isPedDoingGangDriveby(localPlayer) or drivebyActive then
@@ -250,6 +253,9 @@ addEventHandler("onClientPlayerVehicleExit", localPlayer,
 	end
 )
 
+-- seems like mta automatically cancels driveby when you get jacked
+-- (but only on the jackers side, other guy still sees driveby, so it desyncs them)
+-- cancel it ourselves here so the sync stays correct
 addEventHandler("onClientVehicleStartExit", root,
 	function(player, seat, door)
 		if player ~= localPlayer then
@@ -262,6 +268,8 @@ addEventHandler("onClientVehicleStartExit", root,
 	end
 )
 
+
+-- catches when the player dies inside the vehicle
 addEventHandler("onClientPlayerWasted", localPlayer, 
 	function()
 		if isPedDoingGangDriveby(localPlayer) then
@@ -287,6 +295,27 @@ addEventHandler("onClientVehicleModelChange", resourceRoot,
 		end
 	end
 )
+
+-- handles if the vehicle is destroyed with destroyElement
+addEventHandler("onClientElementDestroy", root,
+	function()
+		if drivebyActive or isPedDoingGangDriveby(localPlayer) then
+			if source == getPedOccupiedVehicle(localPlayer) then
+				disableDriveby()
+			end
+		end
+	end
+)
+
+-- handles spawnPlayer being used while drivebying
+addEventHandler("onClientPlayerSpawn", localPlayer,
+	function(team)
+		if drivebyActive then
+			disableDriveby()
+		end		
+	end
+)
+
 
 
 --This function handles the driveby switch weapon key
