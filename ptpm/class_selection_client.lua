@@ -487,6 +487,8 @@ function setupClassSelectionUI()
 			flower.shadowOffset = 2
 		end
 	end
+
+	flowers.polls.text.default.middle = {text = string.format("%sSOON", colours.hex.red), size = 120 / 44}
 end
 
 
