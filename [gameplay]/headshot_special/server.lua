@@ -1,8 +1,6 @@
-headshot = {}
-
 function makeHeadshot(attacker, weapon, bodypart, loss)
 	if weapon==34 and bodypart==9 then
-		if getPedArmor ( source ) and getPedArmor ( source ) > 0 then
+		if getPedArmor ( source ) > 0 then
 			setPedArmor ( source, 0 )
 		else
 			killPed(source, attacker, weapon, 9)
