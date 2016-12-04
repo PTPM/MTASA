@@ -13,7 +13,7 @@ addEventHandler("onSettingChange", getRootElement(), function(setting, oldV, new
 end)
 
 function removePlayerInvulnerability(player)
-	if player and getElementType(player) == "player" then
+	if player and isElement(player) then
 		setElementAlpha(player, 255)
 		setElementData(player, "antispawnkill", false)
 		antispawnkill.Table[player] = false

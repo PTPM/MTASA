@@ -83,7 +83,9 @@ addEvent("onPlayerInteriorHitCancelled", true)
 
 addEventHandler("onClientResourceStart", root,
 	function(resource)
-		triggerServerEvent("onClientReady", resourceRoot)
+		if getResourceRootElement(resource) == resourceRoot then
+			triggerServerEvent("onClientReady", resourceRoot)
+		end
 
 		interiorLoadElements(getResourceRootElement(resource), resource)
 		interiorCreateColliders(resource)		
@@ -175,6 +177,7 @@ function interiorCreateColliders(resource)
 		lookups.colliders[entryInterior] = col
 		lookups.interiorFromCollider[col] = entryInterior
 		addEventHandler("onClientColShapeHit", col, colshapeHit) 
+		addEventHandler("onClientColShapeLeave", col, colShapeLeave)
 
 		---create return colliders
 		local returnInterior = interiorTypeTable["return"]
@@ -193,20 +196,35 @@ function interiorCreateColliders(resource)
 			lookups.interiorFromCollider[col] = returnInterior
 			lookups.colliders[returnInterior] = col
 			addEventHandler("onClientColShapeHit", col, colshapeHit) 
+			addEventHandler("onClientColShapeLeave", col, colShapeLeave)
 		end
 	end
 end
 
+function colShapeLeave(player, matchingDimension)
+	if (not isElement(player)) or getElementType(player) ~= "player" or player ~= localPlayer then 
+		return 
+	end		
+
+	if not matchingDimension then
+		return
+	end
+
+	if source == targetCollider then
+		targetCollider = nil
+	end	
+end
 
 function colshapeHit(player, matchingDimension)
 	if (not isElement(player)) or getElementType(player) ~= "player" or player ~= localPlayer then 
 		return 
 	end
-
+	
 	if (not matchingDimension) or isPedInVehicle(player) or doesPedHaveJetPack(player) or (not isPedOnGround(player)) or 
 		getControlState("aim_weapon") or (not allowPlayerToTeleport) or (source == targetCollider) then 
 		return 
 	end
+	--outputDebugString(getElementType(player) .. " hit " .. tostring(source) .. " (dim: " .. tostring(matchingDimension) .. ")")
 
 	local interior = lookups.interiorFromCollider[source]
 	local id = getElementData(interior, lookups.idDataName[getElementType(interior)]) 
@@ -285,7 +303,9 @@ function triggerGroundLoaded(interior)
 	triggerServerEvent("onPlayerGroundLoaded", localPlayer, interior)
 
 	allowPlayerToTeleport = true
-	targetCollider = nil
+
+	--outputDebugString("loaded: inside " ..tostring(targetCollider).. " " ..tostring(isElementWithinColShape(localPlayer, targetCollider)))
+	--targetCollider = nil
 
  	triggerEvent("onClientInteriorWarped", interior)
 
@@ -346,4 +366,3 @@ addEventHandler("onClientPlayerDamage", localPlayer,
 		end
 	end
 )
-
