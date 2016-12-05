@@ -32,7 +32,7 @@ addEventHandler("onClientResourceStart", thisResourceRoot,
 		guiSetVisible(wndBlock, false)
 		
 		guiWindowSetSizable(wndHelp, false)
-		guiSetAlpha(wndBlock, 0.5)
+		guiSetAlpha(wndBlock, 0)
 		
 		addEventHandler("onClientGUIClick", btnClose,
 			function()
