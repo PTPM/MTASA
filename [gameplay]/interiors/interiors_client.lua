@@ -68,6 +68,11 @@ addCommandHandler("intdump",
 			return
 		end
 
+		if #debugLog == 0 then
+			outputChatBox("Interior debug log is empty")
+			return
+		end
+
 		local debugFile = fileCreate("interiordebug_" ..tostring(getTickCount())..".txt")
 		if debugFile then
 			fileWrite(debugFile, unpack(debugLog))
@@ -92,7 +97,7 @@ function debugHook(...)
 
 	table.insert(debugLog, logString)
 
-	if #debugLog > 50 then
+	if #debugLog > 100 then
 		table.remove(debugLog, 1)
 	end
 
@@ -139,7 +144,7 @@ addEventHandler("onClientResourceStart", root,
 		interiorLoadElements(getResourceRootElement(resource), resource)
 		interiorCreateColliders(resource)	
 
-		debugHook(getResourceName(resource))	
+		debugHook("res-start", getResourceName(resource))	
 	end 
 )
 
@@ -164,7 +169,7 @@ addEventHandler("onClientResourceStop", root,
 
 		interiors[resource] = nil
 
-		debugHook(getResourceName(resource))
+		debugHook("res-stop", getResourceName(resource))
 	end 
 )
 
