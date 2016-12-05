@@ -203,6 +203,8 @@ function enableDriveby()
 	toggleControl("vehicle_look_right", false)
 	toggleControl("vehicle_secondary_fire", false)
 
+	bindKey("vehicle_fire", "down", checkWeaponOnFire)
+
 	local vehicleID = getElementModel(getPedOccupiedVehicle(localPlayer))
 	disableTurningKeys(vehicleID)
 
@@ -234,6 +236,8 @@ function disableDriveby()
 
 	toggleControl("vehicle_left", true)
 	toggleControl("vehicle_right", true)
+
+	unbindKey("vehicle_fire", "down", checkWeaponOnFire)
 
 	fadeHelpInOut(false)
 
@@ -426,6 +430,25 @@ function removeDrivebySpeedLimit()
 	clearFiringStatus()
 end
 
+-- if we get given/pick up a blocked weapon (of the same slot) while doing a driveby, detect it and stop the driveby
+function checkWeaponOnFire()
+	if not drivebyActive then
+		return
+	end
+
+	local weapon = getPedWeapon(localPlayer)
+
+	if weapon == 0 then
+		return
+	end
+
+	if not isAllowedWeapon(weapon, driver and settings.driver or settings.passenger) then
+		disableDriveby()
+		return false
+	end
+
+	return true
+end
 
 function limitedKeyPress(key, keyState, speed)
 	if keyState == "down" then
@@ -462,6 +485,10 @@ function clearFiringStatus()
 end
 
 function pressKey(controlName)
+	if not checkWeaponOnFire() then
+		return
+	end
+
 	setControlState(controlName, true)
 	setTimer(setControlState, 50, 1, controlName, false)
 end
