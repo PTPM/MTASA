@@ -50,6 +50,55 @@
 	-- end
 -- )
 
+local debugLog = {}
+local debugLogEnabled = false
+local debugLogPreviousTick = 0
+
+addCommandHandler("intlog", 
+	function(cmd)
+		debugLogEnabled = not debugLogEnabled
+		outputChatBox("Interior debug log " .. (debugLogEnabled and "enabled" or "disabled"))
+	end
+)
+
+addCommandHandler("intdump",
+	function(cmd)
+		if not debugLogEnabled then
+			outputChatBox("Interior debug log is not enabled, /intlog to enable")
+			return
+		end
+
+		local debugFile = fileCreate("interiordebug_" ..tostring(getTickCount())..".txt")
+		if debugFile then
+			fileWrite(debugFile, unpack(debugLog))
+			fileClose(debugFile)
+			outputChatBox("Interior debug output to: interiordebug_"..tostring(getTickCount())..".txt")
+		else
+			outputChatBox("Interior debug could not create file")
+		end
+	end
+)
+
+function debugHook(...)
+	if not debugLogEnabled then
+		return
+	end
+
+	local logString = getTickCount() .. "[+" .. tostring(getTickCount() - debugLogPreviousTick) .."]: " .. 
+						table.concat(arg, ", ") .. 
+						", int:" .. tostring(getElementInterior(localPlayer)) .. 
+						", dim:" .. tostring(getElementDimension(localPlayer)) ..
+						"\r\n"
+
+	table.insert(debugLog, logString)
+
+	if #debugLog > 50 then
+		table.remove(debugLog, 1)
+	end
+
+	debugLogPreviousTick = getTickCount()
+end
+
 
 local interiors = {}
 local lookups = {
@@ -88,7 +137,9 @@ addEventHandler("onClientResourceStart", root,
 		end
 
 		interiorLoadElements(getResourceRootElement(resource), resource)
-		interiorCreateColliders(resource)		
+		interiorCreateColliders(resource)	
+
+		debugHook(getResourceName(resource))	
 	end 
 )
 
@@ -112,6 +163,8 @@ addEventHandler("onClientResourceStop", root,
 		end
 
 		interiors[resource] = nil
+
+		debugHook(getResourceName(resource))
 	end 
 )
 
@@ -210,6 +263,8 @@ function colShapeLeave(player, matchingDimension)
 		return
 	end
 
+	debugHook("colShapeLeave("..tostring(getInteriorName(lookups.interiorFromCollider[source]))..")", "col:" .. tostring(source), "target:" .. tostring(targetCollider))
+
 	if source == targetCollider then
 		targetCollider = nil
 	end	
@@ -219,12 +274,17 @@ function colshapeHit(player, matchingDimension)
 	if (not isElement(player)) or getElementType(player) ~= "player" or player ~= localPlayer then 
 		return 
 	end
-	
+
 	if (not matchingDimension) or isPedInVehicle(player) or doesPedHaveJetPack(player) or (not isPedOnGround(player)) or 
 		getControlState("aim_weapon") or (not allowPlayerToTeleport) or (source == targetCollider) then 
+		if matchingDimension then
+			debugHook("colShapeHit-cancel("..tostring(getInteriorName(lookups.interiorFromCollider[source]))..")", "col:" .. tostring(source), "target:" .. tostring(targetCollider), "allow:" .. tostring(allowPlayerToTeleport))
+		end
+
 		return 
 	end
 	--outputDebugString(getElementType(player) .. " hit " .. tostring(source) .. " (dim: " .. tostring(matchingDimension) .. ")")
+	debugHook("colShapeHit("..tostring(getInteriorName(lookups.interiorFromCollider[source]))..")", "col:" .. tostring(source), "target:" .. tostring(targetCollider))
 
 	local interior = lookups.interiorFromCollider[source]
 	local id = getElementData(interior, lookups.idDataName[getElementType(interior)]) 
@@ -239,12 +299,16 @@ function colshapeHit(player, matchingDimension)
 		targetCollider = lookups.colliders[targetInterior]
 
 		triggerServerEvent("doTriggerServerEvents", localPlayer, interior, getResourceName(resource), id)
+		allowPlayerToTeleport = false
+		debugHook("colShapeHit-passed("..tostring(getInteriorName(lookups.interiorFromCollider[source]))..")", "col:" .. tostring(source), "target:" .. tostring(targetCollider))
 	end
 end
 
 addEventHandler("onPlayerInteriorHitCancelled", localPlayer,
 	function(interior)
+		debugHook("onPlayerInteriorHitCancelled("..tostring(getInteriorName(interior))..")", "col:" .. tostring(lookups.colliders[interior]), "target:" .. tostring(targetCollider))
 		targetCollider = nil
+		allowPlayerToTeleport = true
 	end
 )
 
@@ -261,6 +325,8 @@ addEventHandler("playerLoadingGround", localPlayer,
 		end
 
 		pauseUntilWorldHasLoaded({x = posX, y = posY, z = posZ}, triggerGroundLoaded, interior)
+
+		debugHook("playerLoadingGround("..tostring(getInteriorName(interior))..")", "target:" .. tostring(targetCollider))
 	end
 )
 
@@ -280,7 +346,7 @@ function pauseUntilWorldHasLoaded(data, fn, ...)
 			
 			if attempts > 30 or foundGround then
 				--outputDebugString("pauseUntilWorldHasLoaded loaded after " .. tostring(attempts) .. " attempts")
-
+				debugHook("pauseUntilWorldHasLoaded loaded", "attempts:" .. tostring(attempts), "target:" .. tostring(targetCollider))
 				if type(fn) == "function" then
 					fn(unpack(arguments))
 				end
@@ -315,6 +381,8 @@ function triggerGroundLoaded(interior)
  			immunityTimer = nil
  		end,
  	settings.teleportImmunityLength, 1)
+
+ 	debugHook("triggerGroundLoaded("..tostring(getInteriorName(interior))..")", "col:" .. tostring(lookups.colliders[interior]), "target:" .. tostring(targetCollider))
 end
 
 
@@ -342,7 +410,7 @@ function getInteriorName(interior)
 
 	local interiorType = getElementType(interior)
 
-	if looksups.idDataName[interiorType] then
+	if lookups.idDataName[interiorType] then
 		return getElementData(interior, lookups.idDataName[interiorType])
 	else
 		outputDebugString("getInteriorName: Bad element specified. Interior expected, got " .. interiorType .. ".", 0, unpack(outputColour))

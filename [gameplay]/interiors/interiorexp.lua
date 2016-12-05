@@ -238,10 +238,6 @@ function setPlayerInsideInterior(player, interior, resource, id)
 		return
 	end	
 
-	setElementInterior(player, int)
-	setCameraInterior(player, int)
-	setElementDimension(player, dim)
-
 	setElementRotation(player, 0, 0, rot % 360, "default", true)
 
 	setTimer(
@@ -262,6 +258,10 @@ function setPlayerInsideInterior(player, interior, resource, id)
 	end
 
 	setElementPosition(player, x, y, z)
+
+	setElementInterior(player, int)
+	setCameraInterior(player, int)
+	setElementDimension(player, dim)
 
 	return x, y, z
 end
