@@ -1,9 +1,15 @@
-﻿local rootElement = getRootElement()
+﻿addEvent("onClientHelpManagerReady", true)
+
+addEventHandler("onClientHelpManagerReady", root,
+	function()
+		triggerClientEvent(client, "sendHelpManagerSettings", client, get("defaultTabName"))
+	end
+)
 
 function showHelp(element)
-	return triggerClientEvent(element, "doShowHelp", rootElement)
+	return triggerClientEvent(element, "doShowHelp", root)
 end
 
 function hideHelp(element)
-	return triggerClientEvent(element, "doHideHelp", rootElement)
+	return triggerClientEvent(element, "doHideHelp", root)
 end

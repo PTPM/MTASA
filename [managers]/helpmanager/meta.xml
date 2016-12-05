@@ -8,4 +8,9 @@
 	<export function="removeHelpTab" type="client"/>
 	<export function="showHelp" type="client"/>
 	<export function="hideHelp" type="client"/>
+
+	<settings>
+		<!-- the default tab to look for and switch to when helpmanager opens for the first time -->
+		<setting name="defaultTabName" value="ptpm"/>
+	</settings>	
 </meta>

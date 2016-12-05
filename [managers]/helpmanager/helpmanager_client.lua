@@ -6,6 +6,8 @@ local wndHelp, wndBlock, tPanel, btnClose
 local tab = {}
 local memo = {}
 local popupQueue = {}
+local defaultTabName = ""
+local firstTimeVisible = true
 
 local HELP_KEY = "F9"
 local HELP_COMMAND = "gamehelp"
@@ -17,6 +19,7 @@ addEvent("doShowHelp", true)
 addEvent("doHideHelp", true)
 addEvent("onHelpShown")
 addEvent("onHelpHidden")
+addEvent("sendHelpManagerSettings", true)
 
 addEventHandler("onClientResourceStart", thisResourceRoot, 
 	function ()
@@ -29,7 +32,7 @@ addEventHandler("onClientResourceStart", thisResourceRoot,
 		guiSetVisible(wndBlock, false)
 		
 		guiWindowSetSizable(wndHelp, false)
-		guiSetAlpha(wndBlock, 0)
+		guiSetAlpha(wndBlock, 0.5)
 		
 		addEventHandler("onClientGUIClick", btnClose,
 			function()
@@ -53,12 +56,20 @@ addEventHandler("onClientResourceStart", thisResourceRoot,
 		
 		addCommandHandler(HELP_COMMAND, clientToggleHelp)
 		bindKey(HELP_KEY, "down", clientToggleHelp)
+
+		triggerServerEvent("onClientHelpManagerReady", localPlayer)
 	end
 )
 
 addEventHandler("onClientResourceStop", thisResourceRoot,
 	function()
 		showCursor(false)
+	end
+)
+
+addEventHandler("sendHelpManagerSettings", root,
+	function(defaultTabName_)
+		defaultTabName = defaultTabName_
 	end
 )
 
@@ -155,6 +166,18 @@ function clientToggleHelp(state)
 		guiBringToFront(wndBlock)
 		guiBringToFront(wndHelp)
 		showCursor(true)
+
+		-- the first time we open the help window try and auto select the tab that is defined in the settings (if we can find a match)
+		if firstTimeVisible and defaultTabName and #defaultTabName > 0 then
+			for i, tab in ipairs(getElementsByType("gui-tab", tPanel)) do
+				if guiGetText(tab) == defaultTabName then
+					guiSetSelectedTab(tPanel, tab)
+					break
+				end
+			end
+		end
+
+		firstTimeVisible = false
 	else
 		triggerEvent("onHelpHidden", localPlayer)
 		showCursor(false)
