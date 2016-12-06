@@ -179,37 +179,37 @@ end
 
 
 
-function everyoneViewsBody( killer, bodyPM, interiorID )
+function everyoneViewsBody(killer, bodyPM, interiorID)
 	-- if heligrab is running, we want to drop everyone from helis before we can set their position
-	if isRunning( "heligrab" ) then
-		for _, player in ipairs( getElementsByType( "player" ) ) do
-			if player and isElement( player ) then
+	if isRunning("heligrab") then
+		for _, player in ipairs(getElementsByType("player")) do
+			if player and isElement(player) then
 				if exports.heligrab:IsPlayerHangingFromHeli(player) then
-					exports.heligrab:SetPlayerGrabbedHeli(player,false)
+					exports.heligrab:SetPlayerGrabbedHeli(player, false)
 				end
 			end
 		end
 	end
 
 	-- Prevent dead people from respawning
-	for _, p in ipairs( getElementsByType( "player" ) ) do
-		if p and isElement( p ) then
-			local afterDeathTimer = getElementData( p, "ptpm.afterDeathTimer" )
+	for _, p in ipairs(getElementsByType("player")) do
+		if p and isElement(p) then
+			local afterDeathTimer = getElementData(p, "ptpm.afterDeathTimer")
 			if afterDeathTimer then
-				if isTimer( afterDeathTimer ) then
-					killTimer( afterDeathTimer )
+				if isTimer(afterDeathTimer) then
+					killTimer(afterDeathTimer)
 				end
-				setElementData( p, "ptpm.afterDeathTimer", nil, false )
+				setElementData(p, "ptpm.afterDeathTimer", nil, false)
 			end
 		end
 	end
 
-	local kX, kY, kZ = getElementPosition( killer )
-	local bX, bY, bZ = getElementPosition( bodyPM )
+	local kX, kY, kZ = getElementPosition(killer)
+	local bX, bY, bZ = getElementPosition(bodyPM)
 	
 	if bX and bY and bZ and kX and kY and kZ then
 		local vX, vY, vZ = kX - bX, kY - bY, kZ - bZ
-		local d = getDistanceBetweenPoints3D( vX, vY, vZ, 0, 0, 0 )
+		local d = getDistanceBetweenPoints3D(vX, vY, vZ, 0, 0, 0)
 
 		if d > 5 then
 			-- normalise to unit vector, take distance of 5m and add 1.5 to height
@@ -223,14 +223,17 @@ function everyoneViewsBody( killer, bodyPM, interiorID )
 			vZ = 10
 		end
 		
-		local players = getElementsByType( "player" )
-		
-		for _, value in ipairs( players ) do
-			if value and isElement( value ) and isPlayerActive( value ) then
-				setPlayerControllable( value, false )
+		for _, player in ipairs(getElementsByType("player")) do
+			if player and isElement(player) and isPlayerActive(player) then
+				setPlayerControllable(player, false)
 
-				setCameraMatrix( value, bX+vX, bY+vY, bZ+vZ, bX, bY, bZ )
-				setCameraInterior( value, interiorID )
+				setCameraMatrix(player, bX + vX, bY + vY, bZ + vZ, bX, bY, bZ)
+				setCameraInterior(player, interiorID)
+				setElementInterior(player, interiorID)
+
+				if currentPM then
+					setElementDimension(player, getElementDimension(currentPM))
+				end
 			end
 		end
 	end
