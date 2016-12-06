@@ -8,7 +8,7 @@ addEventHandler( "onClientAvailable", localPlayer,
 		for _, p in ipairs( getElementsByType( "player" ) ) do
 			if p and isElement( p ) and p ~= localPlayer then
 				local b = getElementData( p, "ptpm.blip" )
-				if b then          
+				if b and not playerBlips[p] then          
 					playerBlips[p] = createBlipAttachedTo( p, 0, b[6], b[1], b[2], b[3], b[4], b[5] )
 				end
 			end
