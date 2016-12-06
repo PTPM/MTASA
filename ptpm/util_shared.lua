@@ -75,7 +75,13 @@ function isRunning(resourceName)
 end
 
 function isVehicleOccupied(vehicle)
-	for _,_ in pairs(getVehicleOccupants(vehicle)) do
+	local occupants = getVehicleOccupants(vehicle)
+
+	if not occupants then
+		return false
+	end
+	
+	for _,_ in pairs(occupants) do
 		return true
 	end
 
