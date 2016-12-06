@@ -106,7 +106,7 @@ bindKey( "F2", "down",
 
 
 function createVehicleBlip( vehicle )
-	if not vehicleBlips[vehicle] then
+	if not vehicleBlips[vehicle] and not isVehicleOccupied(vehicle) then
 		setTimer(
 			function( v )
 				if isElement( v ) then
@@ -124,3 +124,20 @@ function destroyVehicleBlip( vehicle )
 		vehicleBlips[vehicle] = nil
 	end
 end
+
+
+addEventHandler("onClientVehicleEnter", root,
+	function(player, seat)
+		if vehicleBlips[source] then
+			destroyVehicleBlip(source)
+		end
+	end
+)
+
+addEventHandler("onClientVehicleExit", root,
+	function(player, seat)
+		if not vehicleBlips[source] and not isVehicleOccupied(source) then
+			createVehicleBlip(source)
+		end
+	end
+)

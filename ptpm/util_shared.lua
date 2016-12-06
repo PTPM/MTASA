@@ -73,3 +73,11 @@ function isRunning(resourceName)
 	end
 	return false
 end
+
+function isVehicleOccupied(vehicle)
+	for _,_ in pairs(getVehicleOccupants(vehicle)) do
+		return true
+	end
+
+	return false
+end
