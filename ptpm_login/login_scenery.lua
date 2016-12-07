@@ -55,7 +55,7 @@ function startLoginScenery()
 	enableGrayness()
 	fadeCamera( true )
 	showChat( false )
-	showPlayerHudComponent( "all", false )
+	setPlayerHudComponentVisible( "all", false )
 	
 	changeScenery()
 	scenery.timer = setTimer( changeScenery, 7000, 0 )
@@ -71,7 +71,7 @@ function stopLoginScenery()
 	
 	disableGrayness()
 	showChat( true )
-	showPlayerHudComponent( "all", true )
+	setPlayerHudComponentVisible( "all", true )
 	
 	killTimer( scenery.timer )
 	scenery.timer = nil
@@ -93,7 +93,7 @@ function checkBlackScreen( resource )
 		
 		fadeCamera( true, 0 )
 		showChat( false )
-		showPlayerHudComponent( "all", false )
+		setPlayerHudComponentVisible( "all", false )
 	end
 end
 
