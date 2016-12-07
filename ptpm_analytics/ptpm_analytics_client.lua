@@ -15,8 +15,8 @@ table.insert(requestedData, dxInfo.Setting32BitColor and "32" or "16")
 table.insert(requestedData, dxInfo.SettingFOV)
 
 for _,v in ipairs(requestedData) do
-	requestedDataStr = requestedDataStr .. v .. ","
+	requestedDataStr = requestedDataStr .. v .. "¶"
 end
 
-requestedDataStr = string.sub(requestedDataStr, 0, -2)
+requestedDataStr = string.sub(requestedDataStr, 0, -3)
 triggerServerEvent ( "logClientData", resourceRoot, requestedDataStr )
