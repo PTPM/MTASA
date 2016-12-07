@@ -55,7 +55,7 @@ function startLoginScenery()
 	enableGrayness()
 	fadeCamera( true )
 	showChat( false )
-	showPlayerHudComponent( "all", false )
+	setPlayerHudComponentVisible( "all", false )
 	
 	changeScenery()
 	scenery.timer = setTimer( changeScenery, 7000, 0 )
