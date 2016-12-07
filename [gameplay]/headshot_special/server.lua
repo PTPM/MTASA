@@ -1,8 +1,12 @@
 function makeHeadshot(attacker, weapon, bodypart, loss)
 	if weapon==34 and bodypart==9 then
-		if getPedArmor ( source ) > 0 then
-			setPedArmor ( source, 0 )
+		outputDebugString("Headshot victim has armor value of " .. getPedArmor (source), 3)
+	
+		if getPedArmor(source) > 0 then
+			outputDebugString("Headshot instakill false", 3)
+			setPedArmor(source, 0)
 		else
+			outputDebugString("Headshot instakill true", 3)
 			killPed(source, attacker, weapon, 9)
 			setPedHeadless(source, true)
 			setTimer(setPedHeadless, 900, 1, source, false)
