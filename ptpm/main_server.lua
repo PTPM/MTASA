@@ -519,9 +519,9 @@ function roundTick()
 			end
 		end	
 		
-		--if options.pmHealthBonus and timeLeft % (5000) then
-		--	changeHealth(currentPM,options.pmHealthBonus)
-		--end
+		if options.pmHealthBonus and timeLeft % (5000) then
+			changeHealth(currentPM,options.pmHealthBonus)
+		end
 		
 		if options.pmAbandonedHealthPenalty and not getPedOccupiedVehicle( currentPM ) and timeLeft % (options.pmAbandonedHealthPenalty * 1000) then
 			changeHealth( currentPM, -1 )
