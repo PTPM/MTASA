@@ -222,34 +222,42 @@ function setPedAnimationDelayed(player)
 	end
 end
 
-function removeParachute(player,type)
+function removeParachute(player, type, skipAnimation)
 	if player == localPlayer then
 		if removing then return end
 		removing = true
 	end
 
 	local chute = getPlayerParachute ( player )
-	setTimer ( setPedAnimationDelayed, t(3000), 1, player )
+
+	if not skipAnimation then
+		setTimer ( setPedAnimationDelayed, t(3000), 1, player )
+	end
+
 	openingChutes[chute] = nil
 	if chute then
-		if type == "land" then
-			Animation.createAndPlay(
-			  chute,
-			  {{ from = 0, to = 100, time = t(2500), fn = animationParachute_land }}
-			)
-			setTimer ( function()
-				detachElements ( chute, player )
-				setTimer ( destroyElement, t(3000), 1, chute )
-			end,
-			t(2500),
-			1
-			)
-		elseif type == "water" then
-			Animation.createAndPlay(
-			  chute,
-			  {{ from = 0, to = 100, time = t(2500), fn = animationParachute_landOnWater }}
-			)
-			setTimer ( destroyElement, t(2500), 1, chute )
+		if not skipAnimation then
+			if type == "land" then
+				Animation.createAndPlay(
+				  chute,
+				  {{ from = 0, to = 100, time = t(2500), fn = animationParachute_land }}
+				)
+				setTimer ( function()
+					detachElements ( chute, player )
+					setTimer ( destroyElement, t(3000), 1, chute )
+				end,
+				t(2500),
+				1
+				)
+			elseif type == "water" then
+				Animation.createAndPlay(
+				  chute,
+				  {{ from = 0, to = 100, time = t(2500), fn = animationParachute_landOnWater }}
+				)
+				setTimer ( destroyElement, t(2500), 1, chute )
+			end
+		else
+			destroyElement(chute)
 		end
 	end
 	lastAnim[player] = nil
@@ -264,7 +272,8 @@ function removeParachute(player,type)
 		setTimer ( setElementData, 1000, 1, localPlayer, "parachuting", false )
 		setTimer ( function() removing = false end, 1100, 1)
 		removeEventHandler ( "onClientPlayerWasted", localPlayer, onWasted )
-		triggerServerEvent ( "requestRemoveParachute", resourceRoot )
+		triggerServerEvent ( "requestRemoveParachute", resourceRoot, skipAnimation )
+		setPedAnimation(localPlayer)
 	end
 	parachutes[player] = nil
 end
@@ -291,13 +300,19 @@ addEventHandler ( "doAddParachuteToPlayer", root,
 
 addEvent ( "doRemoveParachuteFromPlayer", true)
 addEventHandler ( "doRemoveParachuteFromPlayer", root,
-	function()
+	function(skipAnimation)
 		if not isPedOnGround ( source ) or not getPedContactElement ( source ) then
-			setPedNewAnimation ( source, nil, "PARACHUTE", "PARA_Land", -1, false, true, true, false )
-			removeParachute(source, "land" )
+			removeParachute(source, "land", skipAnimation )
+
+			if not skipAnimation then
+				setPedNewAnimation ( source, nil, "PARACHUTE", "PARA_Land", -1, false, true, true, false )
+			end
 		else
-			setPedNewAnimation ( source, nil, "PARACHUTE", "PARA_Land_Water", -1, false, true, true, false )
-			removeParachute(source, "water" )
+			removeParachute(source, "water", skipAnimation )
+
+			if not skipAnimation then
+				setPedNewAnimation ( source, nil, "PARACHUTE", "PARA_Land_Water", -1, false, true, true, false )
+			end
 		end
 	end)
 
@@ -340,3 +355,11 @@ function playerQuitWhenParachuting()
 	end
 end
 addEventHandler("onClientPlayerQuit", root, playerQuitWhenParachuting)
+
+
+addEvent("serverRemoveParachute", true)
+addEventHandler("serverRemoveParachute", root, 
+	function(skipAnimation)
+		removeParachute(localPlayer, "water", skipAnimation)
+	end
+)

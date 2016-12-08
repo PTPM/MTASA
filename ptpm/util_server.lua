@@ -180,17 +180,6 @@ end
 
 
 function everyoneViewsBody(killer, bodyPM, interiorID)
-	-- if heligrab is running, we want to drop everyone from helis before we can set their position
-	if isRunning("heligrab") then
-		for _, player in ipairs(getElementsByType("player")) do
-			if player and isElement(player) then
-				if exports.heligrab:IsPlayerHangingFromHeli(player) then
-					exports.heligrab:SetPlayerGrabbedHeli(player, false)
-				end
-			end
-		end
-	end
-
 	-- Prevent dead people from respawning
 	for _, p in ipairs(getElementsByType("player")) do
 		if p and isElement(p) then

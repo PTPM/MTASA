@@ -12,6 +12,7 @@
 	<file src="parachuteopen.mp3" />
 	
 	<export function="removeParachute" type="client"/>
+	<export function="removeParachute" type="server"/>
 	<export function="stopSkyDiving" type="client"/>
 	
 	<export function="isPlayerSkyDiving" type="client"/>

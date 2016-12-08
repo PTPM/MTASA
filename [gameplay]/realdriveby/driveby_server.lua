@@ -39,3 +39,8 @@ addEventHandler("onElementModelChange", root,
 		end
 	end
 )
+
+
+function setDrivebyActive(player, active)
+	triggerClientEvent(player, "driveby_setActive", player, active)
+end

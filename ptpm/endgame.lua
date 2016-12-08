@@ -18,6 +18,33 @@ function setRoundEnded()
 			end
 		end
 	end
+
+	-- if heligrab is running, we want to drop everyone from helis
+	if isRunning("heligrab") then
+		for _, player in ipairs(getElementsByType("player")) do
+			if player and isElement(player) then
+				if exports.heligrab:IsPlayerHangingFromHeli(player) then
+					exports.heligrab:SetPlayerGrabbedHeli(player, false)
+				end
+			end
+		end
+	end
+
+	if isRunning("realdriveby") then
+		for _, player in ipairs(getElementsByType("player")) do
+			if player and isElement(player) then
+				exports.realdriveby:setDrivebyActive(player, false)
+			end
+		end		
+	end
+
+	if isRunning("parachute") then
+		for _, player in ipairs(getElementsByType("player")) do
+			if player and isElement(player) then
+				exports.parachute:removeParachute(player, true)
+			end
+		end
+	end
 end
 
 -- this happens once everyone has viewed the body for a few seconds
