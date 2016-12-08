@@ -647,7 +647,7 @@ end
 
 addEventHandler("onClientElementDestroy", root,
 	function()
-		if getElementType(source) == "vehicle" and getVehicleType(source) == "Helicopter" then
+		if source and getElementType(source) == "vehicle" and getVehicleType(source) == "Helicopter" then
 			local hangVehicle = getElementData(localPlayer, "heligrab.vehicle")
 			
 			if hangVehicle and hangVehicle == source then
