@@ -1,5 +1,6 @@
 function makeHeadshot(attacker, weapon, bodypart, loss)
 	if weapon==34 and bodypart==9 then
+		cancelEvent()
 		outputDebugString("Headshot victim has armor value of " .. getPedArmor (source), 3)
 	
 		if getPedArmor(source) > 0 then
