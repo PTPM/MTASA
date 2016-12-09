@@ -84,4 +84,20 @@ function getDrivebyAutoEquip()
 	return settings.autoEquip
 end
 
+function setDrivebyActive(active)
+	if active then
+		if drivebyActive then
+			return
+		end
 
+		toggleDriveby()
+	else
+		if not drivebyActive then
+			return
+		end
+
+		disableDriveby()
+	end
+end
+addEvent("driveby_setActive", true)
+addEventHandler("driveby_setActive", root, setDrivebyActive)

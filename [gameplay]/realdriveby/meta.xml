@@ -43,4 +43,7 @@
 	<export function="getDrivebySteeringAbility" type="client" />
 	<export function="setDrivebyAutoEquip" type="client" />
 	<export function="getDrivebyAutoEquip" type="client" />
+
+	<export function="setDrivebyActive" type="client"/>
+	<export function="setDrivebyActive" type="server"/>
 </meta>

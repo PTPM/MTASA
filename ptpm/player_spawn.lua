@@ -216,6 +216,10 @@ function setPlayerClass( thePlayer, class )
 		end
 	end
 
+	if isRunning("parachute") then
+		exports.parachute:removeParachute(thePlayer, true)
+	end
+
 	-- recalculate the balance situation every time somebody spawns
 	calculateBalance()
 	
