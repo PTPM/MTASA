@@ -7,11 +7,16 @@ Bikers, The Russian Mob, Stoners and Punks have gathered and are plotting to kil
  with their lives.
 
 ## Contact
-Join our development on IRC:
-irc://irc.gtanet.com:6667/#PTPM
+Join our development on IRC: [irc://irc.gtanet.com:6667/#PTPM](irc://irc.gtanet.com:6667/#PTPM)
 
 Visit our forums at:
 https://ptpm.uk/
+
+## Copyright and licensing
+© 2006-2016 PTPM Community (https://PTPM.uk)
+
+Usage permitted under [GNU GPLv3](https://github.com/PTPM/MTASA/blob/master/README.md).
+
 
 ## Sample mtaserver.conf
 ```xml
