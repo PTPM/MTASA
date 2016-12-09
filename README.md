@@ -15,7 +15,7 @@ https://ptpm.uk/
 ## Copyright and licensing
 © 2006-2016 PTPM Community (https://PTPM.uk)
 
-Usage permitted under [GNU GPLv3](https://github.com/PTPM/MTASA/blob/master/README.md).
+Usage permitted under [GNU GPLv3](https://github.com/PTPM/MTASA/blob/master/LICENSE.md).
 
 
 ## Sample mtaserver.conf
