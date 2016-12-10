@@ -58,6 +58,9 @@
 	<file src="images/ptpm-country.png"/>
 	<file src="images/white_dot.png"/>
 	
+	<!-- StrategyRadial -->
+	<script src="strategy_radial_client.lua" type="client"/>
+	
 	<!-- Mapvote2 -->
 	<file src="mapvoteimages/map-pic-A51.png" />
 	<file src="mapvoteimages/map-pic-Air.png" />
