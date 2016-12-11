@@ -1,3 +1,4 @@
+﻿
 -- Also using:
 
 -- missiontimer
@@ -519,8 +520,30 @@ function roundTick()
 			end
 		end	
 		
-		if options.pmHealthBonus and timeLeft % (5000) then
-			changeHealth(currentPM,options.pmHealthBonus)
+		-- double the amount and the tick interval to get around the health problem in mta
+		-- revert if that ever gets fixed, bug #9492
+		if options.pmHealthBonus and (timeLeft % 10000) < 1000 then
+			if (not options.pmWaterHealthPenalty) or (not isElementInWater(currentPM)) then
+				changeHealth(currentPM, options.pmHealthBonus * 2)
+				--outputDebugString(string.format("tick %.4f %.4f", math.ceil(getElementHealth(currentPM)), getElementHealth(currentPM)))
+			end
+		end
+
+		if options.pmWaterHealthPenalty then
+			if isElementInWater(currentPM) then
+				if not getElementData(currentPM, "ptpm.waterHealthPenaltyTick") then
+					setElementData(currentPM, "ptpm.waterHealthPenaltyTick", tick, false)
+				end
+
+				-- -0 hp for the first 20s, then increase by 1 every 20s (-1, -2, -3, -4, etc)
+				-- can survive for a little over a minute (starting with full hp) without any heals
+				local enteredWater = getElementData(currentPM, "ptpm.waterHealthPenaltyTick")
+				changeHealth(currentPM, -math.floor(math.max(((tick - enteredWater) / 2) / 10000, 0)))
+			else
+				if getElementData(currentPM, "ptpm.waterHealthPenaltyTick") then
+					setElementData(currentPM, "ptpm.waterHealthPenaltyTick", nil, false)
+				end				
+			end
 		end
 		
 		if options.pmAbandonedHealthPenalty and not getPedOccupiedVehicle( currentPM ) and timeLeft % (options.pmAbandonedHealthPenalty * 1000) then

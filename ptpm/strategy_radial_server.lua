@@ -1,5 +1,3 @@
-sendTeamChatMessage( thePlayer, message )
-
 function handleIncomingStrategyRadialCommand(command, text, x, y, z)
 	if isPlayerMuted( client ) then
 		outputChatBox( "You are muted.", client, unpack( colourPersonal ) )

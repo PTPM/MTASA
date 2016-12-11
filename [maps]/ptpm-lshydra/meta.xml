@@ -7,5 +7,6 @@
 		<setting name="*roundtime" value="[900000]" /> <!-- 15 mins -->
 		<setting name="*pmHealthBonus" value="[1]" />
 		<setting name="*medicHealthBonus" value="[true]" />
+		<setting name="*pmWaterHealthPenalty" value="[true]"/>
 	</settings>
 </meta>

@@ -9,5 +9,6 @@
 		<setting name="*vehicleLaunch" value="[true]" />
 		<setting name="*pmWaterDeath" value="[true]" />
 		<setting name="*disableClouds" value="[true]"/>
+		<setting name="*pocketMoney" value="[0]"/>
 	</settings>
 </meta>

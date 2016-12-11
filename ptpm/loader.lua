@@ -51,6 +51,7 @@ function ptpmMapStart( map )
 	
 	options.roundtime = get( runningMapName .. ".roundtime" ) or 900000 -- 15 mins
 	options.pmHealthBonus = get( runningMapName .. ".pmHealthBonus" ) or false
+	options.pmWaterHealthPenalty = get( runningMapName .. ".pmWaterHealthPenalty" ) or false
 	options.medicHealthBonus = get( runningMapName .. ".medicHealthBonus" ) or false
 	options.pocketMoney = get( runningMapName .. ".pocketMoney" ) or 500
 	options.objectivesToFinish = get( runningMapName .. ".objectivesToFinish" ) or 5
@@ -771,6 +772,7 @@ function resetPlayerRound( thePlayer )
 	setElementData( thePlayer, "ptpm.blip.visibleto", nil )
 	
 	setElementData( thePlayer, "ptpm.score.class", nil )
+	setElementData(thePlayer, "ptpm.waterHealthPenaltyTick", nil, false)
 	
 	setPlayerTeam( thePlayer, nil )
 end
