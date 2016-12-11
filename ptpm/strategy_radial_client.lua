@@ -24,70 +24,75 @@ local radialMenuConfig = {
 	radius = 150
 }
 
-local smartCommands = {
-	Taunt = {
-		Title = "Taunt",
-		textLines = {
-			"Butt!", 
-			"Ass!", 
-			"Fuck!"
-		},
-		selected = false
+local smartCommands = {}
+table.insert(smartCommands, {
+	Title = "Greet",
+	textLines = {
+		"Hi!", 
+		"Hello!", 
+		"Hey!"
 	},
-	No = {
-		Title = "No",
-		textLines = {
-			"No", 
-			"Negatory", 
-			"No way, Jose"
-		},
-		selected = false
+	selected = false
+});
+	
+table.insert(smartCommands, {
+	Title = "Yes",
+	textLines = {
+		"Yes", 
+		"Yea", 
+		"Affirmative"
 	},
-	Yes = {
-		Title = "Yes",
-		textLines = {
-			"Yes", 
-			"Yea", 
-			"Affirmative"
-		},
-		selected = false
-	},
-	Thanks = {
-		Title = "Thanks",
-		textLines = {
-			"Thank you", 
-			"Appreciate it", 
-			"Thanks!"
-		},
-		selected = false
-	},
-	Come = {
-		Title = "Come",
+	selected = false
+});
+	
+table.insert(smartCommands, {
+	Title = "Come",
 		textLines = {
 			"Help me here!", 
 			"Come here!", 
 			"Come to me!"
 		},
-		selected = false
+	selected = false
+});
+	
+table.insert(smartCommands, {
+	Title = "Thanks",
+	textLines = {
+		"Thank you", 
+		"Appreciate it", 
+		"Thanks!"
 	},
-	Greet = {
-		Title = "Greet",
-		textLines = {
-			"Hi!", 
-			"Hello!", 
-			"Hey!"
-		},
-		selected = false
+	selected = false
+});
+	
+table.insert(smartCommands, {
+	Title = "Insult",
+	textLines = {
+		"Bunghole!", 
+		"Bozo!", 
+		"Pinhead!"
 	},
-	Go = {
-		Title = "Go",
-		textLines = {
-			"Go! Go! Go!", 
-			"Let's get out!"
-		},
-		selected = false
-	}
-}
+	selected = false
+});
+	
+table.insert(smartCommands, {
+	Title = "Go",
+	textLines = {
+		"Go! Go! Go!", 
+		"Let's get out!"
+	},
+	selected = false
+});
+
+table.insert(smartCommands, {
+	Title = "No",
+	textLines = {
+		"No", 
+		"Negatory", 
+		"No way, Jose"
+	},
+	selected = false
+});
 
 -- Step 1: draw a radial menu
 function sf_(value)
