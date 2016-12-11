@@ -26,7 +26,7 @@ local radialMenuConfig = {
 
 local smartCommands = {}
 table.insert(smartCommands, {
-	Title = "Greet",
+	Title = "Hello",
 	textLines = {
 		"Hi!", 
 		"Hello!", 
@@ -51,6 +51,16 @@ table.insert(smartCommands, {
 			"Help me here!", 
 			"Come here!", 
 			"Come help me!"
+		},
+	selected = false
+});
+
+table.insert(smartCommands, {
+	Title = "Good job",
+		textLines = {
+			"Good job!", 
+			"Nice!", 
+			"Well done!"
 		},
 	selected = false
 });
