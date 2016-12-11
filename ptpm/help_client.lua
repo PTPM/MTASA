@@ -293,6 +293,7 @@ local helper = {
 		"Use #00ffaeright click#ffffff to #00ffaedriveby#ffffff (when you have a driveby weapon)",
 		"Cool screenshots and videos of PTPM gameplay at #00ffaehttps://PTPM.uk#ffffff!",
 		"Tap '#00ffaejump#ffffff' underneath a helicopter to grab on",
+		"Hold #00ffaeX#ffffff to open the Strategy Radial for quick communication"
 	},
 
 	current = 0,
