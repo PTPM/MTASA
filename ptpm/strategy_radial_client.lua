@@ -79,7 +79,7 @@ table.insert(smartCommands, {
 	Title = "Go",
 	textLines = {
 		"Go! Go! Go!", 
-		"Let's get out!"
+		"Let's get out of here!"
 	},
 	selected = false
 });
@@ -164,6 +164,10 @@ function getSelectedRadialOption(_, _, cursorX, cursorY, worldX, worldY, worldZ)
 		smartCommands[closestCommandKey].selected = true
 		smartPingWorldX, smartPingWorldY, smartPingWorldZ = worldX, worldY, worldZ
 	
+	else 
+		for k,smartCommand in pairs(smartCommands) do
+			smartCommands[k].selected = false
+		end
 	end
 end
 
