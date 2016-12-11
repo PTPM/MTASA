@@ -46,11 +46,11 @@ table.insert(smartCommands, {
 });
 	
 table.insert(smartCommands, {
-	Title = "Come",
+	Title = "Help!",
 		textLines = {
 			"Help me here!", 
 			"Come here!", 
-			"Come to me!"
+			"Come help me!"
 		},
 	selected = false
 });
