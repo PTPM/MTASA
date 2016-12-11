@@ -1,3 +1,4 @@
+﻿
 -- Also using:
 
 -- missiontimer
@@ -519,8 +520,11 @@ function roundTick()
 			end
 		end	
 		
-		if options.pmHealthBonus and timeLeft % (5000) then
-			changeHealth(currentPM,options.pmHealthBonus)
+		-- double the amount and the tick interval to get around the health problem in mta
+		-- revert if that ever gets fixed, bug #9492
+		if options.pmHealthBonus and (timeLeft % 10000) < 1000 then
+			changeHealth(currentPM, options.pmHealthBonus * 2)
+			--outputDebugString(string.format("tick %.4f %.4f", math.ceil(getElementHealth(currentPM)), getElementHealth(currentPM)))
 		end
 		
 		if options.pmAbandonedHealthPenalty and not getPedOccupiedVehicle( currentPM ) and timeLeft % (options.pmAbandonedHealthPenalty * 1000) then
