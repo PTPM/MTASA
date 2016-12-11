@@ -1,4 +1,3 @@
--- This script uses many of the functions defined in class_selection_client.lua
 -- This script only provides the radial menu and Smart Pings (map markers), the voices are a seperate resource
 
 local uiScale = screenY / 600
@@ -13,54 +12,11 @@ local colours = {
 	white = tocolor(255, 255, 255, 255)
 }
 
-local smartCommands = {
-	Greet = {
-		Title = "Greet",
-		textLines = {
-			"Hi!", "Hello!", "Hey!"
-		}
-	},
-	Come = {
-		Title = "Come",
-		textLines = {
-			"Help me here!", "Come here!", "Come to me!"
-		}
-	},
-	Yes = {
-		Title = "Yes",
-		textLines = {
-			"Yes", "Yea", "Affirmative"
-		}
-	},
-	Thanks = {
-		Title = "Thanks",
-		textLines = {
-			"Thank you", "Appreciate it", "Thanks!"
-		}
-	},
-	No = {
-		Title = "No",
-		textLines = {
-			"No", "Negatory", "No way, Jose"
-		}
-	},
-	Taunt = {
-		Title = "Taunt",
-		textLines = {
-			"Butt!", "Ass!", "Fuck!"
-		}
-	},
-	Go = {
-		Title = "Go",
-		textLines = {
-			"Go!", "Get out!", "Leave!"
-		}
-	}
-}
-
+local overwriteDisableStrategyRadial = false
 local numberOfSmartCommands = 0
 local step = 0
-
+local cursorState = false
+local smartPingWorldX, smartPingWorldY, smartPingWorldZ = 0,0,0
 
 local radialMenuConfig = {
 	x = screenX * 0.5,
@@ -68,8 +24,72 @@ local radialMenuConfig = {
 	radius = 150
 }
 
--- Step one: draw a radial menu
--- scaleFont without globalScalar
+local smartCommands = {
+	Taunt = {
+		Title = "Taunt",
+		textLines = {
+			"Butt!", 
+			"Ass!", 
+			"Fuck!"
+		},
+		selected = false
+	},
+	No = {
+		Title = "No",
+		textLines = {
+			"No", 
+			"Negatory", 
+			"No way, Jose"
+		},
+		selected = false
+	},
+	Yes = {
+		Title = "Yes",
+		textLines = {
+			"Yes", 
+			"Yea", 
+			"Affirmative"
+		},
+		selected = false
+	},
+	Thanks = {
+		Title = "Thanks",
+		textLines = {
+			"Thank you", 
+			"Appreciate it", 
+			"Thanks!"
+		},
+		selected = false
+	},
+	Come = {
+		Title = "Come",
+		textLines = {
+			"Help me here!", 
+			"Come here!", 
+			"Come to me!"
+		},
+		selected = false
+	},
+	Greet = {
+		Title = "Greet",
+		textLines = {
+			"Hi!", 
+			"Hello!", 
+			"Hey!"
+		},
+		selected = false
+	},
+	Go = {
+		Title = "Go",
+		textLines = {
+			"Go! Go! Go!", 
+			"Let's get out!"
+		},
+		selected = false
+	}
+}
+
+-- Step 1: draw a radial menu
 function sf_(value)
 	return ((value * uiScale) / font.scalar)
 end
@@ -80,31 +100,115 @@ function drawStrategyRadial()
 	-- Dim screen
 	dxDrawRectangle(0, 0, screenX, screenY, tocolor(0, 0, 0, 130))
 	
+	-- Put a dot in the center, it's for aiming the Smart Ping
+	dxDrawSmartCommandTitle(".",radialMenuConfig.x,radialMenuConfig.y,tocolor ( 255, 255, 255, 255 ), sf_(1)) 
+	
 	local i = 0
 	
 	-- Calculate the absolute position of SmartCommands if not done already
 	for k,smartCommand in pairs(smartCommands) do
 		if not smartCommand.x or not smartCommand.y then
-			smartCommand.x, smartCommand.y = getPointOnCircle(s(radialMenuConfig.radius), ((i) * step) - 90)
+			relX,relY = getPointOnCircle(s(radialMenuConfig.radius), ((i) * step) - 90)
+			smartCommands[k].x, smartCommands[k].y = relX+radialMenuConfig.x,relY+radialMenuConfig.y
 		end
 	
 		-- Draw the SmartCommands
-		dxDrawText ( smartCommand.Title, radialMenuConfig.x + smartCommand.x, radialMenuConfig.y + smartCommand.y, radialMenuConfig.x + smartCommand.x, radialMenuConfig.y + smartCommand.y, tocolor ( 255, 255, 255, 255 ), sf_(1.5), font.base, "center", "center", false, false, false, true, false ) 
+		local fontSize = 1.5
+		
+		if smartCommands[k].selected then
+			fontSize = 2.5
+		end
+		
+		dxDrawSmartCommandTitle(smartCommand.Title,smartCommands[k].x, smartCommands[k].y,tocolor ( 255, 255, 255, 255 ), sf_(fontSize)) 
 		
 		i=i+1
 	end
 end
 
--- Step 2: handle mouse over
-function getSelectedRadialOption(_, _, cursorX, cursorY)
-	local imaginaryRadius = getDistanceBetweenPoints2D(cursorX, cursorY, radialMenuConfig.x ,radialMenuConfig.y )
-	
-	-- im stumped
+function dxDrawSmartCommandTitle(text,x,y,colour,size)
+
+	dxDrawText(text,x-1,y-1,x-1,y-1,colours.black,size, font.base, "center", "center", false, false, false, true, false )
+	dxDrawText(text,x-1,y+1,x-1,y+1,colours.black,size, font.base, "center", "center", false, false, false, true, false )
+	dxDrawText(text,x+1,y-1,x+1,y-1,colours.black,size, font.base, "center", "center", false, false, false, true, false )
+	dxDrawText(text,x+1,y+1,x+1,y+1,colours.black,size, font.base, "center", "center", false, false, false, true, false )
+	dxDrawText(text,x,y,x,y,colour,size, font.base, "center", "center", false, false, false, true, false )
+
 end
 
+-- Step 2: handle mouse over
+function getSelectedRadialOption(_, _, cursorX, cursorY, worldX, worldY, worldZ)
 
+	-- Cursor has to be moved enough pixels from the center, otherwise just cancel
+	if getDistanceBetweenPoints2D(cursorX, cursorY, radialMenuConfig.x, radialMenuConfig.y ) > 30 then
 
-addEventHandler( "onClientCursorMove", getRootElement( ), getSelectedRadialOption)
+		local closestCommandKey = nil
+		local closestDistance = 999999999999
+		
+		for k,smartCommand in pairs(smartCommands) do
+			smartCommands[k].selected = false
+			
+			local thisDistance = getDistanceBetweenPoints2D(cursorX, cursorY, smartCommand.x, smartCommand.y )
+			
+			if thisDistance < closestDistance then
+				closestCommandKey = k
+				closestDistance = thisDistance
+			end
+		
+		end 
+		
+		smartCommands[closestCommandKey].selected = true
+		smartPingWorldX, smartPingWorldY, smartPingWorldZ = worldX, worldY, worldZ
+	
+	end
+end
+
+-- Step 3: Handle the logic
+function showStrategicRadialMenu()
+	-- Ensure it is allowed
+	if overwriteDisableStrategyRadial then return end
+	if not (getElementData(localPlayer, "ptpm.classID") or false) then return end
+
+	-- Unset select state
+	for k,smartCommand in pairs(smartCommands) do
+		smartCommands[k].selected = false
+	end
+	setCursorPosition( radialMenuConfig.x, radialMenuConfig.y )
+
+	addEventHandler("onClientRender", root, drawStrategyRadial)
+	addEventHandler( "onClientCursorMove", getRootElement( ), getSelectedRadialOption)
+	
+	-- Enable cursor + allow movement, but don't overwrite movement permission
+	if not cursorState then 
+		showCursor ( true, false )
+	end
+end
+
+function executeStrategicRadialMenu()
+	if not (getElementData(localPlayer, "ptpm.classID") or false) then return end
+
+	removeEventHandler("onClientRender", root, drawStrategyRadial)
+	removeEventHandler( "onClientCursorMove", getRootElement( ), getSelectedRadialOption)
+	
+	if  not overwriteDisableStrategyRadial then 
+		for k,smartCommand in pairs(smartCommands) do
+			if smartCommands[k].selected then
+				-- get a random line
+				local line = smartCommands[k].textLines[math.random(1,#smartCommands[k].textLines)]
+				triggerServerEvent ( "ptpmStrategyRadialRelay", resourceRoot, smartCommands[k].Title, line, smartPingWorldX, smartPingWorldY, smartPingWorldZ )
+			end
+		end
+		
+		if not cursorState then
+			showCursor ( false, false )
+		end
+	end
+end
+
+bindKey ( "x", "down", showStrategicRadialMenu ) 
+bindKey ( "x", "up", executeStrategicRadialMenu ) 
+
+addEventHandler( "ptpmStartMapVote", localPlayer, function() overwriteDisableStrategyRadial = true end )
+addEventHandler( "ptpmEndMapVote", localPlayer, function() overwriteDisableStrategyRadial = false end )
 
 
 addEventHandler("onClientResourceStart", resourceRoot,
@@ -132,9 +236,9 @@ addEventHandler("onClientResourceStart", resourceRoot,
 		end
 		
 		step = 360 / numberOfSmartCommands
+		cursorState = isCursorShowing()
 		
 	end
 )
 
 
-addEventHandler("onClientRender", root, drawStrategyRadial)

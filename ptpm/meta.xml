@@ -60,6 +60,7 @@
 	
 	<!-- StrategyRadial -->
 	<script src="strategy_radial_client.lua" type="client"/>
+	<script src="strategy_radial_server.lua" type="server"/>
 	
 	<!-- Mapvote2 -->
 	<file src="mapvoteimages/map-pic-A51.png" />
