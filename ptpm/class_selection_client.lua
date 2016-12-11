@@ -564,7 +564,7 @@ function drawPart(part, x, y, radius)
 		drawRadius = (1 - getEasingValue(math.max(0, part.animation.inOut), "InBack", 0.3, 1.0)) * radius
 	end
 
-	if part.animation.inOut < 1 then
+	if type(part.animation.inOut)=='number' and part.animation.inOut < 1 then
 		local speed = (part.animation.inOutDir == 1) and (part.animation.inSpeed or 1) or (part.animation.outSpeed or 2.4)
 		part.animation.inOut = math.min(part.animation.inOut + (speed * delta), 1)
 	end
