@@ -538,7 +538,7 @@ function roundTick()
 				-- -1 hp for the first 40s, then increase by 1 every 20s (-2, -3, -4, etc)
 				-- can survive for a little over a minute (starting with full hp) without any heals
 				local enteredWater = getElementData(currentPM, "ptpm.waterHealthPenaltyTick")
-				changeHealth(currentPM, -math.floor(math.max(((tick - enteredWater) / 2) / 10000, 1)))
+				changeHealth(currentPM, -math.floor(math.max(((tick - enteredWater) / 2) / 10000, 0)))
 			else
 				if getElementData(currentPM, "ptpm.waterHealthPenaltyTick") then
 					setElementData(currentPM, "ptpm.waterHealthPenaltyTick", nil, false)
