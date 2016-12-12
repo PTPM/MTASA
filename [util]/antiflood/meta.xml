@@ -1,5 +1,5 @@
 <meta>
-	<info author="Gode" type="script" name="Anti-flood" />
+	<info author="PTPM" type="script" name="Anti-flood" />
 	<script src="server.lua" type="server"></script>
 
 	<settings>
