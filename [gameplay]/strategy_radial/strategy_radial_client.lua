@@ -1,4 +1,5 @@
 -- This script only provides the radial menu and Smart Pings (map markers), the voices are a seperate resource
+local screenX, screenY = guiGetScreenSize()
 
 local uiScale = screenY / 600
 local font = {
@@ -21,109 +22,110 @@ local smartPingWorldX, smartPingWorldY, smartPingWorldZ = 0,0,0
 local radialMenuConfig = {
 	x = screenX * 0.5,
 	y = screenY * 0.5,
-	radius = 150
+	radius = (0.7 * screenY) / 2
 }
 
-local smartCommands = {}
-table.insert(smartCommands, {
-	Title = "Hello",
-	textLines = {
-		"Hi!", 
-		"Hello!", 
-		"Hey!"
-	},
-	selected = false
-});
-	
-table.insert(smartCommands, {
-	Title = "Yes",
-	textLines = {
-		"Yes", 
-		"Yea", 
-		"Affirmative"
-	},
-	selected = false
-});
-	
-table.insert(smartCommands, {
-	Title = "Help!",
+local backgroundImageSize = radialMenuConfig.radius * 2 * 1.1
+local safeZoneImageSize = radialMenuConfig.radius * 2 * 0.1 --safezone is visualized one-tenth of radialMenuConfig.radius
+
+local smartCommands =  {
+	{
+		Title = "Hello",
 		textLines = {
-			"Help me here!", 
-			"Come here!", 
-			"Come help me!"
+			"Hi!", 
+			"Hello!", 
+			"Hey!"
 		},
-	selected = false
-});
-
-table.insert(smartCommands, {
-	Title = "Good job",
+		selected = false
+	}, {
+		Title = "Yes",
 		textLines = {
-			"Good job!", 
-			"Nice!", 
-			"Well done!"
+			"Yes", 
+			"Yea", 
+			"Affirmative"
 		},
-	selected = false
-});
-	
-table.insert(smartCommands, {
-	Title = "Thanks",
-	textLines = {
-		"Thank you", 
-		"Appreciate it", 
-		"Thanks!"
-	},
-	selected = false
-});
-	
-table.insert(smartCommands, {
-	Title = "Insult",
-	textLines = {
-		"Bunghole!", 
-		"Bozo!", 
-		"Pinhead!"
-	},
-	selected = false
-});
-	
-table.insert(smartCommands, {
-	Title = "Go",
-	textLines = {
-		"Go! Go! Go!", 
-		"Let's get out of here!"
-	},
-	selected = false
-});
+		selected = false
+	}, {
+		Title = "Help!",
+			textLines = {
+				"Help me here!", 
+				"Come here!", 
+				"Come help me!"
+			},
+		selected = false
+	}, {
+		Title = "Good job",
+			textLines = {
+				"Good job!", 
+				"Nice!", 
+				"Well done!"
+			},
+		selected = false
+	}, {
+		Title = "Thanks",
+		textLines = {
+			"Thank you", 
+			"Appreciate it", 
+			"Thanks!"
+		},
+		selected = false
+	}, {
+		Title = "Insult",
+		textLines = {
+			"Bunghole!", 
+			"Bozo!", 
+			"Pinhead!"
+		},
+		selected = false
+	}, {
+		Title = "Go",
+		textLines = {
+			"Go! Go! Go!", 
+			"Let's get out of here!"
+		},
+		selected = false
+	}, {
+		Title = "No",
+		textLines = {
+			"No", 
+			"Negatory", 
+			"No way, Jose"
+		},
+		selected = false
+	}
+};
 
-table.insert(smartCommands, {
-	Title = "No",
-	textLines = {
-		"No", 
-		"Negatory", 
-		"No way, Jose"
-	},
-	selected = false
-});
-
--- Step 1: draw a radial menu
 function sf_(value)
 	return ((value * uiScale) / font.scalar)
 end
 
+function getPointOnCircle(radius, rotation)
+	return radius * math.cos(math.rad(rotation)), radius * math.sin(math.rad(rotation))
+end
+
+-- Step 1: draw a radial menu
+
 function drawStrategyRadial()
 	if (numberOfSmartCommands==0 or numberOfSmartCommands==nil) then return end
 	
-	-- Dim screen
-	dxDrawRectangle(0, 0, screenX, screenY, tocolor(0, 0, 0, 130))
-	
-	-- Put a dot in the center, it's for aiming the Smart Ping
-	dxDrawSmartCommandTitle(".",radialMenuConfig.x,radialMenuConfig.y,tocolor ( 255, 255, 255, 255 ), sf_(1)) 
-	
 	local i = 0
 	
+	-- Background image
+	dxDrawImage(radialMenuConfig.x - backgroundImageSize/2,radialMenuConfig.y- backgroundImageSize/2, backgroundImageSize, backgroundImageSize, "backgroundShade.png")
+	
+	-- The cursor "safe zone" (mouseover for "cancel"-area)
+	dxDrawImage(radialMenuConfig.x - safeZoneImageSize/2,radialMenuConfig.y- safeZoneImageSize/2, safeZoneImageSize, safeZoneImageSize, "backgroundShade.png")
+		
 	-- Calculate the absolute position of SmartCommands if not done already
 	for k,smartCommand in pairs(smartCommands) do
+	
+		-- Draw divider lines between the options
+		relXEnd,relYEnd = getPointOnCircle(radialMenuConfig.radius, step/2 + ((i) * step) - 90)
+		relXStart,relYStart = getPointOnCircle(radialMenuConfig.radius * 0.1, step/2 + ((i) * step) - 90)
+		dxDrawLine( relXStart + radialMenuConfig.x, relYStart + radialMenuConfig.y, relXEnd+radialMenuConfig.x,relYEnd+radialMenuConfig.y, tocolor(0,0,0,50), 2 )
+	
 		if not smartCommand.x or not smartCommand.y then
-			relX,relY = getPointOnCircle(s(radialMenuConfig.radius), ((i) * step) - 90)
+			relX,relY = getPointOnCircle(radialMenuConfig.radius/4*3, ((i) * step) - 90)
 			smartCommands[k].x, smartCommands[k].y = relX+radialMenuConfig.x,relY+radialMenuConfig.y
 		end
 	
@@ -131,11 +133,11 @@ function drawStrategyRadial()
 		local fontSize = 1.5
 		
 		if smartCommands[k].selected then
-			fontSize = 2.5
+			fontSize = 2.2
 		end
 		
 		dxDrawSmartCommandTitle(smartCommand.Title,smartCommands[k].x, smartCommands[k].y,tocolor ( 255, 255, 255, 255 ), sf_(fontSize)) 
-		
+				
 		i=i+1
 	end
 end

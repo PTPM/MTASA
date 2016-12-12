@@ -1,17 +1,26 @@
+local resource = {
+	ptpm = getResourceFromName("ptpm"),
+	spam = getResourceFromName("antiflood"),
+}
+
 function handleIncomingStrategyRadialCommand(command, text, x, y, z)
 	if isPlayerMuted( client ) then
-		outputChatBox( "You are muted.", client, unpack( colourPersonal ) )
+		outputChatBox( "You are muted.", client, 128, 128, 255 ) --ptpm.colourPersonal
 		return
 	end
 	
-	if spam.resource and getResourceState(spam.resource) == "running" then
+	if resource.spam and getResourceState(resource.spam) == "running" then
 		local allow, wasPunished = exports.antiflood:shouldAllowMessage(client)
 		if not allow then
 			return
 		end
 	end
 	
-	sendTeamChatMessage( client, text )
+	if resource.ptpm and getResourceState(resource.ptpm) == "running" then
+		exports.ptpm:sendTeamChatMessage( client, text )
+	else
+		outputChatBox (getPlayerName(client) ..  ":#FFFFFF " .. text, getRootElement(), unpack(getPlayerNametagColor(client)), true )
+	end
 end
 
 
