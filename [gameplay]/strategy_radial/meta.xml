@@ -1,0 +1,6 @@
+<meta>
+	<info author="PTPM" type="script" name="Strategy Radial" description="Radial Menu for quick communication"/>
+	<script src="strategy_radial_client.lua" type="client"/>
+	<script src="strategy_radial_server.lua" type="server"/>
+	<download_priority_group>0</download_priority_group>	
+</meta>

@@ -58,10 +58,6 @@
 	<file src="images/ptpm-country.png"/>
 	<file src="images/white_dot.png"/>
 	
-	<!-- StrategyRadial -->
-	<script src="strategy_radial_client.lua" type="client"/>
-	<script src="strategy_radial_server.lua" type="server"/>
-	
 	<!-- Mapvote2 -->
 	<file src="mapvoteimages/map-pic-A51.png" />
 	<file src="mapvoteimages/map-pic-Air.png" />
@@ -135,6 +131,7 @@
 	<include resource="realdriveby" />
 	
 	<export function="getPlayerColour" type="server"/>
+	<export function="sendTeamChatMessage" type="server"/>
 	
 	<!-- Gameplay (download) -->
 	<!--<include resource="heligrab" />-->
