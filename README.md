@@ -131,8 +131,7 @@ Usage permitted under [GNU GPLv3](https://github.com/PTPM/MTASA/blob/master/LICE
     <resource src="antiflood" startup="1" protected="0" />
 
     <!-- Non-essential gameplay enhancers: -->
-    <resource src="drawtag" startup="1" protected="0" />
-    <resource src="drawtag_ptpm" startup="1" protected="0" />
+    <resource src="strategy_radial" startup="1" protected="0" />
 
     <resource src="headshot_special" startup="1" protected="0" />
     <resource src="antispawnkill" startup="1" protected="0" />
