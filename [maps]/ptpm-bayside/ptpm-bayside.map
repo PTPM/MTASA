@@ -120,7 +120,7 @@
     <vehicle model="586" posX="-778.4286" posY="2762.8728" posZ="45.2869" rotZ="175.6553" />
     <vehicle model="499" posX="-794.7983" posY="2771.9434" posZ="45.8171" rotZ="270.9103" />
     <vehicle model="489" posX="-782.6301" posY="2770.2417" posZ="46.0193" rotZ="178.5571" />
-    <!--<vehicle model="510" posX="-766.3795" posY="2773.9460" posZ="45.4693" rotZ="88.7864" />-->
+    <vehicle model="510" posX="-766.3795" posY="2773.9460" posZ="45.4693" rotZ="88.7864" />
     <vehicle model="400" posX="-735.8654" posY="2746.4185" posZ="47.3627" rotZ="88.9473" />
     <vehicle model="566" posX="-771.6777" posY="2760.0645" posZ="45.6394" rotZ="181.9467" />
     <vehicle model="566" posX="-767.6777" posY="2760.0645" posZ="45.6734" rotZ="181.9467" />
@@ -155,8 +155,8 @@
     <vehicle model="604" posX="-908.2130" posY="1524.3607" posZ="25.8341" rotZ="242.8985" />
     <vehicle model="605" posX="-881.1156" posY="1535.4993" posZ="25.8641" rotZ="100.3809" />
     <vehicle model="471" posX="-882.5681" posY="1558.0959" posZ="25.4891" rotZ="96.5677" />
-    <!--<vehicle model="510" posX="-905.7840" posY="1549.5992" posZ="25.5565" rotZ="269.1096" />-->
-    <!--<vehicle model="510" posX="-905.7840" posY="1547.5992" posZ="25.5877" rotZ="269.1096" />-->
+    <vehicle model="510" posX="-905.7840" posY="1549.5992" posZ="25.5565" rotZ="269.1096" />
+    <vehicle model="510" posX="-905.7840" posY="1547.5992" posZ="25.5877" rotZ="269.1096" />
     <vehicle model="605" posX="-747.6981" posY="1434.8790" posZ="16.0419" rotZ="5.6460" />
     <vehicle model="604" posX="-683.8286" posY="1446.4352" posZ="17.2208" rotZ="357.7681" />
     <vehicle model="471" posX="-643.7973" posY="1441.5533" posZ="13.1922" rotZ="0.9903" />
@@ -203,26 +203,26 @@
     <vehicle model="426" posX="-1359.8230" posY="2065.3262" posZ="52.3233" rotZ="270.2028" />
     <vehicle model="545" posX="-1939.6053" posY="2389.6772" posZ="49.4422" rotZ="293.4300" />
     <vehicle model="401" posX="-1935.9838" posY="2380.2446" posZ="49.3678" rotZ="287.7526" />
-    <!--<vehicle model="510" posX="-1420.0134" posY="2304.6655" posZ="54.4461" rotZ="202.6274" />-->
+    <vehicle model="510" posX="-1420.0134" posY="2304.6655" posZ="54.4461" rotZ="202.6274" />
     <vehicle model="471" posX="-1692.0798" posY="2395.5251" posZ="57.8204" rotZ="28.5383" />
     <vehicle model="422" posX="-1670.0098" posY="2495.3765" posZ="87.2044" rotZ="278.4872" />
     <vehicle model="426" posX="-1667.1249" posY="2562.6013" posZ="84.9620" rotZ="275.4769" />
     <vehicle model="543" posX="-1669.7704" posY="2601.0649" posZ="81.2242" rotZ="273.3861" />
     <vehicle model="471" posX="-1722.4993" posY="2671.5313" posZ="61.8078" rotZ="230.9962" />
     <vehicle model="468" posX="-1535.6538" posY="2357.8516" posZ="46.0756" rotZ="76.3486" />
-    <!--<vehicle model="510" posX="-1528.4764" posY="2253.9707" posZ="47.7298" rotZ="183.2276" />-->
+    <vehicle model="510" posX="-1528.4764" posY="2253.9707" posZ="47.7298" rotZ="183.2276" />
     <vehicle model="496" posX="-1479.8020" posY="1879.2155" posZ="32.4205" rotZ="185.8006" />
     <vehicle model="533" posX="-1489.3298" posY="1879.0116" posZ="32.4328" rotZ="179.0183" />
     <vehicle model="604" posX="-1709.7765" posY="2175.7703" posZ="19.5037" rotZ="222.0239" />
     <vehicle model="471" posX="-1777.2389" posY="2211.7627" posZ="3.6206" rotZ="230.4211" />
     <vehicle model="426" posX="-1930.1531" posY="2578.0037" posZ="42.7519" rotZ="260.3332" />
     <vehicle model="471" posX="-1284.8065" posY="2041.9019" posZ="77.5186" rotZ="299.9343" />
-    <!--<vehicle model="510" posX="-1137.7235" posY="2108.7932" posZ="85.7427" rotZ="277.3154" />-->
+    <vehicle model="510" posX="-1137.7235" posY="2108.7932" posZ="85.7427" rotZ="277.3154" />
     <vehicle model="468" posX="-1106.4080" posY="2375.2395" posZ="84.8391" rotZ="143.1450" />
-    <!--<vehicle model="510" posX="-1211.2548" posY="2216.7107" posZ="105.6670" rotZ="120.6889" />-->
+    <vehicle model="510" posX="-1211.2548" posY="2216.7107" posZ="105.6670" rotZ="120.6889" />
     <vehicle model="471" posX="-1296.9563" posY="2514.8306" posZ="86.6672" rotZ="183.5114" />
     <vehicle model="471" posX="-1300.9563" posY="2514.8306" posZ="86.6672" rotZ="183.5114" />
-    <!--<vehicle model="510" posX="-1221.8347" posY="2364.8291" posZ="111.0218" rotZ="49.4197" />-->
+    <vehicle model="510" posX="-1221.8347" posY="2364.8291" posZ="111.0218" rotZ="49.4197" />
     <vehicle model="471" posX="-1172.3024" posY="2602.6140" posZ="63.0039" rotZ="234.0768" />
     <vehicle model="498" posX="-1522.1962" posY="2584.5894" posZ="56.0459" rotZ="0.6587" />
     <vehicle model="426" posX="-1529.5010" posY="2570.2429" posZ="55.6559" rotZ="89.1162" />
@@ -230,7 +230,7 @@
     <vehicle model="543" posX="-2473.4404" posY="2503.6873" posZ="17.2073" rotZ="87.2478" />
     <vehicle model="466" posX="-2448.5178" posY="2523.3794" posZ="15.6871" rotZ="270.6486" />
     <vehicle model="466" posX="-942.5275" posY="1416.3855" posZ="30.0120" rotZ="273.5908" />
-    <!--<vehicle model="510" posX="-1038.9624" posY="1719.8768" posZ="31.1865" rotZ="91.9638" />-->
+    <vehicle model="510" posX="-1038.9624" posY="1719.8768" posZ="31.1865" rotZ="91.9638" />
     <vehicle model="543" posX="-1046.7194" posY="1542.3870" posZ="33.0423" rotZ="312.1984" />
     <vehicle model="422" posX="-1806.3491" posY="2041.3049" posZ="9.1275" rotZ="299.2224" />
     <vehicle model="543" posX="-1820.4222" posY="2044.4138" posZ="8.6784" rotZ="213.1046" />
