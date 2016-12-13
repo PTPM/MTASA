@@ -277,7 +277,7 @@ function playerHealPlayer( medic, patient, distance )
 	
 	if distance > radius then
 		if not getPedOccupiedVehicle( medic ) or not getPedOccupiedVehicle( patient ) or getPedOccupiedVehicle( medic ) ~= getPedOccupiedVehicle( patient ) then
-			return outputChatBox( "You are too far from '" .. getPlayerName( patient ) .. "' (" .. distance .. ").", medic, unpack( colourPersonal ) )
+			return outputChatBox( string.format("You are too far from '%s' (%.1fm).", getPlayerName( patient ) , distance ), medic, unpack( colourPersonal ) )
 		end
 	end
 	
@@ -291,30 +291,29 @@ function playerHealPlayer( medic, patient, distance )
 	if medicine <= 0 then
 		return outputChatBox( "There is nothing you can do.", medic, unpack( colourPersonal ) )
 	end
-  
-  local hpHealed = getElementData( medic, "ptpm.hpHealed" ) or 0
-  
-  if isRunning( "ptpm_accounts" ) then
-    hpHealed = (exports.ptpm_accounts:getPlayerStatistic( medic, "hphealed" ) or hpHealed) + medicine*effectiveness
-    exports.ptpm_accounts:setPlayerStatistic( medic, "hphealed", hpHealed )
-  else
-    hpHealed = hpHealed + medicine*effectiveness
-  end
-  
-  setElementData( medic, "ptpm.score.hpHealed", string.format( "%d", hpHealed ) )
-  setElementData( medic, "ptpm.hpHealed", hpHealed, false )
+
+	local hpHealed = getElementData( medic, "ptpm.hpHealed" ) or 0
+
+	if isRunning( "ptpm_accounts" ) then
+		hpHealed = (exports.ptpm_accounts:getPlayerStatistic( medic, "hphealed" ) or hpHealed) + medicine*effectiveness
+		exports.ptpm_accounts:setPlayerStatistic( medic, "hphealed", hpHealed )
+	else
+		hpHealed = hpHealed + medicine*effectiveness
+	end
+
+	setElementData( medic, "ptpm.score.hpHealed", string.format( "%d", hpHealed ) )
+	setElementData( medic, "ptpm.hpHealed", hpHealed, false )
 	
-	local text = string.format("Initial health - Medic: %.3f, Patient: %.3f, Medicine: %.3f", medicHealth, patientHealth, medicine)
-	outputChatBox( text, medic, unpack( colourPersonal ) )
-	outputChatBox( text, patient, unpack( colourPersonal ) )	
+	--local text = string.format("Initial health - Medic: %.3f, Patient: %.3f, Medicine: %.3f", medicHealth, patientHealth, medicine)
+	--outputChatBox( text, medic, unpack( colourPersonal ) )
+	--outputChatBox( text, patient, unpack( colourPersonal ) )	
 	
 	setElementHealth( medic, medicHealth - medicine )
 	setElementHealth( patient, patientHealth + medicine*effectiveness )
-	local healthDiff = string.format("%.3f", medicine*effectiveness)
+	local healthDiff = string.format("%.1f", medicine*effectiveness)
 	outputChatBox( "Gave " .. healthDiff .. " health to patient.", medic, unpack( colourPersonal ) )
 	outputChatBox( "You were healed by " .. healthDiff .. " health.", patient, unpack( colourPersonal ) )
 end
-
 
 function isPlayerInSameTeam( thePlayer, otherPlayer )
 	if not getPlayerClassID( thePlayer ) or not getPlayerClassID( otherPlayer ) then return false end
