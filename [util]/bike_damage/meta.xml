@@ -1,0 +1,8 @@
+﻿<meta>
+	<info author="ptpm" description="bike damage fixes" type="script" version="1.0" />
+	
+	<script src="bicycle_client.lua" type="client"/>
+	<script src="bicycle_server.lua" type="server"/>
+
+	<script src="player_damage_server.lua" type="server"/>
+</meta>
