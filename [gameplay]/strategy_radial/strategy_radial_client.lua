@@ -271,6 +271,12 @@ function executeStrategicRadialMenu()
 	removeEventHandler("onClientRender", root, drawStrategyRadial)
 	removeEventHandler( "onClientCursorMove", getRootElement( ), getSelectedRadialOption)
 	
+	if not cursorState then
+		showCursor ( false, false )
+	end
+	
+	requestedStrategyRadialMenu = nil
+	
 	if  not overwriteDisableStrategyRadial then 
 		for ks,strategyRadialMenu in pairs(smartCommands) do
 			if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
@@ -286,12 +292,6 @@ function executeStrategicRadialMenu()
 				end
 			end
 		end
-		
-		if not cursorState then
-			showCursor ( false, false )
-		end
-		
-		requestedStrategyRadialMenu = nil
 	end
 end
 
