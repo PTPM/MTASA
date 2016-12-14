@@ -116,7 +116,7 @@ addEventHandler( "onClientAvailable", localPlayer,
 			
 			setElementData(helpGUI[1][i],"helpIndex",{1,i,help[i]})
 			
-			addEventHandler("onClientGUIClick",helpGUI[1][i],shuffleHelp,false)
+			addEventHandler("onClientGUIClick",helpGUI[1][i],shuffleHelpHandler,false)
 		end
 
 		-- auto select "How to play" -> "What is PTPM?"
@@ -183,7 +183,7 @@ function shuffleHelp(element)
 									
 					setElementData(helpGUI[level][i],"helpIndex",{level,i,index[3].children[i]})
 					
-					addEventHandler("onClientGUIClick",helpGUI[level][i],shuffleHelp,false)
+					addEventHandler("onClientGUIClick",helpGUI[level][i],shuffleHelpHandler,false)
 				else
 					if v.name then
 						guiSetSize(helpGUI[level][i],helpPos.w, helpPos.h, false)
