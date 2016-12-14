@@ -107,6 +107,12 @@ function startMapVote( maps )
 	addEventHandler("onClientRender", getRootElement(), renderMapVote)
 	addEventHandler ( "onClientClick", getRootElement(), countMapVote )
 	
+	-- mapvoting by keyboard
+	for i=1,3 do 
+		bindKey ( i, "up", localPlayerVotesFor, i )
+		bindKey ( "num_" .. i, "up", localPlayerVotesFor, i )
+	end
+	
 	voteCountDown = 10
 	setTimer(function() 
 		voteCountDown = voteCountDown-1
@@ -126,29 +132,41 @@ function endMapVote()
 	removeEventHandler("onClientRender", getRootElement(), renderMapVote)
 	removeEventHandler ( "onClientClick", getRootElement(), countMapVote )
 	
+	-- mapvoting by keyboard
+	for i=1,3 do 
+		unbindKey( i, "up", localPlayerVotesFor )
+		unbindKey( "num_" .. i, "up", localPlayerVotesFor )
+	end
+	
 	mapsClientCache = nil
 end
 
 function countMapVote ( button, state, absoluteX, absoluteY, worldX, worldY, worldZ, clickedElement )
-	if playerHasJustVoted then return nil end
-    if isMapVoteRunning and state=="up" then
-		for k,v in ipairs(voteButtonsAbsolutePos) do
+    if state=="up" then
+		for mapId,v in ipairs(voteButtonsAbsolutePos) do
 			if absoluteX > v.startX and absoluteX < v.endX and absoluteY > v.startY and absoluteY < v.endY then
-				-- OK, voted for {k}
-				triggerServerEvent ( "ptpmMapVoteResult", resourceRoot, k )
-				thisClientVotedFor = k
-				
-				-- play a sound
-				playSoundFrontEnd(43)
-				
-				-- Prevent vote spam, 200ms until next vote is allowed
-				playerHasJustVoted = true
-				setTimer(function() playerHasJustVoted = false end, 200, 1 )
+				localPlayerVotesFor(mapId)
 			end
 		end
 	end
 end
 
+function localPlayerVotesFor(mapId)
+	mapId = tonumber(mapId)
+	
+	if playerHasJustVoted then return nil end
+    if isMapVoteRunning then
+		triggerServerEvent ( "ptpmMapVoteResult", resourceRoot, mapId )
+		thisClientVotedFor = mapId
+		
+		-- play a sound
+		playSoundFrontEnd(43)
+		
+		-- Prevent vote spam, 200ms until next vote is allowed
+		playerHasJustVoted = true
+		setTimer(function() playerHasJustVoted = false end, 500, 1 )
+	end
+end
 
 
 addEvent( "ptpmStartMapVote", true )

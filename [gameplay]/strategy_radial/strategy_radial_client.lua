@@ -13,7 +13,7 @@ local colours = {
 	white = tocolor(255, 255, 255, 255)
 }
 
-local overwriteDisableStrategyRadial = false
+local overwriteDisableStrategyRadial = true
 local numberOfSmartCommands = 0
 local cursorState = false
 local smartPingWorldX, smartPingWorldY, smartPingWorldZ = 0,0,0
@@ -237,6 +237,8 @@ end
 
 -- Step 3: Handle the logic
 function showStrategicRadialMenu(whichStrategyRadialMenu_keybind)
+	-- Was cursor showing before Strategy Radial was called?
+	cursorState = isCursorShowing()
 
 	-- Ensure it is allowed
 	if overwriteDisableStrategyRadial then return end
@@ -274,9 +276,7 @@ function executeStrategicRadialMenu()
 	if not cursorState then
 		showCursor ( false, false )
 	end
-	
-	requestedStrategyRadialMenu = nil
-	
+		
 	if  not overwriteDisableStrategyRadial then 
 		for ks,strategyRadialMenu in pairs(smartCommands) do
 			if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
@@ -293,10 +293,12 @@ function executeStrategicRadialMenu()
 			end
 		end
 	end
+	
+	requestedStrategyRadialMenu = nil
 end
 
 addEventHandler( "ptpmStartMapVote", localPlayer, function() overwriteDisableStrategyRadial = true end )
-addEventHandler( "ptpmEndMapVote", localPlayer, function() overwriteDisableStrategyRadial = false end )
+addEventHandler( "leaveClassSelection", localPlayer,  function() overwriteDisableStrategyRadial = false end ) 
 
 
 addEventHandler("onClientResourceStart", resourceRoot,
