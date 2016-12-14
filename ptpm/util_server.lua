@@ -275,7 +275,7 @@ function playerHealPlayer( medic, patient, distance )
 		distance = getDistanceBetweenPoints3D( pX, pY, pZ, mX, mY, mZ )
 	end
 	
-	if distance > radius then
+	if distance > radius and distance < 25 then
 		if not getPedOccupiedVehicle( medic ) or not getPedOccupiedVehicle( patient ) or getPedOccupiedVehicle( medic ) ~= getPedOccupiedVehicle( patient ) then
 			return outputChatBox( string.format("You are too far from '%s' (%.1fm).", getPlayerName( patient ) , distance ), medic, unpack( colourPersonal ) )
 		end
