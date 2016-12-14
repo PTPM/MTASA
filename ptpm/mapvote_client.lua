@@ -10,6 +10,8 @@ local voteButtonHeight = voteButtonWidth / 1.6992481203007518796992481203008 --p
 local voteCounterWidth = voteButtonWidth * 0.15
 local voteCounterHeight = voteCounterWidth / 1.666 
 
+local textScalingFactor = screenHeight/600
+
 local containerOffsetFromTop = screenHeight - (voteButtonHeight * 1.1) -- keep 10% margin at bottom
 local isMapVoteRunning = false
 local playerHasJustVoted = false
@@ -20,7 +22,8 @@ local voteCountDown = 10
 local colours = {
 	voted = tocolor(0, 77, 69, 187),
 	default = tocolor(0, 0, 0, 187),
-	grey = tocolor(200, 200, 200, 255)
+	grey = tocolor(200, 200, 200, 255),
+	black = tocolor(0,0,0,255)
 }
 
 
@@ -59,7 +62,7 @@ function renderMapVote ( )
 		local x = "seconds"
 		if voteCountDown==1 then x = "second" end
 
-		dxDrawText ( "Click to vote for the next map (" .. voteCountDown .. " " .. x .." left)", containerOffsetFromLeft , containerOffsetFromTop * 0.90 ,containerOffsetFromLeft + containerMaxWidth , containerOffsetFromTop , 0xFFFFFFFF , 1.8, "default", "center", "center", true )
+		dxDrawTextOutline ( "Click to vote for the next map (" .. voteCountDown .. " " .. x .." left)", containerOffsetFromLeft , containerOffsetFromTop * 0.90 ,containerOffsetFromLeft + containerMaxWidth , containerOffsetFromTop , 0xFFFFFFFF , textScaling(1.85 ,2.2), "default", "center", "center", true )
 
 		if (cursorX >= xPosImage) and (cursorX <= (xPosImage + voteButtonWidth)) and (cursorY >= yPosImage) and (cursorY <= (yPosImage + voteButtonHeight)) then
 			dxDrawRectangle(xPosImage - 1, yPosImage - 1, voteButtonWidth + 2, voteButtonHeight + 2, colours.grey)
@@ -69,10 +72,26 @@ function renderMapVote ( )
 		end
 
 		dxDrawRectangle ( xPosVoteCounter , yPosVoteCounter , voteCounterWidth, voteCounterHeight, thisClientVotedFor == key and colours.voted or colours.default )
-		dxDrawText ( value.votes, xPosVoteCounter , yPosVoteCounter ,xPosVoteCounter + voteCounterWidth , yPosVoteCounter + voteCounterHeight , 0xFFFFFFFF , 1.5, "default-bold", "center", "center", true )
-		dxDrawText ( value.name, xPosVoteCounter + (voteCounterWidth * 1.09) , yPosVoteCounter , xPosImage + (voteButtonWidth * 0.97) , yPosVoteCounter + voteCounterHeight , 0xFFFFFFFF , 1.5, "default", "left", "center", true )
+		dxDrawText ( value.votes, xPosVoteCounter , yPosVoteCounter ,xPosVoteCounter + voteCounterWidth , yPosVoteCounter + voteCounterHeight , 0xFFFFFFFF , textScaling(1.45,1.8), "default-bold", "center", "center", true )
+		dxDrawText ( value.name, xPosVoteCounter + (voteCounterWidth * 1.09) , yPosVoteCounter , xPosImage + (voteButtonWidth * 0.97) , yPosVoteCounter + voteCounterHeight , 0xFFFFFFFF , textScaling(1.45,1.8), "default", "left", "center", true )
 		
 	end
+end
+
+function textScaling(i, maximum)
+	local suggestedSize = 1.45 * textScalingFactor
+	if suggestedSize > maximum then return maximum end
+	return suggestedSize
+end
+
+function dxDrawTextOutline(text,x,y,x2,y2,colour,size,font,alignX,alignY,p)
+
+	dxDrawText(text,x-1,y-1,x2-1,y2-1,colours.black,size, font,alignX,alignY,p, false, false, true, false )
+	dxDrawText(text,x-1,y+1,x2-1,y2+1,colours.black,size, font,alignX,alignY,p, false, false, true, false )
+	dxDrawText(text,x+1,y-1,x2+1,y2-1,colours.black,size, font,alignX,alignY,p, false, false, true, false )
+	dxDrawText(text,x+1,y+1,x2+1,y2+1,colours.black,size, font,alignX,alignY,p, false, false, true, false )
+	dxDrawText(text,x,y,x2,y2,colour,size, font,alignX,alignY,p, false, false, true, false )
+
 end
 
 
@@ -119,9 +138,12 @@ function countMapVote ( button, state, absoluteX, absoluteY, worldX, worldY, wor
 				triggerServerEvent ( "ptpmMapVoteResult", resourceRoot, k )
 				thisClientVotedFor = k
 				
-				-- Prevent vote spam, 2 seconds until next vote is allowed
+				-- play a sound
+				playSoundFrontEnd(43)
+				
+				-- Prevent vote spam, 200ms until next vote is allowed
 				playerHasJustVoted = true
-				setTimer(function() playerHasJustVoted = false end, 500, 1 )
+				setTimer(function() playerHasJustVoted = false end, 200, 1 )
 			end
 		end
 	end
