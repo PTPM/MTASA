@@ -30,7 +30,7 @@ local requestedStrategyRadialMenu = nil
 
 local smartCommands =  {
 	{
-		keybind = "x",
+		keybind = "z",
 		step = 0,
 		linesPosCache = {},
 		commands = {
@@ -40,63 +40,89 @@ local smartCommands =  {
 					"Hi!", 
 					"Hello!", 
 					"Hey!"
-				},
-				selected = false
+				}
 			}, {
 				Title = "Yes",
 				textLines = {
 					"Yes", 
 					"Yea", 
 					"Affirmative"
-				},
-				selected = false
-			}, {
-				Title = "Help!",
-					textLines = {
-						"Help me here!", 
-						"Come here!", 
-						"Come help me!"
-					},
-				selected = false
-			}, {
-				Title = "Good job",
-					textLines = {
-						"Good job!", 
-						"Nice!", 
-						"Well done!"
-					},
-				selected = false
+				}
 			}, {
 				Title = "Thanks",
 				textLines = {
 					"Thank you", 
 					"Appreciate it", 
 					"Thanks!"
-				},
-				selected = false
+				}
 			}, {
-				Title = "Insult",
-				textLines = {
-					"Bunghole!", 
-					"Bozo!", 
-					"Pinhead!"
-				},
-				selected = false
-			}, {
-				Title = "Go",
-				textLines = {
-					"Go! Go! Go!", 
-					"Let's get out of here!"
-				},
-				selected = false
+				Title = "Good job",
+					textLines = {
+						"Good job!", 
+						"Nice!", 
+						"Well done!"
+					}
+			},{
+				Title = "Sorry",
+					textLines = {
+						"Sorry!", 
+						"Pardon me!", 
+						"Excuse me!"
+					}
 			}, {
 				Title = "No",
 				textLines = {
 					"No", 
 					"Negatory", 
 					"No way, Jose"
-				},
-				selected = false
+				}
+			}
+		}
+	},
+	{
+		keybind = "x",
+		step = 0,
+		linesPosCache = {},
+		commands = {
+			{
+				Title = "Help!",
+				textLines = {
+					"Help me here!", 
+					"Come here!", 
+					"Come help me!"
+				}
+			}, {
+				Title = "Go",
+				textLines = {
+					"Go! Go! Go!", 
+					"Let's get out of here!"
+				}
+			}, {
+				Title = "Attack",
+				textLines = {
+					"Attack now!", 
+					"Let's kill them!", 
+					"Go on the attack!"
+				}
+			}, {
+				Title = "Heal me",
+					textLines = {
+						"I need a medic!", 
+						"Doctor!", 
+						"I need healing!"
+					}
+			},{
+				Title = "Defend",
+					textLines = {
+						"Stay close to defend!", 
+						"Go on defence!"
+					}
+			}, {
+				Title = "Wait",
+				textLines = {
+					"Hold up!", 
+					"Wait!"
+				}
 			}
 		}
 	}
