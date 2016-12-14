@@ -298,8 +298,8 @@ function executeStrategicRadialMenu()
 end
 
 addEventHandler( "ptpmStartMapVote", localPlayer, function() overwriteDisableStrategyRadial = true end )
-addEventHandler( "leaveClassSelection", localPlayer,  function() overwriteDisableStrategyRadial = false end ) 
-
+addEventHandler( "enterClassSelection", localPlayer,  function() overwriteDisableStrategyRadial = true end ) 
+addEventHandler( "leaveClassSelection", localPlayer,  function() overwriteDisableStrategyRadial = false end )
 
 addEventHandler("onClientResourceStart", resourceRoot,
 	function()

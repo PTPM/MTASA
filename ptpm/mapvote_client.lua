@@ -142,7 +142,7 @@ function endMapVote()
 end
 
 function countMapVote ( button, state, absoluteX, absoluteY, worldX, worldY, worldZ, clickedElement )
-    if state=="up" then
+    if isMapVoteRunning and state=="up" then
 		for mapId,v in ipairs(voteButtonsAbsolutePos) do
 			if absoluteX > v.startX and absoluteX < v.endX and absoluteY > v.startY and absoluteY < v.endY then
 				localPlayerVotesFor(mapId)
