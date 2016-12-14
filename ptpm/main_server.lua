@@ -63,10 +63,8 @@ spam = {
 }
 
 motd = {
-	"Welcome to " .. mode_name .. " " .. mode_version .. ".",
-	"Select a character class, and have fun!",
-	"Forum: http://www.sparksptpm.co.uk/",
-	"IRC: irc.gtanet.com (6667) #ptpm"
+	"Welcome to " .. mode_name .. "!",
+	"Forum: https://PTPM.uk"
 }
 
 colourImportant = { 255, 0, 0 }
@@ -139,14 +137,14 @@ addEventHandler( "onResourceStart", resourceRoot,
 		
 		exports.scoreboard:scoreboardAddColumn( "ptpm.score.class", root, 100, "Current class", 2 )
 		
-    exports.scoreboard:scoreboardAddColumn( "ptpm.score.roundsWon", root, 66, "Games won", 3 )
-    exports.scoreboard:scoreboardAddColumn( "ptpm.score.roundsLost", root, 63, "Games lost", 4 )    
-    exports.scoreboard:scoreboardAddColumn( "ptpm.score.pmWins", root, 66, "Wins as PM", 5 )
-    exports.scoreboard:scoreboardAddColumn( "ptpm.score.pmLosses", root, 79, "Losses as PM", 6 )
-    exports.scoreboard:scoreboardAddColumn( "ptpm.score.pmKills", root, 88, "Times killed PM", 7 )
-    exports.scoreboard:scoreboardAddColumn( "ptpm.score.hpHealed", root, 111, "HP healed as medic", 8 )
-    exports.scoreboard:scoreboardAddColumn( "ptpm.score.damage", root, 79, "Damage given", 9 )
-    exports.scoreboard:scoreboardAddColumn( "ptpm.score.damageTaken", root, 81, "Damage taken", 10 )
+		exports.scoreboard:scoreboardAddColumn( "ptpm.score.roundsWon", root, 66, "Games won", 3 )
+		exports.scoreboard:scoreboardAddColumn( "ptpm.score.roundsLost", root, 63, "Games lost", 4 )    
+		exports.scoreboard:scoreboardAddColumn( "ptpm.score.pmWins", root, 66, "Wins as PM", 5 )
+		exports.scoreboard:scoreboardAddColumn( "ptpm.score.pmLosses", root, 79, "Losses as PM", 6 )
+		exports.scoreboard:scoreboardAddColumn( "ptpm.score.pmKills", root, 88, "Times killed PM", 7 )
+		exports.scoreboard:scoreboardAddColumn( "ptpm.score.hpHealed", root, 111, "HP healed as medic", 8 )
+		exports.scoreboard:scoreboardAddColumn( "ptpm.score.damage", root, 79, "Damage given", 9 )
+		exports.scoreboard:scoreboardAddColumn( "ptpm.score.damageTaken", root, 81, "Damage taken", 10 )
 		exports.scoreboard:scoreboardAddColumn( "ptpm.score.kills", root, 35, "Kills", 11 )
 		exports.scoreboard:scoreboardAddColumn( "ptpm.score.deaths", root, 39, "Deaths", 12 )
 		

@@ -23,6 +23,16 @@ function handleIncomingStrategyRadialCommand(command, text, x, y, z)
 	end
 end
 
+addEventHandler("onResourceStart", root,
+	function(theResource)
+		if getResourceName(theResource) == "ptpm" then
+			resource.ptpm = theResource
+		elseif getResourceName(theResource) == "antiflood" then
+			resource.spam = theResource
+		end
+	end
+)
+
 
 addEvent( "ptpmStrategyRadialRelay", true )
 addEventHandler( "ptpmStrategyRadialRelay", resourceRoot, handleIncomingStrategyRadialCommand )
