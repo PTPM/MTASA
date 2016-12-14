@@ -44,7 +44,7 @@
 		<class id="16" skin="166" weapons="23,100;32,150;5,1" />
 		<class id="17" skin="141" weapons="23,100;32,150;5,1" />
 		<class id="18" skin="276" weapons="23,100;29,150;4,1" medic="true" />
-		<linespawn startX="2591.6321" startY="2688.8950" startZ="10.8203" endX="2664.3562" endY="2695.1318" endZ="10.8203" />
+		<spawnline startX="2591.6321" startY="2688.8950" startZ="10.8203" endX="2664.3562" endY="2695.1318" endZ="10.8203" rot="270"/>
 		<cantdrive models="497" />
 		<cantpickup models="16" />
 	</spawngroup>

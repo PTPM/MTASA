@@ -87,3 +87,8 @@ function isVehicleOccupied(vehicle)
 
 	return false
 end
+
+
+function getPointOnCircle(radius, rotation)
+	return radius * math.cos(math.rad(rotation)), radius * math.sin(math.rad(rotation))
+end

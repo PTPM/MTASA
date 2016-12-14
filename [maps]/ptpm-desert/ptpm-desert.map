@@ -11,7 +11,7 @@
         <class id="1" skin="212" weapons="24,100;10,1;18,5" />
         <class id="2" skin="200" weapons="24,100;10,1;18,5" />
         <class id="3" skin="137" weapons="24,100;10,1;18,5" />
-        <linespawn startX="-82.2612" startY="1383.4824" startZ="10.2407" endX="-77.5519" endY="1347.3890" endZ="10.8599" />
+        <spawnline startX="-82.2612" startY="1383.4824" startZ="10.2407" endX="-77.5519" endY="1347.3890" endZ="10.8599" rot="280" />
         <cantdrive models="476,577,512" />
     </spawngroup>
 	
@@ -24,7 +24,7 @@
         <class id="9" skin="73" weapons="22,100;25,100;4,1" />
         <class id="10" skin="100" weapons="22,100;25,100;4,1" />
         <class id="11" skin="274" weapons="22,100;25,100;4,1" medic="true" />
-        <linespawn startX="-294.2874" startY="1531.7491" startZ="75.3594" endX="-345.4248" endY="1530.7903" endZ="75.3570" />
+        <spawnline startX="-294.2874" startY="1531.7491" startZ="75.3594" endX="-345.4248" endY="1530.7903" endZ="75.3570" rot="180"/>
         <cantdrive models="577" />
     </spawngroup>
 	
@@ -41,7 +41,7 @@
         <class id="16" skin="166" weapons="23,100;32,75;41,300" />
         <class id="17" skin="141" weapons="23,100;32,75;41,300" />
         <class id="18" skin="276" weapons="23,100;4,1;41,300" medic="true" />
-        <linespawn startX="124.5988" startY="1916.5383" startZ="18.9541" endX="165.6270" endY="1917.3433" endZ="18.4533" />
+        <spawnline startX="124.5988" startY="1916.5383" startZ="18.9541" endX="165.6270" endY="1917.3433" endZ="18.4533" rot="0" />
         <cantdrive models="522,577" />
     </spawngroup>
 	
@@ -50,7 +50,7 @@
         <class id="24" skin="285" weapons="27,100;29,200;41,300" />
         <class id="27" skin="246" weapons="27,100;29,200;41,300" />
         <class id="28" skin="275" weapons="24,100;4,1;41,300" medic="true" />
-        <linespawn startX="-388.2652" startY="2253.8987" startZ="42.0938" endX="-376.3261" endY="2202.0403" endZ="42.0938" />
+        <spawnline startX="-388.2652" startY="2253.8987" startZ="42.0938" endX="-376.3261" endY="2202.0403" endZ="42.0938" rot="15" />
         <cantdrive models="476,522,577" />
     </spawngroup>
 	

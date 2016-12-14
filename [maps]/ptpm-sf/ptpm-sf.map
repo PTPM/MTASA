@@ -43,7 +43,7 @@
         <class id="9" skin="73" weapons="26,150;31,400;23,300" />
         <class id="10" skin="100" weapons="26,150;22,200;37,300" />
         <class id="11" skin="274" weapons="46,1;23,100;41,300" medic="true" />
-        <linespawn startX="-2062" startY="1434" startZ="7.1016" endX="-2093" endY="1434" endZ="7.1016" />
+        <spawnline startX="-2062" startY="1434" startZ="7.1016" endX="-2093" endY="1434" endZ="7.1016" rot="180" />
     </spawngroup>
 	
     <spawngroup type="pm">
@@ -57,7 +57,7 @@
         <class id="16" skin="166" weapons="23,100;28,200;46,1" />
         <class id="17" skin="141" weapons="23,100;28,200;46,1" />
         <class id="18" skin="276" weapons="46,1;23,100;41,300" medic="true" />
-        <linespawn startX="-2616.1018" startY="-318.4776" startZ="23.1227" endX="-2601.2432" endY="-293.0693" endZ="23.1227" />
+        <spawnline startX="-2616.1018" startY="-318.4776" startZ="23.1227" endX="-2601.2432" endY="-293.0693" endZ="23.1227" rot="60" />
     </spawngroup>
 	
     <spawngroup type="police">
@@ -65,8 +65,8 @@
         <class id="24" skin="285" weapons="24,100;31,200;41,300" />
         <class id="27" skin="246" weapons="24,100;31,200;41,300" />
         <class id="28" skin="275" weapons="46,1;24,100;41,300" medic="true" />
-        <linespawn startX="-1610.3680" startY="733.6467" startZ="-4.9063" endX="-1590.5117" endY="733.6737" endZ="-4.9063" />
-        <linespawn startX="-1562.6666" startY="757.6099" startZ="-4.9063" endX="-1618.2246" endY="757.4536" endZ="-4.9063" />
+        <spawnline startX="-1610.3680" startY="733.6467" startZ="-4.9063" endX="-1590.5117" endY="733.6737" endZ="-4.9063" rot="0" />
+        <spawnline startX="-1562.6666" startY="757.6099" startZ="-4.9063" endX="-1618.2246" endY="757.4536" endZ="-4.9063" rot="180" />
     </spawngroup>
 	
     <vehicle model="562" posX="-2118.9319" posY="194.8274" posZ="34.6525" rotZ="2.7513" />

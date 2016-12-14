@@ -7,8 +7,8 @@
         <class id="1" skin="212" weapons="22,12" />
         <class id="2" skin="200" weapons="22,12" />
         <class id="3" skin="137" weapons="22,12" />
-        <linespawn startX="1522.6" startY="1332.6" startZ="10.8" endX="1522.6" endY="1499.6" endZ="10.8" />
-        <linespawn startX="-2303.9" startY="-1621.2" startZ="483.8" endX="-2322.6" endY="-1648.4" endZ="483.7" />
+        <spawnline startX="1522.6" startY="1332.6" startZ="10.8" endX="1522.6" endY="1499.6" endZ="10.8" rot="90" />
+        <spawnline startX="-2303.9" startY="-1621.2" startZ="483.8" endX="-2322.6" endY="-1648.4" endZ="483.7" rot="0" />
         <cantdrive models="476,425,520,447" />
     </spawngroup>
 	
@@ -20,7 +20,7 @@
         <class id="8" skin="111" weapons="22,12;29,300" />
         <class id="9" skin="73" weapons="22,12;29,300" />
         <class id="10" skin="100" weapons="22,12;29,300" />
-        <linespawn startX="250.0" startY="2533.0" startZ="17.0" endX="30.0" endY="2533.0" endZ="17.0" />
+        <spawnline startX="250.0" startY="2533.0" startZ="17.0" endX="30.0" endY="2533.0" endZ="17.0" rot="180" />
     </spawngroup>
 	
     <spawngroup type="pm">
@@ -33,8 +33,8 @@
         <class id="14" skin="164" weapons="22,12;29,300" />
         <class id="16" skin="166" weapons="22,12;29,300" />
         <class id="17" skin="141" weapons="22,12;29,300" />
-        <linespawn startX="1800.0" startY="-2620.0" startZ="14.0" endX="1900.0" endY="-2620.0" endZ="14.0" />
-        <linespawn startX="1900.0" startY="-2450.0" startZ="13.6" endX="1800.0" endY="-2450.0" endZ="13.6" />
+        <spawnline startX="1800.0" startY="-2620.0" startZ="14.0" endX="1900.0" endY="-2620.0" endZ="14.0" rot="0" />
+        <spawnline startX="1900.0" startY="-2450.0" startZ="13.6" endX="1800.0" endY="-2450.0" endZ="13.6" rot="180" />
     </spawngroup>
 	
     <spawngroup type="police">
@@ -42,7 +42,7 @@
         <class id="24" skin="285" weapons="22,12;29,300" />
         <class id="26" skin="288" weapons="22,12;29,300" />
         <class id="27" skin="246" weapons="22,12;29,300" />
-        <linespawn startX="-1342.0" startY="92.0" startZ="14.0" endX="-1273.3" endY="164.9" endZ="14.0" />
+        <spawnline startX="-1342.0" startY="92.0" startZ="14.0" endX="-1273.3" endY="164.9" endZ="14.0" rot="42" />
         <!-- rot 406 -->
         <cantdrive models="425,520,447" />
     </spawngroup>

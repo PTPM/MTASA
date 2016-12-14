@@ -236,17 +236,16 @@ function makePlayerSpawn( thePlayer )
 	if not class then return end
 	
 	local classType = classes[class].type
-	local randNum = math.random( 0, #randomSpawns[classType] )
-	local x,y,z =  randomSpawns[classType][randNum].posX, randomSpawns[classType][randNum].posY, randomSpawns[classType][randNum].posZ
-	
-	setElementData( thePlayer, "ptpm.goodX", x, false )
-	setElementData( thePlayer, "ptpm.goodY", y, false )
-	setElementData( thePlayer, "ptpm.goodZ", z, false )
-	--playerInfo[thePlayer].goodX = x
-	--playerInfo[thePlayer].goodY = y
-	--playerInfo[thePlayer].goodZ = z
-	
-	spawnPlayer( thePlayer, x, y, z, randomSpawns[classType][randNum].rot, classes[class].skin, randomSpawns[classType][randNum].interior, 0 )
+	local randomSpawn = teamSpawns[classType]:getRandomSpawn()
+
+	-- generate a position (can't access directly because lines/areas/etc don't have a spawn point)
+	local position = teamSpawns[classType].spawns[randomSpawn].position
+
+	setElementData(thePlayer, "ptpm.goodX", position.x, false)
+	setElementData(thePlayer, "ptpm.goodY", position.y, false)
+	setElementData(thePlayer, "ptpm.goodZ", position.z, false)
+
+	spawnPlayer(thePlayer, position.x, position.y, position.z, teamSpawns[classType].spawns[randomSpawn].rotation, classes[class].skin, teamSpawns[classType].spawns[randomSpawn].interior, 0)
 
 	setPedGravity( thePlayer, 0.008 )
 	setElementFrozen(thePlayer, false)
@@ -260,8 +259,7 @@ function makePlayerSpawn( thePlayer )
 	end
 
 	if classType == "pm" then
-		setElementData( thePlayer, "ptpm.currentInterior", randomSpawns[classType][randNum].interior, false )
-		--playerInfo[thePlayer].currentInterior = randomSpawns[classType][randNum].interior
+		setElementData( thePlayer, "ptpm.currentInterior", teamSpawns[classType].spawns[randomSpawn].interior, false )
 		options.plan = false
 		setPedArmor( thePlayer, 100 )
 	else

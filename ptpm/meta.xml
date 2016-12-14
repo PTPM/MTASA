@@ -6,6 +6,8 @@
 	<script src="util_shared.lua" type="server"/>
 	<script src="util_shared.lua" type="client"/>
 
+	<script src="spawn_types.lua" type="server"/>
+
 	<script src="main_server.lua" type="server"/>
 	<script src="main_client.lua" type="client"/>
 	

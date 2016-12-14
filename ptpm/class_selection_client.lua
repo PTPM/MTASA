@@ -1091,10 +1091,6 @@ function sfs(value)
 	return ((value * uiScale) / font.smallScalar) * font.globalScalar
 end
 
-function getPointOnCircle(radius, rotation)
-	return radius * math.cos(math.rad(rotation)), radius * math.sin(math.rad(rotation))
-end
-
 function textLengthSorter(a, b)
 	return dxGetTextWidth(a, sfs(1.1), font.small) < dxGetTextWidth(b, sfs(1.1), font.small)
 end

@@ -12,7 +12,7 @@ function ptpmMapStart( map )
 	
 	classes = {}
 	miniClass = {}
-	randomSpawns = {}
+	teamSpawns = {}
 	cantDrive = {}
 	cantPassenger = {}
 	cantPickup = {}
@@ -127,52 +127,55 @@ function ptpmMapStart( map )
 
 			classID = classID + 1
 		end
-		
-		randomSpawns[classType] = {}
-		local count = 0
-		for _, spawn in ipairs( getElementsByType( "spawn", value ) ) do
-			randomSpawns[classType][count] = {}
-			randomSpawns[classType][count].posX = tonumber(getElementData( spawn, "posX" ))
-			randomSpawns[classType][count].posY = tonumber(getElementData( spawn, "posY" ))
-			randomSpawns[classType][count].posZ = tonumber(getElementData( spawn, "posZ" ))
-			randomSpawns[classType][count].rot = tonumber(getElementData( spawn, "rot" )) or tonumber(getElementData( spawn, "rotZ" ))
-			randomSpawns[classType][count].interior = tonumber(getElementData( spawn, "interior" )) or 0
-			
-			count = count + 1
-		end
-		
-		local lineSpawnTable = getElementsByType( "linespawn", value )
-		for _, linespawn in ipairs( lineSpawnTable ) do
-			local startX, startY, startZ = getElementData( linespawn, "startX" ), getElementData( linespawn, "startY" ), getElementData( linespawn, "startZ" )
-			local endX, endY, endZ = getElementData( linespawn, "endX" ), getElementData( linespawn, "endY" ), getElementData( linespawn, "endZ" )
-			local seperation, interior = getElementData( linespawn, "seperation" ) or 1.0, getElementData( linespawn, "interior" ) or 0
-			local length = getDistanceBetweenPoints3D( startX, startY, startZ, endX, endY, endZ )
-			
-			if length < 1.0 then break end			
-			local xv, yv, zv = (endX - startX)/length, (endY - startY)/length, (endZ - startZ)/length
-			local grad, face_angle = math.abs(yv/xv)
-			
-			if xv >= 0 and yv >= 0 then face_angle = 90 - math.atan(grad)
-			elseif xv >= 0 and yv < 0 then face_angle = 90 + math.atan(grad)
-			elseif xv < 0 and yv < 0 then face_angle = 270 - math.atan(grad)
-			elseif xv < 0 and yv >= 0 then face_angle = 270 + math.atan(grad)
-			end
-			
-			face_angle = face_angle - 90.0
-			if face_angle >= 360.0 then face_angle = face_angle - 360.0 end
 
-			for i=0, length, seperation do
-				local x, y, z, rot = startX+i*xv, startY+i*yv, startZ+i*zv, 360-face_angle
-				randomSpawns[classType][count] = {}
-				randomSpawns[classType][count].posX = x
-				randomSpawns[classType][count].posY = y
-				randomSpawns[classType][count].posZ = z
-				randomSpawns[classType][count].rot = rot
-				randomSpawns[classType][count].interior = interior
-				count = count + 1
-			end
+		teamSpawns[classType] = SpawnGroup:create()
+
+		for _, spawn in ipairs( getElementsByType( "spawn", value ) ) do
+			teamSpawns[classType]:addSpawn(Spawn:create(
+				tonumber(getElementData(spawn, "posX")), 
+				tonumber(getElementData(spawn, "posY")), 
+				tonumber(getElementData(spawn, "posZ")), 
+				tonumber(getElementData(spawn, "rot")) or tonumber(getElementData(spawn, "rotation")) or tonumber(getElementData(spawn, "rotZ")),
+				tonumber(getElementData(spawn, "interior"))
+			))
 		end
-		
+
+		for _, linespawn in ipairs( getElementsByType( "spawnline", value ) ) do
+			teamSpawns[classType]:addSpawn(SpawnLine:create(
+				tonumber(getElementData(linespawn, "startX")), 
+				tonumber(getElementData(linespawn, "startY")), 
+				tonumber(getElementData(linespawn, "startZ")), 
+				tonumber(getElementData(linespawn, "endX")), 
+				tonumber(getElementData(linespawn, "endY")), 
+				tonumber(getElementData(linespawn, "endZ")), 				
+				tonumber(getElementData(linespawn, "rot")) or tonumber(getElementData(linespawn, "rotation")) or tonumber(getElementData(linespawn, "rotZ")),
+				tonumber(getElementData(linespawn, "interior"))
+			))
+		end
+
+		for _, spawn in ipairs( getElementsByType( "spawnarea", value ) ) do
+			teamSpawns[classType]:addSpawn(SpawnArea:create(
+				tonumber(getElementData(spawn, "posX")), 
+				tonumber(getElementData(spawn, "posY")), 
+				tonumber(getElementData(spawn, "posZ")), 
+				tonumber(getElementData(spawn, "width")), 
+				tonumber(getElementData(spawn, "height")), 
+				tonumber(getElementData(spawn, "rot")) or tonumber(getElementData(spawn, "rotation")) or tonumber(getElementData(spawn, "rotZ")),
+				tonumber(getElementData(spawn, "interior"))
+			))
+		end		
+
+		for _, spawn in ipairs( getElementsByType( "spawncircle", value ) ) do
+			teamSpawns[classType]:addSpawn(SpawnCircle:create(
+				tonumber(getElementData(spawn, "posX")), 
+				tonumber(getElementData(spawn, "posY")), 
+				tonumber(getElementData(spawn, "posZ")), 
+				tonumber(getElementData(spawn, "radius")), 
+				tonumber(getElementData(spawn, "rot")) or tonumber(getElementData(spawn, "rotation")) or tonumber(getElementData(spawn, "rotZ")),
+				tonumber(getElementData(spawn, "interior"))
+			))
+		end				
+
 		cantDrive[classType] = {}
 		for i=400, 612, 1 do
 			cantDrive[classType][i] = false
