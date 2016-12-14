@@ -15,7 +15,6 @@ local colours = {
 
 local overwriteDisableStrategyRadial = false
 local numberOfSmartCommands = 0
-local step = 0
 local cursorState = false
 local smartPingWorldX, smartPingWorldY, smartPingWorldZ = 0,0,0
 
@@ -27,73 +26,81 @@ local radialMenuConfig = {
 
 local backgroundImageSize = radialMenuConfig.radius * 2 * 1.1
 local safeZoneImageSize = radialMenuConfig.radius * 2 * 0.1 --safezone is visualized one-tenth of radialMenuConfig.radius
+local requestedStrategyRadialMenu = nil
 
 local smartCommands =  {
 	{
-		Title = "Hello",
-		textLines = {
-			"Hi!", 
-			"Hello!", 
-			"Hey!"
-		},
-		selected = false
-	}, {
-		Title = "Yes",
-		textLines = {
-			"Yes", 
-			"Yea", 
-			"Affirmative"
-		},
-		selected = false
-	}, {
-		Title = "Help!",
-			textLines = {
-				"Help me here!", 
-				"Come here!", 
-				"Come help me!"
-			},
-		selected = false
-	}, {
-		Title = "Good job",
-			textLines = {
-				"Good job!", 
-				"Nice!", 
-				"Well done!"
-			},
-		selected = false
-	}, {
-		Title = "Thanks",
-		textLines = {
-			"Thank you", 
-			"Appreciate it", 
-			"Thanks!"
-		},
-		selected = false
-	}, {
-		Title = "Insult",
-		textLines = {
-			"Bunghole!", 
-			"Bozo!", 
-			"Pinhead!"
-		},
-		selected = false
-	}, {
-		Title = "Go",
-		textLines = {
-			"Go! Go! Go!", 
-			"Let's get out of here!"
-		},
-		selected = false
-	}, {
-		Title = "No",
-		textLines = {
-			"No", 
-			"Negatory", 
-			"No way, Jose"
-		},
-		selected = false
+		keybind = "x",
+		step = 0,
+		linesPosCache = {},
+		commands = {
+			{
+				Title = "Hello",
+				textLines = {
+					"Hi!", 
+					"Hello!", 
+					"Hey!"
+				},
+				selected = false
+			}, {
+				Title = "Yes",
+				textLines = {
+					"Yes", 
+					"Yea", 
+					"Affirmative"
+				},
+				selected = false
+			}, {
+				Title = "Help!",
+					textLines = {
+						"Help me here!", 
+						"Come here!", 
+						"Come help me!"
+					},
+				selected = false
+			}, {
+				Title = "Good job",
+					textLines = {
+						"Good job!", 
+						"Nice!", 
+						"Well done!"
+					},
+				selected = false
+			}, {
+				Title = "Thanks",
+				textLines = {
+					"Thank you", 
+					"Appreciate it", 
+					"Thanks!"
+				},
+				selected = false
+			}, {
+				Title = "Insult",
+				textLines = {
+					"Bunghole!", 
+					"Bozo!", 
+					"Pinhead!"
+				},
+				selected = false
+			}, {
+				Title = "Go",
+				textLines = {
+					"Go! Go! Go!", 
+					"Let's get out of here!"
+				},
+				selected = false
+			}, {
+				Title = "No",
+				textLines = {
+					"No", 
+					"Negatory", 
+					"No way, Jose"
+				},
+				selected = false
+			}
+		}
 	}
-};
+}
 
 function sf_(value)
 	return ((value * uiScale) / font.scalar)
@@ -106,7 +113,7 @@ end
 -- Step 1: draw a radial menu
 
 function drawStrategyRadial()
-	if (numberOfSmartCommands==0 or numberOfSmartCommands==nil) then return end
+	--if (numberOfSmartCommands==0 or numberOfSmartCommands==nil) then return end
 	
 	local i = 0
 	
@@ -117,28 +124,40 @@ function drawStrategyRadial()
 	dxDrawImage(radialMenuConfig.x - safeZoneImageSize/2,radialMenuConfig.y- safeZoneImageSize/2, safeZoneImageSize, safeZoneImageSize, "backgroundShade.png")
 		
 	-- Calculate the absolute position of SmartCommands if not done already
-	for k,smartCommand in pairs(smartCommands) do
-	
-		-- Draw divider lines between the options
-		relXEnd,relYEnd = getPointOnCircle(radialMenuConfig.radius, step/2 + ((i) * step) - 90)
-		relXStart,relYStart = getPointOnCircle(radialMenuConfig.radius * 0.1, step/2 + ((i) * step) - 90)
-		dxDrawLine( relXStart + radialMenuConfig.x, relYStart + radialMenuConfig.y, relXEnd+radialMenuConfig.x,relYEnd+radialMenuConfig.y, tocolor(0,0,0,50), 2 )
-	
-		if not smartCommand.x or not smartCommand.y then
-			relX,relY = getPointOnCircle(radialMenuConfig.radius/4*3, ((i) * step) - 90)
-			smartCommands[k].x, smartCommands[k].y = relX+radialMenuConfig.x,relY+radialMenuConfig.y
-		end
-	
-		-- Draw the SmartCommands
-		local fontSize = 1.5
-		
-		if smartCommands[k].selected then
-			fontSize = 2.2
-		end
-		
-		dxDrawSmartCommandTitle(smartCommand.Title,smartCommands[k].x, smartCommands[k].y,tocolor ( 255, 255, 255, 255 ), sf_(fontSize)) 
+	for ks,strategyRadialMenu in pairs(smartCommands) do
+		if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
+			for k,smartCommand in pairs(strategyRadialMenu.commands) do
+				-- Draw divider lines between the options
+				if not strategyRadialMenu.linesPosCache[k] then
+					strategyRadialMenu.linesPosCache[k] = { x1=0,y1=0,x2=0,y2=0 }
+					smartCommands[ks].linesPosCache[k].x1,smartCommands[ks].linesPosCache[k].y1 = getPointOnCircle(radialMenuConfig.radius * 0.1, smartCommands[ks].step/2 + ((i) * smartCommands[ks].step) - 90)
+					smartCommands[ks].linesPosCache[k].x2,smartCommands[ks].linesPosCache[k].y2 = getPointOnCircle(radialMenuConfig.radius, smartCommands[ks].step/2 + ((i) * smartCommands[ks].step) - 90)		
+					
+					smartCommands[ks].linesPosCache[k].x1,smartCommands[ks].linesPosCache[k].y1 = smartCommands[ks].linesPosCache[k].x1 + radialMenuConfig.x,smartCommands[ks].linesPosCache[k].y1 + radialMenuConfig.y
+					smartCommands[ks].linesPosCache[k].x2,smartCommands[ks].linesPosCache[k].y2 = smartCommands[ks].linesPosCache[k].x2 + radialMenuConfig.x,smartCommands[ks].linesPosCache[k].y2 + radialMenuConfig.y
+				end
+			
+				if not smartCommand.x or not smartCommand.y then
+					relX,relY = getPointOnCircle(radialMenuConfig.radius/4*3, ((i) * smartCommands[ks].step) - 90)
+					smartCommands[ks].commands[k].x, smartCommands[ks].commands[k].y = relX+radialMenuConfig.x,relY+radialMenuConfig.y
+				end
 				
-		i=i+1
+				-- Draw line between options
+				dxDrawLine( smartCommands[ks].linesPosCache[k].x1,smartCommands[ks].linesPosCache[k].y1, smartCommands[ks].linesPosCache[k].x2,smartCommands[ks].linesPosCache[k].y2, tocolor(0,0,0,50), 2 )
+			
+				-- Draw the SmartCommands
+				local fontSize = 1.5
+				
+				if smartCommands[ks].commands[k].selected then
+					fontSize = 2.2
+				end
+				
+				dxDrawSmartCommandTitle(smartCommand.Title,smartCommands[ks].commands[k].x, smartCommands[ks].commands[k].y,tocolor ( 255, 255, 255, 255 ), sf_(fontSize)) 
+						
+				i=i+1
+			
+			end
+		end
 	end
 end
 
@@ -160,40 +179,54 @@ function getSelectedRadialOption(_, _, cursorX, cursorY, worldX, worldY, worldZ)
 
 		local closestCommandKey = nil
 		local closestDistance = 999999999999
+		local selectedStrategyRadial = nil
 		
-		for k,smartCommand in pairs(smartCommands) do
-			smartCommands[k].selected = false
-			
-			local thisDistance = getDistanceBetweenPoints2D(cursorX, cursorY, smartCommand.x, smartCommand.y )
-			
-			if thisDistance < closestDistance then
-				closestCommandKey = k
-				closestDistance = thisDistance
+		for ks,strategyRadialMenu in pairs(smartCommands) do
+			if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
+				for k,smartCommand in pairs(strategyRadialMenu.commands) do
+					smartCommands[ks].commands[k].selected = false
+					
+					local thisDistance = getDistanceBetweenPoints2D(cursorX, cursorY, smartCommand.x, smartCommand.y )
+					
+					if thisDistance < closestDistance then
+						closestCommandKey = k
+						closestDistance = thisDistance
+						selectedStrategyRadial = ks
+					end
+				end 
 			end
+		end
 		
-		end 
-		
-		smartCommands[closestCommandKey].selected = true
+		smartCommands[selectedStrategyRadial].commands[closestCommandKey].selected = true
 		smartPingWorldX, smartPingWorldY, smartPingWorldZ = worldX, worldY, worldZ
 	
 	else 
-		for k,smartCommand in pairs(smartCommands) do
-			smartCommands[k].selected = false
+		for ks,strategyRadialMenu in pairs(smartCommands) do
+			if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
+				for k,smartCommand in pairs(strategyRadialMenu.commands) do
+					smartCommands[ks].commands[k].selected = false
+				end
+			end
 		end
 	end
 end
 
 -- Step 3: Handle the logic
-function showStrategicRadialMenu()
+function showStrategicRadialMenu(whichStrategyRadialMenu_keybind)
+
 	-- Ensure it is allowed
 	if overwriteDisableStrategyRadial then return end
 	if not (getElementData(localPlayer, "ptpm.classID") or false) then return end
 
 	-- Unset select state
-	for k,smartCommand in pairs(smartCommands) do
-		smartCommands[k].selected = false
-	end
+	for ks,strategyRadialMenu in pairs(smartCommands) do
+		for k,smartCommand in pairs(strategyRadialMenu.commands) do
+			smartCommands[ks].commands[k].selected = false
+		end
+	end	
 	setCursorPosition( radialMenuConfig.x, radialMenuConfig.y )
+	
+	requestedStrategyRadialMenu = whichStrategyRadialMenu_keybind
 
 	addEventHandler("onClientRender", root, drawStrategyRadial)
 	addEventHandler( "onClientCursorMove", getRootElement( ), getSelectedRadialOption)
@@ -211,11 +244,15 @@ function executeStrategicRadialMenu()
 	removeEventHandler( "onClientCursorMove", getRootElement( ), getSelectedRadialOption)
 	
 	if  not overwriteDisableStrategyRadial then 
-		for k,smartCommand in pairs(smartCommands) do
-			if smartCommands[k].selected then
-				-- get a random line
-				local line = smartCommands[k].textLines[math.random(1,#smartCommands[k].textLines)]
-				triggerServerEvent ( "ptpmStrategyRadialRelay", resourceRoot, smartCommands[k].Title, line, smartPingWorldX, smartPingWorldY, smartPingWorldZ )
+		for ks,strategyRadialMenu in pairs(smartCommands) do
+			if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
+				for k,smartCommand in pairs(strategyRadialMenu.commands) do
+					if smartCommands[ks].commands[k].selected then
+						-- get a random line
+						local line = smartCommands[ks].commands[k].textLines[math.random(1,#smartCommands[ks].commands[k].textLines)]
+						triggerServerEvent ( "ptpmStrategyRadialRelay", resourceRoot, smartCommands[ks].commands[k].Title, line, smartPingWorldX, smartPingWorldY, smartPingWorldZ )
+					end
+				end
 			end
 		end
 		
@@ -225,15 +262,14 @@ function executeStrategicRadialMenu()
 	end
 end
 
-bindKey ( "x", "down", showStrategicRadialMenu ) 
-bindKey ( "x", "up", executeStrategicRadialMenu ) 
-
 addEventHandler( "ptpmStartMapVote", localPlayer, function() overwriteDisableStrategyRadial = true end )
 addEventHandler( "ptpmEndMapVote", localPlayer, function() overwriteDisableStrategyRadial = false end )
 
 
 addEventHandler("onClientResourceStart", resourceRoot,
 	function()
+		outputDebugString("strategy_radial started")
+	
 		-- the default fonts do not scale well, so load our own version at the sizes we need
 		font.scalar = (120 / 44) * uiScale
 		font.base = dxCreateFont("fonts/tahoma.ttf", 9 * font.scalar, false, "proof")
@@ -252,11 +288,17 @@ addEventHandler("onClientResourceStart", resourceRoot,
 			font.smallScalar = 1
 		end
 		
-		for k,smartCommand in pairs(smartCommands) do
-			numberOfSmartCommands = numberOfSmartCommands + 1
-		end
-		
-		step = 360 / numberOfSmartCommands
+		for k,strategyRadialMenu in pairs(smartCommands) do
+			if #smartCommands[k].commands==0 then
+				smartCommands[k] = nil
+			else
+				smartCommands[k].step = 360 / #smartCommands[k].commands
+				
+				bindKey ( strategyRadialMenu.keybind, "down", showStrategicRadialMenu, strategyRadialMenu.keybind ) 
+				bindKey ( strategyRadialMenu.keybind, "up", executeStrategicRadialMenu, strategyRadialMenu.keybind )
+			end
+		end 
+	
 		cursorState = isCursorShowing()
 		
 	end
