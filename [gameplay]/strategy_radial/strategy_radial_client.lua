@@ -65,9 +65,7 @@ local smartCommands =  {
 			},{
 				Title = "Sorry",
 					textLines = {
-						"Sorry!", 
-						"Pardon me!", 
-						"Excuse me!"
+						"Sorry!"
 					}
 			}, {
 				Title = "No",
@@ -243,8 +241,8 @@ function showStrategicRadialMenu(whichStrategyRadialMenu_keybind)
 	-- Ensure it is allowed
 	if overwriteDisableStrategyRadial then return end
 	
-	-- is player spawned?
-	if not (getElementData(localPlayer, "ptpm.classID") or false) then return end
+	-- is player alive?
+	if math.ceil(getElementHealth ( localPlayer ))== 0 then return end
 	
 	-- is menu already open?
 	if requestedStrategyRadialMenu~=nil then return end 
@@ -269,7 +267,6 @@ function showStrategicRadialMenu(whichStrategyRadialMenu_keybind)
 end
 
 function executeStrategicRadialMenu()
-	if not (getElementData(localPlayer, "ptpm.classID") or false) then return end
 
 	removeEventHandler("onClientRender", root, drawStrategyRadial)
 	removeEventHandler( "onClientCursorMove", getRootElement( ), getSelectedRadialOption)

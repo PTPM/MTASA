@@ -19,7 +19,8 @@ function handleIncomingStrategyRadialCommand(command, text, x, y, z)
 	if resource.ptpm and getResourceState(resource.ptpm) == "running" then
 		exports.ptpm:sendTeamChatMessage( client, text )
 	else
-		outputChatBox (getPlayerName(client) ..  ":#FFFFFF " .. text, getRootElement(), unpack(getPlayerNametagColor(client)), true )
+		local r,g,b = getPlayerNametagColor(client)
+		outputChatBox (getPlayerName(client) ..  ":#FFFFFF " .. text, getRootElement(), r,g,b, true )
 	end
 end
 
