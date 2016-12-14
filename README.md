@@ -127,6 +127,7 @@ Usage permitted under [GNU GPLv3](https://github.com/PTPM/MTASA/blob/master/LICE
     <resource src="reload" startup="1" protected="0" />
     <resource src="heligrab" startup="1" protected="0" />
     <resource src="vending" startup="1" protected="0" />
+     <resource src="bike_damage" startup="1" protected="0" />
 
     <resource src="antiflood" startup="1" protected="0" />
 
