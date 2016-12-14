@@ -25,7 +25,7 @@ local radialMenuConfig = {
 }
 
 local backgroundImageSize = radialMenuConfig.radius * 2 * 1.1
-local safeZoneImageSize = radialMenuConfig.radius * 2 * 0.1 --safezone is visualized one-tenth of radialMenuConfig.radius
+local cancelZoneImageSize = radialMenuConfig.radius * 2 * 0.1 --cancel zone is visualized one-tenth of radialMenuConfig.radius
 local requestedStrategyRadialMenu = nil
 
 local smartCommands =  {
@@ -147,7 +147,7 @@ function drawStrategyRadial()
 	dxDrawImage(radialMenuConfig.x - backgroundImageSize/2,radialMenuConfig.y- backgroundImageSize/2, backgroundImageSize, backgroundImageSize, "backgroundShade.png")
 	
 	-- The cursor "safe zone" (mouseover for "cancel"-area)
-	dxDrawImage(radialMenuConfig.x - safeZoneImageSize/2,radialMenuConfig.y- safeZoneImageSize/2, safeZoneImageSize, safeZoneImageSize, "backgroundShade.png")
+	dxDrawImage(radialMenuConfig.x - cancelZoneImageSize/2,radialMenuConfig.y- cancelZoneImageSize/2, cancelZoneImageSize, cancelZoneImageSize, "backgroundShade.png")
 		
 	-- Calculate the absolute position of SmartCommands if not done already
 	for ks,strategyRadialMenu in pairs(smartCommands) do
@@ -242,7 +242,12 @@ function showStrategicRadialMenu(whichStrategyRadialMenu_keybind)
 
 	-- Ensure it is allowed
 	if overwriteDisableStrategyRadial then return end
+	
+	-- is player spawned?
 	if not (getElementData(localPlayer, "ptpm.classID") or false) then return end
+	
+	-- is menu already open?
+	if requestedStrategyRadialMenu~=nil then return end 
 
 	-- Unset select state
 	for ks,strategyRadialMenu in pairs(smartCommands) do
@@ -274,6 +279,9 @@ function executeStrategicRadialMenu()
 			if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
 				for k,smartCommand in pairs(strategyRadialMenu.commands) do
 					if smartCommands[ks].commands[k].selected then
+						-- play sound
+						playSoundFrontEnd(38)
+					
 						-- get a random line
 						local line = smartCommands[ks].commands[k].textLines[math.random(1,#smartCommands[ks].commands[k].textLines)]
 						triggerServerEvent ( "ptpmStrategyRadialRelay", resourceRoot, smartCommands[ks].commands[k].Title, line, smartPingWorldX, smartPingWorldY, smartPingWorldZ )
@@ -285,6 +293,8 @@ function executeStrategicRadialMenu()
 		if not cursorState then
 			showCursor ( false, false )
 		end
+		
+		requestedStrategyRadialMenu = nil
 	end
 end
 
