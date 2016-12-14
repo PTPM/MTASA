@@ -120,6 +120,7 @@ addEventHandler( "onResourceStart", resourceRoot,
 		if not isRunning( "mapmanager" ) then
 			outputServerLog( "mapmanager resource is not running, quitting ptpm!" )
 			outputServerLog( "- to play ptpm, first start mapmanager and then use \"gamemode ptpm\"" )
+			outputDebugString( "PTPM: Required resource mapmanager is not running", 1 )
 			stopResource( thisResource )
 			return
 		end
@@ -163,6 +164,22 @@ addEventHandler( "onResourceStart", resourceRoot,
 		end
 
 		spam.resource = getResourceFromName("antiflood")
+		
+		-- Fallback: Check if a suitable map is running (particularly for after refreshall console command)
+		setTimer(function()
+			if exports.mapmanager:getRunningGamemodeMap()==nil or not exports.mapmanager:isGamemodeCompatibleWithMap( resource, exports.mapmanager:getRunningGamemodeMap()) then
+				local mapTable = exports.mapmanager:getMapsCompatibleWithGamemode( thisResource )
+				if #mapTable==0 then
+					outputServerLog( "FATAL: No PTPM compatible maps were found on the server. Stopping resource." )
+					outputDebugString( "FATAL: No PTPM compatible maps were found on the server.", 1 )
+					stopResource( thisResource )
+				else
+					local randomMap = getResourceName(mapTable[math.random( 1, #mapTable )])
+					exports.mapmanager:changeGamemodeMap( getResourceFromName(randomMap), thisResource ) 
+					outputDebugString( "PTPM was running no map or an incompatible map. Starting " .. randomMap .. ".", 3 )
+				end
+			end
+		end, 2000, 1)
 	end
 )
 
