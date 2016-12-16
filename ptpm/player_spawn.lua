@@ -329,7 +329,6 @@ function makePlayerSpawn( thePlayer )
 end
 
 
-
 function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )	
 	if not killer or not isElement(killer) then 
 		killer = source 

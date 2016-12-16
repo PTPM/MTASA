@@ -171,6 +171,7 @@ function ptpmMapStart( map )
 				tonumber(getElementData(spawn, "posY")), 
 				tonumber(getElementData(spawn, "posZ")), 
 				tonumber(getElementData(spawn, "radius")), 
+				tonumber(getElementData(spawn, "minRadius")), 
 				tonumber(getElementData(spawn, "rot")) or tonumber(getElementData(spawn, "rotation")) or tonumber(getElementData(spawn, "rotZ")),
 				tonumber(getElementData(spawn, "interior"))
 			))

@@ -49,6 +49,99 @@ addEventHandler( "onObjectiveLeave", root,
 )
 
 
+addEvent("onObjectiveComplete", false)
+addEventHandler("onObjectiveComplete", root,
+	function(thePlayer)
+		for _, p in ipairs(getElementsByType("player")) do
+			if p and isElement(p) then
+				if getPlayerClassID(p) and teams["goodGuys"][classes[getPlayerClassID(p)].type] == true then
+					clearObjectiveTextFor(p)	
+				end
+			end
+		end	
+		
+		data.objectives.finished = data.objectives.finished + 1
+
+		-- completed all the objectives, or there are fewer objectives in the map file than required to pass map
+		-- this works because once an objective is completed it gets destroyed and removed from the table		
+		if (options.objectivesToFinish == data.objectives.finished) or (tableSize(data.objectives) == 1) then
+			everyoneViewsBody(thePlayer, thePlayer, getElementInterior(thePlayer))
+
+			sendGameText(root, "The Prime Minister completed objectives!", 7000, classColours["pm"], nil, 1.4, nil, nil, 3)
+
+			local pmWins = getElementData(thePlayer, "ptpm.pmWins") or 0
+
+			if isRunning("ptpm_accounts") then
+				pmWins = (exports.ptpm_accounts:getPlayerStatistic(thePlayer, "pmvictory") or pmWins) + 1
+				exports.ptpm_accounts:setPlayerStatistic(thePlayer, "pmvictory", pmWins)
+			else
+				pmWins = pmWins + 1
+			end
+
+			setElementData(thePlayer, "ptpm.score.pmWins", string.format("%d", pmWins))
+			setElementData(thePlayer, "ptpm.pmWins", pmWins, false)
+				
+			for _, p in ipairs(getElementsByType("player")) do
+				if p and isElement(p) and isPlayerActive(p) then
+					local classID = getPlayerClassID(p)
+					if classID then
+						if classes[classID].type == "pm" or classes[classID].type == "bodyguard" or classes[classID].type == "police" then
+							local roundsWon = getElementData(p, "ptpm.roundsWon") or 0
+
+							if isRunning("ptpm_accounts") then        
+								roundsWon = (exports.ptpm_accounts:getPlayerStatistic(p, "roundswon") or roundsWon) + 1
+								exports.ptpm_accounts:setPlayerStatistic(p, "roundswon", roundsWon)
+							else
+								roundsWon = roundsWon + 1
+							end
+
+							setElementData(p, "ptpm.score.roundsWon", string.format("%d", roundsWon))
+							setElementData(p, "ptpm.roundsWon", roundsWon, false)
+						elseif classes[classID].type == "terrorist" then
+							local roundsLost = getElementData(p, "ptpm.roundsLost") or 0
+
+							if isRunning("ptpm_accounts") then        
+								roundsLost = (exports.ptpm_accounts:getPlayerStatistic(p, "roundslost") or roundsLost) + 1
+								exports.ptpm_accounts:setPlayerStatistic(p, "roundslost", roundsLost)
+							else
+								roundsLost = roundsLost + 1
+							end
+
+							setElementData(p, "ptpm.score.roundsLost", string.format("%d", roundsLost))
+							setElementData(p, "ptpm.roundsLost", roundsLost, false)
+						end
+					end
+				end
+			end
+
+			setRoundEnded()
+		else
+			if data.timer and isRunning("missiontimer") then
+				local timeRemaining = exports.missiontimer:getMissionTimerTime(data.timer)
+
+				if timeRemaining and timeRemaining > 0 then
+					-- add 3 more minutes to the timer
+					exports.missiontimer:setMissionTimerTime(data.timer, timeRemaining + ((1000 * 60) * 3))
+					options.roundtime = options.roundtime + ((1000 * 60) * 3)
+				end
+			end
+
+			setupNewObjective()
+		end
+
+		data.objectives.pmOnObjective = nil
+	end
+)
+
+-- addCommandHandler("hurry",
+-- 	function()
+-- 		if not data.roundEnded and currentPM and data.objectives.pmOnObjective then
+-- 			data.objectives[data.objectives.activeObjective].enterTime = data.objectives[data.objectives.activeObjective].enterTime - 5000
+-- 		end
+-- 	end
+-- )
+
+
 function checkObjectives( players, tick )
 	if not data.roundEnded and currentPM and data.objectives.pmOnObjective then
 		if tick - data.objectives[data.objectives.activeObjective].enterTime < data.objectives[data.objectives.activeObjective].time then
@@ -60,124 +153,7 @@ function checkObjectives( players, tick )
 				end
 			end
 		else
-			for _, p in ipairs( players ) do
-				if p and isElement( p ) then
-					if getPlayerClassID(p) and teams["goodGuys"][classes[getPlayerClassID(p)].type] == true then
-						clearObjectiveTextFor( p )	
-					end
-				end
-			end	
-			
-			data.objectives.finished = data.objectives.finished + 1
-			
-			if options.objectivesToFinish == data.objectives.finished then
-				everyoneViewsBody( currentPM, currentPM, getElementInterior( currentPM ) )
-
-				sendGameText( root, "The Prime Minister completed objectives!", 7000, classColours["pm"], nil, 1.4, nil, nil, 3 )
-
-				local pmWins = getElementData( currentPM, "ptpm.pmWins" ) or 0
-
-				if isRunning( "ptpm_accounts" ) then
-					pmWins = (exports.ptpm_accounts:getPlayerStatistic( currentPM, "pmvictory" ) or pmWins) + 1
-					exports.ptpm_accounts:setPlayerStatistic( currentPM, "pmvictory", pmWins )
-				else
-					pmWins = pmWins + 1
-				end
-        
-				setElementData( currentPM, "ptpm.score.pmWins", string.format( "%d", pmWins ) )
-				setElementData( currentPM, "ptpm.pmWins", pmWins, false )
-					
-				local players = getElementsByType( "player" )
-				for _, p in ipairs( players ) do
-					if p and isElement( p ) and isPlayerActive( p ) then
-						local classID = getPlayerClassID( p )
-						if classID then
-							if classes[classID].type == "pm" or classes[classID].type == "bodyguard" or classes[classID].type == "police" then
-								local roundsWon = getElementData( p, "ptpm.roundsWon" ) or 0
-
-								if isRunning( "ptpm_accounts" ) then        
-									roundsWon = (exports.ptpm_accounts:getPlayerStatistic( p, "roundswon" ) or roundsWon) + 1
-									exports.ptpm_accounts:setPlayerStatistic( p, "roundswon", roundsWon )
-								else
-									roundsWon = roundsWon + 1
-								end
-
-								setElementData( p, "ptpm.score.roundsWon", string.format( "%d", roundsWon ) )
-								setElementData( p, "ptpm.roundsWon", roundsWon, false)
-							elseif classes[classID].type == "terrorist" then
-								local roundsLost = getElementData( p, "ptpm.roundsLost" ) or 0
-
-								if isRunning( "ptpm_accounts" ) then        
-									roundsLost = (exports.ptpm_accounts:getPlayerStatistic( p, "roundslost" ) or roundsLost) + 1
-									exports.ptpm_accounts:setPlayerStatistic( p, "roundslost", roundsLost )
-								else
-									roundsLost = roundsLost + 1
-								end
-
-								setElementData( p, "ptpm.score.roundsLost", string.format( "%d", roundsLost ) )
-								setElementData( p, "ptpm.roundsLost", roundsLost, false)
-							end
-						end
-					end
-				end
-				setRoundEnded()
-			else
-				if tableSize( data.objectives ) == 1 then -- there is less objectives in map file than required to pass map
-					everyoneViewsBody( currentPM, currentPM, getElementInterior( currentPM ) )
-
-					sendGameText( root, "The Prime Minister completed objectives!", 7000, classColours["pm"], nil, 1.4, nil, nil, 3 )
-
-					local pmWins = getElementData( currentPM, "ptpm.pmWins" ) or 0
-
-					if isRunning( "ptpm_accounts" ) then
-						pmWins = (exports.ptpm_accounts:getPlayerStatistic( currentPM, "pmvictory" ) or pmWins) + 1
-						exports.ptpm_accounts:setPlayerStatistic( currentPM, "pmvictory", pmWins )					
-					else
-						pmWins = pmWins + 1
-					end
-
-					setElementData( currentPM, "ptpm.score.pmWins", string.format( "%d", pmWins ) )
-					setElementData( currentPM, "ptpm.pmWins", pmWins, false)
-
-					local players = getElementsByType( "player" )
-					for _, p in ipairs( players ) do
-						if p and isElement( p ) and isPlayerActive( p ) then
-							local classID = getPlayerClassID( p )
-							if classID then
-								if classes[classID].type == "pm" or classes[classID].type == "bodyguard" or classes[classID].type == "police" then
-									local roundsWon = getElementData( p, "ptpm.roundsWon" ) or 0
-
-									if isRunning( "ptpm_accounts" ) then
-										roundsWon = (exports.ptpm_accounts:getPlayerStatistic( p, "roundswon" ) or roundsWon) + 1
-										exports.ptpm_accounts:setPlayerStatistic( p, "roundswon", roundsWon )					
-									else
-										roundsWon = roundsWon + 1
-									end
-
-									setElementData( p, "ptpm.score.roundsWon", string.format( "%d", roundsWon ) )
-									setElementData( p, "ptpm.roundsWon", roundsWon, false)
-								elseif classes[classID].type == "terrorist" then
-									local roundsLost = getElementData( p, "ptpm.roundsLost" ) or 0
-
-									if isRunning( "ptpm_accounts" ) then        
-										roundsLost = (exports.ptpm_accounts:getPlayerStatistic( p, "roundslost" ) or roundsLost) + 1
-										exports.ptpm_accounts:setPlayerStatistic( p, "roundslost", roundsLost )
-									else
-										roundsLost = roundsLost + 1
-									end
-
-									setElementData( p, "ptpm.score.roundsLost", string.format( "%d", roundsLost ) )
-									setElementData( p, "ptpm.roundsLost", roundsLost, false)
-								end
-							end
-						end
-					end
-					setRoundEnded()
-				else
-					setupNewObjective()
-				end
-			end
-			data.objectives.pmOnObjective = nil
+			triggerEvent("onObjectiveComplete", data.objectives.activeObjective, currentPM)
 		end
 	end	
 end

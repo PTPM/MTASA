@@ -90,16 +90,18 @@ end
 
 --[[----------------------------------------------
 	Spawn object that defines a circle within which spawn points can be randomly picked
+	minRadius defines a minimum distance from the centre, making it into a ring shape
 ]]------------------------------------------------
 
 SpawnCircle = {}
 SpawnCircle.__index = SpawnCircle
 
-function SpawnCircle:create(posX, posY, posZ, radius, rot, int)
+function SpawnCircle:create(posX, posY, posZ, radius, minRadius, rot, int)
 	local new = setmetatable(
 		{
 			center = {x = posX, y = posY, z = posZ},
 			radius = radius,
+			minRadius = minRadius or 0,
 			rotation = rot or 0,
 			interior = int or 0,	
 			type = "area",
@@ -113,7 +115,7 @@ end
 
 function SpawnCircle:__index(key)
 	if key == "position" then
-		local cX, cY = getPointOnCircle(math.random() * self.radius, math.random() * 360)
+		local cX, cY = getPointOnCircle(self.minRadius + (math.random() * (self.radius - self.minRadius)), math.random() * 360)
 		return {
 			x = self.center.x + cX,
 			y = self.center.y + cY,
