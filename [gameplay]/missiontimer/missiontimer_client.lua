@@ -51,7 +51,7 @@ function setMissionTimerTime ( timer, time )
 		if isTimer( missionTimers[timer].timer ) then
 			killTimer ( missionTimers[timer].timer )
 		end
-		missionTimers[timer].timer = setTimer ( triggerEvent, missionTimers[timer].duration, 1, "onClientMissionTimerElapsed", element )			
+		missionTimers[timer].timer = setTimer ( triggerEvent, missionTimers[timer].duration, 1, "onClientMissionTimerElapsed", timer )			
 			
 		return true
 	end
