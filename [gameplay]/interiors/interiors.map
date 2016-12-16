@@ -107,7 +107,7 @@
 <interiorReturn	refid="CSSPRT (2)"	posX="207.06"	posY="-139.81"	posZ="1002.52"	rotation="0"	interior="3"	dimension="1"	/>
 <interiorEntry	id="DAMIN"	posX="-594.874"	posY="2018.21"	posZ="59.6792"	rotation="325"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="DAMIN"	posX="-959.671"	posY="1955.55"	posZ="8.08044"	rotation="180"	interior="17"	dimension="0"	/>
-<interiorEntry	id="DESHOUS"	posX="423.99"	posY="2536.49"	posZ="15.19"	rotation="270"	dimension="0"	interior="0"	/>
+<interiorEntry	id="DESHOUS"	posX="423.49"	posY="2536.49"	posZ="15.19"	rotation="270"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="DESHOUS"	posX="422.16"	posY="2536.52"	posZ="9.01"	rotation="90"	interior="10"	dimension="0"	/>
 <!-- Diners are commented out due to their poor collisions -->
 <!--<interiorEntry	id="DINER1"	posX="-1941.72"	posY="2379.54"	posZ="48.7008"	rotation="0"	dimension="0"	interior="0"	/>
