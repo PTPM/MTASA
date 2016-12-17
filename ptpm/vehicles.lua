@@ -44,11 +44,15 @@ addEventHandler( "onVehicleStartEnter", root,
 
 
 addEventHandler( "onVehicleEnter", root,
-	function( thePlayer )	
+	function(thePlayer)	
+		doStopVehicleRespawn()
+
 		-- if vehicleLaunch is enabled, its a rustler and its fresh then launch it
-		if options and options.vehicleLaunch and getElementModel( source ) == 476 and data.vehicleRespawn[source].launched == false then
-			launchVehicle( source )
+		if options and options.vehicleLaunch and getElementModel(source) == 476 and getElementData(source, "ptpm.vehicle.fresh") then
+			launchVehicle(source)
 		end
+
+		setVehicleStale(source)
 	end
 )
 
@@ -61,13 +65,18 @@ function initiateVehicleRespawn()
 				data.vehicleRespawn[vehicle].timer = nil
 			end,
 		data.vehicleRespawn[source].delay, 1, source )
-		
-		if options and options.vehicleLaunch and getElementModel(source) == 476 then
-			data.vehicleRespawn[source].launched = true
-		end
+
+		-- just in case
+		setVehicleStale(source)
 	end
 end
 addEventHandler( "onVehicleExit", root, initiateVehicleRespawn )
+
+function setVehicleStale(vehicle)
+	setElementData(vehicle, "ptpm.vehicle.fresh", nil, false)
+
+	setVehicleDamageProof(vehicle, false)
+end
 
 
 function stopVehicleRespawn( vehicle )
@@ -82,24 +91,22 @@ end
 function doStopVehicleRespawn()
 	stopVehicleRespawn( source )
 end
-addEventHandler( "onVehicleEnter", root, doStopVehicleRespawn )
 addEventHandler( "onVehicleExplode", root, doStopVehicleRespawn )
 
 
 function doRespawnVehicle( vehicle )
 	spawnVehicle( vehicle, getElementData( vehicle, "posX" ), getElementData( vehicle, "posY" ), getElementData( vehicle, "posZ" ), 0, 0, getElementData( vehicle, "rotZ" ) )
-	
-	if options and options.vehicleLaunch and getElementModel( vehicle ) == 476 then
-		data.vehicleRespawn[vehicle].launched = false
-	end
+
+	onVehicleRespawn(vehicle)
 end
 
+function onVehicleRespawn(vehicle)
+	setElementData(vehicle, "ptpm.vehicle.fresh", true, false)
+end
 
-addEventHandler( "onVehicleRespawn", root,
+addEventHandler("onVehicleRespawn", root, 
 	function()
-		if options and options.vehicleLaunch and getElementModel( source ) == 476 then
-			data.vehicleRespawn[source].launched = false
-		end
+		onVehicleRespawn(source)
 	end
 )
 
