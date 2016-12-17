@@ -1,0 +1,6 @@
+<meta>
+	<info author="PTPM" type="script" name="Fire Annoyance" description="Remove fire items on spawn from terrorists" />
+	<script src="fire_annoyance.lua" type="client"></script>
+	<script src="fire_annoyance_server.lua" type="server"></script>
+
+</meta>
