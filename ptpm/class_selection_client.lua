@@ -1044,6 +1044,10 @@ function setTooltip(part, text)
 		text = getPMTooltipText()
 	end
 
+	if part.tooltip and text == part.tooltip.text then
+		return
+	end	
+
 	part.tooltip = part.tooltip or {}
 	part.tooltip.text = text
 	part.tooltip.alpha = 0
