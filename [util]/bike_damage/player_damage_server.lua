@@ -12,12 +12,18 @@ addEventHandler("onVehicleDamage", root,
 
 			for seat, player in pairs(getVehicleOccupants(source)) do
 				if isPedDoingGangDriveby(player) then
-					local health = getElementHealth(player)
+					local armour = getPedArmor(player)
 
-					if health - playerDamage <= 0 then
-						killPed(player)
+					if armour and armour > 0 then
+						setPedArmor(player, math.max(0, armour - playerDamage))
 					else
-						setElementHealth(player, health - playerDamage)
+						local health = getElementHealth(player)
+
+						if health - playerDamage <= 0 then
+							killPed(player)
+						else
+							setElementHealth(player, health - playerDamage)
+						end
 					end
 				end
 			end

@@ -301,14 +301,17 @@ function ptpmMapStart( map )
 		
 		data.vehicleRespawn[value] = {}
 		data.vehicleRespawn[value].delay = data.vehicleRespawnTime
+
+		setElementData(value, "ptpm.vehicle.fresh", true, false)
 		
 		if options.vehicleLaunch and getElementModel(value) == 476 then
 			data.vehicleRespawn[value].launched = false
 		end
+
+		setVehicleDamageProof(value, true)
 		
 		if getElementID(value) == "desert_crashed_plane" then
-			setVehicleDamageProof(value,true)
-			setVehicleLocked(value,true)
+			setVehicleLocked(value, true)
 		end
 	end
 	
