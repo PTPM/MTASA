@@ -756,13 +756,11 @@ addCommandHandler( "kill", killCommand )
 
 -- compcheck
 function healCommand( thePlayer, commandName, otherName )
-	local patient = false
-	
-	local watching = getElementData( thePlayer, "ptpm.watching" )
-	if watching then
-	--if playerInfo[thePlayer] and playerInfo[thePlayer].watching then
+	if getElementData( thePlayer, "ptpm.watching" ) then
 		return outputChatBox( "You may not heal people while you are watching.", thePlayer, unpack( colourPersonal ) )
 	end
+
+	local patient = false
 	
 	if otherName then
 		local otherPlayer = getPlayerFromNameSection( otherName )
@@ -774,14 +772,16 @@ function healCommand( thePlayer, commandName, otherName )
 		patient = otherPlayer
 	else
 		local d = 100000
+		local myTeam = getPlayerTeam(thePlayer)
+
 		for _, value in ipairs( getElementsByType( "player" ) ) do
-			if value and isElement( value ) and getPlayerClassID( value ) and value ~= thePlayer then
+			if value and isElement(value) and value ~= player and getPlayerClassID(value) and getPlayerTeam(value) == myTeam then
 				local pHealth = getElementHealth( value )
-				if pHealth ~= 100 then
+				if math.ceil(pHealth) < 100 then
 					local pX, pY, pZ = getElementPosition( value )
 					local mX, mY, mZ = getElementPosition( thePlayer )
 					local d2 = getDistanceBetweenPoints3D( pX, pY, pZ, mX, mY, mZ )
-					if d2 < d and math.ceil( getElementHealth( value ) ) ~= 100 then
+					if d2 < d then
 						d = d2
 						patient = value
 					end
