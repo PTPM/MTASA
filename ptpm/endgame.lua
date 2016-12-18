@@ -1,8 +1,13 @@
-﻿local lastVoteCount = 0
-local lastMap = nil
-local mapVotes = {}
-local maps = {}
-local mapVoteTimer = nil
+﻿local mapvote = {
+	maps = {},
+	playerVotes = {},
+	timer = nil,
+	lastMap = nil,
+	mapsOffered = {},
+	-- for testing
+	--mapsOffered = {["ptpm-a51"] = 10, ["ptpm-air-assault"] = 10, ["ptpm-bayside"] = 10, ["ptpm-chiliad"] = 10, ["ptpm-country"] = 10, ["ptpm-desert"] = 10, ["ptpm-factory"] = 10, ["ptpm-ls"] = 10,
+	--				["ptpm-lshydra"] = 10, ["ptpm-lv"] = 10, ["ptpm-lvobj"] = 0, ["ptpm-sf"] = 0},
+}
 
 
 -- this happens as soon as the round ends
@@ -104,6 +109,7 @@ function endGame()
 	startEndOfRoundPTPMMapvote()
 end
 
+
 function getMapvoteObject( resourceName )
 	if 		resourceName=="ptpm-a51" 				then return { name="Area 51", image="mapvoteimages/map-pic-A51.png", votes=0,youVoted=false,res=resourceName} 
 	elseif 	resourceName=="ptpm-air-assault" 		then return { name="Air Assault", image="mapvoteimages/map-pic-Air.png", votes=0,youVoted=false,res=resourceName} 
@@ -120,53 +126,43 @@ function getMapvoteObject( resourceName )
 	else return nil end
 end
 
-
 function startEndOfRoundPTPMMapvote()
-	local currentMap = getResourceName(exports.mapmanager:getRunningGamemodeMap())
-	if isTimer( mapVoteTimer ) then
-		killTimer( mapVoteTimer )
+	if isTimer(mapvote.timer) then
+		killTimer(mapvote.timer)
+		mapvote.timer = nil
 	end
 	
 	-- Clear results from last vote
-	mapVotes = {}
-	maps = {}
+	mapvote.playerVotes = {}
+	mapvote.maps = {}
 	
 	-- Which maps are there?
-	local mapTable = exports.mapmanager:getMapsCompatibleWithGamemode( thisResource )
+	local mapTable = {}
+	for _, map in ipairs(exports.mapmanager:getMapsCompatibleWithGamemode(thisResource)) do
+		table.insert(mapTable, getResourceName(map))
+	end
 	
 	-- Map 1: Any random map (but NOT the same map that we had just now or the one before that)
-	local randomMap = nil
-	while true do
-		randomMap = getResourceName(mapTable[math.random( 1, #mapTable )])	
-		if randomMap ~= currentMap and randomMap ~=lastMap then break end
-	end
-	table.insert(maps, getMapvoteObject(randomMap))
+	local randomMap = getMapOffer(mapTable, {runningMapName, mapvote.lastMap})
+	table.insert(mapvote.maps, getMapvoteObject(randomMap))
+	mapvote.mapsOffered[randomMap] = (mapvote.mapsOffered[randomMap] or 0) + 1
 	
 	-- Map 2: Rematch OR new random map that is NOT map 1
-	if currentMap==lastMap then
-
-		local randomMap2 = nil
-		while true do
-			randomMap2 = getResourceName(mapTable[math.random( 1, #mapTable )])	
-			if randomMap2 ~= currentMap and randomMap2 ~=lastMap and randomMap2 ~= randomMap then break end
-		end
-		table.insert(maps, getMapvoteObject(randomMap2))
-		
+	if runningMapName == mapvote.lastMap then
+		local randomMap2 = getMapOffer(mapTable, {runningMapName, mapvote.lastMap, randomMap})
+		table.insert(mapvote.maps, getMapvoteObject(randomMap2))	
+		mapvote.mapsOffered[randomMap2] = (mapvote.mapsOffered[randomMap2] or 0) + 1
 	else
-		local mapObj = getMapvoteObject(currentMap)
+		local mapObj = getMapvoteObject(runningMapName)
 		mapObj.name = mapObj.name .. " (Rematch)"
-		table.insert(maps, mapObj)
-		lastMap = currentMap
+		table.insert(mapvote.maps, mapObj)
+		mapvote.mapsOffered[runningMapName] = (mapvote.mapsOffered[runningMapName] or 0) + 1
+		mapvote.lastMap = runningMapName
 	end
 	
 	-- Map 3: "Unknown" other random map
-	local randomMap3 = nil
-	while true do
-		randomMap3 = getResourceName(mapTable[math.random( 1, #mapTable )])	
-		if randomMap3 ~= currentMap and randomMap3 ~=lastMap and randomMap3 ~= randomMap  and randomMap3 ~= randomMap2 then break end
-	end
-	
-	table.insert(maps, {
+	local randomMap3 = getMapOffer(mapTable, {runningMapName, mapvote.lastMap, randomMap, randomMap2})
+	table.insert(mapvote.maps, {
 		name = "Random Map",
 		image = "mapvoteimages/map-pic-_randomMap.png",
 		votes = 0,
@@ -176,15 +172,52 @@ function startEndOfRoundPTPMMapvote()
 	})
 	
 	-- Trigger client event
-	for _, p in ipairs( getElementsByType( "player" ) ) do
-		if p and isElement( p ) then
-			triggerClientEvent ( p, "ptpmStartMapVote", p, maps )	
+	for _, p in ipairs(getElementsByType("player")) do
+		if p and isElement(p) and isPlayerActive(p) then
+			triggerClientEvent(p, "ptpmStartMapVote", p, mapvote.maps)	
 		end
 	end
 	
 	-- Close the vote in 12 seconds (although it will say 10 seconds, by design)
-	mapVoteTimer = setTimer(function() closePTPMMapVote() end, 12 * 1000, 1)
+	mapvote.timer = setTimer(
+		function() 
+			closePTPMMapVote() 
+		end, 
+	12 * 1000, 1)
+end
+
+-- get a map offer to put on the vote screen
+-- based on how often each map has been visibly offered as a choice
+function getMapOffer(mapTable, exclusions_)
+	local leastSeenMaps = {}
+	local leastSeenAmount = nil
+	local exclusions = {}
+
+	-- filter out nils
+	for _, e in ipairs(exclusions_) do
+		if e then
+			exclusions[e] = true
+		end
+	end
+
+	-- find the least seen maps and put them into a table
+	for _, map in ipairs(mapTable) do
+		if not exclusions[map] then
+			if (not leastSeenAmount) or ((mapvote.mapsOffered[map] or 0) < leastSeenAmount) then
+				leastSeenAmount = mapvote.mapsOffered[map] or 0
+				leastSeenMaps = {map}
+			elseif leastSeenAmount and (mapvote.mapsOffered[map] or 0) == leastSeenAmount then
+				table.insert(leastSeenMaps, map)	
+			end
+		end
+	end
 	
+	-- backup
+	if #leastSeenMaps == 0 then
+		return mapTable[math.random( 1, #mapTable )]
+	end
+
+	return leastSeenMaps[math.random(1, #leastSeenMaps)]
 end
 
 function closePTPMMapVote()
@@ -192,48 +225,47 @@ function closePTPMMapVote()
 	local highestVoteCount = -1
 	local highestVoteMap = nil
 	
-	for mapVoteId,map in ipairs(maps) do
+	for mapVoteId, map in ipairs(mapvote.maps) do
 		-- By design, if there is a tie between map[1] (new map) and map[2] (rematch) then map[1] will win. This is intentional.
-		if map.votes>highestVoteCount then 
+		if map.votes > highestVoteCount then 
 			highestVoteCount = map.votes
 			highestVoteMap = map.res
 		end
 	end
 	
 	-- Trigger client event
-	for _, p in ipairs( getElementsByType( "player" ) ) do
-		if p and isElement( p ) then
-			triggerClientEvent ( p, "ptpmEndMapVote", p )	
+	for _, p in ipairs(getElementsByType("player")) do
+		if p and isElement(p) and isPlayerActive(p) then
+			triggerClientEvent(p, "ptpmEndMapVote", p)	
 		end
 	end
 	
 	-- Absolute final fallback
-	if highestVoteMap == nil or getResourceFromName(highestVoteMap)==false then 
+	if highestVoteMap == nil or getResourceFromName(highestVoteMap) == false then 
 		outputDebugString("ERROR LOADING MAP: " .. highestVoteMap);
 		highestVoteMap = "ptpm-sf" 
 	end
 	outputDebugString("Loading map: " .. highestVoteMap);
-	exports.mapmanager:changeGamemodeMap( getResourceFromName ( highestVoteMap ), thisResource ) 
+	exports.mapmanager:changeGamemodeMap(getResourceFromName(highestVoteMap), thisResource) 
 end
 
 function handleIncomingVote(mapVoteId)
-	if mapVotes[client]~=nil then 
+	if mapvote.playerVotes[client] ~= nil then 
 		-- The player voted already and is changing their vote
-		maps[mapVotes[client]].votes = maps[mapVotes[client]].votes-1
+		mapvote.maps[mapvote.playerVotes[client]].votes = mapvote.maps[mapvote.playerVotes[client]].votes-1
 	end
 
 	-- Register the (new) vote
-	mapVotes[client] = mapVoteId
-	maps[mapVoteId].votes = maps[mapVoteId].votes+1
+	mapvote.playerVotes[client] = mapVoteId
+	mapvote.maps[mapVoteId].votes = mapvote.maps[mapVoteId].votes+1
 		
 	-- Update everyones screen
-	for _, p in ipairs( getElementsByType( "player" ) ) do
-		if p and isElement( p ) then
-			triggerClientEvent ( p, "ptpmUpdateMapVoteResults", p, maps )	
+	for _, p in ipairs(getElementsByType("player")) do
+		if p and isElement(p) and isPlayerActive(p) then
+			triggerClientEvent(p, "ptpmUpdateMapVoteResults", p, mapvote.maps)	
 		end
 	end
-	
 end
 
-addEvent( "ptpmMapVoteResult", true )
-addEventHandler( "ptpmMapVoteResult", resourceRoot, handleIncomingVote )
+addEvent("ptpmMapVoteResult", true)
+addEventHandler("ptpmMapVoteResult", resourceRoot, handleIncomingVote)
