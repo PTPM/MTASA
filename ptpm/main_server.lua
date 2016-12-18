@@ -773,13 +773,14 @@ function healCommand( thePlayer, commandName, otherName )
 	else
 		local d = 100000
 		local myTeam = getPlayerTeam(thePlayer)
-
+		local mX, mY, mZ = getElementPosition( thePlayer )
+		
 		for _, value in ipairs( getElementsByType( "player" ) ) do
-			if value and isElement(value) and value ~= player and getPlayerClassID(value) and getPlayerTeam(value) == myTeam then
+			if value and isElement(value) and value ~= thePlayer and getPlayerClassID(value) and getPlayerTeam(value) == myTeam then
 				local pHealth = getElementHealth( value )
 				if math.ceil(pHealth) < 100 then
 					local pX, pY, pZ = getElementPosition( value )
-					local mX, mY, mZ = getElementPosition( thePlayer )
+					
 					local d2 = getDistanceBetweenPoints3D( pX, pY, pZ, mX, mY, mZ )
 					if d2 < d then
 						d = d2
