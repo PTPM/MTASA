@@ -26,14 +26,23 @@ for id,fileName in pairs(files) do
 	end
 end
 
-function appendToFile( fileID, theString)
+function openAndAppendToFile(fileID, theString)
 	local fileName = files[fileID]
-	local filePos = filePointers[fileID]
-	local fh = fileOpen ( fileName )
-	fileSetPos ( fh, filePos )
-	fileWrite( fh, theString .. "\n")
-	filePointers[fileID] = fileGetPos( fh )
-	fileClose(fh)
+	local fileHandle = fileOpen(fileName)
+
+	if not fileHandle then
+		return
+	end
+
+	appendToFile(fileHandle, fileID, theString)
+
+	fileClose(fileHandle)
+end
+
+function appendToFile(fileHandle, fileID, theString)
+	fileSetPos(fileHandle, filePointers[fileID])
+	fileWrite(fileHandle, theString .. "\n")
+	filePointers[fileID] = fileGetPos(fileHandle)
 end
 
 function getElementPositionTwoDecimals(p)
@@ -72,6 +81,12 @@ end
 -- Geo logging (at 10 second interval)
 -- datetime,playername,class=> skinid,x,y,z,interior
 setTimer (function() 
+	local fileHandle = fileOpen(files.geo)
+
+	if not fileHandle then
+		return
+	end
+
 	for _, p in ipairs(getElementsByType("player")) do
 		if p and isElement(p) then
 			local playerName = getPlayerName(p)
@@ -80,11 +95,12 @@ setTimer (function()
 			local playerSkin = getElementModel(p)
 			local currentMap = getMapName()
 			
-			appendToFile("geo", currentRound .. "¶" .. now() .. "¶" .. playerName .. "¶" .. playerSkin .. "¶" .. x.. "¶" .. y.. "¶" .. z.. "¶" .. interior.. "¶" .. currentMap)
+			appendToFile(fileHandle, "geo", currentRound .. "¶" .. now() .. "¶" .. playerName .. "¶" .. playerSkin .. "¶" .. x.. "¶" .. y.. "¶" .. z.. "¶" .. interior.. "¶" .. currentMap)
 		end
 	end
-end, 10000, 0)
 
+	fileClose(fileHandle)
+end, 10000, 0)
 
 -- Log player deaths (on death)
 -- datetime,playerName[vic],skin[vic],x,y,z,interior,playerName[attacker],skin[attacker],weapon,bodypart
@@ -101,7 +117,7 @@ addEventHandler("onPlayerWasted", getRootElement(),
 			local attackerSkin = getElementModel ( attacker )
 			attackerData = aPlayerName .. "¶" .. attackerSkin .. "¶" .. weapon .. "¶" .. bodypart
 		end
-		appendToFile("deaths", currentRound .. "¶" .. now() .. "¶" .. playerName .. "¶" .. playerSkin .. "¶" .. x .. "¶" .. y .. "¶" .. z.. "¶" .. interior .. "¶" .. attackerData)
+		openAndAppendToFile("deaths", currentRound .. "¶" .. now() .. "¶" .. playerName .. "¶" .. playerSkin .. "¶" .. x .. "¶" .. y .. "¶" .. z.. "¶" .. interior .. "¶" .. attackerData)
 	end
 )
 
@@ -111,5 +127,5 @@ addEventHandler("onPlayerWasted", getRootElement(),
 addEvent( "logClientData", true )
 addEventHandler( "logClientData", resourceRoot, function ( dxData )
 	local playerName = getPlayerName(client)
-	appendToFile("performance", now() .. "¶" .. playerName .. "¶" ..  getPlayerPing ( client )  .. "¶" .. getPlayerVersion ( client)  .. "¶" .. dxData)
+	openAndAppendToFile("performance", now() .. "¶" .. playerName .. "¶" ..  getPlayerPing ( client )  .. "¶" .. getPlayerVersion ( client)  .. "¶" .. dxData)
 end )
