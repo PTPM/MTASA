@@ -858,7 +858,8 @@
     <object id="object (shamheliprt04) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="6976" doublesided="true" scale="1" dimension="0" posX="2554.8367" posY="-1400.7683" posZ="34.82344" rotX="0" rotY="0" rotZ="180"></object>
     <object id="object (sfn_town03) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="9303" doublesided="false" scale="1" dimension="0" posX="2545.0515" posY="-1383.0325" posZ="42.10415" rotX="0" rotY="0" rotZ="270"></object>
     <object id="object (cjgaragedoor) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="17951" doublesided="false" scale="1" dimension="0" posX="2119.377" posY="-2275.7993" posZ="21.30287" rotX="0" rotY="0" rotZ="44.75"></object>
-
+    <object id="object (des_swtstairs1) (1)" breakable="false" interior="0" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="400.27594" posY="-1608.3539" posZ="32.22187" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (des_swtstairs1) (2)" breakable="false" interior="0" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="400.02563" posY="-1632.579" posZ="32.22187" rotX="0" rotY="0" rotZ="0"></object>
 
     <boundarycorner posX="3135" posY="-3135" />
     <!-- spark's -->
