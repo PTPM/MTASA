@@ -13,10 +13,6 @@ local lookups = {
 	}
 }
 local outputColour = {255, 128, 0}
-local offset = {
-	xVariance = 0.8,
-	yVariance = 0.8
-}
 
 
 --[[format:
@@ -54,6 +50,7 @@ addEventHandler("onSettingChange", root,
 			triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
 		elseif setting == settings.name("offsetTeleportPosition", "*") then
 			settings.offsetTeleportPosition = fromJSON(newValue)
+			triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
 		end
 	end
 )
@@ -196,27 +193,19 @@ addEventHandler("doTriggerServerEvents", root,
 				setElementData(client, "interiors.teleportImmunity", false, false)
 			end
 
-			setElementFrozen(client, true)
-			toggleAllControls(client, false, true, false)
-			fadeCamera(client, false, 1)
+			-- setElementFrozen(client, true)
+			-- toggleAllControls(client, false, true, false)
+			-- fadeCamera(client, false, 1)
 
-			setTimer(fadeIntoWarpComplete, 1000, 1, client, interior, resource, id)
+			-- setTimer(fadeIntoWarpComplete, 1000, 1, client, interior, resource, id)
+
+			triggerClientEvent(client, "doWarpPlayerToInterior", client, interior, resource, id)
+			setTimer(setPlayerInsideInterior, 1000, 1, client, interior, resource, id)
 		else
 			triggerClientEvent(client, "onPlayerInteriorHitCancelled", client, interior)
 		end
 	end
 )
-
-function fadeIntoWarpComplete(player, interior, resource, id) 
-	if not isElement(player) then
-		return
-	end
-
-	local x, y, z = setPlayerInsideInterior(player, interior, resource, id)
-
-	triggerClientEvent(player, "playerLoadingGround", player, interior, x, y, z)
-end
-
 
 function setPlayerInsideInterior(player, interior, resource, id)
 	if not isElement(player) then
@@ -226,81 +215,130 @@ function setPlayerInsideInterior(player, interior, resource, id)
 	local oppositeType = lookups.opposite[getElementType(interior)]
 	local targetInterior = interiors[getResourceFromName(resource) or getThisResource()][id][oppositeType]
 
-	local x = tonumber(getElementData(targetInterior, "posX"))
-	local y = tonumber(getElementData(targetInterior, "posY"))
-	local z = tonumber(getElementData(targetInterior, "posZ")) + 1
 	local dim = tonumber(getElementData(targetInterior, "dimension"))
 	local int = tonumber(getElementData(targetInterior, "interior"))
-	local rot = tonumber(getElementData(targetInterior, "rotation"))
 
-	if (not x) or (not y) or (not z) or (not dim) or (not int) or (not rot) then
-		outputDebugString(string.format("setPlayerInsideInterior: Invalid warp data: %s %s %s %s %s %s", tostring(x), tostring(y), tostring(z), tostring(dim), tostring(int), tostring(rot)), 0, unpack(outputColour))
+	if (not dim) or (not int) then
+		outputDebugString(string.format("setPlayerInsideInterior: Invalid warp data: dim: %s, int: %s", tostring(dim), tostring(int)))
 		return
-	end	
-
-	setElementRotation(player, 0, 0, rot % 360, "default", true)
-
-	setTimer(
-		function(p) 
-			if isElement(p) then 
-				setCameraTarget(p) 
-			end 
-		end, 
-	200, 1, player)
-
-	if settings.offsetTeleportPosition then
-		-- some markers are in such small locations you can't safely offset the position e.g. the tower in sf
-		local preventOffset = getElementData(targetInterior, "preventOffset")
-
-		if not preventOffset then
-			x, y, z = getAdjustedPosition(x, y, z, rot)
-		end
 	end
 
-	setElementPosition(player, x, y, z)
-
 	setElementInterior(player, int)
-	setCameraInterior(player, int)
 	setElementDimension(player, dim)
-
-	return x, y, z
 end
 
--- adjust the position slightly forward and to either side
-function getAdjustedPosition(x, y, z, rot)
-	local m = Matrix(Vector3(x, y, z), Vector3(0, 0, rot))
-
-	local position = m:transformPosition(Vector3((math.random() * offset.xVariance) - (offset.xVariance / 2), math.random() * offset.yVariance, 0))
-
-	return position:getX(), position:getY(), position:getZ()
-end
-
-addEventHandler("onPlayerGroundLoaded", root,
+addEventHandler("onPlayerInteriorWarped", root,
 	function(interior)
-		if not getElementData(client, "interiors.teleporting") then
-			return
-		end
-
-		setElementFrozen(client, false)
-		toggleAllControls(client, true, true, false)	
-		fadeCamera(client, true, 1)
-
 		setElementData(client, "interiors.teleporting", false, false)
 
-		triggerEvent("onInteriorWarped", interior, client)
- 		triggerEvent("onPlayerInteriorWarped", client, interior)
-
+		-- protects the player for a short amount of time after teleporting
  		local timer = setTimer(
  			function(p)
  				if isElement(p) then
- 					setElementData(client, "interiors.teleportImmunity", false, false)
+ 					setElementData(p, "interiors.teleportImmunity", false, false)
  				end
  			end,
- 		settings.teleportImmunityLength, 1)
+ 		settings.teleportImmunityLength, 1, client)
 
- 		setElementData(client, "interiors.teleportImmunity", timer, false)
+ 		setElementData(client, "interiors.teleportImmunity", timer, false)		
 	end
 )
+
+
+-- function fadeIntoWarpComplete(player, interior, resource, id) 
+-- 	if not isElement(player) then
+-- 		return
+-- 	end
+
+-- 	local x, y, z = setPlayerInsideInterior(player, interior, resource, id)
+
+-- 	triggerClientEvent(player, "playerLoadingGround", player, interior, x, y, z)
+-- end
+
+
+-- function setPlayerInsideInterior(player, interior, resource, id)
+-- 	if not isElement(player) then
+-- 		return
+-- 	end
+
+-- 	local oppositeType = lookups.opposite[getElementType(interior)]
+-- 	local targetInterior = interiors[getResourceFromName(resource) or getThisResource()][id][oppositeType]
+
+-- 	local x = tonumber(getElementData(targetInterior, "posX"))
+-- 	local y = tonumber(getElementData(targetInterior, "posY"))
+-- 	local z = tonumber(getElementData(targetInterior, "posZ")) + 1
+-- 	local dim = tonumber(getElementData(targetInterior, "dimension"))
+-- 	local int = tonumber(getElementData(targetInterior, "interior"))
+-- 	local rot = tonumber(getElementData(targetInterior, "rotation"))
+
+-- 	if (not x) or (not y) or (not z) or (not dim) or (not int) or (not rot) then
+-- 		outputDebugString(string.format("setPlayerInsideInterior: Invalid warp data: %s %s %s %s %s %s", tostring(x), tostring(y), tostring(z), tostring(dim), tostring(int), tostring(rot)), 0, unpack(outputColour))
+-- 		return
+-- 	end	
+
+-- 	setElementRotation(player, 0, 0, rot % 360, "default", true)
+
+-- 	setTimer(
+-- 		function(p) 
+-- 			if isElement(p) then 
+-- 				setCameraTarget(p) 
+-- 			end 
+-- 		end, 
+-- 	200, 1, player)
+
+-- 	if settings.offsetTeleportPosition then
+-- 		-- some markers are in such small locations you can't safely offset the position e.g. the tower in sf
+-- 		local preventOffset = getElementData(targetInterior, "preventOffset")
+
+-- 		if not preventOffset then
+-- 			x, y, z = getAdjustedPosition(x, y, z, rot)
+-- 		end
+-- 	end
+
+-- 	setElementPosition(player, x, y, z)
+
+-- 	setElementInterior(player, int)
+-- 	setCameraInterior(player, int)
+-- 	setElementDimension(player, dim)
+
+-- 	return x, y, z
+-- end
+
+-- adjust the position slightly forward and to either side
+-- function getAdjustedPosition(x, y, z, rot)
+-- 	local m = Matrix(Vector3(x, y, z), Vector3(0, 0, rot))
+
+-- 	local position = m:transformPosition(Vector3((math.random() * offset.xVariance) - (offset.xVariance / 2), math.random() * offset.yVariance, 0))
+
+-- 	return position:getX(), position:getY(), position:getZ()
+-- end
+
+-- addEventHandler("onPlayerGroundLoaded", root,
+-- 	function(interior)
+-- 		if not getElementData(client, "interiors.teleporting") then
+-- 			return
+-- 		end
+
+-- 		setElementFrozen(client, false)
+-- 		toggleAllControls(client, true, true, false)	
+-- 		fadeCamera(client, true, 1)
+
+-- 		setElementData(client, "interiors.teleporting", false, false)
+
+-- 		triggerEvent("onInteriorWarped", interior, client)
+--  		triggerEvent("onPlayerInteriorWarped", client, interior)
+
+--  		local timer = setTimer(
+--  			function(p)
+--  				if isElement(p) then
+--  					setElementData(p, "interiors.teleportImmunity", false, false)
+--  				end
+--  			end,
+--  		settings.teleportImmunityLength, 1, client)
+
+--  		setElementData(client, "interiors.teleportImmunity", timer, false)
+-- 	end
+-- )
 
 
 function getInteriorMarker(elementInterior)

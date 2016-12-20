@@ -126,14 +126,17 @@ local allowPlayerToTeleport = true
 local targetCollider = nil
 local immunityTimer = nil
 local settings = {}
-
+local offset = {
+	xVariance = 0.8,
+	yVariance = 0.8
+}
 
 addEvent("onClientInteriorHit")
 addEvent("onClientInteriorWarped")
 addEvent("updateClientSettings", true)
 addEvent("playerLoadingGround", true)
 addEvent("onPlayerInteriorHitCancelled", true)
-
+addEvent("doWarpPlayerToInterior", true)
 
 addEventHandler("onClientResourceStart", root,
 	function(resource)
@@ -235,7 +238,7 @@ function interiorCreateColliders(resource)
 		lookups.colliders[entryInterior] = col
 		lookups.interiorFromCollider[col] = entryInterior
 		addEventHandler("onClientColShapeHit", col, colshapeHit) 
-		addEventHandler("onClientColShapeLeave", col, colShapeLeave)
+		--addEventHandler("onClientColShapeLeave", col, colShapeLeave)
 
 		---create return colliders
 		local returnInterior = interiorTypeTable["return"]
@@ -254,26 +257,26 @@ function interiorCreateColliders(resource)
 			lookups.interiorFromCollider[col] = returnInterior
 			lookups.colliders[returnInterior] = col
 			addEventHandler("onClientColShapeHit", col, colshapeHit) 
-			addEventHandler("onClientColShapeLeave", col, colShapeLeave)
+			--addEventHandler("onClientColShapeLeave", col, colShapeLeave)
 		end
 	end
 end
 
-function colShapeLeave(player, matchingDimension)
-	if (not isElement(player)) or getElementType(player) ~= "player" or player ~= localPlayer then 
-		return 
-	end		
+-- function colShapeLeave(player, matchingDimension)
+-- 	if (not isElement(player)) or getElementType(player) ~= "player" or player ~= localPlayer then 
+-- 		return 
+-- 	end		
 
-	if not matchingDimension then
-		return
-	end
+-- 	if not matchingDimension then
+-- 		return
+-- 	end
 
-	debugHook("colShapeLeave("..tostring(getInteriorName(lookups.interiorFromCollider[source]))..")", "col:" .. tostring(source), "target:" .. tostring(targetCollider))
+-- 	debugHook("colShapeLeave("..tostring(getInteriorName(lookups.interiorFromCollider[source]))..")", "col:" .. tostring(source), "target:" .. tostring(targetCollider))
 
-	if source == targetCollider then
-		targetCollider = nil
-	end	
-end
+-- 	if source == targetCollider then
+-- 		targetCollider = nil
+-- 	end	
+-- end
 
 function colshapeHit(player, matchingDimension)
 	if (not isElement(player)) or getElementType(player) ~= "player" or player ~= localPlayer then 
@@ -317,9 +320,28 @@ addEventHandler("onPlayerInteriorHitCancelled", localPlayer,
 	end
 )
 
+addEventHandler("doWarpPlayerToInterior", localPlayer,
+	function(interior, resource, id)
+		local oppositeType = lookups.opposite[getElementType(interior)]
+		local targetInterior = interiors[getResourceFromName(resource) or getThisResource()][id][oppositeType]
 
-addEventHandler("playerLoadingGround", localPlayer,
-	function(interior, posX, posY, posZ)
+		local x = tonumber(getElementData(targetInterior, "posX"))
+		local y = tonumber(getElementData(targetInterior, "posY"))
+		local z = tonumber(getElementData(targetInterior, "posZ")) + 1
+		local dim = tonumber(getElementData(targetInterior, "dimension"))
+		local int = tonumber(getElementData(targetInterior, "interior"))
+		local rot = tonumber(getElementData(targetInterior, "rotation"))
+
+		if (not x) or (not y) or (not z) or (not dim) or (not int) or (not rot) then
+			outputDebugString(string.format("setPlayerInsideInterior: Invalid warp data: %s %s %s %s %s %s", tostring(x), tostring(y), tostring(z), tostring(dim), tostring(int), tostring(rot)), 0, unpack(outputColour))
+			return
+		end	
+
+		debugHook("doWarpPlayerToInterior("..tostring(getInteriorName(interior))..")", "col:" .. tostring(lookups.colliders[interior]), "target:" .. tostring(targetCollider))	
+	
+		toggleAllControls(false, true, false)
+		fadeCamera(false, 1)
+
 		-- this is the first point we can be sure we are being teleported
 		allowPlayerToTeleport = false
 		teleportImmunityActive = true
@@ -329,11 +351,66 @@ addEventHandler("playerLoadingGround", localPlayer,
 			immunityTimer = nil
 		end
 
-		pauseUntilWorldHasLoaded({x = posX, y = posY, z = posZ}, triggerGroundLoaded, interior)
-
-		debugHook("playerLoadingGround("..tostring(getInteriorName(interior))..")", "target:" .. tostring(targetCollider))
+		setTimer(setPlayerInsideInterior, 1000, 1, int, dim, rot, x, y, z, interior, targetInterior)
 	end
 )
+
+function setPlayerInsideInterior(int, dim, rot, x, y, z, interior, targetInterior)
+	debugHook("setPlayerInsideInterior("..tostring(getInteriorName(interior))..")", "col:" .. tostring(lookups.colliders[interior]), "target:" .. tostring(targetCollider))
+
+	setElementRotation(localPlayer, 0, 0, rot % 360, "default", true)
+
+	setTimer(
+		function(p) 
+			if isElement(p) then 
+				setCameraTarget(p) 
+			end 
+		end, 
+	200, 1, localPlayer)
+
+	if settings.offsetTeleportPosition then
+		-- some markers are in such small locations you can't safely offset the position e.g. the tower in sf
+		local preventOffset = getElementData(targetInterior, "preventOffset")
+
+		if not preventOffset then
+			x, y, z = getAdjustedPosition(x, y, z, rot)
+		end
+	end
+
+	setElementPosition(localPlayer, x, y, z)
+	setElementInterior(localPlayer, int)
+	setCameraInterior(int)
+	setElementDimension(localPlayer, dim)
+	setElementFrozen(localPlayer, true)
+
+	pauseUntilWorldHasLoaded({x = x, y = y, z = z}, triggerGroundLoaded, interior)
+end
+
+-- adjust the position slightly forward and to either side
+function getAdjustedPosition(x, y, z, rot)
+	local m = Matrix(Vector3(x, y, z), Vector3(0, 0, rot))
+
+	local position = m:transformPosition(Vector3((math.random() * offset.xVariance) - (offset.xVariance / 2), math.random() * offset.yVariance, 0))
+
+	return position:getX(), position:getY(), position:getZ()
+end
+
+-- addEventHandler("playerLoadingGround", localPlayer,
+-- 	function(interior, posX, posY, posZ)
+-- 		-- this is the first point we can be sure we are being teleported
+-- 		allowPlayerToTeleport = false
+-- 		teleportImmunityActive = true
+
+-- 		if immunityTimer and isTimer(immunityTimer) then
+-- 			killTimer(immunityTimer)
+-- 			immunityTimer = nil
+-- 		end
+
+-- 		pauseUntilWorldHasLoaded({x = posX, y = posY, z = posZ}, triggerGroundLoaded, interior)
+
+-- 		debugHook("playerLoadingGround("..tostring(getInteriorName(interior))..")", "target:" .. tostring(targetCollider))
+-- 	end
+-- )
 
 function pauseUntilWorldHasLoaded(data, fn, ...)
 	if loadingTimer and isTimer(loadingTimer) then
@@ -371,14 +448,25 @@ function pauseUntilWorldHasLoaded(data, fn, ...)
 end
 
 function triggerGroundLoaded(interior) 
-	triggerServerEvent("onPlayerGroundLoaded", localPlayer, interior)
-
 	allowPlayerToTeleport = true
 
 	--outputDebugString("loaded: inside " ..tostring(targetCollider).. " " ..tostring(isElementWithinColShape(localPlayer, targetCollider)))
-	--targetCollider = nil
+	targetCollider = nil
+
+	toggleAllControls(true, true, false)	
+
+	setElementFrozen(localPlayer, false)
+
+	fadeCamera(true, 1)
 
  	triggerEvent("onClientInteriorWarped", interior)
+	triggerServerEvent("onInteriorWarped", interior, localPlayer)
+	triggerServerEvent("onPlayerInteriorWarped", localPlayer, interior)
+
+	if immunityTimer and isTimer(immunityTimer) then
+		killTimer(immunityTimer)
+		immunityTimer = nil
+	end
 
  	immunityTimer = setTimer(
  		function()
