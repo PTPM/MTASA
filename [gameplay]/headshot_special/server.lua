@@ -11,9 +11,9 @@ function makeHeadshot(attacker, weapon, bodypart, loss)
 		end
 	end
 end
-addEvent("onClientsideHeadshot", true)
-addEventHandler("onClientsideHeadshot", getRootElement(), makeHeadshot)
-addEventHandler("onPlayerDamage", getRootElement(), makeHeadshot)
+--addEvent("onClientsideHeadshot", true)
+--addEventHandler("onClientsideHeadshot", getRootElement(), makeHeadshot)
+addEventHandler("onPlayerDamage", root, makeHeadshot)
 
 function outputHeadshot(killer, weapon, bodypart)
 	if weapon==34 and bodypart==9 then
@@ -23,4 +23,4 @@ function outputHeadshot(killer, weapon, bodypart)
 		exports.killmessages:outputMessage({getPlayerName(killer), {"padding", width=3}, {"icon", id=weapon}, {"padding", width=3}, {"icon", id=256}, {"padding", width=3}, {"color", r=r1, g=g1, b=b1}, getPlayerName(source)}, getRootElement(), r2, g2, b2)
 	end
 end
-addEventHandler("onPlayerKillMessage", getRootElement(), outputHeadshot)
+addEventHandler("onPlayerKillMessage", root, outputHeadshot)
