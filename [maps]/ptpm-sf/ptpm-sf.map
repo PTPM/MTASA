@@ -435,7 +435,13 @@
     <object id="object (cos_sbanksteps05) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="12985" doublesided="true" scale="1" dimension="0" posX="-1679.6622" posY="1031.2128" posZ="59.46359" rotX="0" rotY="0" rotZ="91.25"></object>
     <object id="object (controltower_SFSe) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="10763" doublesided="false" scale="1" dimension="0" posX="-2038.083" posY="-1102.7373" posZ="56.5878" rotX="0" rotY="0" rotZ="44.995"></object>
     <object id="object (Packing_carates04) (8)" breakable="false" interior="0" collisions="true" alpha="255" model="944" doublesided="false" scale="1" dimension="0" posX="-2503.7432" posY="1552.0916" posZ="20.75822" rotX="0" rotY="0" rotZ="84"></object>
-
+    <object id="object (chinawning69b) (2)" breakable="false" interior="0" alpha="255" model="9859" doublesided="false" scale="1" dimension="0" posX="-1644.7061" posY="963.88037" posZ="35.02671" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (odrampbit) (2)" breakable="false" interior="0" alpha="255" model="5816" doublesided="false" scale="1" dimension="0" posX="-1660.399" posY="1003.3443" posZ="57.09284" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (chinawning69b) (7)" breakable="false" interior="0" alpha="255" model="9859" doublesided="false" scale="1" dimension="0" posX="-1664.4919" posY="963.97266" posZ="35.52671" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (chinawning69b) (9)" breakable="false" interior="0" alpha="255" model="9859" doublesided="false" scale="1" dimension="0" posX="-1655.2465" posY="963.43158" posZ="27.27671" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (chinawning69b) (11)" breakable="false" interior="0" alpha="255" model="9859" doublesided="false" scale="1" dimension="0" posX="-1635.421" posY="964.02228" posZ="31.20171" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (cos_sbanksteps05) (3)" breakable="false" interior="0" collisions="true" alpha="255" model="12985" doublesided="true" scale="1" dimension="0" posX="-1655.6619" posY="1006.7684" posZ="64.33858" rotX="0" rotY="0" rotZ="91.247"></object>
+    
     <boundarycorner posX="-3000" posY="-887" />
     <boundarycorner posX="-2781" posY="-920" />
     <boundarycorner posX="-2710" posY="-843" />
