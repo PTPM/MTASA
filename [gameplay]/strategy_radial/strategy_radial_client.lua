@@ -30,7 +30,8 @@ local requestedStrategyRadialMenu = nil
 
 local smartCommands =  {
 	{
-		keybind = "z",
+		commandBind = "radial_social",
+		suggestedKey = "n",
 		step = 0,
 		linesPosCache = {},
 		commands = {
@@ -78,7 +79,8 @@ local smartCommands =  {
 		}
 	},
 	{
-		keybind = "x",
+		commandBind = "radial_instructions",
+		suggestedKey = "b",
 		step = 0,
 		linesPosCache = {},
 		commands = {
@@ -149,7 +151,7 @@ function drawStrategyRadial()
 		
 	-- Calculate the absolute position of SmartCommands if not done already
 	for ks,strategyRadialMenu in pairs(smartCommands) do
-		if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
+		if requestedStrategyRadialMenu==strategyRadialMenu.commandBind then
 			for k,smartCommand in pairs(strategyRadialMenu.commands) do
 				-- Draw divider lines between the options
 				if not strategyRadialMenu.linesPosCache[k] then
@@ -206,7 +208,7 @@ function getSelectedRadialOption(_, _, cursorX, cursorY, worldX, worldY, worldZ)
 		local selectedStrategyRadial = nil
 		
 		for ks,strategyRadialMenu in pairs(smartCommands) do
-			if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
+			if requestedStrategyRadialMenu==strategyRadialMenu.commandBind then
 				for k,smartCommand in pairs(strategyRadialMenu.commands) do
 					smartCommands[ks].commands[k].selected = false
 					
@@ -226,7 +228,7 @@ function getSelectedRadialOption(_, _, cursorX, cursorY, worldX, worldY, worldZ)
 	
 	else 
 		for ks,strategyRadialMenu in pairs(smartCommands) do
-			if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
+			if requestedStrategyRadialMenu==strategyRadialMenu.commandBind then
 				for k,smartCommand in pairs(strategyRadialMenu.commands) do
 					smartCommands[ks].commands[k].selected = false
 				end
@@ -236,7 +238,7 @@ function getSelectedRadialOption(_, _, cursorX, cursorY, worldX, worldY, worldZ)
 end
 
 -- Step 3: Handle the logic
-function showStrategicRadialMenu(whichStrategyRadialMenu_keybind)
+function showStrategicRadialMenu(_,whichStrategyRadialMenu_commandBind)
 	-- Was cursor showing before Strategy Radial was called?
 	cursorState = isCursorShowing()
 
@@ -257,7 +259,7 @@ function showStrategicRadialMenu(whichStrategyRadialMenu_keybind)
 	end	
 	setCursorPosition( radialMenuConfig.x, radialMenuConfig.y )
 	
-	requestedStrategyRadialMenu = whichStrategyRadialMenu_keybind
+	requestedStrategyRadialMenu = whichStrategyRadialMenu_commandBind
 
 	addEventHandler("onClientRender", root, drawStrategyRadial)
 	addEventHandler( "onClientCursorMove", getRootElement( ), getSelectedRadialOption)
@@ -279,7 +281,7 @@ function executeStrategicRadialMenu()
 		
 	if  not overwriteDisableStrategyRadial then 
 		for ks,strategyRadialMenu in pairs(smartCommands) do
-			if requestedStrategyRadialMenu==strategyRadialMenu.keybind then
+			if requestedStrategyRadialMenu==strategyRadialMenu.commandBind then
 				for k,smartCommand in pairs(strategyRadialMenu.commands) do
 					if smartCommands[ks].commands[k].selected then
 						-- play sound
@@ -296,6 +298,7 @@ function executeStrategicRadialMenu()
 	
 	requestedStrategyRadialMenu = nil
 end
+
 
 addEventHandler( "ptpmStartMapVote", localPlayer, function() overwriteDisableStrategyRadial = true end )
 addEventHandler( "enterClassSelection", localPlayer,  function() overwriteDisableStrategyRadial = true end ) 
@@ -329,8 +332,21 @@ addEventHandler("onClientResourceStart", resourceRoot,
 			else
 				smartCommands[k].step = 360 / #smartCommands[k].commands
 				
-				bindKey ( strategyRadialMenu.keybind, "down", showStrategicRadialMenu, strategyRadialMenu.keybind ) 
-				bindKey ( strategyRadialMenu.keybind, "up", executeStrategicRadialMenu, strategyRadialMenu.keybind )
+				addCommandHandler("sr_show", showStrategicRadialMenu)
+				addCommandHandler("sr_exec", executeStrategicRadialMenu)
+				
+				-- oh cool, this doesnt work, its always 0: <
+				if #getFunctionsBoundToKey(strategyRadialMenu.suggestedKey)==0 then
+					-- />
+					bindKey ( strategyRadialMenu.suggestedKey, "down", "sr_show" , strategyRadialMenu.commandBind )
+					
+					-- no this is completely cool, the up event doesnt show in the standardized UI so if you change the bind itll never close the menu
+					bindKey ( strategyRadialMenu.suggestedKey, "up",   "sr_exec" )
+					
+				else
+					outputChatBox(strategyRadialMenu.commandBind .. " was not bound to " .. strategyRadialMenu.suggestedKey .. ": key in use",255,0,0)
+				end
+				
 			end
 		end 
 	
@@ -338,5 +354,3 @@ addEventHandler("onClientResourceStart", resourceRoot,
 		
 	end
 )
-
-
