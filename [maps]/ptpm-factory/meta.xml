@@ -10,4 +10,6 @@
 		<setting name="*teamSpecificRadar" value="[true]" />
 		<setting name="*displayDistanceToPM" value="[true]" />
 	</settings>
+
+	<file src="ptpm-factory.png"/>
 </meta>

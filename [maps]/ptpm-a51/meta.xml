@@ -8,4 +8,6 @@
 		<setting name="*pmHealthBonus" value="[false]" />
 		<setting name="*medicHealthBonus" value="[true]" />
 	</settings>
+
+	<file src="ptpm-a51.png"/>
 </meta>

@@ -185,24 +185,34 @@ addEventHandler( "drawStaticTextToScreen", root, drawStaticTextToScreen )
 -- transition images shown between rounds
 ---------------------------------------------------------------------------
 local transition = false
+local transitionMap
 
 addEvent( "onClientMapStart", true )
 addEventHandler( "onClientMapStart", root,
 	function( mapName )
 		currentMapName = mapName
 		hideTransitionImage()
-		local x, y
-		if fileExists( "images/" .. mapName .. ".png" ) then
-			x, y = 500, 500
-			mapName = "images/" .. mapName .. ".png"
-		else
-			x, y = 640, 538
-			mapName = "images/ptpm-default.png"
-		end
-		transition = guiCreateStaticImage( screenX/2-(x/2), screenY/2-(y/2) - 15, x, y, mapName, false )
-		currentPM = nil
+		transitionMap = mapName
 
-		showHelpMessage(((screenY / 2) - (y / 2)) + y)
+		currentPM = nil
+	end
+)
+
+addEventHandler("onClientResourceStart", root,
+	function(res)
+		if getResourceName(res) == transitionMap then
+			local mapName = "images/ptpm-default.png"
+			local x, y = 640, 538
+
+			if fileExists(":" .. currentMapName .. "/" .. currentMapName .. ".png") then
+				x, y = 500, 500
+				mapName = ":" .. currentMapName .. "/" .. currentMapName .. ".png"
+			end
+
+			transition = guiCreateStaticImage( screenX/2-(x/2), screenY/2-(y/2) - 15, x, y, mapName, false )			
+
+			showHelpMessage(((screenY / 2) - (y / 2)) + y)
+		end
 	end
 )
 
@@ -214,13 +224,15 @@ function hideTransitionImage()
 		transition = nil
 	end
 
+	transitionMap = nil
+
 	hideHelpMessage()
 end
-addEventHandler( "onClientMapStarted", root, hideTransitionImage )
-
 
 addEventHandler( "onClientMapStarted", root,
 	function( class, distpm )
+		hideTransitionImage()
+
 		classes = class
 		options.distanceToPM = distpm	
 	end

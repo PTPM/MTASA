@@ -9,4 +9,6 @@
 		<setting name="*medicHealthBonus" value="[true]" />
 		<setting name="*pmWaterHealthPenalty" value="[true]"/>
 	</settings>
+
+	<file src="ptpm-lshydra.png"/>
 </meta>

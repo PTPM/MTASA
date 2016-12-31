@@ -9,4 +9,6 @@
 		<setting name="*medicHealthBonus" value="[true]" />
 		<setting name="*objectivesToFinish" value="[5]" />
 	</settings>
+
+	<file src="ptpm-lvobj.png"/>
 </meta>

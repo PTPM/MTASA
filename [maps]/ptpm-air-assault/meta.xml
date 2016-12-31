@@ -11,4 +11,6 @@
 		<setting name="*disableClouds" value="[true]"/>
 		<setting name="*pocketMoney" value="[0]"/>
 	</settings>
+
+	<file src="ptpm-air-assault.png"/>
 </meta>

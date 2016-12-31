@@ -46,18 +46,6 @@
 	-->
 	
 	<file src="images/ptpm-default.png"/>
-	<file src="images/ptpm-a51.png"/>
-	<file src="images/ptpm-air-assault.png"/>
-	<file src="images/ptpm-bayside.png"/>
-	<file src="images/ptpm-chiliad.png"/>
-	<file src="images/ptpm-desert.png"/>
-	<file src="images/ptpm-factory.png"/>
-	<file src="images/ptpm-ls.png"/>
-	<file src="images/ptpm-lshydra.png"/>
-	<file src="images/ptpm-lv.png"/>
-	<file src="images/ptpm-lvobj.png"/>
-	<file src="images/ptpm-sf.png"/>
-	<file src="images/ptpm-country.png"/>
 	<file src="images/white_dot.png"/>
 	
 	<!-- Mapvote2 -->
