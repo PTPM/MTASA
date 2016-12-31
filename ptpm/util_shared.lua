@@ -92,3 +92,20 @@ end
 function getPointOnCircle(radius, rotation)
 	return radius * math.cos(math.rad(rotation)), radius * math.sin(math.rad(rotation))
 end
+
+
+function stripColourCodes(s)
+	local strippedString = s
+	local substitutions = 0
+
+	while true do
+		strippedString, substitutions = string.gsub(strippedString, "#%x%x%x%x%x%x", "")
+
+		if substitutions == 0 then
+			break
+		end
+	end
+
+	return strippedString
+end
+

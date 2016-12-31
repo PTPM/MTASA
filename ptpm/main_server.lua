@@ -241,7 +241,6 @@ addEventHandler( "onClientReady", resourceRoot, checkResources )
 
 
 function onPlayerJoin()
-
 	-- inspiring nameless people...
 	if getPlayerName( source ) == "Player" then
 		triggerEvent( "onNamegen", source )
@@ -252,13 +251,20 @@ function onPlayerJoin()
 	setElementData( source, "ptpm.sessionjoin", timestamp, false )
 	
 	local name = getPlayerName(source)	
-	local newName = string.gsub(name, "#%x%x%x%x%x%x", "")
-	
-	if newName ~= name then
-		setPlayerName( source, newName )
+	local strippedName = stripColourCodes(name)
+
+	if strippedName ~= name then
+		if #strippedName > 0 then
+			setPlayerName(source, strippedName)
+		else
+			outputChatBox("Your name contained only colour codes, reset to a random name...", source, unpack(colourPersonal))
+
+			exports.namegen:namegen(source)
+			-- repeat
+			-- 	local set = setPlayerName(source, "Player" .. tostring(math.random(100, 999)))
+			-- until set == true
+		end
 	end
-	
-	--outputChatBox(getPlayerName( source ).." is here!")
 	
 	-- silly mta bug
 	setGlitchEnabled( "quickreload", false )
@@ -387,15 +393,14 @@ end
 addCommandHandler( "motd", sendMOTD )
 
 
-addEventHandler( "onPlayerChangeNick",root,
-	function( old, new )
-		local newName = string.gsub( new, "#%x%x%x%x%x%x", "" )
-		
-		if newName ~= new then cancelEvent() end
+addEventHandler("onPlayerChangeNick", root,
+	function(old, new)
+		if stripColourCodes(new) ~= new then 
+			cancelEvent() 
+			outputChatBox("Names cannot contain colour codes.", source, unpack(colourPersonal))
+		end
 	end
 )
-
-
 
 
 function roundTick()
