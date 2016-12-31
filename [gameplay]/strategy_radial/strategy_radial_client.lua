@@ -27,6 +27,8 @@ local radialMenuConfig = {
 local backgroundImageSize = radialMenuConfig.radius * 2 * 1.1
 local cancelZoneImageSize = radialMenuConfig.radius * 2 * 0.1 --cancel zone is visualized one-tenth of radialMenuConfig.radius
 local requestedStrategyRadialMenu = nil
+local mainMenuActive = false
+local bindCache = {}
 
 local smartCommands =  {
 	{
@@ -238,16 +240,16 @@ function getSelectedRadialOption(_, _, cursorX, cursorY, worldX, worldY, worldZ)
 end
 
 -- Step 3: Handle the logic
-function showStrategicRadialMenu(_,whichStrategyRadialMenu_commandBind)
+function showStrategicRadialMenu(_, whichStrategyRadialMenu_commandBind)
 	-- Was cursor showing before Strategy Radial was called?
 	cursorState = isCursorShowing()
 
 	-- Ensure it is allowed
 	if overwriteDisableStrategyRadial then return end
-	
+
 	-- is player alive?
 	if math.ceil(getElementHealth ( localPlayer ))== 0 then return end
-	
+
 	-- is menu already open?
 	if requestedStrategyRadialMenu~=nil then return end 
 
@@ -306,7 +308,7 @@ addEventHandler( "leaveClassSelection", localPlayer,  function() overwriteDisabl
 
 addEventHandler("onClientResourceStart", resourceRoot,
 	function()
-		outputDebugString("strategy_radial started")
+		--outputDebugString("strategy_radial started")
 	
 		-- the default fonts do not scale well, so load our own version at the sizes we need
 		font.scalar = (120 / 44) * uiScale
@@ -318,39 +320,99 @@ addEventHandler("onClientResourceStart", resourceRoot,
 			font.scalar = 1
 		end
 
-		font.smallScalar = 1.2 * uiScale
-		font.small = dxCreateFont("fonts/tahoma.ttf", 9 * font.smallScalar, false, "proof")
+		--overwriteDisableStrategyRadial = false
 
-		if not font.small then
-			font.small = "default"
-			font.smallScalar = 1
-		end
-		
-		for k,strategyRadialMenu in pairs(smartCommands) do
+		for k, strategyRadialMenu in pairs(smartCommands) do
 			if #smartCommands[k].commands==0 then
 				smartCommands[k] = nil
 			else
 				smartCommands[k].step = 360 / #smartCommands[k].commands
-				
-				addCommandHandler("sr_show", showStrategicRadialMenu)
-				addCommandHandler("sr_exec", executeStrategicRadialMenu)
-				
-				-- oh cool, this doesnt work, its always 0: <
-				if #getFunctionsBoundToKey(strategyRadialMenu.suggestedKey)==0 then
-					-- />
-					bindKey ( strategyRadialMenu.suggestedKey, "down", "sr_show" , strategyRadialMenu.commandBind )
-					
-					-- no this is completely cool, the up event doesnt show in the standardized UI so if you change the bind itll never close the menu
-					bindKey ( strategyRadialMenu.suggestedKey, "up",   "sr_exec" )
-					
-				else
-					outputChatBox(strategyRadialMenu.commandBind .. " was not bound to " .. strategyRadialMenu.suggestedKey .. ": key in use",255,0,0)
+
+				local commandName = "show " .. tostring(strategyRadialMenu.commandBind)
+
+				-- add a unique command for each menu (to show up nicely in the settings window)
+				addCommandHandler(commandName, 
+					function(command, id, up)
+						-- we avoid passing commandBind as an argument (on the default bind) because it makes the binds window ui look confusing
+						-- instead, just grab it out of the command name
+						if not id then
+							id = string.sub(command, 6)
+						end
+
+						if not up then
+							showStrategicRadialMenu(nil, id)
+						else
+							executeStrategicRadialMenu()
+						end
+					end
+				)
+
+				-- do our default bind, mta will internally block this if the player has a different setting
+				bindKey(strategyRadialMenu.suggestedKey, "down", commandName)
+
+				bindCache[strategyRadialMenu.commandBind] = {}
+
+				-- find the actual binds (will be different if they have changed it in their settings)
+				for realKey, state in pairs(getBoundKeys(commandName)) do
+					--outputDebugString("key bound to "..tostring(commandName).." is "..tostring(realKey))
+
+					-- bind to a function to avoid mta weirdness with "up" binds on commands
+					bindKey(realKey, "up", upBindWrapper, commandName, strategyRadialMenu.commandBind)
+
+					-- keep track of all the keys that bind to this, so we can unbind if they change their settings
+					bindCache[strategyRadialMenu.commandBind][realKey] = true
 				end
-				
 			end
 		end 
 	
 		cursorState = isCursorShowing()
-		
+
+		-- find out when the main menu has been used (meaning the settings might have been changed)
+		-- nobody can realistically get into the menu and update the settings in <1s
+		setTimer(
+			function()
+				if isMainMenuActive() then
+					mainMenuActive = true
+				else
+					-- was active but now is not, check for changes in the binds
+					if mainMenuActive then
+						checkBindChanges()
+					end
+
+					mainMenuActive = false
+				end
+			end,
+		900, 0)
 	end
 )
+
+
+function upBindWrapper(key, keystate, commandName, commandBind)
+	executeCommandHandler(commandName, commandBind .. " true")
+end
+
+function checkBindChanges()
+	for _, menu in pairs(smartCommands) do
+		local newCache = {}
+		local commandName = "show " .. tostring(menu.commandBind)
+
+		-- check for new keys that have been added
+		for key, state in pairs(getBoundKeys(commandName)) do
+			if not bindCache[menu.commandBind][key] then
+				bindKey(key, "up", upBindWrapper, commandName, menu.commandBind)
+			end
+
+			newCache[key] = true
+		end
+
+		-- remove any old keybinds that are no longer set
+		for key in pairs(bindCache[menu.commandBind]) do
+			if not newCache[key] then
+				unbindKey(key, "up", upBindWrapper)
+			end
+		end
+
+		-- update the cache with the current binds
+		bindCache[menu.commandBind] = newCache
+	end
+end
