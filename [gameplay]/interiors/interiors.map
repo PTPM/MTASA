@@ -472,4 +472,6 @@
 <interiorReturn	refid="X7_11S (8)"	posX="-26.69"	posY="-57.81"	posZ="1002.55"	rotation="0"	interior="6"	dimension="7"	/>
 <interiorEntry	id="X711S2"	posX="1000.33"	posY="-919.924"	posZ="41.2368"	rotation="100"	dimension="0"	interior="0"	/>
 <interiorReturn	refid="X711S2"	posX="-27.31"	posY="-31.38"	posZ="1002.55"	rotation="0"	interior="4"	dimension="0"	/>
+<interiorEntry	id="SFPD HQ"	posX="-1605.61"	posY="711.29"	posZ="12.86"	rotation="0"	dimension="0"	interior="0"	/>
+<interiorReturn	refid="SFPD HQ"	posX="246.51"	posY="108.10"	posZ="1002.21"	rotation="0"	interior="10"	dimension="0"	/>
 </map>
