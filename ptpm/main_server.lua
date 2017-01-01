@@ -67,14 +67,6 @@ motd = {
 	"Forum: https://PTPM.uk"
 }
 
-colourImportant = { 255, 0, 0 }
-colourPersonal = { 128, 128, 255 }
-colourAchievement = { 94, 170, 2 }
-colourQuery = { 255, 220, 24 }
-colourGlobal = { 208, 208, 255 }
-colourBroadcast = { 0, 102, 204 }
-
-
 teamMemberName = {
 	["psycho"] = "a psychopath",
 	["terrorist"] = "a terrorist",
@@ -257,7 +249,7 @@ function onPlayerJoin()
 		if #strippedName > 0 then
 			setPlayerName(source, strippedName)
 		else
-			outputChatBox("Your name contained only colour codes, reset to a random name...", source, unpack(colourPersonal))
+			outputChatBox("Your name contained only colour codes, reset to a random name...", source, unpack(colour.personal))
 
 			exports.namegen:namegen(source)
 			-- repeat
@@ -387,7 +379,7 @@ addEventHandler( "onPlayerQuit", root,
 
 function sendMOTD( thePlayer )
 	for _, message in ipairs( motd ) do
-		outputChatBox( message, thePlayer, unpack( colourImportant ) )
+		outputChatBox( message, thePlayer, unpack( colour.important ) )
 	end
 end
 addCommandHandler( "motd", sendMOTD )
@@ -397,7 +389,7 @@ addEventHandler("onPlayerChangeNick", root,
 	function(old, new)
 		if stripColourCodes(new) ~= new then 
 			cancelEvent() 
-			outputChatBox("Names cannot contain colour codes.", source, unpack(colourPersonal))
+			outputChatBox("Names cannot contain colour codes.", source, unpack(colour.personal))
 		end
 	end
 )
@@ -533,7 +525,7 @@ function roundTick()
 		if data.tasks.pmRadarTime and data.tasks.pmRadarTime > 0 then
 			data.tasks.pmRadarTime = data.tasks.pmRadarTime - 1
 			if data.tasks.pmRadarTime == 0 then
-				drawStaticTextToScreen( "draw", root, "taskFinish", "The funding has now been used, the PM is once again visible to the terrorist and psychopathic forces.", "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colourImportant, 1, "clear", "top", "center" )
+				drawStaticTextToScreen( "draw", root, "taskFinish", "The funding has now been used, the PM is once again visible to the terrorist and psychopathic forces.", "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center" )
 				setTimer( drawStaticTextToScreen, 10000, 1, "delete", root, "taskFinish" ) -- ok timer
 				data.tasks.pmRadarTime = nil
 				createPlayerBlip( currentPM )
@@ -643,7 +635,7 @@ addEventHandler( "onColShapeLeave", root, onColShapeLeave )
 
 function onPlayerChat( message, messageType )
 	if isPlayerMuted( source ) then
-		outputChatBox( "You are muted.", source, unpack( colourPersonal ) )
+		outputChatBox( "You are muted.", source, unpack( colour.personal ) )
 		cancelEvent()
 		return
 	end
@@ -662,10 +654,10 @@ function onPlayerChat( message, messageType )
 		--	if prefix == "@" then -- query
 		--[[		if playerInfo[source].queryTarget then
 					local text = "<" .. getPlayerName( source ) .. "> " .. string.sub( message, 2 )
-					outputChatBox( text, source, unpack( colourQuery ) )
-				--	outputChatBox( text, playerInfo[source].queryTarget, unpack( colourQuery ) )
+					outputChatBox( text, source, unpack( colour.query ) )
+				--	outputChatBox( text, playerInfo[source].queryTarget, unpack( colour.query ) )
 				else
-					outputChatBox( "No query established.", source, unpack( colourPersonal ) )
+					outputChatBox( "No query established.", source, unpack( colour.personal ) )
 				end
 				cancelEvent()]]
 		if prefix == "." and string.sub( message, 2, 2 ) ~= "." and string.sub( message, 2 ) ~= "" then -- admin chat
@@ -699,7 +691,7 @@ addEventHandler("onPlayerFloodPunished", root,
 		if data.punishment == "mute" then
 			sendGameText(player, "You have been muted for " .. tostring(data.length) .. " seconds for flooding.", 6000, sampTextdrawColours.g, nil, 1.2, nil, nil, 3)
 		elseif data.punishment == "kick" then
-			outputChatBox(player .. " was kicked from the server for repeated flooding.", root, unpack(colourGlobal))
+			outputChatBox(player .. " was kicked from the server for repeated flooding.", root, unpack(colour.global))
 		end
 	end
 )
@@ -719,7 +711,7 @@ function adminChat( thePlayer, message )
 	
 	for _, value in ipairs( getElementsByType( "player" ) ) do
 		if value and isElement( value ) and isPlayerOp( value ) then
-			outputChatBox( myName .. ": " .. message, value, unpack( colourGlobal ) )
+			outputChatBox( myName .. ": " .. message, value, unpack( colour.global ) )
 		end
 	end
 end
@@ -747,12 +739,12 @@ function killCommand( thePlayer )
 	if not getPlayerClassID( thePlayer ) then return end
 	
 	if classes[getPlayerClassID( thePlayer )].type == "pm" and not isPlayerOp( thePlayer) then
-		return outputChatBox( "The Prime Minister may not kill himself.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "The Prime Minister may not kill himself.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	if not isPlayerControllable( thePlayer ) or isPlayerFrozen( thePlayer ) then
 	--if playerInfo[thePlayer].frozen then
-		return outputChatBox( "You cannot kill yourself while frozen.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "You cannot kill yourself while frozen.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	killPed( thePlayer )
@@ -762,7 +754,7 @@ addCommandHandler( "kill", killCommand )
 -- compcheck
 function healCommand( thePlayer, commandName, otherName )
 	if getElementData( thePlayer, "ptpm.watching" ) then
-		return outputChatBox( "You may not heal people while you are watching.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "You may not heal people while you are watching.", thePlayer, unpack( colour.personal ) )
 	end
 
 	local patient = false
@@ -770,9 +762,9 @@ function healCommand( thePlayer, commandName, otherName )
 	if otherName then
 		local otherPlayer = getPlayerFromNameSection( otherName )
 		if otherPlayer == nil then
-			return outputChatBox( "Usage: /heal (<person>)", thePlayer, unpack( colourPersonal ) )
+			return outputChatBox( "Usage: /heal (<person>)", thePlayer, unpack( colour.personal ) )
 		elseif otherPlayer == false then
-			return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colourPersonal ) )
+			return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colour.personal ) )
 		end
 		patient = otherPlayer
 	else
@@ -797,12 +789,12 @@ function healCommand( thePlayer, commandName, otherName )
 	end
 	
 	if not patient then
-		return outputChatBox( "Couldn't find anyone to heal.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Couldn't find anyone to heal.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	-- dont bother showing messages like this if the patient hasnt specifically been chosen
 	if not getPlayerClassID( patient ) and d == 100000 then
-		return outputChatBox( "Patient '" .. getPlayerName( patient ) .. "' has not yet selected class.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Patient '" .. getPlayerName( patient ) .. "' has not yet selected class.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	playerHealPlayer( thePlayer, patient, d )
@@ -815,9 +807,9 @@ addCommandHandler( "h", healCommand )
 function pInfo( thePlayer, _, targetName )
 	local target = getPlayerFromNameSection( targetName )
 	if target == nil then
-		return outputChatBox( "No matches for "..tostring(targetName)..". Usage: /pinfo <person>", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "No matches for "..tostring(targetName)..". Usage: /pinfo <person>", thePlayer, unpack( colour.personal ) )
 	elseif target == false then
-		return outputChatBox( "Too many matches for name '" .. tostring(targetName) .. "'", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Too many matches for name '" .. tostring(targetName) .. "'", thePlayer, unpack( colour.personal ) )
 	end
 	
 	local exist = false
@@ -871,7 +863,7 @@ function pInfo( thePlayer, _, targetName )
 	
 	local style = exist and "update" or "draw"
 	
-	drawStaticTextToScreen( style, thePlayer, "pinfo", text, 5, "screenY/3", 1000, 1000, colourImportant, 1, "clear", "top", "left" )
+	drawStaticTextToScreen( style, thePlayer, "pinfo", text, 5, "screenY/3", 1000, 1000, colour.important, 1, "clear", "top", "left" )
 	
 	local pinfoTimer = setTimer(
 		function( p )
@@ -898,15 +890,15 @@ function report( thePlayer, command, victim, ... )
 		if reason then
 			for _, p in ipairs( getElementsByType( "player" ) ) do
 				if p and isElement( p ) and isPlayerOp( p ) then
-					outputChatBox( "Report by " .. myName .. ": " .. victim .. " - " .. tostring(reason) , value, unpack( colourGlobal ) )
+					outputChatBox( "Report by " .. myName .. ": " .. victim .. " - " .. tostring(reason) , value, unpack( colour.global ) )
 				end
 			end	
-			outputChatBox("Thank you, your report has been sent to all available operators.",thePlayer,unpack(colourPersonal))
+			outputChatBox("Thank you, your report has been sent to all available operators.",thePlayer,unpack(colour.personal))
 		else
-			outputChatBox("Usage: /report <player> <reason>",thePlayer,unpack(colourPersonal))
+			outputChatBox("Usage: /report <player> <reason>",thePlayer,unpack(colour.personal))
 		end
 	else
-		outputChatBox("Usage: /report <player> <reason>",thePlayer,unpack(colourPersonal))
+		outputChatBox("Usage: /report <player> <reason>",thePlayer,unpack(colour.personal))
 	end
 end
 --addCommandHandler( "report", report )
@@ -920,7 +912,7 @@ function plan( thePlayer, commandName, ... )
 												classes[getPlayerClassID( thePlayer )].type == "police" ) then
 			showPlan( thePlayer )
 		else
-		--	outputChatBox( "You are not allowed to see the plan.", thePlayer, unpack( colourPersonal ) )
+		--	outputChatBox( "You are not allowed to see the plan.", thePlayer, unpack( colour.personal ) )
 		end
 	else
 		if getPlayerClassID( thePlayer ) and classes[getPlayerClassID( thePlayer )].type == "pm" then
@@ -934,7 +926,7 @@ function plan( thePlayer, commandName, ... )
 				end
 			end
 		else
-		--	outputChatBox( "You are not allowed to choose the plan.", thePlayer, unpack( colourPersonal ) )
+		--	outputChatBox( "You are not allowed to choose the plan.", thePlayer, unpack( colour.personal ) )
 		end
 	end
 end
@@ -942,7 +934,7 @@ addCommandHandler( "plan", plan )
 
 
 function showPlan( thePlayer )
-	outputChatBox( "PM's Plan: " .. (options.plan and options.plan or "The PM has not outlined a plan."), thePlayer, unpack( colourPersonal ) )
+	outputChatBox( "PM's Plan: " .. (options.plan and options.plan or "The PM has not outlined a plan."), thePlayer, unpack( colour.personal ) )
 end
 
 
@@ -951,18 +943,18 @@ addCommandHandler( "pm",
 		local target = getPlayerFromNameSection(targetName)
 
 		if target == nil then
-			return outputChatBox( "Usage: /pm <person> <message>", thePlayer, unpack( colourPersonal ) )
+			return outputChatBox( "Usage: /pm <person> <message>", thePlayer, unpack( colour.personal ) )
 		elseif target == false then
-			return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colourPersonal ) )
+			return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colour.personal ) )
 		elseif target == thePlayer then
-			return outputChatBox( "You can't pm yourself!", thePlayer, unpack( colourPersonal ) )
+			return outputChatBox( "You can't pm yourself!", thePlayer, unpack( colour.personal ) )
 		end
 
 		
 		local message = table.concat({...}," ")
 
-		outputChatBox( "PM from "..getPlayerName(thePlayer)..": "..message, target, unpack( colourQuery ) )
-		outputChatBox( "PM to "..getPlayerName(target)..": "..message, thePlayer, unpack( colourQuery ) )
+		outputChatBox( "PM from "..getPlayerName(thePlayer)..": "..message, target, unpack( colour.query ) )
+		outputChatBox( "PM to "..getPlayerName(target)..": "..message, thePlayer, unpack( colour.query ) )
 	end
 )
 

@@ -13,8 +13,8 @@ addEventHandler( "onObjectiveEnter", root,
 					if p and isElement( p ) then
 						-- if theyre a good guy
 						if getPlayerClassID( p ) and teams["goodGuys"][classes[getPlayerClassID( p )].type] then
-							drawStaticTextToScreen( "draw", p, "objText", "Defend checkpoint for " .. data.objectives[objective].time/1000 .. " seconds.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colourImportant, 1, "clear", "top", "center" )
-							drawStaticTextToScreen( "draw", p, "objDesc", "Objective description:\n" .. data.objectives[objective].desc, "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colourImportant, 1, "clear", "top", "center")					
+							drawStaticTextToScreen( "draw", p, "objText", "Defend checkpoint for " .. data.objectives[objective].time/1000 .. " seconds.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center" )
+							drawStaticTextToScreen( "draw", p, "objDesc", "Objective description:\n" .. data.objectives[objective].desc, "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center")					
 						end
 					end
 				end
@@ -148,7 +148,7 @@ function checkObjectives( players, tick )
 			for _, p in ipairs( players ) do
 				if p and isElement( p ) then
 					if getPlayerClassID(p) and teams["goodGuys"][classes[getPlayerClassID(p)].type] == true then
-						drawStaticTextToScreen( "update", p, "objText", "Defend checkpoint for " .. math.floor((data.objectives[data.objectives.activeObjective].time - (tick - data.objectives[data.objectives.activeObjective].enterTime))/1000) .. " seconds.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colourImportant, 1, "clear", "top", "center" )				
+						drawStaticTextToScreen( "update", p, "objText", "Defend checkpoint for " .. math.floor((data.objectives[data.objectives.activeObjective].time - (tick - data.objectives[data.objectives.activeObjective].enterTime))/1000) .. " seconds.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center" )				
 					end
 				end
 			end
@@ -166,8 +166,8 @@ end
 
 
 function setupObjectiveTextFor( thePlayer )
-	drawStaticTextToScreen( "draw", thePlayer, "objText", "", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colourImportant, 1, "clear", "top", "center" )
-	drawStaticTextToScreen( "draw", thePlayer, "objDesc", "", "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colourImportant, 1, "clear", "top", "center")					
+	drawStaticTextToScreen( "draw", thePlayer, "objText", "", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center" )
+	drawStaticTextToScreen( "draw", thePlayer, "objDesc", "", "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center")					
 end
 
 

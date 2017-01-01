@@ -134,7 +134,7 @@ function formatTimeLeft()
 end
 
 function timeLeft( thePlayer )
-	outputChatBox( "Time left: " .. formatTimeLeft(), thePlayer, unpack( colourPersonal ) )
+	outputChatBox( "Time left: " .. formatTimeLeft(), thePlayer, unpack( colour.personal ) )
 end
 addCommandHandler( "timeleft", timeLeft )
 
@@ -256,11 +256,11 @@ function playerHealPlayer( medic, patient, distance )
 	if not getPlayerClassID( medic ) or not getPlayerClassID( patient ) then return end
 	
 	if not classes[getPlayerClassID( medic )].medic then
-		return outputChatBox( "You are not a medic!", medic, unpack( colourPersonal ) )
+		return outputChatBox( "You are not a medic!", medic, unpack( colour.personal ) )
 	end
 	
 	if medic == patient then
-		return outputChatBox( "Physicians may not heal themselves.", medic, unpack( colourPersonal ) )
+		return outputChatBox( "Physicians may not heal themselves.", medic, unpack( colour.personal ) )
 	end
 	
 	local effectiveness, radius = 2, 2
@@ -278,7 +278,7 @@ function playerHealPlayer( medic, patient, distance )
 	if distance > radius then
 		if not getPedOccupiedVehicle( medic ) or not getPedOccupiedVehicle( patient ) or getPedOccupiedVehicle( medic ) ~= getPedOccupiedVehicle( patient ) then
 			if distance < 25 then
-				return outputChatBox( string.format("You are too far from '%s' (%.1fm).", getPlayerName( patient ) , distance ), medic, unpack( colourPersonal ) )
+				return outputChatBox( string.format("You are too far from '%s' (%.1fm).", getPlayerName( patient ) , distance ), medic, unpack( colour.personal ) )
 			else
 				return
 			end
@@ -293,7 +293,7 @@ function playerHealPlayer( medic, patient, distance )
 	if medicine > ( medicHealth - 1 ) then medicine = medicHealth - 1 end
 	
 	if medicine <= 0 then
-		return outputChatBox( "There is nothing you can do.", medic, unpack( colourPersonal ) )
+		return outputChatBox( "There is nothing you can do.", medic, unpack( colour.personal ) )
 	end
 
 	local hpHealed = getElementData( medic, "ptpm.hpHealed" ) or 0
@@ -309,14 +309,14 @@ function playerHealPlayer( medic, patient, distance )
 	setElementData( medic, "ptpm.hpHealed", hpHealed, false )
 	
 	--local text = string.format("Initial health - Medic: %.3f, Patient: %.3f, Medicine: %.3f", medicHealth, patientHealth, medicine)
-	--outputChatBox( text, medic, unpack( colourPersonal ) )
-	--outputChatBox( text, patient, unpack( colourPersonal ) )	
+	--outputChatBox( text, medic, unpack( colour.personal ) )
+	--outputChatBox( text, patient, unpack( colour.personal ) )	
 	
 	setElementHealth( medic, medicHealth - medicine )
 	setElementHealth( patient, patientHealth + medicine*effectiveness )
 	local healthDiff = string.format("%.1f", medicine*effectiveness)
-	outputChatBox( "Gave " .. healthDiff .. " health to patient.", medic, unpack( colourPersonal ) )
-	outputChatBox( "You were healed by " .. healthDiff .. " health.", patient, unpack( colourPersonal ) )
+	outputChatBox( "Gave " .. healthDiff .. " health to patient.", medic, unpack( colour.personal ) )
+	outputChatBox( "You were healed by " .. healthDiff .. " health.", patient, unpack( colour.personal ) )
 end
 
 function isPlayerInSameTeam( thePlayer, otherPlayer )
@@ -365,7 +365,7 @@ end
 function getWeather( thePlayer )
 	if options and options.currentWeather then
 		local hour, minute = getTime()
-		outputChatBox( "Map type: " .. options.mapType .. ", Id: " .. options.currentWeather .. " - " .. hour .. ":" .. minute, thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "Map type: " .. options.mapType .. ", Id: " .. options.currentWeather .. " - " .. hour .. ":" .. minute, thePlayer, unpack( colour.personal ) )
 	end
 end
 addCommandHandler( "getweather", getWeather )
@@ -491,48 +491,48 @@ function explainRole( thePlayer )
 	local team = classes[getPlayerClassID( thePlayer )].type
 
 	if team == "psycho" then
-		outputChatBox( "Nobody wants to be your friend. So trust noone. Kill them all.", thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "Nobody wants to be your friend. So trust noone. Kill them all.", thePlayer, unpack( colour.personal ) )
 	elseif team == "terrorist" then
-		outputChatBox( "Your role is to try and kill the Prime Minister(yellow) before the timer runs out. You must work with the other terrorists(pink)", thePlayer, unpack( colourPersonal ) )
-		outputChatBox( "as a team. You must avoid the cops(blue) as they will hunt you. Beware of psychopaths(orange), they will kill anyone.", thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "Your role is to try and kill the Prime Minister(yellow) before the timer runs out. You must work with the other terrorists(pink)", thePlayer, unpack( colour.personal ) )
+		outputChatBox( "as a team. You must avoid the cops(blue) as they will hunt you. Beware of psychopaths(orange), they will kill anyone.", thePlayer, unpack( colour.personal ) )
 		if #data.objectives > 0 then
-			outputChatBox( "The Prime Minister and his bodyguards will be visiting areas of the city. These are red on the radar. You should try and ambush", thePlayer, unpack( colourPersonal ) )
-			outputChatBox( "him on his way there, siege him when he is there, and drive him away. If the Prime Minister achieves his objectives then", thePlayer, unpack( colourPersonal ) )
-			outputChatBox( "you lose the game.", thePlayer, unpack( colourPersonal ) )
+			outputChatBox( "The Prime Minister and his bodyguards will be visiting areas of the city. These are red on the radar. You should try and ambush", thePlayer, unpack( colour.personal ) )
+			outputChatBox( "him on his way there, siege him when he is there, and drive him away. If the Prime Minister achieves his objectives then", thePlayer, unpack( colour.personal ) )
+			outputChatBox( "you lose the game.", thePlayer, unpack( colour.personal ) )
 		end
 	elseif team == "pm" then
 		if #data.objectives > 0 then
-			outputChatBox( "Your role is to visit and each of the objectives in order. You must defend the objective for the specified time before", thePlayer, unpack( colourPersonal ) )
-			outputChatBox( "the next objective will be revealed. Terrorists(pink) and psychopaths(orange) will try to kill you. If you die, the", thePlayer, unpack( colourPersonal ) )
-			outputChatBox( "terrorists win.", thePlayer, unpack( colourPersonal ) )
+			outputChatBox( "Your role is to visit and each of the objectives in order. You must defend the objective for the specified time before", thePlayer, unpack( colour.personal ) )
+			outputChatBox( "the next objective will be revealed. Terrorists(pink) and psychopaths(orange) will try to kill you. If you die, the", thePlayer, unpack( colour.personal ) )
+			outputChatBox( "terrorists win.", thePlayer, unpack( colour.personal ) )
 		else
-			outputChatBox( "Your role is to avoid being killed by terrorists(pink) or psychopaths(orange) until the timer runs out. Use /timeleft to", thePlayer, unpack( colourPersonal ) )
-			outputChatBox( "find out how long there is left.", thePlayer, unpack( colourPersonal ) )
+			outputChatBox( "Your role is to avoid being killed by terrorists(pink) or psychopaths(orange) until the timer runs out. Use /timeleft to", thePlayer, unpack( colour.personal ) )
+			outputChatBox( "find out how long there is left.", thePlayer, unpack( colour.personal ) )
 		end
-		outputChatBox( "You must work with your loyal bodyguards(green), they will protect you. You are to co-operate with the local police(blue), who", thePlayer, unpack( colourPersonal ) )
-		outputChatBox( "will hunt the terrorists.", thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "You must work with your loyal bodyguards(green), they will protect you. You are to co-operate with the local police(blue), who", thePlayer, unpack( colour.personal ) )
+		outputChatBox( "will hunt the terrorists.", thePlayer, unpack( colour.personal ) )
 	elseif team == "bodyguard" then
-		outputChatBox( "Your duty is to stay with the Prime Minister(yellow) and protect him from harm. Terrorists(pink) will soon try and murder him.", thePlayer, unpack( colourPersonal ) )
-		outputChatBox( "Also beware of psychopaths(orange). You are to co-operate with the local police(blue), who will hunt the terrorists.", thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "Your duty is to stay with the Prime Minister(yellow) and protect him from harm. Terrorists(pink) will soon try and murder him.", thePlayer, unpack( colour.personal ) )
+		outputChatBox( "Also beware of psychopaths(orange). You are to co-operate with the local police(blue), who will hunt the terrorists.", thePlayer, unpack( colour.personal ) )
 		if #data.objectives > 0 then
-			outputChatBox( "The Prime Minister will be visiting areas of the city. These are red on the radar. The terrorists know where he needs to go,", thePlayer, unpack( colourPersonal ) )
-			outputChatBox( "so you must prevent them from ambusing or successfully sieging the Prime Minister. If he is killed, you lose the game.", thePlayer, unpack( colourPersonal ) )
+			outputChatBox( "The Prime Minister will be visiting areas of the city. These are red on the radar. The terrorists know where he needs to go,", thePlayer, unpack( colour.personal ) )
+			outputChatBox( "so you must prevent them from ambusing or successfully sieging the Prime Minister. If he is killed, you lose the game.", thePlayer, unpack( colour.personal ) )
 		end
 	elseif team == "police" then
-		outputChatBox( "Your orders are to kill the terrorists(pink) without harming the bodyguards(green) or the Prime Minister(yellow). Also beware", thePlayer, unpack( colourPersonal ) )
-		outputChatBox( "of psychopaths(orange). Protect the Prime Minister!", thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "Your orders are to kill the terrorists(pink) without harming the bodyguards(green) or the Prime Minister(yellow). Also beware", thePlayer, unpack( colour.personal ) )
+		outputChatBox( "of psychopaths(orange). Protect the Prime Minister!", thePlayer, unpack( colour.personal ) )
 		if #data.objectives > 0 then
-			outputChatBox( "The Prime Minister and his bodyguards will be visiting areas of the city. These are red on the radar. You should focus your", thePlayer, unpack( colourPersonal ) )
-			outputChatBox( "efforts there, clean out the terrorists so that the Prime Minister can go in. Then defend the area until he is done.", thePlayer, unpack( colourPersonal ) )
+			outputChatBox( "The Prime Minister and his bodyguards will be visiting areas of the city. These are red on the radar. You should focus your", thePlayer, unpack( colour.personal ) )
+			outputChatBox( "efforts there, clean out the terrorists so that the Prime Minister can go in. Then defend the area until he is done.", thePlayer, unpack( colour.personal ) )
 		end
 	end
 	
 	if classes[getPlayerClassID( thePlayer )].medic then
-		outputChatBox( "You are a medic, you can heal people with /heal!", thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "You are a medic, you can heal people with /heal!", thePlayer, unpack( colour.personal ) )
 	end
 	if tableSize(data.safezone) > 0 then
-		outputChatBox( "Only terrorists and bodyguards may fly the hydra or seasparrow. The Prime Minister's safehouse (red) is a hydra/seasparrow", thePlayer, unpack( colourPersonal ) )
-		outputChatBox( "free zone.", thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "Only terrorists and bodyguards may fly the hydra or seasparrow. The Prime Minister's safehouse (red) is a hydra/seasparrow", thePlayer, unpack( colour.personal ) )
+		outputChatBox( "free zone.", thePlayer, unpack( colour.personal ) )
 	end
 end
 addCommandHandler( "duty", explainRole )
@@ -545,7 +545,7 @@ function showOps( thePlayer )
 			local name = getPlayerName( p ) or ""
 			sOps = sOps .. name .. ", "
 		end
-		outputChatBox( "Online operator(s): " .. sOps, thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "Online operator(s): " .. sOps, thePlayer, unpack( colour.personal ) )
 	end
 end
 --addCommandHandler( "ops", showOps )

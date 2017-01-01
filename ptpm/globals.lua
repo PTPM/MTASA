@@ -36,6 +36,15 @@ teamMemberFriendlyName = {
 	["terrorist"] = "Terrorist"
 }
 
+colour = {
+	important = {255, 0, 0},
+	personal = {128, 128, 255},
+	achievement = {94, 170, 2},
+	query = {255, 220, 24},
+	global = {208, 208, 255},
+	broadcast = {0, 102, 204},
+}
+
 
 __DEBUG = true
 function debugStr( dString )

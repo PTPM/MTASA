@@ -13,11 +13,11 @@ function banCommand( thePlayer, victimName, reason )
 	
 	local victimPlayer = getPlayerFromNameSection( victimName )
 	if victimPlayer == nil then
-		return outputChatBox( "Usage: /ban <person> [<reason>]", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Usage: /ban <person> [<reason>]", thePlayer, unpack( colour.personal ) )
 	elseif victimPlayer == false then
-		return outputChatBox( "Too many matches for name '" .. victimName .. "'", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Too many matches for name '" .. victimName .. "'", thePlayer, unpack( colour.personal ) )
 	elseif victimPlayer == thePlayer then
-		return outputChatBox( "You can't ban yourself!", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "You can't ban yourself!", thePlayer, unpack( colour.personal ) )
 	end
 	
 	local playerName = getPlayerName( thePlayer )
@@ -37,9 +37,9 @@ function banCommand( thePlayer, victimName, reason )
 	end
 	
 	if result then 
-		outputChatBox( text .. ".", root, unpack( colourGlobal ) )
+		outputChatBox( text .. ".", root, unpack( colour.global ) )
 	else 
-		outputChatBox( "Banning " .. victimName .. " failed.", thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "Banning " .. victimName .. " failed.", thePlayer, unpack( colour.personal ) )
 	end
 end
 addCommandHandler( "ban", function(player,command,name,... )
@@ -69,9 +69,9 @@ function banipCommand( thePlayer, theIP, reason )
 	end
 	
 	if not theIP then
-		return outputChatBox( "Usage: /banip <ip> [<reason>]", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Usage: /banip <ip> [<reason>]", thePlayer, unpack( colour.personal ) )
 	elseif not isValidIP( theIP ) then
-		return outputChatBox( "Invalid ip.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Invalid ip.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	local text = "IP " .. theIP .. " was banned from the server by " .. getPlayerName( thePlayer )
@@ -83,11 +83,11 @@ function banipCommand( thePlayer, theIP, reason )
 	if result then 
 		for _, value in ipairs( getElementsByType( "player" ) ) do
 			if value and isElement( value ) and isPlayerOp( value ) then
-				outputChatBox( text .. ".", value, unpack( colourPersonal ) )
+				outputChatBox( text .. ".", value, unpack( colour.personal ) )
 			end
 		end
 	else 
-		outputChatBox( "Banning IP " .. theIP .. " failed.", thePlayer, unpack( colourPersonal ) ) 
+		outputChatBox( "Banning IP " .. theIP .. " failed.", thePlayer, unpack( colour.personal ) ) 
 	end
 end
 addCommandHandler( "banip", function(player,command,ip,...)
@@ -121,11 +121,11 @@ addEventHandler("serverBanSerial",root,
 			if result then
 				for _, value in ipairs( getElementsByType( "player" ) ) do
 					if value and isElement( value ) and isPlayerOp( value ) then
-						outputChatBox( "Serial " .. serial .. " was banned from the server by " .. getPlayerName( client ), value, unpack( colourPersonal ) )
+						outputChatBox( "Serial " .. serial .. " was banned from the server by " .. getPlayerName( client ), value, unpack( colour.personal ) )
 					end
 				end		
 			else
-				outputChatBox( "Banning serial " .. serial .. " failed.", client, unpack( colourPersonal ) ) 
+				outputChatBox( "Banning serial " .. serial .. " failed.", client, unpack( colour.personal ) ) 
 			end
 		end
 	end
@@ -145,11 +145,11 @@ addEventHandler("serverBanUsername",root,
 			if result then
 				for _, value in ipairs( getElementsByType( "player" ) ) do
 					if value and isElement( value ) and isPlayerOp( value ) then
-						outputChatBox( "Username "..username.." was banned from the server by " .. getPlayerName(client), value, unpack( colourPersonal ) )
+						outputChatBox( "Username "..username.." was banned from the server by " .. getPlayerName(client), value, unpack( colour.personal ) )
 					end
 				end		
 			else
-				outputChatBox( "Banning username " .. username .. " failed.", client, unpack( colourPersonal ) ) 
+				outputChatBox( "Banning username " .. username .. " failed.", client, unpack( colour.personal ) ) 
 			end
 		end
 	end
@@ -160,9 +160,9 @@ function unbanipCommand( thePlayer, commandName, theIP )
 	if not isPlayerOp( thePlayer ) then return end
 	
 	if not theIP then
-		return outputChatBox( "Usage: /unbanip <ip>", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Usage: /unbanip <ip>", thePlayer, unpack( colour.personal ) )
 	elseif not isValidIP( theIP ) then
-		return outputChatBox( "Invalid ip.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Invalid ip.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	local playerName = getPlayerName( thePlayer )
@@ -182,11 +182,11 @@ function unbanipCommand( thePlayer, commandName, theIP )
 	if result then 
 		for _, value in ipairs( getElementsByType( "player" ) ) do
 			if value and isElement( value ) and isPlayerOp( value ) then
-				outputChatBox( text, value, unpack( colourPersonal ) )
+				outputChatBox( text, value, unpack( colour.personal ) )
 			end
 		end
 	else 
-		outputChatBox( "Unbanning IP " .. theIP .. " failed.", thePlayer, unpack( colourPersonal ) ) 
+		outputChatBox( "Unbanning IP " .. theIP .. " failed.", thePlayer, unpack( colour.personal ) ) 
 	end
 end
 addCommandHandler( "unbanip", unbanipCommand )
@@ -204,7 +204,7 @@ function unbanCommand( thePlayer, commandName, theString )
 	if not isPlayerOp( thePlayer ) then return end
 	
 	if not theString then
-		return outputChatBox( "Usage: /unban <name>", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Usage: /unban <name>", thePlayer, unpack( colour.personal ) )
 	end
 	
 	local result
@@ -217,7 +217,7 @@ function unbanCommand( thePlayer, commandName, theString )
 				
 				for _,p in ipairs( getElementsByType( "player" ) ) do
 					if p and isElement( p ) and isPlayerOp( p ) then
-						outputChatBox( theString .. " (" .. tostring( ip ) .. ") was unbanned from the server by " .. getPlayerName( thePlayer ) .. ".", p, unpack( colourPersonal ) )
+						outputChatBox( theString .. " (" .. tostring( ip ) .. ") was unbanned from the server by " .. getPlayerName( thePlayer ) .. ".", p, unpack( colour.personal ) )
 					end
 				end
 			end
@@ -225,7 +225,7 @@ function unbanCommand( thePlayer, commandName, theString )
 	end
 	
 	if not result then
-		outputChatBox( "No bans found on " .. theString, thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "No bans found on " .. theString, thePlayer, unpack( colour.personal ) )
 	end
 end
 addCommandHandler( "unban", unbanCommand )
@@ -251,7 +251,7 @@ addEventHandler("serverUnbanSelected",root,
 			
 			for _, value in ipairs( getElementsByType( "player" ) ) do
 				if value and isElement( value ) and isPlayerOp( value ) then
-					outputChatBox( "Ban (" .. index .. ") ["..(banNick == false and "-" or tostring(banNick)).." - "..tostring(ip).."] was removed from the server by " .. getPlayerName(client) .. ".", value, unpack( colourPersonal ) )
+					outputChatBox( "Ban (" .. index .. ") ["..(banNick == false and "-" or tostring(banNick)).." - "..tostring(ip).."] was removed from the server by " .. getPlayerName(client) .. ".", value, unpack( colour.personal ) )
 				end
 			end
 		end
@@ -264,9 +264,9 @@ function checkipCommand( thePlayer, commandName, theIP )
 	if not isPlayerOp( thePlayer ) then return end
 	
 	if not theIP then
-		return outputChatBox( "Usage: /checkip <ip>", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Usage: /checkip <ip>", thePlayer, unpack( colour.personal ) )
 	elseif not isValidIP( theIP, true ) then
-		return outputChatBox( "Invalid ip.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Invalid ip.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	local numMatches, matches, text = isIPOnline( theIP )
@@ -275,7 +275,7 @@ function checkipCommand( thePlayer, commandName, theIP )
 	else
 		text = numMatches .. " player(s) with ip " .. theIP .. " : " .. matches
 	end
-	outputChatBox( text, thePlayer, unpack( colourPersonal ) )
+	outputChatBox( text, thePlayer, unpack( colour.personal ) )
 end
 addCommandHandler( "checkip", checkipCommand )
 
@@ -285,14 +285,14 @@ function getipCommand( thePlayer, commandName, otherName )
 	
 	local otherPlayer = getPlayerFromNameSection( otherName )
 	if otherPlayer == nil then
-		return outputChatBox( "Usage: /getip <person>", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Usage: /getip <person>", thePlayer, unpack( colour.personal ) )
 	elseif otherPlayer == false then
-		return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colour.personal ) )
 	end
 	
 	otherName = getPlayerName( otherPlayer )
 	local ip = getPlayerIP( otherPlayer )
-	outputChatBox( otherName .. ": " .. ip, thePlayer, unpack( colourPersonal ) )
+	outputChatBox( otherName .. ": " .. ip, thePlayer, unpack( colour.personal ) )
 end
 addCommandHandler( "getip", getipCommand )
 
@@ -309,7 +309,7 @@ function clearbansCommand( thePlayer )
 	end
 	
 	if count > 0 then
-		outputChatBox( "Ban list (" .. count .. " ban(s)) cleared by " .. getPlayerName( thePlayer ), root, unpack( colourGlobal ) )
+		outputChatBox( "Ban list (" .. count .. " ban(s)) cleared by " .. getPlayerName( thePlayer ), root, unpack( colour.global ) )
 	end
 end
 addCommandHandler( "clearbans", clearbansCommand )
@@ -404,10 +404,10 @@ addCommandHandler( "searchban",
 									" Admin: "..tostring(getBanAdmin(match))..
 									" Username: "..tostring(getBanUsername(match))..
 									" Serial: "..tostring(getBanSerial(match))..
-									" Time: "..(getBanTime(match) == false and "false" or time.monthday.."/"..time.month.."/"..(time.year+1900).." - "..time.hour..":"..time.minute), player, unpack( colourPersonal ) )
+									" Time: "..(getBanTime(match) == false and "false" or time.monthday.."/"..time.month.."/"..(time.year+1900).." - "..time.hour..":"..time.minute), player, unpack( colour.personal ) )
 				end
 			else
-				outputChatBox("No matches found for '"..query.."'.", player, unpack( colourPersonal ) )
+				outputChatBox("No matches found for '"..query.."'.", player, unpack( colour.personal ) )
 			end
 		end
 	end

@@ -17,7 +17,7 @@ function prepareSecurityCamera( thePlayer, theCamera )
 									
 		setElementPosition( thePlayer, data.cameraMounts[cameraElement].playerX, data.cameraMounts[cameraElement].playerY, data.cameraMounts[cameraElement].playerZ )
 		
-		drawStaticTextToScreen( "draw", thePlayer, "cameraText", "WARNING: Whilst viewing a security camera you can still be attacked.\nUse the left and right arrow keys to change camera.\nType /camoff or press enter to exit the camera.", "screenX-600", "screenY-110", 590, 100, colourImportant, 0.5, "bankgothic", "top", "right" )
+		drawStaticTextToScreen( "draw", thePlayer, "cameraText", "WARNING: Whilst viewing a security camera you can still be attacked.\nUse the left and right arrow keys to change camera.\nType /camoff or press enter to exit the camera.", "screenX-600", "screenY-110", 590, 100, colour.important, 0.5, "bankgothic", "top", "right" )
 		
 		setElementData( thePlayer, "ptpm.activeCamera", cameraElement, false )
 		setElementData( thePlayer, "ptpm.currentCameraID", 1, false )
@@ -67,7 +67,7 @@ end
 function camOff( thePlayer )
 	local activeCamera = getElementData( thePlayer, "ptpm.activeCamera" )
 	 if not activeCamera then
-		return outputChatBox( "You are not in cam-view.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "You are not in cam-view.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	setElementData( thePlayer, "ptpm.activeCamera", nil, false )

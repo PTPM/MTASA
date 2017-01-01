@@ -49,6 +49,7 @@
 			
 
 addEvent("onPlayerRequestSpawn", true)
+addEvent("sendPlayerToClassSelection", true)
 
 
 -- call the client and initiate the class selection screen
@@ -122,6 +123,12 @@ function initClassSelection(thePlayer, updateBalanceAndNotify)
 	end
 end
 
+addEventHandler("sendPlayerToClassSelection", resourceRoot,
+	function()
+		initClassSelection(client, true)
+	end
+)
+
 function onPlayerRequestSpawn(requestedClassID)
 	if not getElementData(client, "ptpm.inClassSelection") or getPlayerClassID(client) then
 		return
@@ -131,7 +138,7 @@ function onPlayerRequestSpawn(requestedClassID)
 	-- in which case, passing it allows for switching class within the same team while that team is full
 	if not isBalanced(requestedClassID, getElementData(client, "ptpm.electionClass")) then 
 	--if true then
-		outputChatBox("Class not available.", client, unpack(colourPersonal)) 
+		outputChatBox("Class not available.", client, unpack(colour.personal)) 
 		triggerClientEvent(client, "onPlayerRequestSpawnDenied", root, requestedClassID)
 		return
 	end
@@ -261,7 +268,7 @@ end
 function classSelectionAfterDeath( thePlayer )
 	unbindKey( thePlayer, "f4", "down", classSelectionAfterDeath )
 	setElementData( thePlayer, "ptpm.classSelectAfterDeath", true, false )
-	outputChatBox( "Returning to class selection after next death.", thePlayer, unpack( colourPersonal ) )
+	outputChatBox( "Returning to class selection after next death.", thePlayer, unpack( colour.personal ) )
 end
 
 function reclassCommand( thePlayer, commandName, className )
@@ -275,27 +282,27 @@ function reclassCommand( thePlayer, commandName, className )
 	if isPedDead( thePlayer ) then return end
 
 	if classes[classID].type == "pm" and not isPlayerOp( thePlayer ) then
-		return outputChatBox( "The prime minister must use /swapclass.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "The prime minister must use /swapclass.", thePlayer, unpack( colour.personal ) )
 	end
 
 	if not isPlayerControllable( thePlayer ) or isPlayerFrozen( thePlayer ) then
 	--if playerInfo[thePlayer].frozen then
-		return outputChatBox( "You cannot reclass while frozen.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "You cannot reclass while frozen.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	if getElementData( thePlayer, "ptpm.watching" ) then
-		return outputChatBox( "You cannot reclass while watching.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "You cannot reclass while watching.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	local proposedClass = false
 
 	if not className or #className == 0 then
-		return outputChatBox( "Usage: /reclass pm|terrorist|cop|bodyguard|psycho|tmedic|bmedic|cmedic", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "Usage: /reclass pm|terrorist|cop|bodyguard|psycho|tmedic|bmedic|cmedic", thePlayer, unpack( colour.personal ) )
 	elseif tonumber( className ) ~= nil then
 		proposedClass = tonumber( className )
 		if proposedClass > #classes or proposedClass < 0 then
-			outputChatBox( "No such class.", thePlayer, unpack( colourPersonal ) )
-			outputChatBox( "Usage: /reclass pm|terrorist|cop|bodyguard|psycho|tmedic|bmedic|cmedic", thePlayer, unpack( colourPersonal ) )
+			outputChatBox( "No such class.", thePlayer, unpack( colour.personal ) )
+			outputChatBox( "Usage: /reclass pm|terrorist|cop|bodyguard|psycho|tmedic|bmedic|cmedic", thePlayer, unpack( colour.personal ) )
 			return
 		end
 		--if proposedClass > #classes then return end
@@ -335,21 +342,21 @@ function reclassCommand( thePlayer, commandName, className )
 				proposedClass = potentials[math.random(1, #potentials)]
 			end
 		else
-			outputChatBox( "No such class.", thePlayer, unpack( colourPersonal ) )
-			outputChatBox( "Usage: /reclass pm|terrorist|cop|bodyguard|psycho|tmedic|bmedic|cmedic", thePlayer, unpack( colourPersonal ) )
+			outputChatBox( "No such class.", thePlayer, unpack( colour.personal ) )
+			outputChatBox( "Usage: /reclass pm|terrorist|cop|bodyguard|psycho|tmedic|bmedic|cmedic", thePlayer, unpack( colour.personal ) )
 			return
 		end
 	end
 
 	if proposedClass == false then 
-		return outputChatBox( "Class not available.", thePlayer, unpack( colourPersonal ) ) 
+		return outputChatBox( "Class not available.", thePlayer, unpack( colour.personal ) ) 
 	end
 
 	if isBalanced(proposedClass, classID) then
 		setPlayerClass( thePlayer, proposedClass )
 	else
 		local teamName = teamMemberName[classes[proposedClass].type]
-		outputChatBox( "Could not spawn as " .. teamName .. ", that class is full.", thePlayer, unpack( colourPersonal ) )	
+		outputChatBox( "Could not spawn as " .. teamName .. ", that class is full.", thePlayer, unpack( colour.personal ) )	
 	end
 end
 addCommandHandler( "reclass", reclassCommand )
@@ -360,29 +367,29 @@ function swapclass( thePlayer, commandName, otherName )
 	if data.roundEnded then return end
 	
 	if not getPlayerClassID( thePlayer ) or classes[getPlayerClassID( thePlayer )].type ~= "pm" then
-		return outputChatBox( "You must be the Prime Minister to use this.", thePlayer, unpack( colourPersonal ) )
+		return outputChatBox( "You must be the Prime Minister to use this.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	if otherName then
 		local otherPlayer = getPlayerFromNameSection( otherName )
 		if otherPlayer == nil then
-			return outputChatBox( "Usage: /swapclass <person>", thePlayer, unpack( colourPersonal ) )
+			return outputChatBox( "Usage: /swapclass <person>", thePlayer, unpack( colour.personal ) )
 		elseif otherPlayer == false then
-			return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colourPersonal ) )
+			return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colour.personal ) )
 		elseif not getPlayerClassID( otherPlayer ) then
-			return outputChatBox( "That person has not yet selected a class.", thePlayer, unpack( colourPersonal ) )
+			return outputChatBox( "That person has not yet selected a class.", thePlayer, unpack( colour.personal ) )
 		elseif otherPlayer == thePlayer then
-			return outputChatBox( "You are the Prime Minister.", thePlayer, unpack( colourPersonal ) )
+			return outputChatBox( "You are the Prime Minister.", thePlayer, unpack( colour.personal ) )
 		elseif options.swapclass.target then
-			return outputChatBox( "You may not swapclass with two people at once.", thePlayer, unpack( colourPersonal ) )
+			return outputChatBox( "You may not swapclass with two people at once.", thePlayer, unpack( colour.personal ) )
 		end  
 
-		drawStaticTextToScreen( "draw", otherPlayer, "swapText", "The Prime Minister wants to swapclass with you.\nType /y to accept or /n to decline.", "screenX-340", "screenY-60", 320, 40, colourImportant, 1, "clear" )
+		drawStaticTextToScreen( "draw", otherPlayer, "swapText", "The Prime Minister wants to swapclass with you.\nType /y to accept or /n to decline.", "screenX-340", "screenY-60", 320, 40, colour.important, 1, "clear" )
 
 		options.swapclass.target = otherPlayer
 		options.swapclass.timer = setTimer( swapclassOffer, 15000, 1, false, otherPlayer )
 
-		outputChatBox( "Swapclass offer sent to " .. getPlayerName( otherPlayer ), thePlayer, unpack( colourPersonal ) )
+		outputChatBox( "Swapclass offer sent to " .. getPlayerName( otherPlayer ), thePlayer, unpack( colour.personal ) )
 	end
 end
 
@@ -412,7 +419,7 @@ function swapclassOffer( accepted, thePlayer )
 		drawStaticTextToScreen( "delete", thePlayer, "swapText" )
 		
 		if currentPM then 
-			outputChatBox( "Your offer to " .. getPlayerName( thePlayer ) .. " was declined.", currentPM, unpack( colourPersonal ) ) 
+			outputChatBox( "Your offer to " .. getPlayerName( thePlayer ) .. " was declined.", currentPM, unpack( colour.personal ) ) 
 		end
 	end
 	options.swapclass = {}

@@ -567,8 +567,8 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 			end				
 			
 			if text then
-				outputChatBox( text, root, unpack( colourAchievement ) )
-				outputChatBox( "Your ammo has been increased!", killer, unpack( colourAchievement ) )
+				outputChatBox( text, root, unpack( colour.achievement ) )
+				outputChatBox( "Your ammo has been increased!", killer, unpack( colour.achievement ) )
 				
 				local slots = { [2] = pistolAmmo, [3] = shotgunAmmo, [4] = smgAmmo, [5] = rifleAmmo, [8] = throwAmmo }
 				

@@ -22,7 +22,7 @@ local uiScale = screenY / 600
 local font = {
 	globalScalar = 1
 }
-local classSelection = {
+classSelection = {
 	visible = false,
 	hiding = false,
 	spawnMessage = "",

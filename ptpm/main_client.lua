@@ -341,3 +341,69 @@ function(attacker)
       end
   end
 end)
+
+
+--[[----------------------------------------------
+	AFK timer that puts players back in the class selection
+]]------------------------------------------------
+local stillOnSpawn = nil
+local stillOnSpawnPosition = {}
+
+
+addEventHandler("onClientPlayerSpawn", localPlayer,
+	function(team)
+		killAFKTimer()
+		
+		if team then
+			stillOnSpawn = setTimer(warnAFKPlayer, 6000, 2)
+			stillOnSpawnPosition = {getElementPosition(localPlayer)}
+		end	
+	end
+)
+
+addEventHandler("onClientKey", root,
+	function(button, pressOrRelease)
+		if pressOrRelease and stillOnSpawn then
+			if button == "tab" then
+				return
+			end
+						
+			killAFKTimer()
+		end
+	end
+)
+
+function warnAFKPlayer()
+	if classSelection.visible then
+		return
+	end
+	
+	local position = {getElementPosition(localPlayer)}
+
+	-- only check x/y, since z can change without actually moving (ie: spawning +1 from floor level and falling down)
+	if (math.abs(position[1] - stillOnSpawnPosition[1]) > 1) or (math.abs(position[2] - stillOnSpawnPosition[2]) > 1) then
+		killAFKTimer()
+		return
+	end
+	
+	local _, timesLeft = getTimerDetails(stillOnSpawn)
+
+	if timesLeft > 1 then
+		drawGameTextToScreen("You are AFK\nReturning to class selection\nin 5 seconds...", 4000, colour.important, "pricedown", 1.2, "center", "center", 4)
+	else
+		triggerServerEvent("sendPlayerToClassSelection", resourceRoot)
+
+		killAFKTimer()
+	end
+end
+
+function killAFKTimer()
+	if stillOnSpawn then
+		if isTimer(stillOnSpawn) then
+			killTimer(stillOnSpawn)
+		end
+		
+		stillOnSpawn = nil
+	end
+end
+
