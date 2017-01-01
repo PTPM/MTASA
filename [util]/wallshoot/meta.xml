@@ -1,0 +1,5 @@
+﻿<meta>
+	<info author="ptpm" description="disables wallshooting" type="script" version="1.0" />
+	
+	<script src="wallshoot.lua" type="client"/>
+</meta>
