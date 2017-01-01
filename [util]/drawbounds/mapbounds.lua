@@ -1,9 +1,9 @@
 ﻿cRed = tocolor( 180, 25, 29 )
 boundaryCorners = {}
-drawBigMapHandled = false
 bigMapShader = nil
 bigMapTarget = nil
 radarTiles = {}
+prepared = false
 
 -- Make sure the events exist
 addEvent( "onClientMapStarted", true )
@@ -31,16 +31,29 @@ addEventHandler( "onClientMapStarted", root, updateBoundaryCorners )
 addEventHandler( "sendClientMapData", root, updateBoundaryCorners )
 --addEventHandler( "onClientResourceStart", resourceRoot, updateBoundaryCorners )
 
+addEventHandler("onClientMapStop", root,
+	function()
+		prepared = false
+	end
+)
+
+addEventHandler("onClientResourceStart", resourceRoot,
+	function()
+		-- Render boundaries to big map
+		addEventHandler("onClientHUDRender", root, drawBigMap)
+	end
+)
+
 function prepareMaps()
+	if prepared then
+		return
+	end
+
+	prepared = true
+	
 	-- Prepare boundaries on to radar
 	cleanUpRadar()
 	addEventHandler( "onClientHUDRender", root, prepareRadar )
-	
-	-- Render boundaries to big map
-	if not drawBigMapHandled then
-		addEventHandler( "onClientHUDRender", root, drawBigMap )
-		drawBigMapHandled = true
-	end
 end
 
 function cleanUpRadar()
