@@ -82,27 +82,27 @@ addEventHandler( "onClientMapStart", root,
 )
 
 
-bindKey( "F2", "down",
-	function()
-		vehicleBlips.active = not vehicleBlips.active
+-- bindKey( "F2", "down",
+-- 	function()
+-- 		vehicleBlips.active = not vehicleBlips.active
 		
-		-- generate blips for all streamed in vehicles
-		if vehicleBlips.active then
-			for _, vehicle in ipairs( getElementsByType( "vehicle" ) ) do
-				if isElementStreamedIn( vehicle ) then
-					createVehicleBlip( vehicle )
-				end
-			end
-		-- remove all current blips
-		elseif not vehicleBlips.active then
-			for v, _ in pairs( vehicleBlips ) do
-				if tostring( v ) ~= "active" and tostring( v ) ~= "enabled" then
-					destroyVehicleBlip( v )
-				end
-			end	
-		end
-	end
-)
+-- 		-- generate blips for all streamed in vehicles
+-- 		if vehicleBlips.active then
+-- 			for _, vehicle in ipairs( getElementsByType( "vehicle" ) ) do
+-- 				if isElementStreamedIn( vehicle ) then
+-- 					createVehicleBlip( vehicle )
+-- 				end
+-- 			end
+-- 		-- remove all current blips
+-- 		elseif not vehicleBlips.active then
+-- 			for v, _ in pairs( vehicleBlips ) do
+-- 				if tostring( v ) ~= "active" and tostring( v ) ~= "enabled" then
+-- 					destroyVehicleBlip( v )
+-- 				end
+-- 			end	
+-- 		end
+-- 	end
+-- )
 
 
 function createVehicleBlip( vehicle )
