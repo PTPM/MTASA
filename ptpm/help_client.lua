@@ -93,7 +93,6 @@ local helpDivide = {line = {}, bar = {}}
 
 addEvent( "onClientAvailable", true )
 
---addEventHandler("onClientResourceStart", resourceRoot,
 addEventHandler( "onClientAvailable", localPlayer,
 	function()
 		helpTab = exports.helpmanager:addHelpTab( thisResource )

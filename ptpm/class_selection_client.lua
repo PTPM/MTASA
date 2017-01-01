@@ -167,27 +167,25 @@ for _, flower in pairs(flowers) do
 end
 
 
-addEventHandler("onClientResourceStart", resourceRoot,
-	function()
-		-- the default fonts do not scale well, so load our own version at the sizes we need
-		font.scalar = (120 / 44) * uiScale
-		font.base = dxCreateFont("fonts/tahoma.ttf", 9 * font.scalar, false, "proof")
+function classSelectionSetup()
+	-- the default fonts do not scale well, so load our own version at the sizes we need
+	font.scalar = (120 / 44) * uiScale
+	font.base = dxCreateFont("fonts/tahoma.ttf", 9 * font.scalar, false, "proof")
 
-		-- if the user cannot load the font, default to a built-in one with the appropriate scaling
-		if not font.base then
-			font.base = "default"
-			font.scalar = 1
-		end
-
-		font.smallScalar = 1.2 * uiScale
-		font.small = dxCreateFont("fonts/tahoma.ttf", 9 * font.smallScalar, false, "proof")
-
-		if not font.small then
-			font.small = "default"
-			font.smallScalar = 1
-		end
+	-- if the user cannot load the font, default to a built-in one with the appropriate scaling
+	if not font.base then
+		font.base = "default"
+		font.scalar = 1
 	end
-)
+
+	font.smallScalar = 1.2 * uiScale
+	font.small = dxCreateFont("fonts/tahoma.ttf", 9 * font.smallScalar, false, "proof")
+
+	if not font.small then
+		font.small = "default"
+		font.smallScalar = 1
+	end
+end
 
 -- called when the player is sent to the class selection screen
 function enterClassSelection(mapName, friendlyMapName, classes, isFull, electionActive, numberOfCandidates)

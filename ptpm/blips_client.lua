@@ -2,7 +2,6 @@
 
 addEvent( "onClientAvailable", true )
 
---addEventHandler( "onClientResourceStart", resourceRoot,
 addEventHandler( "onClientAvailable", localPlayer,
 	function()
 		for _, p in ipairs( getElementsByType( "player" ) ) do
@@ -17,45 +16,43 @@ addEventHandler( "onClientAvailable", localPlayer,
 )
 
 
-addEventHandler( "onClientElementDataChange", root,
-	function( dataName, oldValue )
-		if dataName == "ptpm.blip" then
-			local newValue = getElementData( source, "ptpm.blip" )
+function blipsElementDataChange( element, dataName, oldValue )
+	if dataName == "ptpm.blip" then
+		local newValue = getElementData( element, "ptpm.blip" )
 
-			-- we don't create a blip for ourselves
-			if source ~= localPlayer then
-				-- create blip
-				if not oldValue and newValue then
-					if not playerBlips[source] then
-						playerBlips[source] = createBlipAttachedTo( source, 0, newValue[6], newValue[1], newValue[2], newValue[3], getBlipAlpha(newValue[4], newValue[7]), newValue[5] )
-					end
-				-- update data
-				elseif oldValue and newValue then
-					if playerBlips[source] then
-						setBlipColor( playerBlips[source], newValue[1], newValue[2], newValue[3], getBlipAlpha(newValue[4], newValue[7]) )
-						setBlipOrdering( playerBlips[source], newValue[5] )
-	          			setBlipSize( playerBlips[source], newValue[6] )
-					end
-				-- delete blip
-				else
-					if playerBlips[source] then
-						destroyElement( playerBlips[source] )
-						playerBlips[source] = nil
-					end
+		-- we don't create a blip for ourselves
+		if element ~= localPlayer then
+			-- create blip
+			if not oldValue and newValue then
+				if not playerBlips[element] then
+					playerBlips[element] = createBlipAttachedTo( element, 0, newValue[6], newValue[1], newValue[2], newValue[3], getBlipAlpha(newValue[4], newValue[7]), newValue[5] )
+				end
+			-- update data
+			elseif oldValue and newValue then
+				if playerBlips[element] then
+					setBlipColor( playerBlips[element], newValue[1], newValue[2], newValue[3], getBlipAlpha(newValue[4], newValue[7]) )
+					setBlipOrdering( playerBlips[element], newValue[5] )
+          			setBlipSize( playerBlips[element], newValue[6] )
+				end
+			-- delete blip
+			else
+				if playerBlips[element] then
+					destroyElement( playerBlips[element] )
+					playerBlips[element] = nil
 				end
 			end
-
-			if source == currentPM then
-				processPMInteriorDoorwayBlip(newValue and newValue[7] or 0)
-			end
-		elseif dataName == "ptpm.blip.visibleto" then
-			local newValue = getElementData( source, "ptpm.blip.visibleto" )
-			local classID = getElementData( localPlayer, "ptpm.classID" )
-				
-			applyBlipVisibleTo(classID, source, newValue)	
 		end
+
+		if element == currentPM then
+			processPMInteriorDoorwayBlip(newValue and newValue[7] or 0)
+		end
+	elseif dataName == "ptpm.blip.visibleto" then
+		local newValue = getElementData( element, "ptpm.blip.visibleto" )
+		local classID = getElementData( localPlayer, "ptpm.classID" )
+			
+		applyBlipVisibleTo(classID, element, newValue)	
 	end
-)
+end
 
 function getBlipAlpha(proposedAlpha, theirInterior)
 	if getElementInterior(localPlayer) == theirInterior then
@@ -113,17 +110,15 @@ function processBlipVisibleTo()
 	end
 end
 
-addEventHandler("onClientPlayerSpawn", localPlayer,
-	function()
-		-- i just spawned, figure out who i should be able to see
-		processBlipVisibleTo()
+function blipsClientPlayerSpawn()
+	-- i just spawned, figure out who i should be able to see
+	processBlipVisibleTo()
 
-		if currentPM then
-			local blipData = getElementData(currentPM, "ptpm.blip")
-			processPMInteriorDoorwayBlip(blipData and blipData[7] or 0)
-		end
+	if currentPM then
+		local blipData = getElementData(currentPM, "ptpm.blip")
+		processPMInteriorDoorwayBlip(blipData and blipData[7] or 0)
 	end
-)
+end
 
 addEvent("onClientInteriorWarped")
 addEventHandler("onClientInteriorWarped", root,
@@ -139,14 +134,13 @@ addEventHandler("onClientInteriorWarped", root,
 	end
 )
 
-addEventHandler("onClientPlayerQuit", root,
-	function()
-		if playerBlips[source] then
-			destroyElement( playerBlips[source] )
-			playerBlips[source] = nil
-		end
+-- called from onClientPlayerQuit
+function removePlayerBlip(player)
+	if playerBlips[player] then
+		destroyElement( playerBlips[player] )
+		playerBlips[player] = nil
 	end
-)
+end
 
 
 -- show/hide the pm interior doorway blip appropriately

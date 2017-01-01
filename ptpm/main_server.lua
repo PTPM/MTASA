@@ -185,9 +185,8 @@ addEventHandler("onResourceStart", root,
 
 
 -- clean up and try to stop the server crashing if we close it when ptpm is running
-addEventHandler( "onResourceStop", resourceRoot,
-	function()
-	
+addEventHandler("onResourceStop", resourceRoot,
+	function()	
 		runningMap = nil
 		runningMapRoot = nil
 		runningMapName = nil
@@ -289,41 +288,40 @@ addEventHandler( "onClientAvailable", root,
 )
 
 function loadScoreboardStats(player)
-  local kills = 0
-  local deaths = 0
-  local pmWins = 0
-  local pmKills = 0
-  local hpHealed = 0
-  local roundsWon = 0
-  local roundsLost = 0
-  local damage = 0
-  local pmLosses = 0
-  local damageTaken = 0
-    
-  if isRunning( "ptpm_accounts" ) then
-    kills = (exports.ptpm_accounts:getPlayerStatistic( player, "kills" ) or 0)
-    deaths = (exports.ptpm_accounts:getPlayerStatistic( player, "deaths" ) or 0)
-    pmWins = (exports.ptpm_accounts:getPlayerStatistic( player, "pmvictory" ) or 0)
-    pmKills = (exports.ptpm_accounts:getPlayerStatistic( player, "pmkills" ) or 0)
-    hpHealed = (exports.ptpm_accounts:getPlayerStatistic( player, "hphealed" ) or 0)
-    roundsWon = (exports.ptpm_accounts:getPlayerStatistic( player, "roundswon" ) or 0)
-    roundsLost = (exports.ptpm_accounts:getPlayerStatistic( player, "roundslost" ) or 0)
-    damage = (exports.ptpm_accounts:getPlayerStatistic( player, "damage" ) or 0)
-    pmLosses = (exports.ptpm_accounts:getPlayerStatistic( player, "pmlosses" ) or 0)
-    damageTaken = (exports.ptpm_accounts:getPlayerStatistic( player, "damagetaken" ) or 0)
-  end
-    
-  setElementData( player, "ptpm.score.kills", string.format( "%d", kills ) )
-  setElementData( player, "ptpm.score.deaths", string.format( "%d", deaths ) )
-  setElementData( player, "ptpm.score.pmWins", string.format( "%d", pmWins ) )
-  setElementData( player, "ptpm.score.pmKills", string.format( "%d", pmKills ) )
-  setElementData( player, "ptpm.score.hpHealed", string.format( "%d", hpHealed ) )
-  setElementData( player, "ptpm.score.roundsWon", string.format( "%d", roundsWon ) )
-  setElementData( player, "ptpm.score.roundsLost", string.format( "%d", roundsLost ) )
-  setElementData( player, "ptpm.score.damage", string.format( "%d", damage ) )
-  setElementData( player, "ptpm.score.pmLosses", string.format( "%d", pmLosses ) )
-  setElementData( player, "ptpm.score.damageTaken", string.format( "%d", damageTaken ) )
-  
+	local kills = 0
+	local deaths = 0
+	local pmWins = 0
+	local pmKills = 0
+	local hpHealed = 0
+	local roundsWon = 0
+	local roundsLost = 0
+	local damage = 0
+	local pmLosses = 0
+	local damageTaken = 0
+
+	if isRunning( "ptpm_accounts" ) then
+		kills = (exports.ptpm_accounts:getPlayerStatistic( player, "kills" ) or 0)
+		deaths = (exports.ptpm_accounts:getPlayerStatistic( player, "deaths" ) or 0)
+		pmWins = (exports.ptpm_accounts:getPlayerStatistic( player, "pmvictory" ) or 0)
+		pmKills = (exports.ptpm_accounts:getPlayerStatistic( player, "pmkills" ) or 0)
+		hpHealed = (exports.ptpm_accounts:getPlayerStatistic( player, "hphealed" ) or 0)
+		roundsWon = (exports.ptpm_accounts:getPlayerStatistic( player, "roundswon" ) or 0)
+		roundsLost = (exports.ptpm_accounts:getPlayerStatistic( player, "roundslost" ) or 0)
+		damage = (exports.ptpm_accounts:getPlayerStatistic( player, "damage" ) or 0)
+		pmLosses = (exports.ptpm_accounts:getPlayerStatistic( player, "pmlosses" ) or 0)
+		damageTaken = (exports.ptpm_accounts:getPlayerStatistic( player, "damagetaken" ) or 0)
+	end
+
+	setElementData( player, "ptpm.score.kills", string.format( "%d", kills ) )
+	setElementData( player, "ptpm.score.deaths", string.format( "%d", deaths ) )
+	setElementData( player, "ptpm.score.pmWins", string.format( "%d", pmWins ) )
+	setElementData( player, "ptpm.score.pmKills", string.format( "%d", pmKills ) )
+	setElementData( player, "ptpm.score.hpHealed", string.format( "%d", hpHealed ) )
+	setElementData( player, "ptpm.score.roundsWon", string.format( "%d", roundsWon ) )
+	setElementData( player, "ptpm.score.roundsLost", string.format( "%d", roundsLost ) )
+	setElementData( player, "ptpm.score.damage", string.format( "%d", damage ) )
+	setElementData( player, "ptpm.score.pmLosses", string.format( "%d", pmLosses ) )
+	setElementData( player, "ptpm.score.damageTaken", string.format( "%d", damageTaken ) ) 
 end
 
 -- compcheck

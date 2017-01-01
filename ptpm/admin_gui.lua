@@ -6,7 +6,6 @@ local currentMatch = 1
 
 addEvent( "onClientAvailable", true )
 
---addEventHandler( "onClientResourceStart", resourceRoot,
 addEventHandler( "onClientAvailable", localPlayer,
 	function()
 		local sx,sy = guiGetScreenSize()

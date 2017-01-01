@@ -35,7 +35,7 @@ vehicleBlips.enabled = true
 addEventHandler( "onClientElementStreamIn", root,
 	function()
 		if vehicleBlips.enabled and vehicleBlips.active then
-			if getElementType( source ) == "vehicle" then
+			if getElementType( source ) == "vehicle" and not classSelection.active then
 				createVehicleBlip( source )
 			end
 		end
@@ -61,25 +61,19 @@ addEventHandler( "onClientElementStreamOut", root,
 )--]]
 
 
-addEvent( "onClientMapStop", true )
-addEventHandler( "onClientMapStop", root, 
-	function()
-		for v, _ in pairs( vehicleBlips ) do
-			if tostring( v ) ~= "active" and tostring( v ) ~= "enabled" then
-				destroyVehicleBlip( v )
-			end
+function vehicleBlipsClientMapStop()
+	for v, _ in pairs(vehicleBlips) do
+		if tostring(v) ~= "active" and tostring(v) ~= "enabled" then
+			destroyVehicleBlip(v)
 		end
-		vehicleBlips.enabled = false
 	end
-)
 
+	vehicleBlips.enabled = false
+end
 
-addEvent( "onClientMapStart", true )
-addEventHandler( "onClientMapStart", root,
-	function()
-		vehicleBlips.enabled = true
-	end
-)
+function vehicleBlipsClientMapStarted()
+	vehicleBlips.enabled = true
+end
 
 
 -- bindKey( "F2", "down",
@@ -108,12 +102,13 @@ addEventHandler( "onClientMapStart", root,
 function createVehicleBlip( vehicle )
 	if not vehicleBlips[vehicle] and not isVehicleOccupied(vehicle) then
 		setTimer(
-			function( v )
-				if isElement( v ) then
-					vehicleBlips[v] = createBlipAttachedTo( v, 0, 1, 200, 200, 200, 80, 0 )
+			function(v)
+				-- check for streaming in case it streams back out in the 100ms this timer takes
+				if isElement(v) and isElementStreamedIn(v) then
+					vehicleBlips[v] = createBlipAttachedTo(v, 0, 1, 200, 200, 200, 80, 0)
 				end
 			end,
-		100, 1, vehicle )
+		100, 1, vehicle)
 	end
 end
 

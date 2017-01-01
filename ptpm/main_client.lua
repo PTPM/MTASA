@@ -5,11 +5,67 @@ classes = {}
 currentPM = nil
 currentMapName = ""
 
-addEventHandler( "onClientResourceStart", resourceRoot,
-	function()
-		triggerServerEvent( "onClientReady", resourceRoot )
+addEventHandler( "onClientResourceStart", root,
+	function(res)
+		if res == resource then
+			triggerServerEvent( "onClientReady", resourceRoot )
+
+			classSelectionSetup()
+		end
+
+		createTransitionImage(res)
 	end
 )
+
+addEvent("onClientMapStart", true)
+addEventHandler("onClientMapStart", root,
+	function(mapName)
+		currentMapName = mapName
+		setupTransition(mapName)
+
+		currentPM = nil
+	end
+)
+
+addEvent("onClientMapStarted", true)
+addEventHandler("onClientMapStarted", root,
+	function(class, distpm)
+		hideTransitionImage()
+
+		classes = class
+		options.distanceToPM = distpm	
+
+		vehicleBlipsClientMapStarted()
+	end
+)
+
+addEvent("onClientMapStop", true)
+addEventHandler("onClientMapStop", root, 
+	function()
+		vehicleBlipsClientMapStop()
+	end
+)
+
+addEvent("sendClientMapData", true)
+addEventHandler("sendClientMapData", root,
+	function(class, current, distpm)
+		classes = class
+		options.distanceToPM = distpm
+		currentPM = current
+		
+		if not options.distanceToPM then
+			if options.distanceToPMTimer then
+				if isTimer(options.distanceToPMTimer) then
+					killTimer(options.distanceToPMTimer)
+				end
+				options.distanceToPMTimer = nil
+							
+				drawStaticTextToScreen("delete", "pmDist")
+			end
+		end
+	end
+)
+
 
 function drawGameTextToScreen( text, duration, colour, font, size, valign, halign, importance )
 	if not importance then importance = 1 end
@@ -187,37 +243,27 @@ addEventHandler( "drawStaticTextToScreen", root, drawStaticTextToScreen )
 local transition = false
 local transitionMap
 
-addEvent( "onClientMapStart", true )
-addEventHandler( "onClientMapStart", root,
-	function( mapName )
-		currentMapName = mapName
-		hideTransitionImage()
-		transitionMap = mapName
+function setupTransition(mapName)
+	hideTransitionImage()
+	transitionMap = mapName
+end
 
-		currentPM = nil
-	end
-)
+function createTransitionImage(res)
+	if getResourceName(res) == transitionMap then
+		local mapName = "images/ptpm-default.png"
+		local x, y = 640, 538
 
-addEventHandler("onClientResourceStart", root,
-	function(res)
-		if getResourceName(res) == transitionMap then
-			local mapName = "images/ptpm-default.png"
-			local x, y = 640, 538
-
-			if fileExists(":" .. currentMapName .. "/" .. currentMapName .. ".png") then
-				x, y = 500, 500
-				mapName = ":" .. currentMapName .. "/" .. currentMapName .. ".png"
-			end
-
-			transition = guiCreateStaticImage( screenX/2-(x/2), screenY/2-(y/2) - 15, x, y, mapName, false )			
-
-			showHelpMessage(((screenY / 2) - (y / 2)) + y)
+		if fileExists(":" .. currentMapName .. "/" .. currentMapName .. ".png") then
+			x, y = 500, 500
+			mapName = ":" .. currentMapName .. "/" .. currentMapName .. ".png"
 		end
+
+		transition = guiCreateStaticImage( screenX/2-(x/2), screenY/2-(y/2) - 15, x, y, mapName, false )			
+
+		showHelpMessage(((screenY / 2) - (y / 2)) + y)
 	end
-)
+end
 
-
-addEvent( "onClientMapStarted", true )
 function hideTransitionImage()
 	if transition then
 		destroyElement( transition )
@@ -229,41 +275,14 @@ function hideTransitionImage()
 	hideHelpMessage()
 end
 
-addEventHandler( "onClientMapStarted", root,
-	function( class, distpm )
-		hideTransitionImage()
 
-		classes = class
-		options.distanceToPM = distpm	
-	end
-)
-
-addEvent( "sendClientMapData", true )
-addEventHandler( "sendClientMapData", root,
-	function( class, current, distpm )
-		classes = class
-		options.distanceToPM = distpm
-		currentPM = current
-		
-		if not options.distanceToPM then
-			if options.distanceToPMTimer then
-				if isTimer( options.distanceToPMTimer ) then
-					killTimer( options.distanceToPMTimer )
-				end
-				options.distanceToPMTimer = nil
-							
-				drawStaticTextToScreen( "delete", "pmDist" )
-			end
-		end
-	end
-)
-
-
-addEventHandler( "onClientPlayerQuit", root,
+addEventHandler("onClientPlayerQuit", root,
 	function()
 		if source == currentPM then
 			currentPM = nil
 		end
+
+		removePlayerBlip(source)
 	end
 )
 
@@ -314,6 +333,8 @@ addEventHandler( "onClientElementDataChange", root,
 				end
 			end
 		end
+
+		blipsElementDataChange(source, dataName, oldValue)
 	end
 )
 
@@ -343,23 +364,28 @@ function(attacker)
 end)
 
 
+addEventHandler("onClientPlayerSpawn", localPlayer,
+	function(team)
+		setupAFKTimer(team)
+
+		blipsClientPlayerSpawn()
+	end
+)
+
 --[[----------------------------------------------
 	AFK timer that puts players back in the class selection
 ]]------------------------------------------------
 local stillOnSpawn = nil
 local stillOnSpawnPosition = {}
 
-
-addEventHandler("onClientPlayerSpawn", localPlayer,
-	function(team)
-		killAFKTimer()
-		
-		if team then
-			stillOnSpawn = setTimer(warnAFKPlayer, 6000, 2)
-			stillOnSpawnPosition = {getElementPosition(localPlayer)}
-		end	
-	end
-)
+function setupAFKTimer(team)
+	killAFKTimer()
+	
+	if team then
+		stillOnSpawn = setTimer(warnAFKPlayer, 6000, 2)
+		stillOnSpawnPosition = {getElementPosition(localPlayer)}
+	end	
+end
 
 addEventHandler("onClientKey", root,
 	function(button, pressOrRelease)
