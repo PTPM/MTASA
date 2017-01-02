@@ -33,7 +33,7 @@ local bindCache = {}
 local smartCommands =  {
 	{
 		commandBind = "radial_social",
-		suggestedKey = "n",
+		suggestedKey = "F2",
 		step = 0,
 		linesPosCache = {},
 		commands = {
@@ -82,7 +82,7 @@ local smartCommands =  {
 	},
 	{
 		commandBind = "radial_instructions",
-		suggestedKey = "b",
+		suggestedKey = "F3",
 		step = 0,
 		linesPosCache = {},
 		commands = {
