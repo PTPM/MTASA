@@ -53,6 +53,29 @@ function prepareUserDatabase()
 	addColumnToDatabase( "playerstats", "joindate", "BIGINT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "timeplaying", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "longestsession", "INT UNSIGNED", 0 )
+
+	--[[ to add:
+		terrorcount
+		policecount
+		bgcount
+		mediccount
+		objectivesplayed
+		tasksplayed
+
+		hphealedpassive
+
+		hcount
+		reclasscount
+		rccount
+		swapclasscount
+		plancount
+		leaveclasscount
+		waterdeathcount
+		abandonedcount
+		safezonecount
+
+		eventambulancecount
+	]]
 end
 addEventHandler( "onResourceStart", resourceRoot, prepareUserDatabase )
 

@@ -317,15 +317,7 @@ function makePlayerSpawn( thePlayer )
 		end
 	end
 	
-	
-	
-	classID = getPlayerClassID( thePlayer )	
-	if classes and classID and classes[classID].type == "pm" then
-		--loadBodyguards()
-		--addEventHandler("onPlayerVehicleEnter", thePlayer, onPMVehicleEnter)
-		--addEventHandler("onPlayerVehicleExit", thePlayer, onPMVehicleExit)
-	end
-	
+	helpSystemPlayerSpawn(thePlayer, class)	
 end
 
 

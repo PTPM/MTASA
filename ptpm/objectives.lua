@@ -18,6 +18,15 @@ addEventHandler( "onObjectiveEnter", root,
 						end
 					end
 				end
+
+				if data.objectives.finished < 3 then
+					triggerHelpEvent(thePlayer, "OBJECTIVE_ENTER")
+				end
+
+				if data.objectives.helpTimer then
+					killTimer(data.objectives.helpTimer)
+					data.objectives.helpTimer = nil
+				end
 			end
 		end		
 	end
@@ -43,6 +52,12 @@ addEventHandler( "onObjectiveLeave", root,
 						end
 					end
 				end
+
+				if data.objectives.helpTimer then
+					killTimer(data.objectives.helpTimer)
+				end
+
+				setupObjectiveHelpPromptTimer()
 			end
 		end		
 	end
@@ -124,6 +139,10 @@ addEventHandler("onObjectiveComplete", root,
 					exports.missiontimer:setMissionTimerTime(data.timer, timeRemaining + ((1000 * 60) * 3))
 					options.roundtime = options.roundtime + ((1000 * 60) * 3)
 				end
+			end
+
+			if data.objectives.finished <= 3 then
+				triggerHelpEvent(thePlayer, "OBJECTIVE_COMPLETE")
 			end
 
 			setupNewObjective()
@@ -225,4 +244,18 @@ function clearObjective()
 			end
 		end	
 	end
+end
+
+function setupObjectiveHelpPromptTimer()
+	if data.objectives.helpTimer and isTimer(data.objectives.helpTimer) then
+		killTimer(data.objectives.helpTimer)
+	end
+
+	data.objectives.helpTimer = setTimer(
+		function()
+			if currentPM and isElement(currentPM) then
+				triggerHelpEvent(currentPM, "OBJECTIVE_NUDGE")
+			end
+		end,
+	60000, 0)
 end

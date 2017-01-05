@@ -7,6 +7,8 @@
 	<script src="util_shared.lua" type="client"/>
 
 	<script src="spawn_types.lua" type="server"/>
+	<script src="help_system.lua" type="server"/>
+	<script src="help_system_definitions.lua" type="server"/>
 
 	<script src="main_server.lua" type="server"/>
 	<script src="main_client.lua" type="client"/>
@@ -37,10 +39,10 @@
 	
 	<script src="blips_client.lua" type="client"/>
 	<script src="help_client.lua" type="client"/>
+
 	<!--<script src="bots_client.lua" type="client"/>
 	<script src="bots.lua" type="server"/>
 
-	
 	<script src="admin_gui_server.lua" type="server"/>
 	<script src="admin_gui.lua" type="client"/>
 	-->

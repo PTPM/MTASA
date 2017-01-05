@@ -76,3 +76,17 @@ function getPlayerStatistic( thePlayer, data )
 	end
 	return false
 end
+
+function incrementPlayerStatistic(player, data)
+	if not getSensitiveUserdata(thePlayer, "username") then 
+		return false 
+	end
+
+	if playerStats[player] then
+		local value = tonumber(playerStats[player][data]) or 0
+		playerStats[player][data] = value + 1
+		return true
+	end
+
+	return false
+end

@@ -354,6 +354,10 @@ function reclassCommand( thePlayer, commandName, className )
 
 	if isBalanced(proposedClass, classID) then
 		setPlayerClass( thePlayer, proposedClass )
+
+		if commandName == "reclass" then
+			triggerHelpEvent(thePlayer, "COMMAND_RC")
+		end
 	else
 		local teamName = teamMemberName[classes[proposedClass].type]
 		outputChatBox( "Could not spawn as " .. teamName .. ", that class is full.", thePlayer, unpack( colour.personal ) )	
@@ -384,7 +388,7 @@ function swapclass( thePlayer, commandName, otherName )
 			return outputChatBox( "You may not swapclass with two people at once.", thePlayer, unpack( colour.personal ) )
 		end  
 
-		drawStaticTextToScreen( "draw", otherPlayer, "swapText", "The Prime Minister wants to swapclass with you.\nType /y to accept or /n to decline.", "screenX-340", "screenY-60", 320, 40, colour.important, 1, "clear" )
+		triggerHelpEvent(otherPlayer, "COMMAND_SWAPCLASS_TARGET")
 
 		options.swapclass.target = otherPlayer
 		options.swapclass.timer = setTimer( swapclassOffer, 15000, 1, false, otherPlayer )

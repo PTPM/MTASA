@@ -53,6 +53,14 @@ addEventHandler( "onVehicleEnter", root,
 		end
 
 		setVehicleStale(source)
+
+		if data.currentMap.hasAmbulances and getElementModel(source) == 416 then
+			local class = getPlayerClassID(thePlayer)
+
+			if classes[class].medic then
+				triggerHelpEvent(thePlayer, "MEDIC_AMBULANCE")
+			end
+		end
 	end
 )
 

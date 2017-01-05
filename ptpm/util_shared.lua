@@ -109,3 +109,10 @@ function stripColourCodes(s)
 	return strippedString
 end
 
+function distanceSquared(aX, aY, aZ, bX, bY, bZ)
+	local vX = aX - bX
+	local vY = aY - bY
+	local vZ = aZ - bZ
+
+	return vX*vX + vY*vY + vZ*vZ
+end

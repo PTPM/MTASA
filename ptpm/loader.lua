@@ -6,8 +6,8 @@ addEvent( "onGamemodeMapStart", false )
 function ptpmMapStart( map )
 	options = {}
 	data = {}
+	data.currentMap = {}
 
-	currentClass = {}
 	currentPM = false
 	
 	classes = {}
@@ -246,6 +246,8 @@ function ptpmMapStart( map )
 	
 	
 	data.tasks = {}
+	data.tasks.finished = 0
+
 	local taskTable = getElementsByType( "task", runningMapRoot )
 	for _, value in ipairs( taskTable ) do
 		local taskType = getElementData( value, "type" )
@@ -264,6 +266,11 @@ function ptpmMapStart( map )
 		setElementParent( data.tasks[value].taskArea, value )
 		setElementParent( data.tasks[value].marker, value )
 		setElementParent( data.tasks[value].blip, value )
+
+		data.currentMap.hasTasks = true
+	end
+	if data.currentMap.hasTasks then
+		setupTaskHelpPromptTimer()
 	end
 	
 	
@@ -288,7 +295,11 @@ function ptpmMapStart( map )
 		setElementParent( data.objectives[value].marker, value )
 		setElementParent( data.objectives[value].blip, value )
 	end
-	if #objectiveTable > 0 then setupNewObjective() end
+	if #objectiveTable > 0 then 
+		data.currentMap.hasObjectives = true
+		setupNewObjective() 
+		setupObjectiveHelpPromptTimer()
+	end
 	
 	
 	data.vehicleRespawn = {}
@@ -303,9 +314,15 @@ function ptpmMapStart( map )
 		data.vehicleRespawn[value].delay = data.vehicleRespawnTime
 
 		setElementData(value, "ptpm.vehicle.fresh", true, false)
+
+		local model = getElementModel(value)
 		
-		if options.vehicleLaunch and getElementModel(value) == 476 then
+		if options.vehicleLaunch and model == 476 then
 			data.vehicleRespawn[value].launched = false
+		end
+
+		if model == 416 and not data.currentMap.hasAmbulances then
+			data.currentMap.hasAmbulances = true
 		end
 
 		setVehicleDamageProof(value, true)
@@ -317,6 +334,7 @@ function ptpmMapStart( map )
 	
 	
 	data.pickups = {}
+	data.weapons = {}
 	local pickupTable = getElementsByType( "pickup", runningMapRoot )
 	for _, value in ipairs( pickupTable ) do
 		data.pickups[value] = {}
@@ -324,6 +342,10 @@ function ptpmMapStart( map )
 		data.pickups[value].respawn = getPickupRespawnInterval( value ) ~= 9999999 and getPickupRespawnInterval( value ) or false
 		data.pickups[value].destroy = (getElementData( value, "destroy" ) == "true")
 		data.pickups[value].lastPickup = {}
+
+		if getPickupType(value) == 2 then
+			table.insert(data.weapons, value)
+		end
 	end
 	
 	
@@ -518,6 +540,16 @@ addEvent( "onGamemodeMapStop", false )
 function ptpmMapStop( map )
 	clearTask()
 	clearObjective()
+
+	if data.objectives.helpTimer then
+		killTimer(data.objectives.helpTimer)
+		data.objectives.helpTimer = nil
+	end
+
+	if data.tasks.helpTimer then
+		killTimer(data.tasks.helpTimer)
+		data.tasks.helpTimer = nil
+	end
 
 	for _, value in ipairs( getElementsByType( "task", source ) ) do
 		if data.tasks and data.tasks[value] then

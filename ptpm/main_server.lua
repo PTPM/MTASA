@@ -106,8 +106,7 @@ teams = {
 --playerInfo = {}
 
 addEventHandler( "onResourceStart", resourceRoot, 
-	function( resource )
-		
+	function( resource )		
 		-- Check if mapmanager is running
 		if not isRunning( "mapmanager" ) then
 			outputServerLog( "mapmanager resource is not running, quitting ptpm!" )
@@ -172,6 +171,8 @@ addEventHandler( "onResourceStart", resourceRoot,
 				end
 			end
 		end, 2000, 1)
+
+		helpSystemSetup()
 	end
 )
 
@@ -506,13 +507,47 @@ function roundTick()
 	
 	local players = getElementsByType( "player" )
 	
+
+	local weaponChance = math.random(1, 100) < 10
+	local randomHelpChance = math.random(1, 100) >= 99
+
+	for _, player in ipairs(players) do
+		local classID = getPlayerClassID(player)
+
+		if classID then
+			if weaponChance then
+				local x, y, z = getElementPosition(player)
+
+				for _, pickup in ipairs(data.weapons) do
+					local px, py, pz = getElementPosition(pickup)
+
+					-- close to the weapon pickup
+					if distanceSquared(x, y, z, px, py, pz) < 2500 then -- 50 ^ 2
+						-- were not close to the weapon pickup last time we checked
+						if distanceSquared(getElementData(player, "ptpm.goodX"), getElementData(player, "ptpm.goodY"), getElementData(player, "ptpm.goodZ"), px, py, pz) >= 2500 then
+							triggerHelpEvent(player, "PICKUP_NEAR")
+							break
+						end
+					end
+				end
+			end
+
+			-- show a random help prompt
+			if randomHelpChance then
+				if classes[classID].type ~= "pm" then
+					triggerHelpEvents(player, {"COMMAND_RECLASS", "COMMAND_DUTY", "BIND_F4"}, false, 1, true)
+				else
+					triggerHelpEvents(player, {"COMMAND_SWAPCLASS", "COMMAND_PLAN"}, false, 1, true)
+				end
+			end
+		end
+	end
 	
 	checkPlayersOutOfBounds()
 	
-	checkTasks( players )
+	checkTasks(players)
 	
-	checkObjectives( players, tick )
-	
+	checkObjectives(players, tick)
 	
 	if timeLeft % 120000 < 1000 then
 		changeWeather()
@@ -534,6 +569,10 @@ function roundTick()
 		-- revert if that ever gets fixed, bug #9492
 		if options.pmHealthBonus and (timeLeft % 10000) < 1000 then
 			if (not options.pmWaterHealthPenalty) or (not isElementInWater(currentPM)) then
+				if getElementHealth(currentPM) < 95 then
+					triggerHelpEvent(currentPM, "OPTION_HEALTH_REGEN_PM")
+				end
+
 				changeHealth(currentPM, options.pmHealthBonus * 2)
 				--outputDebugString(string.format("tick %.4f %.4f", math.ceil(getElementHealth(currentPM)), getElementHealth(currentPM)))
 			end
@@ -543,6 +582,8 @@ function roundTick()
 			if isElementInWater(currentPM) then
 				if not getElementData(currentPM, "ptpm.waterHealthPenaltyTick") then
 					setElementData(currentPM, "ptpm.waterHealthPenaltyTick", tick, false)
+
+					triggerHelpEvent(currentPM, "OPTION_PM_WATER_PENALTY")
 				end
 
 				-- -0 hp for the first 20s, then increase by 1 every 20s (-1, -2, -3, -4, etc)
@@ -558,6 +599,10 @@ function roundTick()
 		
 		if options.pmAbandonedHealthPenalty and not getPedOccupiedVehicle( currentPM ) and timeLeft % (options.pmAbandonedHealthPenalty * 1000) then
 			changeHealth( currentPM, -1 )
+
+			if getElementHealth(currentPM) < 70 then
+				triggerHelpEvent(currentPM, "OPTION_PM_ABANDONED_PENALTY")
+			end
 		end		
 		
 		if options.pmWaterDeath and isElementInWater( currentPM ) then
@@ -570,12 +615,16 @@ function roundTick()
 		for _, value in ipairs(players) do
 			local classID = getPlayerClassID( value )
 			if value and classID and classes[classID].medic and classes[classID].type ~= "pm" then
-				changeHealth( value, 1 )
+				if getElementHealth(value) < 95 then
+					triggerHelpEvent(value, "OPTION_HEALTH_REGEN_MEDIC")
+				end
+
+				changeHealth(value, 2)
 			end
 			
 			for _, value2 in ipairs(players) do
 				local ClassID2 = getPlayerClassID( value2 )
-				if value2 and ClassID2 and classes[ClassID2].medic and classes[ClassID2].type ~= "pm" then
+				if value2 and value2 ~= value and ClassID2 and classes[ClassID2].medic and classes[ClassID2].type ~= "pm" then
 					local pX, pY, pZ = getElementPosition( value )
 					local mX, mY, mZ = getElementPosition( value2 )
 					if pX and pY and pZ and mX and mY and mZ then
@@ -583,6 +632,7 @@ function roundTick()
 						if d < 10 then
 							if isPlayerInSameTeam( value, value2 ) then
 								changeHealth( value, 1, 5 )
+								triggerHelpEvent(value2, "MEDIC_PASSIVE_GIVE")
 							end
 						end
 						if getPedOccupiedVehicle( value2 ) and getElementModel(getPedOccupiedVehicle( value2 )) == 416 and d < 7 then
@@ -796,6 +846,10 @@ function healCommand( thePlayer, commandName, otherName )
 	end
 	
 	playerHealPlayer( thePlayer, patient, d )
+
+	if commandName == "heal" and classes[getPlayerClassID(thePlayer)].medic then
+		triggerHelpEvent(thePlayer, "MEDIC_H")
+	end
 end
 addCommandHandler( "heal", healCommand )
 addCommandHandler( "h", healCommand )
@@ -921,6 +975,8 @@ function plan( thePlayer, commandName, ... )
 														classes[getPlayerClassID( p )].type == "bodyguard" or
 														classes[getPlayerClassID( p )].type == "police" ) then
 					showPlan( p )
+
+					triggerHelpEvent(p, "COMMAND_PLAN_SET")
 				end
 			end
 		else
@@ -957,27 +1013,28 @@ addCommandHandler( "pm",
 )
 
 addEventHandler("onPlayerDamage", root,
-function(attacker, weapon, bodypart, loss)
-  if attacker and getElementType(attacker) == "player" and attacker ~= source then
-    local damage = getElementData( attacker, "ptpm.damage" ) or 0
-    local damageTaken = getElementData( source, "ptpm.damageTaken" ) or 0
+	function(attacker, weapon, bodypart, loss)
+		if attacker and getElementType(attacker) == "player" and attacker ~= source then
+			local damage = getElementData( attacker, "ptpm.damage" ) or 0
+			local damageTaken = getElementData( source, "ptpm.damageTaken" ) or 0
 
-    if isRunning( "ptpm_accounts" ) then        
-      damage = (exports.ptpm_accounts:getPlayerStatistic( attacker, "damage" ) or damage) + loss
-      exports.ptpm_accounts:setPlayerStatistic( attacker, "damage", damage )
-      damageTaken = (exports.ptpm_accounts:getPlayerStatistic( source, "damagetaken" ) or damageTaken) + loss
-      exports.ptpm_accounts:setPlayerStatistic( source, "damagetaken", damageTaken )
-    else
-      damage = damage + loss
-      damageTaken = damageTaken + loss
-    end
-    
-    setElementData( attacker, "ptpm.score.damage", string.format( "%d", damage ) )
-    setElementData( attacker, "ptpm.damage", damage, false)
-    setElementData( source, "ptpm.score.damageTaken", string.format( "%d", damageTaken ) )
-    setElementData( source, "ptpm.damageTaken", damageTaken, false)
-  end
-end)
+			if isRunning( "ptpm_accounts" ) then        
+				damage = (exports.ptpm_accounts:getPlayerStatistic( attacker, "damage" ) or damage) + loss
+				exports.ptpm_accounts:setPlayerStatistic( attacker, "damage", damage )
+				damageTaken = (exports.ptpm_accounts:getPlayerStatistic( source, "damagetaken" ) or damageTaken) + loss
+				exports.ptpm_accounts:setPlayerStatistic( source, "damagetaken", damageTaken )
+			else
+				damage = damage + loss
+				damageTaken = damageTaken + loss
+			end
+
+			setElementData( attacker, "ptpm.score.damage", string.format( "%d", damage ) )
+			setElementData( attacker, "ptpm.damage", damage, false)
+			setElementData( source, "ptpm.score.damageTaken", string.format( "%d", damageTaken ) )
+			setElementData( source, "ptpm.damageTaken", damageTaken, false)
+		end
+	end
+)
 
 
 -- addCommandHandler("mo",
