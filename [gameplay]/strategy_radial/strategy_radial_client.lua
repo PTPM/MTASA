@@ -241,6 +241,9 @@ end
 
 -- Step 3: Handle the logic
 function showStrategicRadialMenu(_, whichStrategyRadialMenu_commandBind)
+	-- is menu already open?
+	if requestedStrategyRadialMenu~=nil then return end 
+
 	-- Was cursor showing before Strategy Radial was called?
 	cursorState = isCursorShowing()
 
@@ -249,9 +252,6 @@ function showStrategicRadialMenu(_, whichStrategyRadialMenu_commandBind)
 
 	-- is player alive?
 	if math.ceil(getElementHealth ( localPlayer ))== 0 then return end
-
-	-- is menu already open?
-	if requestedStrategyRadialMenu~=nil then return end 
 
 	-- Unset select state
 	for ks,strategyRadialMenu in pairs(smartCommands) do
