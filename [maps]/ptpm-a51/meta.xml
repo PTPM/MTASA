@@ -1,6 +1,7 @@
 ﻿<meta>
 	<info author="Remp" type="map" gamemodes="ptpm" name="Area 51" version="1.0" />
 	<map src="ptpm-a51.map"/>
+	<script src="client.lua" type="client"/>
 	<settings>
 		<setting name="*mapType" value="desert" />
 		<setting name="*weathers" value="[[3,12,14,17,19,308,320,10]]" />
