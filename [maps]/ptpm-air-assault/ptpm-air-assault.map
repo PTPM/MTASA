@@ -77,13 +77,13 @@
     <!--cropdust-->
     <vehicle model="417" posX="-2292.3" posY="-1639.0" posZ="483.7" rotX="0.0" rotY="0.0" rotZ="0.0" color="0 0 0 0" />
     <!--leviathn-->
-    <vehicle model="593" posX="1580.0" posY="-1250.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="0.0" color="6 65 0 0" />
+    <vehicle model="593" posX="1580.0" posY="-1250.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="180.0" color="6 65 0 0" />
     <!--dodo-->
-    <vehicle model="487" posX="1580.0" posY="-1230.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="6 65 0 0" />
+    <vehicle model="487" posX="1580.0" posY="-1230.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="270.0" color="6 65 0 0" />
     <!--maverick-->
-    <vehicle model="511" posX="1560.0" posY="-1230.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="180.0" color="6 65 0 0" />
+    <vehicle model="511" posX="1560.0" posY="-1230.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="0.0" color="6 65 0 0" />
     <!--beagle-->
-    <vehicle model="513" posX="1560.0" posY="-1250.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="270.0" color="6 65 0 0" />
+    <vehicle model="513" posX="1560.0" posY="-1250.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="6 65 0 0" />
     <!--stunt-->
     <vehicle model="476" posX="1986.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
     <!--rustler-->

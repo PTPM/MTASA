@@ -377,11 +377,12 @@ function setPlayerInsideInterior(int, dim, rot, x, y, z, interior, targetInterio
 		end
 	end
 
-	setElementPosition(localPlayer, x, y, z)
+	
 	setElementInterior(localPlayer, int)
 	setCameraInterior(int)
 	setElementDimension(localPlayer, dim)
-	setElementFrozen(localPlayer, true)
+	--setElementFrozen(localPlayer, true)
+	setElementPosition(localPlayer, x, y, z)
 
 	pauseUntilWorldHasLoaded({x = x, y = y, z = z}, triggerGroundLoaded, interior)
 end
@@ -442,6 +443,8 @@ function pauseUntilWorldHasLoaded(data, fn, ...)
 			-- args: start x, y, z, end x, y, z, checkBuildings, checkVehicles, checkPeds, checkObjects, checkDummies, seeThroughStuff, ignoreSomeObjectsForCamera, ignoredElement
 			if (not isLineOfSightClear(data.x, data.y, data.z + 1, data.x, data.y, data.z - 5, true, false, false, true, false, true, false, localPlayer)) then
 				foundGround = true
+			else
+				setElementPosition(localPlayer, data.x, data.y, data.z)
 			end
 		end, 
 	100, 0, {...})
@@ -455,7 +458,7 @@ function triggerGroundLoaded(interior)
 
 	toggleAllControls(true, true, false)	
 
-	setElementFrozen(localPlayer, false)
+	--setElementFrozen(localPlayer, false)
 
 	fadeCamera(true, 1)
 

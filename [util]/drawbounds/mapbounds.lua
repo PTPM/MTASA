@@ -8,6 +8,7 @@ prepared = false
 -- Make sure the events exist
 addEvent( "onClientMapStarted", true )
 addEvent( "sendClientMapData", true )
+addEvent("onClientMapStop", true)
 
 function updateBoundaryCorners()
 	boundaryCorners = {}
@@ -50,7 +51,7 @@ function prepareMaps()
 	end
 
 	prepared = true
-	
+
 	-- Prepare boundaries on to radar
 	cleanUpRadar()
 	addEventHandler( "onClientHUDRender", root, prepareRadar )
