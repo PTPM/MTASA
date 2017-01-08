@@ -160,16 +160,10 @@ function startEndOfRoundPTPMMapvote()
 		mapvote.lastMap = runningMapName
 	end
 	
-	-- Map 3: "Unknown" other random map
+	-- Map 3: Any other random map
 	local randomMap3 = getMapOffer(mapTable, {runningMapName, mapvote.lastMap, randomMap, randomMap2})
-	table.insert(mapvote.maps, {
-		name = "Random Map",
-		image = "mapvoteimages/map-pic-_randomMap.png",
-		votes = 0,
-		youVoted = false,
-		hasWon = false,
-		res = randomMap3
-	})
+	table.insert(mapvote.maps, getMapvoteObject(randomMap3))	
+	mapvote.mapsOffered[randomMap3] = (mapvote.mapsOffered[randomMap3] or 0) + 1
 	
 	-- Trigger client event
 	for _, p in ipairs(getElementsByType("player")) do
