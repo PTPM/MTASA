@@ -88,7 +88,7 @@ setTimer (function()
 	end
 
 	for _, p in ipairs(getElementsByType("player")) do
-		if p and isElement(p) then
+		if p and isElement(p) and getPlayerTeam(p) then
 			local playerName = getPlayerName(p)
 			local x,y,z = getElementPositionTwoDecimals(p)
 			local interior = getElementInterior(p)
