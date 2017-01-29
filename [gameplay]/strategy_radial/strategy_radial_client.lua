@@ -13,7 +13,6 @@ local colours = {
 	white = tocolor(255, 255, 255, 255)
 }
 
-local overwriteDisableStrategyRadial = true
 local numberOfSmartCommands = 0
 local cursorState = false
 local smartPingWorldX, smartPingWorldY, smartPingWorldZ = 0,0,0
@@ -245,7 +244,9 @@ function showStrategicRadialMenu(_, whichStrategyRadialMenu_commandBind)
 	if requestedStrategyRadialMenu~=nil then return end 
 
 	-- Ensure it is allowed
-	if overwriteDisableStrategyRadial then return end
+	if exports.ptpm:isInClassSelection() or exports.ptpm:isRoundEnded() then
+		return
+	end
 
 	-- is player alive?
 	if math.ceil(getElementHealth ( localPlayer ))== 0 then return end
@@ -273,15 +274,14 @@ function showStrategicRadialMenu(_, whichStrategyRadialMenu_commandBind)
 end
 
 function executeStrategicRadialMenu()
-
 	removeEventHandler("onClientRender", root, drawStrategyRadial)
 	removeEventHandler( "onClientCursorMove", getRootElement( ), getSelectedRadialOption)
 	
 	if not cursorState then
 		showCursor ( false, false )
 	end
-		
-	if  not overwriteDisableStrategyRadial then 
+
+	if (not exports.ptpm:isInClassSelection()) and (not exports.ptpm:isRoundEnded()) then
 		for ks,strategyRadialMenu in pairs(smartCommands) do
 			if requestedStrategyRadialMenu==strategyRadialMenu.commandBind then
 				for k,smartCommand in pairs(strategyRadialMenu.commands) do
@@ -301,11 +301,6 @@ function executeStrategicRadialMenu()
 	requestedStrategyRadialMenu = nil
 end
 
-
-addEventHandler( "ptpmStartMapVote", localPlayer, function() overwriteDisableStrategyRadial = true end )
-addEventHandler( "enterClassSelection", localPlayer,  function() overwriteDisableStrategyRadial = true end ) 
-addEventHandler( "leaveClassSelection", localPlayer,  function() overwriteDisableStrategyRadial = false end )
-
 addEventHandler("onClientResourceStart", resourceRoot,
 	function()
 		--outputDebugString("strategy_radial started")
@@ -319,8 +314,6 @@ addEventHandler("onClientResourceStart", resourceRoot,
 			font.base = "default"
 			font.scalar = 1
 		end
-
-		--overwriteDisableStrategyRadial = false
 
 		for k, strategyRadialMenu in pairs(smartCommands) do
 			if #smartCommands[k].commands==0 then

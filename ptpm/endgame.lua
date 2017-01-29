@@ -21,6 +21,8 @@ function setRoundEnded()
 			if getElementData(p, "ptpm.inClassSelection") then
 				classSelectionRemove(p)
 			end
+
+			triggerClientEvent(p, "onClientRoundEnd", p)
 		end
 	end
 

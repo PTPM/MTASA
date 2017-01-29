@@ -396,6 +396,10 @@ function removeClassSelection()
 	classSelection.hidingTimer = nil
 end
 
+function isInClassSelection()
+	return classSelection.visible and (not classSelection.hiding)
+end
+
 
 function onElectionFinished(electedPM)
 	election.active = false
