@@ -125,6 +125,7 @@ local outputColour = {255, 128, 0}
 local allowPlayerToTeleport = true
 local targetCollider = nil
 local immunityTimer = nil
+local leaveTimer = nil
 local settings = {}
 local offset = {
 	xVariance = 0.8,
@@ -384,7 +385,7 @@ function setPlayerInsideInterior(int, dim, rot, x, y, z, interior, targetInterio
 	--setElementFrozen(localPlayer, true)
 	setElementPosition(localPlayer, x, y, z)
 
-	pauseUntilWorldHasLoaded({x = x, y = y, z = z}, triggerGroundLoaded, interior)
+	pauseUntilWorldHasLoaded({x = x, y = y, z = z}, triggerGroundLoaded, interior, x, y, z)
 end
 
 -- adjust the position slightly forward and to either side
@@ -450,11 +451,16 @@ function pauseUntilWorldHasLoaded(data, fn, ...)
 	100, 0, {...})
 end
 
-function triggerGroundLoaded(interior) 
+function triggerGroundLoaded(interior, x, y, z) 
 	allowPlayerToTeleport = true
 
 	--outputDebugString("loaded: inside " ..tostring(targetCollider).. " " ..tostring(isElementWithinColShape(localPlayer, targetCollider)))
-	targetCollider = nil
+	--targetCollider = nil
+	if leaveTimer and isTimer(leaveTimer) then
+		killTimer(leaveTimer)
+	end
+
+	leaveTimer = setTimer(colliderLeaveCustom, 100, 0, x, y, z)
 
 	toggleAllControls(true, true, false)	
 
@@ -481,7 +487,15 @@ function triggerGroundLoaded(interior)
  	debugHook("triggerGroundLoaded("..tostring(getInteriorName(interior))..")", "col:" .. tostring(lookups.colliders[interior]), "target:" .. tostring(targetCollider))
 end
 
+function colliderLeaveCustom(x, y, z)
+	local px, py, pz = getElementPosition(localPlayer, x, y, z)
 
+	if getDistanceBetweenPoints3D(px, py, pz, x, y, z) > 2 then
+		targetCollider = nil
+		killTimer(leaveTimer)
+		leaveTimer = nil
+	end
+end
 
 function getInteriorMarker(elementInterior)
 	if not isElement(elementInterior) then 
