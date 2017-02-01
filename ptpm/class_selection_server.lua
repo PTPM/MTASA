@@ -1,10 +1,10 @@
 ﻿election = {
 	active = false,
 	candidates = {},
-
+	
 	addCandidate = 
-		function(player)
-			if not election.active or getElementData(player, "ptpm.electionCandidate") then
+		function(player, electors)
+			if not election.active or getElementData(player, "ptpm.electionCandidate") or electors < 1 then
 				return
 			end
 
@@ -16,7 +16,11 @@
 			end
 
 			setElementData(player, "ptpm.electionCandidate", true, false)
-			table.insert(election.candidates, player)
+			triggerClientEvent(player, "updateClientChanceInElection", player, electors)
+			
+			for i=1,electors do
+				table.insert(election.candidates, player)
+			end
 
 			for _, p in ipairs(getElementsByType("player")) do
 				if p and isElement(p) and isPlayerActive(p) and getElementData(p, "ptpm.inClassSelection") then
@@ -24,16 +28,17 @@
 				end
 			end
 		end,
+		
 	removeCandidate = 
 		function(player)
 			if not election.active or not getElementData(player, "ptpm.electionCandidate") then
 				return
 			end
 
-			for i, candidate in ipairs(election.candidates) do
-				if candidate == player then
+			-- Iterating from back to front to remove the same value multiple times
+			for i=#election.candidates,1,-1 do
+				if election.candidates[i].candidate == player then
 					table.remove(election.candidates, i)
-					break
 				end
 			end
 
@@ -150,7 +155,16 @@ function onPlayerRequestSpawn(requestedClassID)
 				election.removeCandidate(client)
 				triggerClientEvent(client, "onPlayerRequestSpawnReserved", root, requestedClassID, true)
 			else
-				election.addCandidate(client)
+				-- determine number of "ballot boxes" on the figurative ballot form, based on player experience
+				-- if ptpm_accounts (statistics module) is not running, then elementData will be empty, and will work as expected with ballot forms = 1
+				local gamesPlayed = (exports.ptpm_accounts:getPlayerStatistic( client, "roundswon" ) or 0) + (exports.ptpm_accounts:getPlayerStatistic( client, "roundslost" ) or 0)
+				local electors = 1
+				
+				if gamesPlayed >= 12 then electors = electors + 1 end	-- Get an additional box for 12 games played (based on PTPM Rank minimum)
+				if gamesPlayed >= 40 then electors = electors + 1 end	-- Get an additional box for 40 games played (based on PTPM Rank League Cap)
+				electors = electors + math.floor(gamesPlayed / 100)	-- Get an additional box for each 100 games played
+				
+				election.addCandidate(client, electors)
 				triggerClientEvent(client, "onPlayerRequestSpawnReserved", root, requestedClassID)
 			end
 		else

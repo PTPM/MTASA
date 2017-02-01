@@ -38,12 +38,14 @@ local election = {
 	entered = false,
 	candidates = 0,
 	cleared = false,
+	myElectors = 1,
 }
 
 
 addEvent("enterClassSelection", true)
 addEvent("leaveClassSelection", true)
 addEvent("updateClassSelection", true)
+addEvent("updateClientChanceInElection", true)
 addEvent("onPlayerRequestSpawnDenied", true)
 addEvent("onPlayerRequestSpawnReserved", true)
 addEvent("onElectionFinished", true)
@@ -333,11 +335,18 @@ function updateClassSelection(isFull, numberOfCandidates)
 		election.candidates = numberOfCandidates
 
 		if election.entered then
-			classSelection.spawnMessage = string.format("Election chance\n%s%d%%", colours.hex.red, math.floor(100 / election.candidates))
+			classSelection.spawnMessage = string.format("Election chance\n%s%d%%", colours.hex.red, math.floor((election.myElectors * 100) / election.candidates))
 		end
 	end
 end
 addEventHandler("updateClassSelection", root, updateClassSelection)
+
+-- updated when entering election
+function updateClientChanceInElection(electors)
+	election.myElectors = electors
+end
+
+addEventHandler("updateClientChanceInElection", root, updateClientChanceInElection)
 
 
 -- called when the player spawns in-game and leaves the class selection
@@ -515,9 +524,9 @@ function drawClassSelection()
 
 	if election.active then
 		if election.candidates == 1 then
-			dxDrawText("There is 1 candidate\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)	
+			dxDrawText("There is 1 electors\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)	
 		else
-			dxDrawText("There are " .. tostring(election.candidates) .. " candidates\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
+			dxDrawText("There are " .. tostring(election.candidates) .. " electors\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
 		end
 	end
 
