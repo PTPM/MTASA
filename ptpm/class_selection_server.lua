@@ -35,9 +35,9 @@
 				return
 			end
 
-			-- Iterating from back to front to remove the same value multiple times
+			-- Iterating from back to front to remove the same value multiple times	
 			for i=#election.candidates,1,-1 do
-				if election.candidates[i].candidate == player then
+				if election.candidates[i] == player then
 					table.remove(election.candidates, i)
 				end
 			end
@@ -157,12 +157,14 @@ function onPlayerRequestSpawn(requestedClassID)
 			else
 				-- determine number of "ballot boxes" on the figurative ballot form, based on player experience
 				-- if ptpm_accounts (statistics module) is not running, then elementData will be empty, and will work as expected with ballot forms = 1
-				local gamesPlayed = (exports.ptpm_accounts:getPlayerStatistic( client, "roundswon" ) or 0) + (exports.ptpm_accounts:getPlayerStatistic( client, "roundslost" ) or 0)
 				local electors = 1
 				
-				if gamesPlayed >= 12 then electors = electors + 1 end	-- Get an additional box for 12 games played (based on PTPM Rank minimum)
-				if gamesPlayed >= 40 then electors = electors + 1 end	-- Get an additional box for 40 games played (based on PTPM Rank League Cap)
-				electors = electors + math.floor(gamesPlayed / 100)	-- Get an additional box for each 100 games played
+				if isRunning("ptpm_accounts") then
+					local gamesPlayed = (exports.ptpm_accounts:getPlayerStatistic( client, "roundswon" ) or 0) + (exports.ptpm_accounts:getPlayerStatistic( client, "roundslost" ) or 0)					
+					if gamesPlayed >= 12 then electors = electors + 1 end	-- Get an additional box for 12 games played (based on PTPM Rank minimum)
+					if gamesPlayed >= 40 then electors = electors + 1 end	-- Get an additional box for 40 games played (based on PTPM Rank League Cap)
+					electors = electors + math.floor(gamesPlayed / 100)	-- Get an additional box for each 100 games played
+				end
 				
 				election.addCandidate(client, electors)
 				triggerClientEvent(client, "onPlayerRequestSpawnReserved", root, requestedClassID)
