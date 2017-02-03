@@ -524,7 +524,7 @@ function drawClassSelection()
 
 	if election.active then
 		if election.candidates == 1 then
-			dxDrawText("There is 1 electors\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)	
+			dxDrawText("There is 1 elector\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)	
 		else
 			dxDrawText("There are " .. tostring(election.candidates) .. " electors\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
 		end
