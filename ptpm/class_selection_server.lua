@@ -255,7 +255,7 @@ function playerClassSelectionAccept(thePlayer, classID, notify)
 		notifyTeamAvailability()
 	end
 
-	bindKey(thePlayer, "f4", "down", classSelectionAfterDeath)
+	bindKey(thePlayer, "f4", "down", classSelectionAfterTimer)
 end
 
 function notifyTeamAvailability()
@@ -281,7 +281,56 @@ function classSelectionRemove(thePlayer)
 	end
 end
 
-function classSelectionAfterDeath( thePlayer )
+function cancelClassSelectionAfterTimer(thePlayer)
+	-- Kill the timer
+	local theTimer = getElementData(thePlayer, "classSelectionRequestTimer")
+
+	if isTimer(theTimer) then
+		killTimer(theTimer)
+		outputChatBox( "Class selection cancelled.", thePlayer, unpack( colour.personal ) )
+		
+		-- Allow to cancel by pressing F4 again
+		unbindKey(thePlayer, "f4", "down", cancelClassSelectionAfterTimer)
+		bindKey( thePlayer, "f4", "down", classSelectionAfterTimer )
+	end
+end
+
+function classSelectionAfterTimer(thePlayer)
+	-- Pfff... bogus!
+	if not isPlayerActive(thePlayer) or getElementData(thePlayer, "ptpm.inClassSelection") then 
+		return 
+	end
+	
+	if isPedDead( thePlayer ) then return end
+
+	local classID = getPlayerClassID( thePlayer )
+	if classes[classID].type == "pm" and not isPlayerOp( thePlayer ) then
+		outputChatBox( "The prime minister must use /swapclass.", thePlayer, unpack( colour.personal ) )
+		return
+	end
+
+	-- Set the timer
+	outputChatBox( "Returning to class selection in 5 seconds...", thePlayer, unpack( colour.personal ) )
+	
+	setElementData ( thePlayer, "classSelectionRequestTimer", 
+		setTimer(
+			function( player )
+				-- outputChatBox( "Back in class select.", player, unpack( colour.personal ) )
+				if player and isElement( player ) then
+					initClassSelection( player, true )
+					unbindKey(thePlayer, "f4", "down", cancelClassSelectionAfterTimer)
+					bindKey( thePlayer, "f4", "down", classSelectionAfterTimer )
+				end
+			end,
+		5000, 1, thePlayer ) 
+	, false )
+	
+	-- Allow to cancel by pressing F4 again
+	unbindKey( thePlayer, "f4", "down", classSelectionAfterTimer )
+	bindKey(thePlayer, "f4", "down", cancelClassSelectionAfterTimer)	
+end
+
+function classSelectionAfterDeath( thePlayer ) -- Legacy
 	unbindKey( thePlayer, "f4", "down", classSelectionAfterDeath )
 	setElementData( thePlayer, "ptpm.classSelectAfterDeath", true, false )
 	outputChatBox( "Returning to class selection after next death.", thePlayer, unpack( colour.personal ) )
