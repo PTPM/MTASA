@@ -1,3 +1,3 @@
 <meta>
-	<script src="kniferestrict.lua" type="client" />
+	<script src="kniferestrict.lua" type="server" />
 </meta>
