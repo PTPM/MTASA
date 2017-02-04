@@ -90,7 +90,7 @@ end
 
 addEventHandler("onClientResourceStart", resourceRoot,
 	function()
-		--outputDebugString("vehicle_weapons loaded")
+		outputDebugString("vehicle_weapons loaded")
 	
 		font.scalar = (120 / 44) * uiScale
 		-- the default fonts do not scale well, so load our own version at the sizes we need
@@ -147,10 +147,10 @@ end
 
 function limitVehicleFire()
 	if getControlState("vehicle_fire") or getControlState("vehicle_secondary_fire") then
-		--outputDebugString("Shots fired")
+		outputDebugString("Shots fired")
 		if limitedVehicles[currentVehId] and not shotsBeingBlocked then
 			shotsBeingBlocked = true
-			--outputDebugString("Blocking new shots for " ..limitedVehicles[currentVehId].reload.. "ms")
+			outputDebugString("Blocking new shots for " ..limitedVehicles[currentVehId].reload.. "ms")
 			removeVehicleFire(limitedVehicles[currentVehId].reload)
 		end
 	end
@@ -170,13 +170,13 @@ addEventHandler("onClientVehicleEnter", getRootElement(),
 		reloadWeaponsHudElement.hidden = true
 		currentVehId = getElementModel(source)
 		
-		--outputDebugString("Enter veh")
+		outputDebugString("Enter veh")
 		
 		if limitedVehicles[currentVehId] then
-			--outputDebugString("Enter restricted veh")
+			outputDebugString("Enter restricted veh")
 			
 			if not getElementData(source, "vehAmmo") then
-				--outputDebugString("This veh had NO ammo, set to: " .. limitedVehicles[currentVehId].ammo)
+				outputDebugString("This veh had NO ammo, set to: " .. limitedVehicles[currentVehId].ammo)
 				setElementData(source, "vehAmmo", limitedVehicles[currentVehId].ammo)
 			end
 			
