@@ -441,6 +441,32 @@
     <object id="object (chinawning69b) (9)" breakable="false" interior="0" alpha="255" model="9859" doublesided="false" scale="1" dimension="0" posX="-1655.2465" posY="963.43158" posZ="27.27671" rotX="0" rotY="0" rotZ="179.995"></object>
     <object id="object (chinawning69b) (11)" breakable="false" interior="0" alpha="255" model="9859" doublesided="false" scale="1" dimension="0" posX="-1635.421" posY="964.02228" posZ="31.20171" rotX="0" rotY="0" rotZ="179.995"></object>
     <object id="object (cos_sbanksteps05) (3)" breakable="false" interior="0" collisions="true" alpha="255" model="12985" doublesided="true" scale="1" dimension="0" posX="-1655.6619" posY="1006.7684" posZ="64.33858" rotX="0" rotY="0" rotZ="91.247"></object>
+	
+	<!-- Radio Tower Nerf-->
+	<object id="object (transmitbldg_SFS) (1)" breakable="false" interior="0" alpha="255" model="10676" doublesided="true" scale="1" dimension="0" posX="-2538.5" posY="-672.79999" posZ="135.3" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (transmitbldg_SFS) (2)" breakable="false" interior="0" alpha="255" model="10676" doublesided="true" scale="1" dimension="0" posX="-2548.6001" posY="-673.20001" posZ="130.7" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (transmitbldg_SFS) (3)" breakable="false" interior="0" alpha="255" model="10676" doublesided="false" scale="1" dimension="0" posX="-2548.6001" posY="-673.20001" posZ="122.7" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (satdishbig) (1)" breakable="false" interior="0" alpha="255" model="1595" doublesided="false" scale="1" dimension="0" posX="-2548.3" posY="-634.5" posZ="148.10001" rotX="0" rotY="0" rotZ="306.999"></object>
+    <object id="object (satdishbig) (2)" breakable="false" interior="0" alpha="255" model="1595" doublesided="false" scale="1" dimension="0" posX="-2558" posY="-629.70001" posZ="143.39999" rotX="0" rotY="0" rotZ="220.999"></object>
+    <object id="object (drvin_screen) (1)" breakable="false" interior="0" alpha="255" model="16000" doublesided="false" scale="1" dimension="0" posX="-2562.2" posY="-698.5" posZ="118.8" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (drvin_screen) (2)" breakable="false" interior="0" alpha="255" model="16000" doublesided="false" scale="1" dimension="0" posX="-2562.3" posY="-709.79999" posZ="118.85001" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (drvin_screen) (3)" breakable="false" interior="0" alpha="255" model="16000" doublesided="false" scale="1" dimension="0" posX="-2551.5" posY="-720.5" posZ="118.85001" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (drvin_screen) (4)" breakable="false" interior="0" alpha="255" model="16000" doublesided="false" scale="1" dimension="0" posX="-2541.3999" posY="-720.20001" posZ="123.47" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (drvin_screen) (5)" breakable="false" interior="0" alpha="255" model="16000" doublesided="false" scale="1" dimension="0" posX="-2552.2" posY="-709.5" posZ="123.47" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (drvin_screen) (6)" breakable="false" interior="0" alpha="255" model="16000" doublesided="false" scale="1" dimension="0" posX="-2552.2" posY="-688.09998" posZ="123.47" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (roofstuff16) (5)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2546.8999" posY="-685" posZ="144.3" rotX="0" rotY="0" rotZ="128"></object>
+    <object id="object (roofstuff16) (6)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2548" posY="-678.29999" posZ="144.3" rotX="0" rotY="0" rotZ="127.996"></object>
+    <object id="object (roofstuff16) (7)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2548.5" posY="-671" posZ="144.3" rotX="0" rotY="0" rotZ="127.996"></object>
+    <object id="object (roofstuff16) (8)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2548.7" posY="-663.59998" posZ="144.3" rotX="0" rotY="0" rotZ="127.996"></object>
+    <object id="object (roofstuff16) (9)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2548.7" posY="-656" posZ="144.3" rotX="0" rotY="0" rotZ="127.996"></object>
+    <object id="object (roofstuff16) (10)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2548.1001" posY="-648.70001" posZ="144.3" rotX="0" rotY="0" rotZ="127.996"></object>
+    <object id="object (roofstuff16) (11)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2556.6001" posY="-649.40002" posZ="139.39999" rotX="0" rotY="0" rotZ="127.996"></object>
+    <object id="object (roofstuff16) (12)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2556.8" posY="-658.59998" posZ="139.39999" rotX="0" rotY="0" rotZ="127.996"></object>
+    <object id="object (roofstuff16) (13)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2556.6001" posY="-667.20001" posZ="139.39999" rotX="0" rotY="0" rotZ="127.996"></object>
+    <object id="object (roofstuff16) (14)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2556.7" posY="-675.40002" posZ="139.39999" rotX="0" rotY="0" rotZ="127.996"></object>
+    <object id="object (roofstuff16) (15)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2556.3" posY="-683.59998" posZ="139.39999" rotX="0" rotY="0" rotZ="127.996"></object>
+    <object id="object (drvin_ticket) (4)" breakable="false" interior="0" collisions="true" alpha="255" model="16003" doublesided="false" scale="1" dimension="0" posX="-2555.5" posY="-687.59998" posZ="132.60001" rotX="0" rotY="0" rotZ="90"></object>
+	<!-- /Radio Tower Nerf-->
     
     <boundarycorner posX="-3000" posY="-887" />
     <boundarycorner posX="-2781" posY="-920" />
