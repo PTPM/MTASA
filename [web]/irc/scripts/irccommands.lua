@@ -15,8 +15,8 @@ addEventHandler("onIRCResourceStart",root,
 		function say (server,channel,user,command,...)
 			local message = table.concat({...}," ")
 			if message == "" then ircNotice(user,"syntax is !s <message>") return end
-			outputChatBox("* "..ircGetUserNick(user).." on irc: "..message,root,255,168,0)
-			outputIRC("07* "..ircGetUserNick(user).." on irc: "..message)
+			outputChatBox("#D0D0FF(ADMIN) "..ircGetUserNick(user)..": #FFFFFF"..message,root,255,168,0, true)
+			outputIRC("(ADMIN) "..ircGetUserNick(user)..": "..message)
 		end
 		addIRCCommandHandler("!say",say)
 		addIRCCommandHandler("!s",say)
