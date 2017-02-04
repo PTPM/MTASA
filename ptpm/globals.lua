@@ -11,6 +11,7 @@ classColours = {
 	["terrorist"] = { 255, 0, 175 },
 	["terroristm"] = { 255, 64, 207 },
 	["pm"] = { 255, 255, 64 },
+	["pmm"] = { 255, 255, 64 },
 	["bodyguard"] = { 0, 128, 0 },
 	["bodyguardm"] = { 80, 176, 80 },
 	["police"] = { 80, 80, 207 },
