@@ -275,7 +275,7 @@ addEventHandler( "onClientAvailable", root,
 		loadScoreboardStats( source )
 
 		setPlayerBlurLevel( source, 0 )
-		bindKey( source, "u", "down", "chatbox", "adminChat" )
+		-- bindKey( source, "u", "down", "chatbox", "adminChat" )
 		
 		-- if the round has started (if it hasnt, loader will send them to the class selection once the map is loaded)
 		if data.roundTimer then
