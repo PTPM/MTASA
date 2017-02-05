@@ -25,17 +25,17 @@ function knifeRestrict(victim)
 	_,_,vicRot = getElementRotation(victim)
 	_,_,killerRot = getElementRotation(killer)
 	
-	local minKillerAngle = normalizeAngles(vicRot - 90)
-	local maxKillerAngle = normalizeAngles(vicRot + 90)
+	local minKillerAngle = normalizeAngles(vicRot - 170)
+	local maxKillerAngle = normalizeAngles(vicRot + 170)
 	
 	if killerRot < minKillerAngle or killerRot > maxKillerAngle then
-		outputDebugString(getPlayerName(killer) .. " Knife kill prevented: killerRot " .. killerRot .. " not in range of vicRot " .. vicRot , 1)
+		outputDebugString(getPlayerName(killer) .. " Knife kill prevented: killerRot not in range of vicRot (min:"..math.ceil(minKillerAngle).." real:" ..math.ceil(killerRot).." max:"..math.ceil(maxKillerAngle)..")" , 1)
 		cancelEvent()
 	end
 	
 	-- 3) Victim must be standing still
 	vicSpeedX, vicSpeedY, vicSpeedZ = getElementVelocity(victim)
-	if math.sqrt(vicSpeedX^2 + vicSpeedY^2 + vicSpeedZ^2) > 1 then 
+	if math.sqrt(vicSpeedX^2 + vicSpeedY^2 + vicSpeedZ^2) > 0.5 then 
 		outputDebugString(getPlayerName(killer) .. " Knife kill prevented: vic not standing still", 1)
 		cancelEvent() 
 	end
