@@ -22,8 +22,8 @@ function knifeRestrict(victim)
 	
 	-- 2) Victim and killer must be facing same direction (killer is facing back of victim, with a 45° leniency)
 	-- Not implemented
-	_,_,vicRot = getElementRotation(victim)
-	_,_,killerRot = getElementRotation(killer)
+	_,_,vicRot = normalizeAngles(getElementRotation(victim))
+	_,_,killerRot = normalizeAngles(getElementRotation(killer))
 	
 	local minKillerAngle = normalizeAngles(vicRot - 170)
 	local maxKillerAngle = normalizeAngles(vicRot + 170)
