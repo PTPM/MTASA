@@ -263,21 +263,6 @@ function interiorCreateColliders(resource)
 	end
 end
 
--- function colShapeLeave(player, matchingDimension)
--- 	if (not isElement(player)) or getElementType(player) ~= "player" or player ~= localPlayer then 
--- 		return 
--- 	end		
-
--- 	if not matchingDimension then
--- 		return
--- 	end
-
--- 	debugHook("colShapeLeave("..tostring(getInteriorName(lookups.interiorFromCollider[source]))..")", "col:" .. tostring(source), "target:" .. tostring(targetCollider))
-
--- 	if source == targetCollider then
--- 		targetCollider = nil
--- 	end	
--- end
 
 function colshapeHit(player, matchingDimension)
 	if (not isElement(player)) or getElementType(player) ~= "player" or player ~= localPlayer then 
@@ -452,8 +437,6 @@ function pauseUntilWorldHasLoaded(data, fn, ...)
 end
 
 function triggerGroundLoaded(interior, x, y, z) 
-	allowPlayerToTeleport = true
-
 	--outputDebugString("loaded: inside " ..tostring(targetCollider).. " " ..tostring(isElementWithinColShape(localPlayer, targetCollider)))
 	--targetCollider = nil
 	if leaveTimer and isTimer(leaveTimer) then
@@ -492,6 +475,7 @@ function colliderLeaveCustom(x, y, z)
 
 	if getDistanceBetweenPoints3D(px, py, pz, x, y, z) > 2 then
 		targetCollider = nil
+		allowPlayerToTeleport = true
 		killTimer(leaveTimer)
 		leaveTimer = nil
 	end
