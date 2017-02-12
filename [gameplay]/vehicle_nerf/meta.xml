@@ -1,7 +1,7 @@
 <meta>
 	<info author="PTPM" type="script" name="Vehicle Weapon Nerf"/>
-	<script src="vehicle_nerf.lua" type="client" />
-	<script src="vehicle_ammo.lua" type="server" />
+	<script src="vehicle_nerf_c.lua" type="client" />
+	<script src="vehicle_nerf_s.lua" type="server" />
 	
 	<file src="tahoma.ttf"/>
 </meta>
