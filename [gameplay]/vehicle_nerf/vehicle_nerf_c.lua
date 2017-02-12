@@ -132,7 +132,17 @@ function pressKey(controlName)
 end
 
 function limitedKeyPress(key, keyState, speed)
-
+	-- Apparently this function doesn't always get unbound correctly despite all the listed events
+	-- so an additional check is needed
+	if currentAssaultVehicle==nil or not getElementData(currentAssaultVehicle,"vehNerfed") then
+	
+		currentAssaultVehicle = nil
+		for _,v in ipairs({"vehicle_fire", "vehicle_secondary_fire"} ) do
+			unbindKey(v, "both", limitedKeyPress)
+		end
+		return
+	end
+	
 	if keyState == "down" then
 		if firingStatus.block then 
 			return 
