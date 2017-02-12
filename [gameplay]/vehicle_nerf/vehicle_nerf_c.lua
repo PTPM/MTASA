@@ -1,4 +1,8 @@
-﻿screenX,screenY = guiGetScreenSize()
+﻿---------------------------------------------
+-- VARS AND CONFIG
+---------------------------------------------
+
+screenX,screenY = guiGetScreenSize()
 
 local uiScale = screenY / 600
 local font = {
@@ -12,6 +16,7 @@ local colours = {
 }
 
 local reloadWeaponsHudElement = {
+	-- Configurable:
 	x = screenX * 0.5,
 	y = screenY * 0.4,
 	radius = 25,
@@ -19,6 +24,7 @@ local reloadWeaponsHudElement = {
 	fontSize = 0.5,
 	timeBetweenUpdate = 50,
 	
+	-- Properties (set dynamically):
 	dotsPerUpdate = 0,
 	weaponChargedDots = 0,
 	step = 0,
@@ -27,28 +33,20 @@ local reloadWeaponsHudElement = {
 	hidden = true
 }
 
-local currentVehId = 0
-local currentVehAmmo = 0
-local shotsBeingBlocked = false
+local firingStatus = {
+	block = false,
+	firing = false,
+	continuousFireTimer = nil
+}
+
+local vehicleNerfActive = false
 local laggardTimerOverwriteMe = nil
 local prerenderEventHandled = false
+local currentAssaultVehicle = nil
 
-local limitedVehicles = {
-	[520] = {
-		ammo = 50,
-		reload = 2500,
-		name = "Hydra",
-		countPrimary = false,
-		countSecondary = true
-	},
-	[432] = {
-		ammo = 100,
-		reload = 1000,
-		name = "Rhino",
-		countPrimary = true,
-		countSecondary = false
-	},
-}
+---------------------------------------------
+-- UTILITY FUNCTIONS
+---------------------------------------------
 
 function sf_(value)
 	return ((value * uiScale) / font.scalar)
@@ -62,9 +60,15 @@ function getPointOnCircle(radius, rotation)
 	return radius * math.cos(math.rad(rotation)), radius * math.sin(math.rad(rotation))
 end
 
-function drawAbilityOverlay()
-		
-	-- Calculate the absolute position of SmartCommands if not done already
+function dxDrawChargingDot(x,y,colour,size)
+	local text = "•"
+	dxDrawText(text,x,y,x,y,colour,size, font.base, "center", "center", false, false, false, true, false )
+end
+
+function drawWeaponReloaderHUD()
+
+	dxDrawText( getElementData(currentAssaultVehicle,"vehAmmo") , reloadWeaponsHudElement.x,reloadWeaponsHudElement.y,reloadWeaponsHudElement.x,reloadWeaponsHudElement.y,colours.white,sf_(1),font.base, "center","center", false, false, false, true, false)
+
 	for i = 0,reloadWeaponsHudElement.reloaderDots do
 		relX,relY = getPointOnCircle(s(reloadWeaponsHudElement.radius), ((i) * reloadWeaponsHudElement.step) - 90)		
 		local colorOfDot = colours.loadedGreen
@@ -73,31 +77,159 @@ function drawAbilityOverlay()
 			colorOfDot = colours.mint
 		end
 		
-		if not reloadWeaponsHudElement.hidden then
-			dxDrawText(currentVehAmmo, reloadWeaponsHudElement.x,reloadWeaponsHudElement.y,reloadWeaponsHudElement.x,reloadWeaponsHudElement.y,colours.white,sf_(1),font.base, "center","center", false, false, false, true, false)
-			dxDrawChargingDot(relX+reloadWeaponsHudElement.x,relY+reloadWeaponsHudElement.y,colorOfDot, sf_(reloadWeaponsHudElement.fontSize))
-		end
+		dxDrawChargingDot(relX+reloadWeaponsHudElement.x,relY+reloadWeaponsHudElement.y,colorOfDot, sf_(reloadWeaponsHudElement.fontSize))
+	end
+end
+
+function drawOutOfAmmoHUD()
+	dxDrawText( "0" , reloadWeaponsHudElement.x,reloadWeaponsHudElement.y,reloadWeaponsHudElement.x,reloadWeaponsHudElement.y,colours.white,sf_(1),font.base, "center","center", false, false, false, true, false)
+	
+	for i = 0,reloadWeaponsHudElement.reloaderDots do
+		relX,relY = getPointOnCircle(s(reloadWeaponsHudElement.radius), ((i) * reloadWeaponsHudElement.step) - 90)			
+		dxDrawChargingDot(relX+reloadWeaponsHudElement.x,relY+reloadWeaponsHudElement.y,colours.mint, sf_(reloadWeaponsHudElement.fontSize))
+	end
+end
+
+---------------------------------------------
+-- CORE FUNCTIONS
+---------------------------------------------
+function handleLaggardTimer()
+	if not isTimer(firingStatus.continuousFireTimer) then	
+		removeEventHandler("onClientRender", root, drawWeaponReloaderHUD)
+		reloadWeaponsHudElement.hidden = true
 	end
 end
 
 
-addEventHandler("onClientRender", root, drawAbilityOverlay)
+function startReloaderHUD(timeTotal)
+	if isTimer(laggardTimerOverwriteMe) then killTimer(laggardTimerOverwriteMe) end
 
-function dxDrawChargingDot(x,y,colour,size)
-	local text = "•"
-	dxDrawText(text,x,y,x,y,colour,size, font.base, "center", "center", false, false, false, true, false )
+	reloadWeaponsHudElement.weaponChargedDots = 0
+	reloadWeaponsHudElement.step = 360 / reloadWeaponsHudElement.reloaderDots
+	reloadWeaponsHudElement.repetitions = timeTotal/reloadWeaponsHudElement.timeBetweenUpdate
+	reloadWeaponsHudElement.timeBetweenSteps = reloadWeaponsHudElement.timeBetweenUpdate * reloadWeaponsHudElement.step
+	reloadWeaponsHudElement.dotsPerUpdate = reloadWeaponsHudElement.reloaderDots / reloadWeaponsHudElement.repetitions
+	
+	
+	-- Timer for updating the radial visual
+	setTimer(function()  
+		reloadWeaponsHudElement.weaponChargedDots = reloadWeaponsHudElement.weaponChargedDots+reloadWeaponsHudElement.dotsPerUpdate 
+	end, reloadWeaponsHudElement.timeBetweenSteps, reloadWeaponsHudElement.repetitions)
+	
+	-- Timer for removing the visual
+	laggardTimerOverwriteMe = setTimer(handleLaggardTimer, timeTotal + 500, 1)
+	
+	-- Add the visual to the screenX
+	if reloadWeaponsHudElement.hidden then
+		addEventHandler("onClientRender", root, drawWeaponReloaderHUD)
+		reloadWeaponsHudElement.hidden = false
+	end
 end
 
+function pressKey(controlName)
+	setControlState(controlName, true)
+	setTimer(setControlState, 50, 1, controlName, false)
+end
+
+function limitedKeyPress(key, keyState, speed)
+
+	if keyState == "down" then
+		if firingStatus.block then 
+			return 
+		end
+
+		firingStatus.firing = true		
+		firingStatus.block = true
+
+		-- Manage ammo
+		if getElementData(currentAssaultVehicle,"vehAmmo") > 0 then
+			
+			pressKey(key)
+			startReloaderHUD(speed)
+			setElementData(currentAssaultVehicle,"vehAmmo", getElementData(currentAssaultVehicle,"vehAmmo") - 1) 
+			
+		else
+			-- Play "out of ammo" sound and display "0" where the ammo count goes
+			playSoundFrontEnd(42)
+			addEventHandler("onClientRender", root, drawOutOfAmmoHUD)
+			
+			setTimer(function()
+				removeEventHandler("onClientRender", root, drawOutOfAmmoHUD)
+			end, 500, 1)
+			
+		end
+
+		-- don't allow any firing for the next [speed] ms
+		setTimer(
+			function() 
+				firingStatus.block = false 
+			end, 
+		speed, 1)
+
+	end
+end
+
+
+function enterAssaultVehicle(vehicle)
+	--outputDebugString("Entered restricted vehicle")
+	currentAssaultVehicle = vehicle
+	
+	--outputDebugString("vehAmmo " .. (getElementData(source, "vehAmmo") or "no"))
+	--outputDebugString("vehReload " .. (getElementData(source, "vehReload") or "no"))
+	
+	local vehReloadTime = getElementData(vehicle, "vehReload")
+	local vehFireControl = getElementData(vehicle, "vehControl")
+	
+	for _,v in ipairs(vehFireControl) do
+		toggleControl(v, false)
+		bindKey(v, "both", limitedKeyPress, vehReloadTime)
+	end
+end
+
+function leftAssaultVehicle(vehicle)
+	--outputDebugString("Left restricted vehicle")
+	currentAssaultVehicle = nil
+	
+	local vehFireControl = getElementData(vehicle, "vehControl")
+	for _,v in ipairs(vehFireControl) do
+		unbindKey(v, "both", limitedKeyPress)
+	end
+end
+
+
+
+---------------------------------------------
+-- BINDING
+---------------------------------------------
+
+addEventHandler("onClientVehicleEnter", getRootElement(),
+	function ( thePlayer, seat )
+	
+		-- Check if this vehicle warrants a nerf
+		if getElementData(source, "vehNerfed") then
+			enterAssaultVehicle(source)
+		end
+	end
+)
+
+addEvent( "delayedRestrictedVehicleDetection", true )
+addEventHandler( "delayedRestrictedVehicleDetection", localPlayer, function ( fpsValue )
+	outputDebugString("delayedRestrictedVehicleDetection")
+    enterAssaultVehicle(getPedOccupiedVehicle(localPlayer))
+end )
+
+
+---------------------------------------------
+-- UTILITY EVENTS
+---------------------------------------------
 addEventHandler("onClientResourceStart", resourceRoot,
 	function()
-		outputDebugString("vehicle_weapons loaded")
+		outputDebugString("vehicle_nerf loaded")
 	
 		font.scalar = (120 / 44) * uiScale
-		-- the default fonts do not scale well, so load our own version at the sizes we need
 		font.scalar = (120 / 44) * uiScale
 		font.base = dxCreateFont("tahoma.ttf", 9 * font.scalar, false, "proof")
 
-		-- if the user cannot load the font, default to a built-in one with the appropriate scaling
 		if not font.base then
 			font.base = "default"
 			font.scalar = 1
@@ -105,106 +237,72 @@ addEventHandler("onClientResourceStart", resourceRoot,
 	end
 )
 
-function removeVehicleFire(timeTotal)
 
-	local theVeh = getPedOccupiedVehicle(getLocalPlayer())
+---------------------------------------------
+-- UNBINDING (courtesy of realdriveby)
+---------------------------------------------
+-- ways to leave a vehicle: player death, vehicle death, removePedFromVehicle, spawnPlayer, normal exit, being jacked, vehicle element being destroyed
 
-	if isTimer(laggardTimerOverwriteMe) then killTimer(laggardTimerOverwriteMe) end
-
-	toggleControl ( "vehicle_fire", false )
-	toggleControl ( "vehicle_secondary_fire", false )
-
-	reloadWeaponsHudElement.weaponChargedDots = 0
-	reloadWeaponsHudElement.step = 360 / reloadWeaponsHudElement.reloaderDots
-	reloadWeaponsHudElement.repetitions = timeTotal/reloadWeaponsHudElement.timeBetweenUpdate
-	reloadWeaponsHudElement.timeBetweenSteps = reloadWeaponsHudElement.timeBetweenUpdate * reloadWeaponsHudElement.step
-	reloadWeaponsHudElement.dotsPerUpdate = reloadWeaponsHudElement.reloaderDots / reloadWeaponsHudElement.repetitions
-	reloadWeaponsHudElement.hidden = false
-	
-	-- Subtract vehicle ammo
-	currentVehAmmo = currentVehAmmo - 1
-	setElementData(theVeh, "vehAmmo", currentVehAmmo)
-	
-	if currentVehAmmo > 0 then 
-		-- Timer for updating the visual
-		setTimer(function()  
-			reloadWeaponsHudElement.weaponChargedDots = reloadWeaponsHudElement.weaponChargedDots+reloadWeaponsHudElement.dotsPerUpdate 
-		end, reloadWeaponsHudElement.timeBetweenSteps, reloadWeaponsHudElement.repetitions)
-		
-		-- Timer for actually allowing back controls
-		setTimer(function()  
-			toggleControl ( "vehicle_fire", true )
-			toggleControl ( "vehicle_secondary_fire", true )
-			laggardTimerOverwriteMe = setTimer(function()  reloadWeaponsHudElement.hidden = true end, 250, 1)
-			shotsBeingBlocked = false
-		end , timeTotal, 1)
-	
-	else
-		outputChatBox ( "This " .. getVehicleNameFromModel(currentVehId) .. " has no ammo left.", 255, 0, 0 )
-		reloadWeaponsHudElement.hidden = true
-	end
-end
-
-function limitVehicleFire()
-	if getControlState("vehicle_fire") or getControlState("vehicle_secondary_fire") then
-		outputDebugString("Shots fired")
-		if limitedVehicles[currentVehId] and not shotsBeingBlocked then
-			shotsBeingBlocked = true
-			outputDebugString("Blocking new shots for " ..limitedVehicles[currentVehId].reload.. "ms")
-			removeVehicleFire(limitedVehicles[currentVehId].reload)
+-- triggers if you leave normally, if you warp out (removePedFromVehicle) or if you get jacked
+addEventHandler("onClientPlayerVehicleExit", localPlayer,
+	function(vehicle, seat)
+		if isPedDoingGangDriveby(localPlayer) or vehicleNerfActive then
+			leftAssaultVehicle()
 		end
 	end
-end
+)
 
-function removeVehicleNerf()
-	reloadWeaponsHudElement.hidden = true
-	prerenderEventHandled = false
-	removeEventHandler ( "onClientPreRender", getRootElement(), limitVehicleFire )
-	toggleControl ( "vehicle_fire", true )
-	toggleControl ( "vehicle_secondary_fire", true )
-	currentVehId = 0
-end
+-- seems like mta automatically cancels driveby when you get jacked
+-- (but only on the jackers side, other guy still sees driveby, so it desyncs them)
+-- cancel it ourselves here so the sync stays correct
+addEventHandler("onClientVehicleStartExit", root,
+	function(player, seat, door)
+		if player ~= localPlayer then
+			return
+		end
 
-addEventHandler("onClientVehicleEnter", getRootElement(),
-	function ( thePlayer, seat )
-		reloadWeaponsHudElement.hidden = true
-		currentVehId = getElementModel(source)
-		
-		outputDebugString("Enter veh")
-		
-		if limitedVehicles[currentVehId] then
-			outputDebugString("Enter restricted veh")
-			
-			if not getElementData(source, "vehAmmo") then
-				outputDebugString("This veh had NO ammo, set to: " .. limitedVehicles[currentVehId].ammo)
-				setElementData(source, "vehAmmo", limitedVehicles[currentVehId].ammo)
-			end
-			
-			currentVehAmmo = getElementData(source, "vehAmmo")
-			
-			if currentVehAmmo==0 then
-				shotsBeingBlocked = true
-				toggleControl ( "vehicle_fire", false )
-				toggleControl ( "vehicle_secondary_fire", false )
-				outputChatBox ( "This " .. getVehicleNameFromModel(currentVehId) .. " has no ammo left.", 255, 0, 0 )
-			else			
-				shotsBeingBlocked = false
-				prerenderEventHandled = true
-				addEventHandler ( "onClientPreRender", getRootElement(), limitVehicleFire )
+		if isPedDoingGangDriveby(localPlayer) then
+			leftAssaultVehicle()
+		end
+	end
+)
+
+
+-- catches when the player dies inside the vehicle
+addEventHandler("onClientPlayerWasted", localPlayer, 
+	function()
+		if isPedDoingGangDriveby(localPlayer) then
+			leftAssaultVehicle()
+		end	
+	end
+)
+
+
+addEvent("onClientVehicleModelChange", true)
+addEventHandler("onClientVehicleModelChange", resourceRoot,
+	function(newModel)
+		if vehicleNerfActive then
+			leftAssaultVehicle()
+		end
+	end
+)
+
+-- handles if the vehicle is destroyed with destroyElement
+addEventHandler("onClientElementDestroy", root,
+	function()
+		if vehicleNerfActive or isPedDoingGangDriveby(localPlayer) then
+			if source == getPedOccupiedVehicle(localPlayer) then
+				leftAssaultVehicle()
 			end
 		end
 	end
 )
 
-addEventHandler("onClientVehicleExit", getRootElement(),removeVehicleNerf)
-addEventHandler("onClientPlayerWasted", getLocalPlayer(), removeVehicleNerf)
-
-setTimer(function() 
-	-- Let's check every 2s if player is still in a vehicle, since it's pretty resource heavy
-	if prerenderEventHandled then	
-		local theVeh = getPedOccupiedVehicle(getLocalPlayer()) 
-		if not theVeh then 
-			removeVehicleNerf()
-		end
+-- handles spawnPlayer being used while drivebying
+addEventHandler("onClientPlayerSpawn", localPlayer,
+	function(team)
+		if vehicleNerfActive then
+			leftAssaultVehicle()
+		end		
 	end
-end, 2000, 0)
+)
