@@ -256,7 +256,7 @@ addEventHandler("onClientResourceStart", resourceRoot,
 -- triggers if you leave normally, if you warp out (removePedFromVehicle) or if you get jacked
 addEventHandler("onClientPlayerVehicleExit", localPlayer,
 	function(vehicle, seat)
-		if isPedDoingGangDriveby(localPlayer) or vehicleNerfActive then
+		if currentAssaultVehicle~=nil then
 			leftAssaultVehicle()
 		end
 	end
@@ -271,7 +271,7 @@ addEventHandler("onClientVehicleStartExit", root,
 			return
 		end
 
-		if isPedDoingGangDriveby(localPlayer) then
+		if currentAssaultVehicle~=nil then
 			leftAssaultVehicle()
 		end
 	end
@@ -281,7 +281,7 @@ addEventHandler("onClientVehicleStartExit", root,
 -- catches when the player dies inside the vehicle
 addEventHandler("onClientPlayerWasted", localPlayer, 
 	function()
-		if isPedDoingGangDriveby(localPlayer) then
+		if currentAssaultVehicle~=nil then
 			leftAssaultVehicle()
 		end	
 	end
@@ -291,7 +291,7 @@ addEventHandler("onClientPlayerWasted", localPlayer,
 addEvent("onClientVehicleModelChange", true)
 addEventHandler("onClientVehicleModelChange", resourceRoot,
 	function(newModel)
-		if vehicleNerfActive then
+		if currentAssaultVehicle~=nil then
 			leftAssaultVehicle()
 		end
 	end
@@ -300,7 +300,7 @@ addEventHandler("onClientVehicleModelChange", resourceRoot,
 -- handles if the vehicle is destroyed with destroyElement
 addEventHandler("onClientElementDestroy", root,
 	function()
-		if vehicleNerfActive or isPedDoingGangDriveby(localPlayer) then
+		if currentAssaultVehicle~=nil then
 			if source == getPedOccupiedVehicle(localPlayer) then
 				leftAssaultVehicle()
 			end
@@ -311,7 +311,7 @@ addEventHandler("onClientElementDestroy", root,
 -- handles spawnPlayer being used while drivebying
 addEventHandler("onClientPlayerSpawn", localPlayer,
 	function(team)
-		if vehicleNerfActive then
+		if currentAssaultVehicle~=nil then
 			leftAssaultVehicle()
 		end		
 	end
