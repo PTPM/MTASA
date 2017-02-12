@@ -1,5 +1,5 @@
 function serverLogEvent(freeText)
-	triggerServerEvent ( "logDesyncEvent", resourceRoot , freeText )
+	--triggerServerEvent ( "logDesyncEvent", resourceRoot , freeText )
 end
 
 -- 
