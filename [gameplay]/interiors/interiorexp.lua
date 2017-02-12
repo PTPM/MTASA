@@ -3,6 +3,44 @@ local interiorMarkers = {}
 local resourceFromInterior = {}
 --format interior = { [resource] = { [id] = { return= { [element],[element] }, entry=[element] } }
 
+
+local resourceName = getResourceName(resource)
+local settings = {
+	immuneWhileTeleporting = get("immuneWhileTeleporting") == true,
+	teleportImmunityLength = get("teleportImmunityLength") or 1000,
+	offsetTeleportPosition = get("offsetTeleportPosition") == true,
+
+	name = 
+		function(name, access)
+			return access .. resourceName .. "." .. name
+		end
+}
+
+addEventHandler("onSettingChange", root, 
+	function(setting, oldValue, newValue)	
+		--outputDebugString("Interior setting " .. setting .. " is " .. newValue)
+
+		if setting == settings.name("immuneWhileTeleporting", "*") then
+			settings.immuneWhileTeleporting = fromJSON(newValue)
+			triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
+		elseif setting == settings.name("teleportImmunityLength", "*") then
+			settings.teleportImmunityLength = fromJSON(newValue)
+			triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
+		elseif setting == settings.name("offsetTeleportPosition", "*") then
+			--settings.offsetTeleportPosition = fromJSON(newValue)
+			--triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
+		end
+	end
+)
+
+addEvent("onClientReady", true)
+addEventHandler("onClientReady", resourceRoot,
+	function()
+		triggerClientEvent(client, "updateClientSettings", resourceRoot, settings)
+	end
+)
+
+
 addEvent ( "doTriggerServerEvents", true )
 addEvent ( "onPlayerInteriorHit" )
 addEvent ( "onPlayerInteriorWarped", true )
@@ -105,10 +143,21 @@ local opposite = { ["interiorReturn"] = "entry",["interiorEntry"] = "return" }
 local idLoc = { ["interiorReturn"] = "refid",["interiorEntry"] = "id" }
 addEventHandler ( "doTriggerServerEvents",getRootElement(),
 	function( interior, resource, id )
+		if getElementData(client, "interiors.teleporting") then
+			return
+		end
+
 		local eventCanceled1,eventCanceled2 = false,false
 		eventCanceled1 = triggerEvent ( "onPlayerInteriorHit", client, interior, resource, id )
 		eventCanceled2 = triggerEvent ( "onInteriorHit", interior, client )
 		if ( eventCanceled2 ) and ( eventCanceled1 ) then
+			setElementData(client, "interiors.teleporting", true, false)
+
+			if getElementData(client, "interiors.teleportImmunity") and isTimer(getElementData(client, "interiors.teleportImmunity")) then
+				killTimer(getElementData(client, "interiors.teleportImmunity"))
+				setElementData(client, "interiors.teleportImmunity", false, false)
+			end
+
 			triggerClientEvent ( client, "doWarpPlayerToInterior", client, interior, resource, id )
 			setTimer ( setPlayerInsideInterior, 1000, 1, client, interior, resource, id )
 		end
@@ -141,4 +190,27 @@ function getInteriorName ( interior )
 end
 
 
+addEventHandler("onPlayerInteriorWarped", root,
+	function(interior)
+		setElementData(client, "interiors.teleporting", false, false)
 
+		-- protects the player for a short amount of time after teleporting
+ 		local timer = setTimer(
+ 			function(p)
+ 				if isElement(p) then
+ 					setElementData(p, "interiors.teleportImmunity", false, false)
+ 				end
+ 			end,
+ 		settings.teleportImmunityLength, 1, client)
+
+ 		setElementData(client, "interiors.teleportImmunity", timer, false)		
+	end
+)
+
+addEventHandler("onPlayerStealthKill", root,
+	function(target)
+		if settings.immuneWhileTeleporting and (getElementData(target, "interiors.teleporting") or getElementData(target, "interiors.teleportImmunity")) then
+			cancelEvent()
+		end
+	end
+)

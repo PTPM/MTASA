@@ -53,12 +53,24 @@ local interiorCols = {}
 local interiorFromCol = {}
 local resourceFromInterior = {}
 local blockPlayer
+local immunityTimer = nil
+local settings = {}
+local offset = {
+	xVariance = 0.8,
+	yVariance = 0.8
+}
+
 addEvent ( "doWarpPlayerToInterior", true )
 addEvent ( "onClientInteriorHit" )
 addEvent ( "onClientInteriorWarped" )
+addEvent("updateClientSettings", true)
 
 addEventHandler ( "onClientResourceStart", getRootElement(),
 function ( resource )
+	if getResourceRootElement(resource) == resourceRoot then
+		triggerServerEvent("onClientReady", resourceRoot)
+	end
+
 	interiorLoadElements ( getResourceRootElement(resource), resource )
 	interiorCreateMarkers ( resource )
 end )
@@ -74,6 +86,14 @@ function ( resource )
 	end
 	interiors[resource] = nil
 end )
+
+addEventHandler("updateClientSettings", root, 
+	function(newSettings)
+		if newSettings then
+			settings = newSettings
+		end
+	end
+)
 
 function interiorLoadElements ( rootElement, resource )
 	---Load the exterior markers
@@ -189,6 +209,15 @@ addEventHandler ( "doWarpPlayerToInterior",localPlayer,
 		setTimer ( setPlayerInsideInterior, 1000, 1, source, int,dim,rot,x,y,z, interior )
 		blockPlayer = true
 		setTimer ( function() blockPlayer = nil end, 3500, 1 )
+
+		if settings.immuneWhileTeleporting then
+			teleportImmunityActive = true
+
+			if immunityTimer and isTimer(immunityTimer) then
+				killTimer(immunityTimer)
+				immunityTimer = nil
+			end
+		end
 	end
 )
 
@@ -204,6 +233,20 @@ function setPlayerInsideInterior ( player, int,dim,rot,x,y,z, interior )
 	triggerEvent ( "onClientInteriorWarped", interior )
 	triggerServerEvent ( "onInteriorWarped", interior, player )
 	triggerServerEvent ( "onPlayerInteriorWarped", player, interior )
+
+	if settings.immuneWhileTeleporting then
+		if immunityTimer and isTimer(immunityTimer) then
+			killTimer(immunityTimer)
+			immunityTimer = nil
+		end
+	
+	 	immunityTimer = setTimer(
+	 		function()
+	 			teleportImmunityActive = false
+	 			immunityTimer = nil
+	 		end,
+	 	settings.teleportImmunityLength, 1)
+	end
 end
 
 function getInteriorName ( interior )
@@ -219,5 +262,18 @@ function getInteriorName ( interior )
 	end
 end
 
+addEventHandler("onClientPlayerChoke", localPlayer, 
+	function(weaponID, responsiblePed)
+		if settings.immuneWhileTeleporting and teleportImmunityActive then
+			cancelEvent()
+		end
+	end
+)
 
-
+addEventHandler("onClientPlayerDamage", localPlayer,
+	function(attacker)
+		if settings.immuneWhileTeleporting and teleportImmunityActive then
+			cancelEvent()
+		end
+	end
+)
