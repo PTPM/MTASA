@@ -509,7 +509,6 @@ function roundTick()
 	
 
 	local weaponChance = math.random(1, 100) < 10
-	local randomHelpChance = math.random(1, 100) >= 99
 
 	for _, player in ipairs(players) do
 		local classID = getPlayerClassID(player)
@@ -529,15 +528,6 @@ function roundTick()
 							break
 						end
 					end
-				end
-			end
-
-			-- show a random help prompt
-			if randomHelpChance then
-				if classes[classID].type ~= "pm" then
-					triggerHelpEvents(player, {"COMMAND_RECLASS", "COMMAND_DUTY", "BIND_F4"}, false, 1, true)
-				else
-					triggerHelpEvents(player, {"COMMAND_SWAPCLASS", "COMMAND_PLAN"}, false, 1, true)
 				end
 			end
 		end

@@ -111,6 +111,7 @@ function randomHelpEvent()
 	help.randomTimer = setTimer(randomHelpEvent, math.random(60000 * 3, 60000 * 8), 1)
 end
 
+
 -- register an event within the help system
 -- data contains everything necessary to actually display a help notification (e.g. text)
 function registerHelpEvent(id, data)
@@ -207,8 +208,10 @@ function showHelpEvent(player, id)
 	if currentHelp then
 		-- queue
 		outputChatBox("Queued: " .. help.events[id].text, player)
+		triggerClientEvent(player, "showHelpEvent", resourceRoot, help.events[id].text, help.events[id].displayTime or help.displayTime, help.events[id].image, true)
 	else
 		outputChatBox(help.events[id].text, player)
+		triggerClientEvent(player, "showHelpEvent", resourceRoot, help.events[id].text, help.events[id].displayTime or help.displayTime, help.events[id].image, false)
 	end
 
 	if help.events[id].increment then
@@ -230,9 +233,11 @@ end
 function hideHelpEvent(player, id)
 	local currentHelp = getPlayerCurrentHelpEvent(player)
 
-	if not currentHelp then
+	if not currentHelp or currentHelp ~= id then
 		return
 	end
+
+	triggerClientEvent(player, "hideHelpEvent", resourceRoot)
 
 	setElementData(player, "ptpm.lastHelpTick", 0, false)
 end

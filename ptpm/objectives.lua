@@ -78,7 +78,7 @@ addEventHandler("onObjectiveComplete", root,
 		data.objectives.finished = data.objectives.finished + 1
 
 		-- completed all the objectives, or there are fewer objectives in the map file than required to pass map
-		-- this works because once an objective is completed it gets destroyed and removed from the table		
+		-- this (== 1) works because once an objective is completed it gets destroyed and removed from the table		
 		if (options.objectivesToFinish == data.objectives.finished) or (tableSize(data.objectives) == 1) then
 			everyoneViewsBody(thePlayer, thePlayer, getElementInterior(thePlayer))
 

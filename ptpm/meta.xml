@@ -8,6 +8,7 @@
 
 	<script src="spawn_types.lua" type="server"/>
 	<script src="help_system.lua" type="server"/>
+	<script src="help_system_client.lua" type="client"/>
 	<script src="help_system_definitions.lua" type="server"/>
 
 	<script src="main_server.lua" type="server"/>
@@ -49,6 +50,13 @@
 	
 	<file src="images/ptpm-default.png"/>
 	<file src="images/white_dot.png"/>
+
+	<file src="images/icons/question.png"/>
+ 	<file src="images/icons/medic.png"/>
+ 	<file src="images/icons/water.png"/>
+	<file src="images/icons/hearts.png"/>
+	<file src="images/icons/camera.png"/>
+	<file src="images/icons/plan.png"/>
 	
 	<!-- Mapvote2 -->
 	<file src="mapvoteimages/map-pic-A51.png" />

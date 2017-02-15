@@ -21,14 +21,16 @@ function helpSystemCreateDefinitions()
 
 
 	registerHelpEvent("MEDIC_HEAL", {
-		text = "You are a medic. Stand close to a hurt player and type /heal!",
-		condition = {fn = conditionStatNumberComparison, args = {"__player", "hphealed", false, 100}}
+		text = "You are a medic. Stand close to a hurt player and type /heal to heal them",
+		condition = {fn = conditionStatNumberComparison, args = {"__player", "hphealed", false, 100}},
+		image = {name = "medic", colour = {255, 0, 0}}
 	})
 
 	registerHelpEvent("MEDIC_H", {
 		text = "You can type /h instead of /heal. It is faster!",
 		condition = {fn = conditionStatNumberComparisons, args = {"__player", {"hphealed", true, 200}, {"hcount", false, 2}}},
 		cooldown = 60000 * 6,
+		image = {name = "medic", colour = {255, 0, 0}}
 	})	
 
 	registerHelpEvent("MEDIC_AMBULANCE", {
@@ -36,12 +38,14 @@ function helpSystemCreateDefinitions()
 		condition = {fn = conditionStatNumberComparisons, args = {"__player", {"hphealed", true, 300}, {"eventambulancecount", false, 3}}},
 		increment = "eventambulancecount",
 		cooldown = 60000 * 4,
+		image = {name = "medic", colour = {255, 0, 0}}
 	})
 
 	registerHelpEvent("MEDIC_PASSIVE_GIVE", {
 		text = "Medics will slowly heal teamates that are nearby",
 		condition = {fn = conditionStatNumberComparisons, args = {"__player", {"hphealed", true, 100}, {"hphealedpassive", false, 30}}},
 		cooldown = 60000 * 4,
+		image = {name = "medic", colour = {255, 0, 0}}
 	})	
 
 
@@ -58,7 +62,7 @@ function helpSystemCreateDefinitions()
 	})	
 
 	registerHelpEvent("OBJECTIVE_OVERVIEW_PM", {
-		text = "You must complete the objectives to win. Go to the red marker on the map to begin",
+		text = "You must complete the objectives in this map to win. Go to the red marker on the map to begin",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "objectivesplayed", false, 3}},
 	})		
 
@@ -117,13 +121,13 @@ function helpSystemCreateDefinitions()
 	})
 
 	registerHelpEvent("COMMAND_SWAPCLASS", {
-		text = "Don't want to be Prime Minister? You may ask to swap with another player using /swapclass player",
+		text = "Don't want to be Prime Minister? You may ask to swap with another player using /swapclass <player>",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "swapclasscount", false, 3}},
 		cooldown = 60000 * 6,
 	})	
 
 	registerHelpEvent("COMMAND_SWAPCLASS_TARGET", {
-		text = "Do you want to be Prime Minister? [Prime Minister] is offering to swap class with you. Type /y to accept, or /n to decline.",
+		text = "Do you want to be Prime Minister? The Prime Minister is offering to swap class with you. Type /y to accept, or /n to decline.",
 		displayTime = 15000,
 		importance = 9999,
 		force = true,
@@ -133,12 +137,14 @@ function helpSystemCreateDefinitions()
 		text = "Type /plan <message> to let your team know what you want them to do",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "plancount", false, 3}},
 		cooldown = 60000 * 6,
+		image = {name = "plan"}
 	})	
 
 	registerHelpEvent("COMMAND_PLAN_SET", {
 		text = "The Prime Minister has set a plan. This is how he wants to survive. Follow his instructions!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "plancount", false, 3}},
 		cooldown = 60000 * 6,
+		image = {name = "plan"}
 	})		
 
 	registerHelpEvent("COMMAND_DUTY", {
@@ -148,7 +154,7 @@ function helpSystemCreateDefinitions()
 	})	
 
 	registerHelpEvent("BIND_F4", {
-		text = "Press F4 to show the class selection menu after you next die",
+		text = "You can press F4 to return to the class selection menu",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "leaveclasscount", false, 3}},
 		cooldown = 60000 * 6,
 	})		
@@ -159,6 +165,7 @@ function helpSystemCreateDefinitions()
 		displayTime = 60000 * 30,
 		importance = 9995,
 		force = true,
+		image = {name = "camera"}
 	})	
 
 
@@ -166,23 +173,27 @@ function helpSystemCreateDefinitions()
 		text = "The Prime Minister will slowly gain health over time. Use this wisely!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "pmcount", false, 3}},
 		cooldown = 60000 * 15,
+		image = {name = "hearts", colour = {255, 0, 0}}
 	})	
 
 	registerHelpEvent("OPTION_HEALTH_REGEN_MEDIC", {
 		text = "Medics will slowly gain health over time. Use this extra health to heal your team. Coordinate with another medic to heal even faster!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "mediccount", false, 3}},
 		cooldown = 60000 * 15,
+		image = {name = "hearts", colour = {255, 0, 0}}
 	})	
 
 	registerHelpEvent("OPTION_PM_WATER_PENALTY", {
 		text = "The Prime Minister can't swim on this map. You will slowly become tired & hurt, and will eventually die",
 		cooldown = 60000 * 2,
+		image = {name = "water", colour = {32, 147, 232}}
 	})
 
 	registerHelpEvent("OPTION_PM_WATER_DEATH", {
 		text = "The Prime Minister can't swim on this map. You will die if you enter the water",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "waterdeathcount", false, 3}},
 		cooldown = 60000 * 2,
+		image = {name = "water", colour = {32, 147, 232}}
 	})
 
 	registerHelpEvent("OPTION_PM_ABANDONED_PENALTY", {
@@ -197,10 +208,14 @@ function helpSystemCreateDefinitions()
 	})
 
 	-- registerHelpEvent("OPTION_CANT_DRIVE", {
-	-- 	text = "The Prime Minister is hidden on the map. Find him! Use the distance meter to see how far away he is and track him down",
+	-- 	text = "You can't drive this vehicle",
 	-- 	cooldown = 60000 * 5,
 	-- })
 
+	-- registerHelpEvent("OPTION_CANT_PASSENGER", {
+	-- 	text = "You can't enter this vehicle",
+	-- 	cooldown = 60000 * 5,
+	-- })
 
 	registerHelpEvent("SAFE_ZONE", {
 		text = "The blue area is a safe zone. Hydras and Rustlers can't come in here.",

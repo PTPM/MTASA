@@ -12,6 +12,7 @@ addEventHandler( "onClientResourceStart", root,
 			triggerServerEvent( "onClientReady", resourceRoot )
 
 			classSelectionSetup()
+			helpSystemSetup()
 		end
 
 		createTransitionImage(res)
