@@ -446,3 +446,29 @@ function killAFKTimer()
 	end
 end
 
+
+-- draw lines around teleport bounds
+-- addEventHandler("onClientRender", root,
+-- 	function()
+-- 		local x, y, z = getElementPosition(localPlayer)
+
+-- 		for i, t in ipairs(getElementsByType("teleport")) do
+
+-- 			--<teleport minX="82" minY="1942" minZ="17.6" maxX="293" maxY="1962" maxZ="500" message="" teleX="232.8058" teleY="1927.2909" teleZ="17.6406" teleRot="181.1084" vehicles="true" interior="0" />
+-- 			local minX = tonumber(getElementData(t, "minX"))
+-- 			local minY = tonumber(getElementData(t, "minY"))
+-- 			local minZ = tonumber(getElementData(t, "minZ"))
+
+-- 			local maxX = tonumber(getElementData(t, "maxX"))
+-- 			local maxY = tonumber(getElementData(t, "maxY"))
+-- 			local maxZ = tonumber(getElementData(t, "maxZ"))
+
+-- 			local pZ = math.max(minZ, math.min(maxZ, z))
+
+-- 			dxDrawLine3D(minX, minY, pZ, maxX, minY, pZ, tocolor(255, 0, 0, 255), 10)
+-- 			dxDrawLine3D(maxX, minY, pZ, maxX, maxY, pZ, tocolor(255, 0, 0, 255), 10)
+-- 			dxDrawLine3D(maxX, maxY, pZ, minX, maxY, pZ, tocolor(255, 0, 0, 255), 10)
+-- 			dxDrawLine3D(minX, maxY, pZ, minX, minY, pZ, tocolor(255, 0, 0, 255), 10)
+-- 		end
+-- 	end
+-- )

@@ -27,6 +27,8 @@ help = {
 
 function helpSystemSetup()
 	helpSystemCreateDefinitions()
+
+	help.randomTimer = setTimer(randomHelpEvent, math.random(60000 * 3, 60000 * 8), 1)
 end
 
 function helpSystemPlayerSpawn(player, class)
@@ -59,7 +61,7 @@ function helpSystemPlayerSpawn(player, class)
 	end	
 
 	if options.displayDistanceToPM and classes[class].type == "terrorist" then
-		table.insert(events, "OPTIONS_DISTANCE_TO_PM")
+		table.insert(events, "OPTION_DISTANCE_TO_PM")
 	end
 
 	if classes[class].medic then
@@ -89,6 +91,25 @@ function helpSystemPlayerSpawn(player, class)
 	triggerHelpEvents(player, events, true, 3)
 end
 	
+function randomHelpEvent()
+	if data.roundEnded then
+		return
+	end
+	
+	for i, player in ipairs(getElementsByType("player")) do
+		local classID = getPlayerClassID(player)
+
+		if classID then
+			if classes[classID].type ~= "pm" then
+				triggerHelpEvents(player, {"COMMAND_RECLASS", "COMMAND_DUTY", "BIND_F4"}, false, 1, true)
+			else
+				triggerHelpEvents(player, {"COMMAND_SWAPCLASS", "COMMAND_PLAN"}, false, 1, true)
+			end
+		end
+	end
+
+	help.randomTimer = setTimer(randomHelpEvent, math.random(60000 * 3, 60000 * 8), 1)
+end
 
 -- register an event within the help system
 -- data contains everything necessary to actually display a help notification (e.g. text)
