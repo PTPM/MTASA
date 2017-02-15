@@ -271,6 +271,12 @@
     <pickup posX="-1425.5934" posY="2170.9673" posZ="50.6250" type="24" amount="50" respawn="30000" synced="true" />
     <pickup posX="-746.1544" posY="1590.0294" posZ="26.9746" type="30" amount="160" respawn="30000" synced="true" />
     <pickup posX="-730.32" posY="2923.52" posZ="34.05" type="29" amount="200" respawn="30000" synced="true" />
+	
+	<pickup id="pickup (Molotov) (1)" type="18" interior="0" amount="10" respawn="30000" dimension="0" alpha="255" posX="-1670.6" posY="2486.2" posZ="90.9" rotX="0" rotY="0" rotZ="0" synced="true"></pickup>
+    <pickup id="pickup (Sniper) (1)" type="34" interior="0" amount="10" respawn="30000" dimension="0" alpha="255" posX="-1511.8" posY="1975.7" posZ="48.4" rotX="0" rotY="0" rotZ="0" synced="true"></pickup>
+    <pickup id="pickup (Molotov) (2)" type="18" interior="0" amount="15" respawn="30000" dimension="0" alpha="255" posX="-1046.5" posY="1552.6" posZ="33.3" rotX="0" rotY="0" rotZ="0" synced="true"></pickup>
+    <pickup id="pickup (Grenade) (1)" type="16" interior="0" amount="10" respawn="30000" dimension="0" alpha="255" posX="-2293.6001" posY="2228" posZ="5" rotX="0" rotY="0" rotZ="0"> synced="true"</pickup>
+	
     <!-- bay -->
 	
     <object model="8661" posX="-2146.01" posY="2714.04" posZ="160.83" rotX="0.00" rotY="0.00" rotZ="-2.40" />

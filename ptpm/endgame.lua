@@ -21,6 +21,8 @@ function setRoundEnded()
 			if getElementData(p, "ptpm.inClassSelection") then
 				classSelectionRemove(p)
 			end
+
+			triggerClientEvent(p, "onClientRoundEnd", p)
 		end
 	end
 
@@ -139,7 +141,10 @@ function startEndOfRoundPTPMMapvote()
 	-- Which maps are there?
 	local mapTable = {}
 	for _, map in ipairs(exports.mapmanager:getMapsCompatibleWithGamemode(thisResource)) do
-		table.insert(mapTable, getResourceName(map))
+		local resName = getResourceName(map)
+		if string.sub(resName,1,5) == "ptpm-" then
+			table.insert(mapTable, resName)
+		end
 	end
 	
 	-- Map 1: Any random map (but NOT the same map that we had just now or the one before that)
@@ -148,11 +153,13 @@ function startEndOfRoundPTPMMapvote()
 	mapvote.mapsOffered[randomMap] = (mapvote.mapsOffered[randomMap] or 0) + 1
 	
 	-- Map 2: Rematch OR new random map that is NOT map 1
+	local map2 = nil
 	if runningMapName == mapvote.lastMap then
-		local randomMap2 = getMapOffer(mapTable, {runningMapName, mapvote.lastMap, randomMap})
-		table.insert(mapvote.maps, getMapvoteObject(randomMap2))	
-		mapvote.mapsOffered[randomMap2] = (mapvote.mapsOffered[randomMap2] or 0) + 1
+		map2 = getMapOffer(mapTable, {runningMapName, mapvote.lastMap, randomMap})
+		table.insert(mapvote.maps, getMapvoteObject(map2))	
+		mapvote.mapsOffered[map2] = (mapvote.mapsOffered[map2] or 0) + 1
 	else
+		map2 = runningMapName
 		local mapObj = getMapvoteObject(runningMapName)
 		mapObj.name = mapObj.name .. " (Rematch)"
 		table.insert(mapvote.maps, mapObj)
@@ -160,16 +167,14 @@ function startEndOfRoundPTPMMapvote()
 		mapvote.lastMap = runningMapName
 	end
 	
-	-- Map 3: "Unknown" other random map
-	local randomMap3 = getMapOffer(mapTable, {runningMapName, mapvote.lastMap, randomMap, randomMap2})
-	table.insert(mapvote.maps, {
-		name = "Random Map",
-		image = "mapvoteimages/map-pic-_randomMap.png",
-		votes = 0,
-		youVoted = false,
-		hasWon = false,
-		res = randomMap3
-	})
+	-- Map 3: Any other random map
+	local randomMap3 = getMapOffer(mapTable, {runningMapName, mapvote.lastMap, randomMap, map2})
+	table.insert(mapvote.maps, getMapvoteObject(randomMap3))	
+	mapvote.mapsOffered[randomMap3] = (mapvote.mapsOffered[randomMap3] or 0) + 1
+	
+	outputDebugString(randomMap .. " / " .. map2 .. " / " .. randomMap3)
+
+	
 	
 	-- Trigger client event
 	for _, p in ipairs(getElementsByType("player")) do

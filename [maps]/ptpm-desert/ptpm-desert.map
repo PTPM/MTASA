@@ -580,8 +580,6 @@
     <!-- SMG -->
     <pickup posX="246.4423" posY="1411.0696" posZ="23.3703" type="37" amount="300" respawn="30000" synced="true" />
     <!-- Flamethrower -->
-    <pickup posX="246.7062" posY="1385.9924" posZ="23.3750" type="37" amount="300" respawn="30000" synced="true" />
-    <!-- Flamethrower -->
     <pickup posX="215.0238" posY="1468.0563" posZ="23.7344" type="37" amount="300" respawn="30000" synced="true" />
     <!-- Flamethrower -->
     <pickup posX="487.3661" posY="1535.1282" posZ="1.0032" type="24" amount="50" respawn="30000" synced="true" />
@@ -673,6 +671,9 @@
     <!-- Armour -->
     <pickup posX="-352.3621" posY="1601.4336" posZ="164.5686" type="46" amount="1" respawn="30000" synced="false" />
     <!-- ParachuteMaybe -->
+	
+	<pickup id="pickup (Sniper) (2)" type="34" interior="0" amount="20" respawn="30000" dimension="0" posX="246.70605" posY="1385.9922" posZ="23.375" synced="true"></pickup>
+	<pickup id="pickup (sniper) (3)" type="34" interior="0" amount="20" respawn="30000" dimension="0" alpha="255" posX="773.09998" posY="1878.4" posZ="8.1" rotX="0" rotY="0" rotZ="0" synced="true"></pickup>
 	
 
     <boundarycorner posX="-634.0388" posY="2895.2231" />

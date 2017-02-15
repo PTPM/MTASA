@@ -124,6 +124,9 @@
 	
 	<export function="getPlayerColour" type="server"/>
 	<export function="sendTeamChatMessage" type="server"/>
+
+	<export function="isInClassSelection" type="client"/>
+	<export function="isRoundEnded" type="client"/>
 	
 	<!-- Gameplay (download) -->
 	<!--<include resource="heligrab" />-->

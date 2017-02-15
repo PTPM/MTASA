@@ -160,4 +160,7 @@
     <object model="969" posX="257.04" posY="1827.36" posZ="9.58" rotX="90.00" rotY="0.00" rotZ="1.04" />
     <!-- fence1 -->
     <object id="object (a51_jetdoor) (1)" model="3095" posX="268.66882324219" posY="1884.1352539063" posZ="16.065633773804" rotX="0" rotY="0" rotZ="88.840026855469" />
+    <object id="gate block left" breakable="false" interior="0" alpha="255" model="1468" scale="1" dimension="0" posX="96.68542" posY="1919.1635" posZ="18.722" rotX="0" rotY="90" rotZ="270"/>
+    <object id="gate block right" breakable="false" interior="0" alpha="255" model="1468" scale="1" dimension="0" posX="96.73006" posY="1920.7157" posZ="18.722" rotX="0" rotY="90" rotZ="270"/>
+
 </map>

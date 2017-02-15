@@ -1,10 +1,10 @@
 ﻿election = {
 	active = false,
 	candidates = {},
-
+	
 	addCandidate = 
-		function(player)
-			if not election.active or getElementData(player, "ptpm.electionCandidate") then
+		function(player, electors)
+			if not election.active or getElementData(player, "ptpm.electionCandidate") or electors < 1 then
 				return
 			end
 
@@ -16,7 +16,11 @@
 			end
 
 			setElementData(player, "ptpm.electionCandidate", true, false)
-			table.insert(election.candidates, player)
+			triggerClientEvent(player, "updateClientChanceInElection", player, electors)
+			
+			for i=1,electors do
+				table.insert(election.candidates, player)
+			end
 
 			for _, p in ipairs(getElementsByType("player")) do
 				if p and isElement(p) and isPlayerActive(p) and getElementData(p, "ptpm.inClassSelection") then
@@ -24,16 +28,17 @@
 				end
 			end
 		end,
+		
 	removeCandidate = 
 		function(player)
 			if not election.active or not getElementData(player, "ptpm.electionCandidate") then
 				return
 			end
 
-			for i, candidate in ipairs(election.candidates) do
-				if candidate == player then
+			-- Iterating from back to front to remove the same value multiple times	
+			for i=#election.candidates,1,-1 do
+				if election.candidates[i] == player then
 					table.remove(election.candidates, i)
-					break
 				end
 			end
 
@@ -150,7 +155,18 @@ function onPlayerRequestSpawn(requestedClassID)
 				election.removeCandidate(client)
 				triggerClientEvent(client, "onPlayerRequestSpawnReserved", root, requestedClassID, true)
 			else
-				election.addCandidate(client)
+				-- determine number of "ballot boxes" on the figurative ballot form, based on player experience
+				-- if ptpm_accounts (statistics module) is not running, then elementData will be empty, and will work as expected with ballot forms = 1
+				local electors = 1
+				
+				if isRunning("ptpm_accounts") then
+					local gamesPlayed = (exports.ptpm_accounts:getPlayerStatistic( client, "roundswon" ) or 0) + (exports.ptpm_accounts:getPlayerStatistic( client, "roundslost" ) or 0)					
+					if gamesPlayed >= 12 then electors = electors + 1 end	-- Get an additional box for 12 games played (based on PTPM Rank minimum)
+					if gamesPlayed >= 40 then electors = electors + 1 end	-- Get an additional box for 40 games played (based on PTPM Rank League Cap)
+					electors = electors + math.floor(gamesPlayed / 100)	-- Get an additional box for each 100 games played
+				end
+				
+				election.addCandidate(client, electors)
 				triggerClientEvent(client, "onPlayerRequestSpawnReserved", root, requestedClassID)
 			end
 		else
@@ -239,7 +255,7 @@ function playerClassSelectionAccept(thePlayer, classID, notify)
 		notifyTeamAvailability()
 	end
 
-	bindKey(thePlayer, "f4", "down", classSelectionAfterDeath)
+	bindKey(thePlayer, "f4", "down", classSelectionAfterTimer)
 end
 
 function notifyTeamAvailability()
@@ -265,7 +281,56 @@ function classSelectionRemove(thePlayer)
 	end
 end
 
-function classSelectionAfterDeath( thePlayer )
+function cancelClassSelectionAfterTimer(thePlayer)
+	-- Kill the timer
+	local theTimer = getElementData(thePlayer, "classSelectionRequestTimer")
+
+	if isTimer(theTimer) then
+		killTimer(theTimer)
+		outputChatBox( "Class selection cancelled.", thePlayer, unpack( colour.personal ) )
+		
+		-- Allow to cancel by pressing F4 again
+		unbindKey(thePlayer, "f4", "down", cancelClassSelectionAfterTimer)
+		bindKey( thePlayer, "f4", "down", classSelectionAfterTimer )
+	end
+end
+
+function classSelectionAfterTimer(thePlayer)
+	-- Pfff... bogus!
+	if not isPlayerActive(thePlayer) or getElementData(thePlayer, "ptpm.inClassSelection") then 
+		return 
+	end
+	
+	if isPedDead( thePlayer ) then return end
+
+	local classID = getPlayerClassID( thePlayer )
+	if classes[classID].type == "pm" and not isPlayerOp( thePlayer ) then
+		outputChatBox( "The prime minister must use /swapclass.", thePlayer, unpack( colour.personal ) )
+		return
+	end
+
+	-- Set the timer
+	outputChatBox( "Returning to class selection in 5 seconds...", thePlayer, unpack( colour.personal ) )
+	
+	setElementData ( thePlayer, "classSelectionRequestTimer", 
+		setTimer(
+			function( player )
+				-- outputChatBox( "Back in class select.", player, unpack( colour.personal ) )
+				if player and isElement( player ) then
+					initClassSelection( player, true )
+					unbindKey(thePlayer, "f4", "down", cancelClassSelectionAfterTimer)
+					bindKey( thePlayer, "f4", "down", classSelectionAfterTimer )
+				end
+			end,
+		5000, 1, thePlayer ) 
+	, false )
+	
+	-- Allow to cancel by pressing F4 again
+	unbindKey( thePlayer, "f4", "down", classSelectionAfterTimer )
+	bindKey(thePlayer, "f4", "down", cancelClassSelectionAfterTimer)	
+end
+
+function classSelectionAfterDeath( thePlayer ) -- Legacy
 	unbindKey( thePlayer, "f4", "down", classSelectionAfterDeath )
 	setElementData( thePlayer, "ptpm.classSelectAfterDeath", true, false )
 	outputChatBox( "Returning to class selection after next death.", thePlayer, unpack( colour.personal ) )

@@ -4,6 +4,7 @@ local options = {}
 classes = {}
 currentPM = nil
 currentMapName = ""
+local roundEnded = false
 
 addEventHandler( "onClientResourceStart", root,
 	function(res)
@@ -30,6 +31,7 @@ addEventHandler("onClientMapStart", root,
 addEvent("onClientMapStarted", true)
 addEventHandler("onClientMapStarted", root,
 	function(class, distpm)
+		roundEnded = false
 		hideTransitionImage()
 
 		classes = class
@@ -65,6 +67,17 @@ addEventHandler("sendClientMapData", root,
 		end
 	end
 )
+
+addEvent("onClientRoundEnd", true)
+addEventHandler("onClientRoundEnd", root,
+	function()
+		roundEnded = true
+	end
+)
+
+function isRoundEnded()
+	return roundEnded
+end
 
 
 function drawGameTextToScreen( text, duration, colour, font, size, valign, halign, importance )

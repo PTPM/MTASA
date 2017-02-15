@@ -693,6 +693,7 @@
     <!-- 3 -->
     <object model="1775" posX="2119.04" posY="-2274.84" posZ="21.47" rotX="0.00" rotY="90.00" rotZ="496.05" />
     <!-- 4 -->
+    <object id="crack palace floor" model="17946" posX="2533.8" posY="-1290.54" posZ="36.94" rotX="0" rotY="0" rotZ="0" />
 	
 
     <boundarycorner posX="3135" posY="-3135" />

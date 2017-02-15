@@ -599,9 +599,16 @@ end
 
 
 function isPlayerOp( player )
-	if isRunning( "ptpm_accounts" ) then
-		if player and isElement( player ) and isPlayerActive( player ) then
-			return exports.ptpm_accounts:getSensitiveUserdata( player, "operator" ) or false
+	local allowedGroups = { "Admin", "ptpm_ProvisionaryOperator", "ptpm_FullOperator" }
+	
+	local acc = getPlayerAccount(player)
+	if not acc then return false end
+	local aclEntryName = "user."..getAccountName(acc) 
+
+	for _,group in ipairs(allowedGroups) do
+		local groupObj = aclGetGroup(group)
+		if groupObj and isObjectInACLGroup(aclEntryName, groupObj) then
+			return true
 		end
 	end
 	return false

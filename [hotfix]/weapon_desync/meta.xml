@@ -1,0 +1,5 @@
+<meta>
+	<info author="PTPM" type="script" name="Weapon Desync" description="Detect and potentially fix weapon desync" />
+	<script src="weapon_desync_c.lua" type="client"></script>
+	<script src="weapon_desync_s.lua" type="server"></script>
+</meta>

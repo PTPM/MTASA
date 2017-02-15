@@ -24,6 +24,10 @@ end
 
 
 function checkPlayersOutOfBounds()
+	if data.roundEnded then
+		return
+	end
+
 	for _, value in ipairs( getElementsByType( "player" ) ) do
 		if value and isElement( value ) and getPlayerClassID( value ) then
 			local x, y, z = getElementPosition( value )
