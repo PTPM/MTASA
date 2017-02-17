@@ -256,11 +256,13 @@ function playerHealPlayer( medic, patient, distance )
 	if not getPlayerClassID( medic ) or not getPlayerClassID( patient ) then return end
 	
 	if not classes[getPlayerClassID( medic )].medic then
-		return outputChatBox( "You are not a medic!", medic, unpack( colour.personal ) )
+		outputChatBox( "You are not a medic!", medic, unpack( colour.personal ) )
+		return 
 	end
 	
 	if medic == patient then
-		return outputChatBox( "Physicians may not heal themselves.", medic, unpack( colour.personal ) )
+		outputChatBox( "Physicians may not heal themselves.", medic, unpack( colour.personal ) )
+		return 
 	end
 	
 	local effectiveness, radius = 2, 2
@@ -278,7 +280,8 @@ function playerHealPlayer( medic, patient, distance )
 	if distance > radius then
 		if not getPedOccupiedVehicle( medic ) or not getPedOccupiedVehicle( patient ) or getPedOccupiedVehicle( medic ) ~= getPedOccupiedVehicle( patient ) then
 			if distance < 25 then
-				return outputChatBox( string.format("You are too far from '%s' (%.1fm).", getPlayerName( patient ) , distance ), medic, unpack( colour.personal ) )
+				outputChatBox( string.format("You are too far from '%s' (%.1fm).", getPlayerName( patient ) , distance ), medic, unpack( colour.personal ) )
+				return 
 			else
 				return
 			end
@@ -293,7 +296,8 @@ function playerHealPlayer( medic, patient, distance )
 	if medicine > ( medicHealth - 1 ) then medicine = medicHealth - 1 end
 	
 	if medicine <= 0 then
-		return outputChatBox( "There is nothing you can do.", medic, unpack( colour.personal ) )
+		outputChatBox( "There is nothing you can do.", medic, unpack( colour.personal ) )
+		return 
 	end
 
 	local hpHealed = getElementData( medic, "ptpm.hpHealed" ) or 0
@@ -317,6 +321,8 @@ function playerHealPlayer( medic, patient, distance )
 	local healthDiff = string.format("%.1f", medicine*effectiveness)
 	outputChatBox( "Gave " .. healthDiff .. " health to patient.", medic, unpack( colour.personal ) )
 	outputChatBox( "You were healed by " .. healthDiff .. " health.", patient, unpack( colour.personal ) )
+
+	return true
 end
 
 function isPlayerInSameTeam( thePlayer, otherPlayer )

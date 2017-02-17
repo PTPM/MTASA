@@ -402,6 +402,7 @@ function roundTick()
 	--	drawStaticTextToScreen( "update", root, "roundTimer", "Time left: " .. formatTimeLeft(), "screenX-190", 5, 180, 50, sampTextdrawColours.w, 1, "pricedown", "top" )
 	--end
 	
+	local accountsRunning = isRunning("ptpm_accounts")
 	
 	if timeLeft < 0 and not data.roundEnded then
 		if currentPM then 
@@ -416,7 +417,7 @@ function roundTick()
       		if currentPM then
         		local pmWins = getElementData( currentPM, "ptpm.pmWins" ) or 0
         
-        		if isRunning( "ptpm_accounts" ) then
+        		if accountsRunning then
           			--exports.ptpm_accounts:setPlayerAccountData(currentPM,{["pmVictory"] = ">+1"})
           			pmWins = (exports.ptpm_accounts:getPlayerStatistic( currentPM, "pmvictory" ) or pmWins) + 1
           			exports.ptpm_accounts:setPlayerStatistic( currentPM, "pmvictory", pmWins )
@@ -436,7 +437,7 @@ function roundTick()
 							if classes[classID].type == "pm" or classes[classID].type == "bodyguard" or classes[classID].type == "police" then
 								local roundsWon = getElementData( p, "ptpm.roundsWon" ) or 0
 
-								if isRunning( "ptpm_accounts" ) then        
+								if accountsRunning then        
 									roundsWon = (exports.ptpm_accounts:getPlayerStatistic( p, "roundswon" ) or roundsWon) + 1
 									exports.ptpm_accounts:setPlayerStatistic( p, "roundswon", roundsWon )
 								else
@@ -448,7 +449,7 @@ function roundTick()
 							elseif classes[classID].type == "terrorist" then
 								local roundsLost = getElementData( p, "ptpm.roundsLost" ) or 0
 
-								if isRunning( "ptpm_accounts" ) then        
+								if accountsRunning then        
 									roundsLost = (exports.ptpm_accounts:getPlayerStatistic( p, "roundslost" ) or roundsLost) + 1
 									exports.ptpm_accounts:setPlayerStatistic( p, "roundslost", roundsLost )
 								else
@@ -468,7 +469,7 @@ function roundTick()
 	      	if currentPM then
 	        	local pmLosses = getElementData( currentPM, "ptpm.pmWins" ) or 0
 	        
-	        	if isRunning( "ptpm_accounts" ) then
+	        	if accountsRunning then
 					pmLosses = (exports.ptpm_accounts:getPlayerStatistic( currentPM, "pmlosses" ) or pmLosses) + 1
 					exports.ptpm_accounts:setPlayerStatistic( currentPM, "pmlosses", pmLosses )
 				else
@@ -486,7 +487,7 @@ function roundTick()
 							if classes[classID].type == "terrorist" then
 								local roundsWon = getElementData( p, "ptpm.roundsWon" ) or 0
 
-								if isRunning( "ptpm_accounts" ) then        
+								if accountsRunning then        
 									roundsWon = (exports.ptpm_accounts:getPlayerStatistic( p, "roundswon" ) or roundsWon) + 1
 									exports.ptpm_accounts:setPlayerStatistic( p, "roundswon", roundsWon )
 								else
@@ -602,32 +603,41 @@ function roundTick()
 	
 
 	if options.medicHealthBonus then
-		for _, value in ipairs(players) do
-			local classID = getPlayerClassID( value )
-			if value and classID and classes[classID].medic and classes[classID].type ~= "pm" then
-				if getElementHealth(value) < 95 then
-					triggerHelpEvent(value, "OPTION_HEALTH_REGEN_MEDIC")
+		for _, player in ipairs(players) do
+			local classID = getPlayerClassID(player)
+			if player and classID and classes[classID].medic and classes[classID].type ~= "pm" then
+				if getElementHealth(player) < 95 then
+					triggerHelpEvent(player, "OPTION_HEALTH_REGEN_MEDIC")
 				end
 
-				changeHealth(value, 2)
+				changeHealth(player, 2)
 			end
 			
-			for _, value2 in ipairs(players) do
-				local ClassID2 = getPlayerClassID( value2 )
-				if value2 and value2 ~= value and ClassID2 and classes[ClassID2].medic and classes[ClassID2].type ~= "pm" then
-					local pX, pY, pZ = getElementPosition( value )
-					local mX, mY, mZ = getElementPosition( value2 )
+			for _, player2 in ipairs(players) do
+				local classID2 = getPlayerClassID(player2)
+				if player2 and player2 ~= player and classID2 and classes[classID2].medic and classes[classID2].type ~= "pm" then
+					local pX, pY, pZ = getElementPosition(player)
+					local mX, mY, mZ = getElementPosition(player2)
+
 					if pX and pY and pZ and mX and mY and mZ then
-						local d = getDistanceBetweenPoints3D( pX, pY, pZ, mX, mY, mZ )
+						local d = getDistanceBetweenPoints3D(pX, pY, pZ, mX, mY, mZ)
 						if d < 10 then
-							if isPlayerInSameTeam( value, value2 ) then
-								changeHealth( value, 1, 5 )
-								triggerHelpEvent(value2, "MEDIC_PASSIVE_GIVE")
+							if isPlayerInSameTeam(player, player2) then
+								changeHealth(player, 1, 5)
+								triggerHelpEvent(player2, "MEDIC_PASSIVE_GIVE")
+
+								if accountsRunning then
+									exports.ptpm_accounts:incrementPlayerStatistic(player2, "hphealedpassive")
+								end
 							end
 						end
-						if getPedOccupiedVehicle( value2 ) and getElementModel(getPedOccupiedVehicle( value2 )) == 416 and d < 7 then
-							if isPlayerInSameTeam( value, value2 ) then
-								changeHealth( value, 2 )
+						if getPedOccupiedVehicle(player2) and getElementModel(getPedOccupiedVehicle(player2)) == 416 and d < 7 then
+							if isPlayerInSameTeam(player, player2) then
+								changeHealth(player, 2)
+
+								if accountsRunning then
+									exports.ptpm_accounts:incrementPlayerStatistic(player2, "hphealedpassive", 2)
+								end
 							end
 						end
 					end
@@ -835,10 +845,14 @@ function healCommand( thePlayer, commandName, otherName )
 		return outputChatBox( "Patient '" .. getPlayerName( patient ) .. "' has not yet selected class.", thePlayer, unpack( colour.personal ) )
 	end
 	
-	playerHealPlayer( thePlayer, patient, d )
-
-	if commandName == "heal" and classes[getPlayerClassID(thePlayer)].medic then
-		triggerHelpEvent(thePlayer, "MEDIC_H")
+	if playerHealPlayer(thePlayer, patient, d) then
+		if commandName == "heal" then
+			triggerHelpEvent(thePlayer, "MEDIC_H")
+		elseif commandName == "h" then
+			if isRunning("ptpm_accounts") then
+				exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "hcount")
+			end
+		end
 	end
 end
 addCommandHandler( "heal", healCommand )
@@ -953,6 +967,10 @@ function plan( thePlayer, commandName, ... )
 												classes[getPlayerClassID( thePlayer )].type == "bodyguard" or
 												classes[getPlayerClassID( thePlayer )].type == "police" ) then
 			showPlan( thePlayer )
+
+			if isRunning("ptpm_accounts") then
+				exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "plancount")
+			end
 		else
 		--	outputChatBox( "You are not allowed to see the plan.", thePlayer, unpack( colour.personal ) )
 		end
@@ -960,6 +978,11 @@ function plan( thePlayer, commandName, ... )
 		if getPlayerClassID( thePlayer ) and classes[getPlayerClassID( thePlayer )].type == "pm" then
 			local newPlan = table.concat( {...}, " " )
 			options.plan = newPlan
+
+			if isRunning("ptpm_accounts") then
+				exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "plancount")
+			end
+
 			for _, p in ipairs( getElementsByType( "player" ) ) do
 				if p and isElement( p ) and getPlayerClassID( p ) and (	classes[getPlayerClassID( p )].type == "pm" or
 														classes[getPlayerClassID( p )].type == "bodyguard" or

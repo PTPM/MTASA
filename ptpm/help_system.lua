@@ -216,7 +216,7 @@ function showHelpEvent(player, id)
 	end
 
 	if help.events[id].increment then
-		exports.ptpm_accounts:incrementPlayerStatistic(help.events[id].increment)
+		exports.ptpm_accounts:incrementPlayerStatistic(player, help.events[id].increment)
 	end
 
 	if help.events[id].cooldown then

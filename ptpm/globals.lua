@@ -89,7 +89,7 @@ else
 		local classID = getPlayerClassID(player)
 
 		if classID then
-			s = s:gsub("%[TEAM%]", colour.hex[classes[classID].type])
+			s = s:gsub("%[TEAM%]", colour.hex[classes[classID].type .. (classes[classID].medic and "m" or "")])
 		end
 
 		return s

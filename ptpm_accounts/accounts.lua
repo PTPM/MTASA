@@ -35,10 +35,10 @@ function prepareUserDatabase()
 	addColumnToDatabase( "playerstats", "kills", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "deaths", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "damage", "BIGINT UNSIGNED", 0 )
-  addColumnToDatabase( "playerstats", "damagetaken", "BIGINT UNSIGNED", 0 )
+  	addColumnToDatabase( "playerstats", "damagetaken", "BIGINT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "beststreak", "INT UNSIGNED", 0 )
-  addColumnToDatabase( "playerstats", "hphealed", "BIGINT UNSIGNED", 0 )
-	--addColumnToDatabase( "playerstats", "vehiclesdestroyed", "INT UNSIGNED", 0 )
+  	addColumnToDatabase( "playerstats", "hphealed", "BIGINT UNSIGNED", 0 )
+
 	---- Prime Minister
 	addColumnToDatabase( "playerstats", "pmcount", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "pmkills", "INT UNSIGNED", 0 )
@@ -54,28 +54,28 @@ function prepareUserDatabase()
 	addColumnToDatabase( "playerstats", "timeplaying", "INT UNSIGNED", 0 )
 	addColumnToDatabase( "playerstats", "longestsession", "INT UNSIGNED", 0 )
 
-	--[[ to add:
-		terrorcount
-		policecount
-		bgcount
-		mediccount
-		objectivesplayed
-		tasksplayed
+	addColumnToDatabase( "playerstats", "terrorcount", "INT UNSIGNED", 0 ) -- number of times played as terror
+	addColumnToDatabase( "playerstats", "policecount", "INT UNSIGNED", 0 ) -- number of times played as police
+	addColumnToDatabase( "playerstats", "bgcount", "INT UNSIGNED", 0 ) -- number of times played as bodyguard
+	addColumnToDatabase( "playerstats", "mediccount", "INT UNSIGNED", 0 ) -- number of times played as medic
 
-		hphealedpassive
+	addColumnToDatabase( "playerstats", "objectivesplayed", "INT UNSIGNED", 0 ) -- number of maps with objectives played
+	addColumnToDatabase( "playerstats", "tasksplayed", "INT UNSIGNED", 0 ) -- number of maps with tasks played
+	addColumnToDatabase( "playerstats", "waterdeathplayed", "INT UNSIGNED", 0 ) -- number of maps with pm water death option played
+	addColumnToDatabase( "playerstats", "abandonedplayed", "INT UNSIGNED", 0 ) -- number of maps with the pm abandoned penalty option played
 
-		hcount
-		reclasscount
-		rccount
-		swapclasscount
-		plancount
-		leaveclasscount
-		waterdeathcount
-		abandonedcount
-		safezonecount
+	addColumnToDatabase( "playerstats", "hphealedpassive", "BIGINT UNSIGNED", 0 ) -- hp passively healed in other players
+	addColumnToDatabase( "playerstats", "hcount", "INT UNSIGNED", 0 ) -- times used /h
+	addColumnToDatabase( "playerstats", "reclasscount", "INT UNSIGNED", 0 ) -- times used /reclass
+	addColumnToDatabase( "playerstats", "rccount", "INT UNSIGNED", 0 ) -- times used /rc
+	addColumnToDatabase( "playerstats", "swapclasscount", "INT UNSIGNED", 0 ) -- times used /swapclass
+	addColumnToDatabase( "playerstats", "plancount", "INT UNSIGNED", 0 ) -- times used /plan
+	addColumnToDatabase( "playerstats", "leaveclasscount", "INT UNSIGNED", 0 ) -- times used f4
+	addColumnToDatabase( "playerstats", "safezonecount", "INT UNSIGNED", 0 ) -- number of safe zones entered
 
-		eventambulancecount
-	]]
+	addColumnToDatabase( "playerstats", "eventambulancecount", "INT UNSIGNED", 0 ) -- number of ambulance help events seen
+
+	--addColumnToDatabase( "playerstats", "", "INT UNSIGNED", 0 )
 end
 addEventHandler( "onResourceStart", resourceRoot, prepareUserDatabase )
 

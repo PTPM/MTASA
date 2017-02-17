@@ -89,17 +89,32 @@ function endGame()
 	end
 	
 	-- Save some stats
-	if isRunning( "ptpm_accounts" ) then
-		for _, p in ipairs( getElementsByType( "player" ) ) do
-			if p and isElement( p ) and isPlayerActive( p ) then
-				local beststreak = exports.ptpm_accounts:getPlayerStatistic( p, "beststreak" ) or 0
-				local currentstreak = getElementData( p, "ptpm.consecutiveKills" ) or 0
+	if isRunning("ptpm_accounts") then
+		for _, player in ipairs(getElementsByType("player")) do
+			if player and isElement(player) and isPlayerActive(player) then
+				local beststreak = exports.ptpm_accounts:getPlayerStatistic(player, "beststreak") or 0
+				local currentstreak = getElementData(player, "ptpm.consecutiveKills") or 0
 				if currentstreak > beststreak then
-					exports.ptpm_accounts:setPlayerStatistic( p, "beststreak", currentstreak )
+					exports.ptpm_accounts:setPlayerStatistic(player, "beststreak", currentstreak)
 				end
-				
-				local roundsplayed = exports.ptpm_accounts:getPlayerStatistic( p, "roundsplayed" ) or 0
-				exports.ptpm_accounts:setPlayerStatistic( p, "roundsplayed", roundsplayed + 1 )
+
+				exports.ptpm_accounts:incrementPlayerStatistic(player, "roundsplayed")
+
+				if data.currentMap.hasObjectives then
+					exports.ptpm_accounts:incrementPlayerStatistic(player, "objectivesplayed")
+				end
+
+				if data.currentMap.hasTasks then
+					exports.ptpm_accounts:incrementPlayerStatistic(player, "tasksplayed")
+				end
+
+				if options.pmWaterDeath then
+					exports.ptpm_accounts:incrementPlayerStatistic(player, "waterdeathplayed")
+				end
+
+				if options.pmAbandonedHealthPenalty then
+					exports.ptpm_accounts:incrementPlayerStatistic(player, "abandonedplayed")
+				end
 			end
 		end
 	end

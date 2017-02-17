@@ -192,10 +192,21 @@ function setPlayerClass( thePlayer, class )
 
 	if classes[class].type == "pm" then 
 		currentPM = thePlayer 
-		--exports.ptpm_accounts:setPlayerAccountData(thePlayer,{["pmCount"] = ">+1"})
-		if isRunning( "ptpm_accounts" ) then
-			local pmcount = exports.ptpm_accounts:getPlayerStatistic( thePlayer, "pmcount" ) or 0
-			exports.ptpm_accounts:setPlayerStatistic( thePlayer, "pmcount", pmcount + 1 )
+	end
+
+	if isRunning("ptpm_accounts") then
+		if classes[class].type == "pm" then
+			exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "pmcount")
+		elseif classes[class].type == "bodyguard" then
+			exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "bgcount")
+		elseif classes[class].type == "terrorist" then
+			exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "terrorcount")
+		elseif classes[class].type == "police" then
+			exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "policecount")
+		end
+
+		if classes[class].medic then
+			exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "mediccount")
 		end
 	end
 	

@@ -312,6 +312,10 @@ function classSelectionAfterTimer(thePlayer)
 	-- Set the timer
 	outputChatBox( "Returning to class selection in 5 seconds...", thePlayer, unpack( colour.personal ) )
 	
+	if isRunning("ptpm_accounts") then
+		exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "leaveclasscount")
+	end
+
 	setElementData ( thePlayer, "classSelectionRequestTimer", 
 		setTimer(
 			function( player )
@@ -422,6 +426,13 @@ function reclassCommand( thePlayer, commandName, className )
 
 		if commandName == "reclass" then
 			triggerHelpEvent(thePlayer, "COMMAND_RC")
+			if isRunning("ptpm_accounts") then
+				exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "reclasscount")
+			end
+		elseif commandName == "rc" then
+			if isRunning("ptpm_accounts") then
+				exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "rccount")
+			end
 		end
 	else
 		local teamName = teamMemberName[classes[proposedClass].type]
@@ -459,6 +470,10 @@ function swapclass( thePlayer, commandName, otherName )
 		options.swapclass.timer = setTimer( swapclassOffer, 15000, 1, false, otherPlayer )
 
 		outputChatBox( "Swapclass offer sent to " .. getPlayerName( otherPlayer ), thePlayer, unpack( colour.personal ) )
+
+		if isRunning("ptpm_accounts") then
+			exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "swapclasscount")
+		end
 	end
 end
 

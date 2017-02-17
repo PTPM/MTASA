@@ -26,6 +26,7 @@
 	
 	<export function="getPlayerStatistic" type="server"/>
 	<export function="setPlayerStatistic" type="server"/>
+	<export function="incrementPlayerStatistic" type="server"/>
 	<export function="getPlayerStats" type="server"/>
 	<export function="savePlayerStats" type="server"/>
 </meta>
