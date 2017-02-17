@@ -1,4 +1,4 @@
-local uiScale = screenY / 600
+local uiScale = math.min(screenY, 1000) / 600
 local state = {
 	grow = 0,
 	slideIn = 1,
