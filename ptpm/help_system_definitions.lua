@@ -53,6 +53,7 @@ function helpSystemCreateDefinitions()
 		text = "A weapon pickup is nearby...",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "roundsplayed", true, 20}},
 		cooldown = 60000,
+		linkHelpManager = false,
 	})	
 
 
@@ -137,14 +138,16 @@ function helpSystemCreateDefinitions()
 		text = "Type /plan <message> to let your team know what you want them to do",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "plancount", false, 3}},
 		cooldown = 60000 * 6,
-		image = {name = "plan"}
+		image = {name = "plan"},
+		linkHelpManager = false,
 	})	
 
 	registerHelpEvent("COMMAND_PLAN_SET", {
 		text = "The [PM]Prime Minister[WHITE] has set a plan. This is how he wants to survive. Follow his instructions!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "plancount", false, 3}},
 		cooldown = 60000 * 6,
-		image = {name = "plan"}
+		image = {name = "plan"},
+		linkHelpManager = false,
 	})		
 
 	registerHelpEvent("COMMAND_DUTY", {
@@ -157,6 +160,7 @@ function helpSystemCreateDefinitions()
 		text = "You can press F4 to return to the class selection menu",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "leaveclasscount", false, 3}},
 		cooldown = 60000 * 6,
+		linkHelpManager = false,
 	})		
 
 
@@ -165,7 +169,8 @@ function helpSystemCreateDefinitions()
 		displayTime = 60000 * 30,
 		importance = 9995,
 		force = true,
-		image = {name = "camera"}
+		image = {name = "camera"},
+		linkHelpManager = false,
 	})	
 
 
@@ -205,6 +210,7 @@ function helpSystemCreateDefinitions()
 	registerHelpEvent("OPTION_DISTANCE_TO_PM", {
 		text = "The [PM]Prime Minister[WHITE] is hidden on the map. Find him! Use the [RED]distance meter[WHITE] to see how far away he is and track him down",
 		cooldown = 60000 * 5,
+		linkHelpManager = false,
 	})
 
 	-- registerHelpEvent("OPTION_CANT_DRIVE", {

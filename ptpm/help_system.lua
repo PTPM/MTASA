@@ -14,13 +14,14 @@
 		cooldown, -- don't show this prompt again for this amount of time
 		displayTime,
 		force,
+		linkHelpManager, -- show a help manager call to action in the prompt
 	}
 
 ]]
 
 help = {
 	events = {},
-	displayTime = 5000,
+	displayTime = 6000,
 	cooldowns = {},
 }
 
@@ -126,6 +127,7 @@ function registerHelpEvent(id, data)
 	end
 
 	data.importance = data.importance or 0
+	data.linkHelpManager = data.linkHelpManager ~= false
 	data.text = colour.hex.parse(data.text)
 
 	help.events[id] = data
@@ -209,11 +211,17 @@ function showHelpEvent(player, id)
 	if currentHelp then
 		-- queue
 		outputChatBox("Queued: " .. help.events[id].text, player)
-		triggerClientEvent(player, "showHelpEvent", resourceRoot, colour.hex.parseContextual(help.events[id].text, player), help.events[id].displayTime or help.displayTime, help.events[id].image, true)
 	else
 		outputChatBox(help.events[id].text, player)
-		triggerClientEvent(player, "showHelpEvent", resourceRoot, colour.hex.parseContextual(help.events[id].text, player), help.events[id].displayTime or help.displayTime, help.events[id].image, false)
 	end
+
+	triggerClientEvent(player, "showHelpEvent", resourceRoot, 
+		colour.hex.parseContextual(help.events[id].text, player), 
+		help.events[id].displayTime or help.displayTime, 
+		help.events[id].image, 
+		help.events[id].linkHelpManager and id or nil,
+		currentHelp ~= nil
+	)
 
 	if help.events[id].increment then
 		exports.ptpm_accounts:incrementPlayerStatistic(player, help.events[id].increment)

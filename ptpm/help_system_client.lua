@@ -71,7 +71,7 @@ end
 function helpSystemSetup()
 	help.height = help.height * uiScale
 
-	help.font = dxCreateFont("fonts/tahoma.ttf", 9 * (uiScale * 1), false, "proof")
+	help.font = dxCreateFont("fonts/tahoma.ttf", 9 * (uiScale * 2), false, "proof")
 
 	if not help.font then
 		help.font = "default"
@@ -83,16 +83,16 @@ function helpSystemSetup()
 end 
 
 
-function showHelpEvent(text, duration, image, queue) 
+function showHelpEvent(text, duration, image, managerLink, queue) 
 	if help.showing then
 		if queue then
-			table.insert(help.queue, {text = text, duration = duration, image = image})
+			table.insert(help.queue, {text = text, duration = duration, image = image, managerLink = managerLink})
 		end
 
 		return
 	end
 
-	setupHelpEvent(text, duration, image)
+	setupHelpEvent(text, duration, managerLink, image)
 end
 addEventHandler("showHelpEvent", resourceRoot, showHelpEvent)
 
@@ -110,12 +110,18 @@ end
 addEventHandler("hideHelpEvent", resourceRoot, hideHelpEvent)
 
 
-function setupHelpEvent(text, duration, image)
+function setupHelpEvent(text, duration, managerLink, image)
 	help:reset()
 
 	local circleSize = help.height + s(12)
-	help.text = dxWordWrapText(text, help.width - (circleSize / 2) - s(4), help.font, 1)
+	help.text = dxWordWrapText(text, help.width - (circleSize / 2) - s(4), help.font, 0.5)
 	help.duration = duration
+	help.linkDuration = ((2000 / help.duration) / 2)
+	help.managerLink = managerLink
+
+	if duration < 3000 then
+		help.managerLink = nil
+	end
 
 	if image and image.name then
 		help.image = "images/icons/" .. image.name .. ".png"
@@ -135,6 +141,7 @@ function setupHelpEvent(text, duration, image)
 	end
 
 	help.showing = true
+	playSoundFrontEnd(2)
 end
 
 
@@ -172,21 +179,46 @@ function drawHelp()
 		dxDrawRectangle(help.x - xOffset + ((i - 1) * partWidth), help.y - (partHeight / 2), partWidth, partHeight, colour.black)
 	end
 
+	local durationProgress = (getTickCount() - help.showTick) / help.duration
 	-- draw a progress bar so you can see how long the message will be visible for
 	if help.animationState == state.showing then
-		local n = (getTickCount() - help.showTick) / help.duration
-		dxDrawLine(help.x, help.y + (help.height / 2) - 2, help.x - xOffset + (help.width * n), help.y + (help.height / 2) - 2, tocolor(255,0,0,n * 255), 2)
+		dxDrawLine(help.x, help.y + (help.height / 2) - 2, help.x - xOffset + (help.width * durationProgress), help.y + (help.height / 2) - 2, tocolor(255,0,0,durationProgress * 255), 2)
 	end
 
 	-- we want the circle to be a little bigger than the rectangle so it looks nicer
 	local circleSize = height + s(12)
 	dxDrawImage(help.x - (circleSize / 2) - xOffset, help.y - (circleSize / 2), circleSize, circleSize, "images/class_selection/asset_white_circle.png", 0, 0, 0, tocolor(255, 255, 255, 255 * (height / help.height)))
 
-	if help.image then
-		dxDrawImage(help.x - (height / 2) - xOffset, help.y - (height / 2), height, height, help.image, 0, 0, 0, tocolor(help.imageColour[1], help.imageColour[2], help.imageColour[3], 255 * (height / help.height)))
+
+	local imageSize = height
+	local imageRot = 0
+
+	if help.managerLink and help.animationState == state.showing and durationProgress >= (0.5 - help.linkDuration) and durationProgress <= (0.5 + help.linkDuration) then
+		local n = (durationProgress - (0.5 - help.linkDuration)) / (help.linkDuration * 2)
+
+		if n < 0.5 then
+			local ease = getEasingValue(math.min(n * 6, 1), "InQuad")
+			imageSize = imageSize * (1 - ease)
+			imageRot = 360 * (1 - ease)
+		else
+			local ease = getEasingValue(math.min((1 - n) * 6, 1), "InQuad")
+			imageSize = imageSize * (1 - ease)
+			imageRot = 360 * (1 - ease)
+		end
 	end
 
-	dxDrawText(help.text, help.x - xOffset + (circleSize / 2) + s(2), help.y - (help.height / 2), help.x - xOffset + help.width - s(2), help.y + (help.height / 2), colour.white, 1, help.font, "left", "center", false, false, false, true)
+	if help.image then
+		dxDrawImage(help.x - (imageSize / 2) - xOffset, help.y - (imageSize / 2), imageSize, imageSize, help.image, imageRot, 0, 0, tocolor(help.imageColour[1], help.imageColour[2], help.imageColour[3], 255 * (imageSize / help.height)))
+	end
+
+	if help.managerLink and help.animationState == state.showing then
+		local textSize = height - imageSize
+		dxDrawText("press", help.x - xOffset - (textSize / 2), help.y - (height / 2) + s(10), help.x - xOffset + (textSize / 2), help.y + (height / 2), tocolor(0,0,0,255 * (textSize / help.height)), 0.5, help.font, "center", "top", true, false, false, false)
+		dxDrawText("F9", help.x - xOffset - (textSize / 2), help.y - (height / 2), help.x - xOffset + (textSize / 2), help.y + (height / 2), tocolor(255,0,0,255 * (textSize / help.height)), 1, help.font, "center", "center", true, false, false, false)
+		dxDrawText("for more", help.x - xOffset - (textSize / 2), help.y - (height / 2), help.x - xOffset + (textSize / 2), help.y + (height / 2) - s(10), tocolor(0,0,0,255 * (textSize / help.height)), 0.5, help.font, "center", "bottom", true, false, false, false)
+	end
+
+	dxDrawText(help.text, help.x - xOffset + (circleSize / 2) + s(2), help.y - (help.height / 2), help.x - xOffset + help.width - s(2), help.y + (help.height / 2), colour.white, 0.5, help.font, "left", "center", false, false, false, true)
 
 
 	-- animate out
@@ -197,7 +229,7 @@ function drawHelp()
 	-- complete, push the next item in the queue or stop drawing
 	if help.animationState == state.complete then
 		if #help.queue > 0 then
-			setupHelpEvent(help.queue[1].text, help.queue[1].duration, help.queue[1].image)
+			setupHelpEvent(help.queue[1].text, help.queue[1].duration, help.queue[1].managerLink, help.queue[1].image)
 			table.remove(help.queue, 1)
 		else
 			removeEventHandler("onClientRender", root, drawHelp)
@@ -211,5 +243,10 @@ end
 addCommandHandler("he",
 	function()
 		triggerEvent("showHelpEvent", resourceRoot, "this is a message", 4000, false)
+	end
+)
+addCommandHandler("s",
+	function(cmd, s)
+		playSoundFrontEnd(tonumber(s))
 	end
 )
