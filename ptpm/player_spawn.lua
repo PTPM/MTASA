@@ -212,8 +212,8 @@ function setPlayerClass( thePlayer, class )
 	
 	local teamName = teamMemberName[classes[class].type]
 	local string = "You are " .. teamName .. "\n".. (currentPM == thePlayer and "/swapclass" or "/reclass") .. " to change"
-	local classType = classes[class].type .. (classes[class].medic and "m" or "")
-	sendGameText( thePlayer, string, 7000, --[[sampTextdrawColours.y]] classColours[classType], nil, 1.3, nil, nil, 3 )
+
+	sendGameText( thePlayer, string, 7000, classColours[getPlayerClassType(thePlayer, class)], nil, 1.3, nil, nil, 3 )
 	
 	if #getElementsByType( "player" ) <= 8 or classes[class].type == "pm" then
     local r, g, b = getPlayerColour( thePlayer );

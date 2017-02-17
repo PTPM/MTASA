@@ -603,6 +603,18 @@ function getPlayerClassID( player )
 	return false
 end
 
+function getPlayerClassType(player, classID)
+	if not classID then
+		classID = getPlayerClassID(player)
+
+		if not classID then
+			return ""
+		end
+	end
+
+	return classes[classID].type .. (classes[classID].medic and "m" or "")
+end
+
 
 function isPlayerOp( player )
 	local allowedGroups = { "Admin", "ptpm_ProvisionaryOperator", "ptpm_FullOperator" }
