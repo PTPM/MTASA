@@ -148,6 +148,20 @@ for _, flower in pairs(flowers) do
 	if not flower.petals then flower.petals = {} end
 end
 
+-- scale
+local function s(value)
+	return value * uiScale
+end
+
+-- scaleFont
+local function sf(value)
+	return ((value * uiScale) / font.scalar) * font.globalScalar
+end
+
+-- scaleFontSmall
+local function sfs(value)
+	return ((value * uiScale) / font.smallScalar) * font.globalScalar
+end
 
 function classSelectionSetup()
 	-- the default fonts do not scale well, so load our own version at the sizes we need
@@ -1065,25 +1079,6 @@ function isMouseOver(x, y, radius)
 	end
 
 	return getDistanceBetweenPoints2D(x, y, cX * screenX, cY * screenY) < radius
-end
-
-function lerp(startValue, endValue, t)
-	return startValue + ((endValue - startValue) * t)
-end
-
--- scale
-function s(value)
-	return value * uiScale
-end
-
--- scaleFont
-function sf(value)
-	return ((value * uiScale) / font.scalar) * font.globalScalar
-end
-
--- scaleFontSmall
-function sfs(value)
-	return ((value * uiScale) / font.smallScalar) * font.globalScalar
 end
 
 function textLengthSorter(a, b)

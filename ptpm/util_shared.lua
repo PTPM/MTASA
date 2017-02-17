@@ -116,3 +116,7 @@ function distanceSquared(aX, aY, aZ, bX, bY, bZ)
 
 	return vX*vX + vY*vY + vZ*vZ
 end
+
+function lerp(startValue, endValue, t)
+	return startValue + ((endValue - startValue) * t)
+end
