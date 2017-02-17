@@ -448,6 +448,52 @@ function killAFKTimer()
 end
 
 
+-- insert newlines into the text so that it wraps correctly (works with colour codes unlike default dxDrawText)
+function dxWordWrapText(text, width, font, scale)
+	if not font then
+		font = "default"
+	end
+
+	if not scale then
+		scale = 1
+	end
+
+	local line = 1
+	local lines = {""}
+
+	for word in text:gmatch("%S+") do 
+		local space = #lines[line] > 0 and " " or ""
+
+		if dxGetTextWidth(lines[line] .. space .. word, scale, font, true) > width then
+			if dxGetTextWidth(word, scale, font, true) > width then
+				-- split up the word
+				while true do
+					for i = #word, 1, -1 do
+						if dxGetTextWidth(lines[line] .. (#lines[line] > 0 and " " or "") .. word:sub(1, i), scale, font, true) <= width then
+							lines[line] = lines[line] .. (#lines[line] > 0 and " " or "") .. word:sub(1, i)
+							line = line + 1
+							lines[line] = ""
+							word = word:sub(i + 1, #word)
+							break
+						end
+					end
+
+					if #word <= 0 then
+						break
+					end
+				end
+			else
+				line = line + 1
+				lines[line] = word
+			end
+		else
+			lines[line] = lines[line] .. space .. word
+		end
+	end
+
+	return table.concat(lines, '\n')
+end
+
 -- draw lines around teleport bounds
 -- addEventHandler("onClientRender", root,
 -- 	function()

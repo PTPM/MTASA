@@ -58,8 +58,6 @@ local help = {
 local delta = 0
 local lastTick = 0
 local speed = 2
-local black = tocolor(0, 0, 0, 255)
-local white = tocolor(255,255,255,255)
 
 addEvent("showHelpEvent", true)
 addEvent("hideHelpEvent", true)
@@ -79,9 +77,9 @@ function helpSystemSetup()
 		help.font = "default"
 	end
 
-	triggerEvent("showHelpEvent", resourceRoot, "WARNING: While viewing a camera you can still be attacked. Use the left/right arrow keys to change camera. Type /camoff or press enter to exit", 6000, nil, false)
-	triggerEvent("showHelpEvent", resourceRoot, "this is a multi line message\nthis is a multi line message\nnew\nline", 2000, nil, false)
-	triggerEvent("showHelpEvent", resourceRoot, "this is a queued\nmulti\nline\nmessage", 6000, nil, true)
+	--triggerEvent("showHelpEvent", resourceRoot, "WARNING: While viewing a camera you can still be attacked. Use the left/right arrow keys to change camera. Type /camoff or press enter to exit", 6000, nil, false)
+	--triggerEvent("showHelpEvent", resourceRoot, "this is a multi line message\nthis is a multi line message\nnew\nline", 2000, nil, false)
+	--triggerEvent("showHelpEvent", resourceRoot, "this is a queued\nmulti\nline\nmessage", 6000, nil, true)
 end 
 
 
@@ -114,7 +112,9 @@ addEventHandler("hideHelpEvent", resourceRoot, hideHelpEvent)
 
 function setupHelpEvent(text, duration, image)
 	help:reset()
-	help.text = text
+
+	local circleSize = help.height + s(12)
+	help.text = dxWordWrapText(text, help.width - (circleSize / 2) - s(4), help.font, 1)
 	help.duration = duration
 
 	if image and image.name then
@@ -169,7 +169,7 @@ function drawHelp()
 
 		local partHeight = help.height + ((help.height / 3) * getEasingValue(math.max(help.slideBlocks[i], 0), "SineCurve"))
 
-		dxDrawRectangle(help.x - xOffset + ((i - 1) * partWidth), help.y - (partHeight / 2), partWidth, partHeight, black)
+		dxDrawRectangle(help.x - xOffset + ((i - 1) * partWidth), help.y - (partHeight / 2), partWidth, partHeight, colour.black)
 	end
 
 	-- draw a progress bar so you can see how long the message will be visible for
@@ -186,7 +186,7 @@ function drawHelp()
 		dxDrawImage(help.x - (height / 2) - xOffset, help.y - (height / 2), height, height, help.image, 0, 0, 0, tocolor(help.imageColour[1], help.imageColour[2], help.imageColour[3], 255 * (height / help.height)))
 	end
 
-	dxDrawText(help.text, help.x - xOffset + (circleSize / 2) + s(2), help.y - (help.height / 2), help.x - xOffset + help.width - s(2), help.y + (help.height / 2), white, 1, help.font, "left", "center", true, true)
+	dxDrawText(help.text, help.x - xOffset + (circleSize / 2) + s(2), help.y - (help.height / 2), help.x - xOffset + help.width - s(2), help.y + (help.height / 2), colour.white, 1, help.font, "left", "center", false, false, false, true)
 
 
 	-- animate out
@@ -213,7 +213,3 @@ addCommandHandler("he",
 		triggerEvent("showHelpEvent", resourceRoot, "this is a message", 4000, false)
 	end
 )
-
-
-
-

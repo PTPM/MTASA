@@ -1,24 +1,4 @@
-﻿local colours = {
-	black = tocolor(0, 0, 0, 255),
-	grey = tocolor(128, 128, 128, 255),
-	darkGrey = tocolor(60, 60, 60, 255),
-	white = tocolor(255, 255, 255, 255),
-
-	hex = {
-		pm = string.format("#%02x%02x%02x", unpack(classColours.pm)),
-		bodyguard = string.format("#%02x%02x%02x", unpack(classColours.bodyguard)),
-		bodyguardm = string.format("#%02x%02x%02x", unpack(classColours.bodyguardm)),
-		police = string.format("#%02x%02x%02x", unpack(classColours.police)),
-		policem = string.format("#%02x%02x%02x", unpack(classColours.policem)),
-		terrorist = string.format("#%02x%02x%02x", unpack(classColours.terrorist)),
-		terroristm = string.format("#%02x%02x%02x", unpack(classColours.terroristm)),
-		psycho = string.format("#%02x%02x%02x", unpack(classColours.psycho)),
-		black = string.format("#%02x%02x%02x", 0, 0, 0),
-		red = string.format("#%02x%02x%02x", 255, 0, 0),
-	}
-}
-
-local uiScale = screenY / 600
+﻿local uiScale = screenY / 600
 local font = {
 	globalScalar = 1
 }
@@ -63,9 +43,9 @@ local flowers = {
 		border = {src = "images/class_selection/asset_circle_border_big.png", size = 220},
 		text = {
 			default = {
-				top = {text = string.format("%sBodyguards%s and %sCops", colours.hex.bodyguard, colours.hex.black, colours.hex.police), size = 1.2},
+				top = {text = string.format("%sBodyguards%s and %sCops", colour.hex.bodyguard, colour.hex.black, colour.hex.police), size = 1.2},
 				middle = {text = string.format("PROTECT"), size = 120 / 44},
-				bottom = {text = string.format("the %sPrime Minister", colours.hex.pm), size = 1.2},
+				bottom = {text = string.format("the %sPrime Minister", colour.hex.pm), size = 1.2},
 			}
 		}
 	},
@@ -83,9 +63,9 @@ local flowers = {
 		border = {src = "images/class_selection/asset_circle_border_big.png", size = 220},
 		text = {
 			default = {
-				top = {text = string.format("%sTerrorists", colours.hex.terrorist), size = 1.2},
+				top = {text = string.format("%sTerrorists", colour.hex.terrorist), size = 1.2},
 				middle = {text = string.format("ATTACK"), size = 120 / 44},
-				bottom = {text = string.format("the %sPrime Minister", colours.hex.pm), size = 1.2},
+				bottom = {text = string.format("the %sPrime Minister", colour.hex.pm), size = 1.2},
 			}
 		}
 	},	
@@ -106,7 +86,7 @@ local flowers = {
 		text = {
 			offsetY = -0.15,
 			default = {
-				top = {text = string.format("%sPsychopaths", colours.hex.psycho), size = 1.1},
+				top = {text = string.format("%sPsychopaths", colour.hex.psycho), size = 1.1},
 				middle = {text = string.format("KILL ALL"), size = 120 / 65},
 			}
 		}
@@ -132,7 +112,7 @@ local flowers = {
 			offsetY = -0.2,
 			default = {
 				top = {text = string.format("Round\nstarts"), size = 1.1},
-				middle = {text = string.format("%sSOON", colours.hex.red), size = 120 / 44},
+				middle = {text = string.format("%sSOON", colour.hex.red), size = 120 / 44},
 			}
 		}
 	},
@@ -232,7 +212,7 @@ function enterClassSelection(mapName, friendlyMapName, classes, isFull, election
 		flower.petalSize = flower.defaultPetalSize
 	end
 
-	local medicDescription = string.format("%s.\nHeal other players\nwith %s/heal", colours.hex.black, colours.hex.red)
+	local medicDescription = string.format("%s.\nHeal other players\nwith %s/heal", colour.hex.black, colour.hex.red)
 
 	-- create new petals from the class data
 	for id, class in ipairs(classes) do
@@ -249,26 +229,26 @@ function enterClassSelection(mapName, friendlyMapName, classes, isFull, election
 			border = {src = "images/class_selection/asset_circle_border.png", size = 112},
 			image = getSkinImage(class.skin, class.mapSkinImage, mapName),
 			weapons = weaponListToString(class.weapons, false, textLengthSorter),
-			title = string.format("%s%s", colours.hex[class.type], teamMemberFriendlyName[class.type]),
+			title = string.format("%s%s", colour.hex[class.type], teamMemberFriendlyName[class.type]),
 			shadowSelected = true,
 			shadowOffset = 2,
 		}
 
 		if class.medic then
-			petal.title = petal.title .. string.format(" %sMedic", colours.hex[class.type .. "m"])
+			petal.title = petal.title .. string.format(" %sMedic", colour.hex[class.type .. "m"])
 		end
 
 		if class.type == "police" then
 			petal.flower = flowers.protect
-			petal.description = string.format("Kill the %sTerrorists", colours.hex.terrorist)
+			petal.description = string.format("Kill the %sTerrorists", colour.hex.terrorist)
 			flowers.protect.petals[#flowers.protect.petals + 1] = petal
 		elseif class.type == "bodyguard" then
 			petal.flower = flowers.protect
-			petal.description = string.format("Protect the %sPrime Minister", colours.hex.pm)			
+			petal.description = string.format("Protect the %sPrime Minister", colour.hex.pm)			
 			flowers.protect.petals[#flowers.protect.petals + 1] = petal
 		elseif class.type == "terrorist" then
 			petal.flower = flowers.attack
-			petal.description = string.format("Kill the %sPrime Minister", colours.hex.pm)
+			petal.description = string.format("Kill the %sPrime Minister", colour.hex.pm)
 			flowers.attack.petals[#flowers.attack.petals + 1] = petal
 		elseif class.type == "psycho" then
 			petal.flower = flowers.psycho
@@ -335,7 +315,7 @@ function updateClassSelection(isFull, numberOfCandidates)
 		election.candidates = numberOfCandidates
 
 		if election.entered then
-			classSelection.spawnMessage = string.format("Election chance\n%s%d%%", colours.hex.red, math.floor((election.myElectors * 100) / election.candidates))
+			classSelection.spawnMessage = string.format("Election chance\n%s%d%%", colour.hex.red, math.floor((election.myElectors * 100) / election.candidates))
 		end
 	end
 end
@@ -447,7 +427,7 @@ function onElectionCountdown(seconds)
 	if classSelection.visible and not classSelection.hiding then
 		flowers.polls.animation.burst = 0
 		flowers.polls.text.default.top.text = string.format("Round\nstarts in")
-		flowers.polls.text.default.middle.text = string.format("%s%d", colours.hex.red, election.countdown)
+		flowers.polls.text.default.middle.text = string.format("%s%d", colour.hex.red, election.countdown)
 	end
 end
 addEventHandler("onElectionCountdown", root, onElectionCountdown)
@@ -499,7 +479,7 @@ function setupClassSelectionUI()
 		end
 	end
 
-	flowers.polls.text.default.middle = {text = string.format("%sSOON", colours.hex.red), size = 120 / 44}
+	flowers.polls.text.default.middle = {text = string.format("%sSOON", colour.hex.red), size = 120 / 44}
 end
 
 
@@ -518,19 +498,19 @@ function drawClassSelection()
 	drawFlower(flowers.pm)
 
 	local height = flowers.pm.y + s(flowers.pm.radius)
-	dxDrawText("The Prime Minister", flowers.pm.x - s(flowers.pm.radius * 2), height, flowers.pm.x + s(flowers.pm.radius * 2), height + s(25), colours.white, sf(120/44), font.base, "center", "top", false, false, flowers.pm.postGUI, false, true)
+	dxDrawText("The Prime Minister", flowers.pm.x - s(flowers.pm.radius * 2), height, flowers.pm.x + s(flowers.pm.radius * 2), height + s(25), colour.white, sf(120/44), font.base, "center", "top", false, false, flowers.pm.postGUI, false, true)
 	
-	dxDrawText(classSelection.friendlyMapName, flowers.pm.x - s(flowers.pm.radius * 2), height + s(35), flowers.pm.x + s(flowers.pm.radius * 2), height + s(45), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
+	dxDrawText(classSelection.friendlyMapName, flowers.pm.x - s(flowers.pm.radius * 2), height + s(35), flowers.pm.x + s(flowers.pm.radius * 2), height + s(45), colour.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
 
 	if election.active then
 		if election.candidates == 1 then
-			dxDrawText("There is 1 elector\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)	
+			dxDrawText("There is 1 elector\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colour.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)	
 		else
-			dxDrawText("There are " .. tostring(election.candidates) .. " electors\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colours.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
+			dxDrawText("There are " .. tostring(election.candidates) .. " electors\nin this election", flowers.pm.x - s(flowers.pm.radius * 2), height + s(55), flowers.pm.x + s(flowers.pm.radius * 2), height + s(65), colour.white, sfs(1.2), font.small, "center", "top", false, false, flowers.pm.postGUI, true, false)
 		end
 	end
 
-	dxDrawText(classSelection.spawnMessage, (screenX / 2) - s(60), screenY * 0.65, (screenX / 2) + s(60), (screenY * 0.65) + s(50), colours.white, sf(2.0), font.base, "center", "top", false, false, false, true, false)
+	dxDrawText(classSelection.spawnMessage, (screenX / 2) - s(60), screenY * 0.65, (screenX / 2) + s(60), (screenY * 0.65) + s(50), colour.white, sf(2.0), font.base, "center", "top", false, false, false, true, false)
 
 	drawFlower(flowers.protect)
 	drawFlower(flowers.attack)
@@ -603,16 +583,16 @@ function drawPart(part, x, y, radius)
 		-- todo: calculate the border image based on the size of the part
 		-- draw a drop shadow underneath the whole part
 		if part.shadow or (part.shadowSelected and part.isSelected) then
-			dxDrawImage(x - drawRadius - 1, y - drawRadius - 1 + 4, (drawRadius + 1) * 2, (drawRadius + 1) * 2, part.border.src, 0, 0, 0, colours.black, part.postGUI)	
+			dxDrawImage(x - drawRadius - 1, y - drawRadius - 1 + 4, (drawRadius + 1) * 2, (drawRadius + 1) * 2, part.border.src, 0, 0, 0, colour.black, part.postGUI)	
 		end	
 
 		local backgroundColour = part.isSelected and part.selectedColour or part.backgroundColour
 		if part.isFull then
-			backgroundColour = colours.darkGrey
+			backgroundColour = colour.darkGrey
 		end
 
 		-- draw the main background circle (plain white)
-		dxDrawImage(x - drawRadius, y - drawRadius, drawRadius * 2, drawRadius * 2, "images/class_selection/asset_white_circle.png", 0, 0, 0, backgroundColour or colours.white, part.postGUI)			
+		dxDrawImage(x - drawRadius, y - drawRadius, drawRadius * 2, drawRadius * 2, "images/class_selection/asset_white_circle.png", 0, 0, 0, backgroundColour or colour.white, part.postGUI)			
 
 		-- draw the central image (for petals and pm this is the skin image)
 		if part.image then
@@ -623,15 +603,15 @@ function drawPart(part, x, y, radius)
 				imageOffset = s(2)
 			end
 
-			dxDrawImage(x - drawRadius + s(1), y - drawRadius + s(1) + imageOffset, (drawRadius * 2) - s(2), (drawRadius * 2) - s(2), part.image, 0, 0, 0, part.isFull and colours.darkGrey or colours.white, part.postGUI)	
+			dxDrawImage(x - drawRadius + s(1), y - drawRadius + s(1) + imageOffset, (drawRadius * 2) - s(2), (drawRadius * 2) - s(2), part.image, 0, 0, 0, part.isFull and colour.darkGrey or colour.white, part.postGUI)	
 		end
 
 		-- draw shaded edges to simulate being pressed in
 		if part.isSelected and not part.isFull then
 			if part.isPressed then
-				dxDrawImageSection(x - drawRadius - s(2), y - drawRadius - s(2) + s(part.shadowOffset or 1), (drawRadius + s(2)) * 2, drawRadius + s(2), 0, 0, part.border.size, part.border.size / 2, part.border.src, 0, 0, 0, colours.black, part.postGUI)
+				dxDrawImageSection(x - drawRadius - s(2), y - drawRadius - s(2) + s(part.shadowOffset or 1), (drawRadius + s(2)) * 2, drawRadius + s(2), 0, 0, part.border.size, part.border.size / 2, part.border.src, 0, 0, 0, colour.black, part.postGUI)
 			else
-				dxDrawImageSection(x - drawRadius - s(2), y - s(part.shadowOffset or 1), (drawRadius + s(2)) * 2, drawRadius + s(2), 0, part.border.size / 2, part.border.size, part.border.size / 2, part.border.src, 0, 0, 0, colours.black, part.postGUI)
+				dxDrawImageSection(x - drawRadius - s(2), y - s(part.shadowOffset or 1), (drawRadius + s(2)) * 2, drawRadius + s(2), 0, part.border.size / 2, part.border.size, part.border.size / 2, part.border.src, 0, 0, 0, colour.black, part.postGUI)
 			end
 		end
 
@@ -645,15 +625,15 @@ function drawPart(part, x, y, radius)
 			local offsetY = s(part.text.offsetY or 0) * radius
 
 			if textData.top then
-				dxDrawText(textData.top.text, x - s(radius - 20), y - s(radius - 20) + offsetY, x + s(radius - 20), y - s(15) + offsetY, colours.black, sfs(textData.top.size), font.small, "center", "bottom", false, false, false, true, false)	
+				dxDrawText(textData.top.text, x - s(radius - 20), y - s(radius - 20) + offsetY, x + s(radius - 20), y - s(15) + offsetY, colour.black, sfs(textData.top.size), font.small, "center", "bottom", false, false, false, true, false)	
 			end
 
 			if textData.middle then
-				dxDrawText(textData.middle.text, x - radius, y - s(radius - 20) + offsetY, x + radius, y + s(radius - 20) + offsetY, colours.black, sf(textData.middle.size), font.base, "center", "center", false, false, false, true, false)	
+				dxDrawText(textData.middle.text, x - radius, y - s(radius - 20) + offsetY, x + radius, y + s(radius - 20) + offsetY, colour.black, sf(textData.middle.size), font.base, "center", "center", false, false, false, true, false)	
 			end	
 
 			if textData.bottom then
-				dxDrawText(textData.bottom.text, x - s(radius - 20), y + s(15) + offsetY, x + s(radius - 20), y + s(radius - 20) + offsetY, colours.black, sfs(textData.bottom.size), font.small, "center", "top", false, false, false, true, false)	
+				dxDrawText(textData.bottom.text, x - s(radius - 20), y + s(15) + offsetY, x + s(radius - 20), y + s(radius - 20) + offsetY, colour.black, sfs(textData.bottom.size), font.small, "center", "top", false, false, false, true, false)	
 			end	
 		end
 
@@ -1141,26 +1121,26 @@ function drawClassSelectionDebug()
 	local height = screenY - 200
 	local width = 250
 
-	dxDrawRectangle(0, height, width + 20, screenY - height, colours.black)
+	dxDrawRectangle(0, height, width + 20, screenY - height, colour.black)
 
-	dxDrawText("Class Selection", 5, height + 5, 10 + width, height + 15, colours.white, 1, "default-bold")
-	dxDrawText(string.format("visible: %s hiding: %s", tostring(classSelection.visible), tostring(classSelection.hiding)), 5, height + 15, 10 + width, height + 25, colours.white, 1, "default")
-	dxDrawText(string.format("lastRequest: %s tick: %s", tostring(classSelection.lastRequest), tostring(getTickCount())), 5, height + 25, 10 + width, height + 35, colours.white, 1, "default")
-	dxDrawText(string.format("hidingTimer: %s isTimer: %s", tostring(classSelection.hidingTimer), tostring(classSelection.hidingTimer and isTimer(classSelection.hidingTimer))), 5, height + 35, 10 + width, height + 45, colours.white, 1, "default")
-	dxDrawText(string.format("reserved: %s", tostring(classSelection.reserved)), 5, height + 45, 10 + width, height + 55, colours.white, 1, "default")
+	dxDrawText("Class Selection", 5, height + 5, 10 + width, height + 15, colour.white, 1, "default-bold")
+	dxDrawText(string.format("visible: %s hiding: %s", tostring(classSelection.visible), tostring(classSelection.hiding)), 5, height + 15, 10 + width, height + 25, colour.white, 1, "default")
+	dxDrawText(string.format("lastRequest: %s tick: %s", tostring(classSelection.lastRequest), tostring(getTickCount())), 5, height + 25, 10 + width, height + 35, colour.white, 1, "default")
+	dxDrawText(string.format("hidingTimer: %s isTimer: %s", tostring(classSelection.hidingTimer), tostring(classSelection.hidingTimer and isTimer(classSelection.hidingTimer))), 5, height + 35, 10 + width, height + 45, colour.white, 1, "default")
+	dxDrawText(string.format("reserved: %s", tostring(classSelection.reserved)), 5, height + 45, 10 + width, height + 55, colour.white, 1, "default")
 
-	dxDrawText("Font", 5, height + 60, 10 + width, height + 70, colours.white, 1, "default-bold")
-	dxDrawText(string.format("global scalar: %.1f", font.globalScalar), 50, height + 60, 10 + width - 50, height + 70, colours.white, 1, "default")
-	dxDrawText(string.format("base: %s scalar: %.1f", tostring(font.base), font.scalar), 5, height + 70, 10 + width, height + 80, colours.white, 1, "default")
-	dxDrawText(string.format("small: %s scalar: %.1f", tostring(font.small), font.smallScalar), 5, height + 80, 10 + width, height + 90, colours.white, 1, "default")
+	dxDrawText("Font", 5, height + 60, 10 + width, height + 70, colour.white, 1, "default-bold")
+	dxDrawText(string.format("global scalar: %.1f", font.globalScalar), 50, height + 60, 10 + width - 50, height + 70, colour.white, 1, "default")
+	dxDrawText(string.format("base: %s scalar: %.1f", tostring(font.base), font.scalar), 5, height + 70, 10 + width, height + 80, colour.white, 1, "default")
+	dxDrawText(string.format("small: %s scalar: %.1f", tostring(font.small), font.smallScalar), 5, height + 80, 10 + width, height + 90, colour.white, 1, "default")
 
-	dxDrawText("Election", 5, height + 95, 10 + width, height + 105, colours.white, 1, "default-bold")
-	dxDrawText(string.format("active: %s entered: %s", tostring(election.active), tostring(election.entered)), 5, height + 105, 10 + width - 50, height + 115, colours.white, 1, "default")
-	dxDrawText(string.format("countdown: %s candidates: %s", tostring(election.countdown), tostring(election.candidates)), 5, height + 115, 10 + width - 50, height + 125, colours.white, 1, "default")
-	dxDrawText(string.format("cleared: %s", tostring(election.cleared)), 5, height + 125, 10 + width - 50, height + 135, colours.white, 1, "default")
+	dxDrawText("Election", 5, height + 95, 10 + width, height + 105, colour.white, 1, "default-bold")
+	dxDrawText(string.format("active: %s entered: %s", tostring(election.active), tostring(election.entered)), 5, height + 105, 10 + width - 50, height + 115, colour.white, 1, "default")
+	dxDrawText(string.format("countdown: %s candidates: %s", tostring(election.countdown), tostring(election.candidates)), 5, height + 115, 10 + width - 50, height + 125, colour.white, 1, "default")
+	dxDrawText(string.format("cleared: %s", tostring(election.cleared)), 5, height + 125, 10 + width - 50, height + 135, colour.white, 1, "default")
 
-	dxDrawText("Misc", 5, height + 140, 10 + width, height + 150, colours.white, 1, "default-bold")
-	dxDrawText(string.format("uiScale: %1.f", uiScale), 5, height + 150, 10 + width - 50, height + 160, colours.white, 1, "default")
-	dxDrawText(string.format("selected flower: %s petal: %s", tostring(currentlySelectedFlower and currentlySelectedFlower.classID), tostring(currentlySelectedPetal and currentlySelectedPetal.classID)), 5, height + 160, 10 + width - 50, height + 170, colours.white, 1, "default")
-	dxDrawText(string.format("scrollTimer: %s isTimer: %s", tostring(scrollTimer), tostring(scrollTimer and isTimer(scrollTimer))), 5, height + 170, 10 + width - 50, height + 180, colours.white, 1, "default")	
+	dxDrawText("Misc", 5, height + 140, 10 + width, height + 150, colour.white, 1, "default-bold")
+	dxDrawText(string.format("uiScale: %1.f", uiScale), 5, height + 150, 10 + width - 50, height + 160, colour.white, 1, "default")
+	dxDrawText(string.format("selected flower: %s petal: %s", tostring(currentlySelectedFlower and currentlySelectedFlower.classID), tostring(currentlySelectedPetal and currentlySelectedPetal.classID)), 5, height + 160, 10 + width - 50, height + 170, colour.white, 1, "default")
+	dxDrawText(string.format("scrollTimer: %s isTimer: %s", tostring(scrollTimer), tostring(scrollTimer and isTimer(scrollTimer))), 5, height + 170, 10 + width - 50, height + 180, colour.white, 1, "default")	
 end

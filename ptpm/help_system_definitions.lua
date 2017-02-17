@@ -1,33 +1,33 @@
 function helpSystemCreateDefinitions()
 	registerHelpEvent("BASICS_TERRORIST", {
-		text = "You are a terrorist. Kill the Prime Minister. He is yellow on the map",
+		text = "You are a [TERRORIST]Terrorist[WHITE]. Kill the [PM]Prime Minister[WHITE]. He is [PM]yellow[WHITE] on the map",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "terrorcount", false, 3}}
 	})
 
 	registerHelpEvent("BASICS_POLICE", {
-		text = "You are a cop. Protect the Prime Minister from attackers!",
+		text = "You are a [POLICE]Cop[WHITE]. Protect the [PM]Prime Minister[WHITE] from attackers!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "policecount", false, 3}}
 	})
 
 	registerHelpEvent("BASICS_BODYGUARD", {
-		text = "You are a bodyguard. Follow the Prime Minister, and protect him from attackers",
+		text = "You are a [BODYGUARD]Bodyguard[WHITE]. Follow the [PM]Prime Minister[WHITE], and protect him from attackers",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "bgcount", false, 3}}
 	})
 
 	registerHelpEvent("BASICS_PM", {
-		text = "You are the Prime Minister. Cops and Bodyguards will protect you. Do not let the Terrorists kill you!",
+		text = "You are the [PM]Prime Minister[WHITE]. [POLICE]Cops[WHITE] and [BODYGUARD]Bodyguards[WHITE] will protect you. Do not let the [TERRORIST]Terrorists[WHITE] kill you!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "pmcount", false, 3}}
 	})
 
 
 	registerHelpEvent("MEDIC_HEAL", {
-		text = "You are a medic. Stand close to a hurt player and type /heal to heal them",
+		text = "You are a [TEAM]medic[WHITE]. Stand close to a hurt player and type [TEAM]/heal[WHITE] to heal them",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "hphealed", false, 100}},
 		image = {name = "medic", colour = {255, 0, 0}}
 	})
 
 	registerHelpEvent("MEDIC_H", {
-		text = "You can type /h instead of /heal. It is faster!",
+		text = "You can type [TEAM]/h[WHITE] instead of [TEAM]/heal[WHITE]. It is faster!",
 		condition = {fn = conditionStatNumberComparisons, args = {"__player", {"hphealed", true, 200}, {"hcount", false, 2}}},
 		cooldown = 60000 * 6,
 		image = {name = "medic", colour = {255, 0, 0}}
@@ -42,7 +42,7 @@ function helpSystemCreateDefinitions()
 	})
 
 	registerHelpEvent("MEDIC_PASSIVE_GIVE", {
-		text = "Medics will slowly heal teamates that are nearby",
+		text = "[TEAM]Medics[WHITE] will slowly heal teamates that are nearby",
 		condition = {fn = conditionStatNumberComparisons, args = {"__player", {"hphealed", true, 100}, {"hphealedpassive", false, 30}}},
 		cooldown = 60000 * 4,
 		image = {name = "medic", colour = {255, 0, 0}}
@@ -57,53 +57,53 @@ function helpSystemCreateDefinitions()
 
 
 	registerHelpEvent("OBJECTIVE_OVERVIEW", {
-		text = "The red markers on the map are objectives for the Prime Minister. He must visit them to win. He will lose if the time runs out",
+		text = "The [RED]red markers[WHITE] on the map are [RED]objectives[WHITE] for the [PM]Prime Minister[WHITE]. He must visit them to win. He will lose if the time runs out",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "objectivesplayed", false, 3}},
 	})	
 
 	registerHelpEvent("OBJECTIVE_OVERVIEW_PM", {
-		text = "You must complete the objectives in this map to win. Go to the red marker on the map to begin",
+		text = "You must complete the [RED]objectives[WHITE] in this map to win. Go to the [RED]red marker[WHITE] on the map to begin",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "objectivesplayed", false, 3}},
 	})		
 
 	registerHelpEvent("OBJECTIVE_ENTER", {
-		text = "Stay inside the marker to complete this objective. You will be given a new objective once completed",
+		text = "Stay inside the marker to complete this [RED]objective[WHITE]. You will be given a new [RED]objective[WHITE] once completed",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "objectivesplayed", false, 3}},
 	})		
 
 	registerHelpEvent("OBJECTIVE_COMPLETE", {
-		text = "Objective complete! +3 minutes have been added to the round. A new objective has been unlocked, go there now",
+		text = "[RED]Objective[WHITE] complete! +3 minutes have been added to the round. A new [RED]objective[WHITE] has been unlocked, go there now",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "objectivesplayed", false, 3}},
 	})		
 
 	registerHelpEvent("OBJECTIVE_NUDGE", {
-		text = "You must visit the objectives to win. You will lose if you run out of time!",
+		text = "You must visit the [RED]objectives[WHITE] to win. You will lose if you run out of time!",
 		cooldown = 50000,
 	})		
 
 
 	registerHelpEvent("TASK_OVERVIEW", {
-		text = "The red markers on the map are tasks that the Prime Minister can complete. Each completed task will give him a new advantage",
+		text = "The [RED]red markers[WHITE] on the map are [RED]tasks[WHITE] that the [PM]Prime Minister[WHITE] can complete. Each completed [RED]task[WHITE] will give him a new advantage",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 3}},
 	})	
 
 	registerHelpEvent("TASK_OVERVIEW_PM", {
-		text = "The red markers on the map are tasks that you can complete. Each completed task gives you a new advantage towards winning the round",
+		text = "The [RED]red markers[WHITE] on the map are [RED]tasks[WHITE] that you can complete. Each completed [RED]task[WHITE] gives you a new advantage towards winning the round",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 3}},
 	})		
 
 	registerHelpEvent("TASK_ENTER", {
-		text = "This is a task. Stay inside the marker to complete the task and receive a bonus. The bonus will help you to survive",
+		text = "This is a [RED]task[WHITE]. Stay inside the marker to complete the [RED]task[WHITE] and receive a bonus. The bonus will help you to survive",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 3}},
 	})	
 
 	registerHelpEvent("TASK_COMPLETE", {
-		text = "You have completed the task! Each task completed gives you a new bonus reward",
+		text = "You have completed the [RED]task[WHITE]! Each [RED]task[WHITE] completed gives you a new bonus reward",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 3}},
 	})		
 
 	registerHelpEvent("TASK_NUDGE", {
-		text = "This map has tasks. The Prime Minister gets powerful bonuses from them. Find a red marker on the map to try it!",
+		text = "This map has [RED]tasks[WHITE]. The [PM]Prime Minister[WHITE] gets powerful bonuses from them. Find a [RED]red marker[WHITE] on the map to try it!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 5}},
 	})	
 
@@ -121,13 +121,13 @@ function helpSystemCreateDefinitions()
 	})
 
 	registerHelpEvent("COMMAND_SWAPCLASS", {
-		text = "Don't want to be Prime Minister? You may ask to swap with another player using /swapclass <player>",
+		text = "Don't want to be [PM]Prime Minister[WHITE]? You may ask to swap with another player using /swapclass <player>",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "swapclasscount", false, 3}},
 		cooldown = 60000 * 6,
 	})	
 
 	registerHelpEvent("COMMAND_SWAPCLASS_TARGET", {
-		text = "Do you want to be Prime Minister? The Prime Minister is offering to swap class with you. Type /y to accept, or /n to decline.",
+		text = "Do you want to be [PM]Prime Minister[WHITE]? The [PM]Prime Minister[WHITE] is offering to swap class with you. Type /y to accept, or /n to decline.",
 		displayTime = 15000,
 		importance = 9999,
 		force = true,
@@ -141,7 +141,7 @@ function helpSystemCreateDefinitions()
 	})	
 
 	registerHelpEvent("COMMAND_PLAN_SET", {
-		text = "The Prime Minister has set a plan. This is how he wants to survive. Follow his instructions!",
+		text = "The [PM]Prime Minister[WHITE] has set a plan. This is how he wants to survive. Follow his instructions!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "plancount", false, 3}},
 		cooldown = 60000 * 6,
 		image = {name = "plan"}
@@ -170,40 +170,40 @@ function helpSystemCreateDefinitions()
 
 
 	registerHelpEvent("OPTION_HEALTH_REGEN_PM", {
-		text = "The Prime Minister will slowly gain health over time. Use this wisely!",
+		text = "The [PM]Prime Minister[WHITE] will slowly gain health over time. Use this wisely!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "pmcount", false, 3}},
 		cooldown = 60000 * 15,
 		image = {name = "hearts", colour = {255, 0, 0}}
 	})	
 
 	registerHelpEvent("OPTION_HEALTH_REGEN_MEDIC", {
-		text = "Medics will slowly gain health over time. Use this extra health to heal your team. Coordinate with another medic to heal even faster!",
+		text = "[TEAM]Medics[WHITE] will slowly gain health over time. Use this extra health to heal your team. Coordinate with another [TEAM]medic[WHITE] to heal even faster!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "mediccount", false, 3}},
 		cooldown = 60000 * 15,
 		image = {name = "hearts", colour = {255, 0, 0}}
 	})	
 
 	registerHelpEvent("OPTION_PM_WATER_PENALTY", {
-		text = "The Prime Minister can't swim on this map. You will slowly become tired & hurt, and will eventually die",
+		text = "The [PM]Prime Minister[WHITE] can't swim on this map. You will slowly become tired & hurt, and will eventually die",
 		cooldown = 60000 * 2,
 		image = {name = "water", colour = {32, 147, 232}}
 	})
 
 	registerHelpEvent("OPTION_PM_WATER_DEATH", {
-		text = "The Prime Minister can't swim on this map. You will die if you enter the water",
+		text = "The [PM]Prime Minister[WHITE] can't swim on this map. You will die if you enter the water",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "waterdeathcount", false, 3}},
 		cooldown = 60000 * 2,
 		image = {name = "water", colour = {32, 147, 232}}
 	})
 
 	registerHelpEvent("OPTION_PM_ABANDONED_PENALTY", {
-		text = "The Prime Minister must stay in a vehicle on this map. You will slowly lose health while exposed to the open air",
+		text = "The [PM]Prime Minister[WHITE] must stay in a vehicle on this map. You will slowly lose health while exposed to the open air",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "abandonedcount", false, 3}},
 		cooldown = 60000 * 1,
 	})
 
 	registerHelpEvent("OPTION_DISTANCE_TO_PM", {
-		text = "The Prime Minister is hidden on the map. Find him! Use the distance meter to see how far away he is and track him down",
+		text = "The [PM]Prime Minister[WHITE] is hidden on the map. Find him! Use the [RED]distance meter[WHITE] to see how far away he is and track him down",
 		cooldown = 60000 * 5,
 	})
 
@@ -218,7 +218,7 @@ function helpSystemCreateDefinitions()
 	-- })
 
 	registerHelpEvent("SAFE_ZONE", {
-		text = "The blue area is a safe zone. Hydras and Rustlers can't come in here.",
+		text = "The [BLUE]blue[WHITE] area is a [BLUE]safe zone[WHITE]. Hydras and Rustlers can't come in here.",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "safezonecount", false, 3}},
 		cooldown = 60000 * 6,
 	})		
