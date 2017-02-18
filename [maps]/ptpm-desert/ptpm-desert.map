@@ -525,8 +525,8 @@
     <!-- flat -->
     <vehicle model="406" posX="695.3762" posY="828.2486" posZ="-29.4336" rotZ="238.9176" color="1 1" />
     <!-- dum -->
-    <vehicle id="desert_crashed_plane" model="577" posX="-158.2105" posY="2269.3345" posZ="400" rotZ="304.3342" safezone_excluded="true" />
-    <!-- crashedplane -->
+    <!-- <vehicle id="desert_crashed_plane" model="577" posX="-158.2105" posY="2269.3345" posZ="400" rotZ="304.3342" safezone_excluded="true" /> -->
+    <!-- crashedplane / AT400 -->
     <vehicle model="468" posX="260.4699" posY="2890.9055" posZ="10.7842" rotZ="215.2125" />
     <vehicle model="468" posX="-240.5511" posY="2609.4597" posZ="62.4631" rotZ="182.6147" />
     <vehicle model="470" posX="-228.8781" posY="2595.0679" posZ="62.8131" rotZ="359.1931" />
