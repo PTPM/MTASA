@@ -158,7 +158,7 @@ function triggerHelpEvent(player, id, queue)
 	end
 
 	-- reject if we are within the cooldown period
-	if help.events[id].cooldown then
+	if help.events[id].cooldown and not help.events[id].force then
 		if help.cooldowns[player] and help.cooldowns[player][id] then
 			if getTickCount() - help.cooldowns[player][id] <= help.events[id].cooldown then
 				outputDebugString("ignoring '" .. tostring(id) .. "' because it is within the cooldown period")
@@ -256,6 +256,10 @@ function doesPlayerMeetHelpEventRequirements(player, id)
 		return false
 	end	
 
+	if help.events[id].force then
+		return true
+	end
+
 	-- does the player still need to do the required events
 	if help.events[id].requires then
 		if doesPlayerMeetHelpEventRequirements(player, help.events[id].requires) then
@@ -323,10 +327,16 @@ end
 
 function getPlayerFakeStatistic(player, statName)
 	if statName == "terrorcount" then
-		return 3
+		return 2
 	elseif statName == "roundsplayed" then
 		return 100
 	end
 
 	return 0
 end
+
+addCommandHandler("sh",
+	function(player, cmd, event)
+		triggerHelpEvent(player, event)
+	end
+)

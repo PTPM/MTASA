@@ -274,27 +274,28 @@ end
 -- #00f6ff blue, #00ffae green
 local helper = {
 	messages = {
-		"Visit #00ffaehttps://PTPM.uk#ffffff for strategy tips! (members only!)",
-		"Don't know what to do? Type /#00ffaeduty#ffffff or press #00ffaeF9",
-		"Join the community at #00ffaehttps://PTPM.uk#ffffff!",
-		"Press '#00ffaeY#ffffff' to chat with your team",
-		"Check out #00ffaehttps://PTPM.uk/scoreboard#ffffff for the player list outside of MTA!",
-		"The #ffff40Prime Minister#ffffff is shown in #ffff40yellow",
-		"Check out #00ffaehttps://PTPM.uk#ffffff to see your League and compare it to others!",
-		"What is PTPM? Press #00ffaeF9#ffffff and click '#00ffaePTPM#ffffff' to find out",
-		"Are you Silver, Gold or even Platinum? Find out at #00ffaehttps://PTPM.uk/stats#ffffff!",
-		"Want to change your team? Type /#00ffaereclass <team>",
-		"Navigate the class selection from your keyboard using the #00ffaearrow keys#ffffff and holding #00ffaectrl",
-		"Are you playing as a #00ffaemedic#ffffff? You can heal people with /#00ffaeheal",
-		"There's a #00ffaeminigun#ffffff? Find out more at #00ffaehttps://PTPM.uk#ffffff!",
-		"Want a full list of the commands? Press #00ffaeF9#ffffff and click '#00ffaePTPM#ffffff'",
-		"Show off your ingame skills to the community on #00ffaehttps://PTPM.uk#ffffff!",
-		"Use #00ffaeright click#ffffff to #00ffaedriveby#ffffff (when you have a driveby weapon)",
-		"Cool screenshots and videos of PTPM gameplay at #00ffaehttps://PTPM.uk#ffffff!",
-		"Tap '#00ffaejump#ffffff' underneath a helicopter to grab on",
-		"Hold #00ffaeF2#ffffff or #00ffaeF3#ffffff to open the Strategy Radial for quick communication" -- todo read the real binds and use those
+		"Visit [PTPM]https://PTPM.uk[WHITE] for strategy tips! (members only!)",
+		"Don't know what to do? Type [PTPM]/duty[WHITE] or press [PTPM]F9",
+		"Join the community at [PTPM]https://PTPM.uk[WHITE]!",
+		"Press '[PTPM]Y[WHITE]' to chat with your team",
+		"Check out [PTPM]https://PTPM.uk/scoreboard[WHITE] for the player list outside of MTA!",
+		"The [PM]Prime Minister[WHITE] is shown in [PM]yellow",
+		"Check out [PTPM]https://PTPM.uk[WHITE] to see your League and compare it to others!",
+		"What is PTPM? Press [PTPM]F9[WHITE] and click '[PTPM]PTPM[WHITE]' to find out",
+		"Are you Silver, Gold or even Platinum? Find out at [PTPM]https://PTPM.uk/stats[WHITE]!",
+		"Want to change your team? Type [PTPM]/reclass <team>",
+		"Navigate the class selection from your keyboard using the [PTPM]arrow keys[WHITE] and holding [PTPM]ctrl",
+		"Are you playing as a [PTPM]medic[WHITE]? You can heal people with [PTPM]/heal",
+		"There's a [PTPM]minigun[WHITE]? Find out more at [PTPM]https://PTPM.uk[WHITE]!",
+		"Want a full list of the commands? Press [PTPM]F9[WHITE] and click '[PTPM]PTPM[WHITE]'",
+		"Show off your ingame skills to the community on [PTPM]https://PTPM.uk[WHITE]!",
+		"Use [PTPM]right click[WHITE] to [PTPM]driveby[WHITE] (when you have a driveby weapon)",
+		"Cool screenshots and videos of PTPM gameplay at [PTPM]https://PTPM.uk[WHITE]!",
+		"Tap '[PTPM]jump[WHITE]' underneath a helicopter to grab on",
+		"Hold [PTPM]F2[WHITE] or [PTPM]F3[WHITE] to open the Strategy Radial for quick communication" -- todo read the real binds and use those
 	},
 
+	message = "",
 	current = 0,
 	width = 0,
 	drawing = false,
@@ -315,6 +316,7 @@ function showHelpMessage(minY)
 	helper.width = dxGetTextWidth(helper.messages[helper.current], 1, "default-bold")
 	helper.yPos = minY
 	helper.drawing = true
+	helper.message = colour.hex.parse(helper.messages[helper.current])
 
 	addEventHandler("onClientRender", root, drawHelpMessage)
 end
@@ -331,7 +333,7 @@ function hideHelpMessage()
 end
 
 function drawHelpMessage()
-	dxDrawText(helper.messages[helper.current], screenX / 2 - helper.width / 2, helper.yPos, screenX / 2 + helper.width / 2, helper.yPos + 10, 0xFFFFFFFF, 1, "default", "center", "center", false, false, false, true)
+	dxDrawText(helper.message, screenX / 2 - helper.width / 2, helper.yPos, screenX / 2 + helper.width / 2, helper.yPos + 10, 0xFFFFFFFF, 1, "default", "center", "center", false, false, false, true)
 end
 
 

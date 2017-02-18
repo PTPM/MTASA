@@ -43,9 +43,10 @@ colour = {
 	achievement = {94, 170, 2},
 	query = {255, 220, 24},
 	global = {208, 208, 255},
-	broadcast = {0, 102, 204},
+	ptpm = {0, 102, 204},
 
 	hex = {
+		ptpm = string.format("#%02x%02x%02x", 0, 102, 204),
 		pm = string.format("#%02x%02x%02x", unpack(classColours.pm)),
 		bodyguard = string.format("#%02x%02x%02x", unpack(classColours.bodyguard)),
 		bodyguardm = string.format("#%02x%02x%02x", unpack(classColours.bodyguardm)),
@@ -60,6 +61,7 @@ colour = {
 		blue = string.format("#%02x%02x%02x", 0, 0, 170),
 
 		parse = function(s) 
+			s = s:gsub("%[PTPM%]", colour.hex.ptpm)
 			s = s:gsub("%[PM%]", colour.hex.pm)
 			s = s:gsub("%[BODYGUARD%]", colour.hex.bodyguard)
 			s = s:gsub("%[BODYGUARDM%]", colour.hex.bodyguardm)

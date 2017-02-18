@@ -187,10 +187,8 @@ function startEndOfRoundPTPMMapvote()
 	table.insert(mapvote.maps, getMapvoteObject(randomMap3))	
 	mapvote.mapsOffered[randomMap3] = (mapvote.mapsOffered[randomMap3] or 0) + 1
 	
-	outputDebugString(randomMap .. " / " .. map2 .. " / " .. randomMap3)
+	--outputDebugString(randomMap .. " / " .. map2 .. " / " .. randomMap3)
 
-	
-	
 	-- Trigger client event
 	for _, p in ipairs(getElementsByType("player")) do
 		if p and isElement(p) and isPlayerActive(p) then

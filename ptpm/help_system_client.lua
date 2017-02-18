@@ -28,7 +28,7 @@ local help = {
 		self.startTick = getTickCount()
 		self.animationProgress = 0
 		self.animationState = state.grow
-		self.width = self.height * 3.5
+		self.width = self.height * 3.6
 
 		for i = 1, 9 do
 			self.slideBlocks[i] = -(i * 0.1)
@@ -114,7 +114,7 @@ function setupHelpEvent(text, duration, managerLink, image)
 	help:reset()
 
 	local circleSize = help.height + s(12)
-	help.text = dxWordWrapText(text, help.width - (circleSize / 2) - s(4), help.font, 0.5)
+	help.text = dxWordWrapText(text, help.width - (circleSize / 2) - s(7), help.font, 0.5)
 	help.duration = duration
 	help.linkDuration = ((2000 / help.duration) / 2)
 	help.managerLink = managerLink
@@ -179,10 +179,15 @@ function drawHelp()
 		dxDrawRectangle(help.x - xOffset + ((i - 1) * partWidth), help.y - (partHeight / 2), partWidth, partHeight, colour.black)
 	end
 
-	local durationProgress = (getTickCount() - help.showTick) / help.duration
+	local durationProgress = math.max((getTickCount() - help.showTick) / help.duration, 0)
+
+	if help.duration == 0 then
+		durationProgress = 1
+	end
+
 	-- draw a progress bar so you can see how long the message will be visible for
 	if help.animationState == state.showing then
-		dxDrawLine(help.x, help.y + (help.height / 2) - 2, help.x - xOffset + (help.width * durationProgress), help.y + (help.height / 2) - 2, tocolor(255,0,0,durationProgress * 255), 2)
+		dxDrawLine(help.x, help.y + (help.height / 2) - 2, help.x - xOffset + (help.width * durationProgress), help.y + (help.height / 2) - 2, tocolor(colour.ptpm[1], colour.ptpm[2], colour.ptpm[3], durationProgress * 255), 2)
 	end
 
 	-- we want the circle to be a little bigger than the rectangle so it looks nicer
@@ -208,17 +213,18 @@ function drawHelp()
 	end
 
 	if help.image then
-		dxDrawImage(help.x - (imageSize / 2) - xOffset, help.y - (imageSize / 2), imageSize, imageSize, help.image, imageRot, 0, 0, tocolor(help.imageColour[1], help.imageColour[2], help.imageColour[3], 255 * (imageSize / help.height)))
+		local paddedImageSize = imageSize - s(8)
+		dxDrawImage(help.x - (paddedImageSize / 2) - xOffset, help.y - (paddedImageSize / 2), paddedImageSize, paddedImageSize, help.image, imageRot, 0, 0, tocolor(help.imageColour[1], help.imageColour[2], help.imageColour[3], 255 * (imageSize / help.height)))
 	end
 
 	if help.managerLink and help.animationState == state.showing then
 		local textSize = height - imageSize
 		dxDrawText("press", help.x - xOffset - (textSize / 2), help.y - (height / 2) + s(10), help.x - xOffset + (textSize / 2), help.y + (height / 2), tocolor(0,0,0,255 * (textSize / help.height)), 0.5, help.font, "center", "top", true, false, false, false)
-		dxDrawText("F9", help.x - xOffset - (textSize / 2), help.y - (height / 2), help.x - xOffset + (textSize / 2), help.y + (height / 2), tocolor(255,0,0,255 * (textSize / help.height)), 1, help.font, "center", "center", true, false, false, false)
+		dxDrawText("F9", help.x - xOffset - (textSize / 2), help.y - (height / 2), help.x - xOffset + (textSize / 2), help.y + (height / 2), tocolor(colour.ptpm[1], colour.ptpm[2], colour.ptpm[3], 255 * (textSize / help.height)), 1, help.font, "center", "center", true, false, false, false)
 		dxDrawText("for more", help.x - xOffset - (textSize / 2), help.y - (height / 2), help.x - xOffset + (textSize / 2), help.y + (height / 2) - s(10), tocolor(0,0,0,255 * (textSize / help.height)), 0.5, help.font, "center", "bottom", true, false, false, false)
 	end
 
-	dxDrawText(help.text, help.x - xOffset + (circleSize / 2) + s(2), help.y - (help.height / 2), help.x - xOffset + help.width - s(2), help.y + (help.height / 2), colour.white, 0.5, help.font, "left", "center", false, false, false, true)
+	dxDrawText(help.text, help.x - xOffset + (circleSize / 2) + s(5), help.y - (help.height / 2), help.x - xOffset + help.width - s(2), help.y + (help.height / 2), colour.white, 0.5, help.font, "left", "center", false, false, false, true)
 
 
 	-- animate out

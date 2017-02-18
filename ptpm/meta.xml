@@ -57,7 +57,8 @@
 	<file src="images/icons/hearts.png"/>
 	<file src="images/icons/camera.png"/>
 	<file src="images/icons/plan.png"/>
-	
+	<file src="images/icons/gun.png"/>
+
 	<!-- Mapvote2 -->
 	<file src="mapvoteimages/map-pic-A51.png" />
 	<file src="mapvoteimages/map-pic-Air.png" />

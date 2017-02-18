@@ -989,7 +989,9 @@ function plan( thePlayer, commandName, ... )
 														classes[getPlayerClassID( p )].type == "police" ) then
 					showPlan( p )
 
-					triggerHelpEvent(p, "COMMAND_PLAN_SET")
+					if p ~= thePlayer then
+						triggerHelpEvent(p, "COMMAND_PLAN_SET")
+					end
 				end
 			end
 		else
