@@ -548,7 +548,7 @@ function showOps( thePlayer )
 		outputChatBox( "Online operator(s): " .. sOps, thePlayer, unpack( colour.personal ) )
 	end
 end
---addCommandHandler( "ops", showOps )
+addCommandHandler( "ops", showOps )
 --addCommandHandler( "admins", showOps )
 
 
