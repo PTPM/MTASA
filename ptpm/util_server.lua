@@ -500,7 +500,7 @@ function showOps( thePlayer )
 		outputChatBox( "Online operator(s): " .. sOps, thePlayer, unpack( colour.personal ) )
 	end
 end
---addCommandHandler( "ops", showOps )
+addCommandHandler( "ops", showOps )
 --addCommandHandler( "admins", showOps )
 
 
@@ -563,7 +563,7 @@ end
 
 
 function isPlayerOp( player )
-	local allowedGroups = { "Admin", "ptpm_ProvisionaryOperator", "ptpm_FullOperator" }
+	local allowedGroups = { "Admin", "ptpm_ProvisionaryOperator", "ptpm_Operator" }
 	
 	local acc = getPlayerAccount(player)
 	if not acc then return false end
