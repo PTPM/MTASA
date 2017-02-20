@@ -50,21 +50,21 @@ function ptpmMapStart( map )
 	options.boundariesEnabled = true
 	
 	options.roundtime = get( runningMapName .. ".roundtime" ) or 900000 -- 15 mins
-	options.pmHealthBonus = get( runningMapName .. ".pmHealthBonus" ) or false
-	options.pmWaterHealthPenalty = get( runningMapName .. ".pmWaterHealthPenalty" ) or false
-	options.medicHealthBonus = get( runningMapName .. ".medicHealthBonus" ) or false
-	options.pocketMoney = get( runningMapName .. ".pocketMoney" ) or 500
-	options.objectivesToFinish = get( runningMapName .. ".objectivesToFinish" ) or 5
-	options.vehicleLaunch = get (runningMapName .. ".vehicleLaunch" ) or false	
-	options.pmAbandonedHealthPenalty = get( runningMapName .. ".pmAbandonedHealthPenalty" ) or false
-	options.mapType = get( runningMapName .. ".mapType" ) or "city"
+	options.pmHealthBonus = get( runningMapName .. ".pmHealthBonus" ) or false -- int
+	options.pmWaterHealthPenalty = get( runningMapName .. ".pmWaterHealthPenalty" ) or false -- bool
+	options.medicHealthBonus = get( runningMapName .. ".medicHealthBonus" ) or false -- int
+	options.pocketMoney = get( runningMapName .. ".pocketMoney" ) or 500 -- int
+	options.objectivesToFinish = get( runningMapName .. ".objectivesToFinish" ) or 5 -- int
+	options.vehicleLaunch = get (runningMapName .. ".vehicleLaunch" ) or false	-- bool
+	options.pmAbandonedHealthPenalty = get( runningMapName .. ".pmAbandonedHealthPenalty" ) or false -- bool
+	options.mapType = get( runningMapName .. ".mapType" ) or "city" -- string
 	options.weathers = get( runningMapName .. ".weathers" ) or { 1, 2, 7, 9, 13, 17, 3, 11, 18, 5, 24 } -- city weathers	
-	options.pmWaterDeath = get (runningMapName .. ".pmWaterDeath" ) or false	
-	options.teamSpecificRadar = get( runningMapName .. ".teamSpecificRadar" ) or false	
-	options.disableClouds = get( runningMapName .. ".disableClouds") or false
-	options.vehicleHeightLimit = get( runningMapName .. ".vehicleHeightLimit") or false
+	options.pmWaterDeath = get (runningMapName .. ".pmWaterDeath" ) or false -- bool	
+	options.teamSpecificRadar = get( runningMapName .. ".teamSpecificRadar" ) or false -- bool
+	options.disableClouds = get( runningMapName .. ".disableClouds") or false -- bool
+	options.vehicleHeightLimit = get( runningMapName .. ".vehicleHeightLimit") or false -- int
 	
-	options.displayDistanceToPM = get( runningMapName .. ".displayDistanceToPM" ) or false	
+	options.displayDistanceToPM = get( runningMapName .. ".displayDistanceToPM" ) or false	-- bool
 	
 	options.swapclass = {}
 	

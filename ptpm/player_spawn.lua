@@ -211,10 +211,7 @@ function setPlayerClass( thePlayer, class )
 	end
 	
 	local teamName = teamMemberName[classes[class].type]
-	local string = "You are " .. teamName .. "\n".. (currentPM == thePlayer and "/swapclass" or "/reclass") .. " to change"
 
-	sendGameText( thePlayer, string, 7000, classColours[getPlayerClassType(thePlayer, class)], nil, 1.3, nil, nil, 3 )
-	
 	if #getElementsByType( "player" ) <= 8 or classes[class].type == "pm" then
     local r, g, b = getPlayerColour( thePlayer );
 		outputChatBox( playerName .. " is now " .. teamName .. ".", root, r, g, b, false )

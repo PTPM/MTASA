@@ -1,0 +1,262 @@
+/*ptpm colour: 0066CC or (0, 102, 204)*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#header {
+  display: block;
+  width: 100%;
+  height: 50px;
+  background: #404040;
+}
+
+#header div {
+  color: #fff;
+  width: 75%;
+  height: 50px;  
+  line-height: 50px;
+  margin: auto;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#nav {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 50;
+  bottom: 0;
+  width: 180px;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  background: #404040;
+  color: #ffffff;
+}
+#nav.mta {
+  top: 0;
+}
+
+.nav {
+  border-top: 10px solid #404040;
+}
+.nav, .nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav li {
+  position: relative;
+}
+.nav a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #ffffff;
+  height: 40px;
+  line-height: 40px;
+  border-left: 4px solid #404040;
+  transition: all .3s ease;
+}
+.nav li > ul a {
+  padding-left: 25px;
+}
+.nav a span {
+  float: right;
+}
+.nav a:hover{
+  background: #0066cc;
+  color: #fff;
+  border-color: #0066cc;
+}
+.nav ul {
+  position: relative;
+  left: 0;
+  top: -100%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.nav li.expanded > ul {
+  top: 0;
+  opacity: 1;
+  width: 100%;
+  max-height: 50em;
+  width: 100%;
+  overflow: visible;
+}
+
+.nav li.current > a, .nav li.current > a:hover {
+  background: #fff;
+  color: #404040;
+  border-color: #0066cc;
+}
+li.expanded ul a {
+  background-color: #2b2b2b;
+  border-color: #2b2b2b;
+}
+
+
+#content {
+  padding: 20 20 20 20;
+  display: block;
+  margin-left: 180px;
+}
+.page {
+  display: none;
+}
+#content h1, #content h2, #content h3 {
+  color: #404040;
+  margin-top: 0px;
+  border-bottom: 2px solid #609FDF;
+}
+.page.active {
+  display:block;
+}
+
+.page span.cc:before {
+  content: "";
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  background-color: white;
+  margin-left: 3px;
+  margin-right: 3px;
+  border-radius: 1em;
+}
+.page span.pm:before {
+  background-color: yellow;
+  box-shadow: 0px 0px 0px 1px #ddd inset;
+}
+.page span.bg:before {
+  background-color: #008000;
+}
+.page span.police:before {
+  background-color: #5050CF;
+}
+.page span.terror:before {
+  background-color: #FF00AF;
+}
+.page span.psycho:before {
+  background-color: #ff8000;
+}
+.page span.ptpm {
+  color: #0066CC;
+  font-weight: bold;
+}
+.page-link {
+  font-style: italic;
+  color: #404040;
+  font-size: .9em;
+}
+.args { 
+  display: block;
+  font-size: .8em;
+  padding: 5px 5px 5px 5px;
+  border-left: 5px solid #404040;
+  margin-top: 4px;
+  background-color: #eeeeee;
+}
+.args:before {
+  content: "Arguments: ";
+}
+.shortcut {
+  display: block;
+  font-size: .8em;
+  padding: 5px 5px 5px 5px;
+  border-left: 5px solid #0066cc;
+  margin-top: 4px;
+  background-color: #eeeeee; 
+}
+.shortcut:before {
+  content: "Shortcut: ";
+}
+.optional {
+  background-color: #eeeeee;
+}
+.optional:before {
+  content: "[";
+}
+.optional:after {
+  content: "]";
+}
+.option {
+  display: block;
+  font-size: 1em;
+  padding: 5px 5px 5px 5px;
+  border-left: 5px solid #0066cc;
+  margin-top: 4px;
+  background-color: #eeeeee; 
+}
+.option span[data-default]:after {
+  content: " (default: " attr(data-default) ")";
+  font-size: .8em;
+  font-weight: normal;
+  font-style: italic;
+  color: #404040;
+}
+.highlight {
+  animation: flash 1.5s ease-out;
+  animation-iteration-count: 1;
+}
+
+@keyframes flash {
+    0% { background-color: none; }
+    20% { background-color: #0066cc; }
+    100% { background-color: none; }
+}
+
+/*text-shadow: -1px 0 #dddddd,0 1px #dddddd,1px 0 #dddddd,0 -1px #dddddd;*/
+
+@media (max-width: 900px) {
+  #nav {
+    width: 135px;
+    font-size: 0.75em;
+    transition: width .3s ease;
+  }
+  #nav a {
+    height: 30px;
+    line-height: 30px;
+    border-left-width: 3px;
+  }
+  .nav li > ul a {
+    padding-left: 19px;
+  }
+  #content {
+    margin-left: 135px;
+    transition: margin-left .3s ease;
+    font-size: 1.7vw;
+  }
+}
+
+@media (max-width: 700px) {
+  #nav {
+    width: 90px;
+    font-size: 0.5em;
+  }
+  #nav a {
+    height: 20px;
+    line-height: 20px;
+    border-left-width: 2px;
+  }
+  .nav li > ul a {
+    padding-left: 13px;
+  }
+  #content {
+    margin-left: 90px;
+  }
+}
+
+@media (max-width: 500px) {
+  #content {
+    font-size: 8px;
+  }  
+}

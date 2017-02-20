@@ -151,7 +151,7 @@ function triggerHelpEvent(player, id, queue)
 		if currentHelp then
 			-- new one is less important than the current one, so do not override
 			if help.events[id].importance <= help.events[currentHelp].importance then
-				outputDebugString("ignoring '" .. tostring(id) .. "' because player is already viewing a help event")
+				--outputDebugString("ignoring '" .. tostring(id) .. "' because player is already viewing a help event")
 				return false
 			end
 		end
@@ -161,14 +161,14 @@ function triggerHelpEvent(player, id, queue)
 	if help.events[id].cooldown and not help.events[id].force then
 		if help.cooldowns[player] and help.cooldowns[player][id] then
 			if getTickCount() - help.cooldowns[player][id] <= help.events[id].cooldown then
-				outputDebugString("ignoring '" .. tostring(id) .. "' because it is within the cooldown period")
+				--outputDebugString("ignoring '" .. tostring(id) .. "' because it is within the cooldown period")
 				return false
 			end
 		end
 	end
 
 	if not doesPlayerMeetHelpEventRequirements(player, id) then
-		outputDebugString("player does not meet requirements for '" .. tostring(id) .. "'")
+		--outputDebugString("player does not meet requirements for '" .. tostring(id) .. "'")
 		return false
 	end
 
@@ -207,17 +207,17 @@ function showHelpEvent(player, id)
 	end
 
 	local currentHelp = getPlayerCurrentHelpEvent(player)
+	local duration = help.events[id].displayTime or help.displayTime
 
-	if currentHelp then
-		-- queue
-		outputChatBox("Queued: " .. help.events[id].text, player)
-	else
-		outputChatBox(help.events[id].text, player)
+	-- guests get a lower duration, to help limit prompt spam
+	local username = getPlayerUsername(player)
+	if not username then
+		duration = duration * 0.7;
 	end
 
 	triggerClientEvent(player, "showHelpEvent", resourceRoot, 
 		colour.hex.parseContextual(help.events[id].text, player), 
-		help.events[id].displayTime or help.displayTime, 
+		duration, 
 		help.events[id].image, 
 		help.events[id].linkHelpManager and id or nil,
 		currentHelp ~= nil
@@ -335,8 +335,8 @@ function getPlayerFakeStatistic(player, statName)
 	return 0
 end
 
-addCommandHandler("sh",
-	function(player, cmd, event)
-		triggerHelpEvent(player, event)
-	end
-)
+-- addCommandHandler("sh",
+-- 	function(player, cmd, event)
+-- 		triggerHelpEvent(player, event)
+-- 	end
+-- )

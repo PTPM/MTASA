@@ -1,22 +1,26 @@
 function helpSystemCreateDefinitions()
 	registerHelpEvent("BASICS_TERRORIST", {
 		text = "You are a [TERRORIST]Terrorist[WHITE]. Kill the [PM]Prime Minister[WHITE]. He is [PM]yellow[WHITE] on the map",
-		condition = {fn = conditionStatNumberComparison, args = {"__player", "terrorcount", false, 3}}
+		condition = {fn = conditionStatNumberComparison, args = {"__player", "terrorcount", false, 3}},
+		cooldown = 60000 * 15,
 	})
 
 	registerHelpEvent("BASICS_POLICE", {
 		text = "You are a [POLICE]Cop[WHITE]. Protect the [PM]Prime Minister[WHITE] from attackers!",
-		condition = {fn = conditionStatNumberComparison, args = {"__player", "policecount", false, 3}}
+		condition = {fn = conditionStatNumberComparison, args = {"__player", "policecount", false, 3}},
+		cooldown = 60000 * 15,
 	})
 
 	registerHelpEvent("BASICS_BODYGUARD", {
 		text = "You are a [BODYGUARD]Bodyguard[WHITE]. Follow the [PM]Prime Minister[WHITE], and protect him from attackers",
-		condition = {fn = conditionStatNumberComparison, args = {"__player", "bgcount", false, 3}}
+		condition = {fn = conditionStatNumberComparison, args = {"__player", "bgcount", false, 3}},
+		cooldown = 60000 * 15,
 	})
 
 	registerHelpEvent("BASICS_PM", {
 		text = "You are the [PM]Prime Minister[WHITE]. [POLICE]Cops[WHITE] and [BODYGUARD]Bodyguards[WHITE] will protect you. Do not let the [TERRORIST]Terrorists[WHITE] kill you!",
-		condition = {fn = conditionStatNumberComparison, args = {"__player", "pmcount", false, 3}}
+		condition = {fn = conditionStatNumberComparison, args = {"__player", "pmcount", false, 3}},
+		cooldown = 60000 * 15,
 	})
 
 
@@ -31,6 +35,7 @@ function helpSystemCreateDefinitions()
 		text = "You can type [PTPM]/h[WHITE] instead of [PTPM]/heal[WHITE]. It is faster!",
 		condition = {fn = conditionStatNumberComparisons, args = {"__player", {"hphealed", true, 200}, {"hcount", false, 2}}},
 		cooldown = 60000 * 15,
+		linkHelpManager = false,
 		image = {name = "medic", colour = {255, 0, 0}}
 	})	
 
@@ -124,6 +129,7 @@ function helpSystemCreateDefinitions()
 		text = "You can reclass faster using [PTPM]/rc[WHITE]. For example: [PTPM]/rc [POLICE]c[WHITE] is the same as [PTPM]/reclass [POLICE]cop",
 		condition = {fn = conditionStatNumberComparisons, args = {"__player", {"rccount", false, 3}, {"reclasscount", true, 3}}},
 		cooldown = 60000 * 15,
+		linkHelpManager = false,
 	})
 
 	registerHelpEvent("COMMAND_SWAPCLASS", {

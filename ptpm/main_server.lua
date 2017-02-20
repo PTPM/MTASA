@@ -464,7 +464,7 @@ function roundTick()
 				end     
 			end		
 		else
-			sendGameText( root, "The Prime Minister fails to secure objective!", 7000, sampTextdrawColours.r, nil, 1.2, nil, nil, 3 )
+			sendGameText( root, "The Prime Minister failed to secure objective!", 7000, sampTextdrawColours.r, nil, 1.2, nil, nil, 3 )
 
 	      	if currentPM then
 	        	local pmLosses = getElementData( currentPM, "ptpm.pmWins" ) or 0

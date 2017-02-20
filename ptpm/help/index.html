@@ -1,0 +1,320 @@
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width">
+
+	<!-- This should contain a single line: outsideMTA = true; -->
+	<!-- inside mta, this file should not exist and the browser will silently eat the error -->
+	<script src="external.js"></script>
+	<script>
+	ptpmhelp = function() {
+		urlParse = function(url) {
+			if (typeof outsideMTA !== "undefined" && outsideMTA)
+				return url;
+			else
+				return "http://mta/local/help/" + url;
+		};
+
+		setPageActive = function(hash) {
+			if (hash.length === 0)
+				hash = "#ptpm";
+
+			var query = "";
+
+			if (hash.includes("?")) {
+				query = hash.slice(hash.indexOf("?") + 3);
+				hash = hash.slice(0, hash.indexOf("?"));
+			}
+
+			var pages = document.querySelectorAll(".page");
+
+    		for (var i = 0; i < pages.length; i++)
+    			pages[i].classList.remove("active");
+
+    		var page = document.querySelector(hash);
+
+    		if (typeof page !== "undefined" && page !== null) {
+    			page.classList.add("active");
+
+    			if (query.length > 0) {
+	    			var qElement = document.getElementById("q-" + query)
+
+	    			if (typeof qElement !== "undefined" && qElement !== null) {	    				
+	    				qElement.scrollIntoView();
+
+	    				qElement.classList.add("highlight");
+
+	    				setTimeout(function() {
+	    					qElement.classList.remove("highlight");
+	    				}, 1500)
+	    			}
+	    		} else {
+	    			window.scrollTo(0, 0);
+	    		}
+
+    			var navItems = document.querySelectorAll(".nav li:not(.nav-header) > a");
+
+				for (var i = 0; i < navItems.length; i++)
+					navItems[i].parentNode.classList.remove("current");		
+
+				var navItem = document.querySelector(".nav a[href='" + hash + "']")
+				navItem.parentNode.classList.add("current");
+
+				// bodge
+				if (navItem.parentNode.parentNode.parentNode.classList.contains("nav-header"))
+					navItem.parentNode.parentNode.parentNode.classList.add("expanded");
+			}
+		};
+
+		window.addEventListener("hashchange", function() { 
+			setPageActive(location.hash);
+		});
+
+		// can't just define css normally because the url would be wrong
+		var link = document.createElement("link");
+		link.href = urlParse("help.css");
+		link.type = "text/css";
+		link.rel = "stylesheet";
+		document.getElementsByTagName("head")[0].appendChild(link);
+
+		return {
+			urlParse: urlParse,
+			setPageActive: setPageActive,
+		}
+	}();
+	</script>	
+</head>
+<body>
+	<header id="header">
+		<div>Protect the Prime Minister</div>
+	</header>
+
+	<nav id="nav"></nav>
+
+	<content id="content">
+		<page class="page" id="ptpm">
+			<h1>What is PTPM?</h1>
+			<p><strong>Protect the Prime Minister</strong> (PTPM) is a team based gamemode that promotes teamwork and strategy over the conventional deathmatch tactics. It was first created in SA-MP in mid 2006 and ran as a successful server for several years, but later migrated and was reimplemented in the more powerful Multi Theft Auto engine.</p>
+
+			<p>The aim for the <em>Good Guys</em> (<span class="cc bg">Bodyguards</span> and <span class="cc police">Police</span>) is to protect the <strong><span class="cc pm">Prime Minister</span></strong> (PM) for the duration of the round. The aim for the <em>Bad Guys</em> (<span class="cc terror">Terrorists</span>) is to kill the PM before the end of the round.</p>
+
+			<p>General PTPM gameplay can be thought of as an open world attack and defend. Often, the <em>Good Guys</em> will choose a location in the map to defend and the <em>Bad Guys</em> will assault it and attempt to kill the protected <span class="cc pm">Prime Minister</span>. If the PM leaves the hideout and heads out into the roads, the <em>Bad Guys</em> will hunt him down while the <em>Good Guys</em> attempt to keep them away.</p>
+
+			<p>Rounds usually last for 15 minutes, depending on the map. You can see the time left on the timer in the top center of the screen.</p>
+
+			<p>The round will end if one of the following happens:</p>
+			<ul>
+				<li>The round timer reaches 0:00</li>
+				<li>The <span class="cc pm">Prime Minister</span> is killed</li>
+			</ul>
+
+			<p>Once the round is over you will be able to vote on the next map, and after a short transition period the new map will begin.</p>
+		</page>
+
+		<page class="page" id="how-to-play">
+			<h1>How to play</h1>
+			<p>The game has several character classes, divided into 5 teams:</p>
+
+			<ul>
+				<li><strong><span class="cc pm">Prime Minister</span></strong></li>
+				<li><strong><span class="cc bg">Bodyguards</span></strong> - <em>play this if you like protecting other players</em></li>
+				<li><strong><span class="cc police">Police</span></strong> - <em>play this if you like killing terrorists and defending hideouts</em></li>
+				<li><strong><span class="cc terror">Terrorists</span></strong> - <em>play this if you like chasing down players and assaulting hideouts</em></li>
+				<li><strong><span class="cc psycho">Psychopaths</span></strong> - <em>play this if you don't like rules</em></li>
+			</ul>
+
+			<p>All classes in the same team spawn in the same "base". Within each team the different classes have different weapons, and some classes have special "abilities" that will help their teammates. You can chat privately with your teammates by pressing '<span class="ptpm">Y</span>'.</p>
+
+			<p class="page-link">For for information on teams, see <a href="#teams">Teams</a>.</p>
+
+			<h2 id="q-maps">Maps</h2>
+			<p>There are many maps in the PTPM mode, each with different locations and features, requiring tactics to be varied depending on which map is being played. Some are very close quarters and play out like a traditional TDM mode, while others are larger open worlds with more options for strategies. Within the map you are blocked from going too far away by the map boundaries, shown as red lines on the F11 map or on the radar.</p>
+
+			<p class="page-link">For more information on maps, see <a href="#maps">Maps</a>.</p>	
+
+			<h3 id="q-tasks">Tasks</h3>
+			<p>Some maps have a series of optional tasks for the PM to do, marked on the map by red blips. While completing these tasks will not guarantee victory (they can be ignored if you wish), a useful bonus will be given to the PM for each completed task. It is in the best interest of the Terrorists to stop all tasks from being completed. When a task is being attempted, the task blip on the radar will turn green to indicate it is being used. A small description of the task and a countdown will also appear on the screen to show how long left until completion (<span class="cc psycho">Psychos</span> cannot see this).</p>
+
+			<h3 id="q-objectives">Objectives</h3>
+			<p>Some maps also have a series of objectives for the PM to complete, marked on the map by red blips. In these maps, rather than simply staying alive the PM must complete all the objectives within the round time or he will lose. The current objective will be shown on the radar as a red blip and announced on the screen. Unlike tasks, no information about the time needed to complete the objective will be shown to the <span class="cc terror">Terrorists</span>, so they must act fast to stop the PM.</p>	
+
+			<p>Once an objective is completed, an additional <span class="ptpm">3 minutes</span> will be added to the round timer and the next objective will activate.</p>
+
+			<h3 id="q-pickups">Pickups</h3>
+			<p>Most maps will have weapon and armour pickups hidden around the world. These are often different to the weapons that you spawn with, and allow you to gain an advantage that you would not otherwise have. Some weapons are good for specific purposes and will help to counter well coordinated enemies. For example, <span class="ptpm">Grenades</span> are good against large groups of players, especially inside interior buildings. <span class="ptpm">Sniper rifles</span> are good against a PM that is well defended in a hideout, that cannot be assaulted easily in the normal way.</p>
+
+			<p>Some maps contain <span class="ptpm">Heavy Weapon</span> pickups (minigun, rocket launcher) as well as regular weapons. These are usually heavily limited by long respawn timers and well hidden. They will offer a significant advantage to anyone that can find them.</p>
+
+			<h3 id="q-safe-zone">Safe Zones</h3>
+			<p>Some maps have <span class="ptpm">Safe Zones</span> represented by blue blips on the map and blue markers in the world. Dangerous vehicles cannot enter the safe zone (e.g. Hydras, Tanks), so they can be used to keep away from their powerful weapons. However, safe zones are hard to defend on the ground and will act as a focus point for Terrorist attacks.</p>
+		</page>
+
+		<page class="page" id="teams">
+			<h1>Teams</h1>
+			<h2 id="q-pm"><span class="cc pm">Prime Minister</span></h2>
+			<p>The Prime Minister is the primary class in PTPM. He is the VIP that all the other <em>Good Guys</em> (Bodyguards and Police) must protect, and the <em>Bad Guys</em> (Terrorists) must kill. He has very little firepower and relies on the protection of his loyal team.</p>
+			<p>To play the Prime Minister well you will need a strong knowledge of the map, knowing good hideout locations and how best to escape and avoid Terrorist attacks. You will need to be a good communicator, and you should instruct your team in where you will be going, what you will be doing and how they can best protect you.</p>
+
+			<p>In most maps the Prime Minister's health regenerates at a rate of 1hp/5 seconds.</p>
+
+			<h3>Election</h3>
+			<p>When selecting the Prime Minister from the class selection screen you will be entered into the Prime Minister Election. Once the election is over, a winner is randomly selected from all the players that entered. While the election is active, the spawn selection screen will show what chance you have of winning.</p>
+
+			<h2 id="q-bodyguard"><span class="cc bg">Bodyguards</span></h2>
+			<p>This is the primary protection force for the Prime Minister. Bodyguards should stick close to the Prime Minister wherever he goes, riding in the same car if possible, and be willing to put themselves in danger to protect the Prime Minister's life. They are not well suited for hunting down Terrorists, and will often have a less substantial weapon loadout.</p>
+
+			<h2 id="q-police"><span class="cc police">Police / Cops</span></h2>
+			<p>This is the primary attack force for the Prime Minister. The Police are more heavily armed than the Bodyguards and should assault Terrorists as they come close, chasing them down and ensuring they do not make it through to the Prime Minister. If the Prime Minister has laid out instructions for the round, such as defending a particular hideout, the Police are the ones that should act on those instructions.</p>
+
+			<h2 id="q-terrorist"><span class="cc terror">Terrorists</span></h2>
+			<p>The Terrorists have only a single goal: kill the Prime Minister before the time runs out. They should work closely with the other terrorists to co-ordinate their attacks to achieve maximum impact.</p>
+			<p>If the Prime Minister is defending a location on the map, Terrorists should think carefully about how best to assault. Often, hideouts used by the PM will have back entrances or weak spots that can be exploited if the <em>Good Guys</em> are distracted. If they are defending well, Terrorists should group together and assault as a team to ensure they can break through the defensive lines.</p>
+			<p>There are various <a href="#how-to-play?q=pickups">Pickups</a> around the map giving weapons and armour that can help.</p>
+
+			<h2 id="q-psycho"><span class="cc psycho">Psychopaths</span></h2>
+			<p>Psychopaths have no team and no loyalty. They will attack anyone. Beware.</p>			
+		</page>
+
+		<page class="page" id="classes">
+			<h1>Classes</h1>
+			<p>Each team within PTPM has multiple classes (characters) that you can choose from. Each class will usually have a unique weapon loadout and a unique skin.<p>
+
+			<h2 id="q-medic">Medics</h2>
+			<p>Most maps have a single <em>Medic</em> class per team, with special abilities allowing them to heal other players, and regenerate their own health. Usually they will spawn with less weaponry than standard classes, so they will need extra protection from their team. Medics have a slightly paler colour so you can identify them on the radar and in the chat.<p>
+
+			<p>To heal another player walk up to them and type <span class="ptpm">/heal</span>. This will transfer some health from the medic onto the target player.</p>
+			<p>Medics will automatically passively heal nearby teammates that are hurt at a rate of 1hp/second.</p>
+			<p>While inside an <span class="ptpm">Ambulance</span>, the passive healing rate is increased to 2hp/second for anybody else inside or very close by.</p>
+			<p>When a medic has lost some health, they will slowly regenerate at a rate of 2hp/second. By coordinating with another medic and healing each other, medics can regenerate all their health very quickly.</p>
+		</page>
+
+
+		<page class="page" id="maps">
+			<h1>Maps</h1>
+			<p>There are many maps in the PTPM mode, each with different locations and features, requiring tactics to be varied depending on which map is being played. Each map is designed to have a unique feature, distinct from all the others.</p>
+
+			<h2>Options</h2>
+			<p>Maps have various options that they can change within the PTPM mode, allowing multiple combinations producing different game styles.<p>
+		
+			<span class="option" id="q-op-round-time"><span class="ptpm" data-default="15m">Round Time</span>: the length of the round</span>
+			<span class="option" id="q-op-pm-health-bonus"><span class="ptpm" data-default="0">PM Health Bonus</span>: how much the PM's health will increase by, every 5 seconds (can be 0)</span>	
+			<span class="option" id="q-op-pm-water-penalty"><span class="ptpm" data-default="false">PM Water Health Penalty</span>: should the PM take damage in water</span>
+			<span class="option" id="q-op-pm-water-death"><span class="ptpm" data-default="false">PM Water Death</span>: should the PM die if he enters water</span>
+			<span class="option" id="q-op-pm-abandon-penalty"><span class="ptpm" data-default="false">PM Abandoned Health Penalty</span>: should the PM take damage while not in a vehicle</span>
+			<span class="option" id="q-op-medic-health-bonus"><span class="ptpm" data-default="0">Medic Health Bonus</span>: how much a medics health will increase by, every 1 second (can be 0)</span>
+			<span class="option" id="q-op-money"><span class="ptpm" data-default="500">Pocket Money</span>: how much money each player will spawn with</span>
+	
+			<h2>Current Map List</h2>
+			<ul>
+				<li>Los Santos</li>
+				<li>Los Santos with Hydras</li>
+				<li>San Fierro</li>
+				<li>Las Venturas</li>
+				<li>Las Venturas with Objectives</li>
+				<li>Area 51</li>
+				<li>Countryside</li>
+				<li>Desert</li>
+				<li>Factory</li>
+				<li>Mt. Chiliad</li>
+				<li>Bayside</li>
+				<li>Air Assault</li>
+			</ul>
+		</page>
+
+		<page class="page" id="commands">
+			<p>All <span class="ptpm">&lt;player&gt;</span> parameters take complete or unambiguous fragments of player nicknames.
+			<br>
+			All parameters marked in <span class="optional">square brackets</span> are <em>optional</em>.</p>
+
+			<h2>Game</h2>
+			<p id="q-com-kill"><span class="ptpm">/kill</span> - kill yourself</p>
+			<p id="q-com-plan"><span class="ptpm">/plan <span class="optional">&lt;text&gt;</span></span> - allows the PM to set the plan, or one of the good guys to read the plan</p>
+			<p id="q-com-reclass"><span class="ptpm">/reclass &lt;class&gt;</span> - change to a different team
+				<span class="shortcut">/rc</span>
+				<span class="args"><span class="cc pm"></span>primeminister | pm</span>
+				<span class="args"><span class="cc bg"></span>bodyguard | bg | bmedic | bm</span>
+				<span class="args"><span class="cc police"></span>cop | c | cmedic | cm</span>
+				<span class="args"><span class="cc terror"></span>terrorist | t | tmedic | tm</span>				
+				<span class="args"><span class="cc psycho"></span>psychopath | psycho | p</span>
+			</p>
+			<p id="q-com-f4"><span class="ptpm">F4</span> - go back to the class selection screen</p>
+			<p id="q-com-swapclass"><span class="ptpm">/swapclass &lt;player&gt;</span> - allows the PM to send a swapclass offer to another player. If accepted, that player will become PM and the PM will take that player's class. The offer will expire after a short time if not accepted.
+				<span class="shortcut">/sc</span>
+			</p>
+			<p id="q-com-y"><span class="ptpm">/y</span> - accept a swapclass offer</p>
+			<p id="q-com-n"><span class="ptpm">/n</span> - decline a swapclass offer</p>
+			<p id="q-com-duty"><span class="ptpm">/duty</span> - displays your duty in the game</p>
+			<p id="q-com-heal"><span class="ptpm">/heal <span class="optional">&lt;player&gt;</span></span> - allows medics to heal another player by transferring some of their health to them
+				<span class="shortcut">/h</span>
+			</p>
+			<p id="q-com-camoff"><span class="ptpm">/camoff</span> (or press '<span class="ptpm">enter</span>') - leave a camera screen</p>
+
+			<h2>Communication</h2>
+			<p id="q-com-pm"><span class="ptpm">/pm &lt;player&gt; &lt;message&gt;</span> - send a personal message to the specified player</p>
+			<p id="q-com-me"><span class="ptpm">/me &lt;message&gt;</span></p>
+			<p id="q-com-teamsay"><span class="ptpm">/teamsay &lt;message&gt;</span> (or press '<span class="ptpm">Y</span>') - send a message to your teammates</p>
+
+			<h2>Information</h2>
+			<p id="q-com-motd"><span class="ptpm">/motd</span> - displays the message of the day</p>
+			<p id="q-com-pinfo"><span class="ptpm">/pinfo &lt;player&gt;</span> - displays information about the player and their account</p>
+			<p id="q-com-getweather"><span class="ptpm">/getweather</span> - displays information about the current weather type (to help report 'bad' weathers)</p>
+
+			<p id="q-com-report"><span class="ptpm">/report</span> - report a disruptive player to the admins</p>
+
+		</page>
+
+		<page class="page" id="contact">
+			<p>If you want to contact us about anything try one of the following:</p>
+			
+			<h2>In-game</h2>
+			<p>To contact an admin in-game use one of the following:</p>
+			<p>If you know them by name, simply <span class="ptpm">/pm &lt;name&gt; &lt;message&gt;</span> to speak directly to them.</p>
+			<p>You can use <span class="ptpm">/report</span> to report any disruptive players to all available admins.</p>
+			<p>Admins will always be happy to talk to you, so feel free to speak up in the main game chat!</p>	
+
+			<h2>Website / IRC</h2>
+			<p>Website: <span class="ptpm">https://ptpm.uk</span></p>
+			<p>IRC: connect to irc.gtanet.com on port 6667 and join the channel <span class="ptpm">#ptpm</span></p>							
+		</page>
+	</content>
+
+	<script>
+	if (typeof outsideMTA === "undefined") {
+		document.getElementById("header").classList.add("hidden");
+		document.getElementById("nav").classList.add("mta");
+	} else {
+		window.addEventListener("scroll", function(event) {
+			document.getElementById("nav").style.top = 50 - Math.min(window.scrollY, 50);
+		});
+	}
+
+	document.addEventListener("DOMContentLoaded", function(event) {
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", ptpmhelp.urlParse("nav.html"), true);
+
+		xhr.onreadystatechange = function () {
+	    	if(xhr.readyState === XMLHttpRequest.DONE) {
+	    		if (xhr.status === 200) {
+	        		var nav = document.getElementById("nav");
+	        		nav.innerHTML = xhr.responseText;
+
+					var navItems = document.querySelectorAll(".nav-header > a:first-of-type");
+
+					for (var i = 0; i < navItems.length; i++)
+						navItems[i].addEventListener("click", navHeaderClick, false);
+
+	        		ptpmhelp.setPageActive(window.location.hash);
+	        	}
+	    	}
+		};
+		xhr.send();
+	});
+
+	function navHeaderClick(event) {
+		if (this.parentNode.classList.contains("expanded"))
+			this.parentNode.classList.remove("expanded");
+		else
+			this.parentNode.classList.add("expanded");	
+
+		event.preventDefault();	
+	}
+	</script>
+</body>

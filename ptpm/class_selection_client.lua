@@ -32,6 +32,7 @@ addEvent("onElectionFinished", true)
 addEvent("onElectionCountdown", true)
 
 
+
 local flowers = {
 	protect = {
 		x = (screenX * 0.5) - (math.min(screenX, (1000 * uiScale)) * 0.29),
@@ -503,7 +504,7 @@ function drawClassSelection()
 	lastTick = getTickCount()
 
 	-- if they are typing, draw behind the chat
-	flowers.pm.postGUI = not (isChatBoxInputActive() or isConsoleActive())
+	flowers.pm.postGUI = not (isChatBoxInputActive() or isUIOverlayVisible())
 
 	processCursorMovement()
 
@@ -856,6 +857,10 @@ function getSelectedFlower()
 end
 
 function onPetalEnter(flower, petal)
+	if isUIOverlayVisible() then
+		return
+	end
+
 	if currentlySelectedPetal and currentlySelectedPetal ~= petal then
 		onPetalLeave(currentlySelectedPetal.flower, currentlySelectedPetal)
 	end
@@ -883,6 +888,10 @@ function onPetalEnter(flower, petal)
 end
 
 function onPetalLeave(flower, petal)
+	if isUIOverlayVisible() then
+		return
+	end
+
 	--outputDebugString("petal leave: " .. tostring(petal.classID))
 	petal.isPressed = false
 	petal.isSelected = false
@@ -894,6 +903,10 @@ function onPetalLeave(flower, petal)
 end
 
 function onFlowerEnter(flower)
+	if isUIOverlayVisible() then
+		return
+	end
+
 	if flower.hover then
 		if currentlySelectedPetal then
 			onPetalLeave(currentlySelectedPetal.flower, currentlySelectedPetal)
@@ -906,6 +919,10 @@ function onFlowerEnter(flower)
 end
 
 function onFlowerLeave(flower)
+	if isUIOverlayVisible() then
+		return
+	end
+
 	--outputDebugString("flower leave")
 	flower.isPressed = false
 	flower.isSelected = false
@@ -947,7 +964,7 @@ addEventHandler("onClientClick", root, processCursorClicks)
 
 function choosePetal(petal)
 	-- check we actually have the class selection active and that we aren't spamming selections
-	if petal.isFull or not classSelection.visible or classSelection.hiding or (getTickCount() - classSelection.lastRequest < 200) then
+	if petal.isFull or not classSelection.visible or classSelection.hiding or (getTickCount() - classSelection.lastRequest < 200) or isUIOverlayVisible() then
 		return
 	end
 
@@ -957,7 +974,7 @@ function choosePetal(petal)
 end
 
 function chooseFlower(flower)
-	if not classSelection.visible or classSelection.hiding or (getTickCount() - classSelection.lastRequest < 200) then
+	if not classSelection.visible or classSelection.hiding or (getTickCount() - classSelection.lastRequest < 200) or isUIOverlayVisible() then
 		return
 	end
 
@@ -1095,7 +1112,9 @@ function getPetalFromClassID(classID)
 	end
 end
 
-
+function isUIOverlayVisible()
+	return isHelpVisible() or isConsoleActive()
+end
 
 
 local debugclassselect = false

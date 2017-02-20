@@ -110,6 +110,10 @@
 	<file src="images/class_selection/asset_circle_border.png"/>
 	<file src="images/class_selection/asset_circle_border_big.png"/>
 	<file src="images/class_selection/asset_white_circle.png"/>
+
+	<file src="help/index.html"/>
+	<file src="help/nav.html"/>
+	<file src="help/help.css"/>
 	
 	<!-- PTPM REQUIRED -->
 	<include resource="helpmanager" />

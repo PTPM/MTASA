@@ -5,6 +5,7 @@ classes = {}
 currentPM = nil
 currentMapName = ""
 local roundEnded = false
+local helpVisible = false
 
 addEventHandler( "onClientResourceStart", root,
 	function(res)
@@ -492,6 +493,29 @@ function dxWordWrapText(text, width, font, scale)
 	end
 
 	return table.concat(lines, '\n')
+end
+
+
+addEvent("onHelpShown")
+addEvent("onHelpHidden")
+
+addEventHandler("onHelpShown", root,
+	function()
+		helpVisible = true
+	end
+)
+
+addEventHandler("onHelpHidden", root,
+	function()
+		-- if there is a ui element underneath the close button, we don't want clicking the button to register as clicking the ui element
+		setTimer(function()
+			helpVisible = false
+		end, 50, 1)
+	end
+)
+
+function isHelpVisible()
+	return helpVisible
 end
 
 -- draw lines around teleport bounds

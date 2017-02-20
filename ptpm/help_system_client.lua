@@ -244,15 +244,21 @@ function drawHelp()
 	end
 end
 
+function getCurrentHelpPrompt()
+	if not help.showing then
+		return
+	end
+
+	if help.animationState < state.showing then
+		return
+	end
+
+	return {text = help.text, id = help.managerLink}
+end
 
 
-addCommandHandler("he",
-	function()
-		triggerEvent("showHelpEvent", resourceRoot, "this is a message", 4000, false)
-	end
-)
-addCommandHandler("s",
-	function(cmd, s)
-		playSoundFrontEnd(tonumber(s))
-	end
-)
+-- addCommandHandler("he",
+-- 	function()
+-- 		triggerEvent("showHelpEvent", resourceRoot, "this is a message", 4000, false)
+-- 	end
+-- )
