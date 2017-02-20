@@ -134,7 +134,7 @@ end
 function limitedKeyPress(key, keyState, speed)
 	-- Apparently this function doesn't always get unbound correctly despite all the listed events
 	-- so an additional check is needed
-	if currentAssaultVehicle==nil or not getElementData(currentAssaultVehicle,"vehNerfed") then
+	if currentAssaultVehicle==nil or getElementData(currentAssaultVehicle,"vehNerfed")==false then
 	
 		currentAssaultVehicle = nil
 		for _,v in ipairs({"vehicle_fire", "vehicle_secondary_fire"} ) do
