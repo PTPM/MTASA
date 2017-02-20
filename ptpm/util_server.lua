@@ -501,7 +501,7 @@ function showOps( thePlayer )
 	end
 end
 addCommandHandler( "ops", showOps )
---addCommandHandler( "admins", showOps )
+addCommandHandler( "admins", showOps )
 
 
 function attach(ob1,ob2,x1,y1,z1,rx1,ry1,rz1,x2,y2,z2,rx2,ry2,rz2)

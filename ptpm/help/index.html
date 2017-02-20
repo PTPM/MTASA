@@ -175,7 +175,7 @@
 
 		<page class="page" id="classes">
 			<h1>Classes</h1>
-			<p>Each team within PTPM has multiple classes (characters) that you can choose from. Each class will usually have a unique weapon loadout and a unique skin.<p>
+			<p>Each team within PTPM has multiple classes (characters) that you can choose from. Each class will usually have a unique weapon loadout and a unique skin, while some will additionally have unique abilities.<p>
 
 			<h2 id="q-medic">Medics</h2>
 			<p>Most maps have a single <em>Medic</em> class per team, with special abilities allowing them to heal other players, and regenerate their own health. Usually they will spawn with less weaponry than standard classes, so they will need extra protection from their team. Medics have a slightly paler colour so you can identify them on the radar and in the chat.<p>
@@ -194,11 +194,11 @@
 			<h2>Options</h2>
 			<p>Maps have various options that they can change within the PTPM mode, allowing multiple combinations producing different game styles.<p>
 		
-			<span class="option" id="q-op-round-time"><span class="ptpm" data-default="15m">Round Time</span>: the length of the round</span>
+			<span class="option" id="q-op-round-time"><span class="ptpm" data-default="15min">Round Time</span>: the length of the round</span>
 			<span class="option" id="q-op-pm-health-bonus"><span class="ptpm" data-default="0">PM Health Bonus</span>: how much the PM's health will increase by, every 5 seconds (can be 0)</span>	
-			<span class="option" id="q-op-pm-water-penalty"><span class="ptpm" data-default="false">PM Water Health Penalty</span>: should the PM take damage in water</span>
+			<span class="option" id="q-op-pm-water-penalty"><span class="ptpm" data-default="false">PM Water Health Penalty</span>: should the PM take damage in water. The damage will gradually increase over time the longer he stays in</span>
 			<span class="option" id="q-op-pm-water-death"><span class="ptpm" data-default="false">PM Water Death</span>: should the PM die if he enters water</span>
-			<span class="option" id="q-op-pm-abandon-penalty"><span class="ptpm" data-default="false">PM Abandoned Health Penalty</span>: should the PM take damage while not in a vehicle</span>
+			<span class="option" id="q-op-pm-abandon-penalty"><span class="ptpm" data-default="false">PM Abandoned Health Penalty</span>: should the PM take gradual damage while not in a vehicle</span>
 			<span class="option" id="q-op-medic-health-bonus"><span class="ptpm" data-default="0">Medic Health Bonus</span>: how much a medics health will increase by, every 1 second (can be 0)</span>
 			<span class="option" id="q-op-money"><span class="ptpm" data-default="500">Pocket Money</span>: how much money each player will spawn with</span>
 	
@@ -256,7 +256,9 @@
 			<p id="q-com-motd"><span class="ptpm">/motd</span> - displays the message of the day</p>
 			<p id="q-com-pinfo"><span class="ptpm">/pinfo &lt;player&gt;</span> - displays information about the player and their account</p>
 			<p id="q-com-getweather"><span class="ptpm">/getweather</span> - displays information about the current weather type (to help report 'bad' weathers)</p>
-
+			<p id="q-com-admins"><span class="ptpm">/admins</span> - get a list of all online admins
+				<span class="shortcut">/ops</span>
+			</p>
 			<p id="q-com-report"><span class="ptpm">/report</span> - report a disruptive player to the admins</p>
 
 		</page>

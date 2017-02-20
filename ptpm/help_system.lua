@@ -304,7 +304,7 @@ function conditionStatNumberComparison(player, statName, greater, value)
 	local stat = tonumber(getPlayerFakeStatistic(player, statName))
 
 	if not stat then
-		return false
+		stat = 0
 	end
 
 	if greater then
