@@ -599,7 +599,7 @@ end
 
 
 function isPlayerOp( player )
-	local allowedGroups = { "Admin", "ptpm_ProvisionaryOperator", "ptpm_FullOperator" }
+	local allowedGroups = { "Admin", "ptpm_ProvisionaryOperator", "ptpm_Operator" }
 	
 	local acc = getPlayerAccount(player)
 	if not acc then return false end
