@@ -2,7 +2,7 @@
 local thisResourceRoot = getResourceRootElement(getThisResource())
 local pagesXml
 
-local wndHelp, wndBlock, tPanel, btnClose
+local wndHelp, tPanel, btnClose
 local tab = {}
 local memo = {}
 local popupQueue = {}
@@ -23,17 +23,30 @@ addEvent("sendHelpManagerSettings", true)
 
 addEventHandler("onClientResourceStart", thisResourceRoot, 
 	function ()
-		wndHelp  = guiCreateWindow(.2, .2, .6, .6, "Help", true)
-		wndBlock = guiCreateWindow(0, 0, 1, 1, "", true)
-		tPanel   = guiCreateTabPanel(0, .05, 1, .85, true, wndHelp)
-		btnClose = guiCreateButton(.4, .92, .2, .08, "Close", true, wndHelp)
+		local sx, sy = guiGetScreenSize()
+		
+		local windowWidth = sx * .6
+		local windowHeight = sy * .7
+		
+		-- if we have a very small resolution, expand to fill the screen instead
+		if windowWidth < 800 then
+			windowWidth = math.min(sx, 800)
+		end
+		
+		if windowHeight < 600 then
+			windowHeight = math.min(sy, 600)
+		end
+		
+		wndHelp  = guiCreateWindow((sx - windowWidth) / 2, (sy - windowHeight) / 2, windowWidth, windowHeight, "Help", false)
+
+		local buttonHeight = math.min(40, sy * .06)
+		tPanel   = guiCreateTabPanel(0, 20, windowWidth, windowHeight - 20 - buttonHeight - 10, false, wndHelp)
+		btnClose = guiCreateButton((windowWidth - (windowWidth * 0.25)) / 2, windowHeight - buttonHeight - 5, windowWidth * 0.25, buttonHeight, "Close", false, wndHelp)
 
 		guiSetVisible(wndHelp, false)
-		guiSetVisible(wndBlock, false)
-		
+
 		guiWindowSetSizable(wndHelp, false)
-		guiSetAlpha(wndBlock, 0)
-		
+
 		addEventHandler("onClientGUIClick", btnClose,
 			function()
 				if source == this then
@@ -160,10 +173,9 @@ function clientToggleHelp(state)
 		state = not guiGetVisible(wndHelp)
 	end
 	guiSetVisible(wndHelp, state)
-	guiSetVisible(wndBlock, state)
+
 	if state == true then
 		triggerEvent("onHelpShown", localPlayer)
-		guiBringToFront(wndBlock)
 		guiBringToFront(wndHelp)
 		showCursor(true)
 
