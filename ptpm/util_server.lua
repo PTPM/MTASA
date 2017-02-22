@@ -3,9 +3,9 @@
 end
 
 
-function tableSize( t )
+function tableSize(t)
 	local c = 0
-	for _,_ in ipairs( t ) do c = c + 1 end
+	for _,_ in ipairs(t) do c = c + 1 end
 	return c
 end
 
@@ -368,13 +368,13 @@ function changeWeather()
 end
 
 
-function getWeather( thePlayer )
+function getWeather(thePlayer)
 	if options and options.currentWeather then
 		local hour, minute = getTime()
-		outputChatBox( "Map type: " .. options.mapType .. ", Id: " .. options.currentWeather .. " - " .. hour .. ":" .. minute, thePlayer, unpack( colour.personal ) )
+		outputChatBox("Map type: " .. options.mapType .. ", weather id: " .. options.currentWeather .. ", time: " .. hour .. ":" .. minute, thePlayer, unpack(colour.personal))
 	end
 end
-addCommandHandler( "getweather", getWeather )
+addCommandHandler("getweather", getWeather)
 
 
 addEvent( "onPlayerInteriorHit", false )

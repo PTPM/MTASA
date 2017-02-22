@@ -70,9 +70,9 @@ function ptpmMapStart( map )
 	
 	
 	if options.disableClouds then
-		setCloudsEnabled( false )
+		setCloudsEnabled(false)
 	else
-		setCloudsEnabled( true )
+		setCloudsEnabled(true)
 	end
 	
 	
@@ -526,6 +526,7 @@ function ptpmMapStart( map )
 					initClassSelection( value )
 				end
 			end
+			data.roundTicks = 0
 			data.roundTimer = setTimer( roundTick, 1000, 0 )
 			options.playerPrepareTimer = nil
 		end,
@@ -623,6 +624,7 @@ function ptpmMapStop( map )
 			killTimer( data.roundTimer )
 		end
 		data.roundTimer = nil
+		data.roundTicks = 0
 	end
 	
 	if options.swapclass and options.swapclass.target then

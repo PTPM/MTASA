@@ -157,8 +157,8 @@ function setPlayerClass( thePlayer, class )
 	
 		local teamName = teamMemberName[classes[getPlayerClassID( thePlayer )].type]
 
-		if tableSize( getElementsByType( "player" ) ) <= 8 or (class and classes[class].type == "pm") then
-      local r, g, b = getPlayerColour( thePlayer )
+		if #getElementsByType( "player" ) <= 8 or (class and classes[class].type == "pm") then
+			local r, g, b = getPlayerColour( thePlayer )
 			outputChatBox( playerName .. " is nolonger " .. teamName .. ".", root, r, g, b, false )
 		end
 	end
@@ -297,7 +297,7 @@ function makePlayerSpawn( thePlayer )
 	setElementData( thePlayer, "ptpm.score.class", teamMemberFriendlyName[classType] .. (classes[class].medic == true and " Medic" or "")	)
 
 	
-	if tableSize( getElementsByType( "objective", runningMapRoot ) ) > 0 then
+	if data.currentMap.hasObjectives then
 		clearObjectiveTextFor( thePlayer )
 	
 		setupActiveObjectiveFor( thePlayer )
@@ -309,7 +309,7 @@ function makePlayerSpawn( thePlayer )
 		end
 	end	
 	
-	if tableSize( getElementsByType( "task", runningMapRoot ) ) > 0 then
+	if data.currentMap.hasTasks then
 		clearTaskTextFor( thePlayer )
 		
 		if data.tasks and data.tasks.activeTask then

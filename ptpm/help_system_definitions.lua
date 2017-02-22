@@ -68,21 +68,23 @@ function helpSystemCreateDefinitions()
 	registerHelpEvent("OBJECTIVE_OVERVIEW", {
 		text = "The [RED]red markers[WHITE] on the map are [RED]objectives[WHITE] for the [PM]Prime Minister[WHITE]. He must visit them to win. He will lose if the time runs out!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "objectivesplayed", false, 3}},
+		cooldown = 60000 * 15,
 	})	
 
 	registerHelpEvent("OBJECTIVE_OVERVIEW_PM", {
 		text = "You must complete the [RED]objectives[WHITE] in this map to win. Go to the [RED]red marker[WHITE] on the map to begin!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "objectivesplayed", false, 3}},
+		cooldown = 60000,
 	})		
 
 	registerHelpEvent("OBJECTIVE_ENTER", {
 		text = "Stay inside the marker to complete this [RED]objective[WHITE]. You will be given a new [RED]objective[WHITE] once completed.",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "objectivesplayed", false, 3}},
-		cooldown = 60000,
+		cooldown = 60000 * 5,
 	})		
 
 	registerHelpEvent("OBJECTIVE_COMPLETE", {
-		text = "[RED]Objective[WHITE] complete! +3 minutes have been added to the round. A new [RED]objective[WHITE] has been unlocked, go there now!",
+		text = "[RED]Objective[WHITE] complete! [PTPM]+3 minutes[WHITE] have been added to the round. A new [RED]objective[WHITE] has been unlocked, go there now!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "objectivesplayed", false, 3}},
 	})		
 
@@ -95,17 +97,19 @@ function helpSystemCreateDefinitions()
 	registerHelpEvent("TASK_OVERVIEW", {
 		text = "The [RED]red markers[WHITE] on the map are [RED]tasks[WHITE] that the [PM]Prime Minister[WHITE] can complete. Each completed [RED]task[WHITE] will give him a new advantage.",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 3}},
+		cooldown = 60000 * 15,
 	})	
 
 	registerHelpEvent("TASK_OVERVIEW_PM", {
 		text = "The [RED]red markers[WHITE] on the map are [RED]tasks[WHITE] that you can complete. Each completed [RED]task[WHITE] gives you a new advantage towards winning the round!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 3}},
+		cooldown = 60000,
 	})		
 
 	registerHelpEvent("TASK_ENTER", {
 		text = "This is a [RED]task[WHITE]. Stay inside the marker to complete the [RED]task[WHITE] and receive a bonus. The bonus will help you to survive!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 3}},
-		cooldown = 60000,
+		cooldown = 60000 * 5,
 	})	
 
 	registerHelpEvent("TASK_COMPLETE", {
@@ -116,6 +120,7 @@ function helpSystemCreateDefinitions()
 	registerHelpEvent("TASK_NUDGE", {
 		text = "This map has [RED]tasks[WHITE]. The [PM]Prime Minister[WHITE] gets powerful bonuses from them. Find a [RED]red marker[WHITE] on the map to try it!",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 5}},
+		cooldown = 30000,
 	})	
 
 
@@ -238,5 +243,5 @@ function helpSystemCreateDefinitions()
 		text = "The [BLUE]blue[WHITE] area is a [BLUE]safe zone[WHITE]. Dangerous vehicles can't come in here.",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "safezonecount", false, 3}},
 		cooldown = 60000 * 8,
-	})		
+	})			
 end

@@ -45,7 +45,7 @@ function helpSystemPlayerSpawn(player, class)
 		table.insert(events, "BASICS_POLICE")
 	end
 
-	if tableSize(getElementsByType("objective", runningMapRoot)) > 0 then
+	if data.currentMap.hasObjectives then
 		if classes[class].type == "pm" then
 			table.insert(events, "OBJECTIVE_OVERVIEW_PM")
 		else
@@ -53,7 +53,7 @@ function helpSystemPlayerSpawn(player, class)
 		end
 	end
 
-	if tableSize(getElementsByType("task", runningMapRoot)) > 0 then
+	if data.currentMap.hasTasks then
 		if classes[class].type == "pm" then
 			table.insert(events, "TASK_OVERVIEW_PM")
 		else
@@ -100,7 +100,7 @@ function randomHelpEvent()
 	for i, player in ipairs(getElementsByType("player")) do
 		local classID = getPlayerClassID(player)
 
-		if classID then
+		if classID and (not isPedDead(player)) then
 			if classes[classID].type ~= "pm" then
 				triggerHelpEvents(player, {"COMMAND_RECLASS", "COMMAND_DUTY", "BIND_F4"}, false, 1, true)
 			else

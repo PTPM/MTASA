@@ -395,12 +395,9 @@ addEventHandler("onPlayerChangeNick", root,
 
 
 function roundTick()
+	data.roundTicks = data.roundTicks + 1
 	local tick = getTickCount()
 	local timeLeft = options.roundtime - (tick - data.roundStartTime)
-	
-	--if not data.roundEnded then
-	--	drawStaticTextToScreen( "update", root, "roundTimer", "Time left: " .. formatTimeLeft(), "screenX-190", 5, 180, 50, sampTextdrawColours.w, 1, "pricedown", "top" )
-	--end
 	
 	local accountsRunning = isRunning("ptpm_accounts")
 	
@@ -411,7 +408,7 @@ function roundTick()
 		
 		local r, g, b = unpack(classColours["pm"])
 		
-		if tableSize( getElementsByType( "objective", runningMapRoot ) ) == 0 then
+		if #getElementsByType("objective", runningMapRoot) == 0 then
 			sendGameText( root, "The Prime Minister survived!", 7000, {r, g, b}, nil, 1.2, nil, nil, 3 )
       
       		if currentPM then
@@ -506,7 +503,7 @@ function roundTick()
 	end
 	
 	
-	local players = getElementsByType( "player" )
+	local players = getElementsByType("player")
 	
 
 	local weaponChance = math.random(1, 100) < 10
@@ -514,7 +511,7 @@ function roundTick()
 	for _, player in ipairs(players) do
 		local classID = getPlayerClassID(player)
 
-		if classID then
+		if classID and not isPedDead(player) then
 			if weaponChance then
 				local x, y, z = getElementPosition(player)
 
@@ -540,7 +537,7 @@ function roundTick()
 	
 	checkObjectives(players, tick)
 	
-	if timeLeft % 120000 < 1000 then
+	if data.roundTicks % 120 == 0 then
 		changeWeather()
 	end
 	
@@ -558,8 +555,8 @@ function roundTick()
 		
 		-- double the amount and the tick interval to get around the health problem in mta
 		-- revert if that ever gets fixed, bug #9492
-		if options.pmHealthBonus and (timeLeft % 10000) < 1000 then
-			if (not options.pmWaterHealthPenalty) or (not isElementInWater(currentPM)) then
+		if options.pmHealthBonus and (data.roundTicks % 10) == 0 then
+			if (not isPedDead(currentPM)) and (not options.pmWaterHealthPenalty) or (not isElementInWater(currentPM)) then
 				if getElementHealth(currentPM) < 95 then
 					triggerHelpEvent(currentPM, "OPTION_HEALTH_REGEN_PM")
 				end
@@ -570,7 +567,7 @@ function roundTick()
 		end
 
 		if options.pmWaterHealthPenalty then
-			if isElementInWater(currentPM) then
+			if (not isPedDead(currentPM)) and isElementInWater(currentPM) then
 				if not getElementData(currentPM, "ptpm.waterHealthPenaltyTick") then
 					setElementData(currentPM, "ptpm.waterHealthPenaltyTick", tick, false)
 
@@ -588,7 +585,7 @@ function roundTick()
 			end
 		end
 		
-		if options.pmAbandonedHealthPenalty and not getPedOccupiedVehicle( currentPM ) and timeLeft % (options.pmAbandonedHealthPenalty * 1000) then
+		if (not isPedDead(currentPM)) and options.pmAbandonedHealthPenalty and not getPedOccupiedVehicle( currentPM ) and (data.roundTicks % options.pmAbandonedHealthPenalty) == 0 then
 			changeHealth( currentPM, -1 )
 
 			if getElementHealth(currentPM) < 70 then
@@ -605,7 +602,7 @@ function roundTick()
 	if options.medicHealthBonus then
 		for _, player in ipairs(players) do
 			local classID = getPlayerClassID(player)
-			if player and classID and classes[classID].medic and classes[classID].type ~= "pm" then
+			if player and classID and (not isPedDead(player)) and classes[classID].medic and classes[classID].type ~= "pm" then
 				if getElementHealth(player) < 95 then
 					triggerHelpEvent(player, "OPTION_HEALTH_REGEN_MEDIC")
 				end
@@ -615,7 +612,7 @@ function roundTick()
 			
 			for _, player2 in ipairs(players) do
 				local classID2 = getPlayerClassID(player2)
-				if player2 and player2 ~= player and classID2 and classes[classID2].medic and classes[classID2].type ~= "pm" then
+				if player2 and player2 ~= player and classID2 (not isPedDead(player2)) and classes[classID2].medic and classes[classID2].type ~= "pm" then
 					local pX, pY, pZ = getElementPosition(player)
 					local mX, mY, mZ = getElementPosition(player2)
 
@@ -810,7 +807,7 @@ function healCommand( thePlayer, commandName, otherName )
 	if otherName then
 		local otherPlayer = getPlayerFromNameSection( otherName )
 		if otherPlayer == nil then
-			return outputChatBox( "Usage: /heal (<person>)", thePlayer, unpack( colour.personal ) )
+			return outputChatBox( "Usage: /heal [<person>]", thePlayer, unpack( colour.personal ) )
 		elseif otherPlayer == false then
 			return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colour.personal ) )
 		end
@@ -842,7 +839,7 @@ function healCommand( thePlayer, commandName, otherName )
 	
 	-- dont bother showing messages like this if the patient hasnt specifically been chosen
 	if not getPlayerClassID( patient ) and d == 100000 then
-		return outputChatBox( "Patient '" .. getPlayerName( patient ) .. "' has not yet selected class.", thePlayer, unpack( colour.personal ) )
+		return outputChatBox( "Patient '" .. getPlayerName( patient ) .. "' has not yet selected a class.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	if playerHealPlayer(thePlayer, patient, d) then
@@ -1002,8 +999,12 @@ end
 addCommandHandler( "plan", plan )
 
 
-function showPlan( thePlayer )
-	outputChatBox( "PM's Plan: " .. (options.plan and options.plan or "The PM has not outlined a plan."), thePlayer, unpack( colour.personal ) )
+function showPlan(thePlayer)
+	if options.plan then
+		outputChatBox("PM's Plan: " .. options.plan, thePlayer, unpack(colour.personal))
+	else
+		outputChatBox("The Prime Minister has not outlined a plan.", thePlayer, unpack(colour.personal))
+	end
 end
 
 

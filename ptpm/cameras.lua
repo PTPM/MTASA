@@ -68,7 +68,7 @@ end
 function camOff( thePlayer )
 	local activeCamera = getElementData( thePlayer, "ptpm.activeCamera" )
 	if not activeCamera then
-		return outputChatBox( "You are not in cam-view.", thePlayer, unpack( colour.personal ) )
+		return outputChatBox( "You are not viewing a camera.", thePlayer, unpack( colour.personal ) )
 	end
 	
 	setElementData( thePlayer, "ptpm.activeCamera", nil, false )

@@ -7,10 +7,10 @@ currentMapName = ""
 local roundEnded = false
 local helpVisible = false
 
-addEventHandler( "onClientResourceStart", root,
+addEventHandler("onClientResourceStart", root,
 	function(res)
 		if res == resource then
-			triggerServerEvent( "onClientReady", resourceRoot )
+			triggerServerEvent("onClientReady", resourceRoot)
 
 			classSelectionSetup()
 			helpSystemSetup()
@@ -81,6 +81,11 @@ function isRoundEnded()
 	return roundEnded
 end
 
+addEventHandler("onClientPlayerWasted", localPlayer,
+	function(killer, weapon, bodypart)
+		clearHelpQueue()
+	end
+)
 
 function drawGameTextToScreen( text, duration, colour, font, size, valign, halign, importance )
 	if not importance then importance = 1 end
@@ -313,6 +318,14 @@ addEventHandler( "onClientElementDataChange", root,
 				end
 				
 				if source == localPlayer then
+					if not classID and oldValue then
+						-- back to class selection
+						clearHelpQueue()
+					elseif classID and oldValue then
+						-- changed class
+						clearHelpQueue()
+					end
+
 					if options.distanceToPM then
 						if classID and classes[classID] == "terrorist" then
 							if options.distanceToPMTimer then

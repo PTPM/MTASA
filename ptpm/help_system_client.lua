@@ -256,6 +256,15 @@ function getCurrentHelpPrompt()
 	return {text = help.text, id = help.managerLink}
 end
 
+function clearHelpQueue()
+	if not help.showing then
+		return
+	end
+
+	if help.queue and #help.queue > 0 then
+		help.queue = {}
+	end
+end
 
 -- addCommandHandler("he",
 -- 	function()

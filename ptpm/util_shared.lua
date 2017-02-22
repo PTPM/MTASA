@@ -64,16 +64,6 @@ function getRunningMapFriendlyNameWrapped()
 end
 
 
-function isRunning(resourceName)
-	local resource = getResourceFromName(resourceName)
-	if resource then
-		if getResourceState(resource) == "running" then
-			return true
-		end
-	end
-	return false
-end
-
 function isVehicleOccupied(vehicle)
 	local occupants = getVehicleOccupants(vehicle)
 
@@ -119,4 +109,20 @@ end
 
 function lerp(startValue, endValue, t)
 	return startValue + ((endValue - startValue) * t)
+end
+
+function getColour(colourName)
+	if classColours[colourName] then
+		return classColours[colourName]
+	end
+
+	if colour[colourName] then
+		return colour[colourName]
+	end
+
+	return
+end
+
+function getCurrentPM()
+	return currentPM
 end

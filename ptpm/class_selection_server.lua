@@ -119,11 +119,11 @@ function initClassSelection(thePlayer, updateBalanceAndNotify)
 	
 	triggerClientEvent(thePlayer, "enterClassSelection", root, runningMapName, getRunningMapFriendlyNameWrapped(), classes, balance.full, election.active, #election.candidates)
 	
-	if tableSize(getElementsByType("objective", runningMapRoot)) > 0 then
+	if data.currentMap.hasObjectives then
 		clearObjectiveTextFor(thePlayer) 
 	end
 	
-	if tableSize(getElementsByType("task", runningMapRoot)) > 0 then
+	if data.currentMap.hasTasks then
 		clearTaskTextFor(thePlayer)
 	end
 end
