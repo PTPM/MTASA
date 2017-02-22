@@ -29,7 +29,7 @@
     </spawngroup>
 	
     <spawngroup type="pm">
-        <class id="12" skin="147" weapons="15,1;41,300;46,1" />
+        <class id="12" skin="147" weapons="15,1;41,300;46,1;24,20" />
         <spawn posX="-158.2105" posY="2269.3345" posZ="430" rot="304.3342" />
         <!--<spawn posX="-158.2105" posY="2269.3345" posZ="35" rot="304.3342" />-->
         <cantdrive models="any" />

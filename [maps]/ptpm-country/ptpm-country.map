@@ -70,7 +70,7 @@
     </spawngroup>
 	
     <spawngroup type="pm">
-        <class id="12" skin="147" weapons="15,1;41,1000;46,1" />
+        <class id="12" skin="147" weapons="15,1;41,1000;46,1;24,20" />
         <spawn posX="1106.8263" posY="-306.8298" posZ="73.9922" rot="88.5804" />
         <cantdrive models="454,522,415" />
     </spawngroup>
