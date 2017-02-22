@@ -32,7 +32,7 @@
     </spawngroup>
 	
     <spawngroup type="pm">
-        <class id="12" skin="147" weapons="15,1;24,50;41,1000" />
+        <class id="12" skin="147" weapons="15,1;24,20;41,1000" />
         <spawn posX="-2626.1106" posY="2287.6431" posZ="8.3026" rot="267.9435" />
         <cantdrive models="522,461,488,487,476" />
         <cantpassenger models="488,487" />
