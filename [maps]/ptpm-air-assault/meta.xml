@@ -4,7 +4,7 @@
 	<settings>
 		<setting name="*mapType" value="country" />
 		<setting name="*weathers" value="[[4,1,9,15,20,3,5]]" />
-		<setting name="*roundtime" value="[900000]" /> <!-- 15 mins -->
+		<setting name="*roundtime" value="[600000]" /> <!-- 15 mins -->
 		<setting name="*pmAbandonedHealthPenalty" value="[2]" />
 		<setting name="*vehicleLaunch" value="[true]" />
 		<setting name="*pmWaterDeath" value="[true]" />
