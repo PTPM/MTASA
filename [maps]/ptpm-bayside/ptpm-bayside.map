@@ -24,10 +24,8 @@
         <class id="9" skin="73" weapons="26,100;22,200;18,10" />
         <class id="10" skin="100" weapons="23,100;31,400;37,100" />
         <class id="11" skin="274" weapons="4,1;23,100;41,300" medic="true" />
-        <spawn posX="-789.0142" posY="2748.7109" posZ="48.2556" rot="267.7834" />
-        <spawn posX="-789.2872" posY="2764.3579" posZ="48.2556" rot="265.7383" />
-        <spawn posX="-775.6995" posY="2764.7869" posZ="48.2556" rot="175.7971" />
-        <spawn posX="-760.1064" posY="2765.0349" posZ="48.2556" rot="177.8541" />
+        <spawnline startX="-788.8" startY="2750.9" startZ="45.8" endX="-788.8" endY="2762.7" endZ="45.8" rot="270" />
+        <spawnline startX="-773.5" startY="2764.3" startZ="45.8" endX="-761.3" endY="2764.3" endZ="45.8" rot="180" />
         <cantdrive models="488,487" />
     </spawngroup>
 	
@@ -103,30 +101,31 @@
     <vehicle model="452" posX="-2066.1631" posY="2364.6716" posZ="-0.3981" rotZ="48.5662" />
     <vehicle model="454" posX="-2324.1824" posY="2324.3616" posZ="-0.4747" rotZ="182.4293" />
     <vehicle model="454" posX="-2323.7444" posY="2304.4971" posZ="-0.4288" rotZ="181.1959" />
-    <vehicle model="539" posX="-2430.7156" posY="2294.8411" posZ="4.9844" rotZ="273.4607" />
-    <vehicle model="539" posX="-2430.7156" posY="2291.8411" posZ="4.9844" rotZ="273.4607" />
-    <vehicle model="539" posX="-2337.6462" posY="2511.9531" posZ="1.0492" rotZ="311.2805" />
-    <vehicle model="539" posX="-2344.0730" posY="2533.0090" posZ="5.8212" rotZ="201.1397" />
-    <vehicle model="539" posX="-2342.6721" posY="2478.5313" posZ="4.9822" rotZ="356.0774" />
-    <vehicle model="539" posX="-2267.1240" posY="2538.7295" posZ="0.7645" rotZ="310.3779" />
-    <vehicle model="539" posX="-2226.0745" posY="2562.2002" posZ="0.5910" rotZ="189.0600" />
-    <vehicle model="508" posX="-844.6991" posY="2755.0879" posZ="46.3016" rotZ="274.1916" />
-    <vehicle model="461" posX="-787.0850" posY="2751.0583" posZ="45.3219" rotZ="263.6394" />
-    <vehicle model="461" posX="-787.0850" posY="2753.0583" posZ="45.3219" rotZ="263.6394" />
-    <vehicle model="461" posX="-787.0850" posY="2755.0583" posZ="45.3219" rotZ="263.6394" />
-    <vehicle model="586" posX="-787.0850" posY="2757.0583" posZ="45.2444" rotZ="263.6394" />
-    <vehicle model="586" posX="-787.0850" posY="2759.0583" posZ="45.2444" rotZ="263.6394" />
-    <vehicle model="586" posX="-787.0850" posY="2761.0583" posZ="45.2444" rotZ="263.6394" />
-    <vehicle model="586" posX="-778.4286" posY="2762.8728" posZ="45.2869" rotZ="175.6553" />
-    <vehicle model="499" posX="-794.7983" posY="2771.9434" posZ="45.8171" rotZ="270.9103" />
-    <vehicle model="489" posX="-782.6301" posY="2770.2417" posZ="46.0193" rotZ="178.5571" />
+    <vehicle id="terror journey" paintjob="false" interior="0" alpha="255" model="508" plate="4CA1 UAV" dimension="0" posX="-844.69922" posY="2755.0879" posZ="46.3016" rotZ="274.191" rotX="0" rotY="0" color="245,245,245,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror pcj-600 2" paintjob="false" interior="0" alpha="255" model="461" plate="VEBJ WFA" dimension="0" posX="-783.5871" posY="2751.1814" posZ="45.3219" rotZ="263.639" rotX="0" rotY="0" color="22,34,72,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror pcj-600 3" paintjob="false" interior="0" alpha="255" model="461" plate="HSO8 MPG" dimension="0" posX="-783.50641" posY="2752.8994" posZ="45.3219" rotZ="263.639" rotX="0" rotY="0" color="32,32,44,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror pcj-600 4" paintjob="false" interior="0" alpha="255" model="461" plate="KQJW Q6M" dimension="0" posX="-783.48865" posY="2754.8958" posZ="45.3219" rotZ="263.639" rotX="0" rotY="0" color="37,37,39,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror wayfarer 1" paintjob="false" interior="0" alpha="255" model="586" plate="LW4I 67L" dimension="0" posX="-783.63849" posY="2756.9023" posZ="45.2444" rotZ="263.639" rotX="0" rotY="0" color="105,88,83,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror wayfarer 2" paintjob="false" interior="0" alpha="255" model="586" plate="OXFC T4C" dimension="0" posX="-783.5636" posY="2758.8989" posZ="45.2444" rotZ="263.639" rotX="0" rotY="0" color="99,92,90,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror wayfarer 3" paintjob="false" interior="0" alpha="255" model="586" plate="Y9XH V9I" dimension="0" posX="-783.53857" posY="2760.8979" posZ="45.2444" rotZ="263.639" rotX="0" rotY="0" color="91,93,94,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror wayfarer 4" paintjob="false" interior="0" alpha="255" model="586" plate="GNAR 9C0" dimension="0" posX="-778.09668" posY="2762.7117" posZ="45.2869" rotZ="175.655" rotX="0" rotY="0" color="63,62,69,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror benson 1" paintjob="false" interior="0" alpha="255" model="499" plate="42G2 WI2" dimension="0" posX="-794.79785" posY="2771.9434" posZ="45.8171" rotZ="270.906" rotX="0" rotY="0" color="82,86,97,63,62,69,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror rancher 1" paintjob="false" interior="0" alpha="255" model="489" plate="S14T 1JQ" dimension="0" posX="-782.62988" posY="2770.2422" posZ="46.0193" rotZ="178.55" rotX="0" rotY="0" color="164,160,150,171,146,118,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror landstalker 1" paintjob="false" interior="0" alpha="255" model="400" plate="TVEN O01" dimension="0" posX="-735.86523" posY="2746.4189" posZ="47.3627" rotZ="88.945" rotX="0" rotY="0" color="34,25,24,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror tahoma 3" paintjob="false" interior="0" alpha="255" model="566" plate="F1UB LUE" dimension="0" posX="-754.76837" posY="2744.1213" posZ="45.856" rotZ="87.945" rotX="0" rotY="0" color="66,31,33,189,190,198,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror tahoma 1" paintjob="false" interior="0" alpha="255" model="566" plate="EIDY DL1" dimension="0" posX="-753.61938" posY="2766.8442" posZ="45.6734" rotZ="179.195" rotX="0" rotY="0" color="77,98,104,189,190,198,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror tahoma 2" paintjob="false" interior="0" alpha="255" model="566" plate="9241 4R8" dimension="0" posX="-755.17273" posY="2755.5791" posZ="45.6734" rotZ="87.945" rotX="0" rotY="0" color="111,130,151,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror premier 1" paintjob="false" interior="0" alpha="255" model="426" plate="3ZJA PAF" dimension="0" posX="-754.89026" posY="2751.4177" posZ="45.5934" rotZ="89.519" rotX="0" rotY="0" color="102,28,38,102,28,38,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror Blista Compact 1" paintjob="false" interior="0" alpha="255" model="496" plate="FPGS CGW" dimension="0" posX="-754.01465" posY="2747.7454" posZ="45.5612" rotZ="89.269" rotX="0" rotY="0" color="105,30,59,105,30,59,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror pcj-600 1" paintjob="false" interior="0" alpha="255" model="461" plate="OC99 PKO" dimension="0" posX="-783.62823" posY="2749.4526" posZ="45.3219" rotZ="263.639" rotX="0" rotY="0" color="22,34,72,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror elegy" paintjob="3" interior="0" alpha="255" model="562" plate="TKH9 HHJ" dimension="0" posX="-792.59717" posY="2742.1091" posZ="45.40213" rotX="0" rotY="0" rotZ="90" color="37,37,39,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror rancher 2" paintjob="false" interior="0" alpha="255" model="489" plate="LON0 BIQ" dimension="0" posX="-745.58551" posY="2756.2349" posZ="47.59875" rotZ="178.55" rotX="0" rotY="0" color="164,160,150,171,146,118,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror rancher 3" paintjob="false" interior="0" alpha="255" model="489" plate="TS92 WEB" dimension="0" posX="-741.40491" posY="2756.2178" posZ="47.59875" rotZ="178.55" rotX="0" rotY="0" color="129,143,184,225,143,63,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror sanchez 1" paintjob="3" interior="0" alpha="255" model="468" plate="ENGW 2KI" dimension="0" posX="-779.56079" posY="2743.7004" posZ="45.44364" rotX="0" rotY="0" rotZ="180" color="22,34,72,22,34,72,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror sanchez 2" paintjob="3" interior="0" alpha="255" model="468" plate="DV70 JC2" dimension="0" posX="-797.51019" posY="2745.5718" posZ="45.4585" rotX="0" rotY="0" rotZ="180" color="22,34,72,22,34,72,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror rustler 2" paintjob="false" interior="0" alpha="255" model="476" plate="LVWF 1HB" dimension="0" posX="-895.40039" posY="2744.2002" posZ="47.211" rotZ="90" rotX="0" rotY="0" color="215,142,16,76,117,183,0,0,0,0,0,0"></vehicle>
+    <vehicle id="terror rustler 1" paintjob="false" interior="0" alpha="255" model="476" plate="YNBI T49" dimension="0" posX="-895.8606" posY="2760.5081" posZ="47.14319" rotZ="90" rotX="0" rotY="0" color="19,69,115,171,146,118,0,0,0,0,0,0"></vehicle>
     <vehicle model="510" posX="-766.3795" posY="2773.9460" posZ="45.4693" rotZ="88.7864" />
-    <vehicle model="400" posX="-735.8654" posY="2746.4185" posZ="47.3627" rotZ="88.9473" />
-    <vehicle model="566" posX="-771.6777" posY="2760.0645" posZ="45.6394" rotZ="181.9467" />
-    <vehicle model="566" posX="-767.6777" posY="2760.0645" posZ="45.6734" rotZ="181.9467" />
-    <vehicle model="566" posX="-763.6777" posY="2760.0645" posZ="45.6734" rotZ="181.9467" />
-    <vehicle model="426" posX="-753.4502" posY="2769.4856" posZ="45.5934" rotZ="179.2740" />
-    <vehicle model="496" posX="-753.6475" posY="2753.9097" posZ="45.5612" rotZ="179.2740" />
     <vehicle model="523" posX="-1399.0782" posY="2628.5483" posZ="55.4547" rotZ="86.2291" color="0 0" />
     <vehicle model="523" posX="-1399.0782" posY="2631.5483" posZ="55.4298" rotZ="86.2291" color="0 0" />
     <vehicle model="523" posX="-1398.7524" posY="2634.5989" posZ="55.3784" rotZ="87.3965" color="0 0" />
@@ -247,8 +246,6 @@
     <vehicle model="539" posX="-2122.9150" posY="2716.3694" posZ="161.9137" rotZ="164.2890" />
     <vehicle model="539" posX="-2114.5193" posY="2714.4080" posZ="162.0586" rotZ="149.2488" />
     <vehicle model="539" posX="-2107.4326" posY="2709.9800" posZ="162.1778" rotZ="178.3891" />
-	<vehicle model="476" posX="-895.4" posY="2744.2" posZ="46.5" rotZ="90.0" />
-	<vehicle model="476" posX="-895.4" posY="2761.1" posZ="46.5" rotZ="90.0" />
 	
     <pickup posX="-2138.1853" posY="2642.8479" posZ="154.8358" type="46" amount="1" respawn="30000" synced="false" />
     <pickup posX="-2236.5391" posY="2352.3455" posZ="4.9821" type="46" amount="1" respawn="30000" synced="false" />
