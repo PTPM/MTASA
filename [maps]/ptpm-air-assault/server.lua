@@ -37,7 +37,7 @@ addEventHandler("onVehicleEnter", root,
 				end
 
 				fadeCamera(player, false, 2)
-				exports.ptpm:sendGameText(player, "Travelling to\nthe Prime Minister...", 3000, ptpmColour, nil, 1.5, nil, nil, 2)
+				exports.ptpm:sendGameText(player, "Travelling closer to\nthe Prime Minister...", 3000, ptpmColour, nil, 1.5, nil, nil, 2)
 				fastTimers[player] = setTimer(travelToPM, 2000, 1, player, source)
 			end
 		end
