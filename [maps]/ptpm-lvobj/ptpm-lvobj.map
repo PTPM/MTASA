@@ -500,7 +500,7 @@
     <objective posX="2580.0117" posY="2386.1125" posZ="15.8500" desc="Relax at the pool" size="100.0" time="60000" />
     <objective posX="2226.7800" posY="1040.0394" posZ="5.8203" desc="Picnic with casino boss" size="100.0" />
     <objective posX="1950.8372" posY="1343.0806" posZ="9.1094" desc="Open a new casino" size="100.0" time="60000" />
-    <objective posX="2644.2302" posY="826.2061" posZ="5.8203" desc="Give speech to construction workers" size="100.0" time="45000" />
+    <!-- <objective posX="2644.2302" posY="826.2061" posZ="5.8203" desc="Give speech to construction workers" size="100.0" time="45000" /> -->
     <objective posX="2497.9041" posY="1174.5298" posZ="22.0113" desc="Brief James Bond on rooftop" size="100.0" />
     <objective posX="2027.9860" posY="1915.7321" posZ="12.1685" desc="Open new hotel" size="100.0" time="40000" />
     <objective posX="2323.6707" posY="1283.2654" posZ="90.6161" desc="Squeeze a lemon" size="100.0" />
@@ -514,7 +514,7 @@
     <objective posX="2630.2900" posY="2051.6941" posZ="10.5170" desc="Meet mistress at Seedy Motel" size="100.0" />
     <objective posX="2522.6184" posY="2377.5398" posZ="3.9326" desc="Meet oil tycoon in car park" size="100.0" time="60000" />
     <objective posX="1562.5179" posY="1323.5089" posZ="10.5475" desc="Meet President Fido at plane" size="100.0" time="15000" />
-    <objective posX="2597.5571" posY="1811.3174" posZ="10.9766" desc="Buy Samantha a new dress" size="100.0" time="40000" />
+    <objective posX="2597.5571" posY="1811.3174" posZ="10.9766" desc="Buy Mrs Prime Minister a new dress" size="100.0" time="40000" />
     <objective posX="1501.4535" posY="750.6229" posZ="16.0054" desc="Go to confessions" size="100.0" />
 	
 	
