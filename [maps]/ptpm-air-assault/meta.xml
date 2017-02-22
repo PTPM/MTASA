@@ -13,4 +13,5 @@
 	</settings>
 
 	<file src="ptpm-air-assault.png"/>
+	<script src="server.lua" type="server"/>
 </meta>
