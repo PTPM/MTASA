@@ -478,32 +478,30 @@ function swapclass( thePlayer, commandName, otherName )
 end
 
 
-function swapclassOffer( accepted, thePlayer )
+function swapclassOffer(accepted, thePlayer)
 	if options.swapclass.target ~= thePlayer then 
 		return 
 	end
 	
 	if options.swapclass.timer then
-		if isTimer( options.swapclass.timer ) then
-			killTimer( options.swapclass.timer )
+		if isTimer(options.swapclass.timer) then
+			killTimer(options.swapclass.timer)
 		end
 	end
 
+	hideHelpEvent(thePlayer, "COMMAND_SWAPCLASS_TARGET")
+
 	if accepted then
-		local victimClass = getPlayerClassID( thePlayer )
-		local pmClass = getPlayerClassID( currentPM )
+		local victimClass = getPlayerClassID(thePlayer)
+		local pmClass = getPlayerClassID(currentPM)
 			
-		setPlayerClass( currentPM, victimClass )
-		setPlayerClass( thePlayer, pmClass )	
+		setPlayerClass(currentPM, victimClass)
+		setPlayerClass(thePlayer, pmClass)	
 
 		notifyTeamAvailability()
-			
-		drawStaticTextToScreen( "delete", thePlayer, "swapText" )
 	else
-		drawStaticTextToScreen( "delete", thePlayer, "swapText" )
-		
 		if currentPM then 
-			outputChatBox( "Your offer to " .. getPlayerName( thePlayer ) .. " was declined.", currentPM, unpack( colour.personal ) ) 
+			outputChatBox("Your offer to " .. getPlayerName(thePlayer) .. " was declined.", currentPM, unpack(colour.personal)) 
 		end
 	end
 	options.swapclass = {}

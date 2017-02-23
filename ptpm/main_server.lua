@@ -620,7 +620,7 @@ function roundTick()
 						local d = getDistanceBetweenPoints3D(pX, pY, pZ, mX, mY, mZ)
 						if d < 10 then
 							if isPlayerInSameTeam(player, player2) then
-								changeHealth(player, 1, 5)
+								changeHealth(player, 1)
 								triggerHelpEvent(player2, "MEDIC_PASSIVE_GIVE")
 
 								if accountsRunning then

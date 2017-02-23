@@ -297,7 +297,7 @@ function ptpmMapStart( map )
 	end
 	if #objectiveTable > 0 then 
 		data.currentMap.hasObjectives = true
-		setupNewObjective() 
+		setupNewObjective(true) 
 		setupObjectiveHelpPromptTimer()
 	end
 	

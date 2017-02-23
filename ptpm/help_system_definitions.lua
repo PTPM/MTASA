@@ -119,7 +119,7 @@ function helpSystemCreateDefinitions()
 
 	registerHelpEvent("TASK_NUDGE", {
 		text = "This map has [RED]tasks[WHITE]. The [PM]Prime Minister[WHITE] gets powerful bonuses from them. Find a [RED]red marker[WHITE] on the map to try it!",
-		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 5}},
+		condition = {fn = conditionStatNumberComparison, args = {"__player", "tasksplayed", false, 8}},
 		cooldown = 30000,
 	})	
 

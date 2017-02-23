@@ -34,6 +34,8 @@ addEventHandler("onHelpShown", root,
 
 					loadBrowserURL(guiGetBrowser(browser), url)
 				end
+
+				setBrowserRenderingPaused(browser, false)
 			end
 
 			return
@@ -56,6 +58,16 @@ addEventHandler("onHelpShown", root,
 		browser = guiCreateBrowser(0, 0, w, h, true, false, false, helpTab)
 
 		addEventHandler("onClientBrowserCreated", browser, onClientBrowserCreated)		
+	end
+)
+
+addEventHandler("onHelpHidden", root,
+	function()
+		if not browser then
+			return
+		end
+
+		setBrowserRenderingPaused(guiGetBrowser(browser), true)
 	end
 )
 
