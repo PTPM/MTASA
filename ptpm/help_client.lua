@@ -5,20 +5,28 @@ addEvent("doShowHelp", true)
 
 local helpTab
 local firstHelp = true
-local helpURL = ""
+--local helpURL = ""
 local browser
 local dutyRedirect
+local browserLoaded = false
 
-addEventHandler("onClientAvailable", localPlayer,
+addEventHandler("onClientResourceStart", resourceRoot,
 	function()
 		helpTab = exports.helpmanager:addHelpTab(thisResource)
+
+		local w, h = guiGetSize(helpTab, false)
+		
+		browser = guiCreateBrowser(0, 0, w, h, true, false, false, helpTab)
+
+		addEventHandler("onClientBrowserCreated", browser, onClientBrowserCreated)	
 	end
 )
 
 addEventHandler("onHelpShown", root,
 	function()
-		if not helpTab then
-			helpTab = exports.helpmanager:addHelpTab(thisResource)
+		if not helpTab or not browserLoaded then
+		--	helpTab = exports.helpmanager:addHelpTab(thisResource)
+			return
 		end
 
 		if not firstHelp then
@@ -35,7 +43,7 @@ addEventHandler("onHelpShown", root,
 					loadBrowserURL(guiGetBrowser(browser), url)
 				end
 
-				setBrowserRenderingPaused(browser, false)
+				setBrowserRenderingPaused(guiGetBrowser(browser), false)
 			end
 
 			return
@@ -43,7 +51,7 @@ addEventHandler("onHelpShown", root,
 
 		firstHelp = false
 		local url, untouched = getHelpURL()
-		helpURL = url
+		--helpURL = url
 
 		if not untouched then
 			local tabPanel = getElementParent(helpTab)
@@ -53,11 +61,8 @@ addEventHandler("onHelpShown", root,
 			end
 		end
 
-		local w, h = guiGetSize(helpTab, false)
-		
-		browser = guiCreateBrowser(0, 0, w, h, true, false, false, helpTab)
-
-		addEventHandler("onClientBrowserCreated", browser, onClientBrowserCreated)		
+		setBrowserRenderingPaused(guiGetBrowser(browser), false)
+		loadBrowserURL(guiGetBrowser(browser), url)
 	end
 )
 
@@ -72,7 +77,8 @@ addEventHandler("onHelpHidden", root,
 )
 
 function onClientBrowserCreated()
-	loadBrowserURL(source, helpURL)
+	--loadBrowserURL(source, helpURL)
+	browserLoaded = true
 end
 
 -- proxy through to specific pages if we have some contextual prompt open
