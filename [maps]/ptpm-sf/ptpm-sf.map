@@ -322,9 +322,9 @@
     <pickup posX="-2038.664" posY="137.4694" posZ="28.3359" type="25" amount="50" respawn="30000" synced="true" /> <!-- 11Sanfierro -->
     <pickup posX="-1683.497" posY="716.2739" posZ="30.6452" type="30" amount="220" respawn="30000" synced="true" /> <!-- 9Sanfierro -->
     <pickup posX="-1376.4923" posY="1493.3958" posZ="11.2031" type="25" amount="25" respawn="30000" synced="true" /> <!-- sc -->
-    <pickup posX="238.1103" posY="112.0389" posZ="1010.2188" type="27" amount="30" respawn="60000" synced="true" /> <!-- sfpd -->
-    <pickup posX="218.1052" posY="115.7770" posZ="1010.2188" type="42" amount="200" respawn="60000" synced="true" /> <!-- sfpd -->
-    <pickup posX="233.9903" posY="111.5600" posZ="1003.2257" type="armor" amount="100" respawn="30000" synced="false" /> <!-- sfpd -->
+    <pickup posX="238.1103" posY="112.0389" posZ="1010.2188" type="27" amount="30" respawn="60000" synced="true" interior="10" /> <!-- sfpd -->
+    <pickup posX="218.1052" posY="115.7770" posZ="1010.2188" type="42" amount="200" respawn="60000" synced="true" interior="10" /> <!-- sfpd -->
+    <pickup posX="233.9903" posY="111.5600" posZ="1003.2257" type="armor" amount="100" respawn="30000" synced="false" interior="10" /> <!-- sfpd -->
     <pickup posX="-1394.0" posY="-373.0" posZ="6.0" type="armor" amount="100" respawn="30000" synced="false" /> <!-- 5SanFierro -->
     <pickup posX="-1574.0" posY="1268.0" posZ="1.27" type="armor" amount="100" respawn="30000" synced="false" /> <!-- 9SanFierro -->
     <pickup posX="-2285.0" posY="-24.0" posZ="35.0" type="armor" amount="100" respawn="30000" synced="false" /> <!-- 22SanFierro -->
