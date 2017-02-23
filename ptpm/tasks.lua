@@ -69,7 +69,7 @@ addEventHandler( "onTaskEnter", root,
 addEvent( "onTaskLeave", false )
 addEventHandler( "onTaskLeave", root,
 	function( thePlayer )
-		if classes[getPlayerClassID( thePlayer )].type == "pm" and getElementsByType("task", runningMapRoot) > 0 then
+		if classes[getPlayerClassID( thePlayer )].type == "pm" and #getElementsByType("task", runningMapRoot) > 0 then
 			local taskElement = getElementParent( source )
 			
 			if data.tasks.activeTask then -- there is an active task
