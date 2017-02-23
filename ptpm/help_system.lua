@@ -109,7 +109,7 @@ function randomHelpEvent()
 		end
 	end
 
-	help.randomTimer = setTimer(randomHelpEvent, math.random(60000 * 3, 60000 * 8), 1)
+	help.randomTimer = setTimer(randomHelpEvent, math.random(60000 * 10, 60000 * 20), 1)
 end
 
 
@@ -223,7 +223,7 @@ function showHelpEvent(player, id)
 		currentHelp ~= nil
 	)
 
-	if help.events[id].increment then
+	if help.events[id].increment and isRunning("ptpm_accounts") then
 		exports.ptpm_accounts:incrementPlayerStatistic(player, help.events[id].increment)
 	end
 
@@ -300,12 +300,12 @@ function conditionProcessor(player, fn, args)
 end
 
 function conditionStatNumberComparison(player, statName, greater, value)
-	--local stat = tonumber(exports.ptpm_accounts:getPlayerStatistic(player, statName))
-	local stat = tonumber(getPlayerFakeStatistic(player, statName))
-
-	if not stat then
-		stat = 0
+	if not isRunning("ptpm_accounts") then
+		return 0
 	end
+
+	local stat = tonumber(exports.ptpm_accounts:getPlayerStatistic(player, statName)) or 0
+	--local stat = tonumber(getPlayerFakeStatistic(player, statName))
 
 	if greater then
 		return stat > value
