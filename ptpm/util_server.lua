@@ -377,31 +377,31 @@ end
 addCommandHandler("getweather", getWeather)
 
 
-addEvent( "onPlayerInteriorHit", false )
+addEvent("onPlayerInteriorHit", false)
 addEventHandler( "onPlayerInteriorHit", root,
-	function( interior, _, id )
-		if currentPM and source == currentPM then
-			-- moving into an interior from outside
-			local destinationInterior = getInteriorPair( interior, id )
+	function(interior, _, id)
+		if currentPM and source == currentPM then			
+			local destinationInterior = getInteriorPair(interior, id)
 			
 			if destinationInterior then
-				local destinationInteriorID = tonumber( getElementData( destinationInterior, "interior" ) )
-				local pmInterior = getElementData( currentPM, "ptpm.currentInterior" )
+				local destinationInteriorID = tonumber(getElementData(destinationInterior, "interior"))
+				local pmInterior = getElementData(currentPM, "ptpm.currentInterior")
 
+				-- moving into an interior from outside
 				if destinationInteriorID ~= 0 and pmInterior == 0 then
 					-- show new marker
-					local x, y, z = getElementPosition( currentPM )
-					local r, g, b, a = getPlayerColour( currentPM )
-					local interiorBlip = getElementData( currentPM, "ptpm.interiorBlip" )
+					local x, y, z = getElementPosition(currentPM)
+					local r, g, b, a = getPlayerColour(currentPM)
+					local interiorBlip = getElementData(currentPM, "ptpm.interiorBlip")
 					if interiorBlip then
-						destroyElement( interiorBlip )
+						destroyElement(interiorBlip)
 					end
 					-- x, y, z, icon, size, r, g, b, a, ordering, visibleDistance, visibleTo
-					interiorBlip = createBlip( x, y, z, 0, 4, r, g, b, a, 4, 99999.0, root )
+					interiorBlip = createBlip(x, y, z, 0, 4, r, g, b, a, 4, 99999.0, root)
 					setElementID(interiorBlip, "ptpm.blip.interior")
-					setElementData( currentPM, "ptpm.interiorBlip", interiorBlip, false )
+					setElementData(currentPM, "ptpm.interiorBlip", interiorBlip, false)
 
-					setElementData( currentPM, "ptpm.currentInterior", destinationInteriorID, false )
+					setElementData(currentPM, "ptpm.currentInterior", destinationInteriorID, false)
 					
 					-- hide pm blip
 					--local blip = getElementData( currentPM, "ptpm.blip" )
@@ -410,12 +410,12 @@ addEventHandler( "onPlayerInteriorHit", root,
 				-- moving back outside from an interior
 				elseif destinationInteriorID == 0 and pmInterior ~= 0 then
 					-- hide new marker
-					setElementData( currentPM, "ptpm.currentInterior", 0, false )
+					setElementData(currentPM, "ptpm.currentInterior", 0, false)
 
-					local interiorBlip = getElementData( currentPM, "ptpm.interiorBlip" )
+					local interiorBlip = getElementData(currentPM, "ptpm.interiorBlip")
 					if interiorBlip then
-						destroyElement( interiorBlip )
-						setElementData( currentPM, "ptpm.interiorBlip", nil, false )
+						destroyElement(interiorBlip)
+						setElementData(currentPM, "ptpm.interiorBlip", nil, false)
 
 						-- re-show the pm blip
 						--local r, g, b, a = getPlayerColour( currentPM )
@@ -428,28 +428,42 @@ addEventHandler( "onPlayerInteriorHit", root,
 )
 
 
+addEvent("onPlayerInteriorWarped", true)
 addEventHandler("onPlayerInteriorWarped", root,
-	function()
+	function(interior)
+		local targetInterior = getInteriorTarget(interior)
+		local newInt = getElementData (targetInterior, "interior")
+
 		local blipData = getElementData(source, "ptpm.blip")
 
 		if blipData then
-			blipData[7] = getElementInterior(source)
+			blipData[7] = newInt or getElementInterior(source)
 			setElementData(source, "ptpm.blip", blipData)
 		end
 	end
 )
  
+function getInteriorTarget(interior)
+	if not interior then
+		return
+	end
+
+	local selfID = { ["interiorEntry"] = "id", ["interiorReturn"] = "refid" }
+	local id = getElementData(interior, selfID[getElementType(interior)]) 
+
+	return getInteriorPair(interior, id)
+end
  
-function getInteriorPair( interior, id )
-	if isElement( interior ) then
-		local type = getElementType( interior )
+function getInteriorPair(interior, id)
+	if isElement(interior) then
+		local type = getElementType(interior)
 		local revertedName = { ["interiorEntry"] = "interiorReturn", ["interiorReturn"] = "interiorEntry" }
 		local revertedID = { ["interiorEntry"] = "refid", ["interiorReturn"] = "id" }
-		local interiors = getElementsByType( revertedName[type] )
+		local interiors = getElementsByType(revertedName[type])
 		if interiors then
-			for k, otherInterior in ipairs( interiors ) do
-				local refid = getElementData( otherInterior, revertedID[type] )
-				if refid and refid == id then
+			for k, otherInterior in ipairs(interiors) do
+				local targetID = getElementData(otherInterior, revertedID[type])
+				if targetID and targetID == id then
 					return otherInterior
 				end
 			end
