@@ -119,11 +119,11 @@ function initClassSelection(thePlayer, updateBalanceAndNotify)
 	
 	triggerClientEvent(thePlayer, "enterClassSelection", root, runningMapName, getRunningMapFriendlyNameWrapped(), classes, balance.full, election.active, #election.candidates)
 	
-	if tableSize(getElementsByType("objective", runningMapRoot)) > 0 then
+	if data.currentMap.hasObjectives then
 		clearObjectiveTextFor(thePlayer) 
 	end
 	
-	if tableSize(getElementsByType("task", runningMapRoot)) > 0 then
+	if data.currentMap.hasTasks then
 		clearTaskTextFor(thePlayer)
 	end
 end
@@ -312,6 +312,10 @@ function classSelectionAfterTimer(thePlayer)
 	-- Set the timer
 	outputChatBox( "Returning to class selection in 5 seconds...", thePlayer, unpack( colour.personal ) )
 	
+	if isRunning("ptpm_accounts") then
+		exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "leaveclasscount")
+	end
+
 	setElementData ( thePlayer, "classSelectionRequestTimer", 
 		setTimer(
 			function( player )
@@ -419,6 +423,17 @@ function reclassCommand( thePlayer, commandName, className )
 
 	if isBalanced(proposedClass, classID) then
 		setPlayerClass( thePlayer, proposedClass )
+
+		if commandName == "reclass" then
+			triggerHelpEvent(thePlayer, "COMMAND_RC")
+			if isRunning("ptpm_accounts") then
+				exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "reclasscount")
+			end
+		elseif commandName == "rc" then
+			if isRunning("ptpm_accounts") then
+				exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "rccount")
+			end
+		end
 	else
 		local teamName = teamMemberName[classes[proposedClass].type]
 		outputChatBox( "Could not spawn as " .. teamName .. ", that class is full.", thePlayer, unpack( colour.personal ) )	
@@ -449,42 +464,44 @@ function swapclass( thePlayer, commandName, otherName )
 			return outputChatBox( "You may not swapclass with two people at once.", thePlayer, unpack( colour.personal ) )
 		end  
 
-		drawStaticTextToScreen( "draw", otherPlayer, "swapText", "The Prime Minister wants to swapclass with you.\nType /y to accept or /n to decline.", "screenX-340", "screenY-60", 320, 40, colour.important, 1, "clear" )
+		triggerHelpEvent(otherPlayer, "COMMAND_SWAPCLASS_TARGET")
 
 		options.swapclass.target = otherPlayer
 		options.swapclass.timer = setTimer( swapclassOffer, 15000, 1, false, otherPlayer )
 
 		outputChatBox( "Swapclass offer sent to " .. getPlayerName( otherPlayer ), thePlayer, unpack( colour.personal ) )
+
+		if isRunning("ptpm_accounts") then
+			exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "swapclasscount")
+		end
 	end
 end
 
 
-function swapclassOffer( accepted, thePlayer )
+function swapclassOffer(accepted, thePlayer)
 	if options.swapclass.target ~= thePlayer then 
 		return 
 	end
 	
 	if options.swapclass.timer then
-		if isTimer( options.swapclass.timer ) then
-			killTimer( options.swapclass.timer )
+		if isTimer(options.swapclass.timer) then
+			killTimer(options.swapclass.timer)
 		end
 	end
 
+	hideHelpEvent(thePlayer, "COMMAND_SWAPCLASS_TARGET")
+
 	if accepted then
-		local victimClass = getPlayerClassID( thePlayer )
-		local pmClass = getPlayerClassID( currentPM )
+		local victimClass = getPlayerClassID(thePlayer)
+		local pmClass = getPlayerClassID(currentPM)
 			
-		setPlayerClass( currentPM, victimClass )
-		setPlayerClass( thePlayer, pmClass )	
+		setPlayerClass(currentPM, victimClass)
+		setPlayerClass(thePlayer, pmClass)	
 
 		notifyTeamAvailability()
-			
-		drawStaticTextToScreen( "delete", thePlayer, "swapText" )
 	else
-		drawStaticTextToScreen( "delete", thePlayer, "swapText" )
-		
 		if currentPM then 
-			outputChatBox( "Your offer to " .. getPlayerName( thePlayer ) .. " was declined.", currentPM, unpack( colour.personal ) ) 
+			outputChatBox("Your offer to " .. getPlayerName(thePlayer) .. " was declined.", currentPM, unpack(colour.personal)) 
 		end
 	end
 	options.swapclass = {}

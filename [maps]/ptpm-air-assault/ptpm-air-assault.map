@@ -77,14 +77,12 @@
     <!--cropdust-->
     <vehicle model="417" posX="-2292.3" posY="-1639.0" posZ="483.7" rotX="0.0" rotY="0.0" rotZ="0.0" color="0 0 0 0" />
     <!--leviathn-->
-    <vehicle model="593" posX="1580.0" posY="-1250.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="180.0" color="6 65 0 0" />
-    <!--dodo-->
-    <vehicle model="487" posX="1580.0" posY="-1230.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="270.0" color="6 65 0 0" />
-    <!--maverick-->
-    <vehicle model="511" posX="1560.0" posY="-1230.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="0.0" color="6 65 0 0" />
-    <!--beagle-->
-    <vehicle model="513" posX="1560.0" posY="-1250.0" posZ="278.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="6 65 0 0" />
-    <!--stunt-->
+    
+    <vehicle id="pm dodo" paintjob="0" interior="0" alpha="255" model="593" plate="IQCB MRJ" dimension="0" color="215,142,16,142,140,70,0,0,0,0,0,0" posX="1587.1536" posY="-1258.9318" posZ="278" rotX="0" rotY="0" rotZ="225"></vehicle>
+    <vehicle id="pm beagle" paintjob="false" interior="0" alpha="255" model="511" plate="6VEB JHL" dimension="0" color="215,142,16,142,140,70,0,0,0,0,0,0" posX="1587.6719" posY="-1229.0543" posZ="278" rotX="0" rotY="0" rotZ="315"></vehicle>
+    <vehicle id="pm stuntplane" paintjob="false" interior="0" alpha="255" model="513" plate="OCF4 1O6" dimension="0" color="215,142,16,142,140,70,0,0,0,0,0,0" posX="1560.6846" posY="-1256.9664" posZ="278" rotX="0" rotY="0" rotZ="135"></vehicle>
+    <vehicle id="pm rustler" paintjob="3" interior="0" alpha="255" model="476" plate="GZ2L 2GH" dimension="0" posX="1559.8008" posY="-1230.502" posZ="279.04987" rotX="0" rotY="0" rotZ="45" color="215,142,16,142,140,70,0,0,0,0,0,0" noLaunch="true"></vehicle>
+
     <vehicle model="476" posX="1986.0" posY="-2587.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />
     <!--rustler-->
     <vehicle model="476" posX="1971.0" posY="-2601.0" posZ="14.0" rotX="0.0" rotY="0.0" rotZ="90.0" color="86 86 0 0" />

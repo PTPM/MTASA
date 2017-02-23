@@ -18,6 +18,15 @@ addEventHandler( "onObjectiveEnter", root,
 						end
 					end
 				end
+
+				if data.objectives.finished < 3 then
+					triggerHelpEvent(thePlayer, "OBJECTIVE_ENTER")
+				end
+
+				if data.objectives.helpTimer then
+					killTimer(data.objectives.helpTimer)
+					data.objectives.helpTimer = nil
+				end
 			end
 		end		
 	end
@@ -43,6 +52,12 @@ addEventHandler( "onObjectiveLeave", root,
 						end
 					end
 				end
+
+				if data.objectives.helpTimer then
+					killTimer(data.objectives.helpTimer)
+				end
+
+				setupObjectiveHelpPromptTimer()
 			end
 		end		
 	end
@@ -63,7 +78,7 @@ addEventHandler("onObjectiveComplete", root,
 		data.objectives.finished = data.objectives.finished + 1
 
 		-- completed all the objectives, or there are fewer objectives in the map file than required to pass map
-		-- this works because once an objective is completed it gets destroyed and removed from the table		
+		-- this (== 1) works because once an objective is completed it gets destroyed and removed from the table		
 		if (options.objectivesToFinish == data.objectives.finished) or (tableSize(data.objectives) == 1) then
 			everyoneViewsBody(thePlayer, thePlayer, getElementInterior(thePlayer))
 
@@ -126,6 +141,10 @@ addEventHandler("onObjectiveComplete", root,
 				end
 			end
 
+			if data.objectives.finished <= 3 then
+				triggerHelpEvent(thePlayer, "OBJECTIVE_COMPLETE")
+			end
+
 			setupNewObjective()
 		end
 
@@ -185,7 +204,7 @@ function setupActiveObjectiveFor( thePlayer )
 end
 
 
-function setupNewObjective()
+function setupNewObjective(first)
 	if data.objectives.activeObjective then
 		local removeID
 		
@@ -198,17 +217,29 @@ function setupNewObjective()
 		
 		table.remove(data.objectiveRandomizer,removeID)
 		
-		destroyElement( data.objectives.activeObjective )
+		destroyElement(data.objectives.activeObjective)
 		
 		data.objectives[data.objectives.activeObjective] = nil
 	end
 	
-	local randomObjective = math.random( 1, #data.objectiveRandomizer )
+	local randomObjective = 1
+	local attempts = 0
+
+	while true do
+		randomObjective = math.random(1, #data.objectiveRandomizer)
+		attempts = attempts + 1
+
+		-- limit to 10, just in case we get into some infinite loop
+		if (not first) or (attempts >= 10) or (first and not getElementData(data.objectiveRandomizer[randomObjective], "notFirst")) then
+			break
+		end
+	end
+
 	data.objectives.activeObjective = data.objectiveRandomizer[randomObjective]
 	
-	for _, value in ipairs( getElementsByType( "player" ) ) do
-		if value and isElement( value ) and isPlayerActive( value ) then
-			setupActiveObjectiveFor( value ) 
+	for _, value in ipairs(getElementsByType("player")) do
+		if value and isElement(value) and isPlayerActive(value) then
+			setupActiveObjectiveFor(value) 
 		end 
 	end
 end
@@ -225,4 +256,18 @@ function clearObjective()
 			end
 		end	
 	end
+end
+
+function setupObjectiveHelpPromptTimer()
+	if data.objectives.helpTimer and isTimer(data.objectives.helpTimer) then
+		killTimer(data.objectives.helpTimer)
+	end
+
+	data.objectives.helpTimer = setTimer(
+		function()
+			if currentPM and isElement(currentPM) then
+				triggerHelpEvent(currentPM, "OBJECTIVE_NUDGE")
+			end
+		end,
+	60000, 0)
 end

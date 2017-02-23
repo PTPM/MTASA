@@ -631,13 +631,13 @@
     <!-- DesertEagle -->
     <pickup posX="-343.2186" posY="1546.4620" posZ="80.4334" type="26" amount="60" respawn="60000" synced="false" />
     <!-- SAWNOFF -->
-    <pickup posX="-336.2724" posY="1595.2528" posZ="95.5666" type="27" amount="60" respawn="60000" synced="false" />
-    <!-- CombatShotgun -->
+    <pickup posX="-326.9469" posY="1595.1515" posZ="83.35912" type="27" amount="60" respawn="60000" synced="false" />
+    <!-- satellite CombatShotgun -->
     <pickup posX="-346.5265" posY="1584.6504" posZ="95.5346" type="28" amount="100" respawn="60000" synced="false" />
-    <!-- Uzi -->
-    <pickup posX="-357.0659" posY="1594.8313" posZ="95.5090" type="30" amount="150" respawn="60000" synced="false" />
-    <!-- AK-47 -->
-    <pickup posX="-185.0072" posY="1886.8285" posZ="115.7031" type="38" amount="300" respawn="400000" synced="true" />
+    <!-- satellite Uzi -->
+    <pickup posX="-366.40784" posY="1595.118" posZ="83.35912" type="30" amount="150" respawn="60000" synced="false" />
+    <!-- satellite AK-47 -->
+    <pickup posX="-185.0072" posY="1886.8285" posZ="115.7031" type="38" amount="300" respawn="400000" synced="true" />  
     <!-- Minigun -->
     <pickup posX="-371.6570" posY="2128.8850" posZ="133.1797" type="38" amount="300" respawn="400000" synced="true" />
     <!-- Minigun(newset) -->
@@ -693,7 +693,6 @@
     <boundarycorner posX="-697.8553" posY="2115.7366" />
     <boundarycorner posX="-661.1846" posY="2459.8916" />
     <boundarycorner posX="-621.2362" posY="2608.1296" />
-    <teleport minX="225" minY="1869" minZ="0" maxX="230" maxY="1874" maxZ="14" message="Not allowed there." teleX="213.3158" teleY="1868.9786" teleZ="13.1406" teleRot="0" vehicles="true" interior="0" />
 	
     <task type="mini" posX="614.88" posY="1257.94" posZ="33.78" size="15.0" time="90000" />
     <task type="keys" posX="609.08" posY="875.71" posZ="-46" size="15.0" time="60000" />
@@ -703,5 +702,8 @@
     <task type="accelerateTime" posX="-263.3307" posY="2587.1316" posZ="63.5703" size="15.0" time="80000" />
     <task type="radar" posX="266.0210" posY="2878.8621" posZ="12.7538" size="15.0" time="70000" />
 	
-    <object id="object (a51_jetdoor) (1)" model="3095" posX="268.66882324219" posY="1884.1352539063" posZ="16.065633773804" rotX="0" rotY="0" rotZ="88.840026855469" />
+    <object id="object (a51_jetdoor) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="3095" doublesided="false" scale="1" dimension="0" posX="268.66882" posY="1884.13525" posZ="16.06563" rotX="0" rotY="0" rotZ="88.84"></object>
+    <object id="imcmptrkdrl_LAS a51 door left" breakable="true" interior="0" alpha="255" model="1965" doublesided="false" scale="1" dimension="0" posX="226.57127" posY="1872.0576" posZ="14.16349" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="imcmptrkdrl_LAS a51 door right" breakable="true" interior="0" alpha="255" model="1965" doublesided="false" scale="1" dimension="0" posX="226.57753" posY="1870.76" posZ="14.16349" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="cos_sbanksteps02 sat stairs" breakable="true" interior="0" alpha="255" model="12839" doublesided="true" scale="1" dimension="0" posX="-351.40057" posY="1578.7915" posZ="78.7421" rotX="0" rotY="0" rotZ="45"></object>
 </map>

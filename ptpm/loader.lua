@@ -6,8 +6,8 @@ addEvent( "onGamemodeMapStart", false )
 function ptpmMapStart( map )
 	options = {}
 	data = {}
+	data.currentMap = {}
 
-	currentClass = {}
 	currentPM = false
 	
 	classes = {}
@@ -50,29 +50,29 @@ function ptpmMapStart( map )
 	options.boundariesEnabled = true
 	
 	options.roundtime = get( runningMapName .. ".roundtime" ) or 900000 -- 15 mins
-	options.pmHealthBonus = get( runningMapName .. ".pmHealthBonus" ) or false
-	options.pmWaterHealthPenalty = get( runningMapName .. ".pmWaterHealthPenalty" ) or false
-	options.medicHealthBonus = get( runningMapName .. ".medicHealthBonus" ) or false
-	options.pocketMoney = get( runningMapName .. ".pocketMoney" ) or 500
-	options.objectivesToFinish = get( runningMapName .. ".objectivesToFinish" ) or 5
-	options.vehicleLaunch = get (runningMapName .. ".vehicleLaunch" ) or false	
-	options.pmAbandonedHealthPenalty = get( runningMapName .. ".pmAbandonedHealthPenalty" ) or false
-	options.mapType = get( runningMapName .. ".mapType" ) or "city"
+	options.pmHealthBonus = get( runningMapName .. ".pmHealthBonus" ) or false -- int
+	options.pmWaterHealthPenalty = get( runningMapName .. ".pmWaterHealthPenalty" ) or false -- bool
+	options.medicHealthBonus = get( runningMapName .. ".medicHealthBonus" ) or false -- int
+	options.pocketMoney = get( runningMapName .. ".pocketMoney" ) or 500 -- int
+	options.objectivesToFinish = get( runningMapName .. ".objectivesToFinish" ) or 5 -- int
+	options.vehicleLaunch = get (runningMapName .. ".vehicleLaunch" ) or false	-- bool
+	options.pmAbandonedHealthPenalty = get( runningMapName .. ".pmAbandonedHealthPenalty" ) or false -- bool
+	options.mapType = get( runningMapName .. ".mapType" ) or "city" -- string
 	options.weathers = get( runningMapName .. ".weathers" ) or { 1, 2, 7, 9, 13, 17, 3, 11, 18, 5, 24 } -- city weathers	
-	options.pmWaterDeath = get (runningMapName .. ".pmWaterDeath" ) or false	
-	options.teamSpecificRadar = get( runningMapName .. ".teamSpecificRadar" ) or false	
-	options.disableClouds = get( runningMapName .. ".disableClouds") or false
-	options.vehicleHeightLimit = get( runningMapName .. ".vehicleHeightLimit") or false
+	options.pmWaterDeath = get (runningMapName .. ".pmWaterDeath" ) or false -- bool	
+	options.teamSpecificRadar = get( runningMapName .. ".teamSpecificRadar" ) or false -- bool
+	options.disableClouds = get( runningMapName .. ".disableClouds") or false -- bool
+	options.vehicleHeightLimit = get( runningMapName .. ".vehicleHeightLimit") or false -- int
 	
-	options.displayDistanceToPM = get( runningMapName .. ".displayDistanceToPM" ) or false	
+	options.displayDistanceToPM = get( runningMapName .. ".displayDistanceToPM" ) or false	-- bool
 	
 	options.swapclass = {}
 	
 	
 	if options.disableClouds then
-		setCloudsEnabled( false )
+		setCloudsEnabled(false)
 	else
-		setCloudsEnabled( true )
+		setCloudsEnabled(true)
 	end
 	
 	
@@ -246,6 +246,8 @@ function ptpmMapStart( map )
 	
 	
 	data.tasks = {}
+	data.tasks.finished = 0
+
 	local taskTable = getElementsByType( "task", runningMapRoot )
 	for _, value in ipairs( taskTable ) do
 		local taskType = getElementData( value, "type" )
@@ -264,6 +266,11 @@ function ptpmMapStart( map )
 		setElementParent( data.tasks[value].taskArea, value )
 		setElementParent( data.tasks[value].marker, value )
 		setElementParent( data.tasks[value].blip, value )
+
+		data.currentMap.hasTasks = true
+	end
+	if data.currentMap.hasTasks then
+		setupTaskHelpPromptTimer()
 	end
 	
 	
@@ -288,7 +295,11 @@ function ptpmMapStart( map )
 		setElementParent( data.objectives[value].marker, value )
 		setElementParent( data.objectives[value].blip, value )
 	end
-	if #objectiveTable > 0 then setupNewObjective() end
+	if #objectiveTable > 0 then 
+		data.currentMap.hasObjectives = true
+		setupNewObjective(true) 
+		setupObjectiveHelpPromptTimer()
+	end
 	
 	
 	data.vehicleRespawn = {}
@@ -303,9 +314,15 @@ function ptpmMapStart( map )
 		data.vehicleRespawn[value].delay = data.vehicleRespawnTime
 
 		setElementData(value, "ptpm.vehicle.fresh", true, false)
+
+		local model = getElementModel(value)
 		
-		if options.vehicleLaunch and getElementModel(value) == 476 then
+		if options.vehicleLaunch and model == 476 then
 			data.vehicleRespawn[value].launched = false
+		end
+
+		if model == 416 and not data.currentMap.hasAmbulances then
+			data.currentMap.hasAmbulances = true
 		end
 
 		setVehicleDamageProof(value, true)
@@ -317,6 +334,7 @@ function ptpmMapStart( map )
 	
 	
 	data.pickups = {}
+	data.weapons = {}
 	local pickupTable = getElementsByType( "pickup", runningMapRoot )
 	for _, value in ipairs( pickupTable ) do
 		data.pickups[value] = {}
@@ -324,6 +342,10 @@ function ptpmMapStart( map )
 		data.pickups[value].respawn = getPickupRespawnInterval( value ) ~= 9999999 and getPickupRespawnInterval( value ) or false
 		data.pickups[value].destroy = (getElementData( value, "destroy" ) == "true")
 		data.pickups[value].lastPickup = {}
+
+		if getPickupType(value) == 2 then
+			table.insert(data.weapons, value)
+		end
 	end
 	
 	
@@ -504,6 +526,7 @@ function ptpmMapStart( map )
 					initClassSelection( value )
 				end
 			end
+			data.roundTicks = 0
 			data.roundTimer = setTimer( roundTick, 1000, 0 )
 			options.playerPrepareTimer = nil
 		end,
@@ -518,6 +541,16 @@ addEvent( "onGamemodeMapStop", false )
 function ptpmMapStop( map )
 	clearTask()
 	clearObjective()
+
+	if data.objectives.helpTimer then
+		killTimer(data.objectives.helpTimer)
+		data.objectives.helpTimer = nil
+	end
+
+	if data.tasks.helpTimer then
+		killTimer(data.tasks.helpTimer)
+		data.tasks.helpTimer = nil
+	end
 
 	for _, value in ipairs( getElementsByType( "task", source ) ) do
 		if data.tasks and data.tasks[value] then
@@ -591,6 +624,7 @@ function ptpmMapStop( map )
 			killTimer( data.roundTimer )
 		end
 		data.roundTimer = nil
+		data.roundTicks = 0
 	end
 	
 	if options.swapclass and options.swapclass.target then

@@ -48,11 +48,19 @@ addEventHandler( "onVehicleEnter", root,
 		doStopVehicleRespawn()
 
 		-- if vehicleLaunch is enabled, its a rustler and its fresh then launch it
-		if options and options.vehicleLaunch and getElementModel(source) == 476 and getElementData(source, "ptpm.vehicle.fresh") then
+		if options and options.vehicleLaunch and getElementModel(source) == 476 and getElementData(source, "ptpm.vehicle.fresh") and not getElementData(source, "noLaunch") then
 			launchVehicle(source)
 		end
 
 		setVehicleStale(source)
+
+		if data.currentMap.hasAmbulances and getElementModel(source) == 416 then
+			local class = getPlayerClassID(thePlayer)
+
+			if classes[class].medic then
+				triggerHelpEvent(thePlayer, "MEDIC_AMBULANCE")
+			end
+		end
 	end
 )
 

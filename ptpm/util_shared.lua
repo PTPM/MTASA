@@ -64,16 +64,6 @@ function getRunningMapFriendlyNameWrapped()
 end
 
 
-function isRunning(resourceName)
-	local resource = getResourceFromName(resourceName)
-	if resource then
-		if getResourceState(resource) == "running" then
-			return true
-		end
-	end
-	return false
-end
-
 function isVehicleOccupied(vehicle)
 	local occupants = getVehicleOccupants(vehicle)
 
@@ -109,3 +99,30 @@ function stripColourCodes(s)
 	return strippedString
 end
 
+function distanceSquared(aX, aY, aZ, bX, bY, bZ)
+	local vX = aX - bX
+	local vY = aY - bY
+	local vZ = aZ - bZ
+
+	return vX*vX + vY*vY + vZ*vZ
+end
+
+function lerp(startValue, endValue, t)
+	return startValue + ((endValue - startValue) * t)
+end
+
+function getColour(colourName)
+	if classColours[colourName] then
+		return classColours[colourName]
+	end
+
+	if colour[colourName] then
+		return colour[colourName]
+	end
+
+	return
+end
+
+function getCurrentPM()
+	return currentPM
+end

@@ -7,34 +7,34 @@ do
 end
 
 classColours = {
-	["psycho"] = { 255, 128, 0 },
-	["terrorist"] = { 255, 0, 175 },
-	["terroristm"] = { 255, 64, 207 },
-	["pm"] = { 255, 255, 64 },
-	["pmm"] = { 255, 255, 64 },
-	["bodyguard"] = { 0, 128, 0 },
-	["bodyguardm"] = { 80, 176, 80 },
-	["police"] = { 80, 80, 207 },
-	["policem"] = { 128, 128, 239 },
+	psycho = { 255, 128, 0 },
+	terrorist = { 255, 0, 175 },
+	terroristm = { 255, 64, 207 },
+	pm = { 255, 255, 64 },
+	pmm = { 255, 255, 64 },
+	bodyguard = { 0, 128, 0 },
+	bodyguardm = { 80, 176, 80 },
+	police = { 80, 80, 207 },
+	policem = { 128, 128, 239 },
 
 	light = {
-		["psycho"] = { 255, 217, 179 },
-		["terrorist"] = { 255, 217, 243 },
-		["terroristm"] = { 255, 217, 243 },
-		["pm"] = { 255, 255, 219 },
-		["bodyguard"] = { 180, 237, 180 },
-		["bodyguardm"] = { 180, 237, 180 },
-		["police"] = { 200, 200, 255 },
-		["policem"] = { 200, 200, 255 },
+		psycho = { 255, 217, 179 },
+		terrorist = { 255, 217, 243 },
+		terroristm = { 255, 217, 243 },
+		pm = { 255, 255, 219 },
+		bodyguard = { 180, 237, 180 },
+		bodyguardm = { 180, 237, 180 },
+		police = { 200, 200, 255 },
+		policem = { 200, 200, 255 },
 	},
 }
 
 teamMemberFriendlyName = {
-	["psycho"] = "Psychopath",
-	["bodyguard"] = "Bodyguard",
-	["police"] = "Police",
-	["pm"] = "Prime Minister",
-	["terrorist"] = "Terrorist"
+	psycho = "Psychopath",
+	bodyguard = "Bodyguard",
+	police = "Police",
+	pm = "Prime Minister",
+	terrorist = "Terrorist"
 }
 
 colour = {
@@ -43,8 +43,60 @@ colour = {
 	achievement = {94, 170, 2},
 	query = {255, 220, 24},
 	global = {208, 208, 255},
-	broadcast = {0, 102, 204},
+	ptpm = {0, 102, 204},
+
+	hex = {
+		ptpm = string.format("#%02x%02x%02x", 0, 102, 204),
+		pm = string.format("#%02x%02x%02x", unpack(classColours.pm)),
+		bodyguard = string.format("#%02x%02x%02x", unpack(classColours.bodyguard)),
+		bodyguardm = string.format("#%02x%02x%02x", unpack(classColours.bodyguardm)),
+		police = string.format("#%02x%02x%02x", unpack(classColours.police)),
+		policem = string.format("#%02x%02x%02x", unpack(classColours.policem)),
+		terrorist = string.format("#%02x%02x%02x", unpack(classColours.terrorist)),
+		terroristm = string.format("#%02x%02x%02x", unpack(classColours.terroristm)),
+		psycho = string.format("#%02x%02x%02x", unpack(classColours.psycho)),
+		white = string.format("#%02x%02x%02x", 255, 255, 255),
+		black = string.format("#%02x%02x%02x", 0, 0, 0),
+		red = string.format("#%02x%02x%02x", 255, 0, 0),
+		blue = string.format("#%02x%02x%02x", 0, 0, 170),
+
+		parse = function(s) 
+			s = s:gsub("%[PTPM%]", colour.hex.ptpm)
+			s = s:gsub("%[PM%]", colour.hex.pm)
+			s = s:gsub("%[BODYGUARD%]", colour.hex.bodyguard)
+			s = s:gsub("%[BODYGUARDM%]", colour.hex.bodyguardm)
+			s = s:gsub("%[POLICE%]", colour.hex.police)
+			s = s:gsub("%[POLICEM%]", colour.hex.policem)
+			s = s:gsub("%[TERRORIST%]", colour.hex.terrorist)
+			s = s:gsub("%[TERRORISTM%]", colour.hex.terroristm)
+			s = s:gsub("%[PSYCHO%]", colour.hex.psycho)	
+
+			s = s:gsub("%[WHITE%]", colour.hex.white)	
+			s = s:gsub("%[BLACK%]", colour.hex.black)	
+			s = s:gsub("%[RED%]", colour.hex.red)	
+			s = s:gsub("%[BLUE%]", colour.hex.blue)	
+
+			return s
+		end,
+	}
 }
+
+if localPlayer then
+	colour.black = tocolor(0, 0, 0, 255)
+	colour.grey = tocolor(128, 128, 128, 255)
+	colour.darkGrey = tocolor(60, 60, 60, 255)
+	colour.white = tocolor(255, 255, 255, 255)
+else
+	colour.hex.parseContextual = function(s, player) 
+		local classID = getPlayerClassID(player)
+
+		if classID then
+			s = s:gsub("%[TEAM%]", colour.hex[getPlayerClassType(player, classID)])
+		end
+
+		return s
+	end
+end
 
 
 __DEBUG = true

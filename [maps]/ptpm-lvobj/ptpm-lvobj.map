@@ -387,6 +387,20 @@
     <!-- carmedium -->
     <vehicle model="519" posX="1562.5179" posY="1323.5089" posZ="11.8679" rotZ="334.7085" />
     <!-- shamal -->
+    <vehicle id="vehicle (HPV1000) (1)" paintjob="3" interior="0" alpha="255" model="523" plate="V7KQ ZSR" dimension="0" posX="1296.6603" posY="2077.9702" posZ="10.48069" rotX="0" rotY="0" rotZ="0" color="0,0,0,0,0,0,0,0,0,0,0,0"></vehicle>
+    <!-- <vehicle id="vehicle (HPV1000) (2)" paintjob="3" interior="0" alpha="255" model="523" plate="HO0E WE2" dimension="0" posX="1299.1405" posY="2078.1082" posZ="10.48069" rotX="0" rotY="0" rotZ="0" color="0,0,0,0,0,0,0,0,0,0,0,0"></vehicle> -->
+    <!-- <vehicle id="vehicle (BF-400) (1)" paintjob="3" interior="0" alpha="255" model="581" plate="BXKN P6X" dimension="0" posX="1301.4587" posY="2078.0635" posZ="10.52007" rotX="0" rotY="0" rotZ="0" color="109,24,34,245,245,245,0,0,0,0,0,0"></vehicle> -->
+    <vehicle id="vehicle (Wayfarer) (1)" paintjob="3" interior="0" alpha="255" model="586" plate="J10Z SEA" dimension="0" posX="1296.8724" posY="2088.4175" posZ="10.41731" rotX="0" rotY="0" rotZ="184" color="88,89,90,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="vehicle (BF-400) (2)" paintjob="3" interior="0" alpha="255" model="581" plate="UNQX ZN3" dimension="0" posX="1299.374" posY="2088.3425" posZ="10.52007" rotX="0" rotY="0" rotZ="180" color="39,47,75,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="vehicle (Uranus) (1)" paintjob="3" interior="0" alpha="255" model="558" plate="EQWR 9G4" dimension="0" posX="1405.9083" posY="2092.5486" posZ="10.68334" rotX="0" rotY="0" rotZ="180" color="37,37,39,245,245,245,0,0,0,0,0,0"></vehicle>
+    <vehicle id="vehicle (Sultan) (1)" paintjob="3" interior="0" alpha="255" model="560" plate="4HRP Q84" dimension="0" posX="1415.1721" posY="2092.835" posZ="10.72891" rotX="0" rotY="0" rotZ="180" color="118,123,124,0,0,0,0,0,0,0,0,0"></vehicle>
+    <vehicle id="vehicle (Sultan) (2)" paintjob="3" interior="0" alpha="255" model="560" plate="1O8D WWE" dimension="0" posX="1300.0013" posY="2234.8391" posZ="10.62529" rotX="0" rotY="0" rotZ="270" color="94,112,114,109,122,136,0,0,0,0,0,0"></vehicle>
+    <!-- <vehicle id="vehicle (Admiral) (1)" paintjob="3" interior="0" alpha="255" model="445" plate="GY61 BPG" dimension="0" posX="1410.915" posY="2092.3035" posZ="10.9557" rotX="0" rotY="0" rotZ="180" color="45,58,53,45,58,53,0,0,0,0,0,0"></vehicle> -->
+    <!-- <vehicle id="vehicle (Yosemite) (1)" paintjob="3" interior="0" alpha="255" model="554" plate="50AQ HTL" dimension="0" posX="1421.349" posY="2071.8442" posZ="11.05344" rotX="0" rotY="0" rotZ="90" color="100,100,100,66,31,33,0,0,0,0,0,0"></vehicle> -->
+    <vehicle id="vehicle (Landstalker) (1)" paintjob="3" interior="0" alpha="255" model="400" plate="PC63 1QV" dimension="0" posX="1289.2117" posY="2205.061" posZ="10.6513" rotX="357.5" rotY="0" rotZ="90" color="34,25,24,245,245,245,0,0,0,0,0,0"></vehicle>
+    <!-- <vehicle id="vehicle (Mesa) (1)" paintjob="3" interior="0" alpha="255" model="500" plate="757E 392" dimension="0" posX="1290.3601" posY="2209.5232" posZ="10.71723" rotX="356.5" rotY="0" rotZ="90" color="34,25,24,77,50,47,0,0,0,0,0,0"></vehicle> -->
+    <vehicle id="vehicle (Sultan) (3)" paintjob="3" interior="0" alpha="255" model="560" plate="ZD3Z DJA" dimension="0" posX="1400.7959" posY="2092.9092" posZ="10.65555" rotX="0" rotY="0" rotZ="180" color="94,112,114,109,122,136,0,0,0,0,0,0"></vehicle>
+
 	
     <pickup posX="1124.7073" posY="1963.2789" posZ="10.8203" type="9" amount="1" respawn="9999999" synced="false" />
     <!-- LV1 -->
@@ -498,9 +512,9 @@
     <objective posX="1924.1240" posY="704.1882" posZ="11.1328" desc="Entertain secretary at Seedy Motel" size="100.0" time="60000" />
     <objective posX="2310.8726" posY="2453.2222" posZ="10.8203" desc="Present medal to police officer" size="100.0" />
     <objective posX="2580.0117" posY="2386.1125" posZ="15.8500" desc="Relax at the pool" size="100.0" time="60000" />
-    <objective posX="2226.7800" posY="1040.0394" posZ="5.8203" desc="Picnic with casino boss" size="100.0" />
+    <objective posX="2226.7800" posY="1040.0394" posZ="5.8203" desc="Picnic with casino boss" size="100.0" notFirst="true" />
     <objective posX="1950.8372" posY="1343.0806" posZ="9.1094" desc="Open a new casino" size="100.0" time="60000" />
-    <objective posX="2644.2302" posY="826.2061" posZ="5.8203" desc="Give speech to construction workers" size="100.0" time="45000" />
+    <!-- <objective posX="2644.2302" posY="826.2061" posZ="5.8203" desc="Give speech to construction workers" size="100.0" time="45000" /> -->
     <objective posX="2497.9041" posY="1174.5298" posZ="22.0113" desc="Brief James Bond on rooftop" size="100.0" />
     <objective posX="2027.9860" posY="1915.7321" posZ="12.1685" desc="Open new hotel" size="100.0" time="40000" />
     <objective posX="2323.6707" posY="1283.2654" posZ="90.6161" desc="Squeeze a lemon" size="100.0" />
@@ -514,7 +528,7 @@
     <objective posX="2630.2900" posY="2051.6941" posZ="10.5170" desc="Meet mistress at Seedy Motel" size="100.0" />
     <objective posX="2522.6184" posY="2377.5398" posZ="3.9326" desc="Meet oil tycoon in car park" size="100.0" time="60000" />
     <objective posX="1562.5179" posY="1323.5089" posZ="10.5475" desc="Meet President Fido at plane" size="100.0" time="15000" />
-    <objective posX="2597.5571" posY="1811.3174" posZ="10.9766" desc="Buy Samantha a new dress" size="100.0" time="40000" />
+    <objective posX="2597.5571" posY="1811.3174" posZ="10.9766" desc="Buy Mrs Prime Minister a new dress" size="100.0" time="40000" />
     <objective posX="1501.4535" posY="750.6229" posZ="16.0054" desc="Go to confessions" size="100.0" />
 	
 	
@@ -549,41 +563,5 @@
     <boundarycorner posX="2833.66" posY="596.02" />
     <boundarycorner posX="3034.0212" posY="525.6904" />
 	
-    <!-- fenceblock -->
-    <object model="3294" posX="2036.85" posY="2380.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2380.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2386.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2386.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2392.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2392.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2398.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2398.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2404.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2404.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2410.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2410.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2416.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2416.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="3294" posX="2036.85" posY="2422.08" posZ="9.77" rotX="0.00" rotY="90.00" rotZ="449.42" endX="2036.85" endY="2422.08" endZ="142.77" speed="44333" pause="4000" disX="4" disY="3" />
-    <!-- test -->
-    <object model="9093" posX="2044.95" posY="2371.71" posZ="143.10" rotX="0.00" rotY="251.00" rotZ="268.96" />
-    <!-- 1 -->
-    <object model="9093" posX="2044.92" posY="2368.40" posZ="144.25" rotX="180.00" rotY="71.00" rotZ="449.38" />
-    <!-- 2 -->
-    <object model="9093" posX="2044.91" posY="2365.11" posZ="145.37" rotX="180.00" rotY="70.00" rotZ="89.55" />
-    <!-- 3 -->
-    <object model="9093" posX="2044.94" posY="2361.72" posZ="146.00" rotX="180.00" rotY="90.00" rotZ="269.90" />
-    <!-- 4 -->
-    <object model="9093" posX="2044.96" posY="2358.15" posZ="146.01" rotX="180.00" rotY="90.00" rotZ="270.19" />
-    <!-- 5 -->
-    <object model="9093" posX="2050.22" posY="2359.59" posZ="146.57" rotX="180.00" rotY="110.00" rotZ="360.18" />
-    <!-- 6 -->
-    <object model="9093" posX="2053.53" posY="2359.64" posZ="147.76" rotX="180.00" rotY="110.00" rotZ="360.30" />
-    <!-- 7 -->
-    <object model="9093" posX="2056.86" posY="2359.73" posZ="148.91" rotX="180.00" rotY="107.00" rotZ="360.19" />
-    <!-- 8 -->
-    <object model="9093" posX="2060.17" posY="2359.69" posZ="149.40" rotX="180.00" rotY="90.00" rotZ="359.49" />
-    <!-- 9 -->
-    <object model="9093" posX="2063.57" posY="2359.69" posZ="149.40" rotX="180.00" rotY="90.00" rotZ="359.49" />
-    <!-- 10 -->
+    <object id="des_quarryramp01 stadium ramp" breakable="true" interior="0" alpha="255" model="16303" doublesided="false" scale="1" dimension="0" posX="1407.2333" posY="2085.144" posZ="2.7521" rotX="0" rotY="0" rotZ="285.25"></object>
 </map>

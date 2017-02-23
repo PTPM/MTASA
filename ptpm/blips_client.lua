@@ -15,7 +15,7 @@ addEventHandler( "onClientAvailable", localPlayer,
 	end
 )
 
-
+-- blip data: r, g, b, a, ordering, blipSize, interior
 function blipsElementDataChange( element, dataName, oldValue )
 	if dataName == "ptpm.blip" then
 		local newValue = getElementData( element, "ptpm.blip" )
@@ -96,13 +96,13 @@ function applyBlipVisibleTo(myClassID, player, visibleToValue)
 end
 
 function processBlipVisibleTo() 
-	local classID = getElementData( localPlayer, "ptpm.classID" )
+	local classID = getElementData(localPlayer, "ptpm.classID")
 
 	if classID then		
 		-- who should i be able to see now
-		for _, p in ipairs( getElementsByType( "player" ) ) do
-			if p and isElement( p ) then
-				local visibleTo = getElementData( p, "ptpm.blip.visibleto" )
+		for _, p in ipairs(getElementsByType("player")) do
+			if p and isElement(p) then
+				local visibleTo = getElementData(p, "ptpm.blip.visibleto")
 				
 				applyBlipVisibleTo(classID, p, visibleTo)	
 			end

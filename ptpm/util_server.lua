@@ -3,9 +3,9 @@
 end
 
 
-function tableSize( t )
+function tableSize(t)
 	local c = 0
-	for _,_ in ipairs( t ) do c = c + 1 end
+	for _,_ in ipairs(t) do c = c + 1 end
 	return c
 end
 
@@ -256,11 +256,13 @@ function playerHealPlayer( medic, patient, distance )
 	if not getPlayerClassID( medic ) or not getPlayerClassID( patient ) then return end
 	
 	if not classes[getPlayerClassID( medic )].medic then
-		return outputChatBox( "You are not a medic!", medic, unpack( colour.personal ) )
+		outputChatBox( "You are not a medic!", medic, unpack( colour.personal ) )
+		return 
 	end
 	
 	if medic == patient then
-		return outputChatBox( "Physicians may not heal themselves.", medic, unpack( colour.personal ) )
+		outputChatBox( "Physicians may not heal themselves.", medic, unpack( colour.personal ) )
+		return 
 	end
 	
 	local effectiveness, radius = 2, 2
@@ -278,7 +280,8 @@ function playerHealPlayer( medic, patient, distance )
 	if distance > radius then
 		if not getPedOccupiedVehicle( medic ) or not getPedOccupiedVehicle( patient ) or getPedOccupiedVehicle( medic ) ~= getPedOccupiedVehicle( patient ) then
 			if distance < 25 then
-				return outputChatBox( string.format("You are too far from '%s' (%.1fm).", getPlayerName( patient ) , distance ), medic, unpack( colour.personal ) )
+				outputChatBox( string.format("You are too far from '%s' (%.1fm).", getPlayerName( patient ) , distance ), medic, unpack( colour.personal ) )
+				return 
 			else
 				return
 			end
@@ -293,7 +296,8 @@ function playerHealPlayer( medic, patient, distance )
 	if medicine > ( medicHealth - 1 ) then medicine = medicHealth - 1 end
 	
 	if medicine <= 0 then
-		return outputChatBox( "There is nothing you can do.", medic, unpack( colour.personal ) )
+		outputChatBox( "There is nothing you can do.", medic, unpack( colour.personal ) )
+		return 
 	end
 
 	local hpHealed = getElementData( medic, "ptpm.hpHealed" ) or 0
@@ -317,6 +321,8 @@ function playerHealPlayer( medic, patient, distance )
 	local healthDiff = string.format("%.1f", medicine*effectiveness)
 	outputChatBox( "Gave " .. healthDiff .. " health to patient.", medic, unpack( colour.personal ) )
 	outputChatBox( "You were healed by " .. healthDiff .. " health.", patient, unpack( colour.personal ) )
+
+	return true
 end
 
 function isPlayerInSameTeam( thePlayer, otherPlayer )
@@ -362,40 +368,40 @@ function changeWeather()
 end
 
 
-function getWeather( thePlayer )
+function getWeather(thePlayer)
 	if options and options.currentWeather then
 		local hour, minute = getTime()
-		outputChatBox( "Map type: " .. options.mapType .. ", Id: " .. options.currentWeather .. " - " .. hour .. ":" .. minute, thePlayer, unpack( colour.personal ) )
+		outputChatBox("Map type: " .. options.mapType .. ", weather id: " .. options.currentWeather .. ", time: " .. hour .. ":" .. minute, thePlayer, unpack(colour.personal))
 	end
 end
-addCommandHandler( "getweather", getWeather )
+addCommandHandler("getweather", getWeather)
 
 
-addEvent( "onPlayerInteriorHit", false )
+addEvent("onPlayerInteriorHit", false)
 addEventHandler( "onPlayerInteriorHit", root,
-	function( interior, _, id )
-		if currentPM and source == currentPM then
-			-- moving into an interior from outside
-			local destinationInterior = getInteriorPair( interior, id )
+	function(interior, _, id)
+		if currentPM and source == currentPM then			
+			local destinationInterior = getInteriorPair(interior, id)
 			
 			if destinationInterior then
-				local destinationInteriorID = tonumber( getElementData( destinationInterior, "interior" ) )
-				local pmInterior = getElementData( currentPM, "ptpm.currentInterior" )
+				local destinationInteriorID = tonumber(getElementData(destinationInterior, "interior"))
+				local pmInterior = getElementData(currentPM, "ptpm.currentInterior")
 
+				-- moving into an interior from outside
 				if destinationInteriorID ~= 0 and pmInterior == 0 then
 					-- show new marker
-					local x, y, z = getElementPosition( currentPM )
-					local r, g, b, a = getPlayerColour( currentPM )
-					local interiorBlip = getElementData( currentPM, "ptpm.interiorBlip" )
+					local x, y, z = getElementPosition(currentPM)
+					local r, g, b, a = getPlayerColour(currentPM)
+					local interiorBlip = getElementData(currentPM, "ptpm.interiorBlip")
 					if interiorBlip then
-						destroyElement( interiorBlip )
+						destroyElement(interiorBlip)
 					end
 					-- x, y, z, icon, size, r, g, b, a, ordering, visibleDistance, visibleTo
-					interiorBlip = createBlip( x, y, z, 0, 4, r, g, b, a, 4, 99999.0, root )
+					interiorBlip = createBlip(x, y, z, 0, 4, r, g, b, a, 4, 99999.0, root)
 					setElementID(interiorBlip, "ptpm.blip.interior")
-					setElementData( currentPM, "ptpm.interiorBlip", interiorBlip, false )
+					setElementData(currentPM, "ptpm.interiorBlip", interiorBlip, false)
 
-					setElementData( currentPM, "ptpm.currentInterior", destinationInteriorID, false )
+					setElementData(currentPM, "ptpm.currentInterior", destinationInteriorID, false)
 					
 					-- hide pm blip
 					--local blip = getElementData( currentPM, "ptpm.blip" )
@@ -404,12 +410,12 @@ addEventHandler( "onPlayerInteriorHit", root,
 				-- moving back outside from an interior
 				elseif destinationInteriorID == 0 and pmInterior ~= 0 then
 					-- hide new marker
-					setElementData( currentPM, "ptpm.currentInterior", 0, false )
+					setElementData(currentPM, "ptpm.currentInterior", 0, false)
 
-					local interiorBlip = getElementData( currentPM, "ptpm.interiorBlip" )
+					local interiorBlip = getElementData(currentPM, "ptpm.interiorBlip")
 					if interiorBlip then
-						destroyElement( interiorBlip )
-						setElementData( currentPM, "ptpm.interiorBlip", nil, false )
+						destroyElement(interiorBlip)
+						setElementData(currentPM, "ptpm.interiorBlip", nil, false)
 
 						-- re-show the pm blip
 						--local r, g, b, a = getPlayerColour( currentPM )
@@ -422,28 +428,42 @@ addEventHandler( "onPlayerInteriorHit", root,
 )
 
 
+addEvent("onPlayerInteriorWarped", true)
 addEventHandler("onPlayerInteriorWarped", root,
-	function()
+	function(interior)
+		local targetInterior = getInteriorTarget(interior)
+		local newInt = getElementData (targetInterior, "interior")
+
 		local blipData = getElementData(source, "ptpm.blip")
 
 		if blipData then
-			blipData[7] = getElementInterior(source)
+			blipData[7] = newInt or getElementInterior(source)
 			setElementData(source, "ptpm.blip", blipData)
 		end
 	end
 )
  
+function getInteriorTarget(interior)
+	if not interior then
+		return
+	end
+
+	local selfID = { ["interiorEntry"] = "id", ["interiorReturn"] = "refid" }
+	local id = getElementData(interior, selfID[getElementType(interior)]) 
+
+	return getInteriorPair(interior, id)
+end
  
-function getInteriorPair( interior, id )
-	if isElement( interior ) then
-		local type = getElementType( interior )
+function getInteriorPair(interior, id)
+	if isElement(interior) then
+		local type = getElementType(interior)
 		local revertedName = { ["interiorEntry"] = "interiorReturn", ["interiorReturn"] = "interiorEntry" }
 		local revertedID = { ["interiorEntry"] = "refid", ["interiorReturn"] = "id" }
-		local interiors = getElementsByType( revertedName[type] )
+		local interiors = getElementsByType(revertedName[type])
 		if interiors then
-			for k, otherInterior in ipairs( interiors ) do
-				local refid = getElementData( otherInterior, revertedID[type] )
-				if refid and refid == id then
+			for k, otherInterior in ipairs(interiors) do
+				local targetID = getElementData(otherInterior, revertedID[type])
+				if targetID and targetID == id then
 					return otherInterior
 				end
 			end
@@ -484,60 +504,6 @@ function jetPackHandler( thePlayer )
 end
 
 
-
-function explainRole( thePlayer )
-	if not getPlayerClassID( thePlayer ) then return end
-	
-	local team = classes[getPlayerClassID( thePlayer )].type
-
-	if team == "psycho" then
-		outputChatBox( "Nobody wants to be your friend. So trust noone. Kill them all.", thePlayer, unpack( colour.personal ) )
-	elseif team == "terrorist" then
-		outputChatBox( "Your role is to try and kill the Prime Minister(yellow) before the timer runs out. You must work with the other terrorists(pink)", thePlayer, unpack( colour.personal ) )
-		outputChatBox( "as a team. You must avoid the cops(blue) as they will hunt you. Beware of psychopaths(orange), they will kill anyone.", thePlayer, unpack( colour.personal ) )
-		if #data.objectives > 0 then
-			outputChatBox( "The Prime Minister and his bodyguards will be visiting areas of the city. These are red on the radar. You should try and ambush", thePlayer, unpack( colour.personal ) )
-			outputChatBox( "him on his way there, siege him when he is there, and drive him away. If the Prime Minister achieves his objectives then", thePlayer, unpack( colour.personal ) )
-			outputChatBox( "you lose the game.", thePlayer, unpack( colour.personal ) )
-		end
-	elseif team == "pm" then
-		if #data.objectives > 0 then
-			outputChatBox( "Your role is to visit and each of the objectives in order. You must defend the objective for the specified time before", thePlayer, unpack( colour.personal ) )
-			outputChatBox( "the next objective will be revealed. Terrorists(pink) and psychopaths(orange) will try to kill you. If you die, the", thePlayer, unpack( colour.personal ) )
-			outputChatBox( "terrorists win.", thePlayer, unpack( colour.personal ) )
-		else
-			outputChatBox( "Your role is to avoid being killed by terrorists(pink) or psychopaths(orange) until the timer runs out. Use /timeleft to", thePlayer, unpack( colour.personal ) )
-			outputChatBox( "find out how long there is left.", thePlayer, unpack( colour.personal ) )
-		end
-		outputChatBox( "You must work with your loyal bodyguards(green), they will protect you. You are to co-operate with the local police(blue), who", thePlayer, unpack( colour.personal ) )
-		outputChatBox( "will hunt the terrorists.", thePlayer, unpack( colour.personal ) )
-	elseif team == "bodyguard" then
-		outputChatBox( "Your duty is to stay with the Prime Minister(yellow) and protect him from harm. Terrorists(pink) will soon try and murder him.", thePlayer, unpack( colour.personal ) )
-		outputChatBox( "Also beware of psychopaths(orange). You are to co-operate with the local police(blue), who will hunt the terrorists.", thePlayer, unpack( colour.personal ) )
-		if #data.objectives > 0 then
-			outputChatBox( "The Prime Minister will be visiting areas of the city. These are red on the radar. The terrorists know where he needs to go,", thePlayer, unpack( colour.personal ) )
-			outputChatBox( "so you must prevent them from ambusing or successfully sieging the Prime Minister. If he is killed, you lose the game.", thePlayer, unpack( colour.personal ) )
-		end
-	elseif team == "police" then
-		outputChatBox( "Your orders are to kill the terrorists(pink) without harming the bodyguards(green) or the Prime Minister(yellow). Also beware", thePlayer, unpack( colour.personal ) )
-		outputChatBox( "of psychopaths(orange). Protect the Prime Minister!", thePlayer, unpack( colour.personal ) )
-		if #data.objectives > 0 then
-			outputChatBox( "The Prime Minister and his bodyguards will be visiting areas of the city. These are red on the radar. You should focus your", thePlayer, unpack( colour.personal ) )
-			outputChatBox( "efforts there, clean out the terrorists so that the Prime Minister can go in. Then defend the area until he is done.", thePlayer, unpack( colour.personal ) )
-		end
-	end
-	
-	if classes[getPlayerClassID( thePlayer )].medic then
-		outputChatBox( "You are a medic, you can heal people with /heal!", thePlayer, unpack( colour.personal ) )
-	end
-	if tableSize(data.safezone) > 0 then
-		outputChatBox( "Only terrorists and bodyguards may fly the hydra or seasparrow. The Prime Minister's safehouse (red) is a hydra/seasparrow", thePlayer, unpack( colour.personal ) )
-		outputChatBox( "free zone.", thePlayer, unpack( colour.personal ) )
-	end
-end
-addCommandHandler( "duty", explainRole )
-
-
 function showOps( thePlayer )
 	for _, p in ipairs( getElementsByType( "player" ) ) do
 		local sOps = ""
@@ -549,7 +515,7 @@ function showOps( thePlayer )
 	end
 end
 addCommandHandler( "ops", showOps )
---addCommandHandler( "admins", showOps )
+addCommandHandler( "admins", showOps )
 
 
 function attach(ob1,ob2,x1,y1,z1,rx1,ry1,rz1,x2,y2,z2,rx2,ry2,rz2)
@@ -595,6 +561,18 @@ function getPlayerClassID( player )
 		return getElementData( player, "ptpm.classID" ) or false
 	end
 	return false
+end
+
+function getPlayerClassType(player, classID)
+	if not classID then
+		classID = getPlayerClassID(player)
+
+		if not classID then
+			return ""
+		end
+	end
+
+	return classes[classID].type .. (classes[classID].medic and "m" or "")
 end
 
 

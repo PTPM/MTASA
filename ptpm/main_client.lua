@@ -5,13 +5,15 @@ classes = {}
 currentPM = nil
 currentMapName = ""
 local roundEnded = false
+local helpVisible = false
 
-addEventHandler( "onClientResourceStart", root,
+addEventHandler("onClientResourceStart", root,
 	function(res)
 		if res == resource then
-			triggerServerEvent( "onClientReady", resourceRoot )
+			triggerServerEvent("onClientReady", resourceRoot)
 
 			classSelectionSetup()
+			helpSystemSetup()
 		end
 
 		createTransitionImage(res)
@@ -79,6 +81,11 @@ function isRoundEnded()
 	return roundEnded
 end
 
+addEventHandler("onClientPlayerWasted", localPlayer,
+	function(killer, weapon, bodypart)
+		clearHelpQueue()
+	end
+)
 
 function drawGameTextToScreen( text, duration, colour, font, size, valign, halign, importance )
 	if not importance then importance = 1 end
@@ -311,6 +318,14 @@ addEventHandler( "onClientElementDataChange", root,
 				end
 				
 				if source == localPlayer then
+					if not classID and oldValue then
+						-- back to class selection
+						clearHelpQueue()
+					elseif classID and oldValue then
+						-- changed class
+						clearHelpQueue()
+					end
+
 					if options.distanceToPM then
 						if classID and classes[classID] == "terrorist" then
 							if options.distanceToPMTimer then
@@ -446,3 +461,98 @@ function killAFKTimer()
 	end
 end
 
+
+-- insert newlines into the text so that it wraps correctly (works with colour codes unlike default dxDrawText)
+function dxWordWrapText(text, width, font, scale)
+	if not font then
+		font = "default"
+	end
+
+	if not scale then
+		scale = 1
+	end
+
+	local line = 1
+	local lines = {""}
+
+	for word in text:gmatch("%S+") do 
+		local space = #lines[line] > 0 and " " or ""
+
+		if dxGetTextWidth(lines[line] .. space .. word, scale, font, true) > width then
+			if dxGetTextWidth(word, scale, font, true) > width then
+				-- split up the word
+				while true do
+					for i = #word, 1, -1 do
+						if dxGetTextWidth(lines[line] .. (#lines[line] > 0 and " " or "") .. word:sub(1, i), scale, font, true) <= width then
+							lines[line] = lines[line] .. (#lines[line] > 0 and " " or "") .. word:sub(1, i)
+							line = line + 1
+							lines[line] = ""
+							word = word:sub(i + 1, #word)
+							break
+						end
+					end
+
+					if #word <= 0 then
+						break
+					end
+				end
+			else
+				line = line + 1
+				lines[line] = word
+			end
+		else
+			lines[line] = lines[line] .. space .. word
+		end
+	end
+
+	return table.concat(lines, '\n')
+end
+
+
+addEvent("onHelpShown")
+addEvent("onHelpHidden")
+
+addEventHandler("onHelpShown", root,
+	function()
+		helpVisible = true
+	end
+)
+
+addEventHandler("onHelpHidden", root,
+	function()
+		-- if there is a ui element underneath the close button, we don't want clicking the button to register as clicking the ui element
+		setTimer(function()
+			helpVisible = false
+		end, 50, 1)
+	end
+)
+
+function isHelpVisible()
+	return helpVisible
+end
+
+-- draw lines around teleport bounds
+-- addEventHandler("onClientRender", root,
+-- 	function()
+-- 		local x, y, z = getElementPosition(localPlayer)
+
+-- 		for i, t in ipairs(getElementsByType("teleport")) do
+
+-- 			--<teleport minX="82" minY="1942" minZ="17.6" maxX="293" maxY="1962" maxZ="500" message="" teleX="232.8058" teleY="1927.2909" teleZ="17.6406" teleRot="181.1084" vehicles="true" interior="0" />
+-- 			local minX = tonumber(getElementData(t, "minX"))
+-- 			local minY = tonumber(getElementData(t, "minY"))
+-- 			local minZ = tonumber(getElementData(t, "minZ"))
+
+-- 			local maxX = tonumber(getElementData(t, "maxX"))
+-- 			local maxY = tonumber(getElementData(t, "maxY"))
+-- 			local maxZ = tonumber(getElementData(t, "maxZ"))
+
+-- 			local pZ = math.max(minZ, math.min(maxZ, z))
+
+-- 			dxDrawLine3D(minX, minY, pZ, maxX, minY, pZ, tocolor(255, 0, 0, 255), 10)
+-- 			dxDrawLine3D(maxX, minY, pZ, maxX, maxY, pZ, tocolor(255, 0, 0, 255), 10)
+-- 			dxDrawLine3D(maxX, maxY, pZ, minX, maxY, pZ, tocolor(255, 0, 0, 255), 10)
+-- 			dxDrawLine3D(minX, maxY, pZ, minX, minY, pZ, tocolor(255, 0, 0, 255), 10)
+-- 		end
+-- 	end
+-- )
