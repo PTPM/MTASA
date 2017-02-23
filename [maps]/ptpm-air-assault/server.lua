@@ -19,6 +19,7 @@ addEventHandler("onResourceStart", resourceRoot,
 	end
 )
 
+-- high priority so that we can read freshness before ptpm removes it
 addEventHandler("onVehicleEnter", root,
 	function(player, seat, jacked)
 		local class = exports.ptpm:getPlayerClassType(player)
@@ -26,7 +27,7 @@ addEventHandler("onVehicleEnter", root,
 		if class and colours[class] then
 			setVehicleColor(source, unpack(colours[class]))
 
-			if class ~= "pm" and class ~= "psycho" then
+			if class ~= "pm" and class ~= "psycho" and getElementData(source, "ptpm.vehicle.fresh") then
 				-- attempt fast travel
 				killFastTimer(player)
 
@@ -41,8 +42,8 @@ addEventHandler("onVehicleEnter", root,
 				fastTimers[player] = setTimer(travelToPM, 2000, 1, player, source)
 			end
 		end
-	end
-)
+	end,
+true, "high")
 
 function killFastTimer(player)
 	if fastTimers[player] then
