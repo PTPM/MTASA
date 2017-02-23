@@ -204,7 +204,7 @@ function setupActiveObjectiveFor( thePlayer )
 end
 
 
-function setupNewObjective()
+function setupNewObjective(first)
 	if data.objectives.activeObjective then
 		local removeID
 		
@@ -217,17 +217,29 @@ function setupNewObjective()
 		
 		table.remove(data.objectiveRandomizer,removeID)
 		
-		destroyElement( data.objectives.activeObjective )
+		destroyElement(data.objectives.activeObjective)
 		
 		data.objectives[data.objectives.activeObjective] = nil
 	end
 	
-	local randomObjective = math.random( 1, #data.objectiveRandomizer )
+	local randomObjective = 1
+	local attempts = 0
+
+	while true do
+		randomObjective = math.random(1, #data.objectiveRandomizer)
+		attempts = attempts + 1
+
+		-- limit to 10, just in case we get into some infinite loop
+		if (not first) or (attempts >= 10) or (first and not getElementData(data.objectiveRandomizer[randomObjective], "notFirst")) then
+			break
+		end
+	end
+
 	data.objectives.activeObjective = data.objectiveRandomizer[randomObjective]
 	
-	for _, value in ipairs( getElementsByType( "player" ) ) do
-		if value and isElement( value ) and isPlayerActive( value ) then
-			setupActiveObjectiveFor( value ) 
+	for _, value in ipairs(getElementsByType("player")) do
+		if value and isElement(value) and isPlayerActive(value) then
+			setupActiveObjectiveFor(value) 
 		end 
 	end
 end
