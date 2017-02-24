@@ -431,12 +431,16 @@ addEventHandler( "onPlayerInteriorHit", root,
 addEvent("onPlayerInteriorWarped", true)
 addEventHandler("onPlayerInteriorWarped", root,
 	function(interior)
-		local targetInterior = getInteriorTarget(interior)
-		local newInt = getElementData (targetInterior, "interior")
-
 		local blipData = getElementData(source, "ptpm.blip")
 
 		if blipData then
+			local targetInterior = getInteriorTarget(interior)
+			local newInt = nil
+
+			if targetInterior and isElement(targetInterior) then
+				newInt = tonumber(getElementData(targetInterior, "interior"))
+			end
+
 			blipData[7] = newInt or getElementInterior(source)
 			setElementData(source, "ptpm.blip", blipData)
 		end

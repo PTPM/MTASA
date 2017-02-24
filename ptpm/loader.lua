@@ -542,12 +542,12 @@ function ptpmMapStop( map )
 	clearTask()
 	clearObjective()
 
-	if data.objectives.helpTimer then
+	if data.objectives and data.objectives.helpTimer then
 		killTimer(data.objectives.helpTimer)
 		data.objectives.helpTimer = nil
 	end
 
-	if data.tasks.helpTimer then
+	if data.tasks and data.tasks.helpTimer then
 		killTimer(data.tasks.helpTimer)
 		data.tasks.helpTimer = nil
 	end
