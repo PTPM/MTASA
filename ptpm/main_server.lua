@@ -612,7 +612,7 @@ function roundTick()
 			
 			for _, player2 in ipairs(players) do
 				local classID2 = getPlayerClassID(player2)
-				if player2 and player2 ~= player and classID2 (not isPedDead(player2)) and classes[classID2].medic and classes[classID2].type ~= "pm" then
+				if player2 and player2 ~= player and (not isPedDead(player2)) and classes[classID2].medic and classes[classID2].type ~= "pm" then
 					local pX, pY, pZ = getElementPosition(player)
 					local mX, mY, mZ = getElementPosition(player2)
 
