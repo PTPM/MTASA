@@ -256,7 +256,7 @@ function ptpmMapStart( map )
 		data.tasks[value].time = tonumber(getElementData( value, "time" )) or 60000
 		data.tasks[value].taskArea = createColTube( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" ))-(tonumber(getElementData( value, "size" ))/2), tonumber(getElementData( value, "size" ))/2, tonumber(getElementData( value, "size" )) )
 		data.tasks[value].marker = createMarker( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), "cylinder", tonumber(getElementData( value, "size" )), 170, 0, 0, 128, root )
-		data.tasks[value].blip = createBlip( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), 0, 3, 170, 0, 0, 255, 0, 200, root )
+		data.tasks[value].blip = createBlip( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), 0, 4, 170, 0, 0, 255, 0, 200, root )
 		data.tasks[value].desc = getElementData( value, "desc" ) or taskDesc[taskType]
 		data.tasks[value].finishText = getElementData( value, "finishText" ) or taskFinishText[taskType]
 		
@@ -285,7 +285,7 @@ function ptpmMapStart( map )
 		data.objectives[value].time = tonumber(getElementData( value, "time" )) or 30000
 		data.objectives[value].objArea = createColSphere( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), tonumber(getElementData( value, "size" ))*0.5 )
 		data.objectives[value].marker = createMarker( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), "cylinder", tonumber(getElementData( value, "size" )), 170, 0, 0, 128, root )
-		data.objectives[value].blip = createBlip( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), 0, 3, 170, 0, 0, 255, 0, 9999, root )
+		data.objectives[value].blip = createBlip( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), 0, 4, 170, 0, 0, 255, 0, 9999, root )
 		data.objectives[value].desc = getElementData( value, "desc" ) or false
 		
 		setElementVisibleTo ( data.objectives[value].marker, root, false )
