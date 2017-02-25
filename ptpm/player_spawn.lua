@@ -299,13 +299,13 @@ function makePlayerSpawn( thePlayer )
 
 	
 	if data.currentMap.hasObjectives then
-		clearObjectiveTextFor( thePlayer )
+		clearObjectiveTextFor(thePlayer)
 	
-		setupActiveObjectiveFor( thePlayer )
+		showActiveObjectiveFor(thePlayer)
 		
 		if data.objectives and data.objectives.activeObjective and data.objectives.pmOnObjective then
 			if teams["goodGuys"][classes[class].type] then
-				setupObjectiveTextFor( thePlayer )
+				setupObjectiveTextFor(thePlayer)
 			end
 		end
 	end	

@@ -1,20 +1,27 @@
-﻿addEvent( "onObjectiveEnter", false )
-addEventHandler( "onObjectiveEnter", root,
-	function( thePlayer )
-		if classes[getPlayerClassID( thePlayer )].type == "pm" then
-			local objective = getElementParent( source )
+﻿addEvent("onObjectiveEnter", false)
+addEventHandler("onObjectiveEnter", root,
+	function(thePlayer)
+		if classes[getPlayerClassID(thePlayer)].type == "pm" then
+			local objective = getElementParent(source)
 			
 			if objective == data.objectives.activeObjective then
 				data.objectives.pmOnObjective = true
+				data.objectives.pmVisited = true
 				
 				data.objectives[objective].enterTime = getTickCount()
 				
-				for _, p in ipairs( getElementsByType( "player" ) ) do
-					if p and isElement( p ) then
+				for _, p in ipairs(getElementsByType("player")) do
+					if p and isElement(p) then
+						local classID = getPlayerClassID(p)
+
 						-- if theyre a good guy
-						if getPlayerClassID( p ) and teams["goodGuys"][classes[getPlayerClassID( p )].type] then
-							drawStaticTextToScreen( "draw", p, "objText", "Defend checkpoint for " .. data.objectives[objective].time/1000 .. " seconds.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center" )
-							drawStaticTextToScreen( "draw", p, "objDesc", "Objective description:\n" .. data.objectives[objective].desc, "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center")					
+						if classID and teams["goodGuys"][classes[classID].type] then
+							drawStaticTextToScreen("draw", p, "objText", "Defend checkpoint for " .. data.objectives[objective].time/1000 .. " seconds.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center")
+							drawStaticTextToScreen("draw", p, "objDesc", "Objective description:\n" .. data.objectives[objective].desc, "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center")					
+						end
+
+						if classes[classID].type == "terrorist" then
+							setObjectiveVisibleToPlayer(p, objective)
 						end
 					end
 				end
@@ -33,22 +40,22 @@ addEventHandler( "onObjectiveEnter", root,
 )
 
 
-addEvent( "onObjectiveLeave", false )
-addEventHandler( "onObjectiveLeave", root,
-	function( thePlayer )
-		if classes[getPlayerClassID( thePlayer )].type == "pm" then
-			local objective = getElementParent( source )
+addEvent("onObjectiveLeave", false)
+addEventHandler("onObjectiveLeave", root,
+	function(thePlayer)
+		if classes[getPlayerClassID(thePlayer)].type == "pm" then
+			local objective = getElementParent(source)
 			
 			if objective == data.objectives.activeObjective then
 				data.objectives.pmOnObjective = nil
 				
 				data.objectives[objective].enterTime = nil
 				
-				for _,p in ipairs( getElementsByType( "player" ) ) do
-					if p and isElement( p ) then
+				for _,p in ipairs(getElementsByType("player")) do
+					if p and isElement(p) then
 						-- if theyre a good guy
-						if getPlayerClassID( p ) and teams["goodGuys"][classes[getPlayerClassID( p )].type] then
-							clearObjectiveTextFor( p )
+						if getPlayerClassID(p) and teams["goodGuys"][classes[getPlayerClassID(p)].type] then
+							clearObjectiveTextFor(p)
 						end
 					end
 				end
@@ -76,6 +83,7 @@ addEventHandler("onObjectiveComplete", root,
 		end	
 		
 		data.objectives.finished = data.objectives.finished + 1
+		data.objectives.pmVisited = false
 
 		-- completed all the objectives, or there are fewer objectives in the map file than required to pass map
 		-- this (== 1) works because once an objective is completed it gets destroyed and removed from the table		
@@ -161,13 +169,13 @@ addEventHandler("onObjectiveComplete", root,
 -- )
 
 
-function checkObjectives( players, tick )
+function checkObjectives(players, tick)
 	if not data.roundEnded and currentPM and data.objectives.pmOnObjective then
 		if tick - data.objectives[data.objectives.activeObjective].enterTime < data.objectives[data.objectives.activeObjective].time then
-			for _, p in ipairs( players ) do
-				if p and isElement( p ) then
+			for _, p in ipairs(players) do
+				if p and isElement(p) then
 					if getPlayerClassID(p) and teams["goodGuys"][classes[getPlayerClassID(p)].type] == true then
-						drawStaticTextToScreen( "update", p, "objText", "Defend checkpoint for " .. math.floor((data.objectives[data.objectives.activeObjective].time - (tick - data.objectives[data.objectives.activeObjective].enterTime))/1000) .. " seconds.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center" )				
+						drawStaticTextToScreen("update", p, "objText", "Defend checkpoint for " .. math.floor((data.objectives[data.objectives.activeObjective].time - (tick - data.objectives[data.objectives.activeObjective].enterTime))/1000) .. " seconds.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center")				
 					end
 				end
 			end
@@ -178,31 +186,47 @@ function checkObjectives( players, tick )
 end
 
 
-function clearObjectiveTextFor( thePlayer )
-	drawStaticTextToScreen( "delete", thePlayer, "objText" )
-	drawStaticTextToScreen( "delete", thePlayer, "objDesc" )	
+function clearObjectiveTextFor(thePlayer)
+	drawStaticTextToScreen("delete", thePlayer, "objText")
+	drawStaticTextToScreen("delete", thePlayer, "objDesc")	
 end
 
 
-function setupObjectiveTextFor( thePlayer )
-	drawStaticTextToScreen( "draw", thePlayer, "objText", "", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center" )
-	drawStaticTextToScreen( "draw", thePlayer, "objDesc", "", "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center")					
+function setupObjectiveTextFor(thePlayer)
+	drawStaticTextToScreen("draw", thePlayer, "objText", "", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center")
+	drawStaticTextToScreen("draw", thePlayer, "objDesc", "", "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center")					
 end
 
 
-function setupActiveObjectiveFor( thePlayer )
+function showActiveObjectiveFor(thePlayer)
 	if data and data.objectives.activeObjective and data.objectives[data.objectives.activeObjective] then
-		if not getPlayerClassID( thePlayer ) or classes[getPlayerClassID( thePlayer )].type == "psycho" then return end
+		local classID = getPlayerClassID(thePlayer)
+		if (not classID) or classes[classID].type == "psycho" then 
+			setObjectiveVisibleToPlayer(thePlayer, data.objectives.activeObjective, false)
+			return 
+		end
 		
-		local desc = data.objectives[data.objectives.activeObjective].desc or "-NO DESCRIPTION-"
+		if data.objectives.pmVisited or teams.goodGuys[classes[classID].type] then
+			local desc = data.objectives[data.objectives.activeObjective].desc or "-NO DESCRIPTION-"
 		
-		sendGameText( thePlayer, "PM Objective: " .. desc .. "\nObjectives left: " .. (options.objectivesToFinish - data.objectives.finished), 10000, sampTextdrawColours.w, nil, 1.2, nil, nil, 2 )
+			sendGameText(thePlayer, "PM Objective: " .. desc .. "\nObjectives left: " .. (options.objectivesToFinish - data.objectives.finished), 10000, sampTextdrawColours.w, nil, 1.2, nil, nil, 2)
 		
-		setElementVisibleTo( data.objectives[data.objectives.activeObjective].blip, thePlayer, true )
-		setElementVisibleTo( data.objectives[data.objectives.activeObjective].marker, thePlayer, true )
+			setObjectiveVisibleToPlayer(thePlayer, data.objectives.activeObjective)
+		else
+			sendGameText(thePlayer, "PM Objectives left: " .. (options.objectivesToFinish - data.objectives.finished), 8000, sampTextdrawColours.w, nil, 1.2, nil, nil, 2)
+			setObjectiveVisibleToPlayer(thePlayer, data.objectives.activeObjective, false)
+		end
 	end
 end
 
+function setObjectiveVisibleToPlayer(player, objective, visible)
+	if visible == nil then
+		visible = true
+	end
+
+	setElementVisibleTo(data.objectives[objective].blip, player, visible)
+	setElementVisibleTo(data.objectives[objective].marker, player, visible)
+end
 
 function setupNewObjective(first)
 	if data.objectives.activeObjective then
@@ -237,9 +261,9 @@ function setupNewObjective(first)
 
 	data.objectives.activeObjective = data.objectiveRandomizer[randomObjective]
 	
-	for _, value in ipairs(getElementsByType("player")) do
-		if value and isElement(value) and isPlayerActive(value) then
-			setupActiveObjectiveFor(value) 
+	for _, player in ipairs(getElementsByType("player")) do
+		if player and isElement(player) and isPlayerActive(player) then
+			showActiveObjectiveFor(player) 
 		end 
 	end
 end
@@ -250,9 +274,9 @@ function clearObjective()
 		data.objectives[data.objectives.activeObjective].enterTime = nil
 		data.objectives.pmOnObjective = nil
 		
-		for _, p in ipairs( getElementsByType( "player" ) ) do
-			if p and isElement( p ) and getPlayerClassID( p ) and teams["goodGuys"][classes[getPlayerClassID( p )].type] == true then
-				clearObjectiveTextFor( p )	
+		for _, p in ipairs(getElementsByType("player")) do
+			if p and isElement(p) and getPlayerClassID(p) and teams["goodGuys"][classes[getPlayerClassID(p)].type] == true then
+				clearObjectiveTextFor(p)	
 			end
 		end	
 	end
@@ -269,5 +293,5 @@ function setupObjectiveHelpPromptTimer()
 				triggerHelpEvent(currentPM, "OBJECTIVE_NUDGE")
 			end
 		end,
-	60000, 0)
+	60000 * 1.5, 0)
 end
