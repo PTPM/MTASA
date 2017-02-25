@@ -823,6 +823,12 @@ function resetPlayerRound( thePlayer )
 	
 	setElementData( thePlayer, "ptpm.score.class", nil )
 	setElementData(thePlayer, "ptpm.waterHealthPenaltyTick", nil, false)
+
+	local theTimer = getElementData(thePlayer, "ptpm.leaveClassTimer")
+	if isTimer(theTimer) then
+		killTimer(theTimer)
+		setElementData(thePlayer, "ptpm.leaveClassTimer", nil, false)
+	end	
 	
 	setPlayerTeam( thePlayer, nil )
 end

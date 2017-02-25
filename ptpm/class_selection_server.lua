@@ -255,7 +255,7 @@ function playerClassSelectionAccept(thePlayer, classID, notify)
 		notifyTeamAvailability()
 	end
 
-	bindKey(thePlayer, "f4", "down", classSelectionAfterTimer)
+	bindKey(thePlayer, "f4", "down", "leaveclass")
 end
 
 function notifyTeamAvailability()
@@ -281,64 +281,50 @@ function classSelectionRemove(thePlayer)
 	end
 end
 
-function cancelClassSelectionAfterTimer(thePlayer)
-	-- Kill the timer
-	local theTimer = getElementData(thePlayer, "classSelectionRequestTimer")
+function leaveClassAfterTime(thePlayer)
+	-- Pfff... bogus!
+	if (not isPlayerActive(thePlayer)) or getElementData(thePlayer, "ptpm.inClassSelection") or isPedDead(thePlayer) then 
+		return 
+	end
+
+	local theTimer = getElementData(thePlayer, "ptpm.leaveClassTimer")
 
 	if isTimer(theTimer) then
 		killTimer(theTimer)
-		outputChatBox( "Class selection cancelled.", thePlayer, unpack( colour.personal ) )
-		
-		-- Allow to cancel by pressing F4 again
-		unbindKey(thePlayer, "f4", "down", cancelClassSelectionAfterTimer)
-		bindKey( thePlayer, "f4", "down", classSelectionAfterTimer )
-	end
-end
+		setElementData(thePlayer, "ptpm.leaveClassTimer", nil, false)
 
-function classSelectionAfterTimer(thePlayer)
-	-- Pfff... bogus!
-	if not isPlayerActive(thePlayer) or getElementData(thePlayer, "ptpm.inClassSelection") then 
-		return 
-	end
-	
-	if isPedDead( thePlayer ) then return end
+		outputChatBox("Leave class cancelled.", thePlayer, unpack(colour.personal))
+		return
+	end	
 
-	local classID = getPlayerClassID( thePlayer )
-	if classes[classID].type == "pm" and not isPlayerOp( thePlayer ) then
-		outputChatBox( "The prime minister must use /swapclass.", thePlayer, unpack( colour.personal ) )
+	local classID = getPlayerClassID(thePlayer)
+
+	if classes[classID].type == "pm" and not isPlayerOp(thePlayer) then
+		outputChatBox("The prime minister must use /swapclass.", thePlayer, unpack(colour.personal))
 		return
 	end
 
 	-- Set the timer
-	outputChatBox( "Returning to class selection in 5 seconds...", thePlayer, unpack( colour.personal ) )
+	outputChatBox("Returning to class selection in 5 seconds...", thePlayer, unpack(colour.personal))
 	
 	if isRunning("ptpm_accounts") then
 		exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "leaveclasscount")
 	end
 
-	setElementData ( thePlayer, "classSelectionRequestTimer", 
+	setElementData(thePlayer, "ptpm.leaveClassTimer", 
 		setTimer(
-			function( player )
+			function(player)
 				-- outputChatBox( "Back in class select.", player, unpack( colour.personal ) )
-				if player and isElement( player ) then
-					initClassSelection( player, true )
-					unbindKey(thePlayer, "f4", "down", cancelClassSelectionAfterTimer)
-					bindKey( thePlayer, "f4", "down", classSelectionAfterTimer )
+				if player and isElement(player) and not data.roundEnded then
+					initClassSelection(player, true)
+					unbindKey(thePlayer, "f4", "down", "leaveclass")
 				end
 			end,
-		5000, 1, thePlayer ) 
-	, false )
-	
-	-- Allow to cancel by pressing F4 again
-	unbindKey( thePlayer, "f4", "down", classSelectionAfterTimer )
-	bindKey(thePlayer, "f4", "down", cancelClassSelectionAfterTimer)	
+		5000, 1, thePlayer) 
+	, false)
 end
+addCommandHandler("leaveclass", leaveClassAfterTime)
 
-function classSelectionAfterDeath( thePlayer ) -- Legacy
-	unbindKey( thePlayer, "f4", "down", classSelectionAfterDeath )
-	setElementData( thePlayer, "ptpm.classSelectAfterDeath", true, false )
-	outputChatBox( "Returning to class selection after next death.", thePlayer, unpack( colour.personal ) )
-end
 
 function reclassCommand( thePlayer, commandName, className )
 	if data.roundEnded then return end
