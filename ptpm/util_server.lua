@@ -508,18 +508,24 @@ function jetPackHandler( thePlayer )
 end
 
 
-function showOps( thePlayer )
-	for _, p in ipairs( getElementsByType( "player" ) ) do
-		local sOps = ""
-		if p and isElement( p ) and isPlayerOp( p ) then
-			local name = getPlayerName( p ) or ""
-			sOps = sOps .. name .. ", "
+function showOps(thePlayer)
+	local sOps = ""
+
+	for _, p in ipairs(getElementsByType("player")) do		
+		if p and isElement(p) and isPlayerOp(p) then
+			local name = getPlayerName(p) or ""
+			sOps = (#sOps > 0 and ", " or "") .. sOps .. name
 		end
-		outputChatBox( "Online operator(s): " .. sOps, thePlayer, unpack( colour.personal ) )
+	end
+
+	if #sOps > 0 then
+		outputChatBox("Online operator(s): " .. sOps, thePlayer, unpack(colour.personal))
+	else
+		outputChatBox("There are no online operators.", thePlayer, unpack(colour.personal))
 	end
 end
-addCommandHandler( "ops", showOps )
-addCommandHandler( "admins", showOps )
+addCommandHandler("ops", showOps)
+addCommandHandler("admins", showOps)
 
 
 function attach(ob1,ob2,x1,y1,z1,rx1,ry1,rz1,x2,y2,z2,rx2,ry2,rz2)
