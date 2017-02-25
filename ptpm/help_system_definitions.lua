@@ -123,6 +123,12 @@ function helpSystemCreateDefinitions()
 		cooldown = 30000,
 	})	
 
+	registerHelpEvent("TASK_EXPLAIN", {
+		text = "This is a [RED]task[WHITE]. Only [PM]Prime Minister[WHITE] can use it. It will give him a [PTPM]bonus[WHITE], if he can complete it.",
+		condition = {fn = conditionTaskExplanationComparison, args = {"__player"}},
+		cooldown = 60000 * 2,
+	})		
+
 
 	registerHelpEvent("COMMAND_RECLASS", {
 		text = "You can change team by using [PTPM]/reclass[WHITE]. For example: [PTPM]/reclass [TERRORIST]terrorist",

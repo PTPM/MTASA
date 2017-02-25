@@ -291,7 +291,7 @@ end
 function conditionProcessor(player, fn, args)
 	for i, arg in ipairs(args) do
 		if arg == "__player" then
-			arg = player
+			args[i] = player
 		end
 	end
 
@@ -301,7 +301,11 @@ end
 
 function conditionStatNumberComparison(player, statName, greater, value)
 	if not isRunning("ptpm_accounts") then
-		return 0
+		if greater then
+			return 0 > value
+		else
+			return 0 < value
+		end
 	end
 
 	local stat = tonumber(exports.ptpm_accounts:getPlayerStatistic(player, statName)) or 0
@@ -322,6 +326,22 @@ function conditionStatNumberComparisons(player, ...)
 	end
 
 	return true
+end
+
+function conditionTaskExplanationComparison(player)
+	if conditionStatNumberComparison(player, "tasksplayed", true, 8) then
+		return false
+	end
+
+	if (not currentPM) then
+		return true
+	end
+
+	local x, y, z = getElementPosition(player)
+
+	local px, py, pz = getElementPosition(currentPM)
+
+	return distanceSquared(x, y, z, px, py, pz) > 90000 -- 300 ^ 2
 end
 
 

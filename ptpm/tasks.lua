@@ -63,6 +63,12 @@ addEventHandler("onTaskEnter", root,
 					data.tasks.helpTimer = nil
 				end
 			end
+		else
+			local classID = getPlayerClassID(thePlayer)
+
+			if teams.goodGuys[classes[classID].type] and classes[classID] ~= "pm" then
+				triggerHelpEvent(thePlayer, "TASK_EXPLAIN")
+			end
 		end
 	end
 )
