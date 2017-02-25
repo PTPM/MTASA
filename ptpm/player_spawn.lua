@@ -311,11 +311,13 @@ function makePlayerSpawn( thePlayer )
 	end	
 	
 	if data.currentMap.hasTasks then
-		clearTaskTextFor( thePlayer )
+		clearTaskTextFor(thePlayer)
+
+		showTasksFor(thePlayer)
 		
 		if data.tasks and data.tasks.activeTask then
 			if classes[class].type ~= "psycho" then
-				setupTaskTextFor( p )
+				setupTaskTextFor(p)
 			end
 		end
 	end

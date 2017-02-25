@@ -25,30 +25,32 @@ taskFinishText = {
 	["blastDoor"] = "The PM has triggered the blast door, sealing the main corridor."
 } 
 
-addEvent( "onTaskEnter", false )
-addEventHandler( "onTaskEnter", root,
-	function( thePlayer )
-		if classes[getPlayerClassID( thePlayer )].type == "pm" and #getElementsByType("task", runningMapRoot) > 0 then
-			local taskElement = getElementParent( source )
+addEvent("onTaskEnter", false)
+addEventHandler("onTaskEnter", root,
+	function(thePlayer)
+		if classes[getPlayerClassID(thePlayer)].type == "pm" and #getElementsByType("task", runningMapRoot) > 0 then
+			local taskElement = getElementParent(source)
 			
 			if source == data.tasks[taskElement].taskArea then
 				data.tasks.activeTask = taskElement
 				
 				data.tasks[taskElement].enterTime = getTickCount()
 				
-				setBlipColor( data.tasks[taskElement].blip, 0, 150, 0, 255 )
+				setBlipColor(data.tasks[taskElement].blip, 0, 150, 0, 255)
 					
-				for _, p in ipairs( getElementsByType( "player" ) ) do
-					if p and isElement( p ) then
-						local classID = getPlayerClassID( p )
+				for _, p in ipairs(getElementsByType("player")) do
+					if p and isElement(p) then
+						local classID = getPlayerClassID(p)
+
 						if classID then
 							if classes[classID].type ~= "psycho" then
-								drawStaticTextToScreen( "draw", p, "taskText", data.tasks[taskElement].time/1000 .. " seconds until PM\'s task is complete.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center" )
-								drawStaticTextToScreen( "draw", p, "taskDesc", "Task description:\n" .. data.tasks[taskElement].desc, "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center" ) 						
+								drawStaticTextToScreen("draw", p, "taskText", data.tasks[taskElement].time/1000 .. " seconds until PM\'s task is complete.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center")
+								drawStaticTextToScreen("draw", p, "taskDesc", "Task description:\n" .. data.tasks[taskElement].desc, "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center") 						
 							end
 							
 							if classes[classID].type == "terrorist" then
-								sendGameText( p, "The Prime Minister is attempting to complete a task!\nStop him before it is too late!", 5000, sampTextdrawColours.r, nil, 1.3, nil, nil, 3 )
+								setTaskVisibleToPlayer(p, taskElement, true)
+								sendGameText(p, "The Prime Minister is attempting to complete a task!\nStop him before it is too late!", 5000, sampTextdrawColours.r, nil, 1.3, nil, nil, 3)
 							end
 						end
 					end
@@ -66,22 +68,32 @@ addEventHandler( "onTaskEnter", root,
 )
 
 
-addEvent( "onTaskLeave", false )
-addEventHandler( "onTaskLeave", root,
-	function( thePlayer )
-		if classes[getPlayerClassID( thePlayer )].type == "pm" and #getElementsByType("task", runningMapRoot) > 0 then
-			local taskElement = getElementParent( source )
+addEvent("onTaskLeave", false)
+addEventHandler("onTaskLeave", root,
+	function(thePlayer)
+		if classes[getPlayerClassID(thePlayer)].type == "pm" and #getElementsByType("task", runningMapRoot) > 0 then
+			local taskElement = getElementParent(source)
 			
 			if data.tasks.activeTask then -- there is an active task
 				if data.tasks[taskElement].taskArea == source then -- left task area
 					data.tasks.activeTask = nil
 					data.tasks[taskElement].enterTime = nil
-					drawStaticTextToScreen( "delete", root, "taskText" )
-					drawStaticTextToScreen( "delete", root, "taskDesc" )
-					
-					setBlipColor( data.tasks[taskElement].blip, 255, 0, 0, 170 )
+					drawStaticTextToScreen("delete", root, "taskText")
+					drawStaticTextToScreen("delete", root, "taskDesc")
+
+					setBlipColor(data.tasks[taskElement].blip, 255, 0, 0, 170)
 
 					setupTaskHelpPromptTimer()
+
+					for _, p in ipairs(getElementsByType("player")) do
+						if p and isElement(p) then
+							local classID = getPlayerClassID(p)
+
+							if classID and classes[classID].type == "terrorist" then
+								setTaskVisibleToPlayer(p, taskElement, false)
+							end
+						end
+					end
 				end
 			end
 		end	
@@ -90,21 +102,21 @@ addEventHandler( "onTaskLeave", root,
 
 
 
-function checkTasks( players )
+function checkTasks(players)
 	if data.tasks.activeTask then
 		if not data.roundEnded then
 			if data.tasks[data.tasks.activeTask].time >= 0 then
 				-- dont want to show this to psychos
-				for _, p in ipairs( players ) do
-					if p and isElement( p ) then
-						if getPlayerClassID( p ) and classes[getPlayerClassID( p )].type ~= "psycho" then
-							drawStaticTextToScreen( "update", p, "taskText", data.tasks[data.tasks.activeTask].time/1000 .. " seconds until PM\'s task is complete.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center" )
+				for _, p in ipairs(players) do
+					if p and isElement(p) then
+						if getPlayerClassID(p) and classes[getPlayerClassID(p)].type ~= "psycho" then
+							drawStaticTextToScreen("update", p, "taskText", data.tasks[data.tasks.activeTask].time/1000 .. " seconds until PM\'s task is complete.", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center")
 						end
 					end
 				end
 				data.tasks[data.tasks.activeTask].time = data.tasks[data.tasks.activeTask].time - 1000
 			else
-				finishedTask( data.tasks.activeTask )
+				finishedTask(data.tasks.activeTask)
 			end
 		end
 	end
@@ -112,35 +124,35 @@ end
 
 
 
-function finishedTask( theTask )
-	drawStaticTextToScreen( "delete", root, "taskText" )
-	drawStaticTextToScreen( "delete", root, "taskDesc" )
+function finishedTask(theTask)
+	drawStaticTextToScreen("delete", root, "taskText")
+	drawStaticTextToScreen("delete", root, "taskDesc")
 	
-	for _, p in ipairs( getElementsByType( "player" ) ) do
-		if p and isElement( p ) then
-			local classID = getPlayerClassID( p )
+	for _, p in ipairs(getElementsByType("player")) do
+		if p and isElement(p) then
+			local classID = getPlayerClassID(p)
 			if classID then
 				if classes[classID].type ~= "psycho" then
-					drawStaticTextToScreen( "draw", p, "taskFinish", "PM has completed his task.\n\n" .. data.tasks[theTask].finishText, "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center" )						
+					drawStaticTextToScreen("draw", p, "taskFinish", "PM has completed his task.\n\n" .. data.tasks[theTask].finishText, "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center")						
 				end
 			end
 		end
 	end
 		
-	setTimer( drawStaticTextToScreen, 10000, 1, "delete", root, "taskFinish" ) -- ok timer
+	setTimer(drawStaticTextToScreen, 10000, 1, "delete", root, "taskFinish") -- ok timer
 
 	data.tasks.finished = data.tasks.finished + 1
 	
 	if currentPM then
 		triggerHelpEvent(currentPM, "TASK_COMPLETE")
 
-		setElementHealth( currentPM, 100.0 )
-		setPedArmor( currentPM, 100.0 )
+		setElementHealth(currentPM, 100.0)
+		setPedArmor(currentPM, 100.0)
 		
 		local taskType = data.tasks[theTask].type
 		
 		if taskType == "mini" then
-			giveWeapon( currentPM, 38, 30, not getPedOccupiedVehicle( currentPM ) and true or false )
+			giveWeapon(currentPM, 38, 30, not getPedOccupiedVehicle(currentPM) and true or false)
 		elseif taskType == "hpPenalty" then
 			for i = 1, #classes, 1 do
 				if classes[i] and classes[i].type == "terrorist" then
@@ -148,15 +160,15 @@ function finishedTask( theTask )
 				end
 			end
 		elseif taskType == "weapons" then
-			local isNotInVehicle = not getPedOccupiedVehicle( currentPM ) and true or false
-			giveWeapon( currentPM, 24, 15, isNotInVehicle ) -- deagle
-			giveWeapon( currentPM, 32, 120, isNotInVehicle ) -- tec9
-			giveWeapon( currentPM, 30, 80, isNotInVehicle )
+			local isNotInVehicle = not getPedOccupiedVehicle(currentPM) and true or false
+			giveWeapon(currentPM, 24, 15, isNotInVehicle) -- deagle
+			giveWeapon(currentPM, 32, 120, isNotInVehicle) -- tec9
+			giveWeapon(currentPM, 30, 80, isNotInVehicle)
 		elseif taskType == "keys" then
 			data.tasks.keys = true
 		elseif taskType == "radar" then
 			data.tasks.pmRadarTime = 60
-			removePlayerBlip( currentPM )
+			removePlayerBlip(currentPM)
 		elseif taskType == "accelerateTime" then
 			local timePassed = getTickCount() - data.roundStartTime
 			local newTimePassed = timePassed + 240000
@@ -168,20 +180,20 @@ function finishedTask( theTask )
 			
 			local time = exports.missiontimer:getMissionTimerTime(data.timer)
 			
-			exports.missiontimer:setMissionTimerTime(data.timer,((time - 240000) > 0) and time - 240000 or 1000)
+			exports.missiontimer:setMissionTimerTime(data.timer, ((time - 240000) > 0) and time - 240000 or 1000)
 		elseif taskType == "medic" then
-			classes[getPlayerClassID( currentPM )].medic = true
+			classes[getPlayerClassID(currentPM)].medic = true
 		elseif taskType == "safehouse" then
-			for _, zone in pairs( getElementsByType( "safezone", runningMapRoot ) ) do
-				enableSafezone( zone )
+			for _, zone in pairs(getElementsByType("safezone", runningMapRoot)) do
+				enableSafezone(zone)
 			end
 		elseif taskType == "hpBonus" then
 			data.pmHealthBonus = 3
 		elseif taskType == "blastDoor" then
-			local objects = getElementsByType( "object", runningMapRoot )
-			for _, value in ipairs( objects ) do
-				if getElementData( value, "blastDoor" ) == "true" then -- if it's a blast door object
-					moveObject( value, tonumber(getElementData( value, "speed" )), tonumber(getElementData( value, "endX" )), tonumber(getElementData( value, "endY" )), tonumber(getElementData( value, "endZ" )) )
+			local objects = getElementsByType("object", runningMapRoot)
+			for _, value in ipairs(objects) do
+				if getElementData(value, "blastDoor") == "true" then -- if it's a blast door object
+					moveObject(value, tonumber(getElementData(value, "speed")), tonumber(getElementData(value, "endX")), tonumber(getElementData(value, "endY")), tonumber(getElementData(value, "endZ")))
 				end
 			end
 		end
@@ -200,16 +212,16 @@ function finishedTask( theTask )
 end
 
 
-function clearTaskTextFor( thePlayer )
-	drawStaticTextToScreen( "delete", thePlayer, "taskText" )
-	drawStaticTextToScreen( "delete", thePlayer, "taskDesc" )
-	drawStaticTextToScreen( "delete", thePlayer, "taskFinish" )
+function clearTaskTextFor(thePlayer)
+	drawStaticTextToScreen("delete", thePlayer, "taskText")
+	drawStaticTextToScreen("delete", thePlayer, "taskDesc")
+	drawStaticTextToScreen("delete", thePlayer, "taskFinish")
 end
 
 
-function setupTaskTextFor( thePlayer )
-	drawStaticTextToScreen( "draw", thePlayer, "taskText", "", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center" )
-	drawStaticTextToScreen( "draw", thePlayer, "taskDesc", "", "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center" ) 						
+function setupTaskTextFor(thePlayer)
+	drawStaticTextToScreen("draw", thePlayer, "taskText", "", "screenX*0.775", "screenY*0.28", "screenX*0.179", 40, colour.important, 1, "clear", "top", "center")
+	drawStaticTextToScreen("draw", thePlayer, "taskDesc", "", "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center") 						
 end
 
 
@@ -217,10 +229,38 @@ function clearTask()
 	if data.tasks and data.tasks.activeTask then
 		data.tasks.activeTask = nil
 		
-		drawStaticTextToScreen( "delete", root, "taskText" )
-		drawStaticTextToScreen( "delete", root, "taskDesc" )
-		drawStaticTextToScreen( "delete", root, "taskFinish" )
+		drawStaticTextToScreen("delete", root, "taskText")
+		drawStaticTextToScreen("delete", root, "taskDesc")
+		drawStaticTextToScreen("delete", root, "taskFinish")
 	end
+end
+
+function showTasksFor(player)
+	local classID = getPlayerClassID(player)
+	local visible = true
+
+	if (not classID) or classes[classID].type == "psycho" or classes[classID].type == "terrorist" then 
+		visible = false
+	end
+
+	for task, info in pairs(data.tasks) do
+		if isElement(task) and info.blip and info.marker then
+			if task == data.tasks.activeTask then
+				setTaskVisibleToPlayer(player, task, classes[classID].type ~= "psycho")
+			else
+				setTaskVisibleToPlayer(player, task, visible)
+			end
+		end
+	end
+end
+
+function setTaskVisibleToPlayer(player, task, visible)
+	if visible == nil then
+		visible = true
+	end
+
+	setElementVisibleTo(data.tasks[task].blip, player, visible)
+	setElementVisibleTo(data.tasks[task].marker, player, visible)
 end
 
 function setupTaskHelpPromptTimer()
