@@ -349,6 +349,10 @@ addEventHandler( "onPlayerQuit", root,
 		clearPickupData( source )
 		
 		if currentPM and source == currentPM then
+			local r, g, b = getPlayerColour(source)
+			local playerName = getPlayerName(source)
+			outputChatBox(playerName .. " is nolonger " .. teamMemberName["pm"] .. ".", root, r, g, b, false)
+
 			clearTask()
 			clearObjective()
 			
