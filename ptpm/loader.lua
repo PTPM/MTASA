@@ -527,7 +527,9 @@ function ptpmMapStart( map )
 				end
 			end
 			data.roundTicks = 0
-			data.roundTimer = setTimer( roundTick, 1000, 0 )
+			data.roundTimer = setTimer(roundTick, 1000, 0)
+			data.roundQuickTicks = 0
+			data.roundQuickTimer = setTimer(roundQuickTick, 400, 0)
 			options.playerPrepareTimer = nil
 		end,
 	4000, 1, currentPlayers )
@@ -626,7 +628,15 @@ function ptpmMapStop( map )
 		data.roundTimer = nil
 		data.roundTicks = 0
 	end
-	
+
+	if data.roundQuickTimer then
+		if isTimer(data.roundQuickTimer) then
+			killTimer(data.roundQuickTimer)
+		end
+		data.roundQuickTimer = nil
+		data.roundQuickTicks = 0
+	end
+
 	if options.swapclass and options.swapclass.target then
 		if options.swapclass.timer then
 			if isTimer( options.swapclass.timer ) then
@@ -674,7 +684,6 @@ function ptpmMapStop( map )
 
 		election.endTimer = nil
 	end
-	--drawStaticTextToScreen( "delete", root, "roundTimer" )
 end
 addEventHandler( "onGamemodeMapStop", root, ptpmMapStop )
 

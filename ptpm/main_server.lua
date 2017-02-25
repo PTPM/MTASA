@@ -648,6 +648,35 @@ function roundTick()
 	end
 end
 
+function roundQuickTick()
+	if data.roundEnded then
+		return
+	end
+	
+	data.roundQuickTicks = data.roundQuickTicks + 1
+
+	if currentPM and isElement(currentPM) then
+		local health = getElementHealth(currentPM)
+
+		if health < 90 then
+			local px, py, pz = getElementPosition(currentPM)
+
+			for _, player in ipairs(getElementsByType("player")) do
+				local classID = getPlayerClassID(player)
+
+				if classID and classes[classID].medic and (classes[classID].type == "police" or classes[classID].type == "bodyguard") then
+					local x, y, z = getElementPosition(player)
+
+					if distanceSquared(px, py, pz, x, y, z) <= 1 then
+						playerHealPlayer(player, currentPM, 0)
+						break
+					end
+				end
+			end
+		end
+	end
+end
+
 
 function onColShapeHit( thePlayer, dimensionMatches )
 	if not getElementType( thePlayer ) == "player" or not getPlayerClassID( thePlayer ) then return end

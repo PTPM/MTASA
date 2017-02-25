@@ -319,8 +319,8 @@ function playerHealPlayer( medic, patient, distance )
 	setElementHealth( medic, medicHealth - medicine )
 	setElementHealth( patient, patientHealth + medicine*effectiveness )
 	local healthDiff = string.format("%.1f", medicine*effectiveness)
-	outputChatBox( "Gave " .. healthDiff .. " health to patient.", medic, unpack( colour.personal ) )
-	outputChatBox( "You were healed by " .. healthDiff .. " health.", patient, unpack( colour.personal ) )
+	outputChatBox( "Gave " .. healthDiff .. " health to " .. getPlayerName(patient) .. ".", medic, unpack( colour.personal ) )
+	outputChatBox( getPlayerName(medic) .. " healed you by " .. healthDiff .. " health.", patient, unpack( colour.personal ) )
 
 	return true
 end
