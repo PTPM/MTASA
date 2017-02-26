@@ -66,6 +66,7 @@ function dxDrawChargingDot(x,y,colour,size)
 end
 
 function drawWeaponReloaderHUD()
+	if currentAssaultVehicle==nil then return end
 
 	dxDrawText( getElementData(currentAssaultVehicle,"vehAmmo") , reloadWeaponsHudElement.x,reloadWeaponsHudElement.y,reloadWeaponsHudElement.x,reloadWeaponsHudElement.y,colours.white,sf_(1),font.base, "center","center", false, false, false, true, false)
 
@@ -82,6 +83,8 @@ function drawWeaponReloaderHUD()
 end
 
 function drawOutOfAmmoHUD()
+	if currentAssaultVehicle==nil then return end
+	
 	dxDrawText( "0" , reloadWeaponsHudElement.x,reloadWeaponsHudElement.y,reloadWeaponsHudElement.x,reloadWeaponsHudElement.y,colours.white,sf_(1),font.base, "center","center", false, false, false, true, false)
 	
 	for i = 0,reloadWeaponsHudElement.reloaderDots do
@@ -135,11 +138,7 @@ function limitedKeyPress(key, keyState, speed)
 	-- Apparently this function doesn't always get unbound correctly despite all the listed events
 	-- so an additional check is needed
 	if currentAssaultVehicle==nil or getElementData(currentAssaultVehicle,"vehNerfed")==false then
-	
-		currentAssaultVehicle = nil
-		for _,v in ipairs({"vehicle_fire", "vehicle_secondary_fire"} ) do
-			unbindKey(v, "both", limitedKeyPress)
-		end
+		leftAssaultVehicle(vehicle)
 		return
 	end
 	
@@ -197,13 +196,16 @@ function enterAssaultVehicle(vehicle)
 end
 
 function leftAssaultVehicle(vehicle)
-	--outputDebugString("Left restricted vehicle")
-	currentAssaultVehicle = nil
+	outputDebugString("Left restricted vehicle")
 	
-	local vehFireControl = getElementData(vehicle, "vehControl")
-	for _,v in ipairs(vehFireControl) do
-		unbindKey(v, "both", limitedKeyPress)
+	local vehFireControl = getElementData(currentAssaultVehicle, "vehControl")
+
+	for _,key in ipairs(vehFireControl) do
+		toggleControl(key, true)
+		unbindKey(key, "both", limitedKeyPress)
 	end
+	
+	currentAssaultVehicle = nil
 end
 
 
@@ -211,22 +213,33 @@ end
 ---------------------------------------------
 -- BINDING
 ---------------------------------------------
-
-addEventHandler("onClientVehicleEnter", getRootElement(),
-	function ( thePlayer, seat )
+function justPunchItAgain()
+	local actualCurrentVehicle = getPedOccupiedVehicle(localPlayer)
 	
-		-- Check if this vehicle warrants a nerf
-		if getElementData(source, "vehNerfed") then
-			enterAssaultVehicle(source)
-		end
+	if actualCurrentVehicle and getElementData(actualCurrentVehicle, "vehNerfed") then
+		enterAssaultVehicle(actualCurrentVehicle)
+	end
+end
+
+addEventHandler("onClientVehicleEnter", getRootElement(), 
+	function ( thePlayer, seat ) 
+		if getElementData(source, "vehNerfed") then 
+			outputDebugString("Client Veh Enter")
+			enterAssaultVehicle(source)	
+		end 
 	end
 )
 
+-- Sometimes onClientVehicleEnter doesn't get called...
 addEvent( "delayedRestrictedVehicleDetection", true )
-addEventHandler( "delayedRestrictedVehicleDetection", localPlayer, function ( fpsValue )
-	outputDebugString("delayedRestrictedVehicleDetection")
-    enterAssaultVehicle(getPedOccupiedVehicle(localPlayer))
+addEventHandler( "delayedRestrictedVehicleDetection", localPlayer, function()
+	justPunchItAgain()
 end )
+
+-- Well, sometimes apparently neither onClientVehicleEnter or onVehicleEnter gets called, so just as a little backup...
+setTimer(function()
+	justPunchItAgain()
+end , 5000, 0)
 
 
 ---------------------------------------------
