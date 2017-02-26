@@ -147,11 +147,11 @@ addEventHandler( "onResourceStart", resourceRoot,
 		setTime( math.random( 1, 24 ), 0 )
 		setMinuteDuration( 3000 )
 		
-		local players = getElementsByType( "player" )
-		for _, p in ipairs( players ) do
-			setupIdForPlayer( p )
+		for _, p in ipairs(getElementsByType("player")) do
+			setupIdForPlayer(p)
 			local timestamp = getRealTime().timestamp
-			setElementData( p, "ptpm.sessionjoin", timestamp, false )
+			setElementData(p, "ptpm.sessionjoin", timestamp, false)
+			setElementData(p, "ptpm.lastMapVote", nil, false)
 		end
 
 		spam.resource = getResourceFromName("antiflood")
@@ -652,10 +652,10 @@ function roundQuickTick()
 	if data.roundEnded then
 		return
 	end
-	
+
 	data.roundQuickTicks = data.roundQuickTicks + 1
 
-	if currentPM and isElement(currentPM) then
+	if currentPM and isElement(currentPM) and not isPedDead(currentPM) then
 		local health = getElementHealth(currentPM)
 
 		if health < 90 then

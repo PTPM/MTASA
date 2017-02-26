@@ -220,7 +220,7 @@ function showHelpEvent(player, id)
 		duration, 
 		help.events[id].image, 
 		help.events[id].linkHelpManager and id or nil,
-		currentHelp ~= nil
+		help.events[id].force or currentHelp ~= nil
 	)
 
 	if help.events[id].increment and isRunning("ptpm_accounts") then

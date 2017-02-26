@@ -694,6 +694,7 @@ function ptpmLoginResourceStop( resource )
 	settings.loginHandled = nil
 end
 
+-- called on resource stop & player quit
 function resetPlayer( thePlayer )
 	if getElementData(thePlayer, "ptpm.electionCandidate") then
 		election.removeCandidate(thePlayer)
@@ -750,6 +751,7 @@ function resetPlayer( thePlayer )
 	setElementData( thePlayer, "ptpm.sessionjoin", nil, false )
 end
 
+-- called on map stop & from resetPlayer
 function resetPlayerRound( thePlayer )
 	-- Round specific info should be reset
 	setElementData( thePlayer, "ptpm.classID", nil )
@@ -766,6 +768,7 @@ function resetPlayerRound( thePlayer )
 	end
 	setElementData( thePlayer, "ptpm.activeCamera", nil, false )
 	setElementData( thePlayer, "ptpm.currentCameraID", nil, false )
+
 	local gettingOffCamera = getElementData( thePlayer, "ptpm.gettingOffCamera" )
 	if gettingOffCamera then
 		if isTimer( gettingOffCamera ) then

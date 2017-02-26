@@ -117,7 +117,15 @@ function initClassSelection(thePlayer, updateBalanceAndNotify)
 					)
 	setCameraInterior(thePlayer, data.wardrobe.interior)
 	
-	triggerClientEvent(thePlayer, "enterClassSelection", root, runningMapName, getRunningMapFriendlyNameWrapped(), classes, balance.full, election.active, #election.candidates)
+	triggerClientEvent(thePlayer, "enterClassSelection", root, 
+		runningMapName, 
+		getRunningMapFriendlyNameWrapped(), 
+		classes, 
+		balance.full, 
+		election.active, 
+		#election.candidates, 
+		getElementData(thePlayer, "ptpm.lastMapVote")
+	)
 	
 	if data.currentMap.hasObjectives then
 		clearObjectiveTextFor(thePlayer) 

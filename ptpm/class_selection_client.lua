@@ -6,7 +6,13 @@ classSelection = {
 	visible = false,
 	hiding = false,
 	spawnMessage = "",
-	lastRequest = 0
+	lastRequest = 0,
+
+	rejection = {
+		show = false,
+		animProgress = 0,
+		animSpeed = 3,
+	}
 }
 local lastTick = 0
 local delta = 0
@@ -19,6 +25,9 @@ local election = {
 	candidates = 0,
 	cleared = false,
 	myElectors = 1,
+	requirements = {
+		lastVote = "",
+	},
 }
 
 
@@ -185,7 +194,7 @@ function classSelectionSetup()
 end
 
 -- called when the player is sent to the class selection screen
-function enterClassSelection(mapName, friendlyMapName, classes, isFull, electionActive, numberOfCandidates)
+function enterClassSelection(mapName, friendlyMapName, classes, isFull, electionActive, numberOfCandidates, lastVote)
 	if classSelection.visible then
 		if not classSelection.hiding then
 			return
@@ -213,6 +222,8 @@ function enterClassSelection(mapName, friendlyMapName, classes, isFull, election
 		election.entered = false
 		election.candidates = numberOfCandidates
 		election.cleared = false
+		election.requirements.lastVote = lastVote or ""
+		election.requirements.currentMapName = mapName
 	else
 		onElectionFinished()
 		-- ensure the poll flower is hidden
@@ -308,7 +319,12 @@ addEventHandler("enterClassSelection", root, enterClassSelection)
 -- called every time information on the screen needs updating (team availability)
 function updateClassSelection(isFull, numberOfCandidates)
 	if isFull then
+		if election.active and not doesPlayerMeetPMRequirements() then
+			flowers.pm.isBlocked = true
+		end
+
 		flowers.pm.isFull = isFull.pm
+
 		setTooltip(flowers.pm)
 
 		for _, petal in ipairs(flowers.protect.petals) do
@@ -351,6 +367,10 @@ function leaveClassSelection()
 	currentlySelectedPetal = nil
 	currentlySelectedFlower = nil
 	classSelection.hiding = true
+
+	if classSelection.rejection.show then
+		classSelection.rejection.show = false
+	end
 
 	unbindKey("arrow_l", "down", scrollClassSelection)
 	unbindKey("arrow_r", "down", scrollClassSelection)
@@ -410,6 +430,12 @@ function onElectionFinished(electedPM)
 	election.candidates = 0
 
 	if classSelection.visible and not classSelection.hiding then
+		flowers.pm.isBlocked = false
+
+		if classSelection.rejection.show then
+			classSelection.rejection.show = false
+		end
+
 		if election.entered and electedPM ~= localPlayer then
 			classSelection.spawnMessage = "Select\nyour class"
 		end
@@ -536,6 +562,28 @@ function drawClassSelection()
 		drawFlower(flowers.polls)
 	end
 
+	if election.active and classSelection.rejection.show or classSelection.rejection.animProgress > 0 then
+		local n = 0
+
+		if classSelection.rejection.show then
+			n = getEasingValue(classSelection.rejection.animProgress, "OutBack")
+			classSelection.rejection.animProgress = math.min(1, classSelection.rejection.animProgress + (classSelection.rejection.animSpeed * delta))
+		else
+			n = getEasingValue(classSelection.rejection.animProgress, "OutBack")
+			classSelection.rejection.animProgress = math.max(0, classSelection.rejection.animProgress - ((classSelection.rejection.animSpeed * 1.3) * delta))
+		end
+
+		local width = s(350 * n)
+		local height = s(100 * n)
+		local alpha = math.min(255, 255 * n)
+
+		dxDrawRectangle((screenX - width) / 2, (screenY - height) / 2, width, height, tocolor(0, 0, 0, math.min(235, 235 * n)), flowers.pm.postGUI)
+		dxDrawText("You do not meet the Election requirements", (screenX / 2) - (width / 2) + s(10), (screenY / 2) - (height / 2) + s(20), (screenX / 2) + (width / 2) - s(10), (screenY / 2) - (height / 2) + s(40 * n), tocolor(255, 255, 255, alpha), sfs(1.2), font.small, "center", "top", true, false, flowers.pm.postGUI, false, true)
+		dxDrawLine((screenX / 2) - (width / 2) + s(10), (screenY / 2) - (height / 2) + s(40), (screenX / 2) + (width / 2) - s(10), (screenY / 2) - (height / 2) + s(40), tocolor(colour.ptpm[1], colour.ptpm[2], colour.ptpm[3], alpha), 2, flowers.pm.postGUI)
+	
+		dxDrawText("- You voted for another map", (screenX / 2) - (width / 2) + s(10), (screenY / 2) - (height / 2) + s(60), (screenX / 2) + (width / 2) - s(10), (screenY / 2) - (height / 2) + s(80 * n), tocolor(255, 255, 255, alpha), sfs(1.2), font.small, "center", "top", true, false, flowers.pm.postGUI, false, true)	
+	end
+
 	if classSelection.hiding then
 		font.globalScalar = math.max(0, font.globalScalar - (2.4 * delta))
 	end
@@ -602,7 +650,7 @@ function drawPart(part, x, y, radius)
 		end	
 
 		local backgroundColour = part.isSelected and part.selectedColour or part.backgroundColour
-		if part.isFull then
+		if part.isFull or part.isBlocked then
 			backgroundColour = colour.darkGrey
 		end
 
@@ -614,15 +662,15 @@ function drawPart(part, x, y, radius)
 			local imageOffset = 0
 
 			-- move the central image down a little to simulate being pressed in
-			if part.isSelected and part.isPressed and not part.isFull then
+			if part.isSelected and part.isPressed and not part.isFull and not part.isBlocked then
 				imageOffset = s(2)
 			end
 
-			dxDrawImage(x - drawRadius + s(1), y - drawRadius + s(1) + imageOffset, (drawRadius * 2) - s(2), (drawRadius * 2) - s(2), part.image, 0, 0, 0, part.isFull and colour.darkGrey or colour.white, part.postGUI)	
+			dxDrawImage(x - drawRadius + s(1), y - drawRadius + s(1) + imageOffset, (drawRadius * 2) - s(2), (drawRadius * 2) - s(2), part.image, 0, 0, 0, (part.isFull or part.isBlocked) and colour.darkGrey or colour.white, part.postGUI)	
 		end
 
 		-- draw shaded edges to simulate being pressed in
-		if part.isSelected and not part.isFull then
+		if part.isSelected and not part.isFull and not part.isBlocked then
 			if part.isPressed then
 				dxDrawImageSection(x - drawRadius - s(2), y - drawRadius - s(2) + s(part.shadowOffset or 1), (drawRadius + s(2)) * 2, drawRadius + s(2), 0, 0, part.border.size, part.border.size / 2, part.border.src, 0, 0, 0, colour.black, part.postGUI)
 			else
@@ -675,8 +723,8 @@ function drawTooltip(centerX, centerY, radius, data)
 		data.height = dxGetFontHeight(sfs(1.2), font.small) + 2
 	end
 
-	dxDrawImage(centerX - (data.width / 2), centerY + (radius * 0.65), data.width, data.height, "images/class_selection/asset_choosebutton_neutral.png", 0, 0, 0, tocolor(0, 0, 0, data.alpha * 255), true)
-	dxDrawText(data.text, centerX - (data.width / 2), centerY + (radius * 0.65), centerX + (data.width / 2), centerY + (radius * 0.65) + data.height, tocolor(255, 255, 255, data.alpha * 255), sfs(1.2), font.small, "center", "center", false, false, true, false, false)
+	dxDrawImage(centerX - (data.width / 2), centerY + (radius * 0.65), data.width, data.height, "images/class_selection/asset_choosebutton_neutral.png", 0, 0, 0, tocolor(0, 0, 0, data.alpha * 255), flowers.pm.postGUI)
+	dxDrawText(data.text, centerX - (data.width / 2), centerY + (radius * 0.65), centerX + (data.width / 2), centerY + (radius * 0.65) + data.height, tocolor(255, 255, 255, data.alpha * 255), sfs(1.2), font.small, "center", "center", false, false, flowers.pm.postGUI, false, false)
 
 	if data.alpha < 1 then
 		data.alpha = math.min(data.alpha + 0.06, 1)
@@ -908,6 +956,13 @@ function onFlowerEnter(flower)
 	end
 
 	if flower.hover then
+		if flower == flowers.pm and election.active then
+			if not doesPlayerMeetPMRequirements() then
+				classSelection.rejection.animProgress = 0
+				classSelection.rejection.show = true
+			end
+		end
+
 		if currentlySelectedPetal then
 			onPetalLeave(currentlySelectedPetal.flower, currentlySelectedPetal)
 		end
@@ -921,6 +976,10 @@ end
 function onFlowerLeave(flower)
 	if isUIOverlayVisible() then
 		return
+	end
+
+	if classSelection.rejection.show then
+		classSelection.rejection.show = false
 	end
 
 	--outputDebugString("flower leave")
@@ -979,7 +1038,7 @@ function chooseFlower(flower)
 	end
 
 	if flower == flowers.pm then
-		if flower.isFull then
+		if flower.isFull or (election.active and not doesPlayerMeetPMRequirements()) then
 			return
 		end
 
@@ -1034,6 +1093,11 @@ function onPlayerRequestSpawnReserved(classID, withdrawn)
 end
 addEventHandler("onPlayerRequestSpawnReserved", root, onPlayerRequestSpawnReserved)
 
+function doesPlayerMeetPMRequirements()
+	return election.requirements.lastVote == "" or election.requirements.lastVote == election.requirements.currentMapName
+end
+
+
 -- part can be a petal or flower
 function toggleFull(part, full)
 	-- blocks standard teams from being marked full when you have reserved one of them
@@ -1077,7 +1141,9 @@ function setTooltip(part, text)
 end
 
 function getPMTooltipText()
-	if flowers.pm.isFull then
+	if election.active and not doesPlayerMeetPMRequirements() then
+		return "Disabled"
+	elseif flowers.pm.isFull then
 		return "Full"
 	elseif election.entered then
 		return "Withdraw"
