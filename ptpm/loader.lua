@@ -256,7 +256,7 @@ function ptpmMapStart( map )
 		data.tasks[value].time = tonumber(getElementData( value, "time" )) or 60000
 		data.tasks[value].taskArea = createColTube( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" ))-(tonumber(getElementData( value, "size" ))/2), tonumber(getElementData( value, "size" ))/2, tonumber(getElementData( value, "size" )) )
 		data.tasks[value].marker = createMarker( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), "cylinder", tonumber(getElementData( value, "size" )), 170, 0, 0, 128, root )
-		data.tasks[value].blip = createBlip( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), 0, 3, 170, 0, 0, 255, 0, 200, root )
+		data.tasks[value].blip = createBlip( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), 0, 4, 170, 0, 0, 255, 0, 200, root )
 		data.tasks[value].desc = getElementData( value, "desc" ) or taskDesc[taskType]
 		data.tasks[value].finishText = getElementData( value, "finishText" ) or taskFinishText[taskType]
 		
@@ -285,7 +285,7 @@ function ptpmMapStart( map )
 		data.objectives[value].time = tonumber(getElementData( value, "time" )) or 30000
 		data.objectives[value].objArea = createColSphere( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), tonumber(getElementData( value, "size" ))*0.5 )
 		data.objectives[value].marker = createMarker( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), "cylinder", tonumber(getElementData( value, "size" )), 170, 0, 0, 128, root )
-		data.objectives[value].blip = createBlip( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), 0, 3, 170, 0, 0, 255, 0, 9999, root )
+		data.objectives[value].blip = createBlip( tonumber(getElementData( value, "posX" )), tonumber(getElementData( value, "posY" )), tonumber(getElementData( value, "posZ" )), 0, 4, 170, 0, 0, 255, 0, 9999, root )
 		data.objectives[value].desc = getElementData( value, "desc" ) or false
 		
 		setElementVisibleTo ( data.objectives[value].marker, root, false )
@@ -527,7 +527,9 @@ function ptpmMapStart( map )
 				end
 			end
 			data.roundTicks = 0
-			data.roundTimer = setTimer( roundTick, 1000, 0 )
+			data.roundTimer = setTimer(roundTick, 1000, 0)
+			data.roundQuickTicks = 0
+			data.roundQuickTimer = setTimer(roundQuickTick, 400, 0)
 			options.playerPrepareTimer = nil
 		end,
 	4000, 1, currentPlayers )
@@ -542,12 +544,12 @@ function ptpmMapStop( map )
 	clearTask()
 	clearObjective()
 
-	if data.objectives.helpTimer then
+	if data.objectives and data.objectives.helpTimer then
 		killTimer(data.objectives.helpTimer)
 		data.objectives.helpTimer = nil
 	end
 
-	if data.tasks.helpTimer then
+	if data.tasks and data.tasks.helpTimer then
 		killTimer(data.tasks.helpTimer)
 		data.tasks.helpTimer = nil
 	end
@@ -626,7 +628,15 @@ function ptpmMapStop( map )
 		data.roundTimer = nil
 		data.roundTicks = 0
 	end
-	
+
+	if data.roundQuickTimer then
+		if isTimer(data.roundQuickTimer) then
+			killTimer(data.roundQuickTimer)
+		end
+		data.roundQuickTimer = nil
+		data.roundQuickTicks = 0
+	end
+
 	if options.swapclass and options.swapclass.target then
 		if options.swapclass.timer then
 			if isTimer( options.swapclass.timer ) then
@@ -674,7 +684,6 @@ function ptpmMapStop( map )
 
 		election.endTimer = nil
 	end
-	--drawStaticTextToScreen( "delete", root, "roundTimer" )
 end
 addEventHandler( "onGamemodeMapStop", root, ptpmMapStop )
 
@@ -685,6 +694,7 @@ function ptpmLoginResourceStop( resource )
 	settings.loginHandled = nil
 end
 
+-- called on resource stop & player quit
 function resetPlayer( thePlayer )
 	if getElementData(thePlayer, "ptpm.electionCandidate") then
 		election.removeCandidate(thePlayer)
@@ -741,6 +751,7 @@ function resetPlayer( thePlayer )
 	setElementData( thePlayer, "ptpm.sessionjoin", nil, false )
 end
 
+-- called on map stop & from resetPlayer
 function resetPlayerRound( thePlayer )
 	-- Round specific info should be reset
 	setElementData( thePlayer, "ptpm.classID", nil )
@@ -757,6 +768,7 @@ function resetPlayerRound( thePlayer )
 	end
 	setElementData( thePlayer, "ptpm.activeCamera", nil, false )
 	setElementData( thePlayer, "ptpm.currentCameraID", nil, false )
+
 	local gettingOffCamera = getElementData( thePlayer, "ptpm.gettingOffCamera" )
 	if gettingOffCamera then
 		if isTimer( gettingOffCamera ) then
@@ -814,6 +826,12 @@ function resetPlayerRound( thePlayer )
 	
 	setElementData( thePlayer, "ptpm.score.class", nil )
 	setElementData(thePlayer, "ptpm.waterHealthPenaltyTick", nil, false)
+
+	local theTimer = getElementData(thePlayer, "ptpm.leaveClassTimer")
+	if isTimer(theTimer) then
+		killTimer(theTimer)
+		setElementData(thePlayer, "ptpm.leaveClassTimer", nil, false)
+	end	
 	
 	setPlayerTeam( thePlayer, nil )
 end

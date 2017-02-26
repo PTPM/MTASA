@@ -319,8 +319,8 @@ function playerHealPlayer( medic, patient, distance )
 	setElementHealth( medic, medicHealth - medicine )
 	setElementHealth( patient, patientHealth + medicine*effectiveness )
 	local healthDiff = string.format("%.1f", medicine*effectiveness)
-	outputChatBox( "Gave " .. healthDiff .. " health to patient.", medic, unpack( colour.personal ) )
-	outputChatBox( "You were healed by " .. healthDiff .. " health.", patient, unpack( colour.personal ) )
+	outputChatBox( "Gave " .. healthDiff .. " health to " .. getPlayerName(patient) .. ".", medic, unpack( colour.personal ) )
+	outputChatBox( getPlayerName(medic) .. " healed you by " .. healthDiff .. " health.", patient, unpack( colour.personal ) )
 
 	return true
 end
@@ -431,12 +431,16 @@ addEventHandler( "onPlayerInteriorHit", root,
 addEvent("onPlayerInteriorWarped", true)
 addEventHandler("onPlayerInteriorWarped", root,
 	function(interior)
-		local targetInterior = getInteriorTarget(interior)
-		local newInt = getElementData (targetInterior, "interior")
-
 		local blipData = getElementData(source, "ptpm.blip")
 
 		if blipData then
+			local targetInterior = getInteriorTarget(interior)
+			local newInt = nil
+
+			if targetInterior and isElement(targetInterior) then
+				newInt = tonumber(getElementData(targetInterior, "interior"))
+			end
+
 			blipData[7] = newInt or getElementInterior(source)
 			setElementData(source, "ptpm.blip", blipData)
 		end
@@ -504,18 +508,24 @@ function jetPackHandler( thePlayer )
 end
 
 
-function showOps( thePlayer )
-	for _, p in ipairs( getElementsByType( "player" ) ) do
-		local sOps = ""
-		if p and isElement( p ) and isPlayerOp( p ) then
-			local name = getPlayerName( p ) or ""
-			sOps = sOps .. name .. ", "
+function showOps(thePlayer)
+	local sOps = ""
+
+	for _, p in ipairs(getElementsByType("player")) do		
+		if p and isElement(p) and isPlayerOp(p) then
+			local name = getPlayerName(p) or ""
+			sOps = (#sOps > 0 and ", " or "") .. sOps .. name
 		end
-		outputChatBox( "Online operator(s): " .. sOps, thePlayer, unpack( colour.personal ) )
+	end
+
+	if #sOps > 0 then
+		outputChatBox("Online operator(s): " .. sOps, thePlayer, unpack(colour.personal))
+	else
+		outputChatBox("There are no online operators.", thePlayer, unpack(colour.personal))
 	end
 end
-addCommandHandler( "ops", showOps )
-addCommandHandler( "admins", showOps )
+addCommandHandler("ops", showOps)
+addCommandHandler("admins", showOps)
 
 
 function attach(ob1,ob2,x1,y1,z1,rx1,ry1,rz1,x2,y2,z2,rx2,ry2,rz2)

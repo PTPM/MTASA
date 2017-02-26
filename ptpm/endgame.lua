@@ -253,8 +253,16 @@ function closePTPMMapVote()
 	
 	-- Trigger client event
 	for _, p in ipairs(getElementsByType("player")) do
-		if p and isElement(p) and isPlayerActive(p) then
-			triggerClientEvent(p, "ptpmEndMapVote", p)	
+		if p and isElement(p) then
+			if isPlayerActive(p) then
+				triggerClientEvent(p, "ptpmEndMapVote", p)	
+			end
+
+			if mapvote.playerVotes[p] then
+				setElementData(p, "ptpm.lastMapVote", mapvote.maps[mapvote.playerVotes[p]].res, false)
+			else
+				setElementData(p, "ptpm.lastMapVote", nil, false)
+			end
 		end
 	end
 	

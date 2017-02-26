@@ -139,9 +139,10 @@ end
 -- is triggered every time someone reclasses
 function setPlayerClass( thePlayer, class )
 	local playerName = getPlayerName( thePlayer )
-	
-	if getPlayerClassID( thePlayer ) then
-		if classes[getPlayerClassID( thePlayer )].type == "pm" then 
+	local currentClassID = getPlayerClassID(thePlayer)
+
+	if currentClassID then
+		if classes[currentClassID].type == "pm" then 
 			currentPM = nil
 			
 			local interiorBlip = getElementData( thePlayer, "ptpm.interiorBlip" )
@@ -157,7 +158,7 @@ function setPlayerClass( thePlayer, class )
 	
 		local teamName = teamMemberName[classes[getPlayerClassID( thePlayer )].type]
 
-		if #getElementsByType( "player" ) <= 8 or (class and classes[class].type == "pm") then
+		if #getElementsByType( "player" ) <= 8 or (classes[currentClassID].type == "pm") then
 			local r, g, b = getPlayerColour( thePlayer )
 			outputChatBox( playerName .. " is nolonger " .. teamName .. ".", root, r, g, b, false )
 		end
@@ -213,7 +214,7 @@ function setPlayerClass( thePlayer, class )
 	local teamName = teamMemberName[classes[class].type]
 
 	if #getElementsByType( "player" ) <= 8 or classes[class].type == "pm" then
-    local r, g, b = getPlayerColour( thePlayer );
+		local r, g, b = getPlayerColour( thePlayer );
 		outputChatBox( playerName .. " is now " .. teamName .. ".", root, r, g, b, false )
 	end
 
@@ -298,23 +299,25 @@ function makePlayerSpawn( thePlayer )
 
 	
 	if data.currentMap.hasObjectives then
-		clearObjectiveTextFor( thePlayer )
+		clearObjectiveTextFor(thePlayer)
 	
-		setupActiveObjectiveFor( thePlayer )
+		showActiveObjectiveFor(thePlayer)
 		
 		if data.objectives and data.objectives.activeObjective and data.objectives.pmOnObjective then
 			if teams["goodGuys"][classes[class].type] then
-				setupObjectiveTextFor( thePlayer )
+				setupObjectiveTextFor(thePlayer)
 			end
 		end
 	end	
 	
 	if data.currentMap.hasTasks then
-		clearTaskTextFor( thePlayer )
+		clearTaskTextFor(thePlayer)
+
+		showTasksFor(thePlayer)
 		
 		if data.tasks and data.tasks.activeTask then
 			if classes[class].type ~= "psycho" then
-				setupTaskTextFor( p )
+				setupTaskTextFor(p)
 			end
 		end
 	end
@@ -453,7 +456,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 			end,
 		200, 1, source )
 
-		setElementData( player, "ptpm.gettingOffCamera", gettingOffCamera, false )
+		setElementData( source, "ptpm.gettingOffCamera", gettingOffCamera, false )
 
 		clearCameraFor( source )	
 	end		

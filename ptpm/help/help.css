@@ -233,14 +233,14 @@ li.expanded ul a {
   #content {
     margin-left: 135px;
     transition: margin-left .3s ease;
-    font-size: 1.7vw;
+    font-size: 2vw;
   }
 }
 
 @media (max-width: 700px) {
   #nav {
     width: 90px;
-    font-size: 0.5em;
+    font-size: 0.6em;
   }
   #nav a {
     height: 20px;
@@ -257,6 +257,6 @@ li.expanded ul a {
 
 @media (max-width: 500px) {
   #content {
-    font-size: 8px;
+    font-size: 10px;
   }  
 }

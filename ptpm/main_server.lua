@@ -147,11 +147,11 @@ addEventHandler( "onResourceStart", resourceRoot,
 		setTime( math.random( 1, 24 ), 0 )
 		setMinuteDuration( 3000 )
 		
-		local players = getElementsByType( "player" )
-		for _, p in ipairs( players ) do
-			setupIdForPlayer( p )
+		for _, p in ipairs(getElementsByType("player")) do
+			setupIdForPlayer(p)
 			local timestamp = getRealTime().timestamp
-			setElementData( p, "ptpm.sessionjoin", timestamp, false )
+			setElementData(p, "ptpm.sessionjoin", timestamp, false)
+			setElementData(p, "ptpm.lastMapVote", nil, false)
 		end
 
 		spam.resource = getResourceFromName("antiflood")
@@ -349,6 +349,10 @@ addEventHandler( "onPlayerQuit", root,
 		clearPickupData( source )
 		
 		if currentPM and source == currentPM then
+			local r, g, b = getPlayerColour(source)
+			local playerName = getPlayerName(source)
+			outputChatBox(playerName .. " is nolonger " .. teamMemberName["pm"] .. ".", root, r, g, b, false)
+
 			clearTask()
 			clearObjective()
 			
@@ -612,7 +616,7 @@ function roundTick()
 			
 			for _, player2 in ipairs(players) do
 				local classID2 = getPlayerClassID(player2)
-				if player2 and player2 ~= player and (not isPedDead(player2)) and classes[classID2].medic and classes[classID2].type ~= "pm" then
+				if classID2 and player2 and player2 ~= player and (not isPedDead(player2)) and classes[classID2].medic and classes[classID2].type ~= "pm" then
 					local pX, pY, pZ = getElementPosition(player)
 					local mX, mY, mZ = getElementPosition(player2)
 
@@ -637,6 +641,35 @@ function roundTick()
 								end
 							end
 						end
+					end
+				end
+			end
+		end
+	end
+end
+
+function roundQuickTick()
+	if data.roundEnded then
+		return
+	end
+
+	data.roundQuickTicks = data.roundQuickTicks + 1
+
+	if currentPM and isElement(currentPM) and not isPedDead(currentPM) then
+		local health = getElementHealth(currentPM)
+
+		if health < 90 then
+			local px, py, pz = getElementPosition(currentPM)
+
+			for _, player in ipairs(getElementsByType("player")) do
+				local classID = getPlayerClassID(player)
+
+				if classID and classes[classID].medic and (classes[classID].type == "police" or classes[classID].type == "bodyguard") then
+					local x, y, z = getElementPosition(player)
+
+					if distanceSquared(px, py, pz, x, y, z) <= 1 then
+						playerHealPlayer(player, currentPM, 0)
+						break
 					end
 				end
 			end
