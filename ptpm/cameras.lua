@@ -92,8 +92,6 @@ function camOff( thePlayer )
 		end,
 	200, 1, thePlayer )
 	setElementData( thePlayer, "ptpm.gettingOffCamera", gettingOffCamera, false )
-
-	hideHelpEvent(thePlayer, "CAMERA_ENTER")
 end
 addCommandHandler( "camoff", camOff )
 
@@ -103,5 +101,6 @@ function clearCameraFor( thePlayer )
 	unbindKey( thePlayer, "arrow_r", "down", changeCameraView )
 	unbindKey( thePlayer, "enter", "down", camOff )	
 
+	hideHelpEvent(thePlayer, "CAMERA_ENTER")
 	--drawStaticTextToScreen( "delete", thePlayer, "cameraText" )	
 end
