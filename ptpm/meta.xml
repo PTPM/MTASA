@@ -144,6 +144,8 @@
 
 	<export function="isInClassSelection" type="client"/>
 	<export function="isRoundEnded" type="client"/>
+	
+	<export function="isRunning" type="server"/>
 
 	<export function="getColour" type="client"/>
 	<export function="getColour" type="server"/>
