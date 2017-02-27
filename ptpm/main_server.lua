@@ -942,9 +942,14 @@ function pInfo( thePlayer, _, targetName )
 	
   local nick = exports.ptpm_accounts:getSensitiveUserdata( target, "username" )
 	if not nick then		
-    text = text .. "\nAccount: Playing as guest"
+    text = text .. "\nAccount: Playing as guest\n"
 	else
 		text = text .. "\nAccount:\nUsername: " .. tostring( nick ) .. "\n"
+	end
+	
+	if isRunning("ptpm_community") then
+		text = text .. "\nLeague: " .. (getElementData ( target, "playerLeague" ) or "Unknown")
+		text = text .. "\nRanks: " .. (getElementData ( target, "playerRanks" ) or "Unknown")
 	end
 	
 	local style = exist and "update" or "draw"
