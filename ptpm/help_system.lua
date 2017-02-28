@@ -289,11 +289,39 @@ end
 
 -- parse the condition args for any special cases
 function conditionProcessor(player, fn, args)
+	local pArg = nil
+
+	if (not player) or (not isElement(player)) then
+		outputDebugString("Error: bad player passed to conditionProcessor ("..tostring(fn)..", "..tostring(conditionTaskExplanationComparison)..")", 1)
+		return
+	end
+
 	for i, arg in ipairs(args) do
 		if arg == "__player" then
 			args[i] = player
+
+			if pArg then
+				outputDebugString("Error: multiple player args in conditionProcessor ("..tostring(fn)..", "..tostring(conditionTaskExplanationComparison)..")", 1)
+			end
+
+			pArg = i
 		end
 	end
+
+	-- debug stuff
+	for i, arg in ipairs(args) do
+		if i == pArg then
+			if (not arg) or (not isElement(arg)) then
+				local playerName = "-error-"
+
+				if player and isElement(player) then
+					playerName = getPlayerName(player)
+				end
+
+				outputDebugString("Error: player arg substituted for bad data on player " .. tostring(playerName).." ("..tostring(fn)..", "..tostring(conditionTaskExplanationComparison)..")", 1)
+			end
+		end
+	end	
 
 	-- call through to the actual condition comparator
 	return fn(unpack(args))
@@ -329,6 +357,11 @@ function conditionStatNumberComparisons(player, ...)
 end
 
 function conditionTaskExplanationComparison(player)
+	if (not player) or (not isElement(player)) then
+		outputDebugString("Error: bad player passed to conditionTaskExplanationComparison", 1)
+		return
+	end
+
 	if conditionStatNumberComparison(player, "tasksplayed", true, 8) then
 		return false
 	end
