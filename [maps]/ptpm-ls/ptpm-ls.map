@@ -659,7 +659,7 @@
     <!-- 11LosSantos -->
     <pickup posX="2112.0" posY="-1990.0" posZ="14.0" type="armor" amount="100" respawn="30000" synced="false" />
     <!-- 16LosSantos -->
-    <pickup posX="2125.493" posY="-2275.037" posZ="20.5202" type="armor" amount="100" respawn="30000" synced="false" />
+    <pickup posX="2125.493" posY="-2275.037" posZ="20.5202" type="armor" amount="100" respawn="60000" synced="false" />
     <!-- 18LosSantos -->
     <pickup posX="2230.45" posY="-2286.004" posZ="14.3751" type="armor" amount="100" respawn="30000" synced="false" />
     <!-- 20LosSantos -->
@@ -677,9 +677,9 @@
     <!-- 47LosSantos -->
     <pickup posX="1292.7" posY="-769.0" posZ="95.8" type="armor" amount="100" respawn="30000" synced="false" />
     <!-- 50LosSantos -->
-    <pickup posX="2146.559" posY="-2244.46" posZ="13.58" type="armor" amount="100" respawn="30000" synced="false" />
+    <pickup posX="2146.559" posY="-2244.46" posZ="13.58" type="armor" amount="100" respawn="60000" synced="false" />
     <!-- 53LosSantos -->
-    <pickup posX="2186.507" posY="-2244.993" posZ="15.81" type="armor" amount="100" respawn="30000" synced="false" />
+    <pickup posX="2186.507" posY="-2244.993" posZ="15.81" type="armor" amount="100" respawn="60000" synced="false" />
     <!-- 55LosSantos -->
     <pickup posX="1528.222" posY="-1357.985" posZ="330.0371" type="46" amount="1" respawn="30000" synced="false" />
     <!-- 73LosSantos -->
