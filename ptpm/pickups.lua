@@ -31,7 +31,7 @@
 	
 	if data.pickups[source].respawn then
 		if last and getPickupRespawnInterval( source ) - (getTickCount() - last) > 0 then
-			local text, name = "Respawns in " .. math.floor( (getPickupRespawnInterval( source ) - (getTickCount() - last)) / 1000 ) .. " seconds"
+			local text, name = "Respawns in " .. math.ceil( (getPickupRespawnInterval( source ) - (getTickCount() - last)) / 1000 ) .. " seconds"
 			if data.pickups[source].synced then
 				if (not data.pickups[source].lastPickupBy) or (not getPlayerName( data.pickups[source].lastPickupBy )) then 
 					name = "(Logged out)"
