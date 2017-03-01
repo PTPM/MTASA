@@ -1,4 +1,16 @@
 ﻿---------------------------------------------
+-- VEHICLE NERFING
+---------------------------------------------
+local limitedVehicles = {}
+
+triggerServerEvent ( "getLimitedVehiclesInfo", resourceRoot )
+addEvent( "setLimitedVehiclesInfo", true )
+addEventHandler( "setLimitedVehiclesInfo", localPlayer, function ( limitedVehiclesTable )
+	limitedVehicles = limitedVehiclesTable
+end )
+
+
+---------------------------------------------
 -- VARS AND CONFIG
 ---------------------------------------------
 
@@ -155,7 +167,7 @@ function limitedKeyPress(key, keyState, speed)
 			
 			pressKey(key)
 			startReloaderHUD(speed)
-			setElementData(currentAssaultVehicle,"vehAmmo", getElementData(currentAssaultVehicle,"vehAmmo") - 1) 
+			setElementData(currentAssaultVehicle,"vehAmmo", getElementData(currentAssaultVehicle,"vehAmmo") - 1, false) 
 			
 		else
 			-- Play "out of ammo" sound and display "0" where the ammo count goes
@@ -183,29 +195,46 @@ function enterAssaultVehicle(vehicle)
 	--outputDebugString("Entered restricted vehicle")
 	currentAssaultVehicle = vehicle
 	
-	--outputDebugString("vehAmmo " .. (getElementData(source, "vehAmmo") or "no"))
-	--outputDebugString("vehReload " .. (getElementData(source, "vehReload") or "no"))
-	
+	if not getElementData(vehicle, "vehNerfed") then
+		initializeVehicleNerf(vehicle)
+	end
+		
 	local vehReloadTime = getElementData(vehicle, "vehReload")
 	local vehFireControl = getElementData(vehicle, "vehControl")
 	
-	for _,v in ipairs(vehFireControl) do
-		toggleControl(v, false)
-		bindKey(v, "both", limitedKeyPress, vehReloadTime)
+	if vehReloadTime and vehFireControl then
+		for _,v in ipairs(vehFireControl) do
+			toggleControl(v, false)
+			bindKey(v, "both", limitedKeyPress, vehReloadTime)
+		end
 	end
 end
 
 function leftAssaultVehicle(vehicle)
-	outputDebugString("Left restricted vehicle")
+	if not currentAssaultVehicle then return end
 	
 	local vehFireControl = getElementData(currentAssaultVehicle, "vehControl")
 
-	for _,key in ipairs(vehFireControl) do
-		toggleControl(key, true)
-		unbindKey(key, "both", limitedKeyPress)
+	if vehFireControl then
+		for _,key in ipairs(vehFireControl) do
+			toggleControl(key, true)
+			unbindKey(key, "both", limitedKeyPress)
+		end
 	end
 	
 	currentAssaultVehicle = nil
+end
+
+function initializeVehicleNerf(vehicle)
+
+	local vehId = getElementModel(vehicle)
+	if limitedVehicles[vehId] then
+		setElementData(vehicle, "vehAmmo", limitedVehicles[vehId].ammo, false)
+		setElementData(vehicle, "vehReload", limitedVehicles[vehId].reloadTime, false)
+		setElementData(vehicle, "vehControl", limitedVehicles[vehId].blockedControls, false)
+		setElementData(vehicle, "vehNerfed", true, false)
+	end
+
 end
 
 
@@ -215,28 +244,29 @@ end
 ---------------------------------------------
 function justPunchItAgain()
 	local actualCurrentVehicle = getPedOccupiedVehicle(localPlayer)
+	if not actualCurrentVehicle then 
+		leftAssaultVehicle()
+		return 
+	end
 	
-	if actualCurrentVehicle and getElementData(actualCurrentVehicle, "vehNerfed") then
+	local vehId = getElementModel(actualCurrentVehicle)
+	if limitedVehicles[vehId] then
 		enterAssaultVehicle(actualCurrentVehicle)
+	else
+		leftAssaultVehicle()
 	end
 end
 
 addEventHandler("onClientVehicleEnter", getRootElement(), 
 	function ( thePlayer, seat ) 
-		if getElementData(source, "vehNerfed") then 
-			outputDebugString("Client Veh Enter")
-			enterAssaultVehicle(source)	
-		end 
+		local vehId = getElementModel(source)
+		if limitedVehicles[vehId] then
+			enterAssaultVehicle(source)
+		end
 	end
 )
 
--- Sometimes onClientVehicleEnter doesn't get called...
-addEvent( "delayedRestrictedVehicleDetection", true )
-addEventHandler( "delayedRestrictedVehicleDetection", localPlayer, function()
-	justPunchItAgain()
-end )
-
--- Well, sometimes apparently neither onClientVehicleEnter or onVehicleEnter gets called, so just as a little backup...
+-- Well, sometimes apparently neither onClientVehicleEnter (or onVehicleEnter) gets called, so just as a little backup...
 setTimer(function()
 	justPunchItAgain()
 end , 5000, 0)
@@ -247,7 +277,7 @@ end , 5000, 0)
 ---------------------------------------------
 addEventHandler("onClientResourceStart", resourceRoot,
 	function()
-		outputDebugString("vehicle_nerf loaded")
+		--outputDebugString("vehicle_nerf loaded")
 	
 		font.scalar = (120 / 44) * uiScale
 		font.scalar = (120 / 44) * uiScale

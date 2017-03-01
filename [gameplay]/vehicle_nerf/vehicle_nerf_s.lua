@@ -17,40 +17,49 @@ local limitedVehicles = {
 			"vehicle_secondary_fire"
 		}
 	},
+	
+	-- Mountain Bike (the only bicycle used in PTPM)
+	[510] = {
+		handlingChanges = {
+			maxVelocity = 70 --From: 140
+		}
+	},
+	
+	-- Bike
+	[509] = {
+		handlingChanges = {
+			maxVelocity = 60 --From: 120
+		}
+	},
+	
+	-- BMX
+	[481] = {
+		handlingChanges = {
+			maxVelocity = 60 --From: 120
+		}
+	},
 }
 
-addEventHandler ( "onVehicleRespawn", getRootElement(), function()
-	local vehId = getElementModel(source)
-	if limitedVehicles[vehId] then
-		setElementData(source, "vehAmmo", limitedVehicles[vehId].ammo)
-		setElementData(source, "vehReload", limitedVehicles[vehId].reloadTime)
-		setElementData(source, "vehControl", limitedVehicles[vehId].blockedControls)
-		setElementData(source, "vehNerfed", true)
-	end
+-- Vehicle weapons are done client side:
+-- Ammo status is not synced, because of issues with setElementData on vehicles (presumably)
+-- That's fine
+addEvent( "getLimitedVehiclesInfo", true )
+addEventHandler( "getLimitedVehiclesInfo", resourceRoot, function ( message )
+	triggerClientEvent ( client, "setLimitedVehiclesInfo", client, limitedVehicles)
 end )
 
 
-addEventHandler("onVehicleEnter", getRootElement(),
-	function ( thePlayer, seat, jacked )
-	
-		local vehId = getElementModel(source)
-		if limitedVehicles[vehId] then
-	
-			if not getElementData(source, "vehAmmo") then
-				setElementData(source, "vehAmmo", limitedVehicles[vehId].ammo)
+-- Vehicle handling is done server side:
+-- To assess default handling easily, use: 
+-- NOTE: /run getModelHandling(510)["maxVelocity"]
+-- For handlingKeys, see: https://wiki.multitheftauto.com/wiki/SetModelHandling
+
+addEventHandler("onResourceStart", resourceRoot, function()
+	for vehModel,config in pairs(limitedVehicles) do
+		if config.handlingChanges then
+			for handlingKey,handlingValue in pairs(config.handlingChanges) do
+				setModelHandling(vehModel, handlingKey, handlingValue) 			
 			end
-			
-			if not getElementData(source, "vehReload") then
-				setElementData(source, "vehReload", limitedVehicles[vehId].reloadTime)
-			end
-			
-			if not getElementData(source, "vehControl") then
-				setElementData(source, "vehControl", limitedVehicles[vehId].blockedControls)
-			end
-			
-			setElementData(source, "vehNerfed", true)
-			
-			triggerClientEvent(thePlayer, "delayedRestrictedVehicleDetection", thePlayer)
 		end
 	end
-)
+end )
