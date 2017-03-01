@@ -249,7 +249,7 @@
 	
     <pickup posX="-2138.1853" posY="2642.8479" posZ="154.8358" type="46" amount="1" respawn="30000" synced="false" />
     <pickup posX="-2236.5391" posY="2352.3455" posZ="4.9821" type="46" amount="1" respawn="30000" synced="false" />
-    <pickup posX="-2638.5386" posY="2263.3713" posZ="13.3930" type="armor" amount="100" respawn="30000" synced="false" />
+    <pickup posX="-2638.5386" posY="2263.3713" posZ="13.3930" type="armor" amount="100" respawn="120000" synced="false" />
     <pickup posX="-1442.8461" posY="2652.9485" posZ="55.8359" type="armor" amount="100" respawn="30000" synced="false" />
     <pickup posX="-781.9979" posY="2744.9290" posZ="48.4299" type="armor" amount="100" respawn="30000" synced="false" />
     <pickup posX="-795.5693" posY="2026.5187" posZ="60.3906" type="armor" amount="100" respawn="30000" synced="false" />
