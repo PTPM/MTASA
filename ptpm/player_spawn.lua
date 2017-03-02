@@ -33,6 +33,9 @@ function calculateBalance()
 		end
 	end
 
+	-- override for testing
+	--playersInATeam = {pm = 0, terrorist = 0, bodyguard = 4, police = 100, psycho = 0}
+
 	balance.value = getBalanceValue(playersInATeam.bodyguard, playersInATeam.police, playersInATeam.terrorist)
 	balance.teamPlayers = playersInATeam
 	balance.totalTeamPlayers = playersInATeam.bodyguard + playersInATeam.police + playersInATeam.terrorist
@@ -67,11 +70,13 @@ function isBalanced(proposedClassId, oldClassId)
 
 	-- always allow psychos
 	if proposedTeam == "psycho" then
+		--outputDebugString("isBalanced(" ..proposedTeam..") always allow psycho [true]")
 		return true
 	end
 
 	-- can't have more than 1 pm, otherwise pm is always allowed
 	if proposedTeam == "pm" then
+		--outputDebugString("isBalanced(" ..proposedTeam..":"..tostring(balance.teamPlayers[proposedTeam])..") only 1 pm [" .. tostring(balance.teamPlayers.pm == 0) .."]")
 		return balance.teamPlayers.pm == 0
 	end
 
@@ -82,13 +87,15 @@ function isBalanced(proposedClassId, oldClassId)
 
 	-- with 5 or less players we allow anything
 	if balance.totalTeamPlayers <= 5 then
+		--outputDebugString("isBalanced(" ..proposedTeam..":"..tostring(balance.teamPlayers[proposedTeam])..") too few team players [true]")
 		return true
 	end
 
 	local oldTeam = oldClassId and classes[oldClassId].type or nil
 
-	-- bodyguards ard hard capped at 30% of team players
+	-- bodyguards are hard capped at 30% of team players
 	if proposedTeam == "bodyguard" and oldTeam ~= "bodyguard" and ((balance.teamPlayers.bodyguard * 100) / balance.totalTeamPlayers) > 30 then 
+		--outputDebugString("isBalanced(" ..proposedTeam..":"..tostring(balance.teamPlayers[proposedTeam])..") hard capped [false]")
 		return false 
 	end	
 
@@ -115,6 +122,11 @@ function isBalanced(proposedClassId, oldClassId)
 	end
 
 	local newBalance = getBalanceValue(totalBodyguards, totalPolice, totalTerrorists)
+
+	--local balanceLow = newBalance <= 8
+	--local balanceBetter = newBalance < balance.value
+	--outputDebugString(string.format("isBalanced(%s:%d) check balance value (new: %.4f, old: %.4f) [%s or %s]", proposedTeam, balance.teamPlayers[proposedTeam], newBalance, balance.value, tostring(balanceLow), tostring(balanceBetter)))
+
 	return (newBalance <= 8) or (newBalance < balance.value)
 end
 
@@ -130,7 +142,7 @@ end
 -- 		balance.teamPlayers = {pm = pm, terrorist = terror, bodyguard = bg, police = cop, psycho = 0}
 -- 		balance.totalTeamPlayers = bg + cop + terror
 	
--- 		outputDebugString(string.format("Balance: bg: %s, cop: %s, terror: %s (new: %.1f, old: %.1f)", tostring(isBalanced("bodyguard")), tostring(isBalanced("police")), tostring(isBalanced("terrorist")), getBalanceValue(bg, cop, terror), balance.value))
+-- 		outputDebugString(string.format("Balanced: bg: %s, cop: %s, terror: %s (new: %.1f, old: %.1f)", tostring(isBalanced("bodyguard")), tostring(isBalanced("police")), tostring(isBalanced("terrorist")), getBalanceValue(bg, cop, terror), balance.value))
 
 -- 	end
 -- )

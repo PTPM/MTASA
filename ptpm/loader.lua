@@ -342,6 +342,7 @@ function ptpmMapStart( map )
 		data.pickups[value].respawn = getPickupRespawnInterval( value ) ~= 9999999 and getPickupRespawnInterval( value ) or false
 		data.pickups[value].destroy = (getElementData( value, "destroy" ) == "true")
 		data.pickups[value].lastPickup = {}
+		data.pickups[value].playerRespawnTimer = {}
 
 		if getPickupType(value) == 2 then
 			table.insert(data.weapons, value)
@@ -583,10 +584,16 @@ function ptpmMapStop( map )
 			if data.objectives[value].blip then destroyElement(data.objectives[value].blip) data.objectives[value].blip = nil end
 		end
 	end
-	
-	-- Destroy jetpacks & their timers
-	if data.pickup then
+		
+	if data.pickups then
 		for value, _ in pairs( data.pickups ) do
+			clearPickupRespawnTimer(value)
+
+			for _, player in ipairs(getElementsByType("player")) do
+				clearPickupPlayerRespawnTimer(value, player)
+			end
+
+			-- Destroy jetpacks & their timers
 			if data.pickups[value].timer then
 				destroyPickup( value )
 			end

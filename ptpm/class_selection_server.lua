@@ -267,6 +267,8 @@ function playerClassSelectionAccept(thePlayer, classID, notify)
 end
 
 function notifyTeamAvailability()
+	--outputDebugString(string.format("FULL: pm: %s, bg: %s, cop: %s, terror: %s", tostring(balance.full.pm), tostring(balance.full.bodyguard), tostring(balance.full.police), tostring(balance.full.terrorist)))
+	
 	-- todo: only notify if the team-level state is actually different 
 	for _, player in ipairs(getElementsByType("player")) do
 		if isPlayerActive(player) and getElementData(player, "ptpm.inClassSelection") then
