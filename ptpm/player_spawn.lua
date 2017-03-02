@@ -103,6 +103,11 @@ function isBalanced(proposedClassId, oldClassId)
 	local totalPolice = balance.teamPlayers.police
 	local totalTerrorists = balance.teamPlayers.terrorist
 
+	-- bodge fix for no terrorists issue (every subsequent cop decreases the balance value)
+	if (proposedTeam == "bodyguard" or proposedTeam == "police") and totalBodyguards > 0 and (totalPolice + totalBodyguards) > 5 and totalTerrorists == 0 then
+		return false
+	end	
+
 	if proposedTeam == "bodyguard" then
 		totalBodyguards = totalBodyguards + 1
 	elseif proposedTeam == "police" then
