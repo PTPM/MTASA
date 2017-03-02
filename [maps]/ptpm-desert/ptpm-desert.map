@@ -706,4 +706,6 @@
     <object id="imcmptrkdrl_LAS a51 door left" breakable="true" interior="0" alpha="255" model="1965" doublesided="false" scale="1" dimension="0" posX="226.57127" posY="1872.0576" posZ="14.16349" rotX="0" rotY="0" rotZ="0"></object>
     <object id="imcmptrkdrl_LAS a51 door right" breakable="true" interior="0" alpha="255" model="1965" doublesided="false" scale="1" dimension="0" posX="226.57753" posY="1870.76" posZ="14.16349" rotX="0" rotY="0" rotZ="0"></object>
     <object id="cos_sbanksteps02 sat stairs" breakable="true" interior="0" alpha="255" model="12839" doublesided="true" scale="1" dimension="0" posX="-351.40057" posY="1578.7915" posZ="78.7421" rotX="0" rotY="0" rotZ="45"></object>
+
+    <teleport minX="235.12549" minY="1841.8203" minZ="7.79621" maxX="263.601625" maxY="1881.7224" maxZ="15.89" message="No" teleX="225.36" teleY="1872.39" teleZ="13.73" teleRot="90" vehicles="false" interior="0"/>
 </map>
