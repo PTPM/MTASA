@@ -2,6 +2,7 @@ local width = 60
 local height = 60
 local buy_distance = 1.8
 local using_machine = false
+local using_machine_sound = nil
 local using_machine_timers = {}
 
 local local_player = getLocalPlayer()
@@ -267,11 +268,11 @@ function startVendingMachineAnimation(machine)
 	triggerEvent("playVendingMachineAnimation",local_player,name)
 	
 	if name == "vendmachfd" or name == "vendmach" or name == "vendin3" or name == "CJ_SPRUNK1" or name == "CJ_EXT_SPRUNK" then
-		playSFX("script", 203, 0, false)
+		using_machine_sound = playSFX("script", 203, 0, false)
 	elseif name == "CJ_CANDYVENDOR" or name == "CJ_EXT_CANDY" then
-		playSFX("script", 203, 1, false)
+		using_machine_sound = playSFX("script", 203, 1, false)
 	else
-		playSFX("script", 151, 0, false)
+		using_machine_sound = playSFX("script", 151, 0, false)
 	end
 end
 
@@ -360,6 +361,10 @@ function stopVendingMachineAnimation(player,external)
 				triggerServerEvent("stopVendingMachineAnimationServer",local_player)	
 			end
 			using_machine = false		
+			if using_machine_sound and isElement(using_machine_sound) and getElementType(using_machine_sound)=="sound" then
+				stopSound(using_machine_sound)
+				using_machine_sound = nil
+			end
 			triggerEvent("onClientPlayerUsedVendingMachine",local_player)
 		end
 	end
