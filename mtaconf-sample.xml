@@ -98,8 +98,7 @@
 			<resource src="performancebrowser" startup="1" protected="0" />
 			<resource src="resourcebrowser" startup="1" protected="1" default="true" />
 			<resource src="resourcemanager" startup="1" protected="1" />
-			<resource src="irc" startup="1" protected="0" />
-			<resource src="ptpm_analytics" startup="1" protected="0" />
+			<resource src="irc" startup="1" />
 		<!-- /Administration -->
 		
 		<!-- Core PTPM -->
@@ -111,6 +110,7 @@
 			<resource src="ptpm_accounts" startup="1" protected="0" />
 			<resource src="ptpm_login" startup="1" protected="0" />
 			<resource src="ptpm" startup="1" protected="0" />
+			<resource src="ptpm-ls" startup="1" protected="0" />
 		<!-- /Core PTPM -->
 		
 		<!-- Features and buffs -->
@@ -136,6 +136,10 @@
 			<resource src="interiorfix" startup="1" protected="0" />
 			<resource src="waterfps" startup="1" protected="0" />
 		<!-- /Fixes and nerfs -->
+	
+		<!-- Utility -->
+			<resource src="ptpm_analytics" startup="1" protected="0" />
+		<!-- /Utility -->
 	<!-- /Resources -->
     
 </config>
