@@ -43,7 +43,7 @@ end)
 
 
 addEventHandler ( "onPlayerDamage", getRootElement (), function( attacker, weapon, bodypart, loss ) 
-	if getElementData(attacker, "antispawnkill") then
+	if attacker and getElementData(attacker, "antispawnkill") then
 		removePlayerInvulnerability(attacker)
 	end
 end)
