@@ -5,10 +5,6 @@
 	
 	<map src="machines.map" />
 	
-	<file src="sprunk.wav" />
-	<file src="food.wav" />
-	<file src="eating.wav" />
-	
 	<!-- 'machine' can be a "vending_machine" element or a vending machine object (placed via mta) -->
 
 	<!-- call this when you create a vending machine (mid-game), all existing vending machine are automatically plotted when this resource is started -->
