@@ -3,6 +3,8 @@ antispawnkill.Time = get("time") or 5
 antispawnkill.Opacity = get("opacity") or 175
 antispawnkill.Table = {}
 
+timerTable = {}
+
 addEventHandler("onSettingChange", getRootElement(), function(setting, oldV, newV)
 	local resName = getResourceName(getThisResource())
 	if setting == "*"..resName..".time" then
@@ -13,6 +15,8 @@ addEventHandler("onSettingChange", getRootElement(), function(setting, oldV, new
 end)
 
 function removePlayerInvulnerability(player)
+	if isTimer(timerTable[player]) then killTimer(timerTable[player]) end
+	
 	if player and isElement(player) then
 		setElementAlpha(player, 255)
 		setElementData(player, "antispawnkill", false)
@@ -27,7 +31,7 @@ addEventHandler("onPlayerSpawn", getRootElement(), function()
 		antispawnkill.Table[source] = true
 		setElementAlpha(source, antispawnkill.Opacity)
 		setElementData(source, "antispawnkill", true)
-		setTimer(removePlayerInvulnerability, ((antispawnkill.Time)*1000), 1, source)
+		timerTable[source] = setTimer(removePlayerInvulnerability, ((antispawnkill.Time)*1000), 1, source)
 	end
 end)
 
@@ -36,3 +40,11 @@ addEventHandler("onPlayerStealthKill", getRootElement(), function(player)
 		cancelEvent()
 	end
 end)
+
+
+addEventHandler ( "onPlayerDamage", getRootElement (), function( attacker, weapon, bodypart, loss ) 
+	if getElementData(attacker, "antispawnkill") then
+		removePlayerInvulnerability(attacker)
+	end
+end)
+
