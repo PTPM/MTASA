@@ -1,19 +1,33 @@
-function makeHeadshot(attacker, weapon, bodypart, loss)
+function handleHeadshot(attacker, weapon, bodypart, loss)
+	
+	-- Regular sniper hits get just a hitsound
+	if weapon==34 and bodypart~=9 then
+		triggerClientEvent ( attacker, "playHitSound", attacker, false)
+	end
+	
+	-- Actual sniper headshots
 	if weapon==34 and bodypart==9 then
 		cancelEvent()
+		triggerClientEvent ( attacker, "playHitSound", attacker, true)
 	
 		if getPedArmor(source) > 0 then
 			setPedArmor(source, 0)
 		else
 			killPed(source, attacker, weapon, 9)
 			setPedHeadless(source, true)
-			setTimer(setPedHeadless, 900, 1, source, false)
 		end
 	end
 end
---addEvent("onClientsideHeadshot", true)
---addEventHandler("onClientsideHeadshot", getRootElement(), makeHeadshot)
-addEventHandler("onPlayerDamage", root, makeHeadshot)
+addEventHandler("onPlayerDamage", root, handleHeadshot)
+
+
+-- onPlayerDamage doesn't trigger if the damage kills the player, onPlayerWasted is called instead. 
+addEventHandler( "onPlayerWasted", getRootElement(), function( ammo, attacker, weapon, bodypart )
+	if weapon==34 and bodypart~=9 then
+		triggerClientEvent ( attacker, "playHitSound", attacker, false)
+	end
+end )
+
 
 function outputHeadshot(killer, weapon, bodypart)
 	if weapon==34 and bodypart==9 then
@@ -24,3 +38,8 @@ function outputHeadshot(killer, weapon, bodypart)
 	end
 end
 addEventHandler("onPlayerKillMessage", root, outputHeadshot)
+
+-- Give back the player's head regardless
+addEventHandler ( "onPlayerSpawn", getRootElement(), function()
+	setPedHeadless(source, false)
+end )
