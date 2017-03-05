@@ -1,10 +1,12 @@
 antiflood = {
 	settings = {
-		timeBetweenMsg = get("timeBetweenMsg") or 2,
+		timeBetweenMsg = get("timeBetweenMsg") or 2000,
 		maxWarnings = get("maxWarnings") or 3,
+		repetitionTimeout = get("repetitionTimeout") or 8000,
 	},
 
 	lastMessage = {},
+	lastMessageContent = {},
 	warnings = {},
 	incidences = {},
 	muteTimers = {},
@@ -16,7 +18,7 @@ addEvent("onPlayerFloodAbsolved", false)
 
 addEventHandler("onResourceStart", resourceRoot,
 	function()
-		antiflood.msBetweenMessages = antiflood.settings.timeBetweenMsg * 1000
+		antiflood.msBetweenMessages = antiflood.settings.timeBetweenMsg
 	end
 )
 
@@ -26,18 +28,25 @@ addEventHandler("onSettingChange", root,
 
 		if setting == "*"..resName..".timeBetweenMsg" then
 			antiflood.settings.timeBetweenMsg = fromJSON(newV)
-			antiflood.msBetweenMessages = antiflood.settings.timeBetweenMsg * 1000
+			antiflood.msBetweenMessages = antiflood.settings.timeBetweenMsg
 		elseif setting == "*"..resName..".maxWarnings" then
 			antiflood.settings.maxWarnings = fromJSON(newV)
 		end
 	end
 )
 
-function shouldAllowMessage(player)
+function shouldAllowMessage(player, messageContent)
 	if isPlayerMuted(player) then
 		return false, false
 	end
 
+	-- Anti repetition
+	if (antiflood.lastMessageContent[player] and antiflood.lastMessageContent[player]==messageContent and ((antiflood.lastMessage[player] + antiflood.settings.repetitionTimeout) > getTickCount())) then
+		-- Don't allow the message to go through, but don't punish for it either
+		return false, false
+	end
+	
+	-- Anti flood
 	if antiflood.lastMessage[player] and ((antiflood.lastMessage[player] + antiflood.msBetweenMessages) > getTickCount()) then
 		if antiflood.warnings[player] and antiflood.warnings[player] >= antiflood.settings.maxWarnings then
 			antiflood.incidences[player] = antiflood.incidences[player] and antiflood.incidences[player] + 1 or 1
@@ -58,6 +67,7 @@ function shouldAllowMessage(player)
 	end
 
 	antiflood.lastMessage[player] = getTickCount()
+	antiflood.lastMessageContent[player] = messageContent
 
 	return true
 end

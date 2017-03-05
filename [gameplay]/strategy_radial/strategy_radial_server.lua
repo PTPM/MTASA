@@ -10,7 +10,7 @@ function handleIncomingStrategyRadialCommand(command, text, x, y, z)
 	end
 	
 	if resource.spam and getResourceState(resource.spam) == "running" then
-		local allow, wasPunished = exports.antiflood:shouldAllowMessage(client)
+		local allow, wasPunished = exports.antiflood:shouldAllowMessage(client, text)
 		if not allow then
 			return
 		end

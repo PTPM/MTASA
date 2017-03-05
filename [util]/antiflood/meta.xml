@@ -3,8 +3,9 @@
 	<script src="server.lua" type="server"></script>
 
 	<settings>
-		<setting name="*timeBetweenMsg" value="[1]" group="Anti-flood" desc="How close together messages must be to be considered spam"/>
+		<setting name="*timeBetweenMsg" value="[1500]" group="Anti-flood" desc="How close together messages must be to be considered spam (in ms). Higher is stricter."/>
 		<setting name="*maxWarnings" value="[3]" group="Anti-flood" desc="Number of spam messages allowed before action is taken"/>
+		<setting name="*repetitionTimeout" value="[4500]" group="Anti-flood" desc="How long repetitions of an identical message by a player are blocked (in ms)"/>
 	</settings>
 
 	<export function="shouldAllowMessage" type="server" />
