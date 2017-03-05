@@ -3,5 +3,6 @@
 	<script src="client.lua" type="client" />
 	<script src="server.lua" type="server" />
 	
-	<file src="hitsound.wav" />
+	<file src="hitsound-light.wav" />
+	<file src="hitsound-heavy.wav" />
 </meta>
