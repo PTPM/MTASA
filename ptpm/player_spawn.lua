@@ -541,7 +541,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 			consecutiveKills = consecutiveKills + 1
 			--playerInfo[killer].consecutiveKills = playerInfo[killer].consecutiveKills + 1
 			
-			local smgAmmo, rifleAmmo, pistolAmmo, throwAmmo, shotgunAmmo, text
+			local smgAmmo, rifleAmmo, pistolAmmo, throwAmmo, shotgunAmmo, sniperAmmo, text
 			local killerName = getPlayerName( killer )
 			if consecutiveKills == 4 then
 			--if playerInfo[killer].consecutiveKills == 4 then
@@ -550,6 +550,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 				pistolAmmo = 10
 				throwAmmo = 2
 				shotgunAmmo = 20
+				sniperAmmo = 4
 				text = killerName .. " is on a rampage!"
 			elseif consecutiveKills == 7 then
 			--elseif playerInfo[killer].consecutiveKills == 7 then
@@ -558,6 +559,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 				pistolAmmo = 20
 				throwAmmo = 3
 				shotgunAmmo = 40
+				sniperAmmo = 6
 				text = killerName .. " is unstoppable!"
 			elseif consecutiveKills == 10 then
 			--elseif playerInfo[killer].consecutiveKills == 10 then
@@ -566,14 +568,23 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 				pistolAmmo = 30
 				throwAmmo = 4
 				shotgunAmmo = 60
+				sniperAmmo = 8
 				text = killerName .. " is godlike!"
-			end				
+			elseif consecutiveKills > 10 and consecutiveKills % 4 == 0 then
+				smgAmmo = 130
+				rifleAmmo = 130
+				pistolAmmo = 20
+				throwAmmo = 3
+				shotgunAmmo = 40
+				sniperAmmo = 6
+				text = killerName .. " is legendary!"
+			end
 			
 			if text then
 				outputChatBox( text, root, unpack( colour.achievement ) )
 				outputChatBox( "Your ammo has been increased!", killer, unpack( colour.achievement ) )
 				
-				local slots = { [2] = pistolAmmo, [3] = shotgunAmmo, [4] = smgAmmo, [5] = rifleAmmo, [8] = throwAmmo }
+				local slots = { [2] = pistolAmmo, [3] = shotgunAmmo, [4] = smgAmmo, [5] = rifleAmmo, [6] = sniperAmmo, [8] = throwAmmo }
 				
 				for key, value in pairs( slots ) do
 					local weaponID = getPedWeapon( killer, key )
