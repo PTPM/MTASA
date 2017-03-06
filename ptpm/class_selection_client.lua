@@ -429,9 +429,9 @@ function onElectionFinished(electedPM)
 	election.active = false
 	election.candidates = 0
 
-	if classSelection.visible and not classSelection.hiding then
-		flowers.pm.isBlocked = false
+	flowers.pm.isBlocked = false
 
+	if classSelection.visible and not classSelection.hiding then
 		if classSelection.rejection.show then
 			classSelection.rejection.show = false
 		end
