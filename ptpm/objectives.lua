@@ -20,7 +20,7 @@ addEventHandler("onObjectiveEnter", root,
 							drawStaticTextToScreen("draw", p, "objDesc", "Objective description:\n" .. data.objectives[objective].desc, "screenX*0.775", "screenY*0.28+40", "screenX*0.179", 120, colour.important, 1, "clear", "top", "center")					
 						end
 
-						if classes[classID].type == "terrorist" then
+						if classID and classes[classID].type == "terrorist" then
 							setObjectiveVisibleToPlayer(p, objective)
 						end
 					end
