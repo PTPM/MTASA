@@ -355,6 +355,11 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 	end
 	
 	local classID = getPlayerClassID( source )
+	local killerClassID
+
+	if killer and isElement(killer) and getElementType(killer) == "player" then
+		killerClassID = getPlayerClassID(killer)
+	end
 	
 	if getElementType( killer ) == "vehicle" then 
 		killer = getVehicleController( killer ) or source 
@@ -363,7 +368,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 	if classes and classID and classes[classID].type == "pm" then
 		local deathCause, killerTeam = "", ""
 
-		killerTeam = (getElementType(killer) == "player" and classes[getPlayerClassID( killer )].type or "")
+		killerTeam = (killerClassID and classes[killerClassID].type or "")
 
 		if killer ~= source then
 			local pmKills = getElementData(killer, "ptpm.pmKills") or 0
@@ -499,7 +504,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 
 
 	-- fixes annoying case when you get killed in accident after pm dies (by fredro & snowy)
-	if killer == source and data.roundEnded == true and classes[getPlayerClassID( killer )].type ~= "pm" then
+	if killer == source and data.roundEnded == true and killerClassID and classes[killerClassID].type ~= "pm" then
 		-- do nothing, it was an accident that the player couldn't prevent
 	else    
 		local deaths = getElementData( source, "ptpm.deaths" ) or 0
@@ -518,7 +523,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 	--playerInfo[source].roundDeaths = (playerInfo[source].roundDeaths or 0) + 1
 	--setElementData( source, "deaths", string.format("%d (%d)",(deaths and deaths + 1 or 0),playerInfo[source].roundDeaths))
 
-	if killer ~= source and getElementType(killer) == "player" and classes[getPlayerClassID( killer )] then
+	if killer ~= source and getElementType(killer) == "player" and killerClassID and classes[killerClassID] then
 		local playerTeam = classes[classID].type
 		local killerTeam = classes[getPlayerClassID( killer )].type		
 

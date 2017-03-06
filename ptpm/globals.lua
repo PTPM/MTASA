@@ -48,6 +48,7 @@ colour = {
 	hex = {
 		ptpm = string.format("#%02x%02x%02x", 0, 102, 204),
 		pm = string.format("#%02x%02x%02x", unpack(classColours.pm)),
+		pmm = string.format("#%02x%02x%02x", unpack(classColours.pm)),
 		bodyguard = string.format("#%02x%02x%02x", unpack(classColours.bodyguard)),
 		bodyguardm = string.format("#%02x%02x%02x", unpack(classColours.bodyguardm)),
 		police = string.format("#%02x%02x%02x", unpack(classColours.police)),

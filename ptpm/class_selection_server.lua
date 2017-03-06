@@ -309,6 +309,10 @@ function leaveClassAfterTime(thePlayer)
 
 	local classID = getPlayerClassID(thePlayer)
 
+	if not classID then
+		return
+	end
+
 	if classes[classID].type == "pm" and not isPlayerOp(thePlayer) then
 		outputChatBox("The prime minister must use /swapclass.", thePlayer, unpack(colour.personal))
 		return
@@ -365,7 +369,7 @@ function reclassCommand( thePlayer, commandName, className )
 		return outputChatBox( "Usage: /reclass pm|terrorist|cop|bodyguard|psycho|tmedic|bmedic|cmedic", thePlayer, unpack( colour.personal ) )
 	elseif tonumber( className ) ~= nil then
 		proposedClass = tonumber( className )
-		if proposedClass > #classes or proposedClass < 0 then
+		if proposedClass > #classes or proposedClass <= 0 then
 			outputChatBox( "No such class.", thePlayer, unpack( colour.personal ) )
 			outputChatBox( "Usage: /reclass pm|terrorist|cop|bodyguard|psycho|tmedic|bmedic|cmedic", thePlayer, unpack( colour.personal ) )
 			return

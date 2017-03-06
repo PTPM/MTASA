@@ -175,7 +175,10 @@ end
 function localPlayerVotesFor(mapId)
 	mapId = tonumber(mapId)
 	
-	if playerHasJustVoted then return nil end
+	if playerHasJustVoted or (not mapId) then 
+		return nil 
+	end
+
     if isMapVoteRunning then
 		triggerServerEvent ( "ptpmMapVoteResult", resourceRoot, mapId )
 		thisClientVotedFor = mapId
