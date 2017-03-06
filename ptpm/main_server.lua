@@ -1053,7 +1053,7 @@ addCommandHandler( "pm",
 		if target == nil then
 			return outputChatBox( "Usage: /pm <person> <message>", thePlayer, unpack( colour.personal ) )
 		elseif target == false then
-			return outputChatBox( "Too many matches for name '" .. otherName .. "'", thePlayer, unpack( colour.personal ) )
+			return outputChatBox( "Too many matches for name '" .. targetName .. "'", thePlayer, unpack( colour.personal ) )
 		elseif target == thePlayer then
 			return outputChatBox( "You can't pm yourself!", thePlayer, unpack( colour.personal ) )
 		end
