@@ -323,6 +323,10 @@ function conditionProcessor(player, fn, args)
 		end
 	end	
 
+	if fn == conditionTaskExplanationComparison then
+		outputDebugString("pre-conditionTaskExplanationComparison: player: '" .. tostring(args[1]).. "'", 1)
+	end
+
 	-- call through to the actual condition comparator
 	return fn(unpack(args))
 end
@@ -358,7 +362,7 @@ end
 
 function conditionTaskExplanationComparison(player)
 	if (not player) or (not isElement(player)) then
-		outputDebugString("Error: bad player passed to conditionTaskExplanationComparison", 1)
+		outputDebugString("Error: bad player passed to conditionTaskExplanationComparison (" .. tostring(player) .. ")", 1)
 		return
 	end
 
