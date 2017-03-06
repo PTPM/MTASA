@@ -28,8 +28,16 @@ function knifeRestrict(victim)
 	vicRot = normalizeAngles(vicRot)
 	killerRot = normalizeAngles(killerRot)
 	
-	local minKillerAngle = normalizeAngles(vicRot - 170)
-	local maxKillerAngle = normalizeAngles(vicRot + 170)
+	local minKillerAngle = normalizeAngles(vicRot - 165)
+	local maxKillerAngle = normalizeAngles(vicRot + 165)
+	
+	-- Because of normalization, the min can be higher than the max, in that case, flip it
+	if minKillerAngle > maxKillerAngle then
+		local minKillerAngle_ = minKillerAngle
+		
+		minKillerAngle = maxKillerAngle
+		maxKillerAngle = minKillerAngle_
+	end	
 	
 	if killerRot < minKillerAngle or killerRot > maxKillerAngle then
 		outputDebugString(getPlayerName(killer) .. " Knife kill prevented: killerRot not in range of vicRot (min:"..math.ceil(minKillerAngle).." real:" ..math.ceil(killerRot).." max:"..math.ceil(maxKillerAngle)..")" , 1)
