@@ -260,8 +260,8 @@ function ptpmMapStart( map )
 		data.tasks[value].desc = getElementData( value, "desc" ) or taskDesc[taskType]
 		data.tasks[value].finishText = getElementData( value, "finishText" ) or taskFinishText[taskType]
 		
-	--	setElementVisibleTo ( data.tasks[value].marker, root, true )
-	--	setElementVisibleTo ( data.tasks[value].blip, root, true )
+		setElementVisibleTo ( data.tasks[value].marker, root, false )
+		setElementVisibleTo ( data.tasks[value].blip, root, false )
 		
 		setElementParent( data.tasks[value].taskArea, value )
 		setElementParent( data.tasks[value].marker, value )
