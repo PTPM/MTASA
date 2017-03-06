@@ -1,4 +1,6 @@
-﻿function isQualified( thePlayer, theVehicle, seat )
+﻿addEvent("onVehicleIdleRespawn")
+
+function isQualified( thePlayer, theVehicle, seat )
 	if seat == 0 and getPlayerClassID( thePlayer ) then
 		-- if the keys task has been activated
 		if classes[getPlayerClassID( thePlayer )].type == "pm" and data.tasks.keys then 
@@ -71,6 +73,7 @@ function initiateVehicleRespawn()
 			function ( vehicle )
 				doRespawnVehicle( vehicle )
 				data.vehicleRespawn[vehicle].timer = nil
+				triggerEvent("onVehicleIdleRespawn", vehicle)
 			end,
 		data.vehicleRespawn[source].delay, 1, source )
 

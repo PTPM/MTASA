@@ -11,11 +11,19 @@ local startTick = 0
 local fastTimers = {}
 local ptpmColour
 
+local defaultColours = {}
+
 addEventHandler("onResourceStart", resourceRoot,
 	function()
 		startTick = getTickCount()
 
 		ptpmColour = exports.ptpm:getColour("ptpm") or {255, 0, 0}
+
+		for _, v in ipairs(getElementsByType("vehicle")) do
+			local r1, g1, b1, r2, g2, b2 = getVehicleColor(v, true)
+
+			defaultColours[v] = {r1, g1, b1, r2, g2, b2}
+		end
 	end
 )
 
@@ -44,6 +52,28 @@ addEventHandler("onVehicleEnter", root,
 		end
 	end,
 true, "high")
+
+
+addEventHandler("onVehicleRespawn", root,
+	function()
+		vehicleRespawned(source)
+	end
+)
+
+addEventHandler("onVehicleIdleRespawn", root,
+	function()
+		vehicleRespawned(source)
+	end
+)
+
+function vehicleRespawned(vehicle)
+	if not defaultColours[vehicle] then
+		return
+	end
+	
+	setVehicleColor(vehicle, unpack(defaultColours[vehicle]))
+end
+
 
 function killFastTimer(player)
 	if fastTimers[player] then
