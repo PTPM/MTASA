@@ -114,14 +114,26 @@ function givePlayerPickupWeapon(thePlayer, thePickup)
 	
 	if weaponID == 38 or weaponID == 35 or weaponID == 36 then
 		local name, text = getPlayerName(thePlayer)
-		local teamName = teamMemberName[classes[classID].type]
+		local teamName = ""
+
+		if classes[classID].type == "pm" then
+			teamName = "Prime Minister"
+		elseif classes[classID].type == "police" then
+			teamName = "Policeman"
+		elseif classes[classID].type == "bodyguard" then
+			teamName = "Bodyguard"
+		elseif classes[classID].type == "terrorist" then
+			teamName = "Terrorist"
+		elseif classes[classID].type == "psycho" then
+			teamName = "Psychopath"
+		end
 		
 		if weaponID == 38 then
-			text = name .. "(" .. teamName ..  ") has the minigun!"
+			text = teamName .. " " .. name .. " has the minigun!"
 		elseif weaponID == 35 then
-			text = name .. "(" .. teamName ..  ") has the rocket launcher!"
+			text = teamName .. " " .. name .. " has the rocket launcher!"
 		elseif weaponID == 36 then
-			text = name .. "(" .. teamName ..  ") has the heat seeker!"
+			text = teamName .. " " .. name .. " has the heat seeker!"
 		end
 		
 		local r, g, b = getPlayerColour(thePlayer)
