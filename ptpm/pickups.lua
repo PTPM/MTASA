@@ -193,6 +193,10 @@ end
 
 
 function clearPickupRespawnTimer(thePickup)
+	if (not thePickup) or (not isElement(thePickup)) then
+		return
+	end
+	
 	if data.pickups[thePickup].respawnTimer then
 		if isTimer(data.pickups[thePickup].respawnTimer) then
 			killTimer(data.pickups[thePickup].respawnTimer)
@@ -202,11 +206,11 @@ function clearPickupRespawnTimer(thePickup)
 end
 
 function clearPickupPlayerRespawnTimer(thePickup, player)
-	if (not thePickup) or (not isElement(thePickup)) then
+	if (not player) or (not isElement(player)) or (not thePickup) or (not isElement(thePickup)) then
 		return
 	end
 
-	if data.pickups[thePickup] and data.pickups[thePickup].playerRespawnTimer[player] then
+	if data.pickups[thePickup] and data.pickups[thePickup].playerRespawnTimer and data.pickups[thePickup].playerRespawnTimer[player] then
 		if isTimer(data.pickups[thePickup].playerRespawnTimer[player]) then
 			killTimer(data.pickups[thePickup].playerRespawnTimer[player])
 		end
