@@ -718,7 +718,7 @@ function onPlayerChat( message, messageType )
 	end
 	
 	if spam.resource and getResourceState(spam.resource) == "running" then
-		local allow, wasPunished = exports.antiflood:shouldAllowMessage(source)
+		local allow, wasPunished = exports.antiflood:shouldAllowMessage(source, message)
 		if not allow then
 			-- the punishment events will output an appropriate message
 			cancelEvent()
