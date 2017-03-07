@@ -272,7 +272,19 @@ function closePTPMMapVote()
 		highestVoteMap = "ptpm-sf" 
 	end
 	outputDebugString("Loading map: " .. highestVoteMap);
-	exports.mapmanager:changeGamemodeMap(getResourceFromName(highestVoteMap), thisResource) 
+
+	if data.silentRestart then
+		for _, player in ipairs(getElementsByType("player")) do
+			if player and isElement(player) and isPlayerOp(player) then
+				outputChatBox("SERVER: Gamemode silently restarting...", player, unpack(colour.global))
+			end
+		end
+		
+		exports.mapmanager:changeGamemodeByName("ptpm", highestVoteMap, true)
+		data.silentRestart = nil
+	else
+		exports.mapmanager:changeGamemodeMap(getResourceFromName(highestVoteMap), thisResource) 
+	end
 end
 
 function handleIncomingVote(mapVoteId)

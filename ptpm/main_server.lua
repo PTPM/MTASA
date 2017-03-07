@@ -1090,6 +1090,21 @@ addEventHandler("onPlayerDamage", root,
 	end
 )
 
+addCommandHandler("silentrestart",
+	function(player)
+		if not isPlayerOp(player) then 
+			return 
+		end
+
+		setSilentRestart(true)
+
+		outputChatBox("Gamemode will restart at the end of the next map.", player, unpack(colour.personal))
+	end
+)
+
+function setSilentRestart(value)
+	data.silentRestart = value
+end
 
 -- addCommandHandler("mo",
 -- 	function(player,command,time_,x_,y_,z_,rx_,ry_,rz_)
