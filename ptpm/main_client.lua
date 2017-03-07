@@ -415,20 +415,13 @@ function setupAFKTimer(team)
 	end	
 end
 
-addEventHandler("onClientKey", root,
-	function(button, pressOrRelease)
-		if pressOrRelease and stillOnSpawn then
-			if button == "tab" then
-				return
-			end
-						
-			killAFKTimer()
-		end
-	end
-)
-
 function warnAFKPlayer()
 	if classSelection.visible then
+		return
+	end
+
+	if localPlayer == currentPM then
+		killAFKTimer()
 		return
 	end
 	
