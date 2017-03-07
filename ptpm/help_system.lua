@@ -296,20 +296,29 @@ function conditionProcessor(player, fn, args)
 		return
 	end
 
+	-- make a new copy so we aren't updating the original definition reference
+	local newArgs = {}
+
 	for i, arg in ipairs(args) do
+		if arg and isElement(arg) and getElementType(arg) == "player" then
+			outputChatBox("Already subbed for player " .. getPlayerName(arg))
+		end
+
 		if arg == "__player" then
-			args[i] = player
+			newArgs[i] = player
 
 			if pArg then
 				outputDebugString("Error: multiple player args in conditionProcessor ("..tostring(fn)..", "..tostring(conditionTaskExplanationComparison)..")", 1)
 			end
 
 			pArg = i
+		else
+			newArgs[i] = arg
 		end
 	end
 
 	-- debug stuff
-	for i, arg in ipairs(args) do
+	for i, arg in ipairs(newArgs) do
 		if i == pArg then
 			if (not arg) or (not isElement(arg)) then
 				local playerName = "-error-"
@@ -323,18 +332,18 @@ function conditionProcessor(player, fn, args)
 		end
 	end	
 
-	if fn == conditionTaskExplanationComparison then
-		local eType = "-not an element-"
+	-- if fn == conditionTaskExplanationComparison then
+	-- 	local eType = "-not an element-"
 
-		if args[1] and isElement(args[1]) then
-			eType = getElementType(args[1])
-		end
+	-- 	if newArgs[1] and isElement(newArgs[1]) then
+	-- 		eType = getElementType(newArgs[1])
+	-- 	end
 
-		outputDebugString("pre-conditionTaskExplanationComparison: player: '" .. tostring(args[1]).. "', "..tostring(eType), 1)
-	end
+	-- 	outputDebugString("pre-conditionTaskExplanationComparison: player: '" .. tostring(newArgs[1]).. "', "..tostring(eType), 1)
+	-- end
 
 	-- call through to the actual condition comparator
-	return fn(unpack(args))
+	return fn(unpack(newArgs))
 end
 
 function conditionStatNumberComparison(player, statName, greater, value)
