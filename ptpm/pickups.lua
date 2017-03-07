@@ -173,7 +173,7 @@ end
 function pickupPlayerRespawn(thePickup, player)
 	--outputChatBox("pickup player respawned " ..tostring(getPickupType(thePickup)))
 
-	if not player or not isElement(player) then
+	if (not player) or (not isElement(player)) or (not thePickup) or (not isElement(thePickup)) then
 		return
 	end
 
@@ -202,7 +202,11 @@ function clearPickupRespawnTimer(thePickup)
 end
 
 function clearPickupPlayerRespawnTimer(thePickup, player)
-	if data.pickups[thePickup].playerRespawnTimer[player] then
+	if (not thePickup) or (not isElement(thePickup)) then
+		return
+	end
+
+	if data.pickups[thePickup] and data.pickups[thePickup].playerRespawnTimer[player] then
 		if isTimer(data.pickups[thePickup].playerRespawnTimer[player]) then
 			killTimer(data.pickups[thePickup].playerRespawnTimer[player])
 		end
