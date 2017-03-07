@@ -349,9 +349,8 @@ addEventHandler( "onPlayerQuit", root,
 		clearPickupData( source )
 		
 		if currentPM and source == currentPM then
-			local r, g, b = getPlayerColour(source)
 			local playerName = getPlayerName(source)
-			outputChatBox(playerName .. " is nolonger " .. teamMemberName["pm"] .. ".", root, r, g, b, false)
+			outputChatBox(playerName .. " is nolonger " .. teamMemberName["pm"] .. ".", root, classColours.pm[1], classColours.pm[2], classColours.pm[3], false)
 
 			clearTask()
 			clearObjective()
@@ -719,7 +718,7 @@ function onPlayerChat( message, messageType )
 	end
 	
 	if spam.resource and getResourceState(spam.resource) == "running" then
-		local allow, wasPunished = exports.antiflood:shouldAllowMessage(source, message)
+		local allow, wasPunished = exports.antiflood:shouldAllowMessage(source)
 		if not allow then
 			-- the punishment events will output an appropriate message
 			cancelEvent()
