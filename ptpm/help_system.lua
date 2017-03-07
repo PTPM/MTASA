@@ -324,7 +324,13 @@ function conditionProcessor(player, fn, args)
 	end	
 
 	if fn == conditionTaskExplanationComparison then
-		outputDebugString("pre-conditionTaskExplanationComparison: player: '" .. tostring(args[1]).. "'", 1)
+		local eType = "-not an element-"
+
+		if args[1] and isElement(args[1]) then
+			eType = getElementType(args[1])
+		end
+
+		outputDebugString("pre-conditionTaskExplanationComparison: player: '" .. tostring(args[1]).. "', "..tostring(eType), 1)
 	end
 
 	-- call through to the actual condition comparator
