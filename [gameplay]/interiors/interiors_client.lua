@@ -198,12 +198,22 @@ addEventHandler ( "doWarpPlayerToInterior",localPlayer,
 		local oppositeType = opposite[getElementType(interior)]
 		local targetInterior = interiors[resource][id][oppositeType]
 		
-		local x = getElementData ( targetInterior, "posX" )
-		local y = getElementData ( targetInterior, "posY" )
-		local z = getElementData ( targetInterior, "posZ" ) + 1
-		local dim = getElementData ( targetInterior, "dimension" )
-		local int = getElementData ( targetInterior, "interior" )
-		local rot = getElementData ( targetInterior, "rotation" )
+		local x = tonumber(getElementData ( targetInterior, "posX" ))
+		local y = tonumber(getElementData ( targetInterior, "posY" ))
+		local z = tonumber(getElementData ( targetInterior, "posZ" )) + 1
+		local dim = tonumber(getElementData ( targetInterior, "dimension" ))
+		local int = tonumber(getElementData ( targetInterior, "interior" ))
+		local rot = tonumber(getElementData ( targetInterior, "rotation" ))
+
+		if settings.offsetTeleportPosition then
+			-- some markers are in such small locations you can't safely offset the position e.g. the tower in sf
+			local preventOffset = getElementData(targetInterior, "preventOffset")
+
+			if not preventOffset then
+				x, y, z = getAdjustedPosition(x, y, z, rot)
+			end
+		end
+
 		toggleAllControls ( false, true, false )
 		fadeCamera ( false, 1.0 )
 		setTimer ( setPlayerInsideInterior, 1000, 1, source, int,dim,rot,x,y,z, interior )
@@ -247,6 +257,15 @@ function setPlayerInsideInterior ( player, int,dim,rot,x,y,z, interior )
 	 		end,
 	 	settings.teleportImmunityLength, 1)
 	end
+end
+
+-- adjust the position slightly forward and to either side
+function getAdjustedPosition(x, y, z, rot)
+	local m = Matrix(Vector3(x, y, z), Vector3(0, 0, rot))
+
+	local position = m:transformPosition(Vector3((math.random() * offset.xVariance) - (offset.xVariance / 2), math.random() * offset.yVariance, 0))
+
+	return position:getX(), position:getY(), position:getZ()
 end
 
 function getInteriorName ( interior )

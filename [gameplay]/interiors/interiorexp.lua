@@ -27,8 +27,8 @@ addEventHandler("onSettingChange", root,
 			settings.teleportImmunityLength = fromJSON(newValue)
 			triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
 		elseif setting == settings.name("offsetTeleportPosition", "*") then
-			--settings.offsetTeleportPosition = fromJSON(newValue)
-			--triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
+			settings.offsetTeleportPosition = fromJSON(newValue)
+			triggerClientEvent(root, "updateClientSettings", resourceRoot, settings)
 		end
 	end
 )
