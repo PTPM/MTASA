@@ -24,7 +24,8 @@ end
 
 -- File management
 local files = { 
-	nickshield = 			"nickshield.csv"
+	nickshield = 			"nickshield.csv",
+	incidents = "incents.csv"
 }
 
 local filePointers = {}
@@ -103,26 +104,37 @@ function getPlayerPTPMUser(player)
 end
 
 
+function now()
+	local t = getRealTime( )
+	return t.timestamp
+end
+
+
 
 
 addCommandHandler ( "nickshield", function(source)
 	local nick = getPlayerName(source)
 	local user = getPlayerPTPMUser(source)
 	
-	if not user or user=="Guest" then 
-		exports.ptpm:sendGameText(source, "Nickshield unavailable.", 3000, ptpmColour, 3, 1.3)
+	if not user then 
+		exports.ptpm:sendGameText(source, "Nickshield unavailable right now.", 3000, ptpmColour, 3, 1.3)
+		return
+	end	
+	
+	if user=="Guest" then 
+		exports.ptpm:sendGameText(source, "Nickshield unavailable to guests.", 3000, ptpmColour, 3, 1.3)
 		return
 	end	
 	
 	-- Is this nick already shielded?
 	if nickshielded[nick] then
-		exports.ptpm:sendGameText(source, "This name is already shielded.", 3000, ptpmColour, 3, 1.3)
+		exports.ptpm:sendGameText(source, "This nickname is already shielded.", 3000, ptpmColour, 3, 1.3)
 		return
 	end
 	
 	-- Does this user already have a shielded nick?
 	if nickshieldedFlipped()[user] then
-		exports.ptpm:sendGameText(source, "You're already shielding a name.", 3000, ptpmColour, 3, 1.3)
+		exports.ptpm:sendGameText(source, "You're already shielding a nickname.", 3000, ptpmColour, 3, 1.3)
 		return
 	end
 	
@@ -130,7 +142,7 @@ addCommandHandler ( "nickshield", function(source)
 	nickshielded[nick] = user
 	openAndAppendToFile("nickshield", nick .. " " .. user)
 	
-	exports.ptpm:sendGameText(source, "This nick is now shielded.", 3000, ptpmColour, 3, 1.3)
+	exports.ptpm:sendGameText(source, "This nickname is now shielded.", 3000, ptpmColour, 3, 1.3)
 
 end )
 
@@ -182,6 +194,7 @@ addEventHandler ( "onPlayerJoin", getRootElement(), function()
 					if isElement(thePlayer2) then
 						local verdict = isThisAllowed(thePlayer2, getPlayerName(thePlayer2))
 						if verdict~="yes" then
+							openAndAppendToFile("incidents", now() .. "¶" .. getPlayerName(thePlayer2) .. "¶" .. getPlayerSerial(thePlayer2) .. "¶KICK")
 							kickPlayer (thePlayer2,"Failed to authenticate to shielded nickname.")
 						end
 					end
@@ -196,6 +209,7 @@ addEventHandler("onPlayerChangeNick", getRootElement(), function(oldNick, newNic
 	local verdict = isThisAllowed(source, newNick)
 	
 	if verdict~="yes" then
+		openAndAppendToFile("incidents", now() .. "¶" .. newNick .. "¶" .. getPlayerSerial(source) .. "¶CHANGE PREVENTED")
 		exports.ptpm:sendGameText(source, "This nickname is not available to you.", 3000, ptpmColour, 3, 1.3)
         cancelEvent()
 	end
