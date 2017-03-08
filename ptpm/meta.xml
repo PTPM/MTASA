@@ -130,6 +130,7 @@
 	<include resource="vehicle_items" />
 	<include resource="interiorfix"/>
 	<include resource="antiflood"/>
+	<include resource="world_draw" />
 
 	<!-- Gameplay (default) -->
 	<include resource="defaultstats" />

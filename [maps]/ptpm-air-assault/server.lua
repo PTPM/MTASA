@@ -23,6 +23,26 @@ addEventHandler("onResourceStart", resourceRoot,
 			local r1, g1, b1, r2, g2, b2 = getVehicleColor(v, true)
 
 			defaultColours[v] = {r1, g1, b1, r2, g2, b2}
+		end		
+
+		if isRunning("world_draw") then
+			setTimer(
+				function()
+					for _, v in ipairs(getElementsByType("vehicle")) do
+						exports.world_draw:attach3DDraw(v, "hb", "healthbar", nil, {"getVehicleOccupant"})
+					end
+				end,
+			1000, 1)
+		end
+	end
+)
+
+addEventHandler("onResourceStop", resourceRoot,
+	function()
+		if isRunning("world_draw") then
+			for _, v in ipairs(getElementsByType("vehicle")) do
+				exports.world_draw:detach3DDraw(v, "hb")
+			end
 		end
 	end
 )
@@ -39,14 +59,27 @@ addEventHandler("onVehicleEnter", root,
 				-- attempt fast travel
 				killFastTimer(player)
 
+				-- 1min 30s for pm to get his shit together
+				if fastTravelDist == 2000 and (getTickCount() - startTick) > 90000 then
+					fastTravelDist = 800
+				end
+
 				local currentPM = exports.ptpm:getCurrentPM()
 
 				if not currentPM then
 					return
 				end
 
+				local x, y, z = getElementPosition(currentPM)
+				--local x, y, z = 0, 0, 0
+				local px, py, pz = getElementPosition(player)
+
+				if getDistanceBetweenPoints3D(x, y, z, px, py, pz) <= fastTravelDist then
+					return
+				end
+
 				fadeCamera(player, false, 2)
-				exports.ptpm:sendGameText(player, "Travelling closer to\nthe Prime Minister...", 3000, ptpmColour, nil, 1.5, nil, nil, 2)
+				exports.ptpm:sendGameText(player, "Travelling closer to\nthe Prime Minister...", 3000, ptpmColour, 2)
 				fastTimers[player] = setTimer(travelToPM, 2000, 1, player, source)
 			end
 		end
@@ -87,11 +120,6 @@ function killFastTimer(player)
 end
 
 function travelToPM(player, originalVehicle)
-	-- 1min 30s for pm to get his shit together
-	if fastTravelDist == 2000 and (getTickCount() - startTick) > 90000 then
-		fastTravelDist = 800
-	end
-
 	if player and isElement(player) then
 		fadeCamera(player, true, 1)
 
@@ -111,28 +139,26 @@ function travelToPM(player, originalVehicle)
 		--local x, y, z = 0, 0, 0
 		local px, py, pz = getElementPosition(player)
 
-		if getDistanceBetweenPoints3D(x, y, z, px, py, pz) > fastTravelDist then
-			local vx = px - x
-			local vy = py - y
+		local vx = px - x
+		local vy = py - y
 
-			local max = math.max(math.abs(vx), math.abs(vy))
+		local max = math.max(math.abs(vx), math.abs(vy))
 
-			vx = vx / max
-			vy = vy / max
+		vx = vx / max
+		vy = vy / max
 
-			local randomOffset = math.random(0, 50) - 25
-			local travelX = x + (vx * (fastTravelDist + randomOffset))
-			local travelY = y + (vy * (fastTravelDist + randomOffset))
+		local randomOffset = math.random(0, 50) - 25
+		local travelX = x + (vx * (fastTravelDist + randomOffset))
+		local travelY = y + (vy * (fastTravelDist + randomOffset))
 
-			local angle = (180 - math.deg(math.atan2(vx, vy))) % 360
+		local angle = (180 - math.deg(math.atan2(vx, vy))) % 360
 
-			-- highest point in sa (chiliad) is around 526
-			-- todo: maybe do some better height stuff, like detecting being over chiliad and only going really high then
-			setElementPosition(vehicle, travelX, travelY, 540 + math.random(10, 60))
-			setElementRotation(vehicle, 0, 0, angle)
+		-- highest point in sa (chiliad) is around 526
+		-- todo: maybe do some better height stuff, like detecting being over chiliad and only going really high then
+		setElementPosition(vehicle, travelX, travelY, 540 + math.random(10, 60))
+		setElementRotation(vehicle, 0, 0, angle)
 
-			setElementVelocity(vehicle, (vx * -1) / 3, (vy * -1) / 3, 0)
-		end
+		setElementVelocity(vehicle, (vx * -1) / 3, (vy * -1) / 3, 0)
 	end	
 end
 
@@ -148,3 +174,15 @@ addEventHandler("onVehicleExit", root,
 		killFastTimer(player)
 	end
 )
+
+function isRunning(resourceName)
+	local resource = getResourceFromName(resourceName)
+
+	if resource then
+		if getResourceState(resource) == "running" then
+			return true
+		end
+	end
+
+	return false
+end
