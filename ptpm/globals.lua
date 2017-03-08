@@ -71,6 +71,7 @@ colour = {
 		black = string.format("#%02x%02x%02x", 0, 0, 0),
 		red = string.format("#%02x%02x%02x", 255, 0, 0),
 		blue = string.format("#%02x%02x%02x", 0, 0, 170),
+		lightBlue = string.format("#%02x%02x%02x", 58, 96, 255),
 
 		parse = function(s) 
 			s = s:gsub("%[PTPM%]", colour.hex.ptpm)
@@ -87,6 +88,7 @@ colour = {
 			s = s:gsub("%[BLACK%]", colour.hex.black)	
 			s = s:gsub("%[RED%]", colour.hex.red)	
 			s = s:gsub("%[BLUE%]", colour.hex.blue)	
+			s = s:gsub("%[BLUELIGHT%]", colour.hex.lightBlue)	
 
 			return s
 		end,

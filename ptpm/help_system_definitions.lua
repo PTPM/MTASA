@@ -246,7 +246,7 @@ function helpSystemCreateDefinitions()
 	-- })
 
 	registerHelpEvent("SAFE_ZONE", {
-		text = "The [BLUE]blue[WHITE] area is a [BLUE]safe zone[WHITE]. Dangerous vehicles can't come in here.",
+		text = "The [BLUELIGHT]blue[WHITE] area is a [BLUELIGHT]safe zone[WHITE]. Dangerous vehicles can't come in here.",
 		condition = {fn = conditionStatNumberComparison, args = {"__player", "safezonecount", false, 3}},
 		cooldown = 60000 * 8,
 	})			
