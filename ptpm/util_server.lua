@@ -35,23 +35,32 @@ function getPlayerColour( thePlayer )
 end
 
 
-function getPlayerFromNameSection( name )
-	if not name then return nil end
+function getPlayerFromNameSection(name)
+	if not name then 
+		return nil 
+	end
 	
 	local resultPlayer, c = false, 0
+	name = string.lower(name)
 	
-	for _, player in ipairs( getElementsByType( "player" ) ) do
-		if player and isElement( player ) then
-			if string.find( string.lower(getPlayerName( player )), string.lower(name) ) then
+	for _, player in ipairs(getElementsByType("player")) do
+		if player and isElement(player) then
+			if name == string.lower(getPlayerName(player)) then
+				return player
+			elseif string.find(string.lower(getPlayerName(player)), name) then
 				resultPlayer = player
 				c = c + 1
 			end
 		end
 	end
 	
-	if not resultPlayer then return nil
-	elseif c > 1 then return false	
-	else return resultPlayer end
+	if not resultPlayer then 
+		return nil
+	elseif c > 1 then 
+		return false	
+	else return 
+		resultPlayer 
+	end
 end	
 
 
