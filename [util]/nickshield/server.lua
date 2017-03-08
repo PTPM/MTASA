@@ -25,7 +25,7 @@ end
 -- File management
 local files = { 
 	nickshield = 			"nickshield.csv",
-	incidents = "incents.csv"
+	incidents = 			"incidents.log"
 }
 
 local filePointers = {}
