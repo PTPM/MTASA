@@ -1,0 +1,14 @@
+<meta>
+    <info author="ptpm" name="World Draw" version="1.0" type="misc"/>
+
+    <script src="world_draw_server.lua" type="server"/>
+	<script src="world_draw_client.lua" type="client"/>
+
+<!-- 	<export function="attach3DDraw" type="client"/>
+	<export function="detach3DDraw" type="client"/>
+	<export function="detachAll3DDraws" type="client"/> -->
+
+	<export function="attach3DDraw" type="server"/>
+	<export function="detach3DDraw" type="server"/>
+	<export function="detachAll3DDraws" type="server"/>	
+</meta>
