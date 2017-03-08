@@ -68,13 +68,20 @@ local function s(value)
 	return value * uiScale
 end
 
+-- scaleFont
+local function sf(value)
+	return (value * uiScale) / help.fontScalar
+end
+
 function helpSystemSetup()
 	help.height = help.height * uiScale
 
-	help.font = dxCreateFont("fonts/tahoma.ttf", 9 * (uiScale * 2), false, "proof")
+	help.fontScalar = uiScale * 2
+	help.font = dxCreateFont("fonts/tahoma.ttf", 9 * help.fontScalar, false, "proof")
 
 	if not help.font then
 		help.font = "default"
+		help.fontScalar = 1
 	end
 
 	--triggerEvent("showHelpEvent", resourceRoot, "WARNING: While viewing a camera you can still be attacked. Use the left/right arrow keys to change camera. Type /camoff or press enter to exit", 6000, nil, false)
@@ -114,7 +121,7 @@ function setupHelpEvent(text, duration, managerLink, image)
 	help:reset()
 
 	local circleSize = help.height + s(12)
-	help.text = dxWordWrapText(text, help.width - (circleSize / 2) - s(7), help.font, 0.5)
+	help.text = dxWordWrapText(text, help.width - (circleSize / 2) - s(7), help.font, sf(1))
 	help.duration = duration
 	help.linkDuration = ((2000 / help.duration) / 2)
 	help.managerLink = managerLink
@@ -219,12 +226,12 @@ function drawHelp()
 
 	if help.managerLink and help.animationState == state.showing then
 		local textSize = height - imageSize
-		dxDrawText("press", help.x - xOffset - (textSize / 2), help.y - (height / 2) + s(10), help.x - xOffset + (textSize / 2), help.y + (height / 2), tocolor(0,0,0,255 * (textSize / help.height)), 0.5, help.font, "center", "top", true, false, false, false)
-		dxDrawText("F9", help.x - xOffset - (textSize / 2), help.y - (height / 2), help.x - xOffset + (textSize / 2), help.y + (height / 2), tocolor(colour.ptpm[1], colour.ptpm[2], colour.ptpm[3], 255 * (textSize / help.height)), 1, help.font, "center", "center", true, false, false, false)
-		dxDrawText("for more", help.x - xOffset - (textSize / 2), help.y - (height / 2), help.x - xOffset + (textSize / 2), help.y + (height / 2) - s(10), tocolor(0,0,0,255 * (textSize / help.height)), 0.5, help.font, "center", "bottom", true, false, false, false)
+		dxDrawText("press", help.x - xOffset - (textSize / 2), help.y - (height / 2) + s(10), help.x - xOffset + (textSize / 2), help.y + (height / 2), tocolor(0,0,0,255 * (textSize / help.height)), sf(1), help.font, "center", "top", true, false, false, false)
+		dxDrawText("F9", help.x - xOffset - (textSize / 2), help.y - (height / 2), help.x - xOffset + (textSize / 2), help.y + (height / 2), tocolor(colour.ptpm[1], colour.ptpm[2], colour.ptpm[3], 255 * (textSize / help.height)), sf(2), help.font, "center", "center", true, false, false, false)
+		dxDrawText("for more", help.x - xOffset - (textSize / 2), help.y - (height / 2), help.x - xOffset + (textSize / 2), help.y + (height / 2) - s(10), tocolor(0,0,0,255 * (textSize / help.height)), sf(1), help.font, "center", "bottom", true, false, false, false)
 	end
 
-	dxDrawText(help.text, help.x - xOffset + (circleSize / 2) + s(5), help.y - (help.height / 2), help.x - xOffset + help.width - s(2), help.y + (help.height / 2), colour.white, 0.5, help.font, "left", "center", false, false, false, true)
+	dxDrawText(help.text, help.x - xOffset + (circleSize / 2) + s(5), help.y - (help.height / 2), help.x - xOffset + help.width - s(2), help.y + (help.height / 2), colour.white, sf(1), help.font, "left", "center", false, false, false, true)
 
 
 	-- animate out

@@ -152,6 +152,8 @@
 	<export function="getCurrentPM" type="client"/>
 	<export function="getCurrentPM" type="server"/>
 
+	<export function="setSilentRestart" type="server"/>
+
 	<!-- Gameplay (download) -->
 	<!--<include resource="heligrab" />-->
 	<!--<include resource="mabako-services" />-->

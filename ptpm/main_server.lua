@@ -349,9 +349,8 @@ addEventHandler( "onPlayerQuit", root,
 		clearPickupData( source )
 		
 		if currentPM and source == currentPM then
-			local r, g, b = getPlayerColour(source)
 			local playerName = getPlayerName(source)
-			outputChatBox(playerName .. " is nolonger " .. teamMemberName["pm"] .. ".", root, r, g, b, false)
+			outputChatBox(playerName .. " is nolonger " .. teamMemberName["pm"] .. ".", root, classColours.pm[1], classColours.pm[2], classColours.pm[3], false)
 
 			clearTask()
 			clearObjective()
@@ -1090,6 +1089,21 @@ addEventHandler("onPlayerDamage", root,
 	end
 )
 
+addCommandHandler("silentrestart",
+	function(player)
+		if not isPlayerOp(player) then 
+			return 
+		end
+
+		setSilentRestart(true)
+
+		outputChatBox("Gamemode will restart at the end of the next map.", player, unpack(colour.personal))
+	end
+)
+
+function setSilentRestart(value)
+	data.silentRestart = value
+end
 
 -- addCommandHandler("mo",
 -- 	function(player,command,time_,x_,y_,z_,rx_,ry_,rz_)

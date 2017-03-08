@@ -494,7 +494,7 @@
     <!-- towerfencebridge -->
 	
     <task type="hpPenalty" posX="-49.17" posY="-220.27" posZ="4.59" size="13.0" time="60000" />
-    <task type="weapons" posX="-537.49" posY="-522.80" posZ="34.36" size="13.0" time="70000" />
+    <task type="weapons" posX="-525.11554" posY="-495.64069" posZ="24.52344" size="30.0" time="70000" />
     <task type="radar" posX="158.13" posY="-107.62" posZ="4.89" size="18.0" time="90000" />
     <task type="keys" posX="2766.74" posY="80.49" posZ="17.71" size="16.0" time="60000" />
     <task type="accelerateTime" posX="1925.52" posY="170.05" posZ="37.28" size="18.0" time="60000" />

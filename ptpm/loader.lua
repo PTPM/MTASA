@@ -586,16 +586,18 @@ function ptpmMapStop( map )
 	end
 		
 	if data.pickups then
-		for value, _ in pairs( data.pickups ) do
-			clearPickupRespawnTimer(value)
+		for value, _ in pairs(data.pickups) do
+			if value and isElement(value) then
+				clearPickupRespawnTimer(value)
 
-			for _, player in ipairs(getElementsByType("player")) do
-				clearPickupPlayerRespawnTimer(value, player)
-			end
+				for _, player in ipairs(getElementsByType("player")) do
+					clearPickupPlayerRespawnTimer(value, player)
+				end
 
-			-- Destroy jetpacks & their timers
-			if data.pickups[value].timer then
-				destroyPickup( value )
+				-- Destroy jetpacks & their timers
+				if data.pickups[value].timer then
+					destroyPickup(value)
+				end
 			end
 		end
 	end

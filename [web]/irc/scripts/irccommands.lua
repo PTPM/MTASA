@@ -701,5 +701,12 @@ addEventHandler("onIRCResourceStart",root,
 				end
 			end
 		)
+
+		addIRCCommandHandler("!silentrestart",
+			function (server,channel,user,command,name)
+				exports.ptpm:setSilentRestart(true)
+				ircNotice(user, "The gamemode will silently restart at the end of the next map")
+			end
+		)		
 	end
 )

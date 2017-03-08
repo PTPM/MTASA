@@ -494,6 +494,8 @@ function jetPackHandler( thePlayer )
 	data.pickups[jetpack].synced = false
 	data.pickups[jetpack].respawn = false
 	data.pickups[jetpack].destroy = true	
+	data.pickups[jetpack].lastPickup = {}
+	data.pickups[jetpack].playerRespawnTimer = {}
 	setElementData( jetpack, "jetpack", "true" )
 	
 	removePedJetPack( thePlayer )
