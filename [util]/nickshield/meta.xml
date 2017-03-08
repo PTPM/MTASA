@@ -1,0 +1,12 @@
+<meta>
+	<info author="PTPM" type="script" name="nickshield" />
+	<script src="server.lua" type="server"></script>
+
+	 <aclrequest>
+		 <right name="function.kickPlayer" access="true" />
+		 <right name="function.setPlayerMuted" access="true" />
+     </aclrequest>
+	 
+	 
+	 <include resource="ptpm_accounts" />
+</meta>
