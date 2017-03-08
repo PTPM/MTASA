@@ -90,7 +90,7 @@ addEventHandler("onObjectiveComplete", root,
 		if (options.objectivesToFinish == data.objectives.finished) or (tableSize(data.objectives) == 1) then
 			everyoneViewsBody(thePlayer, thePlayer, getElementInterior(thePlayer))
 
-			sendGameText(root, "The Prime Minister completed objectives!", 7000, classColours["pm"], nil, 1.4, nil, nil, 3)
+			sendGameText(root, "The Prime Minister completed objectives!", 7000, classColours["pm"], gameTextOrder.global, 1.2)
 
 			local pmWins = getElementData(thePlayer, "ptpm.pmWins") or 0
 
@@ -209,11 +209,11 @@ function showActiveObjectiveFor(thePlayer)
 		if data.objectives.pmVisited or teams.goodGuys[classes[classID].type] then
 			local desc = data.objectives[data.objectives.activeObjective].desc or "-NO DESCRIPTION-"
 		
-			sendGameText(thePlayer, "PM Objective: " .. desc .. "\nObjectives left: " .. (options.objectivesToFinish - data.objectives.finished), 10000, sampTextdrawColours.w, nil, 1.2, nil, nil, 2)
+			sendGameText(thePlayer, "PM Objective: " .. desc .. "\nObjectives left: " .. (options.objectivesToFinish - data.objectives.finished), 10000, colour.white, gameTextOrder.contextual)
 		
 			setObjectiveVisibleToPlayer(thePlayer, data.objectives.activeObjective)
 		else
-			sendGameText(thePlayer, "PM Objectives left: " .. (options.objectivesToFinish - data.objectives.finished), 8000, sampTextdrawColours.w, nil, 1.2, nil, nil, 2)
+			sendGameText(thePlayer, "PM Objectives left: " .. (options.objectivesToFinish - data.objectives.finished), 8000, colour.white, gameTextOrder.contextual)
 			setObjectiveVisibleToPlayer(thePlayer, data.objectives.activeObjective, false)
 		end
 	end

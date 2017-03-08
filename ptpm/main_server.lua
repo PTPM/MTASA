@@ -81,20 +81,6 @@ teamMemberName = {
 }
 
 
--- thank you arc_
-sampTextdrawColours = {
-	r = {180, 25, 29},
-	g = {53, 101, 43},
-	b = {50, 60, 127},
-	--o = {239, 141, 27},
-	o = {144, 98, 16},
-	w = {255, 255, 255},
-	y = {222, 188, 97},
-	p = {180, 25, 180},
-	l = {10, 10, 10}
-}
-
-
 -- psychos have no team
 teams = {
 	["goodGuys"] = {
@@ -417,7 +403,7 @@ function roundTick()
 		local r, g, b = unpack(classColours["pm"])
 		
 		if #getElementsByType("objective", runningMapRoot) == 0 then
-			sendGameText( root, "The Prime Minister survived!", 7000, {r, g, b}, nil, 1.2, nil, nil, 3 )
+			sendGameText( root, "The Prime Minister survived!", 7000, {r, g, b}, gameTextOrder.global, 1.2 )
       
       		if currentPM then
         		local pmWins = getElementData( currentPM, "ptpm.pmWins" ) or 0
@@ -469,7 +455,7 @@ function roundTick()
 				end     
 			end		
 		else
-			sendGameText( root, "The Prime Minister failed to secure objective!", 7000, sampTextdrawColours.r, nil, 1.2, nil, nil, 3 )
+			sendGameText( root, "The Prime Minister failed to secure the objective!", 7000, colour.sampRed, gameTextOrder.global, 1.2 )
 
 	      	if currentPM then
 	        	local pmLosses = getElementData( currentPM, "ptpm.pmWins" ) or 0
@@ -771,7 +757,7 @@ addEvent("onPlayerFloodPunished", false)
 addEventHandler("onPlayerFloodPunished", root,
 	function(player, data)
 		if data.punishment == "mute" then
-			sendGameText(player, "You have been muted for " .. tostring(data.length) .. " seconds for flooding.", 6000, sampTextdrawColours.g, nil, 1.2, nil, nil, 3)
+			sendGameText(player, "You have been muted for " .. tostring(data.length) .. " seconds for flooding.", 6000, colour.sampGreen, gameTextOrder.punish)
 		elseif data.punishment == "kick" then
 			outputChatBox(player .. " was kicked from the server for repeated flooding.", root, unpack(colour.global))
 		end
@@ -782,7 +768,7 @@ addEvent("onPlayerFloodAbsolved", false)
 addEventHandler("onPlayerFloodAbsolved", root,
 	function(player, data)
 		if data.punishment == "mute" then
-			sendGameText(player, "You have been unmuted.", 6000, sampTextdrawColours.g, nil, 1.2, nil, nil, 2)
+			sendGameText(player, "You have been unmuted.", 6000, colour.sampGreen, gameTextOrder.absolve)
 		end
 	end
 )

@@ -50,7 +50,7 @@ addEventHandler("onTaskEnter", root,
 							
 							if classes[classID].type == "terrorist" then
 								setTaskVisibleToPlayer(p, taskElement, true)
-								sendGameText(p, "The Prime Minister is attempting to complete a task!\nStop him before it is too late!", 5000, sampTextdrawColours.r, nil, 1.3, nil, nil, 3)
+								sendGameText(p, "The Prime Minister is attempting to complete a task!\nStop him before it is too late!", 5000, colour.sampRed, gameTextOrder.global)
 							end
 						end
 					end

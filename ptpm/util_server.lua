@@ -148,21 +148,25 @@ end
 addCommandHandler( "timeleft", timeLeft )
 
 -- compcheck
--- defaults: _, _, _, {255,255,255}, "pricedown", 1.2, "top", "center", _
-function sendGameText( toWho, string, duration, colour, font, size, valign, halign, importance )
-	if options and not options.roundEnded then
-		if toWho and isElement( toWho ) then
-			if getElementType( toWho ) == "root" then
-				for _, p in ipairs( getElementsByType( "player" ) ) do
-					if p and isElement( p ) and isPlayerActive( p ) then
-						triggerClientEvent( p, "drawGameTextToScreen", root, string, duration, colour, font, size, valign, halign, importance )
-					end
-				end	
-			elseif getElementType( toWho ) == "player" then
-				if isPlayerActive( toWho ) then
-					triggerClientEvent( toWho, "drawGameTextToScreen", root, string, duration, colour, font, size, valign, halign, importance )
-				end
+-- defaults: _, _, _, {255,255,255}, 1, "pricedown", 1, "center", "center"
+function sendGameText(toWho, string, duration, colour, importance, size, font, valign, halign)
+	if (not options) or (options.roundEnded) then
+		return
+	end
+
+	if (not toWho) or (not isElement(toWho)) then
+		return
+	end
+
+	if getElementType(toWho) == "root" then
+		for _, p in ipairs(getElementsByType("player")) do
+			if p and isElement(p) and isPlayerActive(p) then
+				triggerClientEvent(p, "drawGameTextToScreen", root, string, duration, colour, importance, size, font, valign, halign)
 			end
+		end	
+	elseif getElementType(toWho) == "player" then
+		if isPlayerActive(toWho) then
+			triggerClientEvent(toWho, "drawGameTextToScreen", root, string, duration, colour, importance, size, font, valign, halign)
 		end
 	end
 end

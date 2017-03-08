@@ -411,7 +411,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 			data.pmDead = true
 
 			local r, g, b = getPlayerColour( killer )
-			sendGameText( root, deathCause, 7000, {r, g, b}, nil, 1.4, nil, nil, 3 )
+			sendGameText( root, deathCause, 7000, {r, g, b}, gameTextOrder.global, 1.2 )
 
 			everyoneViewsBody( killer, source, getElementInterior( source ) )
 

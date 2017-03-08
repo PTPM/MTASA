@@ -11,14 +11,14 @@ function isQualified( thePlayer, theVehicle, seat )
 			return true 
 		end
 		
-		sendGameText( thePlayer, "You are not qualified\n to use this vehicle!", 2000, sampTextdrawColours.r, nil, 1.2, nil, nil, 1 )
+		sendGameText( thePlayer, "You are not qualified\n to use this vehicle!", 2000, colour.sampRed, gameTextOrder.contextual )
 		return false
 	elseif seat ~= 0 then
 		if not cantPassenger[classes[getPlayerClassID( thePlayer )].type][getElementModel( theVehicle )] then 
 			return true
 		end
 		
-		sendGameText( thePlayer, "You are not qualified\n to enter this vehicle!", 2000, sampTextdrawColours.r, nil, 1.2, nil, nil, 1 )
+		sendGameText( thePlayer, "You are not qualified\n to enter this vehicle!", 2000, colour.sampRed, gameTextOrder.contextual )
 		return false
 	end
 end
@@ -32,7 +32,7 @@ addEventHandler( "onVehicleStartEnter", root,
 			if jacked then
 				if isPlayerInSameTeam( thePlayer, jacked ) then
 					cancelEvent()
-					sendGameText( thePlayer, "Please don't jack teammates!", 5000, sampTextdrawColours.r, nil, 1.2, nil, nil, 2 )
+					sendGameText( thePlayer, "Please don't jack teammates!", 5000, colour.sampRed, gameTextOrder.normal )
 					return
 				end
 			end

@@ -33,7 +33,7 @@ function checkPlayersOutOfBounds()
 			local x, y, z = getElementPosition( value )
 			if options.boundariesEnabled and z<1000 and tonumber(getElementInterior(value)) == 0 then
 				if isPointOutOfBounds( x, y ) then
-					sendGameText( value, "You are out of bounds!", 5000, sampTextdrawColours.r, nil, 1.2, nil, nil, 2 )
+					sendGameText( value, "You are out of bounds!", 5000, colour.sampRed, gameTextOrder.normal )
 					
 					local lastX = getElementData( value, "ptpm.goodX" )
 					local lastY = getElementData( value, "ptpm.goodY" )
@@ -69,7 +69,7 @@ function checkPlayersOutOfBounds()
 				local vehicle = getPedOccupiedVehicle( value )
 				
 				if vehicle then
-					sendGameText( value, "You are out of bounds!", 5000, sampTextdrawColours.r, nil, 1.2, nil, nil, 2 )
+					sendGameText( value, "You are out of bounds!", 5000, colour.sampRed, gameTextOrder.normal )
 					
 					x, y, z = getElementVelocity( vehicle )
 					setElementVelocity( vehicle, x, y, -0.25 )

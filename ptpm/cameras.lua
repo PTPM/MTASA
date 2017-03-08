@@ -5,7 +5,7 @@ function prepareSecurityCamera( thePlayer, theCamera )
 		local cameraElement = getElementParent( theCamera )
 		
 		if data.cameraMounts[cameraElement].message ~= "" then 
-			sendGameText( thePlayer, data.cameraMounts[cameraElement].message, 3000, sampTextdrawColours.y, nil, 1.2, nil, nil, 1 ) 
+			sendGameText( thePlayer, data.cameraMounts[cameraElement].message, 3000, colour.sampYellow, gameTextOrder.contextual ) 
 		end
 		
 		setCameraMatrix( thePlayer, data.securityCameras[tonumber(data.cameraMounts[cameraElement].usesIDs[1])].camX,

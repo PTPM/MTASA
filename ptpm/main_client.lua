@@ -6,6 +6,12 @@ currentPM = nil
 currentMapName = ""
 local roundEnded = false
 local helpVisible = false
+local uiScale = math.min(math.min(screenX, screenY), 1000) / 600
+local uiScaleMin = 480 / 600 -- 480 is the smallest resolution
+local uiScaleMax = 1000 / 600 -- 1000 is our max cap
+local uiScaleNormalised = (uiScale - uiScaleMin) / (uiScaleMax - uiScaleMin)
+local gameTextScale = lerp(0.8, 1.2, uiScaleNormalised)
+
 
 addEventHandler("onClientResourceStart", root,
 	function(res)
@@ -87,8 +93,15 @@ addEventHandler("onClientPlayerWasted", localPlayer,
 	end
 )
 
-function drawGameTextToScreen( text, duration, colour, font, size, valign, halign, importance )
-	if not importance then importance = 1 end
+-- scale
+local function s(value)
+	return value * uiScale
+end
+
+function drawGameTextToScreen(text, duration, colour, importance, size, font, valign, halign)
+	if not importance then 
+		importance = 1 
+	end
 	
 	if drawOptions then
 		if drawOptions.importance <= importance then
@@ -97,49 +110,51 @@ function drawGameTextToScreen( text, duration, colour, font, size, valign, halig
 			return
 		end
 	end
-	
+
 	drawOptions = {}
 	drawOptions.text = text
-	drawOptions.colour = colour or { 255, 255, 255 }
+	drawOptions.colour = colour or {255, 255, 255}
 	drawOptions.font = font or "pricedown"
-	drawOptions.size = size or 1.2
+	drawOptions.size = gameTextScale * (size or 1)
 	drawOptions.valign = valign or "center"
 	drawOptions.halign = halign or "center"
 	drawOptions.importance = importance
+	drawOptions.shadowOffset = math.min(s(2), 2)
 	
 	drawOptions.colour[4] = 0
 	
-	drawOptions.x = (screenX/2) - 300
-	drawOptions.y = (screenY/8) - 300
-	drawOptions.r = (screenX/2) + 300
-	drawOptions.b = (screenY/8) + 300
+	drawOptions.x = (screenX / 2) - (screenX / 5)
+	drawOptions.y = (screenY / 8) - 300
+	drawOptions.r = (screenX / 2) + (screenX / 5)
+	drawOptions.b = (screenY / 8) + 300
 	
 	if drawOptions.y < 0 then drawOptions.y = 0 end
 	if drawOptions.b > screenY then drawOptions.b = screenY end
 	
-	addEventHandler( "onClientRender", root, drawFunction )
-	addEventHandler( "onClientRender", root, drawFadeIn )
+	addEventHandler("onClientRender", root, drawFunction)
+	addEventHandler("onClientRender", root, drawFadeIn)
 	
 	drawTimer = setTimer(
 		function() 
-			removeEventHandler( "onClientRender", root, drawFadeIn )
-			addEventHandler( "onClientRender", root, drawFadeOut )
+			removeEventHandler("onClientRender", root, drawFadeIn)
+			addEventHandler("onClientRender", root, drawFadeOut)
 		end,
-	duration, 1 )
+	duration, 1)
 end
-addEvent( "drawGameTextToScreen", true )
-addEventHandler( "drawGameTextToScreen", root, drawGameTextToScreen )
+addEvent("drawGameTextToScreen", true)
+addEventHandler("drawGameTextToScreen", root, drawGameTextToScreen)
 
 
-function removeGameTextFromScreen( )
+function removeGameTextFromScreen()
 	if drawOptions then
-		removeEventHandler( "onClientRender", root, drawFunction )
-		removeEventHandler( "onClientRender", root, drawFadeOut )
-		removeEventHandler( "onClientRender", root, drawFadeIn )
+		removeEventHandler("onClientRender", root, drawFunction)
+		removeEventHandler("onClientRender", root, drawFadeOut)
+		removeEventHandler("onClientRender", root, drawFadeIn)
 		
-		if isTimer( drawTimer ) then
-			killTimer( drawTimer )
+		if isTimer(drawTimer) then
+			killTimer(drawTimer)
 		end
+
 		drawTimer = nil
 		drawOptions = nil
 	end
@@ -147,10 +162,10 @@ end
 
 
 function drawFunction( )
---	dxDrawText( drawOptions.text, screenX/2-298, screenY/2-298, screenX/2+302, screenY/2+302, tocolor( 0, 0, 0, drawOptions.colour[4] ), drawOptions.size, drawOptions.font, drawOptions.halign, drawOptions.valign, false, true, false )
---	dxDrawText( drawOptions.text, screenX/2-300, screenY/2-300, screenX/2+300, screenY/2+300, tocolor( unpack(drawOptions.colour) ), drawOptions.size, drawOptions.font, drawOptions.halign, drawOptions.valign, false, true, false )
-	dxDrawText( drawOptions.text, drawOptions.x+2, drawOptions.y+2, drawOptions.r+2, drawOptions.b+2, tocolor( 0, 0, 0, drawOptions.colour[4] ), drawOptions.size, drawOptions.font, drawOptions.halign, drawOptions.valign, false, true, false )
-	dxDrawText( drawOptions.text, drawOptions.x, drawOptions.y, drawOptions.r, drawOptions.b, tocolor( unpack(drawOptions.colour) ), drawOptions.size, drawOptions.font, drawOptions.halign, drawOptions.valign, false, true, false )
+--	dxDrawText(drawOptions.text, screenX/2-298, screenY/2-298, screenX/2+302, screenY/2+302, tocolor( 0, 0, 0, drawOptions.colour[4] ), drawOptions.size, drawOptions.font, drawOptions.halign, drawOptions.valign, false, true, false )
+--	dxDrawText(drawOptions.text, screenX/2-300, screenY/2-300, screenX/2+300, screenY/2+300, tocolor( unpack(drawOptions.colour) ), drawOptions.size, drawOptions.font, drawOptions.halign, drawOptions.valign, false, true, false )
+	dxDrawText(drawOptions.text, drawOptions.x + drawOptions.shadowOffset, drawOptions.y + drawOptions.shadowOffset, drawOptions.r + drawOptions.shadowOffset, drawOptions.b + drawOptions.shadowOffset, tocolor(0, 0, 0, drawOptions.colour[4]), drawOptions.size, drawOptions.font, drawOptions.halign, drawOptions.valign, false, true, false)
+	dxDrawText(drawOptions.text, drawOptions.x, drawOptions.y, drawOptions.r, drawOptions.b, tocolor(unpack(drawOptions.colour)), drawOptions.size, drawOptions.font, drawOptions.halign, drawOptions.valign, false, true, false)
 end
 
 function drawFadeIn()
@@ -436,7 +451,7 @@ function warnAFKPlayer()
 	local _, timesLeft = getTimerDetails(stillOnSpawn)
 
 	if timesLeft > 1 then
-		drawGameTextToScreen("You are AFK\nReturning to class selection\nin 5 seconds...", 4000, colour.important, "pricedown", 1.2, "center", "center", 4)
+		drawGameTextToScreen("You are AFK\nReturning to class selection\nin 5 seconds...", 4000, colour.important, gameTextOrder.punish)
 	else
 		triggerServerEvent("sendPlayerToClassSelection", resourceRoot)
 

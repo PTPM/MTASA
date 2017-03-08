@@ -45,6 +45,17 @@ colour = {
 	global = {208, 208, 255},
 	ptpm = {0, 102, 204},
 
+	white = {255, 255, 255},
+
+	sampRed = {180, 25, 29},
+	sampGreen = {53, 101, 43},
+	sampYellow = {222, 188, 97},
+	--b = {50, 60, 127},
+	--o = {239, 141, 27},
+	--o = {144, 98, 16},	
+	--p = {180, 25, 180},
+	--l = {10, 10, 10},
+
 	hex = {
 		ptpm = string.format("#%02x%02x%02x", 0, 102, 204),
 		pm = string.format("#%02x%02x%02x", unpack(classColours.pm)),
@@ -98,6 +109,15 @@ else
 		return s
 	end
 end
+
+gameTextOrder = {
+	normal = 1, -- normal things
+	contextual = 2, -- normal stuff that is specific to the context of the player (e.g. just entered a camera screen)
+	punish = 3,
+	absolve = 4,
+	global = 5,
+	admin = 6,
+}
 
 
 __DEBUG = true

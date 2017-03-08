@@ -17,9 +17,9 @@ addEventHandler( "onSafezoneEnter", root,
 				setElementVelocity( vehicle, x*-0.75, y*-0.75, z*-1 )
 				
 				if getVehicleName( vehicle ) then
-					sendGameText( thePlayer, "You are not allowed in this safezone\narea with a " .. getVehicleName( vehicle ) .. "!", 3500, sampTextdrawColours.r, nil, 1.2, nil, nil, 2 )
+					sendGameText( thePlayer, "You are not allowed in this safezone\narea with a " .. getVehicleName( vehicle ) .. "!", 3500, colour.sampRed, gameTextOrder.contextual )
 				else
-					sendGameText( thePlayer, "That vehicle is not allowed in this safezone area!", 3500, sampTextdrawColours.r, nil, 1.2, nil, nil, 2 )
+					sendGameText( thePlayer, "That vehicle is not allowed in this safezone area!", 3500, colour.sampRed, gameTextOrder.contextual )
 				end
 			end	
 

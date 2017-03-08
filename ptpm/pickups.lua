@@ -25,7 +25,7 @@
 	end
 	
 	if (getPickupWeapon(source) == 38 or getPickupWeapon(source) == 35 or getPickupWeapon(source) == 36) and #getElementsByType("player") <= 8 then
-		return sendGameText(thePlayer, "Heavy weapons disabled while there\nare 8 players or less", 6000, sampTextdrawColours.w, nil, 1.2, nil, nil, 2)
+		return sendGameText(thePlayer, "Heavy weapons disabled while there\nare 8 players or less", 6000, colour.white, gameTextOrder.contextual)
 	end
 
 	local last = data.pickups[source].lastPickup[thePlayer] or false
@@ -44,7 +44,7 @@
 				text = text .. "\nLast used by " .. name
 			end
 
-			sendGameText(thePlayer, text, 6000, sampTextdrawColours.y, nil, 1.2, nil, nil, 2)
+			sendGameText(thePlayer, text, 6000, colour.sampYellow, gameTextOrder.contextual)
 		else
 			givePlayerPickupWeapon(thePlayer, source)
 		end
@@ -65,7 +65,7 @@
 				text = text .. "\n(Until you next die)"
 			end
 
-			sendGameText(thePlayer, text, 6000, sampTextdrawColours.y, nil, 1.2, nil, nil, 2)
+			sendGameText(thePlayer, text, 6000, colour.sampYellow, gameTextOrder.contextual)
 		end
 	end
 end
@@ -78,7 +78,7 @@ function givePlayerPickupWeapon(thePlayer, thePickup)
 	local classID, weaponID = getPlayerClassID(thePlayer), getPickupWeapon(thePickup)
 	
 	if cantPickup[classes[classID].type] and cantPickup[classes[classID].type][weaponID] then
-		return sendGameText(thePlayer, "You are not qualified\nto use this weapon!", 6000, sampTextdrawColours.r, "pricedown", 1.2, "top", nil, 2)
+		return sendGameText(thePlayer, "You are not qualified\nto use this weapon!", 6000, colour.sampRed, gameTextOrder.contextual)
 	end
 	
 	local pickupTime = getTickCount()
@@ -137,12 +137,12 @@ function givePlayerPickupWeapon(thePlayer, thePickup)
 		end
 		
 		local r, g, b = getPlayerColour(thePlayer)
-		sendGameText(root, text, 3000, {r, g, b}, nil, 1.4, nil, nil, 2)
+		sendGameText(root, text, 3000, {r, g, b}, gameTextOrder.global)
 	elseif getPickupType(thePickup) == 2 then
 		if data.pickups[thePickup].respawn then
-			sendGameText(thePlayer, "Collected " .. getWeaponNameFromID(weaponID) .. "\nRespawns in " .. math.floor(getPickupRespawnInterval(thePickup) / 1000) .. " seconds", 6000, sampTextdrawColours.g, nil, 1.2, nil, nil, 1)
+			sendGameText(thePlayer, "Collected " .. getWeaponNameFromID(weaponID) .. "\nRespawns in " .. math.floor(getPickupRespawnInterval(thePickup) / 1000) .. " seconds", 6000, colour.sampGreen, gameTextOrder.normal)
 		else
-			sendGameText(thePlayer, "Collected " .. getWeaponNameFromID(weaponID), 6000, sampTextdrawColours.g, nil, 1.2, nil, nil, 1)
+			sendGameText(thePlayer, "Collected " .. getWeaponNameFromID(weaponID), 6000, colour.sampGreen, gameTextOrder.normal)
 		end
 	end
 	
