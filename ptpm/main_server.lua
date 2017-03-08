@@ -38,6 +38,11 @@
 -- score.class
 -- id
 
+dependantIncludes = {
+	missiontimer = true,
+	drawbounds = true,
+}
+
 data = {} -- holds map data (data.tasks, data.objectives, data.roundTimer, etc)
 options = {} -- holds map options
 settings = {}

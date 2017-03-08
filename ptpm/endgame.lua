@@ -279,6 +279,16 @@ function closePTPMMapVote()
 				outputChatBox("SERVER: Gamemode silently restarting...", player, unpack(colour.global))
 			end
 		end
+
+		-- these are resources that totally need to be restarted when ptpm does, so force it to happen
+		-- even though they are includes in the meta they can be skipped by mta if anyone has restarted them manually
+		for resName in pairs(dependantIncludes) do
+			local res = getResourceFromName(resName)
+
+			if res then
+				stopResource(res)
+			end
+		end
 		
 		exports.mapmanager:changeGamemodeByName("ptpm", highestVoteMap, true)
 		data.silentRestart = nil
