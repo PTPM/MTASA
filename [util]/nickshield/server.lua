@@ -110,19 +110,19 @@ addCommandHandler ( "nickshield", function(source)
 	local user = getPlayerPTPMUser(source)
 	
 	if not user or user=="Guest" then 
-		exports.ptpm:sendGameText(source, "Nickshield unavailable.", 3000, ptpmColour, nil, 1.5, nil, nil, 2)
+		exports.ptpm:sendGameText(source, "Nickshield unavailable.", 3000, ptpmColour, 3, 1.3)
 		return
 	end	
 	
 	-- Is this nick already shielded?
 	if nickshielded[nick] then
-		exports.ptpm:sendGameText(source, "This name is already shielded.", 3000, ptpmColour, nil, 1.5, nil, nil, 2)
+		exports.ptpm:sendGameText(source, "This name is already shielded.", 3000, ptpmColour, 3, 1.3)
 		return
 	end
 	
 	-- Does this user already have a shielded nick?
 	if nickshieldedFlipped()[user] then
-		exports.ptpm:sendGameText(source, "You're already shielding a name.", 3000, ptpmColour, nil, 1.5, nil, nil, 2)
+		exports.ptpm:sendGameText(source, "You're already shielding a name.", 3000, ptpmColour, 3, 1.3)
 		return
 	end
 	
@@ -130,7 +130,7 @@ addCommandHandler ( "nickshield", function(source)
 	nickshielded[nick] = user
 	openAndAppendToFile("nickshield", nick .. " " .. user)
 	
-	exports.ptpm:sendGameText(source, "This nick is now shielded.", 3000, ptpmColour, nil, 1.5, nil, nil, 2)
+	exports.ptpm:sendGameText(source, "This nick is now shielded.", 3000, ptpmColour, 3, 1.3)
 
 end )
 
@@ -173,7 +173,7 @@ addEventHandler ( "onPlayerJoin", getRootElement(), function()
 				exports.namegen:namegen(thePlayer)
 				-- outputDebugString("onjoin : ng")
 			elseif verdict=="maybe" then
-				exports.ptpm:sendGameText(thePlayer, "This name is shielded. You need to login within 30 seconds.", 3000, ptpmColour, nil, 1.5, nil, nil, 2)
+				exports.ptpm:sendGameText(thePlayer, "This name is shielded. You need to login within 30 seconds.", 3000, ptpmColour, 3, 1.3)
 				
 				-- outputDebugString("onjoin : re eval")
 				
@@ -196,7 +196,7 @@ addEventHandler("onPlayerChangeNick", getRootElement(), function(oldNick, newNic
 	local verdict = isThisAllowed(source, newNick)
 	
 	if verdict~="yes" then
-		exports.ptpm:sendGameText(source, "This nickname is not available to you.", 3000, ptpmColour, nil, 1.5, nil, nil, 2)
+		exports.ptpm:sendGameText(source, "This nickname is not available to you.", 3000, ptpmColour, 3, 1.3)
         cancelEvent()
 	end
 end)
