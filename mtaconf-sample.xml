@@ -1,11 +1,11 @@
 <config>
-     <servername>Protect The Prime Minister (https://PTPM.uk)</servername>
+     <servername>Local instance of PTPM</servername>
     
 	<!-- Network config -->
 		<serverip>auto</serverip>
 		<serverport>22003</serverport>
-		<ase>1</ase>
-		<donotbroadcastlan>1</donotbroadcastlan>
+		<ase>0</ase>								<!-- CHANGE TO 1 IN PRODUCTION ENVIRONMENTS -->
+		<donotbroadcastlan>0</donotbroadcastlan>	<!-- CHANGE TO 0 IN PRODUCTION ENVIRONMENTS -->
 		<password></password>
 		<maxplayers>2048</maxplayers>
 		<!-- Use /srun setMaxPlayers(100) to lower the limit. The reason it isn't set to 100 here, is because
@@ -15,13 +15,13 @@
 		
 	<!-- /Network config -->
   
-	<!-- FastDL / Client file tranfer -->
+	<!-- FastDL / Client file tranfer: RECOMMENDED FOR PRODUCTION ENVIRONMENTS, REQUIRES ADDITIONAL SET-UP OUTSIDE OF MTASA, E.G. APACHE2
 		<httpport>22005</httpport>
 		<httpdownloadurl>http://play-mtasa-srv1-fastdl.ptpm.uk/</httpdownloadurl>
 		<httpmaxconnectionsperclient>2</httpmaxconnectionsperclient>
 		<httpdosthreshold>20</httpdosthreshold>
 		<http_dos_exclude></http_dos_exclude>
-	<!-- /FastDL -->
+	 -->
 
 	<!-- Anti Cheat settings. PTPM default: very strict -->
 		<allow_gta3_img_mods>none</allow_gta3_img_mods>
