@@ -532,6 +532,18 @@ function ptpmMapStart( map )
 			data.roundQuickTicks = 0
 			data.roundQuickTimer = setTimer(roundQuickTick, 400, 0)
 			options.playerPrepareTimer = nil
+
+			for _, res in ipairs(getResources()) do
+				if getResourceState(res) == "running" and getResourceInfo(res, "type") == "map" then
+					local name = tostring(getResourceName(res))
+
+					if name and name ~= runningMapName and string.find(name, "ptpm-") then
+						outputServerLog("Error: Multiple PTPM maps are running. Stopping unwanted map " .. name .. "..")
+						outputDebugString("Error: Multiple PTPM maps are running. Stopping unwanted map " .. name .. "..")
+						stopResource(res)
+					end
+				end
+			end
 		end,
 	4000, 1, currentPlayers )
 	
