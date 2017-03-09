@@ -4,8 +4,8 @@
 	<!-- Network config -->
 		<serverip>auto</serverip>
 		<serverport>22003</serverport>
-		<ase>0</ase>								<!-- CHANGE TO 1 IN PRODUCTION ENVIRONMENTS -->
-		<donotbroadcastlan>0</donotbroadcastlan>	<!-- CHANGE TO 0 IN PRODUCTION ENVIRONMENTS -->
+		<ase>0</ase> <!-- CHANGE TO 1 IN PRODUCTION ENVIRONMENTS -->
+		<donotbroadcastlan>0</donotbroadcastlan> <!-- CHANGE TO 1 IN PRODUCTION ENVIRONMENTS -->
 		<password></password>
 		<maxplayers>2048</maxplayers>
 		<!-- Use /srun setMaxPlayers(100) to lower the limit. The reason it isn't set to 100 here, is because
@@ -78,7 +78,7 @@
 	<!-- /Security -->
     
     <!-- Modules: ONLY required for the IRC resource, ONLY works on Linux x64 -->
-		<module src="ml_sockets.so" />
+		<!-- <module src="ml_sockets.so" /> -->
 	<!-- /Modules -->
     
 	
@@ -98,7 +98,7 @@
 			<resource src="performancebrowser" startup="1" protected="0" />
 			<resource src="resourcebrowser" startup="1" protected="1" default="true" />
 			<resource src="resourcemanager" startup="1" protected="1" />
-			<resource src="irc" startup="1" />
+			<!-- <resource src="irc" startup="1" /> -->
 		<!-- /Administration -->
 		
 		<!-- Core PTPM -->
