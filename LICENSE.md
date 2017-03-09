@@ -6,7 +6,7 @@ official copyright notice. The attached GNU GPLv3 license is the official legal 
 The license applies to both the source code, as well as the intellectual property and design of the software.
 
 ## Copyright
-© 2006-2016 PTPM Community (https://PTPM.uk), usage permitted under GNU GPLv3.
+© 2006-2017 PTPM Community (https://PTPM.uk), usage permitted under GNU GPLv3.
 
 Ownership of the PTPM Source Code belongs to the administrators of the [PTPM Group on Github](https://github.com/PTPM).
 The primary contact for legal issues concerning PTPM is Martin Loeffen, alias *uhm*. 
@@ -35,13 +35,13 @@ cannot be held liable for damages.
 And as always, exceptions may be made by the Owner of the project to grant a more permissive license.
 
 ## Sample use cases
-1. **Included headshot_special resource on your own server that runs an entire different game mode**
+* 1. **Included headshot_special resource on your own server that runs an entire different game mode**
 
 ```
-headshot_special, part of Spark's PTPM, ©2006 PTPM Community (https://PTPM.uk)
+headshot_special, part of Protect The Prime Minister, ©2006-2017 PTPM Community (https://PTPM.uk)
 ```
 
-2. **If your game/code/script is largely based on PTPM, you may add the following line:**
+* 2. **If your game/code/script is largely based on PTPM, you may add the following line:**
 ```
-Based on Spark's PTPM, ©2006 PTPM Community (https://PTPM.uk)
+Based on Protect The Prime Minister, ©2006-2017 PTPM Community (https://PTPM.uk)
 ```
