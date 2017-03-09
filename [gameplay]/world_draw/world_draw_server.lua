@@ -25,6 +25,13 @@ addEventHandler("onResourceStop", resourceRoot,
 	end
 )
 
+addEventHandler("onElementDestroy", root,
+	function()
+		if elements[source] then
+			elements[source] = nil
+		end
+	end
+)
 
 function attach3DDraw(element, id, draw, args, reqs, ignoreLOS)
 	if not element or not isElement(element) then
