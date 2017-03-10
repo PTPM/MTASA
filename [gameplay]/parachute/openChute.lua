@@ -13,6 +13,8 @@ function openChute ( object, player, time )
 	openingChutes[object].time = time
 	openingChutes[object].player = player
 	openingChutes[object].originalTick = getTickCount()
+	local _, _, velZ = getElementVelocity(player)
+	openingChutes[object].originalZVelocity = velZ 
 	attachElements ( object, player, unpack(offset) )
 	return true
 end
@@ -31,11 +33,14 @@ function animateParachuteOpen()
 				local overboardDifference = getTickCount() - infoTable.overboard
 				if overboardDifference >= overboardTime then
 					setObjectScale ( object, 1 )
-					changeVelocity = true
 					if not isPedDead ( player ) then
 						setPedAnimation ( player, "PARACHUTE", "PARA_float", -1, false, false, false )
 					end
 					openingChutes[object] = nil
+
+					if player == localPlayer then
+						finishedOpening = true
+					end
 					return
 				else
 					local currentScale = overboardScale - 1
@@ -48,7 +53,7 @@ function animateParachuteOpen()
 				else
 					local size = tickDifference/time
 					setObjectScale ( object, size )
-					setPedNewAnimation ( player, nil,"PARACHUTE", "PARA_open", -1, false, true, false )
+					setPedNewAnimation ( player, nil,"PARACHUTE", "PARA_open", -1, false, false, false )
 					return
 				end
 			end

@@ -1,14 +1,14 @@
 ﻿FALL_VELOCITY = 0.9 -- how fast you have to be going (z) before you stop landing properly and just hit the ground
 MIN_GROUND_HEIGHT = 20 -- how high above the ground you need to be before parachuting will start
-local y_turn_offset = 20 -- limits how far to the sides the player will lean when turning left or right
-local rotation_accelerate = 0.5 -- speed at which the player will lean when turning
-slowfallspeed = -0.07 -- fall speed with legs up
-fallspeed = -0.15 -- fall speed with legs down
+local y_turn_offset = 25 -- limits how far to the sides the player will lean when turning left or right
+local rotation_accelerate = 0.7 -- speed at which the player will lean when turning
+slowfallspeed = -0.038 -- fall speed with legs up
+fallspeed = -0.109 -- fall speed with legs down
 haltspeed = 0.02
-movespeed = 0.2 -- horizontal speed
-turnspeed = 1.5 -- rotation speed when turning
+movespeed = 0.09 -- horizontal speed
+turnspeed = 2 -- rotation speed when turning
 lastspeed = 0
-opentime = 1000
+opentime = 1200
 
 -- Save bandwidth by converting these strings into numbers for "animation_state" element data
 animIDs = {
@@ -54,8 +54,8 @@ local function onRender ( )
 	lastTick = currentTick
 	if tickDiff > 0 then
 		if ( getElementData ( localPlayer, "parachuting" ) ) then
-			if ( changeVelocity ) then
-				velX, velY, velZ = getElementVelocity ( localPlayer )  
+			if ( finishedOpening ) then
+				local velX, velY, velZ = getElementVelocity ( localPlayer )  
 				if ( not isPedOnGround ( localPlayer ) and not getPedContactElement ( localPlayer ) and velZ ~= 0) then
 					
 					_,rotY,rotZ = getElementRotation ( localPlayer )
@@ -140,7 +140,20 @@ local function onRender ( )
 						removeParachute(localPlayer,"land")
 						setPedNewAnimation ( localPlayer, nil, "PARACHUTE", "PARA_Land", -1, false, true, true, false )
 					end
-				end				
+				end	
+			-- currently opening the chute
+			else
+				-- handle the velocity manually because the animation movement (from standard gta) changes depending on your fps
+				if parachutes[localPlayer] and openingChutes[parachutes[localPlayer]] then
+					local infoTable = openingChutes[parachutes[localPlayer]]
+					local tickDifference = currentTick - infoTable.originalTick
+					local time = (t(infoTable.time) * overboardScale) + overboardTime
+					local progressNormalised = math.min(tickDifference / time, 1)
+
+					local velX, velY, velZ = getElementVelocity(localPlayer)  
+					velZ = s(fallspeed) + ((infoTable.originalZVelocity - s(fallspeed)) * (1 - math.pow(progressNormalised, 3)))
+					setElementVelocity(localPlayer, velX, velY, velZ)
+				end
 			end
 			
 			local posX,posY,posZ = getElementPosition(localPlayer)
@@ -262,12 +275,9 @@ function removeParachute(player, type, skipAnimation)
 	end
 	lastAnim[player] = nil
 	if player == localPlayer then
-		divingTick = 0
-		divingSpeed = nil
-		lastspeed = math.huge
+		resetLocalPlayer()
 		toggleControl ( "next_weapon", true )
 		toggleControl ( "previous_weapon", true )
-		changeVelocity = false
 		setElementData ( localPlayer, "animation_state", nil )
 		setTimer ( setElementData, 1000, 1, localPlayer, "parachuting", false )
 		setTimer ( function() removing = false end, 1100, 1)
@@ -276,6 +286,14 @@ function removeParachute(player, type, skipAnimation)
 		setPedAnimation(localPlayer)
 	end
 	parachutes[player] = nil
+end
+
+function resetLocalPlayer()
+	lastAnim[localPlayer] = nil
+	divingTick = 0
+	divingSpeed = nil
+	lastspeed = math.huge	
+	finishedOpening = false
 end
 
 function animationParachute_land(chute,xoff)
@@ -325,6 +343,7 @@ function setPedNewAnimation ( ped, elementData, animgroup, animname, ... )
 		end
 		return setPedAnimation ( ped, animgroup, animname, ... )
 	end
+
 	return true
 end
 

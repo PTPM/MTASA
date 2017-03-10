@@ -1,8 +1,10 @@
 ﻿local WARNING_HEIGHT = 300 -- height at which the 'open your parachute' message is shown
-local slow_speed = 0.75 -- overall (x,y,z) speed limit after which z_accelerate is used
-local accelerate_speed = 0.03 -- forward acceleration speed while holding forward (skydiving)
-local z_accelerate = 0.007 -- forward acceleration while not holding any controls (freefalling)
-local x_rotation = 45 -- limits how far forwards the player will dip while skydiving forwards
+local slow_speed = 0.63 -- overall (x,y,z) max speed limit after which z_decelerate is used
+local accelerate_speed = 0.003 -- forward acceleration speed while holding forward (skydiving)
+local back_accelerate_speed = 0.0025 -- backward acceleration speed while holding backwards (skydiving)
+local z_decelerate = 0.007 -- downwards deceleration while not holding any controls (freefalling) and moving faster than slow_speed
+local x_rotation = 35 -- limits how far forwards the player will dip while skydiving forwards
+local back_x_rotation = -20
 local rotation_accelerate = 0.75 -- speed at which the player dips forward while skydiving
 local freefall_speed = 0.2 -- minimum freefall speed the player can have
 
@@ -50,7 +52,6 @@ local function onRender()
 					local rotX,_,rotZ = getElementRotation ( localPlayer )
 					rotZ = -rotZ
 					local accel
-					local velocityChanged
 					if divingSpeed then
 						-- stop people being able to gain height while parachuting into a slope by adding a minimum speed, doesnt address the root cause though i cant see a better way of fixing this
 						if velZ > -freefall_speed then
@@ -62,12 +63,36 @@ local function onRender()
 						accel = true
 						local dirX = math.sin ( math.rad ( rotZ ) )
 						local dirY = math.cos ( math.rad ( rotZ ) )
-						velX = velX + dirX * s(accelerate_speed)
-						velY = velY + dirY * s(accelerate_speed)
+						velX = velX + (dirX * s(accelerate_speed))
+						velY = velY + (dirY * s(accelerate_speed))
+						setElementVelocity ( localPlayer, velX, velY, velZ )
 						if rotX < x_rotation then
 							rotX = rotX + a(rotation_accelerate,tickDiff)
 						end
 						setPedNewAnimation ( localPlayer, "animation_state", "PARACHUTE", "FALL_SkyDive_Accel", -1, true, true, false )
+						if getMoveState"left" then
+							rotZ = rotZ - a(3,tickDiff)
+						elseif getMoveState"right" then
+							rotZ = rotZ + a(3,tickDiff)
+						end
+					elseif (getMoveState("backwards")) then						
+						accel = true
+
+						local dirX = math.sin(math.rad(rotZ))
+						local dirY = math.cos(math.rad(rotZ))
+
+						if math.abs(velX) < 0.15 and math.abs(velY) < 0.15 then
+							velX = velX - (dirX * s(back_accelerate_speed))
+							velY = velY - (dirY * s(back_accelerate_speed))
+							setElementVelocity(localPlayer, velX, velY, velZ)
+						end
+
+						if rotX > back_x_rotation then
+							rotX = rotX - a(rotation_accelerate, tickDiff)
+						end
+
+						setPedNewAnimation(localPlayer, "animation_state", "PARACHUTE", "FALL_skyDive", -1, true, true, false)
+
 						if getMoveState"left" then
 							rotZ = rotZ - a(3,tickDiff)
 						elseif getMoveState"right" then
@@ -81,21 +106,27 @@ local function onRender()
 						setPedNewAnimation ( localPlayer, "animation_state", "PARACHUTE", "FALL_SkyDive_R", -1, true, true, false )
 					else
 						if rotX > 0 then
-							rotX = rotX - a(rotation_accelerate,tickDiff)
+							rotX = math.max(0, rotX - a(rotation_accelerate,tickDiff))
+						elseif rotX < 0 then
+							rotX = math.min(0, rotX + a(rotation_accelerate,tickDiff))
 						end
+
 						setPedNewAnimation ( localPlayer, "animation_state", "PARACHUTE", "FALL_skyDive", -1, true, true, false )
 					end	
 					if not accel then
+						-- if we aren't moving forward, decelerate horizontally
+						local hSpeed = getDistanceBetweenPoints2D(0, 0, velX, velY)
+
+						velX = (math.sin(math.rad(rotZ)) * hSpeed) * s(0.995)
+						velY = (math.cos(math.rad(rotZ)) * hSpeed) * s(0.995)
+
+						-- if we are still going too fast, decelerate vertically also
 						local speed = getDistanceBetweenPoints3D(0,0,0,velX,velY,velZ)
+
 						if speed > slow_speed then
-							velZ = velZ - s(z_accelerate)
-							setElementVelocity ( localPlayer, velX, velY, velZ )
-							velocityChanged = true
+							velZ = velZ + s(z_decelerate)
 						end
-					end
-					if not velocityChanged then
-						velX = math.sin ( math.rad ( rotZ ) ) * s(0.1)
-						velY = math.cos ( math.rad ( rotZ ) ) * s(0.1)
+
 						setElementVelocity ( localPlayer, velX, velY, velZ )
 					end
 					setPedRotation ( localPlayer, -rotZ )
@@ -150,6 +181,7 @@ function onSkyDivingWasted()
 	setPedAnimation(localPlayer)
 	setPedAnimation(localPlayer,"PARACHUTE","FALL_skyDive_DIE", t(3000), false, true, false)
 	g_skydivers[localPlayer] = nil
+	resetLocalPlayer()
 end
 
 function stopSkyDiving()
