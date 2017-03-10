@@ -121,7 +121,10 @@
 	<object model="8572" posX="2624.18" posY="2825.33" posZ="34.02" rotX="0.00" rotY="0.00" rotZ="270.52" /> <!-- staircornertop -->
 	<object model="8572" posX="2626.07" posY="2829.10" posZ="30.57" rotX="0.00" rotY="0.00" rotZ="540.53" /> <!-- staircornerbottom -->
 	<object model="4106" posX="2655.14" posY="2830.24" posZ="25.87" rotX="2.00" rotY="0.00" rotZ="90.42" /> <!-- staircornerwalkway -->
-	
+    <object id="tower can" breakable="true" interior="0" alpha="255" model="1362" doublesided="false" scale="1" dimension="0" posX="2721.1506" posY="2771.2834" posZ="74.4266" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="tower acbox2_SFS 1" breakable="true" interior="0" alpha="0" model="3799" doublesided="false" scale="1" dimension="0" posX="2717.1506" posY="2773.5669" posZ="76.19873" rotX="0" rotY="90" rotZ="0"></object>
+    <object id="tower acbox2_SFS 2" breakable="true" interior="0" alpha="0" model="3799" doublesided="false" scale="1" dimension="0" posX="2718.9854" posY="2772.5107" posZ="76.19873" rotX="0" rotY="90" rotZ="120"></object>
+    <object id="tower acbox2_SFS 3" breakable="true" interior="0" alpha="0" model="3799" doublesided="false" scale="1" dimension="0" posX="2717.7629" posY="2772.48" posZ="76.19873" rotX="0" rotY="90" rotZ="60.75"></object>	
 	
 	<boundarycorner posX="2497.0315" posY="2616.2991" />
 	<boundarycorner posX="2497.0315" posY="2857.8171" />
