@@ -405,7 +405,7 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 			elseif killerTeam == "police" then deathCause = "The Prime Minister was killed by the cops!"
 			elseif killerTeam == "terrorist" then deathCause = "The Prime Minister was killed by the terrorists!"
 			elseif killerTeam == "psycho" then deathCause = "The Prime Minister was killed by a psycho!"
-			else printConsole( "ERROR: Invalid team on PM death" )
+			else deathCause = "The Prime Minister was killed in an accident!"
 			end
 
 			data.pmDead = true
@@ -524,8 +524,13 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 	--setElementData( source, "deaths", string.format("%d (%d)",(deaths and deaths + 1 or 0),playerInfo[source].roundDeaths))
 
 	if killer ~= source and getElementType(killer) == "player" and killerClassID and classes[killerClassID] then
-		local playerTeam = classes[classID].type
-		local killerTeam = classes[getPlayerClassID( killer )].type		
+		local playerTeam = ""
+
+		if classID and classes[classID] then
+			playerTeam = classes[classID].type
+		end
+
+		local killerTeam = classes[killerClassID].type		
 
 		--local kills = exports.ptpm_accounts:getPlayerAccountData(killer,"kills")
 		--if kills then
