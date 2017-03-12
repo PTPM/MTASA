@@ -22,12 +22,14 @@
         <class id="10" skin="100" weapons="22,12;29,300" />
         <spawnline startX="37.1" startY="2530.0" startZ="17.0" endX="387.0" endY="2530.0" endZ="17.0" rot="180" />
         <spawnline startX="37.1" startY="2472.0" startZ="17.0" endX="373.0" endY="2472.0" endZ="17.0" rot="0" />
+        <spawnareacube id="terror area" height="120" depth="139.31323" width="567.39948" posX="-104.11562" posY="2431.6704" posZ="13.59777" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="pm">
         <class id="12" skin="147" weapons="15,1;41,100" />
         <spawn posX="1555.7" posY="-1248.0" posZ="277.8" rot="296.2" />
         <cantdrive models="519,425,520,447" />
+        <spawnareacube id="pm area" height="37.307343" depth="51.243164" width="49.763672" posX="1547.9785" posY="-1269.8428" posZ="276.83557" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="bodyguard">
@@ -38,6 +40,7 @@
         <spawnline startX="1650.8" startY="-2470.5" startZ="14.0" endX="1955.0" endY="-2470.5" endZ="14.0" rot="180" />
         <spawnline startX="1650.8" startY="-2616.8" startZ="14.0" endX="1955.0" endY="-2616.8" endZ="14.0" rot="0" />
         <spawnline startX="1650.8" startY="-2565.5" startZ="14.0" endX="1955.0" endY="-2565.5" endZ="14.0" rot="180" />
+        <spawnareacube id="bodyguard area" height="120" depth="254.23071" width="785.15051" posX="1363.8575" posY="-2659.0193" posZ="11.21725" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="police">
@@ -49,6 +52,10 @@
         <spawnline startX="-1682.3" startY="-163.5" startZ="14.3" endX="-1318.6" endY="200.1" endZ="14.3" rot="224" />
         <!-- rot 406 -->
         <cantdrive models="425,520,447" />
+        <spawnareasphere id="police area 1 " radius="100" posX="-1598.2441" posY="-106.04492" posZ="13.18684" rotX="0" rotY="0" rotZ="0"></spawnareasphere>
+        <spawnareasphere id="police area 2" radius="100" alpha="255" interior="0" posX="-1499.4609" posY="-7.06445" posZ="13.18684" rotX="0" rotY="0" rotZ="0"></spawnareasphere>
+        <spawnareasphere id="police area 3" radius="100" alpha="255" interior="0" posX="-1392.5859" posY="86.80371" posZ="13.18684" rotX="0" rotY="0" rotZ="0"></spawnareasphere>
+        <spawnareasphere id="police area 4" radius="100" alpha="255" interior="0" posX="-1289.5303" posY="181.22656" posZ="13.18684" rotX="0" rotY="0" rotZ="0"></spawnareasphere>
     </spawngroup>
 	
     <vehicle model="577" posX="1586.9" posY="1190.6" posZ="10.8872" rotX="0.0" rotY="0.0" rotZ="180.0" color="42 42 0 0" />

@@ -9,6 +9,7 @@
 	<script src="running_cache_shared.lua" type="client"/>
 
 	<script src="spawn_types.lua" type="server"/>
+	<script src="spawn_areas.lua" type="server"/>
 	<script src="help_system.lua" type="server"/>
 	<script src="help_system_client.lua" type="client"/>
 	<script src="help_system_definitions.lua" type="server"/>
@@ -142,6 +143,7 @@
 	<export function="getPlayerClassType" type="server"/>
 	<export function="sendTeamChatMessage" type="server"/>
 	<export function="sendGameText" type="server"/>
+	<export function="isPlayerInSpawnArea" type="server"/>
 
 	<export function="isInClassSelection" type="client"/>
 	<export function="isRoundEnded" type="client"/>

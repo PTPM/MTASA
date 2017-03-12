@@ -75,12 +75,15 @@
         <class id="10" skin="100" weapons="23,300;31,300;37,300" />
         <class id="11" skin="274" weapons="46,1;23,100;41,300" medic="true" />
         <spawnline startX="2768.3684" startY="-1601.6525" startZ="10.9272" endX="2769.9431" endY="-1625.5819" endZ="10.9272" rot="270" />
+        <spawnareacube id="terror area 1" height="22.280804" depth="56.332153" width="60.995117" posX="2749.6689" posY="-1645.4506" posZ="9.96027" rotX="0" rotY="0" rotZ="0"></spawnareacube>
+        <spawnareacube id="terror area 2" height="16.103134" depth="94.43396" width="71.962646" posX="2760.9451" posY="-1594.2931" posZ="9.96594" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="pm">
         <class id="12" skin="147" weapons="15,1;41,1000;46,1;24,20" />
         <spawn posX="1125.7273" posY="-2036.8785" posZ="69.8804" rot="270" />
         <cantdrive models="522,461" />
+        <spawnareacube id="pm area 1" height="12.420189" depth="68.057129" width="157.91211" posX="1126.3749" posY="-2070.915" posZ="56.67121" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="bodyguard">
@@ -89,6 +92,7 @@
         <class id="17" skin="141" weapons="23,100;28,200;46,1" />
         <class id="18" skin="276" weapons="46,1;23,100;41,300" medic="true" />
         <spawnline startX="1133" startY="-2006.7264" startZ="69.8804" endX="1133" endY="-2066.7264" endZ="69.8804" rot="270" />
+        <spawnareacube id="bodyguard area 1" height="12.420189" depth="68.057129" width="157.91211" posX="1126.3749" posY="-2070.915" posZ="56.67121" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="police">
@@ -98,6 +102,8 @@
         <class id="28" skin="275" weapons="46,1;24,100;41,300" medic="true" />
         <spawnline startX="1585" startY="-1674.1223" startZ="6.2252" endX="1585" endY="-1692.6426" endZ="6.2252" rot="270" />
         <spawnline startX="1610" startY="-1719.8339" startZ="6.2188" endX="1610" endY="-1666.3889" endZ="6.2188" rot="90" />
+        <spawnareacube id="police area top" height="13.949919" depth="47.636963" width="68.180908" posX="1539.733" posY="-1649.9851" posZ="8.72121" rotX="0" rotY="0" rotZ="0"></spawnareacube>
+        <spawnareacube id="police area below" height="7.3496351" depth="88.653931" width="89.125122" posX="1523.2262" posY="-1722.2699" posZ="4.62902" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <vehicle model="409" posX="1272.0273" posY="-2052.5105" posZ="59.0325" rotZ="268.6577" color="1 1" />
@@ -659,7 +665,7 @@
     <!-- 11LosSantos -->
     <pickup posX="2112.0" posY="-1990.0" posZ="14.0" type="armor" amount="100" respawn="30000" synced="false" />
     <!-- 16LosSantos -->
-    <pickup posX="2125.493" posY="-2275.037" posZ="20.5202" type="armor" amount="100" respawn="60000" synced="false" />
+    <pickup posX="2125.493" posY="-2275.037" posZ="20.5202" type="armor" amount="100" respawn="30000" synced="false" />
     <!-- 18LosSantos -->
     <pickup posX="2230.45" posY="-2286.004" posZ="14.3751" type="armor" amount="100" respawn="30000" synced="false" />
     <!-- 20LosSantos -->
@@ -677,9 +683,9 @@
     <!-- 47LosSantos -->
     <pickup posX="1292.7" posY="-769.0" posZ="95.8" type="armor" amount="100" respawn="30000" synced="false" />
     <!-- 50LosSantos -->
-    <pickup posX="2146.559" posY="-2244.46" posZ="13.58" type="armor" amount="100" respawn="60000" synced="false" />
+    <pickup posX="2146.559" posY="-2244.46" posZ="13.58" type="armor" amount="100" respawn="30000" synced="false" />
     <!-- 53LosSantos -->
-    <pickup posX="2186.507" posY="-2244.993" posZ="15.81" type="armor" amount="100" respawn="60000" synced="false" />
+    <pickup posX="2186.507" posY="-2244.993" posZ="15.81" type="armor" amount="100" respawn="30000" synced="false" />
     <!-- 55LosSantos -->
     <pickup posX="1528.222" posY="-1357.985" posZ="330.0371" type="46" amount="1" respawn="30000" synced="false" />
     <!-- 73LosSantos -->

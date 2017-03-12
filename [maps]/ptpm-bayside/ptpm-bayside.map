@@ -27,6 +27,7 @@
         <spawnline startX="-788.8" startY="2750.9" startZ="45.8" endX="-788.8" endY="2762.7" endZ="45.8" rot="270" />
         <spawnline startX="-773.5" startY="2764.3" startZ="45.8" endX="-761.3" endY="2764.3" endZ="45.8" rot="180" />
         <cantdrive models="488,487" />
+        <spawnareacube id="terror area" height="16.980228" depth="47.135498" width="85.059753" posX="-808.77618" posY="2736.2239" posZ="44.16032" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="pm">
@@ -34,6 +35,7 @@
         <spawn posX="-2626.1106" posY="2287.6431" posZ="8.3026" rot="267.9435" />
         <cantdrive models="522,461,488,487,476" />
         <cantpassenger models="488,487" />
+        <spawnareasphere id="pm area" radius="28.317278" posX="-2615.9927" posY="2263.2852" posZ="7.23387" rotX="0" rotY="0" rotZ="0"></spawnareasphere>
     </spawngroup>
 	
     <spawngroup type="bodyguard">
@@ -45,6 +47,7 @@
         <spawn posX="-2626.1106" posY="2291.6431" posZ="8.3026" rot="267.9435" />
         <spawn posX="-2626.1106" posY="2283.6431" posZ="8.3026" rot="267.9435" />
 		<cantdrive models="476" />
+        <spawnareasphere id="bodyguard area" radius="28.317278" posX="-2615.9927" posY="2263.2852" posZ="7.23387" rotX="0" rotY="0" rotZ="0"></spawnareasphere>
     </spawngroup>
 	
     <spawngroup type="police">
@@ -56,6 +59,7 @@
         <spawn posX="-1393.6278" posY="2631.1965" posZ="55.9334" rot="85.2886" />
         <spawn posX="-1393.6278" posY="2635.1965" posZ="55.9334" rot="85.2886" />
 		<cantdrive models="476" />
+        <spawnareacube id="police area" height="17.048649" depth="54.55835" width="59.810669" posX="-1436.2811" posY="2611.3284" posZ="51.15242" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <vehicle model="409" posX="-2617.3972" posY="2287.9070" posZ="8.0896" rotZ="181.7545" color="1 1" />

@@ -42,12 +42,14 @@
         <class id="10" skin="100" weapons="23,150;31,300;18,10" />
         <class id="11" skin="274" weapons="46,1;23,100;41,300" medic="true" />
         <spawnline startX="2874.4514" startY="891.5120" startZ="10.7500" endX="2874.8750" endY="944.4780" endZ="10.7500" rot="90" />
+        <spawnareacube id="terror area" height="16.480972" depth="189.96252" width="117.98413" posX="2777.0859" posY="833.2597" posZ="9.6134" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="pm">
         <class id="12" skin="147" weapons="15,1;41,1000;46,1;24,20" />
         <spawn posX="1665.9780" posY="1421.6775" posZ="10.7880" rot="261.1286" />
         <cantdrive models="461,522" />
+        <spawnareacube id="pm area" height="15.914741" depth="156.99744" width="75.49939" posX="1662.1686" posY="1367.1949" posZ="8.38059" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="bodyguard">
@@ -56,6 +58,7 @@
         <class id="17" skin="141" weapons="23,100;28,200;46,1" />
         <class id="18" skin="276" weapons="46,1;23,100;41,300" medic="true" />
         <spawnline startX="1675.2441" startY="1425.9346" startZ="10.7788" endX="1691.8999" endY="1386.1178" endZ="10.7452" rot="270" />
+        <spawnareacube id="bodyguard area" height="15.914741" depth="156.99744" width="75.49939" posX="1662.1686" posY="1367.1949" posZ="8.38059" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="police">
@@ -64,6 +67,8 @@
         <class id="27" skin="246" weapons="24,100;29,200;41,300" />
         <class id="28" skin="275" weapons="46,1;24,100;41,300" medic="true" />
         <spawnline startX="2247.0796" startY="2480.5366" startZ="3.2734" endX="2246.4861" endY="2430.7244" endZ="3.2734" rot="270" />
+        <spawnareacube id="police area top" height="34.2024" depth="80.493652" width="119.81836" posX="2237.4761" posY="2422.8391" posZ="-9.26629" rotX="0" rotY="0" rotZ="0"></spawnareacube>
+        <spawnareacube id="police area below" height="18.387993" depth="67.07373" width="23.040771" posX="2217.6157" posY="2424.1724" posZ="-8.83223" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <vehicle model="451" posX="2040.0520" posY="1319.2799" posZ="10.4362" rotZ="183.2439" />

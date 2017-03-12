@@ -34,6 +34,7 @@
         <spawn posX="-2809.3828" posY="-1517.5955" posZ="140.8438" rot="267.9760" />
         <spawn posX="-2808.8022" posY="-1521.2811" posZ="140.8438" rot="268.0885" />
         <spawn posX="-2808.7705" posY="-1524.7393" posZ="140.8438" rot="268.4580" />
+        <spawnareacube id="terror area" height="28.995514" depth="98.298218" width="98.97583" posX="-2875.1511" posY="-1572.8671" posZ="134.30429" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="pm">
@@ -42,6 +43,7 @@
         <!-- -->
         <cantpickup models="38,35" />
         <cantdrive models="593,476,511,497,447,522,468,510,432" />
+        <spawnareacube id="pm area" height="36.357407" depth="202.38879" width="75.532837" posX="-2027.4563" posY="-1633.7244" posZ="83.44869" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="bodyguard">
@@ -51,6 +53,7 @@
         <class id="18" skin="276" weapons="46,1;23,100;41,300" medic="true" />
         <spawnline startX="-2006.9596" startY="-1518.3007" startZ="85.1718" endX="-2007.4741" endY="-1562.4833" endZ="88.7751" rot="270" />
         <cantdrive models="430" />
+        <spawnareacube id="bodyguard area" height="36.357407" depth="202.38879" width="75.532837" posX="-2027.4563" posY="-1633.7244" posZ="83.44869" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="police">
@@ -60,6 +63,7 @@
         <class id="28" skin="275" weapons="46,1;24,100;41,300" medic="true" />
         <spawnline startX="-2408.7991" startY="-2180.7649" startZ="33.2891" endX="-2406.7439" endY="-2192.7683" endZ="33.2891" rot="280" />
         <spawnline startX="-2368.5933" startY="-2161.9119" startZ="35.5307" endX="-2398.5989" endY="-2161.1355" endZ="35.5019" rot="180" />
+        <spawnareasphere id="police area" radius="54.789127" posX="-2386.0198" posY="-2198.5149" posZ="32.32746" rotX="0" rotY="0" rotZ="0"></spawnareasphere>
     </spawngroup>
 
 

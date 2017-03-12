@@ -1,6 +1,6 @@
 ﻿function onPickupHit(thePlayer)
 	cancelEvent()
-	
+
 	local activeCamera = getElementData(thePlayer, "ptpm.activeCamera")
 	local gettingOffCamera = getElementData(thePlayer, "ptpm.gettingOffCamera")
 	if activeCamera or gettingOffCamera or isPedDead(thePlayer) then 

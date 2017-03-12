@@ -252,7 +252,6 @@ function setPlayerClass( thePlayer, class )
 	makePlayerSpawn( thePlayer )
 end
 
--- compcheck
 -- handles spawn information
 function makePlayerSpawn( thePlayer )	
 	if data and data.roundEnded then return end

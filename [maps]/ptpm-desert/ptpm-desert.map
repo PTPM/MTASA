@@ -26,6 +26,7 @@
         <class id="11" skin="274" weapons="22,100;25,100;4,1" medic="true" />
         <spawnline startX="-294.2874" startY="1531.7491" startZ="75.3594" endX="-345.4248" endY="1530.7903" endZ="75.3570" rot="180"/>
         <cantdrive models="577" />
+        <spawnareasphere id="terror area" radius="77.478615" posX="-336.07413" posY="1555.6016" posZ="74.6009" rotX="0" rotY="0" rotZ="0"></spawnareasphere>
     </spawngroup>
 	
     <spawngroup type="pm">
@@ -43,6 +44,7 @@
         <class id="18" skin="276" weapons="23,100;4,1;41,300" medic="true" />
         <spawnline startX="124.5988" startY="1916.5383" startZ="18.9541" endX="165.6270" endY="1917.3433" endZ="18.4533" rot="0" />
         <cantdrive models="522,577" />
+        <spawnareacube id="bodyguard area" height="30.241978" depth="142.33643" width="189.07466" posX="96.72469" posY="1798.8495" posZ="9.15148" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="police">
@@ -52,6 +54,7 @@
         <class id="28" skin="275" weapons="24,100;4,1;41,300" medic="true" />
         <spawnline startX="-388.2652" startY="2253.8987" startZ="42.0938" endX="-376.3261" endY="2202.0403" endZ="42.0938" rot="15" />
         <cantdrive models="476,522,577" />
+        <spawnareacube id="police area" height="40.685768" depth="126.14673" width="80.193359" posX="-423.03293" posY="2173.5212" posZ="35.37477" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <vehicle model="599" posX="-373.4946" posY="2229.2224" posZ="42.8695" rotZ="103.8068" />

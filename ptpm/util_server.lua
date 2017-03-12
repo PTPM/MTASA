@@ -668,7 +668,7 @@ end
 
 function setPlayerFrozen( player, frozen )
 	if isRunning( "ptpm_accounts" ) then
-		if player and isElement( player ) and isPlayerActive( player ) then -- Note: is isPlayerActive good here?
+		if player and isElement( player ) and isPlayerActive( player ) then
 			setElementFrozen( player, frozen )
 			return exports.ptpm_accounts:setSensitiveUserdata( player, "frozen", frozen ) or false
 		end
@@ -679,7 +679,6 @@ function setPlayerFrozen( player, frozen )
 end
 
 
--- compcheck
 function setPlayerControllable( player, trueOrFalse )
 	if player and isElement( player ) then 
 		toggleAllControls( player, trueOrFalse, true, false )
@@ -696,3 +695,34 @@ function isPlayerControllable( player )
 	end
 	return false
 end
+
+
+function isPlayerInSpawnArea(player, teamType)
+	if not teamType then
+		local classID = getPlayerClassID(player)
+
+		if not classID or not classes[classID] then
+			return false
+		end
+
+		teamType = classes[classID].type
+	end
+
+	if not teamData[teamType] or not teamData[teamType].spawnAreas then
+		return false
+	end
+
+	for _, sa in ipairs(teamData[teamType].spawnAreas) do
+		if sa:isInside(player) then
+			return true
+		end
+	end
+
+	return false
+end
+
+-- addCommandHandler("sa", 
+-- 	function(player, cmd, teamType)
+-- 		outputChatBox(tostring(isPlayerInSpawnArea(player, teamType)))
+-- 	end
+-- )

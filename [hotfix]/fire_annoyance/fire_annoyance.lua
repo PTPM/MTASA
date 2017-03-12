@@ -1,33 +1,42 @@
 local fireWeapons = {[18] = true, [37] = true} -- molotov, flame thrower
-local rd = 50 -- required distance from spawn to get the weapons
-local spawnX,spawnY = 0,0
 
-function registerSpawnArea()
-	spawnX, spawnY = getElementPosition(localPlayer)
 
-	toggleFireControl()
-end
-addEventHandler("onClientPlayerSpawn", localPlayer, registerSpawnArea)
+addEventHandler("onPlayerSpawn", root,
+	function(x, y, z, rot, team)
+		if not team then
+			return
+		end
 
-function toggleFireControl()
-	if not getPlayerTeam(localPlayer) then 
-		return 
+		toggleFireControl(source, getPedWeapon(source))
 	end
+)
 
-	local weapon = getPedWeapon(localPlayer)
+addEventHandler("onPlayerWeaponSwitch", root,
+	function(previousWeapon, currentWeapon)
+		toggleFireControl(source, currentWeapon)
+	end
+)
 
-	if getPedTotalAmmo(localPlayer) == 0 then
+-- this could technically be evaded in the however-many-ms it takes to send the new state to the client
+-- do something better if that ever becomes a big enough problem
+function toggleFireControl(player, weapon)
+	if not fireWeapons[weapon] or not getPlayerTeam(player) then
+		if not isControlEnabled(player, "fire") then
+ 			toggleControl(player, "fire", true)
+ 		end
+
 		return
 	end
 
-	local myPosX, myPosY = getElementPosition(localPlayer)
+	if getPedTotalAmmo(player) == 0 then
+ 		return
+ 	end
 
-	if fireWeapons[weapon] and getDistanceBetweenPoints2D(spawnX, spawnY, myPosX, myPosY) < rd then
-		toggleControl("fire", false)
-	else
-		if not isControlEnabled("fire") then
-			toggleControl("fire", true)
-		end
-	end
+ 	if exports.ptpm:isPlayerInSpawnArea(player) then
+ 		toggleControl(player, "fire", false)
+ 	else
+ 		if not isControlEnabled(player, "fire") then
+ 			toggleControl(player, "fire", true)
+ 		end
+ 	end
 end
-addEventHandler("onClientPlayerWeaponSwitch", localPlayer, toggleFireControl)

@@ -26,11 +26,13 @@
         <class id="10" skin="100" weapons="22,30" />
         <class id="11" skin="274" medic="true" />
         <spawnline startX="264.9245" startY="1854.9965" startZ="8.7578" endX="279.3932" endY="1855.5127" endZ="8.7649" rot="0" />
+        <spawnareacube id="terror area" height="6.9825125" depth="22.661621" width="18.908813" posX="264.09506" posY="1852.1831" posZ="7.69621" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="pm">
         <class id="12" skin="147" weapons="15,1;41,300" />
         <spawn posX="214.8228" posY="1823.0508" posZ="6.4141" rot="90" />
+        <spawnareacube id="pm area" height="7.5651846" depth="18.953613" width="24.779846" posX="209.70349" posY="1813.1394" posZ="5.25246" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="bodyguard">
@@ -39,6 +41,7 @@
         <class id="17" skin="141" weapons="23,30" />
         <class id="18" skin="276" medic="true" />
         <spawnline startX="236.1139" startY="1830.8975" startZ="7.4141" endX="236.3620" endY="1802.6598" endZ="7.4141" rot="270" />
+        <spawnareacube id="bodyguard area" height="7.7106266" depth="31.833252" width="4.548645" posX="233.80536" posY="1800.8119" posZ="6.45246" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="police">
@@ -48,6 +51,7 @@
         <class id="28" skin="275" weapons="24,12" medic="true" />
         <spawnline startX="240.7006" startY="1860.3549" startZ="8.7578" endX="240.2447" endY="1843.9711" endZ="8.7578" rot="270" />
         <spawnline startX="262.5329" startY="1850.7712" startZ="8.7578" endX="262.4048" endY="1872.0902" endZ="8.7578" rot="90" />
+        <spawnareacube id="police area" height="5.1955752" depth="30.846069" width="25.300888" posX="238.32909" posY="1841.9879" posZ="7.64621" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <vehicle model="583" posX="303.1669" posY="1856.8157" posZ="7.3735" rotZ="269.8915" />

@@ -44,12 +44,14 @@
         <class id="10" skin="100" weapons="26,150;22,200;37,300" />
         <class id="11" skin="274" weapons="46,1;23,100;41,300" medic="true" />
         <spawnline startX="-2062" startY="1434" startZ="7.1016" endX="-2093" endY="1434" endZ="7.1016" rot="180" />
+        <spawnareacube id="terror area" height="8.1674042" depth="103.14746" width="37.146729" posX="-2096.8254" posY="1334.3367" posZ="5.90676" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="pm">
         <class id="12" skin="147" weapons="15,1;41,1000;46,1;24,20" />
         <spawn posX="-2604.2786" posY="-304.8785" posZ="23.2305" rot="112.7947" />
         <cantdrive models="522,461" />
+        <spawnareacube id="pm area" height="34.807327" depth="108.51682" width="218.41797" posX="-2791.6855" posY="-329.47372" posZ="2.74578" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="bodyguard">
@@ -58,6 +60,7 @@
         <class id="17" skin="141" weapons="23,100;28,200;46,1" />
         <class id="18" skin="276" weapons="46,1;23,100;41,300" medic="true" />
         <spawnline startX="-2616.1018" startY="-318.4776" startZ="23.1227" endX="-2601.2432" endY="-293.0693" endZ="23.1227" rot="60" />
+        <spawnareacube id="bodyguard area" height="34.807327" depth="108.51682" width="218.41797" posX="-2791.6855" posY="-329.47372" posZ="2.74578" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <spawngroup type="police">
@@ -67,6 +70,8 @@
         <class id="28" skin="275" weapons="46,1;24,100;41,300" medic="true" />
         <spawnline startX="-1610.3680" startY="733.6467" startZ="-4.9063" endX="-1590.5117" endY="733.6737" endZ="-4.9063" rot="0" />
         <spawnline startX="-1562.6666" startY="757.6099" startZ="-4.9063" endX="-1618.2246" endY="757.4536" endZ="-4.9063" rot="180" />
+        <spawnareacube id="police area top" height="18.537756" depth="64.491272" width="79.759399" posX="-1651.6042" posY="645.96729" posZ="5.6759" rotX="0" rotY="0" rotZ="0"></spawnareacube>
+        <spawnareacube id="police area below" height="12.075124" depth="113.34686" width="88.958496" posX="-1650.8369" posY="647.19421" posZ="-6.20379" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
 	
     <vehicle model="562" posX="-2118.9319" posY="194.8274" posZ="34.6525" rotZ="2.7513" />

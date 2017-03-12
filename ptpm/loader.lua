@@ -13,6 +13,7 @@ function ptpmMapStart( map )
 	classes = {}
 	miniClass = {}
 	teamSpawns = {}
+	teamData = {}
 	cantDrive = {}
 	cantPassenger = {}
 	cantPickup = {}
@@ -128,9 +129,10 @@ function ptpmMapStart( map )
 			classID = classID + 1
 		end
 
+		teamData[classType] = {}
 		teamSpawns[classType] = SpawnGroup:create()
 
-		for _, spawn in ipairs( getElementsByType( "spawn", value ) ) do
+		for _, spawn in ipairs(getElementsByType("spawn", value)) do
 			teamSpawns[classType]:addSpawn(Spawn:create(
 				tonumber(getElementData(spawn, "posX")), 
 				tonumber(getElementData(spawn, "posY")), 
@@ -140,7 +142,7 @@ function ptpmMapStart( map )
 			))
 		end
 
-		for _, linespawn in ipairs( getElementsByType( "spawnline", value ) ) do
+		for _, linespawn in ipairs(getElementsByType("spawnline", value)) do
 			teamSpawns[classType]:addSpawn(SpawnLine:create(
 				tonumber(getElementData(linespawn, "startX")), 
 				tonumber(getElementData(linespawn, "startY")), 
@@ -153,7 +155,7 @@ function ptpmMapStart( map )
 			))
 		end
 
-		for _, spawn in ipairs( getElementsByType( "spawnarea", value ) ) do
+		for _, spawn in ipairs(getElementsByType("spawnarea", value)) do
 			teamSpawns[classType]:addSpawn(SpawnArea:create(
 				tonumber(getElementData(spawn, "posX")), 
 				tonumber(getElementData(spawn, "posY")), 
@@ -165,7 +167,7 @@ function ptpmMapStart( map )
 			))
 		end		
 
-		for _, spawn in ipairs( getElementsByType( "spawncircle", value ) ) do
+		for _, spawn in ipairs(getElementsByType("spawncircle", value)) do
 			teamSpawns[classType]:addSpawn(SpawnCircle:create(
 				tonumber(getElementData(spawn, "posX")), 
 				tonumber(getElementData(spawn, "posY")), 
@@ -219,7 +221,7 @@ function ptpmMapStart( map )
 			end
 		end
 		
-		local cantPickupTable = getElementsByType( "cantpickup", value )
+		local cantPickupTable = getElementsByType("cantpickup", value)
 		if cantPickupTable and #cantPickupTable ~= 0 then
 			if getElementData( cantPickupTable[1], "models" ) == "any" then
 				cantPickup[classType] = {}
@@ -237,6 +239,32 @@ function ptpmMapStart( map )
 				end
 			end
 		end
+
+		teamData[classType].spawnAreas = {}
+
+		for _, spawnarea in ipairs(getElementsByType("spawnareacube", value)) do
+			table.insert(teamData[classType].spawnAreas,
+				SpawnAreaCube:create(
+					tonumber(getElementData(spawnarea, "posX")), 
+					tonumber(getElementData(spawnarea, "posY")), 
+					tonumber(getElementData(spawnarea, "posZ")), 
+					tonumber(getElementData(spawnarea, "width")), 
+					tonumber(getElementData(spawnarea, "depth")), 
+					tonumber(getElementData(spawnarea, "height"))
+				)
+			)
+		end	
+
+		for _, spawnarea in ipairs(getElementsByType("spawnareasphere", value)) do
+			table.insert(teamData[classType].spawnAreas,
+				SpawnAreaSphere:create(
+					tonumber(getElementData(spawnarea, "posX")), 
+					tonumber(getElementData(spawnarea, "posY")), 
+					tonumber(getElementData(spawnarea, "posZ")), 
+					tonumber(getElementData(spawnarea, "radius"))
+				)
+			)
+		end	
 	end
 	
 	
