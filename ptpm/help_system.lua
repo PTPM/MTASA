@@ -289,58 +289,16 @@ end
 
 -- parse the condition args for any special cases
 function conditionProcessor(player, fn, args)
-	local pArg = nil
-
-	if (not player) or (not isElement(player)) then
-		outputDebugString("Error: bad player passed to conditionProcessor ("..tostring(fn)..", "..tostring(conditionTaskExplanationComparison)..")", 1)
-		return
-	end
-
 	-- make a new copy so we aren't updating the original definition reference
 	local newArgs = {}
 
 	for i, arg in ipairs(args) do
-		if arg and isElement(arg) and getElementType(arg) == "player" then
-			outputChatBox("Already subbed for player " .. getPlayerName(arg))
-		end
-
 		if arg == "__player" then
 			newArgs[i] = player
-
-			if pArg then
-				outputDebugString("Error: multiple player args in conditionProcessor ("..tostring(fn)..", "..tostring(conditionTaskExplanationComparison)..")", 1)
-			end
-
-			pArg = i
 		else
 			newArgs[i] = arg
 		end
 	end
-
-	-- debug stuff
-	for i, arg in ipairs(newArgs) do
-		if i == pArg then
-			if (not arg) or (not isElement(arg)) then
-				local playerName = "-error-"
-
-				if player and isElement(player) then
-					playerName = getPlayerName(player)
-				end
-
-				outputDebugString("Error: player arg substituted for bad data on player " .. tostring(playerName).." ("..tostring(fn)..", "..tostring(conditionTaskExplanationComparison)..")", 1)
-			end
-		end
-	end	
-
-	-- if fn == conditionTaskExplanationComparison then
-	-- 	local eType = "-not an element-"
-
-	-- 	if newArgs[1] and isElement(newArgs[1]) then
-	-- 		eType = getElementType(newArgs[1])
-	-- 	end
-
-	-- 	outputDebugString("pre-conditionTaskExplanationComparison: player: '" .. tostring(newArgs[1]).. "', "..tostring(eType), 1)
-	-- end
 
 	-- call through to the actual condition comparator
 	return fn(unpack(newArgs))

@@ -16,7 +16,7 @@ function knifeRestrict(victim)
 	vicX,vicY,vicZ = getElementPosition(victim)
 	killerX,killerY,killerZ = getElementPosition(killer)
 	if getDistanceBetweenPoints3D(vicX,vicY,vicZ, killerX,killerY,killerZ) > 1 then 
-		outputDebugString(getPlayerName(killer) .. " Knife kill prevented: distance too big", 1)
+		--outputDebugString(getPlayerName(killer) .. " Knife kill prevented: distance too big", 1)
 		cancelEvent() 
 	end
 	
@@ -40,14 +40,14 @@ function knifeRestrict(victim)
 	end	
 	
 	if killerRot < minKillerAngle or killerRot > maxKillerAngle then
-		outputDebugString(getPlayerName(killer) .. " Knife kill prevented: killerRot not in range of vicRot (min:"..math.ceil(minKillerAngle).." real:" ..math.ceil(killerRot).." max:"..math.ceil(maxKillerAngle)..")" , 1)
+		--outputDebugString(getPlayerName(killer) .. " Knife kill prevented: killerRot not in range of vicRot (min:"..math.ceil(minKillerAngle).." real:" ..math.ceil(killerRot).." max:"..math.ceil(maxKillerAngle)..")" , 1)
 		cancelEvent()
 	end
 	
 	-- 3) Victim must be standing still
 	vicSpeedX, vicSpeedY, vicSpeedZ = getElementVelocity(victim)
 	if math.sqrt(vicSpeedX^2 + vicSpeedY^2 + vicSpeedZ^2) > 0.5 then 
-		outputDebugString(getPlayerName(killer) .. " Knife kill prevented: vic not standing still", 1)
+		--outputDebugString(getPlayerName(killer) .. " Knife kill prevented: vic not standing still", 1)
 		cancelEvent() 
 	end
 	
