@@ -12,7 +12,6 @@ function ptpmMapStart( map )
 	
 	classes = {}
 	miniClass = {}
-	teamSpawns = {}
 	teamData = {}
 	cantDrive = {}
 	cantPassenger = {}
@@ -130,10 +129,10 @@ function ptpmMapStart( map )
 		end
 
 		teamData[classType] = {}
-		teamSpawns[classType] = SpawnGroup:create()
+		teamData[classType].spawnGroup = SpawnGroup:create()
 
 		for _, spawn in ipairs(getElementsByType("spawn", value)) do
-			teamSpawns[classType]:addSpawn(Spawn:create(
+			teamData[classType].spawnGroup:addSpawn(Spawn:create(
 				tonumber(getElementData(spawn, "posX")), 
 				tonumber(getElementData(spawn, "posY")), 
 				tonumber(getElementData(spawn, "posZ")), 
@@ -143,7 +142,7 @@ function ptpmMapStart( map )
 		end
 
 		for _, linespawn in ipairs(getElementsByType("spawnline", value)) do
-			teamSpawns[classType]:addSpawn(SpawnLine:create(
+			teamData[classType].spawnGroup:addSpawn(SpawnLine:create(
 				tonumber(getElementData(linespawn, "startX")), 
 				tonumber(getElementData(linespawn, "startY")), 
 				tonumber(getElementData(linespawn, "startZ")), 
@@ -156,7 +155,7 @@ function ptpmMapStart( map )
 		end
 
 		for _, spawn in ipairs(getElementsByType("spawnarea", value)) do
-			teamSpawns[classType]:addSpawn(SpawnArea:create(
+			teamData[classType].spawnGroup:addSpawn(SpawnArea:create(
 				tonumber(getElementData(spawn, "posX")), 
 				tonumber(getElementData(spawn, "posY")), 
 				tonumber(getElementData(spawn, "posZ")), 
@@ -168,7 +167,7 @@ function ptpmMapStart( map )
 		end		
 
 		for _, spawn in ipairs(getElementsByType("spawncircle", value)) do
-			teamSpawns[classType]:addSpawn(SpawnCircle:create(
+			teamData[classType].spawnGroup:addSpawn(SpawnCircle:create(
 				tonumber(getElementData(spawn, "posX")), 
 				tonumber(getElementData(spawn, "posY")), 
 				tonumber(getElementData(spawn, "posZ")), 
