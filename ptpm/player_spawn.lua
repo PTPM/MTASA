@@ -253,29 +253,44 @@ function setPlayerClass( thePlayer, class )
 end
 
 -- handles spawn information
-function makePlayerSpawn( thePlayer )	
+function makePlayerSpawn(thePlayer)	
 	if data and data.roundEnded then return end
 
-	local class = getPlayerClassID( thePlayer )
+	local class = getPlayerClassID(thePlayer)
 	
 	if not class then return end
 	
 	local classType = classes[class].type
-	local randomSpawn = teamData[classType].spawnGroup:getRandomSpawn()
+	local randomSpawnID = teamData[classType].spawnGroup:getRandomSpawn()
+	local randomSpawn = teamData[classType].spawnGroup.spawns[randomSpawnID]
+
+	-- if pm is on police/bodyguard spawn area, redirect the spawns elsewhere
+	-- give a 60s buffer so they don't redirect straight away (e.g. if pm spawns on bg spawn)
+	if currentPM and data.lastPMSpawn and (getTickCount() - data.lastPMSpawn) > 60000 and (classType == "police" or classType == "bodyguard") then
+		if classType == "police" and isPlayerInSpawnArea(currentPM, "police") then
+			randomSpawnID = teamData["bodyguard"].spawnGroup:getRandomSpawn()
+			randomSpawn = teamData["bodyguard"].spawnGroup.spawns[randomSpawnID]
+		elseif classType == "bodyguard" and isPlayerInSpawnArea(currentPM, "bodyguard") then
+			randomSpawnID = teamData["police"].spawnGroup:getRandomSpawn()
+			randomSpawn = teamData["police"].spawnGroup.spawns[randomSpawnID]
+		end
+
+		sendGameText(thePlayer, "The Prime Minister has taken over your base\nSpawning elsewhere...", 7000, colour.personal, gameTextOrder.contextual)
+	end
 
 	-- generate a position (can't access directly because lines/areas/etc don't have a spawn point)
-	local position = teamData[classType].spawnGroup.spawns[randomSpawn].position
+	local position = randomSpawn.position
 
 	setElementData(thePlayer, "ptpm.goodX", position.x, false)
 	setElementData(thePlayer, "ptpm.goodY", position.y, false)
 	setElementData(thePlayer, "ptpm.goodZ", position.z, false)
 
-	spawnPlayer(thePlayer, position.x, position.y, position.z, teamData[classType].spawnGroup.spawns[randomSpawn].rotation, classes[class].skin, teamData[classType].spawnGroup.spawns[randomSpawn].interior, 0)
+	spawnPlayer(thePlayer, position.x, position.y, position.z, randomSpawn.rotation, classes[class].skin, randomSpawn.interior, 0)
 
 	setPedGravity( thePlayer, 0.008 )
 	setElementFrozen(thePlayer, false)
 	setCameraTarget( thePlayer, thePlayer )
-	setTimer( setCameraTarget, 100, 1, thePlayer, thePlayer ) -- ok timer
+	setTimer( setCameraTarget, 100, 1, thePlayer, thePlayer )
 
 	for _, pair in ipairs(classes[class].weapons) do
 		if pair[1] and pair[2] and pair[1] ~= 0 and pair[2] >= 0 then
@@ -284,9 +299,10 @@ function makePlayerSpawn( thePlayer )
 	end
 
 	if classType == "pm" then
-		setElementData( thePlayer, "ptpm.currentInterior", teamData[classType].spawnGroup.spawns[randomSpawn].interior, false )
+		setElementData( thePlayer, "ptpm.currentInterior", randomSpawn.interior, false )
 		options.plan = false
 		setPedArmor( thePlayer, 100 )
+		data.lastPMSpawn = getTickCount()
 	else
 		setPedArmor( thePlayer, 0 )
 	end
