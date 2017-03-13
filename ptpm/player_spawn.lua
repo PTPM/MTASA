@@ -264,18 +264,20 @@ function makePlayerSpawn(thePlayer)
 	local randomSpawnID = teamData[classType].spawnGroup:getRandomSpawn()
 	local randomSpawn = teamData[classType].spawnGroup.spawns[randomSpawnID]
 
-	-- if pm is on police/bodyguard spawn area, redirect the spawns elsewhere
-	-- give a 60s buffer so they don't redirect straight away (e.g. if pm spawns on bg spawn)
-	if currentPM and data.lastPMSpawn and (getTickCount() - data.lastPMSpawn) > 60000 and (classType == "police" or classType == "bodyguard") then
-		if classType == "police" and isPlayerInSpawnArea(currentPM, "police") then
-			randomSpawnID = teamData["bodyguard"].spawnGroup:getRandomSpawn()
-			randomSpawn = teamData["bodyguard"].spawnGroup.spawns[randomSpawnID]
-		elseif classType == "bodyguard" and isPlayerInSpawnArea(currentPM, "bodyguard") then
-			randomSpawnID = teamData["police"].spawnGroup:getRandomSpawn()
-			randomSpawn = teamData["police"].spawnGroup.spawns[randomSpawnID]
-		end
+	if options.pmSpawnRedirect then
+		-- if pm is on police/bodyguard spawn area, redirect the spawns elsewhere
+		-- give a 60s buffer so they don't redirect straight away (e.g. if pm spawns on bg spawn)
+		if currentPM and data.lastPMSpawn and (getTickCount() - data.lastPMSpawn) > 60000 and (classType == "police" or classType == "bodyguard") then
+			if classType == "police" and isPlayerInSpawnArea(currentPM, "police") then
+				randomSpawnID = teamData["bodyguard"].spawnGroup:getRandomSpawn()
+				randomSpawn = teamData["bodyguard"].spawnGroup.spawns[randomSpawnID]
+			elseif classType == "bodyguard" and isPlayerInSpawnArea(currentPM, "bodyguard") then
+				randomSpawnID = teamData["police"].spawnGroup:getRandomSpawn()
+				randomSpawn = teamData["police"].spawnGroup.spawns[randomSpawnID]
+			end
 
-		sendGameText(thePlayer, "The Prime Minister has taken over your base\nSpawning elsewhere...", 7000, colour.personal, gameTextOrder.contextual)
+			sendGameText(thePlayer, "The Prime Minister has taken over your base\nSpawning elsewhere...", 7000, colour.personal, gameTextOrder.contextual)
+		end
 	end
 
 	-- generate a position (can't access directly because lines/areas/etc don't have a spawn point)

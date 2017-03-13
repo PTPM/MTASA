@@ -8,6 +8,7 @@
 		<setting name="*pmHealthBonus" value="[1]" />
 		<setting name="*medicHealthBonus" value="[true]" />
 		<setting name="*objectivesToFinish" value="[5]" />
+		<setting name="*pmSpawnRedirect" value="[true]"/>
 	</settings>
 
 	<file src="ptpm-lvobj.png"/>

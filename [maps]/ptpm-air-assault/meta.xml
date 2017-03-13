@@ -10,6 +10,7 @@
 		<setting name="*pmWaterDeath" value="[true]" />
 		<setting name="*disableClouds" value="[true]"/>
 		<setting name="*pocketMoney" value="[0]"/>
+		<setting name="*pmSpawnRedirect" value="[true]"/>
 	</settings>
 
 	<file src="ptpm-air-assault.png"/>
