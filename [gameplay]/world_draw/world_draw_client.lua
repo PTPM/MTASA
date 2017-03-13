@@ -1,9 +1,22 @@
 local elements = {}
 
 local draw = {
+	distanceBase = 100,
 	distance = 100,
 	distanceAlpha = 70, -- full alpha this distance and closer
-	drawScale = {0.5, 1.1},
+	drawScale = {0.1, 1.1},
+	-- drawScaleSquared = { 
+	-- 	{0.01, 0.1},
+	-- 	{0.04, 0.2},
+	-- 	{0.09, 0.3},
+	-- 	{0.16, 0.4},
+	-- 	{0.25, 0.5},
+	-- 	{0.36, 0.6},
+	-- 	{0.49, 0.7},
+	-- 	{0.64, 0.8},
+	-- 	{0.81, 0.9},
+	-- 	{1, 1},
+	-- }
 }
 
 -- types:
@@ -13,7 +26,7 @@ local draw = {
 
 addEventHandler("onClientResourceStart", resourceRoot,
 	function()
-		draw.distance = math.pow(draw.distance, 2)
+		draw.distance = math.pow(draw.distanceBase, 2)
 		draw.distanceAlpha = math.pow(draw.distanceAlpha, 2)
 		draw.alphaDiff = draw.distance - draw.distanceAlpha
 	end
@@ -135,8 +148,9 @@ addEventHandler("onClientHUDRender", root,
 						local screenX, screenY = getScreenFromWorldPosition(ex, ey, ez, 0.06)
 
 						if screenX and screenY then 	
+							local euclideanDist = getDistanceBetweenPoints3D(ex, ey, ez, cx, cy, cz)
 							-- 0 = far away, 1 = on top
-							local distScale = 1 - (dist / draw.distance)
+							local distScale = 1 - (euclideanDist / draw.distanceBase)
 
 							local alpha = 1 - ((math.max(dist - draw.distanceAlpha, 0)) / draw.alphaDiff)
 							local scale = lerp(draw.drawScale[1], draw.drawScale[2], distScale)
@@ -162,14 +176,16 @@ addEventHandler("onClientHUDRender", root,
 										
 										totalHeight = totalHeight + (drawing.cacheHeight * scale)
 									elseif drawing.draw == "healthbar" then
-										local width = scale * 80
-										local height = width / 12
+										if getElementHealth(element) > 0 then
+											local width = scale * 80
+											local height = width / 12
+											
+											dxDrawRectangle(screenX - (width / 2) - 2, screenY - height - 2 - totalHeight, width + 4, height + 4, tocolor(0, 0, 0, 255 * alpha))
 
-										dxDrawRectangle(screenX - (width / 2) - 2, screenY - height - 2 - totalHeight, width + 4, height + 4, tocolor(0, 0, 0, 255 * alpha))
-
-										local healthScale = math.max(0, getElementHealth(element) - drawing.args[2]) / drawing.args[1]
-										dxDrawRectangle(screenX - (width / 2), screenY - height - totalHeight, width * healthScale, height, tocolor(200 * (1 - healthScale), 150 * healthScale, 0, 255 * alpha))
-										totalHeight = totalHeight + (drawing.cacheHeight * scale)
+											local healthScale = math.max(0, getElementHealth(element) - drawing.args[2]) / drawing.args[1]
+											dxDrawRectangle(screenX - (width / 2), screenY - height - totalHeight, width * healthScale, height, tocolor(200 * (1 - healthScale), 150 * healthScale, 0, 255 * alpha))
+											totalHeight = totalHeight + (drawing.cacheHeight * scale)
+										end
 									else
 										drawing.draw(element, screenX, screenY - totalHeight, distScale, scale, alpha, unpack(drawing.args))
 										totalHeight = totalHeight + (drawing.cacheHeight * scale)
@@ -290,3 +306,18 @@ function distanceSquared(aX, aY, aZ, bX, bY, bZ)
 
 	return vX*vX + vY*vY + vZ*vZ
 end
+
+-- this works but it's jumpy
+-- function mapThing(value)
+-- 	if value <= draw.drawScaleSquared[1][1] then
+-- 		return lerp(0, draw.drawScaleSquared[1][2], value / draw.drawScaleSquared[1][1])
+-- 	end
+
+-- 	for i = 2, #draw.drawScaleSquared do
+-- 		if value <= draw.drawScaleSquared[i][1] then
+-- 			return lerp(draw.drawScaleSquared[i - 1][2], draw.drawScaleSquared[i][2], value / draw.drawScaleSquared[i][1])
+-- 		end
+-- 	end
+
+-- 	return draw.drawScaleSquared[#draw.drawScaleSquared][2]
+-- end
