@@ -533,7 +533,7 @@
     <object id="object (des_swtstairs1) (6)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="2173.0212" posY="2067.8127" posZ="25.93767" rotX="0" rotY="0" rotZ="0"></object>
     <object id="object (des_swtstairs1) (7)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="2183.0757" posY="2062.1245" posZ="14.78767" rotX="0" rotY="0" rotZ="0"></object>
     <object id="object (des_swtstairs1) (8)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="2172.8677" posY="2051.541" posZ="14.78767" rotX="0" rotY="0" rotZ="270"></object>
-
+    <object id="stadium fall fix" breakable="false" interior="0" alpha="255" model="985" doublesided="false" scale="1" dimension="0" posX="1077.8224" posY="1396.875" posZ="2.62031" rotX="0" rotY="0" rotZ="90"></object>
 	
     <boundarycorner posX="3034.0212" posY="2994.7202" />
     <boundarycorner posX="963.8895" posY="2994.7202" />

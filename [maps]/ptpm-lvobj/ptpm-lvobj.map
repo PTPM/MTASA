@@ -568,5 +568,6 @@
     <boundarycorner posX="2833.66" posY="596.02" />
     <boundarycorner posX="3034.0212" posY="525.6904" />
 	
-    <object id="des_quarryramp01 stadium ramp" breakable="true" interior="0" alpha="255" model="16303" doublesided="false" scale="1" dimension="0" posX="1407.2333" posY="2085.144" posZ="2.7521" rotX="0" rotY="0" rotZ="285.25"></object>
+    <object id="des_quarryramp01 stadium ramp" breakable="false" interior="0" alpha="255" model="16303" doublesided="false" scale="1" dimension="0" posX="1407.2333" posY="2085.144" posZ="2.7521" rotX="0" rotY="0" rotZ="285.25"></object>
+    <object id="stadium fall fix" breakable="false" interior="0" alpha="255" model="985" doublesided="false" scale="1" dimension="0" posX="1077.8224" posY="1396.875" posZ="2.62031" rotX="0" rotY="0" rotZ="90"></object>
 </map>
