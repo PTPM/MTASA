@@ -1,4 +1,5 @@
 ﻿addEvent("onVehicleIdleRespawn")
+addEvent("onPlayerWastedInVehicle", true)
 
 function isQualified( thePlayer, theVehicle, seat )
 	if seat == 0 and getPlayerClassID( thePlayer ) then
@@ -63,25 +64,51 @@ addEventHandler( "onVehicleEnter", root,
 				triggerHelpEvent(thePlayer, "MEDIC_AMBULANCE")
 			end
 		end
+
+		if currentPM and thePlayer == currentPM and (not options.disablePMHealthbar) then
+			if isRunning("world_draw") then
+				exports.world_draw:attach3DDraw(source, "pmhb", "healthbar")
+			end
+		end
 	end
 )
 
 
-function initiateVehicleRespawn()
-	if isVehicleEmpty( source ) and data.vehicleRespawn and data.vehicleRespawn[source] and data.vehicleRespawn[source].delay then
-		data.vehicleRespawn[source].timer = setTimer(
-			function ( vehicle )
-				doRespawnVehicle( vehicle )
-				data.vehicleRespawn[vehicle].timer = nil
-				triggerEvent("onVehicleIdleRespawn", vehicle)
+-- can't get this info serverside (isPedInVehicle/etc returns false inside onPlayerWasted), so get it from the client instead and trigger the proper events
+addEventHandler("onPlayerWastedInVehicle", root,
+	function(vehicle, seat)
+		triggerEvent("onVehicleExit", vehicle, client, seat)
+		triggerEvent("onPlayerVehicleExit", client, vehicle, seat)
+	end
+)
+
+
+function initiateVehicleRespawn(vehicle)
+	if isVehicleEmpty(vehicle) and data.vehicleRespawn and data.vehicleRespawn[vehicle] and data.vehicleRespawn[vehicle].delay then
+		data.vehicleRespawn[vehicle].timer = setTimer(
+			function (v)
+				doRespawnVehicle(v)
+				data.vehicleRespawn[v].timer = nil
+				triggerEvent("onVehicleIdleRespawn", v)
 			end,
-		data.vehicleRespawn[source].delay, 1, source )
+		data.vehicleRespawn[vehicle].delay, 1, vehicle)
 
 		-- just in case
-		setVehicleStale(source)
+		setVehicleStale(vehicle)
 	end
 end
-addEventHandler( "onVehicleExit", root, initiateVehicleRespawn )
+addEventHandler("onVehicleExit", root, 
+	function(player, seat, jacked)
+		initiateVehicleRespawn(source)
+
+		if currentPM and player == currentPM and (not options.disablePMHealthbar) then
+			if isRunning("world_draw") then
+				exports.world_draw:detach3DDraw(source, "pmhb")
+			end
+		end
+	end
+)
+
 
 function setVehicleStale(vehicle)
 	setElementData(vehicle, "ptpm.vehicle.fresh", nil, false)

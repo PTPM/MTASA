@@ -330,8 +330,13 @@ function leaveClassAfterTime(thePlayer)
 			function(player)
 				-- outputChatBox( "Back in class select.", player, unpack( colour.personal ) )
 				if player and isElement(player) and not data.roundEnded then
+					-- force the vehicle exit event to fire
+					if isPedInVehicle(player) then
+						removePedFromVehicle(player)
+					end
+
 					initClassSelection(player, true)
-					unbindKey(thePlayer, "f4", "down", "leaveclass")
+					unbindKey(player, "f4", "down", "leaveclass")
 				end
 			end,
 		5000, 1, thePlayer) 

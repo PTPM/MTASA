@@ -321,6 +321,11 @@ addEventHandler( "onPlayerQuit", root,
 	function()
 		local needsRebalance = getPlayerClassID(source) or getElementData(source, "ptpm.electionClass")
 
+		-- force the vehicle exit event to fire
+		if isPedInVehicle(source) then
+			removePedFromVehicle(source)
+		end
+
 		resetPlayer( source )
 		-- Following are in resetPlayer()
 		-- checkClassSelection( source )

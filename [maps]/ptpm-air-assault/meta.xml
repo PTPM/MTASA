@@ -11,6 +11,8 @@
 		<setting name="*disableClouds" value="[true]"/>
 		<setting name="*pocketMoney" value="[0]"/>
 		<setting name="*pmSpawnRedirect" value="[true]"/>
+		<setting name="*disableHeavyHealthbars" value="[true]"/>
+		<setting name="*disablePMHealthbar" value="[true]"/>
 	</settings>
 
 	<file src="ptpm-air-assault.png"/>

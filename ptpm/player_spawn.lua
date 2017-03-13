@@ -246,6 +246,11 @@ function setPlayerClass( thePlayer, class )
 		exports.parachute:removeParachute(thePlayer, true)
 	end
 
+	-- force the vehicle exit event to fire
+	if isPedInVehicle(thePlayer) then
+		removePedFromVehicle(thePlayer)
+	end
+
 	-- recalculate the balance situation every time somebody spawns
 	calculateBalance()
 	

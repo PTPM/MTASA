@@ -63,6 +63,8 @@ function ptpmMapStart( map )
 	options.disableClouds = get(runningMapName .. ".disableClouds") or false -- bool
 	options.vehicleHeightLimit = get(runningMapName .. ".vehicleHeightLimit") or false -- int
 	options.pmSpawnRedirect = get(runningMapName .. ".pmSpawnRedirect") or false -- bool
+	options.disableHeavyHealthbars = get(runningMapName .. ".disableHeavyHealthbars") or false -- bool
+	options.disablePMHealthbar = get(runningMapName .. ".disablePMHealthbar") or false -- bool
 	
 	options.displayDistanceToPM = get(runningMapName .. ".displayDistanceToPM") or false	-- bool
 	
@@ -357,6 +359,12 @@ function ptpmMapStart( map )
 		if getElementID(value) == "desert_crashed_plane" then
 			setVehicleLocked(value, true)
 		end
+
+		if (not options.disableHeavyHealthbars) and isVehicleHeavy(value, model) then
+			if isRunning("world_draw") then
+				exports.world_draw:attach3DDraw(value, "heavyhb", "healthbar", nil, {"getVehicleOccupant"})
+			end
+		end
 	end
 	
 	
@@ -642,9 +650,9 @@ function ptpmMapStop( map )
 	end
 	
 	-- Destroy vehicle respawn timers
-	for _, vehicle in ipairs( getElementsByType( "vehicle" ) ) do
-		if vehicle and isElement( vehicle ) then
-			stopVehicleRespawn( vehicle )
+	for _, vehicle in ipairs(getElementsByType("vehicle")) do
+		if vehicle and isElement(vehicle) then
+			stopVehicleRespawn(vehicle)
 		end
 	end
 

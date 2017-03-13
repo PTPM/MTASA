@@ -90,6 +90,10 @@ end
 addEventHandler("onClientPlayerWasted", localPlayer,
 	function(killer, weapon, bodypart)
 		clearHelpQueue()
+
+		if getPedOccupiedVehicle(localPlayer) then
+			triggerServerEvent("onPlayerWastedInVehicle", localPlayer, getPedOccupiedVehicle(localPlayer), getPedOccupiedVehicleSeat(localPlayer))
+		end
 	end
 )
 

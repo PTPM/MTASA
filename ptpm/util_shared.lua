@@ -126,3 +126,12 @@ end
 function getCurrentPM()
 	return currentPM
 end
+
+function isVehicleHeavy(vehicle, model)
+	if not model then
+		model = getElementModel(vehicle)
+	end
+
+	-- hydra or hunter or rhino
+	return model == 520 or model == 425 or model == 432
+end

@@ -396,7 +396,7 @@
     <!--polmav-->
     <vehicle model="497" posX="-1220.0" posY="194.0" posZ="14.3" rotX="0.0" rotY="0.0" rotZ="356.9" color="79 79 0 0" />
     <!--polmav-->
-    <vehicle model="425" posX="-311.5" posY="-1414.4" posZ="17.0" rotX="0.0" rotY="0.0" rotZ="324.4" color="0 0 0 0" />
+    <vehicle model="425" posX="-311.5" posY="-1414.4" posZ="15.0" rotX="0.0" rotY="0.0" rotZ="324.4" color="0 0 0 0" />
     <!--hunter-->
     <vehicle model="520" posX="2328.8" posY="52.7" posZ="34.6" rotX="0.0" rotY="0.0" rotZ="177.5" color="0 0 0 0" />
     <!--hydra-->
