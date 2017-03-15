@@ -3,22 +3,24 @@
 -- 	The command will only work for logged in users
 --	Nickshield only allows a PTPM_ACCOUNTS USER to shield ONE nickname
 --	Nickshielded names will always need to be logged in
---	Nickshielded names are kicked after 45 seconds if they do not identify in time
+--	Nickshielded names are kicked after 25 seconds if they do not identify in time
 --	Nickshielded names can not be used by any player that is already logged in as another user
---	Nickshielded names can not speak until they identify
+--	Nickname usage from registration serial is allowed
 
 ptpmColour = exports.ptpm:getColour("ptpm") or {255, 0, 0}
 nickshielded = {
-	["sampleNick"] = "sampleUserName"
+	["sampleNick"] = {
+		["user"] = "sampleUserName",
+		["serial"] = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	}
 }
 
-function nickshieldedFlipped()
-	local tt = {}
+function isUserAssociatedWithAnyNickname(user)
 	for k,v in pairs(nickshielded) do
-		tt[v] = k
+		if v["user"]==user then return true end
 	end
 	
-	return tt
+	return false
 end
 
 
@@ -82,7 +84,10 @@ function loadShieldedNicks()
 	
 	for _,line in ipairs(npLines) do
 		local n = split(line, " ")
-		nickshielded[n[1]] = n[2]
+		nickshielded[n[1]] = {
+			["user"] = n[2],
+			["serial"] = n[3] or "UNKNOWNSERIAL"
+		}
 		
 		
 		-- outputDebugString("NEW SHIELD: " ..line)
@@ -113,7 +118,7 @@ end
 
 
 addCommandHandler ( "nickshield", function(source)
-	local nick = getPlayerName(source)
+	local nick = getPlayerName(source):lower()
 	local user = getPlayerPTPMUser(source)
 	
 	if not user then 
@@ -133,37 +138,46 @@ addCommandHandler ( "nickshield", function(source)
 	end
 	
 	-- Does this user already have a shielded nick?
-	if nickshieldedFlipped()[user] then
+	if isUserAssociatedWithAnyNickname(user) then
 		exports.ptpm:sendGameText(source, "You're already shielding a nickname.", 3000, ptpmColour, 3, 1.3)
 		return
 	end
 	
 	-- Protect the nick
 	nickshielded[nick] = user
-	openAndAppendToFile("nickshield", nick .. " " .. user)
+	openAndAppendToFile("nickshield", nick .. " " .. user .. " " .. getPlayerSerial(source))
 	
 	exports.ptpm:sendGameText(source, "This nickname is now shielded.", 3000, ptpmColour, 3, 1.3)
 
 end )
 
 function isThisAllowed(player, nick)
+	nick = nick:lower()
+	
 	-- return "yes", "maybe" or "no"
 	--local nick = getPlayerName(player)
 	local user = getPlayerPTPMUser(player)
 	local verdict = ""
 	
-	local userOwner = nickshielded[nick]
+	local owner = nickshielded[nick]
 	
-	if userOwner then
-		-- Is it a guest? Then it might be legit
-		if user=="Guest" then 
+	if owner then
+		-- Nickname belongs to somebody...
+		if user=="Guest" and getPlayerSerial(player)==owner["serial"] then 
+			-- Hasn't logged in, but serial checks out, so allow it.
+			verdict = "yes" 
+		elseif user=="Guest" then 
+			-- Hasn't logged in yet, might be OK. Kick if player doesn't identify in time.
 			verdict = "maybe" 
-		elseif userOwner~=user then 
+		elseif owner["user"]~=user then 
+			-- It's a different user, just don't allow it
 			verdict = "no" 
 		else 
+			-- The only remaining cases are to allow it.
 			verdict = "yes" 
 		end
 	else
+		-- Nickname belongs to nobody: always allowed.
 		verdict = "yes"
 	end
 	
