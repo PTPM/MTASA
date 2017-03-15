@@ -115,41 +115,44 @@ function now()
 end
 
 
-
-
-addCommandHandler ( "nickshield", function(source)
-	local nick = getPlayerName(source):lower()
-	local user = getPlayerPTPMUser(source)
+function registerNickshield(player)
+	local nick = getPlayerName(player):lower()
+	local user = getPlayerPTPMUser(player)
 	
 	if not user then 
-		exports.ptpm:sendGameText(source, "Nickshield unavailable right now.", 3000, ptpmColour, 3, 1.3)
+		exports.ptpm:sendGameText(player, "Nickshield unavailable right now.", 3000, ptpmColour, 3, 1.3)
 		return
 	end	
 	
 	if user=="Guest" then 
-		exports.ptpm:sendGameText(source, "Nickshield unavailable to guests.", 3000, ptpmColour, 3, 1.3)
+		exports.ptpm:sendGameText(player, "Nickshield unavailable to guests.", 3000, ptpmColour, 3, 1.3)
 		return
 	end	
 	
 	-- Is this nick already shielded?
 	if nickshielded[nick] then
-		exports.ptpm:sendGameText(source, "This nickname is already shielded.", 3000, ptpmColour, 3, 1.3)
+		exports.ptpm:sendGameText(player, "This nickname is already shielded.", 3000, ptpmColour, 3, 1.3)
 		return
 	end
 	
 	-- Does this user already have a shielded nick?
 	if isUserAssociatedWithAnyNickname(user) then
-		exports.ptpm:sendGameText(source, "You're already shielding a nickname.", 3000, ptpmColour, 3, 1.3)
+		exports.ptpm:sendGameText(player, "You're already shielding a nickname.", 3000, ptpmColour, 3, 1.3)
 		return
 	end
 	
 	-- Protect the nick
-	nickshielded[nick] = user
-	openAndAppendToFile("nickshield", nick .. " " .. user .. " " .. getPlayerSerial(source))
-	
-	exports.ptpm:sendGameText(source, "This nickname is now shielded.", 3000, ptpmColour, 3, 1.3)
+	registerNickshieldRaw(nick, user, getPlayerSerial(player))
+	exports.ptpm:sendGameText(player, "This nickname is now shielded.", 3000, ptpmColour, 3, 1.3)
+end
 
-end )
+function registerNickshieldRaw(nick, user, serial)
+	nickshielded[nick] = user
+	openAndAppendToFile("nickshield", nick .. " " .. user .. " " .. serial)
+end
+
+
+addCommandHandler ( "nickshield", registerNickshield )
 
 function isThisAllowed(player, nick)
 	nick = nick:lower()

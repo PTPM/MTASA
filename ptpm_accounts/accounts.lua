@@ -207,6 +207,9 @@ function registerUsername( thePlayer, username, password, length )
 	end
 	
 	if createUserAccount( thePlayer, username, password, length ) then
+		if exports.ptpm:isRunning("nickshield") then
+			exports.nickshield:registerNickshieldRaw(getPlayerName(thePlayer):lower(), username, getPlayerSerial(thePlayer))
+		end
 		return true
 	else
 		return false, "creationFailed"
