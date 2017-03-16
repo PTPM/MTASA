@@ -1,0 +1,6 @@
+addEvent( "playAnnouncer", true )
+addEventHandler( "playAnnouncer", localPlayer, function (soundFile, delay)
+	setTimer(function()
+		playSound(soundFile)
+	end, delay or 50, 1) 
+end )

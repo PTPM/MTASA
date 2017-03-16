@@ -1,0 +1,25 @@
+<meta>
+	<info name="Announcer for PTPM" type="script"/>
+	
+	<script src="server.lua" type="server"/>
+	<script src="client.lua" type="client"/>
+	
+	<file src="assets/obj.mp3"/>
+	<file src="assets/obj2.mp3"/>
+	<file src="assets/obj3.mp3"/>
+	<file src="assets/plan2.mp3"/>
+	<file src="assets/task2.mp3"/>
+	<file src="assets/win_defeat.mp3"/>
+	<file src="assets/win_defeat2.mp3"/>
+	<file src="assets/win_pm.mp3"/>
+	<file src="assets/win_pm2.mp3"/>
+	<file src="assets/win_terrorist.mp3"/>
+	<file src="assets/win_victory.mp3"/>
+	
+	<export function="roundEnd" type="server"/>
+	<export function="objectiveSecured" type="server"/>
+	<export function="taskSecured" type="server"/>
+	<export function="pmSetPlan" type="server"/>
+	<export function="pickedUpSuperweapon" type="server"/>
+	
+</meta>

@@ -91,6 +91,9 @@ addEventHandler("onObjectiveComplete", root,
 			everyoneViewsBody(thePlayer, thePlayer, getElementInterior(thePlayer))
 
 			sendGameText(root, "The Prime Minister completed objectives!", 7000, classColours["pm"], gameTextOrder.global, 1.2)
+			if isRunning("ptpm_announcer") then
+				exports.ptpm_announcer:roundEnd(true)
+			end
 
 			local pmWins = getElementData(thePlayer, "ptpm.pmWins") or 0
 
@@ -147,6 +150,10 @@ addEventHandler("onObjectiveComplete", root,
 					exports.missiontimer:setMissionTimerTime(data.timer, timeRemaining + ((1000 * 60) * 3))
 					options.roundtime = options.roundtime + ((1000 * 60) * 3)
 				end
+			end
+			
+			if isRunning("ptpm_announcer") then
+				exports.ptpm_announcer:objectiveSecured()
 			end
 
 			if data.objectives.finished <= 3 then

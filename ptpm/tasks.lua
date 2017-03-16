@@ -134,6 +134,10 @@ function finishedTask(theTask)
 	drawStaticTextToScreen("delete", root, "taskText")
 	drawStaticTextToScreen("delete", root, "taskDesc")
 	
+	if isRunning("ptpm_announcer") then
+		exports.ptpm_announcer:taskSecured()
+	end
+	
 	for _, p in ipairs(getElementsByType("player")) do
 		if p and isElement(p) then
 			local classID = getPlayerClassID(p)

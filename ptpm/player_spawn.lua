@@ -470,6 +470,10 @@ function onPlayerWasted( totalAmmo, killer, killerWeapon, bodypart )
 					end
 				end
 			end
+			
+			if isRunning("ptpm_announcer") then
+				exports.ptpm_announcer:roundEnd(false)
+			end
 			setRoundEnded()
 		end
 	end	

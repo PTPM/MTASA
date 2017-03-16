@@ -411,6 +411,11 @@ function roundTick()
 			sendGameText( root, "The Prime Minister survived!", 7000, {r, g, b}, gameTextOrder.global, 1.2 )
       
       		if currentPM then
+			
+				if isRunning("ptpm_announcer") then
+					exports.ptpm_announcer:roundEnd(true)
+				end
+			
         		local pmWins = getElementData( currentPM, "ptpm.pmWins" ) or 0
         
         		if accountsRunning then
@@ -461,8 +466,13 @@ function roundTick()
 			end		
 		else
 			sendGameText( root, "The Prime Minister failed to secure the objective!", 7000, colour.sampRed, gameTextOrder.global, 1.2 )
-
+		
 	      	if currentPM then
+			
+				if isRunning("ptpm_announcer") then
+					exports.ptpm_announcer:roundEnd(false)
+				end
+			
 	        	local pmLosses = getElementData( currentPM, "ptpm.pmWins" ) or 0
 	        
 	        	if accountsRunning then
@@ -1018,6 +1028,10 @@ function plan( thePlayer, commandName, ... )
 														classes[getPlayerClassID( p )].type == "bodyguard" or
 														classes[getPlayerClassID( p )].type == "police" ) then
 					showPlan( p )
+					
+					if isRunning("ptpm_announcer") then
+						exports.ptpm_announcer:pmSetPlan()
+					end
 
 					if p ~= thePlayer then
 						triggerHelpEvent(p, "COMMAND_PLAN_SET")
