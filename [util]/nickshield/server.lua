@@ -212,7 +212,7 @@ addEventHandler ( "onPlayerJoin", getRootElement(), function()
 						local verdict = isThisAllowed(thePlayer2, getPlayerName(thePlayer2))
 						if verdict~="yes" then
 							openAndAppendToFile("incidents", now() .. "¶" .. getPlayerName(thePlayer2) .. "¶" .. getPlayerSerial(thePlayer2) .. "¶KICK")
-							kickPlayer (thePlayer2,"Failed to authenticate")
+							kickPlayer (thePlayer2,"This nickname is protected. You must sign in as '" .. nickshielded[getPlayerName(thePlayer2)]["user"] .. "' in order to use. Otherwise, use a different nickname.")
 						end
 					end
 				end, 20000, 1, thePlayer)
