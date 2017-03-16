@@ -16,6 +16,15 @@
 	<file src="assets/win_terrorist.mp3"/>
 	<file src="assets/win_victory.mp3"/>
 	
+	<file src="assets/superwep_ally_hs.mp3"/>
+	<file src="assets/superwep_ally_mg.mp3"/>
+	<file src="assets/superwep_ally_mg2.mp3"/>
+	<file src="assets/superwep_ally_rpg.mp3"/>
+	<file src="assets/superwep_enemy_hs.mp3"/>
+	<file src="assets/superwep_enemy_mg.mp3"/>
+	<file src="assets/superwep_enemy_mg2.mp3"/>
+	<file src="assets/superwep_enemy_rpg.mp3"/>
+	
 	<export function="roundEnd" type="server"/>
 	<export function="objectiveSecured" type="server"/>
 	<export function="taskSecured" type="server"/>
