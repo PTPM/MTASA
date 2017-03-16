@@ -16,6 +16,7 @@ addEventHandler("onGamemodeMapStart", getRootElement(), reallowPlanLine)
 --	roundEnd(bool pmVictory)
 function roundEnd(pmVictory)
 	local randomCache = {}
+	local randomCacheDelay = {}
 
 	for _, player in ipairs(getElementsByType("player")) do
 		if player and isElement(player) then
@@ -26,24 +27,28 @@ function roundEnd(pmVictory)
 				if teamName=="Good guys" then
 					if not randomCache[teamName] then --Use the same voice line for all players on this team
 						if pmVictory then
-							randomCache[teamName] = pickRandomAssetOutOfTable({ "win_pm.mp3", "win_victory.mp3" }, 300)		
+							randomCache[teamName] = pickRandomAssetOutOfTable({ "win_pm.mp3", "win_victory.mp3" })		
+							randomCacheDelay[teamName] = 300
 						else
-							randomCache[teamName] = pickRandomAssetOutOfTable({ "win_terrorists.mp3", "win_defeat.mp3" }, 1000)						
+							randomCache[teamName] = pickRandomAssetOutOfTable({ "win_terrorist.mp3", "win_defeat.mp3" })
+							randomCacheDelay[teamName] = 1000							
 						end
 					end
 					
-					triggerClientEvent ( player, "playAnnouncer", player, randomCache[teamName])
+					triggerClientEvent ( player, "playAnnouncer", player, randomCache[teamName], randomCacheDelay[teamName])
 					
 				elseif teamname=="Bad guys" then
 					if not randomCache[teamName] then
 						if pmVictory then
-							randomCache[teamName] = pickRandomAssetOutOfTable({ "win_pm.mp3", "win_pm2.mp3", "win_defeat.mp3" }, 1000)					
+							randomCache[teamName] = pickRandomAssetOutOfTable({ "win_pm.mp3", "win_pm2.mp3", "win_defeat.mp3" })
+							randomCacheDelay[teamName] = 1000
 						else
-							randomCache[teamName] = pickRandomAssetOutOfTable({ "win_terrorists.mp3", "win_victory.mp3" }, 300)
+							randomCache[teamName] = pickRandomAssetOutOfTable({ "win_terrorist.mp3", "win_victory.mp3" })
+							randomCacheDelay[teamName] = 300
 						end
 					end
 					
-					triggerClientEvent ( player, "playAnnouncer", player, randomCache[teamName])
+					triggerClientEvent ( player, "playAnnouncer", player, randomCache[teamName], randomCacheDelay[teamName])
 				end
 			else
 				-- No team, that means psycho or unspawned
@@ -53,8 +58,8 @@ function roundEnd(pmVictory)
 					triggerClientEvent ( player, "playAnnouncer", player, pickRandomAssetOutOfTable({ "win_pm.mp3", "win_pm2.mp3"}), 300)
 					
 				else
-					-- [win_terrorists.mp3]
-					triggerClientEvent ( player, "playAnnouncer", player, pickRandomAssetOutOfTable({ "win_terrorists.mp3"}), 1000)
+					-- [win_terrorist.mp3]
+					triggerClientEvent ( player, "playAnnouncer", player, pickRandomAssetOutOfTable({ "win_terrorist.mp3"}), 1000)
 				end
 			end
 		end
@@ -117,20 +122,42 @@ end
 
 
 -- playerHasSuperweapon
--- TODO: integrate with PTPM
-function pickedUpSuperweapon(uppickerTeam)
+function pickedUpSuperweapon(theUppicker, weaponID)
+
+	local uppickerTeam = ""
+	local uppickerTeamElement = getPlayerTeam(theUppicker)
+	if uppickerTeamElement then
+		uppickerTeam = getTeamName(uppickerTeamElement)
+	end
+	
 	for _, player in ipairs(getElementsByType("player")) do
 		if player and isElement(player) then
+		
+			if theUppicker==player then return end
 		
 			local playerTeam = getPlayerTeam(player)
 			if playerTeam then
 				local teamName = getTeamName(playerTeam)
 				if teamName==uppickerTeam and uppickerTeam~="" then
 					-- "An ally has the minigun."
-					-- (Sound files haven't been delivered yet)
+					
+					if weaponID==38 then --Minigun
+						triggerClientEvent ( player, "playAnnouncer", player, pickRandomAssetOutOfTable({ "superwep_ally_mg.mp3", "superwep_ally_mg2.mp3" }))
+					elseif weaponID==35 then --RPG
+						triggerClientEvent ( player, "playAnnouncer", player, pickRandomAssetOutOfTable({ "superwep_ally_rpg.mp3" }))
+					elseif weaponID==36 then --Heat Seeker
+						triggerClientEvent ( player, "playAnnouncer", player, pickRandomAssetOutOfTable({ "superwep_ally_hs.mp3" }))
+					end
 				else
 					-- "An enemy has the minigun."
-					-- (Sound files haven't been delivered yet)
+					
+					if weaponID==38 then --Minigun
+						triggerClientEvent ( player, "playAnnouncer", player, pickRandomAssetOutOfTable({ "superwep_enemy_mg.mp3", "superwep_enemy_mg2.mp3" }))
+					elseif weaponID==35 then --RPG
+						triggerClientEvent ( player, "playAnnouncer", player, pickRandomAssetOutOfTable({ "superwep_enemy_rpg.mp3" }))
+					elseif weaponID==36 then --Heat Seeker
+						triggerClientEvent ( player, "playAnnouncer", player, pickRandomAssetOutOfTable({ "superwep_enemy_hs.mp3" }))
+					end
 				end
 			end
 		end

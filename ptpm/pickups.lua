@@ -136,6 +136,10 @@ function givePlayerPickupWeapon(thePlayer, thePickup)
 			text = teamName .. " " .. name .. " has the heat seeker!"
 		end
 		
+		if (isRunning("ptpm_announcer") and (weaponID==38 or weaponID==35 or weaponID==36)) then
+			exports.ptpm_announcer:pickedUpSuperweapon(thePlayer, weaponID)
+		end
+		
 		local r, g, b = getPlayerColour(thePlayer)
 		sendGameText(root, text, 3000, {r, g, b}, gameTextOrder.global)
 	elseif getPickupType(thePickup) == 2 then
