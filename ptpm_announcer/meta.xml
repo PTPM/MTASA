@@ -4,26 +4,26 @@
 	<script src="server.lua" type="server"/>
 	<script src="client.lua" type="client"/>
 	
-	<file src="assets/obj.mp3"/>
-	<file src="assets/obj2.mp3"/>
-	<file src="assets/obj3.mp3"/>
-	<file src="assets/plan2.mp3"/>
-	<file src="assets/task2.mp3"/>
-	<file src="assets/win_defeat.mp3"/>
-	<file src="assets/win_defeat2.mp3"/>
-	<file src="assets/win_pm.mp3"/>
-	<file src="assets/win_pm2.mp3"/>
-	<file src="assets/win_terrorist.mp3"/>
-	<file src="assets/win_victory.mp3"/>
+	<file audiolength="2788" src="assets/obj.mp3"/>
+	<file audiolength="2482" src="assets/obj2.mp3"/>
+	<file audiolength="2318" src="assets/obj3.mp3"/>
+	<file audiolength="2325" src="assets/plan2.mp3"/>
+	<file audiolength="2421" src="assets/task2.mp3"/>
+	<file audiolength="845" src="assets/win_defeat.mp3"/>
+	<file audiolength="1873" src="assets/win_defeat2.mp3"/>
+	<file audiolength="1938" src="assets/win_pm.mp3"/>
+	<file audiolength="1422" src="assets/win_pm2.mp3"/>
+	<file audiolength="1495" src="assets/win_terrorist.mp3"/>
+	<file audiolength="967" src="assets/win_victory.mp3"/>
 	
-	<file src="assets/superwep_ally_hs.mp3"/>
-	<file src="assets/superwep_ally_mg.mp3"/>
-	<file src="assets/superwep_ally_mg2.mp3"/>
-	<file src="assets/superwep_ally_rpg.mp3"/>
-	<file src="assets/superwep_enemy_hs.mp3"/>
-	<file src="assets/superwep_enemy_mg.mp3"/>
-	<file src="assets/superwep_enemy_mg2.mp3"/>
-	<file src="assets/superwep_enemy_rpg.mp3"/>
+	<file audiolength="1781" src="assets/superwep_ally_hs.mp3"/>
+	<file audiolength="1885" src="assets/superwep_ally_mg.mp3"/>
+	<file audiolength="1780" src="assets/superwep_ally_mg2.mp3"/>
+	<file audiolength="1845" src="assets/superwep_ally_rpg.mp3"/>
+	<file audiolength="1861" src="assets/superwep_enemy_hs.mp3"/>
+	<file audiolength="1540" src="assets/superwep_enemy_mg.mp3"/>
+	<file audiolength="1631" src="assets/superwep_enemy_mg2.mp3"/>
+	<file audiolength="1775" src="assets/superwep_enemy_rpg.mp3"/>
 	
 	<export function="roundEnd" type="server"/>
 	<export function="objectiveSecured" type="server"/>

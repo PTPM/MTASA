@@ -1,15 +1,43 @@
-function pickRandomAssetOutOfTable(theTable)
-	return "assets/".. theTable[math.random(#theTable)]
-end
-
 local planSpamBlock = false
 local planSpamTimer = nil
+local audioFiles = {}
 
 function reallowPlanLine()
 	if isTimer(planSpamTimer) then killTimer(planSpamTimer) end
 	planSpamBlock = false
 end
 addEventHandler("onGamemodeMapStart", getRootElement(), reallowPlanLine)
+
+function pickRandomAssetOutOfTable(theTable)
+	local randomFile = "assets/".. theTable[math.random(#theTable)]
+	if not audioFiles[randomFile] then 
+		-- Apparently file does not exist
+		outputDebugString("Announcer generated " .. randomFile .. " but file is not defined in meta.xml")
+		return nil 
+	else
+		return audioFiles[randomFile]
+	end
+end
+
+
+-- Get available files from meta.xml
+ function loadAvailableOptions()
+	local xml = xmlLoadFile("meta.xml")
+	local allNodes = xmlNodeGetChildren(xml)
+	audioFiles = {} 
+	for i,node in ipairs(allNodes) do 
+		if xmlNodeGetName(node)=="file" and string.match(xmlNodeGetAttribute(node,"src"),".mp3") then
+			local fileName = xmlNodeGetAttribute(node,"src")
+			audioFiles[fileName] = {}
+			audioFiles[fileName]["file"] = fileName
+			audioFiles[fileName]["length"] = xmlNodeGetAttribute(node,"audiolength") or 5000
+		end
+	end
+	xmlUnloadFile(xml) 
+end
+ 
+ 
+loadAvailableOptions()
 
 
 -- Events:
