@@ -707,7 +707,8 @@
     <object id="fenceshit3 newstand fix 3" breakable="true" interior="0" collisions="true" alpha="255" model="983" doublesided="false" scale="1" dimension="0" posX="837.82611" posY="-1056.7761" posZ="32.6273" rotX="0" rotY="90" rotZ="84.264"></object>
     <object id="fenceshit3 newstand fix 2" breakable="true" interior="0" collisions="true" alpha="255" model="983" doublesided="false" scale="1" dimension="0" posX="838.00482" posY="-1055.9729" posZ="32.6273" rotX="0" rotY="90" rotZ="66.26"></object>
     <object id="vgwstnewall6905 pig pen wall fix" breakable="true" interior="2" alpha="255" model="7922" doublesided="false" scale="1" dimension="0" posX="1210.4498" posY="-17.3844" posZ="1001.1692" rotX="0" rotY="0" rotZ="270"></object>
-	
+	<object id="hole fix fencesmallb" breakable="true" interior="0" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="1099.5656" posY="-1291.0272" posZ="17.53054" rotX="0" rotY="90" rotZ="0"></object>
+
 
     <boundarycorner posX="3135" posY="-3135" />
     <!-- spark's -->
