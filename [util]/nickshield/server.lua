@@ -199,6 +199,7 @@ addEventHandler ( "onPlayerJoin", getRootElement(), function()
 			-- outputDebugString("onjoin : " .. verdict)
 
 			if verdict=="no" then
+				openAndAppendToFile("incidents", now() .. "¶" .. getPlayerName(thePlayer2) .. "¶" .. getPlayerSerial(thePlayer2) .. "¶NG-autosignin")
 				exports.namegen:namegen(thePlayer)
 				-- outputDebugString("onjoin : ng")
 			elseif verdict=="maybe" then
@@ -211,8 +212,9 @@ addEventHandler ( "onPlayerJoin", getRootElement(), function()
 					if isElement(thePlayer2) then
 						local verdict = isThisAllowed(thePlayer2, getPlayerName(thePlayer2))
 						if verdict~="yes" then
-							openAndAppendToFile("incidents", now() .. "¶" .. getPlayerName(thePlayer2) .. "¶" .. getPlayerSerial(thePlayer2) .. "¶KICK")
-							kickPlayer (thePlayer2,"This nickname is protected. You must sign in as '" .. nickshielded[getPlayerName(thePlayer2)]["user"] .. "' in order to use. Otherwise, use a different nickname.")
+							openAndAppendToFile("incidents", now() .. "¶" .. getPlayerName(thePlayer2) .. "¶" .. getPlayerSerial(thePlayer2) .. "¶NG-eval")
+							--kickPlayer (thePlayer2,"This nickname is protected. You must sign in as '" .. nickshielded[getPlayerName(thePlayer2)]["user"] .. "' in order to use. Otherwise, use a different nickname.")
+							exports.namegen:namegen(thePlayer)
 						end
 					end
 				end, 20000, 1, thePlayer)
