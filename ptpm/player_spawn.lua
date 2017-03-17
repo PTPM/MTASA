@@ -276,12 +276,12 @@ function makePlayerSpawn(thePlayer)
 			if classType == "police" and isPlayerInSpawnArea(currentPM, "police") then
 				randomSpawnID = teamData["bodyguard"].spawnGroup:getRandomSpawn()
 				randomSpawn = teamData["bodyguard"].spawnGroup.spawns[randomSpawnID]
+				sendGameText(thePlayer, "The Prime Minister has taken over your base\nSpawning elsewhere...", 7000, colour.personal, gameTextOrder.contextual)
 			elseif classType == "bodyguard" and isPlayerInSpawnArea(currentPM, "bodyguard") then
 				randomSpawnID = teamData["police"].spawnGroup:getRandomSpawn()
 				randomSpawn = teamData["police"].spawnGroup.spawns[randomSpawnID]
+				sendGameText(thePlayer, "The Prime Minister has taken over your base\nSpawning elsewhere...", 7000, colour.personal, gameTextOrder.contextual)
 			end
-
-			sendGameText(thePlayer, "The Prime Minister has taken over your base\nSpawning elsewhere...", 7000, colour.personal, gameTextOrder.contextual)
 		end
 	end
 
