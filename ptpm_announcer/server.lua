@@ -19,7 +19,6 @@ function pickRandomAssetOutOfTable(theTable)
 	end
 end
 
-
 -- Get available files from meta.xml
  function loadAvailableOptions()
 	local xml = xmlLoadFile("meta.xml")
@@ -43,6 +42,7 @@ loadAvailableOptions()
 -- Events:
 --	roundEnd(bool pmVictory)
 function roundEnd(pmVictory)
+
 	local randomCache = {}
 	local randomCacheDelay = {}
 
@@ -65,7 +65,7 @@ function roundEnd(pmVictory)
 					
 					triggerClientEvent ( player, "playAnnouncer", player, randomCache[teamName], randomCacheDelay[teamName])
 					
-				elseif teamname=="Bad guys" then
+				elseif teamName=="Bad guys" then
 					if not randomCache[teamName] then
 						if pmVictory then
 							randomCache[teamName] = pickRandomAssetOutOfTable({ "win_pm.mp3", "win_pm2.mp3", "win_defeat.mp3" })
