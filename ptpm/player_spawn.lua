@@ -362,7 +362,7 @@ function makePlayerSpawn(thePlayer)
 	end
 	
 	for _, value in ipairs( getElementsByType( "pickup", runningMapRoot ) ) do
-		if data.pickups[value] and data.pickups[value].lastPickup[thePlayer] then
+		if data.pickups[value] and data.pickups[value].respawn and data.pickups[value].lastPickup[thePlayer] then
 			data.pickups[value].lastPickup[thePlayer] = nil
 		end
 	end

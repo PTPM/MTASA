@@ -49,7 +49,7 @@
 			givePlayerPickupWeapon(thePlayer, source)
 		end
 	elseif not data.pickups[source].respawn then
-		if not last then -- never been picked up before
+		if data.pickups[source].lastPickupBy == nil then -- never been picked up before
 			givePlayerPickupWeapon(thePlayer, source)
 		else
 			local text, name = "Weapon unavailable"
@@ -238,7 +238,8 @@ function clearPickupData(thePlayer)
 	if runningMapRoot and isElement(runningMapRoot) then
 		for _, value in ipairs(getElementsByType("pickup", runningMapRoot)) do
 			if value and data.pickups[value] and data.pickups[value].lastPickupBy == thePlayer then
-				data.pickups[value].lastPickupBy = nil
+				-- make a distinction between never picked up (nil) and picked up by an ex-player (false)
+				data.pickups[value].lastPickupBy = false
 			end
 
 			clearPickupPlayerRespawnTimer(value, thePlayer)
