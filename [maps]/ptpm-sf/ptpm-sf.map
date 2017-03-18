@@ -471,7 +471,10 @@
     <object id="object (roofstuff16) (15)" breakable="false" interior="0" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="-2556.3" posY="-683.59998" posZ="139.39999" rotX="0" rotY="0" rotZ="127.996"></object>
     <object id="object (drvin_ticket) (4)" breakable="false" interior="0" collisions="true" alpha="255" model="16003" doublesided="false" scale="1" dimension="0" posX="-2555.5" posY="-687.59998" posZ="132.60001" rotX="0" rotY="0" rotZ="90"></object>
 	<!-- /Radio Tower Nerf-->
-    
+    <object id="chinatown step CJ_NOODLE_3" breakable="true" interior="0" alpha="255" model="1570" doublesided="false" scale="1" dimension="0" posX="-2215.1997" posY="636.68646" posZ="49.71863" rotX="0" rotY="0" rotZ="179.75"></object>
+    <object id="chinatown box RACK3" breakable="true" interior="0" alpha="255" model="931" doublesided="false" scale="1" dimension="0" posX="-2174.5356" posY="623.81274" posZ="57.78591" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="chinatown awning chinawning02" breakable="true" interior="0" alpha="255" model="10262" doublesided="false" scale="1" dimension="0" posX="-2174.0234" posY="614.59161" posZ="56.55196" rotX="0" rotY="0" rotZ="270"></object>
+
     <boundarycorner posX="-3000" posY="-887" />
     <boundarycorner posX="-2781" posY="-920" />
     <boundarycorner posX="-2710" posY="-843" />
