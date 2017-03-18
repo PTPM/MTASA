@@ -215,7 +215,7 @@ addEventHandler ( "onPlayerJoin", getRootElement(), function()
 							openAndAppendToFile("incidents", now() .. "¶" .. getPlayerName(thePlayer2) .. "¶" .. getPlayerSerial(thePlayer2) .. "¶NG-eval")
 							--kickPlayer (thePlayer2,"This nickname is protected. You must sign in as '" .. nickshielded[getPlayerName(thePlayer2)]["user"] .. "' in order to use. Otherwise, use a different nickname.")
 							
-							exports.ptpm:sendGameText(player, "Log in as '" .. exports.namegen:namegen(thePlayer2) .. "' to use nickname '" .. getPlayerName(thePlayer2) .. "'.", 3000, ptpmColour, 3, 1.3)
+							exports.ptpm:sendGameText(player, "Log in as '" .. nickshielded[getPlayerName(thePlayer2)]["user"]   .. "' to use nickname '" .. getPlayerName(thePlayer2) .. "'.", 3000, ptpmColour, 3, 1.3)
 							exports.namegen:namegen(thePlayer2)
 						end
 					end
