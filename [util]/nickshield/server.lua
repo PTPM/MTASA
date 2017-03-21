@@ -147,7 +147,9 @@ function registerNickshield(player)
 end
 
 function registerNickshieldRaw(nick, user, serial)
-	nickshielded[nick] = user
+	nickshielded[nick] = {}
+	nickshielded[nick]["user"] = user
+	nickshielded[nick]["serial"] = serial
 	openAndAppendToFile("nickshield", nick .. " " .. user .. " " .. serial)
 end
 
