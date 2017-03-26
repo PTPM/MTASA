@@ -1,3 +1,6 @@
 <meta>
-	<script src="joinquit.lua" type="client" />
+	<info author="ptpm" name="Join Quit" type="misc"/>
+	
+	<script src="joinquit_c.lua" type="client" />
+	<script src="joinquit_s.lua" type="client" />
 </meta>
