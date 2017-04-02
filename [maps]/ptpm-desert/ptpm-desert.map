@@ -75,9 +75,9 @@
     <!-- Terrorororor -->
     <vehicle model="508" posX="-315.4058" posY="1515.2224" posZ="75.8070" rotZ="179.3794" />
     <!-- TerrorRV -->
-    <vehicle model="510" posX="-320.9330" posY="1513.6566" posZ="75.0552" rotZ="184.2828" />
+    <vehicle model="462" wasBicycle="true" posX="-320.9330" posY="1513.6566" posZ="75.0552" rotZ="184.2828" />
     <!-- Terror -->
-    <vehicle model="510" posX="-324.0143" posY="1514.1841" posZ="75.0552" rotZ="192.7250" />
+    <vehicle model="462" wasBicycle="true" posX="-324.0143" posY="1514.1841" posZ="75.0552" rotZ="192.7250" />
     <!-- TerrorBike -->
     <vehicle model="568" posX="-327.4584" posY="1514.8817" posZ="75.3344" rotZ="177.9374" />
     <!-- Terror -->
@@ -159,9 +159,9 @@
     <!-- Glenshit -->
     <vehicle model="604" posX="-29.4181" posY="2342.6941" posZ="24.0606" rotZ="179.2358" />
     <!-- Glenshit -->
-    <vehicle model="510" posX="-436.9597" posY="1528.6982" posZ="34.8475" rotZ="78.4875" />
+    <vehicle model="462" wasBicycle="true" posX="-436.9597" posY="1528.6982" posZ="34.8475" rotZ="78.4875" />
     <!-- MountainBike -->
-    <vehicle model="510" posX="-437.1234" posY="1523.3080" posZ="34.6724" rotZ="89.7792" />
+    <vehicle model="462" wasBicycle="true" posX="-437.1234" posY="1523.3080" posZ="34.6724" rotZ="89.7792" />
     <!-- MountainBike -->
     <vehicle model="605" posX="-461.2624" posY="1840.4432" posZ="79.9587" rotZ="5.2061" />
     <!-- Sadlshit -->
@@ -205,7 +205,7 @@
     <!-- Camper -->
     <vehicle model="605" posX="-270.1139" posY="2528.6023" posZ="33.8798" rotZ="180.0996" />
     <!-- Sadlshit -->
-    <vehicle model="510" posX="9.6867" posY="2566.6843" posZ="16.2358" rotZ="275.5639" />
+    <vehicle model="462" wasBicycle="true" posX="9.6867" posY="2566.6843" posZ="16.2358" rotZ="275.5639" />
     <!-- MountainBike -->
     <vehicle model="506" posX="405.6807" posY="2451.9543" posZ="16.2921" rotZ="0.2241" />
     <!-- SuperGT -->
@@ -245,7 +245,7 @@
     <!-- Sanchez(newnew) -->
     <vehicle model="468" posX="-102.9670" posY="1409.7643" posZ="8.8757" rotZ="11.1346" />
     <!-- sanchez -->
-    <vehicle model="510" posX="-95.2224" posY="1387.8547" posZ="9.8359" rotZ="284.0279" />
+    <vehicle model="462" wasBicycle="true" posX="-95.2224" posY="1387.8547" posZ="9.8359" rotZ="284.0279" />
     <!-- mtbike -->
     <vehicle model="471" posX="-336.6664" posY="1513.8232" posZ="74.9344" rotZ="178.8342" />
     <!-- QUAD -->
