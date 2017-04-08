@@ -376,8 +376,8 @@ function pressLoginAcceptButton( key, state )
 				-- Send a login attempt, and wait for an answer
 				if GUI.userinfo.pwHashed then
 					password = GUI.userinfo.password
-				else
-					password = md5( password )
+				--else
+				--	password = md5( password )
 				end
 				local rememberPw = guiCheckBoxGetSelected( GUI.login.rmpwCheck )
 				local autoLogin = guiCheckBoxGetSelected( GUI.login.auloCheck )
