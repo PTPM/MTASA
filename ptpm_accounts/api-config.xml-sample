@@ -1,0 +1,3 @@
+<apiconfig>
+	<serversecret>Can be any passphrase. This is used to hash passwords. Rename this file to api.config.xml when ready.</serversecret>
+</apiconfig>

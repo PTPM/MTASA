@@ -1,20 +1,4 @@
 ﻿local sensitiveUserdata = {}
---[[local connect = {"", "", "", ""}
-
---db = mysql_connect ( connect[1], connect[2], connect[3], connect[4] )
-
--- Pinger
-setTimer(
-	function()
-		local result = mysql_query(db, "SELECT 1+1") -- ping of some sort
-		if not result then -- reconnect, the server may drop the connection after so many hours
-			db = mysql_connect ( connect[1], connect[2], connect[3], connect[4] )
-			if not db then
-				outputDebugString( "Couldn't reconnect!" )
-			end
-		end		
-	end
-,30000,0)--]]
 
 function prepareUserDatabase()
 	-- User data
@@ -28,6 +12,7 @@ function prepareUserDatabase()
 	addColumnToDatabase( "users", "operator", "TINYINT UNSIGNED", 0 )
 	addColumnToDatabase( "users", "muted", "TINYINT UNSIGNED", 0 )
 	addColumnToDatabase( "users", "frozen", "TINYINT UNSIGNED", 0 )
+	addColumnToDatabase( "users", "salt", "VARCHAR(8)" )
 		
 	-- Player stats
 	prepareDatabase( "playerstats" )
@@ -86,6 +71,61 @@ function closeUserDatabase()
 end
 addEventHandler( "onResourceStop", resourceRoot, closeUserDatabase )
 
+
+function generateSalt()
+	local s = ""
+	for i = 1, 8 do
+		if math.random(1,2)==1 then
+			s = s .. string.char(math.random(65, 90))
+		else
+			s = s .. string.char(math.random(97, 122))
+		end
+	end
+	return s
+end
+
+function loadApiConfig()
+	local xml = xmlLoadFile("api-config.xml")
+	if not xml then
+		outputDebugString( "PTPM_ACCOUNTS: api-config.xml missing or invalid.", 1 )
+		stopResource(getThisResource())
+	else
+		local allNodes = xmlNodeGetChildren(xml)
+		apiConfig = {} 
+		for i,node in ipairs(allNodes) do 
+			if xmlNodeGetName(node)=="serverSecret" then
+				apiConfig["serverSecret"] = xmlNodeGetValue(node)
+			end
+		end
+		xmlUnloadFile(xml) 
+		
+		if not apiConfig["serverSecret"] or #apiConfig["serverSecret"] < 8 then
+			outputDebugString( "PTPM_ACCOUNTS: Misconfiguration, no serverSecret given.", 1 )
+			stopResource(getThisResource())
+		end
+		
+		return apiConfig
+	end
+end
+
+apiConfig = loadApiConfig()
+
+function userChangePassword(user, passwordPlainText)
+	
+	-- old password was: md5(password)
+	-- new password is:  md5(salt .. password .. serverSecret)
+	local newSalt = generateSalt()
+	local newPassword = buildEncodedPassword(newSalt, passwordPlainText)
+	
+	executeSQLQuery( "UPDATE users SET password='" .. newPassword .. "', salt='".. newSalt .."', pwlength=9999 WHERE username = '" .. user .. "'" )
+	
+end
+
+function buildEncodedPassword(salt, passwordPlainText)
+	return md5(salt .. passwordPlainText .. apiConfig["serverSecret"]) 
+end
+
+
 function searchDatabaseForPlayer( thePlayer )
 	-- Check if the player matches exactly to userdata, allowing for autologin and stuff
 	local result = executeSQLQuery( "SELECT username,password,pwlength,autologin,rememberpw FROM users WHERE serial = '" .. escapeStr( getPlayerSerial( thePlayer ) ) .."' AND ip = '" .. escapeStr( getPlayerIP( thePlayer ) ) .."'" )
@@ -102,7 +142,7 @@ function searchDatabaseForPlayer( thePlayer )
 			}
 			if result[1].rememberpw == 1 then
 				info["password"] = result[1].password
-				info["pwLength"] = result[1].pwlength or 6
+				info["pwLength"] = 8 --result[1].pwlength or 6
 				info["pwHashed"] = true
 			end
 			return false, info
@@ -126,16 +166,37 @@ end
 -- ACCOUNT LOGIN
 
 function loginUsername( thePlayer, username, password, rememberPw, autoLogin )
-	local result = executeSQLQuery( "SELECT username FROM users WHERE username = '" .. escapeStr( username ) .."'" )
+	local result = executeSQLQuery( "SELECT username,pwlength,salt FROM users WHERE username = '" .. escapeStr( username ) .."'" )
+	local hasAccountBeenUpgraded = false
+	local userSalt = ""
+	
 	if result then
 		if #result <= 0 then
 			return false, "noAccount"
+		else 
+			if result[1].pwlength~=9999 then
+				hasAccountBeenUpgraded = false
+			else
+				hasAccountBeenUpgraded = true
+				userSalt = result[1].salt
+			end
 		end
 	end
 	
-	local result = executeSQLQuery( "SELECT * FROM users WHERE username = '" .. escapeStr( username ) .. "' AND password = '" .. escapeStr( password ) .. "'" )
+	local result = false
+	
+	if not hasAccountBeenUpgraded then
+		result = executeSQLQuery( "SELECT pwlength FROM users WHERE username = '" .. escapeStr( username ) .. "' AND password = '" .. md5(password) .. "'" )
+	else
+		result = executeSQLQuery( "SELECT pwlength FROM users WHERE username = '" .. escapeStr( username ) .. "' AND password = '" .. buildEncodedPassword(userSalt,password) .. "'" )
+	end
+	
 	if result then
 		if #result > 0 then
+			if not hasAccountBeenUpgraded then
+				userChangePassword(escapeStr(username), escapeStr(password))
+				--outputChatBox("Your account security has been upgraded.", thePlayer, 255, 0, 0)
+			end
 		
 			loginPlayer( thePlayer, username )
 			
@@ -218,8 +279,13 @@ function registerUsername( thePlayer, username, password, length )
 end
 
 function createUserAccount( thePlayer, username, password, length )
+
+	length = 9999
+	local newSalt = generateSalt()
+	local newPassword = buildEncodedPassword(newSalt, password)
+
 	local joindate = tostring( getRealTime().timestamp )
-	local result = executeSQLQuery( "INSERT INTO `users` (username, password, pwlength, serial, ip) VALUES ('" .. escapeStr( username ) .. "', '" .. escapeStr( password ) .. "', '" .. escapeStr( length ) .. "', '" .. escapeStr( getPlayerSerial( thePlayer ) ) .. "', '" .. escapeStr( getPlayerIP( thePlayer ) ) .. "')" )
+	local result = executeSQLQuery( "INSERT INTO `users` (username, password, pwlength, serial, ip,salt) VALUES ('" .. escapeStr( username ) .. "', '" .. escapeStr( newPassword ) .. "', '" .. escapeStr( length ) .. "', '" .. escapeStr( getPlayerSerial( thePlayer ) ) .. "', '" .. escapeStr( getPlayerIP( thePlayer ) ) .. "','" .. newSalt .. "')" )
 	local result2 = executeSQLQuery( "INSERT INTO `playerstats` (username, joindate) VALUES ('" .. escapeStr( username ) .. "', '" .. escapeStr( joindate ) .. "')" )
 	
 	if result and result2 then	
