@@ -96,6 +96,9 @@ function loadApiConfig()
 			if xmlNodeGetName(node)=="serverSecret" then
 				apiConfig["serverSecret"] = xmlNodeGetValue(node)
 			end
+			if xmlNodeGetName(node)=="publicApiKey" then
+				apiConfig["publicApiKey"] = xmlNodeGetValue(node)
+			end
 		end
 		xmlUnloadFile(xml) 
 		
@@ -123,6 +126,10 @@ end
 
 function buildEncodedPassword(salt, passwordPlainText)
 	return md5(salt .. passwordPlainText .. apiConfig["serverSecret"]) 
+end
+
+function getBulkAccounts()
+	return executeSQLQuery( "SELECT username,password FROM users WHERE pwlength=9999" )
 end
 
 

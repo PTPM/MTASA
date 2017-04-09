@@ -1,3 +1,5 @@
+<!-- Rename this file to api-config.xml after configuration -->
 <apiconfig>
-	<serversecret>Can be any passphrase. This is used to hash passwords. Rename this file to api.config.xml when ready.</serversecret>
+	<serverSecret>Required. Key used to hash passwords in database. 128-char random string.</serverSecret>
+	<publicApiKey>Required. API Key used by ptpm_community to sign requests. 32-char random string.</publicApiKey>
 </apiconfig>
