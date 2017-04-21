@@ -20,25 +20,37 @@ function parseScoreboardAPIResponse(responseData, errno)
 			-- just don't overwrite the last result when that happens
 		end
 		
-		for rowId,playerData in pairs(currentScoreboard) do
-			-- for each returned row, check if player is online
-			-- attach data to playerelement
-			
-			-- TODO: Replace with USERNAME rather than player name
-			local thePlayer = getPlayerFromName ( playerData.playerName )
-			
-			if thePlayer ~= false then
+		if currentScoreboard then
+			for rowId,playerData in pairs(currentScoreboard) do
+				-- for each returned row, check if player is online
+				-- attach data to playerelement
 				
-				setElementData ( thePlayer, "playerLeague", playerData.playerLeague )
-				setElementData ( thePlayer, "playerDono", tonumber(playerData.dono) or 0)
-				setElementData ( thePlayer, "playerRanks", tonumber(playerData.playerRanks) or 2375)
+				local thePlayer = getPlayerFromUsername ( playerData.playerName )
 				
+				if thePlayer then
+					
+					setElementData ( thePlayer, "playerLeague", playerData.playerLeague )
+					setElementData ( thePlayer, "playerDono", tonumber(playerData.dono) or 0)
+					setElementData ( thePlayer, "playerRanks", tonumber(playerData.playerRanks) or 2375)
+					
+				end
 			end
 		end
 		
 	else
 		outputDebugString("Updating CommunityAPI error #" .. errno, 2)
 	end
+end
+
+function getPlayerFromUsername(username)
+	for _, p in ipairs( getElementsByType( "player" ) ) do
+		if p and isElement(p) then
+			if exports.ptpm_accounts:getSensitiveUserdata(p, "username")==username then
+				return p
+			end
+		end
+	end
+	return nil
 end
 
 function testCommunityData( source )

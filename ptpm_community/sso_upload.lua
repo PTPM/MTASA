@@ -21,7 +21,28 @@ function sendAPIRequest(action,postDataTable)
     fetchRemote ( "https://ptpm.uk/api/api.php?action=" .. action .. "&signature=" .. generateSignature(), 1, 3000, function(data,err,arg) end, toJSON(postDataTable,true), false)
 end
 
-
+function scoreboardUpload()
+	local registeredPlayersStats = {}
+			
+	local players = getElementsByType( "player" )
+	for _, p in ipairs( players ) do
+		if p and isElement(p) and exports.ptpm_accounts:getSensitiveUserdata(p, "username") then
+			table.insert(registeredPlayersStats, {
+				["username"] = 		exports.ptpm_accounts:getSensitiveUserdata(p, "username"),
+				["roundsWon"] = 	exports.ptpm_accounts:getPlayerStatistic(p, "roundswon" ),
+				["roundsLost"] = 	exports.ptpm_accounts:getPlayerStatistic(p, "roundslost" ),
+				["pmWon"] = 		exports.ptpm_accounts:getPlayerStatistic(p, "pmvictory" ),
+				["pmLost"] = 		exports.ptpm_accounts:getPlayerStatistic(p, "pmlosses" ),
+				["pmKills"] = 		exports.ptpm_accounts:getPlayerStatistic(p, "pmkills" ),
+				["hpHealed"] = 		exports.ptpm_accounts:getPlayerStatistic(p, "hphealed" ),
+				["kills"] = 		exports.ptpm_accounts:getPlayerStatistic(p, "kills" ),
+				["deaths"] = 		exports.ptpm_accounts:getPlayerStatistic(p, "deaths" )
+			})
+		end
+	end
+	
+	sendAPIRequest("updatePersistentScoreboard", registeredPlayersStats)
+end
 
 function periodicalUploadOfAllUserAccounts()
 	userAccounts = exports.ptpm_accounts:getRecentBulkAccounts()
@@ -31,3 +52,7 @@ end
 -- update sso every 15 minutes
 setTimer( periodicalUploadOfAllUserAccounts, 15 * 60 * 1000, 0 )
 periodicalUploadOfAllUserAccounts()
+
+-- update sso every 1 minute
+setTimer( scoreboardUpload, 1 * 60 * 1000, 0 )
+scoreboardUpload()
