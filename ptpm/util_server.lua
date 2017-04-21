@@ -529,7 +529,7 @@ function showOps(thePlayer)
 	for _, p in ipairs(getElementsByType("player")) do		
 		if p and isElement(p) and isPlayerOp(p) then
 			local name = getPlayerName(p) or ""
-			sOps = (#sOps > 0 and ", " or "") .. sOps .. name
+			sOps = Ops .. name .. (#sOps > 0 and ", " or "") 
 		end
 	end
 
