@@ -129,7 +129,7 @@ function buildEncodedPassword(salt, passwordPlainText)
 end
 
 function getBulkAccounts()
-	return executeSQLQuery( "SELECT username,password FROM users WHERE pwlength=9999" )
+	return executeSQLQuery( "SELECT username,password,salt FROM users WHERE pwlength=9999" )
 end
 
 
