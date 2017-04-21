@@ -24,9 +24,10 @@ end
 
 
 function periodicalUploadOfAllUserAccounts()
-	userAccounts = exports.ptpm_accounts:getBulkAccounts()
+	userAccounts = exports.ptpm_accounts:getRecentBulkAccounts()
 	sendAPIRequest("bulkUsers", userAccounts)
 end
 
---setTimer ( periodicalUploadOfAllUserAccounts, 15000, 0 )
---periodicalUploadOfAllUserAccounts()
+-- update sso every 15 minutes
+setTimer( periodicalUploadOfAllUserAccounts, 15 * 60 * 1000, 0 )
+periodicalUploadOfAllUserAccounts()

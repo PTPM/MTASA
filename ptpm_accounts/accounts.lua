@@ -13,6 +13,7 @@ function prepareUserDatabase()
 	addColumnToDatabase( "users", "muted", "TINYINT UNSIGNED", 0 )
 	addColumnToDatabase( "users", "frozen", "TINYINT UNSIGNED", 0 )
 	addColumnToDatabase( "users", "salt", "VARCHAR(8)" )
+	addColumnToDatabase( "users", "lastlogon", "BIGINT UNSIGNED" )
 		
 	-- Player stats
 	prepareDatabase( "playerstats" )
@@ -128,8 +129,8 @@ function buildEncodedPassword(salt, passwordPlainText)
 	return md5(salt .. passwordPlainText .. apiConfig["serverSecret"]) 
 end
 
-function getBulkAccounts()
-	return executeSQLQuery( "SELECT username,password,salt FROM users WHERE pwlength=9999" )
+function getRecentBulkAccounts()
+	return executeSQLQuery("SELECT username,password,salt FROM users WHERE pwlength=9999 AND lastlogon>" ..  (getRealTime().timestamp - 1 * 60 * 60))
 end
 
 
@@ -211,7 +212,7 @@ function loginUsername( thePlayer, username, password, rememberPw, autoLogin )
 			setUserdata( username, "autologin", autoLogin )
 			setUserdata( username, "serial", getPlayerSerial( thePlayer ) )
 			setUserdata( username, "ip", getPlayerIP( thePlayer ) )
-			
+			setUserdata( username, "lastlogon", tostring( getRealTime().timestamp ) )
 			return true
 		else
 			return false, "wrongPw"
@@ -287,15 +288,12 @@ end
 
 function createUserAccount( thePlayer, username, password, length )
 
-	length = 9999
-	local newSalt = generateSalt()
-	local newPassword = buildEncodedPassword(newSalt, password)
-
 	local joindate = tostring( getRealTime().timestamp )
-	local result = executeSQLQuery( "INSERT INTO `users` (username, password, pwlength, serial, ip,salt) VALUES ('" .. escapeStr( username ) .. "', '" .. escapeStr( newPassword ) .. "', '" .. escapeStr( length ) .. "', '" .. escapeStr( getPlayerSerial( thePlayer ) ) .. "', '" .. escapeStr( getPlayerIP( thePlayer ) ) .. "','" .. newSalt .. "')" )
+	local result = executeSQLQuery( "INSERT INTO `users` (username, serial, ip) VALUES ('" .. escapeStr( username ) .. "', '" .. escapeStr( getPlayerSerial( thePlayer ) ) .. "', '" .. escapeStr( getPlayerIP( thePlayer ) ) .. "')")
 	local result2 = executeSQLQuery( "INSERT INTO `playerstats` (username, joindate) VALUES ('" .. escapeStr( username ) .. "', '" .. escapeStr( joindate ) .. "')" )
 	
 	if result and result2 then	
+		userChangePassword(escapeStr(username), escapeStr(password))
 		return true
 	else
 		return false

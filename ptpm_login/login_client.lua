@@ -331,7 +331,7 @@ function pressRegisterAcceptButton( key, state )
 			elseif GUI.register.usernameOK and GUI.register.passwordOK then
 				-- Send a registration attempt, and wait for an answer
 				local length = #password
-				password = md5( password )
+				-- password = md5( password )
 				triggerServerEvent( "checkValidRegistration", resourceRoot, username, password, length )
 				guiSetProperty( GUI.pane2, "Disabled", "True" )
 			elseif guiGetText( GUI.register.okText ) == "" then

@@ -25,7 +25,7 @@
 	<export function="getUserdata" type="server"/>
 	
 	<export function="loadApiConfig" type="server"/>
-	<export function="getBulkAccounts" type="server"/>
+	<export function="getRecentBulkAccounts" type="server"/>
 	
 	<export function="getPlayerStatistic" type="server"/>
 	<export function="setPlayerStatistic" type="server"/>
