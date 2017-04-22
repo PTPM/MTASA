@@ -561,7 +561,7 @@
     <pickup posX="-335.9626" posY="2225.1255" posZ="42.4871" type="14" amount="1" respawn="9999999" synced="false" />
     <!-- Flowers -->
     <pickup posX="304.1429" posY="2228.8489" posZ="34.7733" type="6" amount="1" respawn="9999999" synced="false" />
-    <pickup posX="314.1726" posY="2222.2141" posZ="35.7107" type="41" amount="1" respawn="9999999" synced="false" />
+    <pickup posX="314.1726" posY="2222.2141" posZ="35.7107" type="41" amount="500" respawn="30000" synced="true" />
     <pickup posX="-590.3543" posY="2018.4451" posZ="60.3828" type="5" amount="1" respawn="9999999" synced="false" />
     <pickup posX="-377.7772" posY="2243.2141" posZ="42.6185" type="3" amount="1" respawn="9999999" synced="false" />
     <!-- Nightstick(copweapon) -->
