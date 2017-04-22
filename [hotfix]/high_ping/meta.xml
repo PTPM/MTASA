@@ -1,0 +1,4 @@
+<meta>
+	<info author="PTPM" type="script" name="High Ping" description="Ping kicker" />
+	<script src="high_ping.lua" type="server"></script>
+</meta>
