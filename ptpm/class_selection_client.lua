@@ -12,6 +12,11 @@ classSelection = {
 		show = false,
 		animProgress = 0,
 		animSpeed = 3,
+		numberOfReasons = 0,
+		reasons = {
+			votedOtherMap = false,
+			pingTooHigh = false,
+		}
 	}
 }
 local lastTick = 0
@@ -573,15 +578,31 @@ function drawClassSelection()
 			classSelection.rejection.animProgress = math.max(0, classSelection.rejection.animProgress - ((classSelection.rejection.animSpeed * 1.3) * delta))
 		end
 
+		local reasonListingYPos = (screenY / 2) - (height / 2) + s(90)
+		local lineOffset = 0
+		local emHeight = s(20)
+		
 		local width = s(350 * n)
-		local height = s(100 * n)
+		local height = s(100 * n) + (classSelection.rejection.numberOfReasons * emHeight)
 		local alpha = math.min(255, 255 * n)
 
 		dxDrawRectangle((screenX - width) / 2, (screenY - height) / 2, width, height, tocolor(0, 0, 0, math.min(235, 235 * n)), flowers.pm.postGUI)
 		dxDrawText("You do not meet the Election requirements", (screenX / 2) - (width / 2) + s(10), (screenY / 2) - (height / 2) + s(20), (screenX / 2) + (width / 2) - s(10), (screenY / 2) - (height / 2) + s(40 * n), tocolor(255, 255, 255, alpha), sfs(1.2), font.small, "center", "top", true, false, flowers.pm.postGUI, false, true)
 		dxDrawLine((screenX / 2) - (width / 2) + s(10), (screenY / 2) - (height / 2) + s(40), (screenX / 2) + (width / 2) - s(10), (screenY / 2) - (height / 2) + s(40), tocolor(colour.ptpm[1], colour.ptpm[2], colour.ptpm[3], alpha), 2, flowers.pm.postGUI)
 	
-		dxDrawText("- You voted for another map", (screenX / 2) - (width / 2) + s(10), (screenY / 2) - (height / 2) + s(60), (screenX / 2) + (width / 2) - s(10), (screenY / 2) - (height / 2) + s(80 * n), tocolor(255, 255, 255, alpha), sfs(1.2), font.small, "center", "top", true, false, flowers.pm.postGUI, false, true)	
+		
+		
+		if classSelection.rejection.reasons.votedOtherMap then
+			dxDrawText("- You voted for another map", (screenX / 2) - (width / 2) + s(10), reasonListingYPos + lineOffset, (screenX / 2) + (width / 2) - s(10), reasonListingYPos + lineOffset + (emHeight * n), tocolor(255, 255, 255, alpha), sfs(1.2), font.small, "center", "top", true, false, flowers.pm.postGUI, false, true)
+
+			lineOffset = lineOffset + emHeight
+		end
+		
+		if classSelection.rejection.reasons.pingTooHigh then
+			dxDrawText("- Your ping is too high", (screenX / 2) - (width / 2) + s(10), reasonListingYPos + lineOffset, (screenX / 2) + (width / 2) - s(10), reasonListingYPos + lineOffset + (emHeight * n), tocolor(255, 255, 255, alpha), sfs(1.2), font.small, "center", "top", true, false, flowers.pm.postGUI, false, true)
+			
+			lineOffset = lineOffset + emHeight
+		end
 	end
 
 	if classSelection.hiding then
@@ -1094,7 +1115,28 @@ end
 addEventHandler("onPlayerRequestSpawnReserved", root, onPlayerRequestSpawnReserved)
 
 function doesPlayerMeetPMRequirements()
-	return election.requirements.lastVote == "" or election.requirements.lastVote == election.requirements.currentMapName
+	local result = true
+	classSelection.rejection.numberOfReasons = 0
+	
+	-- Map Requirement
+	if election.requirements.lastVote~=election.requirements.currentMapName and election.requirements.lastVote~="" then
+		classSelection.rejection.reasons.votedOtherMap = true
+		classSelection.rejection.numberOfReasons = classSelection.rejection.numberOfReasons + 1
+		result = false
+	else 
+		classSelection.rejection.reasons.votedOtherMap = false
+	end
+	
+	-- Ping Requirement
+	if getPlayerPing(getLocalPlayer())>350 then
+		classSelection.rejection.reasons.pingTooHigh = true
+		classSelection.rejection.numberOfReasons = classSelection.rejection.numberOfReasons + 1
+		result = false
+	else
+		classSelection.rejection.reasons.pingTooHigh = false
+	end
+	
+	return result
 end
 
 
