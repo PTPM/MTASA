@@ -545,9 +545,9 @@
     <teleport minX="-2467.05" minY="1528" minZ="16.33" maxX="-2465.05" maxY="1530" maxZ="18.33" message="" teleX="-2474.5" teleY="1529" teleZ="17.33" teleRot="90" vehicles="false" interior="0" exitDimX="4" exitDimY="1" /> <!-- bcleft -->
     <pickup posX="-2466.05" posY="1529.23" posZ="17.33" type="custom" model="1318" respawn="30000" /> <!-- Arrow teleport -->
    
-    <camera id="1" camX="-2357.7227" camY="1529.5123" camZ="41.0469" pointX="-2312.5740" pointY="1548.1370" pointZ="18.7734" /> <!-- SF: bc front -->
-    <camera id="2" camX="-2359.83" camY="1533.38" camZ="33.70" pointX="-2372.53" pointY="1542.99" pointZ="26.87" /> <!-- front backwards -->
-    <camera id="3" camX="-2427.82" camY="1558.61" camZ="30.18" pointX="-2423.68" pointY="1535.21" pointZ="26.04" /> <!-- middle -->
+    <!--<camera id="1" camX="-2357.7227" camY="1529.5123" camZ="41.0469" pointX="-2312.5740" pointY="1548.1370" pointZ="18.7734" /> 
+    <camera id="2" camX="-2359.83" camY="1533.38" camZ="33.70" pointX="-2372.53" pointY="1542.99" pointZ="26.87" />
+    <camera id="3" camX="-2427.82" camY="1558.61" camZ="30.18" pointX="-2423.68" pointY="1535.21" pointZ="26.04" />
 	
-    <cameraMount posX="-2472.0278" posY="1548.6603" posZ="33.2273" message="" usesIDs="1,2,3" playerX="-2471.6648" playerY="1551.7469" playerZ="33.2273" />
+    <cameraMount posX="-2472.0278" posY="1548.6603" posZ="33.2273" message="" usesIDs="1,2,3" playerX="-2471.6648" playerY="1551.7469" playerZ="33.2273" />--> 
 </map>
