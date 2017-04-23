@@ -1,4 +1,8 @@
 <meta>
 	<info author="PTPM" type="script" name="High Ping" description="Ping kicker" />
 	<script src="high_ping.lua" type="server"></script>
+	
+	<aclrequest>
+	    <right name="function.kickPlayer" access="true" />
+	</aclrequest>
 </meta>
