@@ -22,13 +22,13 @@ function sendAPIRequest(action,postDataTable)
 end
 
 function scoreboardUpload()
-	local registeredPlayersStats = {}
+	local playersStats = {}
 			
 	local players = getElementsByType( "player" )
 	for _, p in ipairs( players ) do
-		if p and isElement(p) and exports.ptpm_accounts:getSensitiveUserdata(p, "username") then
-			table.insert(registeredPlayersStats, {
-				["username"] = 		exports.ptpm_accounts:getSensitiveUserdata(p, "username"),
+		if p and isElement(p) then
+			table.insert(playersStats, {
+				["username"] = 		exports.ptpm_accounts:getSensitiveUserdata(p, "username") or ("GUEST_" .. getPlayerName(p)),
 				["roundsWon"] = 	exports.ptpm_accounts:getPlayerStatistic(p, "roundswon" ),
 				["roundsLost"] = 	exports.ptpm_accounts:getPlayerStatistic(p, "roundslost" ),
 				["pmWon"] = 		exports.ptpm_accounts:getPlayerStatistic(p, "pmvictory" ),
@@ -41,7 +41,7 @@ function scoreboardUpload()
 		end
 	end
 	
-	sendAPIRequest("updatePersistentScoreboard", registeredPlayersStats)
+	sendAPIRequest("updatePersistentScoreboard", playersStats)
 end
 
 function periodicalUploadOfAllUserAccounts()
@@ -53,6 +53,6 @@ end
 setTimer( periodicalUploadOfAllUserAccounts, 15 * 60 * 1000, 0 )
 periodicalUploadOfAllUserAccounts()
 
--- update sso every 1 minute
-setTimer( scoreboardUpload, 1 * 60 * 1000, 0 )
+-- update scoreboard every 30 seconds
+setTimer( scoreboardUpload, 30 * 1000, 0 )
 scoreboardUpload()
