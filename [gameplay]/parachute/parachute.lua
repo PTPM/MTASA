@@ -56,14 +56,14 @@ end
 -- )
 
 
-addCommandHandler("p",
-	function(player)
-		setElementPosition(player, 1543.5, -1359.6, 329.4)
-		setElementRotation(player, 0, 0, 270)
-		giveWeapon(player, 46, 1, true)
-		setElementHealth(player, 100)
-	end
-)
+-- addCommandHandler("p",
+	-- function(player)
+		-- setElementPosition(player, 1543.5, -1359.6, 329.4)
+		-- setElementRotation(player, 0, 0, 270)
+		-- giveWeapon(player, 46, 1, true)
+		-- setElementHealth(player, 100)
+	-- end
+-- )
 
 addEventHandler("onResourceStart", resourceRoot,
 	function()
