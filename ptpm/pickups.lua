@@ -107,7 +107,11 @@ function givePlayerPickupWeapon(thePlayer, thePickup)
 	if getPickupType(thePickup) == 1 then 
 		changeArmor(thePlayer, getPickupAmount(thePickup))
 	else 
-		giveWeapon(thePlayer, weaponID, getPickupAmmo(thePickup), not getPedOccupiedVehicle(thePlayer) and true or false)
+		local setAsCurrent = not getPedOccupiedVehicle(thePlayer)
+		if doesPedHaveJetPack(thePlayer) then
+			setAsCurrent = getJetpackWeaponEnabled(weaponID)
+		end
+		giveWeapon(thePlayer, weaponID, getPickupAmmo(thePickup), setAsCurrent)
 	end
 	
 	playSoundFrontEnd(thePlayer, 19)
