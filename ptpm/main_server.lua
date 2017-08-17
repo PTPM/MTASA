@@ -248,10 +248,6 @@ function onPlayerJoin()
 			-- until set == true
 		end
 	end
-	
-	-- silly mta bug
-	setGlitchEnabled( "quickreload", false )
-	setGlitchEnabled( "quickreload", true )	
 end
 addEventHandler( "onPlayerJoin", root, onPlayerJoin )
 
