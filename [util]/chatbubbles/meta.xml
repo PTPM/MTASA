@@ -1,0 +1,13 @@
+<meta>
+	<info author="Dutchman101" type="script" name="Chatting balloon and bubble chat text" version="1.5" />
+	<oop>true</oop>
+	<script src="balloon_s.lua" type="server" />
+	<script src="balloon_c.lua" type="client" />
+
+	<script src="roundlib.lua" type="client" />	
+	<script src="bub_c.lua" type="client" />
+	<script src="bub_s.lua" type="server" />
+
+	<file src="bubble.png" />
+	<export function="outputMessage" type="server"/>
+</meta>
