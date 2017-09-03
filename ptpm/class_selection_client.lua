@@ -1128,7 +1128,7 @@ function doesPlayerMeetPMRequirements()
 	end
 	
 	-- Ping Requirement
-	if getPlayerPing(getLocalPlayer())>350 then
+	if getPlayerPing(getLocalPlayer())>400 then
 		classSelection.rejection.reasons.pingTooHigh = true
 		classSelection.rejection.numberOfReasons = classSelection.rejection.numberOfReasons + 1
 		result = false

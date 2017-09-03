@@ -44,20 +44,10 @@ end
 
 addEvent( "playAnnouncer", true )
 addEventHandler( "playAnnouncer", localPlayer, function (sound, delay)
-	if announcerBetaOptIn then	
-		-- Add it to the queue:
-		if delay then
-			table.insert(messageQueue, { ["file"]=false, ["length"]=delay })
-		end
-		table.insert(messageQueue, sound)
-		playNextQueueItem()
-	else
-		outputDebugString("ANN but no aboi")
+	-- Add it to the queue:
+	if delay then
+		table.insert(messageQueue, { ["file"]=false, ["length"]=delay })
 	end
-end )
-
-
-addCommandHandler( "aboi", function()
-	announcerBetaOptIn = true
-	outputChatBox("ANN aboi")
+	table.insert(messageQueue, sound)
+	playNextQueueItem()
 end )
