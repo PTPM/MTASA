@@ -10,9 +10,9 @@
 
 	<script src="spawn_types.lua" type="server"/>
 	<script src="spawn_areas.lua" type="server"/>
-	<script src="help_system.lua" type="server"/>
+	<!--<script src="help_system.lua" type="server"/>
 	<script src="help_system_client.lua" type="client"/>
-	<script src="help_system_definitions.lua" type="server"/>
+	<script src="help_system_definitions.lua" type="server"/>-->
 
 	<script src="main_server.lua" type="server"/>
 	<script src="main_client.lua" type="client"/>
@@ -42,14 +42,8 @@
 	<script src="vehicle_blips.lua" type="client"/>
 	
 	<script src="blips_client.lua" type="client"/>
-	<script src="help_client.lua" type="client"/>
+	<!--<script src="help_client.lua" type="client"/>-->
 
-	<!--<script src="bots_client.lua" type="client"/>
-	<script src="bots.lua" type="server"/>
-
-	<script src="admin_gui_server.lua" type="server"/>
-	<script src="admin_gui.lua" type="client"/>
-	-->
 	
 	<file src="images/ptpm-default.png"/>
 	<file src="images/white_dot.png"/>
@@ -114,9 +108,9 @@
 	<file src="images/class_selection/asset_circle_border_big.png"/>
 	<file src="images/class_selection/asset_white_circle.png"/>
 
-	<file src="help/index.html"/>
+	<!--<file src="help/index.html"/>
 	<file src="help/nav.html"/>
-	<file src="help/help.css"/>
+	<file src="help/help.css"/>-->
 	
 	<!-- PTPM REQUIRED -->
 	<include resource="helpmanager" />
