@@ -27,7 +27,7 @@ addEventHandler("onObjectiveEnter", root,
 				end
 
 				if data.objectives.finished < 3 then
-					triggerHelpEvent(thePlayer, "OBJECTIVE_ENTER")
+					-- triggerHelpEvent(thePlayer, "OBJECTIVE_ENTER")
 				end
 
 				if data.objectives.helpTimer then
@@ -157,7 +157,7 @@ addEventHandler("onObjectiveComplete", root,
 			end
 
 			if data.objectives.finished <= 3 then
-				triggerHelpEvent(thePlayer, "OBJECTIVE_COMPLETE")
+				-- triggerHelpEvent(thePlayer, "OBJECTIVE_COMPLETE")
 			end
 
 			setupNewObjective()
@@ -297,7 +297,7 @@ function setupObjectiveHelpPromptTimer()
 	data.objectives.helpTimer = setTimer(
 		function()
 			if currentPM and isElement(currentPM) then
-				triggerHelpEvent(currentPM, "OBJECTIVE_NUDGE")
+				-- triggerHelpEvent(currentPM, "OBJECTIVE_NUDGE")
 			end
 		end,
 	60000 * 1.5, 0)

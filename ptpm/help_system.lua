@@ -89,7 +89,7 @@ function helpSystemPlayerSpawn(player, class)
 		table.insert(events, "MEDIC_AMBULANCE")
 	end
 
-	triggerHelpEvents(player, events, true, 3)
+	-- triggerHelpEvents(player, events, true, 3)
 end
 	
 function randomHelpEvent()
@@ -102,9 +102,9 @@ function randomHelpEvent()
 
 		if classID and (not isPedDead(player)) then
 			if classes[classID].type ~= "pm" then
-				triggerHelpEvents(player, {"COMMAND_RECLASS", "COMMAND_DUTY", "BIND_F4"}, false, 1, true)
+				-- triggerHelpEvents(player, {"COMMAND_RECLASS", "COMMAND_DUTY", "BIND_F4"}, false, 1, true)
 			else
-				triggerHelpEvents(player, {"COMMAND_SWAPCLASS", "COMMAND_PLAN"}, false, 1, true)
+				-- triggerHelpEvents(player, {"COMMAND_SWAPCLASS", "COMMAND_PLAN"}, false, 1, true)
 			end
 		end
 	end
@@ -187,7 +187,7 @@ function triggerHelpEvents(player, events, queue, queueLimit, randomStart)
 
 	--for _, e in ipairs(events) do
 	for i = 1, #events do
-		if triggerHelpEvent(player, events[((start + i - 1) % #events) + 1], queue) then
+		if -- triggerHelpEvent(player, events[((start + i - 1) % #events) + 1], queue) then
 			count = count + 1
 
 			if queueLimit and count == queueLimit then
@@ -367,6 +367,6 @@ end
 
 -- addCommandHandler("sh",
 -- 	function(player, cmd, event)
--- 		triggerHelpEvent(player, event)
+-- 		-- triggerHelpEvent(player, event)
 -- 	end
 -- )

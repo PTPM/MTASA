@@ -430,7 +430,7 @@ function reclassCommand( thePlayer, commandName, className )
 		setPlayerClass( thePlayer, proposedClass )
 
 		if commandName == "reclass" then
-			triggerHelpEvent(thePlayer, "COMMAND_RC")
+			-- triggerHelpEvent(thePlayer, "COMMAND_RC")
 			if isRunning("ptpm_accounts") then
 				exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "reclasscount")
 			end
@@ -469,7 +469,7 @@ function swapclass( thePlayer, commandName, otherName )
 			return outputChatBox( "You may not swapclass with two people at once.", thePlayer, unpack( colour.personal ) )
 		end  
 
-		triggerHelpEvent(otherPlayer, "COMMAND_SWAPCLASS_TARGET")
+		-- triggerHelpEvent(otherPlayer, "COMMAND_SWAPCLASS_TARGET")
 
 		options.swapclass.target = otherPlayer
 		options.swapclass.timer = setTimer( swapclassOffer, 15000, 1, false, otherPlayer )

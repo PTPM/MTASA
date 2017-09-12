@@ -531,7 +531,7 @@ function roundTick()
 					if distanceSquared(x, y, z, px, py, pz) < 2500 then -- 50 ^ 2
 						-- were not close to the weapon pickup last time we checked
 						if distanceSquared(getElementData(player, "ptpm.goodX"), getElementData(player, "ptpm.goodY"), getElementData(player, "ptpm.goodZ"), px, py, pz) >= 2500 then
-							triggerHelpEvent(player, "PICKUP_NEAR")
+							-- triggerHelpEvent(player, "PICKUP_NEAR")
 							break
 						end
 					end
@@ -567,7 +567,7 @@ function roundTick()
 		if options.pmHealthBonus and (data.roundTicks % 10) == 0 then
 			if (not isPedDead(currentPM)) and (not options.pmWaterHealthPenalty) or (not isElementInWater(currentPM)) then
 				if getElementHealth(currentPM) < 95 then
-					triggerHelpEvent(currentPM, "OPTION_HEALTH_REGEN_PM")
+					-- triggerHelpEvent(currentPM, "OPTION_HEALTH_REGEN_PM")
 				end
 
 				changeHealth(currentPM, options.pmHealthBonus * 2)
@@ -580,7 +580,7 @@ function roundTick()
 				if not getElementData(currentPM, "ptpm.waterHealthPenaltyTick") then
 					setElementData(currentPM, "ptpm.waterHealthPenaltyTick", tick, false)
 
-					triggerHelpEvent(currentPM, "OPTION_PM_WATER_PENALTY")
+					-- triggerHelpEvent(currentPM, "OPTION_PM_WATER_PENALTY")
 				end
 
 				-- -0 hp for the first 20s, then increase by 1 every 20s (-1, -2, -3, -4, etc)
@@ -598,7 +598,7 @@ function roundTick()
 			changeHealth( currentPM, -1 )
 
 			if getElementHealth(currentPM) < 70 then
-				triggerHelpEvent(currentPM, "OPTION_PM_ABANDONED_PENALTY")
+				-- triggerHelpEvent(currentPM, "OPTION_PM_ABANDONED_PENALTY")
 			end
 		end		
 		
@@ -613,7 +613,7 @@ function roundTick()
 			local classID = getPlayerClassID(player)
 			if player and classID and (not isPedDead(player)) and classes[classID].medic and classes[classID].type ~= "pm" then
 				if getElementHealth(player) < 95 then
-					triggerHelpEvent(player, "OPTION_HEALTH_REGEN_MEDIC")
+					-- triggerHelpEvent(player, "OPTION_HEALTH_REGEN_MEDIC")
 				end
 
 				changeHealth(player, 2)
@@ -630,7 +630,7 @@ function roundTick()
 						if d < 10 then
 							if isPlayerInSameTeam(player, player2) then
 								changeHealth(player, 1)
-								triggerHelpEvent(player2, "MEDIC_PASSIVE_GIVE")
+								-- triggerHelpEvent(player2, "MEDIC_PASSIVE_GIVE")
 
 								if accountsRunning then
 									exports.ptpm_accounts:incrementPlayerStatistic(player2, "hphealedpassive")
@@ -882,7 +882,7 @@ function healCommand( thePlayer, commandName, otherName )
 	
 	if playerHealPlayer(thePlayer, patient, d) then
 		if commandName == "heal" then
-			triggerHelpEvent(thePlayer, "MEDIC_H")
+			-- triggerHelpEvent(thePlayer, "MEDIC_H")
 		elseif commandName == "h" then
 			if isRunning("ptpm_accounts") then
 				exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "hcount")
@@ -1034,7 +1034,7 @@ function plan( thePlayer, commandName, ... )
 					end
 
 					if p ~= thePlayer then
-						triggerHelpEvent(p, "COMMAND_PLAN_SET")
+						-- triggerHelpEvent(p, "COMMAND_PLAN_SET")
 					end
 				end
 			end

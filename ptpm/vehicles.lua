@@ -61,7 +61,7 @@ addEventHandler( "onVehicleEnter", root,
 			local class = getPlayerClassID(thePlayer)
 
 			if classes[class].medic then
-				triggerHelpEvent(thePlayer, "MEDIC_AMBULANCE")
+				-- triggerHelpEvent(thePlayer, "MEDIC_AMBULANCE")
 			end
 		end
 

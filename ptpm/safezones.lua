@@ -23,7 +23,7 @@ addEventHandler( "onSafezoneEnter", root,
 				end
 			end	
 
-			triggerHelpEvent(thePlayer, "SAFE_ZONE")
+			-- triggerHelpEvent(thePlayer, "SAFE_ZONE")
 
 			if isRunning("ptpm_accounts") then
 				exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "safezonecount")

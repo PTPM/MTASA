@@ -18,7 +18,7 @@ function prepareSecurityCamera( thePlayer, theCamera )
 		setElementPosition( thePlayer, data.cameraMounts[cameraElement].playerX, data.cameraMounts[cameraElement].playerY, data.cameraMounts[cameraElement].playerZ )
 		
 		--drawStaticTextToScreen( "draw", thePlayer, "cameraText", "WARNING: Whilst viewing a security camera you can still be attacked.\nUse the left and right arrow keys to change camera.\nType /camoff or press enter to exit the camera.", "screenX-600", "screenY-110", 590, 100, colour.important, 0.5, "bankgothic", "top", "right" )
-		triggerHelpEvent(thePlayer, "CAMERA_ENTER")
+		-- triggerHelpEvent(thePlayer, "CAMERA_ENTER")
 
 		setElementData( thePlayer, "ptpm.activeCamera", cameraElement, false )
 		setElementData( thePlayer, "ptpm.currentCameraID", 1, false )

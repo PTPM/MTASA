@@ -56,7 +56,7 @@ addEventHandler("onTaskEnter", root,
 					end
 				end
 
-				triggerHelpEvent(thePlayer, "TASK_ENTER")
+				-- triggerHelpEvent(thePlayer, "TASK_ENTER")
 
 				if data.tasks.helpTimer then
 					killTimer(data.tasks.helpTimer)
@@ -67,7 +67,7 @@ addEventHandler("onTaskEnter", root,
 			local classID = getPlayerClassID(thePlayer)
 
 			if teams.goodGuys[classes[classID].type] and classes[classID] ~= "pm" then
-				triggerHelpEvent(thePlayer, "TASK_EXPLAIN")
+				-- triggerHelpEvent(thePlayer, "TASK_EXPLAIN")
 			end
 		end
 	end
@@ -154,7 +154,7 @@ function finishedTask(theTask)
 	data.tasks.finished = data.tasks.finished + 1
 	
 	if currentPM then
-		triggerHelpEvent(currentPM, "TASK_COMPLETE")
+		-- triggerHelpEvent(currentPM, "TASK_COMPLETE")
 
 		setElementHealth(currentPM, 100.0)
 		setPedArmor(currentPM, 100.0)
@@ -281,7 +281,7 @@ function setupTaskHelpPromptTimer()
 	data.tasks.helpTimer = setTimer(
 		function()
 			if currentPM and isElement(currentPM) then
-				triggerHelpEvent(currentPM, "TASK_NUDGE")
+				-- triggerHelpEvent(currentPM, "TASK_NUDGE")
 			end
 		end,
 	math.random(1, 4) * 60000, 0)
