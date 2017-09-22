@@ -142,8 +142,8 @@ function startReloaderHUD(timeTotal)
 end
 
 function pressKey(controlName)
-	setControlState(controlName, true)
-	setTimer(setControlState, 50, 1, controlName, false)
+	setPedControlState(controlName, true)
+	setTimer(setPedControlState, 50, 1, controlName, false)
 end
 
 function limitedKeyPress(key, keyState, speed)

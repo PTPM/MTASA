@@ -489,8 +489,8 @@ function pressKey(controlName)
 		return
 	end
 
-	setControlState(controlName, true)
-	setTimer(setControlState, 50, 1, controlName, false)
+	setPedControlState(controlName, true)
+	setTimer(setPedControlState, 50, 1, controlName, false)
 end
 
 ---Left/right toggling

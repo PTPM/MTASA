@@ -3,7 +3,7 @@ local disabledFire = false
 
 
 function processFireToggle()
-	if isPedInVehicle(localPlayer) or not getControlState("aim_weapon") then
+	if isPedInVehicle(localPlayer) or not getPedControlState("aim_weapon") then
 		if disabledFire then
 			toggleControl("fire", true)
 			disabledFire = false
