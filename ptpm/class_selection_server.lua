@@ -51,6 +51,10 @@
 			end		
 		end,
 }
+
+appliedRecallEffects = {}
+recallTimeNormal = 12000 --how long it takes for F4, /reclass, /swapclass to take effect, in milliseconds WHEN ENEMY IS NEAR
+recallTimeBonus = 4000 --how long it takes for F4, /reclass, /swapclass to take effect, in milliseconds
 			
 
 addEvent("onPlayerRequestSpawn", true)
@@ -297,12 +301,8 @@ function leaveClassAfterTime(thePlayer)
 		return 
 	end
 
-	local theTimer = getElementData(thePlayer, "ptpm.leaveClassTimer")
-
-	if isTimer(theTimer) then
-		killTimer(theTimer)
-		setElementData(thePlayer, "ptpm.leaveClassTimer", nil, false)
-
+	if appliedRecallEffects[thePlayer] ~= nil then 
+		clearRecallEffect( thePlayer )
 		outputChatBox("Leave class cancelled.", thePlayer, unpack(colour.personal))
 		return
 	end	
@@ -317,35 +317,106 @@ function leaveClassAfterTime(thePlayer)
 		outputChatBox("The prime minister must use /swapclass.", thePlayer, unpack(colour.personal))
 		return
 	end
-
-	-- Set the timer
-	outputChatBox("Returning to class selection in 5 seconds...", thePlayer, unpack(colour.personal))
 	
+	pX, pY, pZ = getElementPosition( thePlayer )
+	local myTeam = getPlayerTeam( thePlayer ) 
+	local lowestDistance = 9999999
+	for _, player2 in ipairs( getElementsByType( "player" ) ) do
+		if player2 and isElement( player2 ) and thePlayer ~= player2 and myTeam ~= getPlayerTeam(player2) then
+			p2X, p2Y, p2Z = getElementPosition( player2 )
+			local thisDistance = getDistanceBetweenPoints3D(pX, pY, pZ, p2X, p2Y, p2Z)
+			if thisDistance < lowestDistance then
+				lowestDistance = thisDistance
+			end
+		end
+	end
+	
+	local thisRecallTime = recallTimeNormal
+	-- Recall is faster with no enemies around and while outside
+	if lowestDistance > 150 and getElementInterior(thePlayer) == 0 then
+		thisRecallTime = recallTimeBonus
+	end
+	
+	outputChatBox("Returning to class selection in " .. math.ceil(thisRecallTime / 1000) .. " seconds...", thePlayer, unpack(colour.personal))
+	initRecallEffectToPlayer(thePlayer, thisRecallTime)
+		
 	if isRunning("ptpm_accounts") then
 		exports.ptpm_accounts:incrementPlayerStatistic(thePlayer, "leaveclasscount")
 	end
-
-	setElementData(thePlayer, "ptpm.leaveClassTimer", 
-		setTimer(
-			function(player)
-				-- outputChatBox( "Back in class select.", player, unpack( colour.personal ) )
-				if player and isElement(player) and not data.roundEnded then
-					-- force the vehicle exit event to fire
-					if isPedInVehicle(player) then
-						removePedFromVehicle(player)
-					end
-
-					initClassSelection(player, true)
-					unbindKey(player, "f4", "down", "leaveclass")
-				end
-			end,
-		5000, 1, thePlayer) 
-	, false)
 end
 addCommandHandler("leaveclass", leaveClassAfterTime)
 
+function initRecallEffectToPlayer( thePlayer, recallTime )
+	colourR, colourG, colourB = getPlayerColour( thePlayer )
+	
+	pX, pY, pZ = getElementPosition( thePlayer )
+	
+	appliedRecallEffects[thePlayer] = {
+		lightBeam = createMarker ( pX, pY, pZ, "checkpoint", 0, colourR, colourG, colourB, 0 ),
+		timer = nil,
+		progress = 0,
+	}
+	
+	attachElements( appliedRecallEffects[thePlayer].lightBeam, thePlayer, 0, 0, 0, 0, 0, 0 )
+	
+	setPlayerControllable(thePlayer, false)
+	setPedAnimation( thePlayer, "DANCING", "dnce_m_b")
+	
+	timerInterval = 50
+	
+	appliedRecallEffects[thePlayer].timer = setTimer(function()
+		if appliedRecallEffects[thePlayer] == nil then return end
+		
+		pX, pY, pZ = getElementPosition( thePlayer )
+		appliedRecallEffects[thePlayer].progress = appliedRecallEffects[thePlayer].progress + (timerInterval / recallTime)
+		
+		-- recall lightbeam starts slow and goes bigger faster (this element is attached to player so ElementPosition is not set)
+		-- kinda looks like its recreated each time, causes flickering :thinking:
+		setMarkerSize(appliedRecallEffects[thePlayer].lightBeam, 2 - (getEasingValue( appliedRecallEffects[thePlayer].progress, "InOutQuad" ) * 2))
+		setElementAlpha( thePlayer, 255 - (127 * getEasingValue( appliedRecallEffects[thePlayer].progress, "InOutQuad" )))
+				
+		if appliedRecallEffects[thePlayer].progress >= 0.999 then
+			if thePlayer and isElement(thePlayer) and not data.roundEnded then
+				if isPedInVehicle(thePlayer) then
+					removePedFromVehicle(thePlayer)
+				end
+
+				initClassSelection(thePlayer, true)
+				unbindKey(thePlayer, "f4", "down", "leaveclass")
+			end
+			clearRecallEffect( thePlayer )
+		end
+	
+	end, timerInterval, recallTime / timerInterval)	
+end
+
+function clearRecallEffect( thePlayer )
+	if appliedRecallEffects[thePlayer] == nil then return end
+
+	setPedAnimation(thePlayer, false)
+	setPlayerControllable(thePlayer, true)
+	killTimer(appliedRecallEffects[thePlayer].timer)
+	setElementAlpha( thePlayer, 255)
+	destroyElement(appliedRecallEffects[thePlayer].lightBeam)
+	appliedRecallEffects[thePlayer] = nil
+end
+
+-- Recall is cancelled upon taking damage, dying and quitting
+addEventHandler ( "onPlayerDamage", getRootElement(), function() clearRecallEffect(source) end )
+addEventHandler ( "onPlayerWasted", getRootElement(), function() clearRecallEffect(source) end )
+addEventHandler ( "onPlayerQuit", getRootElement(), function() clearRecallEffect(source) end )
+
 
 function reclassCommand( thePlayer, commandName, className )
+	-----------------------------------------------------------------------
+	-----------------------------------------------------------------------
+	-----------------------------------------------------------------------
+	-- /reclass has been discontinued in favor of SpawnSelect2 
+	-- (because /rc was an artifact out of the cmd-based game design from the SAMP days)
+	-----------------------------------------------------------------------
+	-----------------------------------------------------------------------
+	-----------------------------------------------------------------------
+
 	if data.roundEnded then return end
 	
 	--if not antiSpam( thePlayer ) then return end
@@ -444,8 +515,9 @@ function reclassCommand( thePlayer, commandName, className )
 		outputChatBox( "Could not spawn as " .. teamName .. ", that class is full.", thePlayer, unpack( colour.personal ) )	
 	end
 end
-addCommandHandler( "reclass", reclassCommand )
-addCommandHandler( "rc", reclassCommand )
+
+addCommandHandler( "reclass", leaveClassAfterTime )
+addCommandHandler( "rc", leaveClassAfterTime )
 
 
 function swapclass( thePlayer, commandName, otherName )
