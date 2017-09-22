@@ -398,12 +398,7 @@
     <object id="object (CARRIER_LIFT1_SFSE) (4)" model="3115" interior="0" dimension="0" posX="-2437.4982910156" posY="-1554.3128662109" posZ="491.85250854492" rotX="43.670013427734" rotY="1.9849853515625" rotZ="274.32861328125" />
     <object id="object (DYN_GARAGE_DOOR) (1)" model="1508" interior="0" dimension="0" name="delux object (101)" posX="-2434.9345703125" posY="-1548.9117431641" posZ="480.17556762695" rotX="0" rotY="0" rotZ="190.5" />
 	
-	<vehicle id="vehicle (Cargobob) (1)" paintjob="3" model="548" plate="IUZLIYI" interior="0" dimension="0" posX="-2353.1418457031" posY="-1690.0656738281" posZ="504.80108642578" rotX="0" rotY="0" rotZ="281.375" />
-    <vehicle id="vehicle (Hydra) (1)" paintjob="3" model="520" plate="7FAH18K" interior="0" dimension="0" posX="-2318.9714355469" posY="-1707.5068359375" posZ="488.42028808594" rotX="0" rotY="0" rotZ="283.09497070313" />
-    <vehicle id="vehicle (Hydra) (2)" paintjob="3" model="520" plate="7299GCV" interior="0" dimension="0" posX="-2321.2900390625" posY="-1697.2088623047" posZ="488.42028808594" rotX="0" rotY="0" rotZ="283.09497070313" />
-    <vehicle id="vehicle (Hydra) (3)" paintjob="3" model="520" plate="LQ6XYQL" interior="0" dimension="0" posX="-2416.650390625" posY="-1548.4609375" posZ="480.00473022461" rotX="0" rotY="0" rotZ="11.169982910156" />
-    <vehicle id="vehicle (Hydra) (4)" paintjob="3" model="520" plate="A89T3GB" interior="0" dimension="0" posX="-2426.7751464844" posY="-1550.7557373047" posZ="480.00473022461" rotX="0" rotY="0" rotZ="11.167602539063" />
-	
+	<vehicle id="vehicle (Cargobob) (1)" paintjob="3" model="548" plate="IUZLIYI" interior="0" dimension="0" posX="-2353.1418457031" posY="-1690.0656738281" posZ="504.80108642578" rotX="0" rotY="0" rotZ="281.375" />	
 	
     <object id="object (ottos_ramp) (3)" model="10245" interior="0" dimension="0" posX="-2338.2338867188" posY="-1748.2564697266" posZ="495.35266113281" rotX="0" rotY="0" rotZ="55.76611328125" />
     <object id="object (ottos_ramp) (3)" model="10245" interior="0" dimension="0" posX="-2338.8994140625" posY="-1744.9738769531" posZ="495.35266113281" rotX="0" rotY="0" rotZ="55.761108398438" />
