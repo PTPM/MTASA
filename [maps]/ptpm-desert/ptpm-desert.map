@@ -640,11 +640,11 @@
     <!-- satellite Uzi -->
     <pickup posX="-366.40784" posY="1595.118" posZ="83.35912" type="30" amount="150" respawn="60000" synced="false" />
     <!-- satellite AK-47 -->
-    <pickup posX="-185.0072" posY="1886.8285" posZ="115.7031" type="38" amount="300" respawn="400000" synced="true" />  
+    <pickup posX="-185.0072" posY="1886.8285" posZ="115.7031" type="38" amount="120" respawn="180000" synced="true" />  
     <!-- Minigun -->
-    <pickup posX="-371.6570" posY="2128.8850" posZ="133.1797" type="38" amount="300" respawn="400000" synced="true" />
+    <pickup posX="-371.6570" posY="2128.8850" posZ="133.1797" type="38" amount="120" respawn="180000" synced="true" />
     <!-- Minigun(newset) -->
-    <pickup posX="-347.2831" posY="1600.8020" posZ="165.7395" type="38" amount="10000" respawn="9999999" synced="true" />
+    <pickup posX="-347.2831" posY="1600.8020" posZ="165.7395" type="38" amount="500" respawn="9999999" synced="true" />
     <!-- Minigun -->
     <pickup posX="24.0" posY="969.0" posZ="20.0" type="25" amount="50" respawn="30000" synced="true" />
     <!-- 17Desert -->

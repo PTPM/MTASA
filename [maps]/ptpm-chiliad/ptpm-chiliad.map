@@ -309,9 +309,9 @@
     <pickup id="pickup (armor) (8)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-2092.0" posY="-2330.0" posZ="31.0" synced="false" />
     <pickup id="pickup (armor) (9)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" posX="-2303.0" posY="-1606.0" posZ="484.0" synced="false" />
     <pickup id="pickup (Parachute) (2)" type="46" interior="0" amount="1" respawn="30000" dimension="0" posX="-2350.0" posY="-1586.0" posZ="485.0" synced="false" />
-    <pickup id="pickup (Minigun) (1)" type="38" interior="0" amount="300" respawn="400000" dimension="0" posX="-2554.5864257813" posY="-1027.7780761719" posZ="99.864593505859" synced="true" />
-    <pickup id="pickup (Minigun) (2)" type="38" interior="0" amount="300" respawn="400000" dimension="0" posX="-2716.2944335938" posY="-2099.5991210938" posZ="15.511032104492" synced="true" />
-    <pickup id="pickup (Minigun) (3)" type="38" interior="0" amount="1000" respawn="9999999" dimension="0" posX="-2433.8513183594" posY="-1884.9459228516" posZ="364.00164794922" synced="true" />
+    <pickup id="pickup (Minigun) (1)" type="38" interior="0" amount="60" respawn="180000" dimension="0" posX="-2554.5864257813" posY="-1027.7780761719" posZ="99.864593505859" synced="true" />
+    <pickup id="pickup (Minigun) (2)" type="38" interior="0" amount="60" respawn="180000" dimension="0" posX="-2716.2944335938" posY="-2099.5991210938" posZ="15.511032104492" synced="true" />
+    <pickup id="pickup (Minigun) (3)" type="38" interior="0" amount="180" respawn="9999999" dimension="0" posX="-2433.8513183594" posY="-1884.9459228516" posZ="364.00164794922" synced="true" />
     <pickup id="pickup (MP5) (1)" type="29" interior="0" amount="300" respawn="10000" dimension="0" posX="-2135.7476" posY="-1242.1997" posZ="29.1718" synced="true" />
     <pickup id="pickup (MP5) (2)" type="29" interior="0" amount="300" respawn="10000" dimension="0" posX="-1907.4188" posY="-1500.9512" posZ="25.4219" synced="true" />
     <pickup id="pickup (Silenced) (1)" type="23" interior="0" amount="50" respawn="30000" dimension="0" posX="-2172.2546" posY="-1843.6069" posZ="214.8233" synced="true" />
