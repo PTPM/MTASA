@@ -23,10 +23,10 @@
         <class id="10" skin="100" weapons="23,100;31,400;37,100" />
         <class id="11" skin="274" weapons="4,1;23,100;41,300" medic="true" />
 		
-        <spawn posX="-2451" posY="-1664" posZ="535" rot="280" />
-        <spawn posX="-2451" posY="-1659" posZ="535" rot="280" />
-        <spawn posX="-2451" posY="-1664" posZ="535" rot="280" />
-        <spawn posX="-2451" posY="-1669" posZ="535" rot="280" />
+        <spawncircle posX="-2451" posY="-1664" posZ="535" rot="280" radius="5"/>
+        <spawncircle posX="-2451" posY="-1659" posZ="535" rot="280" radius="5"/>
+        <spawncircle posX="-2451" posY="-1664" posZ="535" rot="280" radius="5"/>
+        <spawncircle posX="-2451" posY="-1669" posZ="535" rot="280" radius="5"/>
     </spawngroup>
 	
     <spawngroup type="pm">
@@ -41,10 +41,10 @@
         <class id="16" skin="166" weapons="23,100;28,250;46,1" />
         <class id="17" skin="141" weapons="23,100;28,250;46,1" />
         <class id="18" skin="276" weapons="23,100;29,150;41,300" medic="true" />
-        <spawn posX="-2331" posY="-1752" posZ="503" rot="11" />
-        <spawn posX="-2335" posY="-1753" posZ="503" rot="11" />
-        <spawn posX="-2339" posY="-1753" posZ="503" rot="11" />
-        <spawn posX="-2343" posY="-1753" posZ="503" rot="11" />
+        <spawncircle posX="-2331" posY="-1752" posZ="503" rot="11" radius="5"/>
+        <spawncircle posX="-2335" posY="-1753" posZ="503" rot="11" radius="5"/>
+        <spawncircle posX="-2339" posY="-1753" posZ="503" rot="11" radius="5"/>
+        <spawncircle posX="-2343" posY="-1753" posZ="503" rot="11" radius="5"/>
 		
     </spawngroup>
 	
@@ -53,10 +53,10 @@
         <class id="24" skin="285" weapons="24,100;29,300;41,300" />
         <class id="27" skin="246" weapons="24,100;31,300;41,300" />
         <class id="28" skin="275" weapons="24,100;29,150;41,300" medic="true" />
-        <spawn posX="-2298" posY="-1649" posZ="512" rot="190" />
-        <spawn posX="-2294" posY="-1652" posZ="508" rot="190" />
-        <spawn posX="-2301" posY="-1654" posZ="508" rot="190" />
-        <spawn posX="-2324" posY="-1636" posZ="518" rot="190" />
+        <spawncircle posX="-2298" posY="-1649" posZ="512" rot="190" radius="5"/>
+        <spawncircle posX="-2294" posY="-1652" posZ="508" rot="190" radius="5"/>
+        <spawncircle posX="-2301" posY="-1654" posZ="508" rot="190" radius="5"/>
+        <spawncircle posX="-2324" posY="-1636" posZ="518" rot="190" radius="5"/>
     </spawngroup>
 	
 	
