@@ -75,7 +75,8 @@
 	<file src="mapvoteimages/map-pic-LV.png" />
 	<file src="mapvoteimages/map-pic-LVOBJ.png" />
 	<file src="mapvoteimages/map-pic-SF.png" />
-	<file src="mapvoteimages/map-pic-_randomMap.png" />
+	<file src="mapvoteimages/map-pic-SF.png" />
+	<file src="mapvoteimages/map-pic-Fortress.png" />
 	
 	<file src="fonts/tahoma.ttf"/>
 

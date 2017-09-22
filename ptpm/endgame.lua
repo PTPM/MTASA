@@ -140,6 +140,7 @@ function getMapvoteObject( resourceName )
 	elseif 	resourceName=="ptpm-lv" 				then return { name="Las Venturas", image="mapvoteimages/map-pic-LV.png", votes=0,youVoted=false,res=resourceName} 
 	elseif 	resourceName=="ptpm-lvobj" 				then return { name="Las Venturas Objectives", image="mapvoteimages/map-pic-LVOBJ.png", votes=0,youVoted=false,res=resourceName} 
 	elseif 	resourceName=="ptpm-sf" 				then return { name="San Fierro", image="mapvoteimages/map-pic-SF.png", votes=0,youVoted=false,res=resourceName} 
+	elseif 	resourceName=="ptpm-fortress" 			then return { name="Fortress", image="mapvoteimages/map-pic-Fortress.png", votes=0,youVoted=false,res=resourceName} 
 	else return nil end
 end
 

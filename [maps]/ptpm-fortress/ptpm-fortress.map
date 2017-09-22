@@ -1,0 +1,530 @@
+<map mod="ptpm" version="1.0">
+
+	<wardrobe camX="-2195.377" camY="-1677.509" camZ="585.101" lookX="-2355.25" lookY="-1714.15" lookZ="515.75" interior="0" />
+	
+    <spawngroup type="psycho">
+        <class id="0" skin="230" weapons="18,10;30,100;24,50" />
+        <class id="1" skin="212" weapons="18,10;30,100;24,50" />
+        <class id="2" skin="200" weapons="18,10;30,100;24,50" />
+        <class id="3" skin="137" weapons="18,10;30,100;24,50" />
+        <spawn posX="-2299" posY="-1593" posZ="505" rot="267" />
+        <spawn posX="-2259" posY="-1742" posZ="500" rot="172" />
+        <spawn posX="-2388" posY="-1777" posZ="510" rot="282" />
+        <spawn posX="-2388" posY="-1520" posZ="535" rot="282" />
+    </spawngroup>
+	
+    <spawngroup type="terrorist">
+        <class id="4" skin="181" weapons="26,100;31,400;18,10" />
+        <class id="5" skin="183" weapons="24,100;22,200;37,100" />
+        <class id="6" skin="179" weapons="26,100;22,200;37,100" />
+        <class id="7" skin="191" weapons="24,100;31,400;25,100" />
+        <class id="8" skin="111" weapons="26,100;22,200;23,300" />
+        <class id="9" skin="73" weapons="26,100;22,200;18,10" />
+        <class id="10" skin="100" weapons="23,100;31,400;37,100" />
+        <class id="11" skin="274" weapons="4,1;23,100;41,300" medic="true" />
+		
+        <spawn posX="-2451" posY="-1664" posZ="535" rot="280" />
+        <spawn posX="-2451" posY="-1659" posZ="535" rot="280" />
+        <spawn posX="-2451" posY="-1664" posZ="535" rot="280" />
+        <spawn posX="-2451" posY="-1669" posZ="535" rot="280" />
+    </spawngroup>
+	
+    <spawngroup type="pm">
+        <class id="12" skin="147" weapons="15,1;24,20;41,1000" />
+        <spawn posX="-2334.34" posY="-1754.49" posZ="503" rot="11" />
+        <cantdrive models="425,548,520" />
+        <cantpassenger models="425,548,520" />
+    </spawngroup>
+	
+    <spawngroup type="bodyguard">
+        <class id="14" skin="164" weapons="23,100;28,250;46,1" />
+        <class id="16" skin="166" weapons="23,100;28,250;46,1" />
+        <class id="17" skin="141" weapons="23,100;28,250;46,1" />
+        <class id="18" skin="276" weapons="23,100;29,150;41,300" medic="true" />
+        <spawn posX="-2331" posY="-1752" posZ="503" rot="11" />
+        <spawn posX="-2335" posY="-1753" posZ="503" rot="11" />
+        <spawn posX="-2339" posY="-1753" posZ="503" rot="11" />
+        <spawn posX="-2343" posY="-1753" posZ="503" rot="11" />
+		
+    </spawngroup>
+	
+    <spawngroup type="police">
+        <class id="20" skin="281" weapons="24,100;31,300;41,300" />
+        <class id="24" skin="285" weapons="24,100;29,300;41,300" />
+        <class id="27" skin="246" weapons="24,100;31,300;41,300" />
+        <class id="28" skin="275" weapons="24,100;29,150;41,300" medic="true" />
+        <spawn posX="-2298" posY="-7649" posZ="512" rot="190" />
+        <spawn posX="-2294" posY="-1652" posZ="508" rot="190" />
+        <spawn posX="-2301" posY="-1654" posZ="508" rot="190" />
+        <spawn posX="-2324" posY="-1636" posZ="518" rot="190" />
+    </spawngroup>
+	
+	
+	<boundarycorner posX="-2220" posY="-1778" />
+	<boundarycorner posX="-2240" posY="-1474" />
+	<boundarycorner posX="-2535" posY="-1511" />
+	<boundarycorner posX="-2455" posY="-1821" />
+	
+	 <vehicle id="vortex 1" model="539" interior="0" dimension="0" posX="-2379" posY="-1584" posZ="535" rotX="0" rotY="0" rotZ="283" />
+	 <vehicle id="vortex 2" model="539" interior="0" dimension="0" posX="-2389" posY="-1586" posZ="535" rotX="0" rotY="0" rotZ="283" />
+	 <vehicle id="vortex 3" model="539" interior="0" dimension="0" posX="-2397" posY="-1588" posZ="535" rotX="0" rotY="0" rotZ="283" />
+	 <vehicle id="vortex 4" model="539" interior="0" dimension="0" posX="-2406" posY="-1590" posZ="535" rotX="0" rotY="0" rotZ="283" />
+	 
+	 <vehicle id="vortex 6" model="539" interior="0" dimension="0" posX="-2368" posY="-1660" posZ="537" rotX="0" rotY="0" rotZ="283" />
+	 <vehicle id="vortex 7" model="539" interior="0" dimension="0" posX="-2377" posY="-1662" posZ="537" rotX="0" rotY="0" rotZ="283" />
+	 <vehicle id="vortex 8" model="539" interior="0" dimension="0" posX="-2386" posY="-1664" posZ="537" rotX="0" rotY="0" rotZ="283" />
+	 <vehicle id="vortex 9" model="539" interior="0" dimension="0" posX="-2396" posY="-1666" posZ="537" rotX="0" rotY="0" rotZ="283" />
+	 
+	 <pickup id="pickup (Sniper) (1)" type="34" interior="0" amount="25" respawn="30000" dimension="0" alpha="255" posX="-2380.2" posY="-1671.7" posZ="499.60001" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (armor) (1)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" alpha="255" posX="-2432.8999" posY="-1550.5" posZ="536" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Shotgun) (1)" type="25" interior="0" amount="100" respawn="30000" dimension="0" alpha="255" posX="-2414" posY="-1541" posZ="536" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (health) (1)" type="health" interior="0" amount="100" respawn="30000" dimension="0" alpha="255" posX="-2483.7" posY="-1556.4" posZ="490.79999" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (armor) (2)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" alpha="255" posX="-2484" posY="-1554" posZ="490.79999" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Sniper) (2)" type="34" interior="0" amount="25" respawn="30000" dimension="0" alpha="255" posX="-2541.6001" posY="-1542.1" posZ="486.39999" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (armor) (3)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" alpha="255" posX="-2401.2" posY="-1782.2" posZ="492.89999" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (armor) (4)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" alpha="255" posX="-2330.2" posY="-1768.3" posZ="503.10001" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Grenade) (1)" type="16" interior="0" amount="5" respawn="30000" dimension="0" alpha="255" posX="-2308" posY="-1586.5" posZ="508.29999" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Grenade) (2)" type="16" interior="0" amount="5" respawn="30000" dimension="0" alpha="255" posX="-2361.8" posY="-1606.9" posZ="519.20001" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Deagle) (1)" type="24" interior="0" amount="100" respawn="30000" dimension="0" alpha="255" posX="-2357.1001" posY="-1512.4" posZ="557.70001" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Parachute) (1)" type="46" interior="0" amount="1" respawn="30000" dimension="0" alpha="255" posX="-2475" posY="-1608.5" posZ="536.09998" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Parachute) (2)" type="46" interior="0" amount="100" respawn="30000" dimension="0" alpha="255" posX="-2413.6001" posY="-1786" posZ="532.59998" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Sniper) (3)" type="34" interior="0" amount="10" respawn="30000" dimension="0" alpha="255" posX="-2411.3" posY="-1785.6" posZ="532.59998" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (MP5) (1)" type="29" interior="0" amount="230" respawn="30000" dimension="0" alpha="255" posX="-2386.8" posY="-1545.4" posZ="488.89999" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Minigun) (1)" type="38" interior="0" amount="60" respawn="120000" dimension="0" alpha="255" posX="-2461.6001" posY="-1651.7" posZ="511.70001" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Minigun) (2)" type="38" interior="0" amount="60" respawn="120000" dimension="0" alpha="255" posX="-2325" posY="-1780.5" posZ="467.60001" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (Chainsaw) (1)" type="9" interior="0" amount="100" respawn="30000" dimension="0" alpha="255" posX="-2331" posY="-1795.9" posZ="468.60001" rotX="0" rotY="0" rotZ="0"></pickup>
+    <pickup id="pickup (armor) (5)" type="armor" interior="0" amount="100" respawn="30000" dimension="0" alpha="255" posX="-2467.7" posY="-1649.1" posZ="489.89999" rotX="0" rotY="0" rotZ="0"></pickup>
+
+
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2324.791015625" posY="-1670.65625" posZ="487.56097412109" rotX="0" rotY="0" rotZ="191.25" />
+    <object id="object (subpen_ext_SFSe) (1)" model="10826" interior="0" dimension="0" name="delux object (1)" posX="-2329.195801" posY="-1688.231323" posZ="470.091522" rotX="0.0000" rotY="0.0000" rotZ="10.9322" />
+    <object id="object (CARRIER_Bits_SFSe) (1)" model="11237" interior="0" dimension="0" name="delux object (3)" posX="-2324.5546875" posY="-1757.63671875" posZ="499.62686157227" rotX="0" rotY="0" rotZ="188.42651367188" />
+    <object id="object (gen_roofbit5) (1)" model="1691" interior="0" dimension="0" name="delux object (4)" posX="-2336.344238" posY="-1686.516113" posZ="506.616364" rotX="0.0000" rotY="0.0000" rotZ="101.2501" />
+    <object id="object (vegaspumphouse1) (1)" model="7947" interior="0" dimension="0" name="delux object (5)" posX="-2339.400390625" posY="-1760.7841796875" posZ="494.48696899414" rotX="0" rotY="0" rotZ="191.25" />
+    <object id="object (LA_chem_piping) (1)" model="3643" interior="0" dimension="0" name="delux object (11)" posX="-2368.85546875" posY="-1715.7998046875" posZ="504.66616821289" rotX="0" rotY="0" rotZ="101.24450683594" />
+    <object id="object (refcondens1) (1)" model="3259" interior="0" dimension="0" name="delux object (12)" posX="-2331.552734375" posY="-1759.650390625" posZ="501.08261108398" rotX="0" rotY="0" rotZ="10.382080078125" />
+    <object id="object (Helipad1_las) (1)" model="4874" interior="0" dimension="0" name="delux object (14)" posX="-2349.2314453125" posY="-1706.591796875" posZ="502.43313598633" rotX="0" rotY="0" rotZ="281.25" />
+    <object id="object (arprtermnl01_lvs) (1)" model="8038" interior="0" dimension="0" name="delux object (15)" posX="-2310.3818359375" posY="-1670.490234375" posZ="510.4235534668" rotX="0" rotY="0" rotZ="101.24450683594" />
+    <object id="object (vegasplant05) (2)" model="6930" interior="0" dimension="0" name="delux object (16)" posX="-2253.6298828125" posY="-1692.0947265625" posZ="467.33724975586" rotX="0" rotY="181.34033203125" rotZ="192.48596191406" />
+    <object id="object (subbunker_ext_SFSe) (3)" model="10827" interior="0" dimension="0" name="delux object (17)" posX="-2358.2041015625" posY="-1662.2314453125" posZ="476.70101928711" rotX="0" rotY="0" rotZ="101.865234375" />
+    <object id="object (subbunker_ext_SFSe) (4)" model="10827" interior="0" dimension="0" name="delux object (18)" posX="-2319.780762" posY="-1739.466309" posZ="410.382965" rotX="270.6186" rotY="0.0000" rotZ="11.8684" />
+    <object id="object (subbunker_ext_SFSe) (5)" model="10827" interior="0" dimension="0" name="delux object (19)" posX="-2292.3562011719" posY="-1748.1882324219" posZ="407.19320678711" rotX="270.615234375" rotY="0" rotZ="191.865234375" />
+    <object id="object (airprtgnd_02_SFSe) (1)" model="10815" interior="0" dimension="0" name="delux object (21)" posX="-2303.9462890625" posY="-1699.5849609375" posZ="479.45944213867" rotX="0.85693359375" rotY="1.7083740234375" rotZ="237.10144042969" />
+    <object id="object (sf_roofmast) (1)" model="3876" interior="0" dimension="0" name="delux object (22)" posX="-2363.22265625" posY="-1722.8395996094" posZ="496.84613037109" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2416.654296875" posY="-1816.95703125" posZ="420.78009033203" rotX="0" rotY="36.710815429688" rotZ="205.4443359375" />
+    <object id="object (des_pipestrut01) (1)" model="16088" interior="0" dimension="0" name="delux object (28)" posX="-2356.3107910156" posY="-1732.16015625" posZ="498.16738891602" rotX="0" rotY="0" rotZ="281.24450683594" />
+    <object id="object (des_a51warheads) (1)" model="16641" interior="0" dimension="0" name="delux object (29)" posX="-2346.409668" posY="-1739.228394" posZ="500.523712" rotX="0.0000" rotY="0.0000" rotZ="191.2500" />
+    <object id="object (des_bigtelescope) (1)" model="16613" interior="0" dimension="0" name="delux object (30)" posX="-2410.09375" posY="-1635.2659912109" posZ="534.09729003906" rotX="0" rotY="0" rotZ="279.70950317383" />
+    <object id="object (cxrf_brigleg) (1)" model="3330" interior="0" dimension="0" name="delux object (33)" posX="-2193.4453125" posY="-1675.9501953125" posZ="480.30532836914" rotX="270.615234375" rotY="0" rotZ="280.38757324219" />
+    <object id="object (con_br1) (1)" model="11422" interior="0" dimension="0" name="delux object (34)" posX="-2244.4892578125" posY="-1685.0556640625" posZ="473.69122314453" rotX="0" rotY="176.93481445313" rotZ="11.25" />
+    <object id="object (des_ntfrescape2) (1)" model="11544" interior="0" dimension="0" name="delux object (35)" posX="-2305.733887" posY="-1723.246338" posZ="499.557831" rotX="0.0000" rotY="0.0000" rotZ="11.2500" />
+    <object id="object (lawestbridge_law) (1)" model="17002" interior="0" dimension="0" name="delux object (37)" posX="-2253.19921875" posY="-1688.8740234375" posZ="491.01983642578" rotX="0" rotY="0" rotZ="12.958374023438" />
+    <object id="object (cw_fueldrum03) (1)" model="17055" interior="0" dimension="0" name="delux object (38)" posX="-2355.1677246094" posY="-1671.2009277344" posZ="503.81674194336" rotX="0" rotY="0" rotZ="191.25" />
+    <object id="object (cxrf_floodlite_) (1)" model="3398" interior="0" dimension="0" name="delux object (39)" posX="-2258.024902" posY="-1703.410889" posZ="488.621063" rotX="0.0000" rotY="0.0000" rotZ="159.6143" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2263.130859375" posY="-1677.072265625" posZ="487.92910766602" rotX="0" rotY="0" rotZ="46.159057617188" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2531.8308105469" posY="-1571.8824462891" posZ="476.80828857422" rotX="0.85693359375" rotY="97.970581054688" rotZ="11.011138916016" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2365.3806152344" posY="-1773.8604736328" posZ="471.05606079102" rotX="358.38757324219" rotY="80.925537109375" rotZ="281.21759033203" />
+    <object id="object (lod_refthinchim1) (2)" model="3289" interior="0" dimension="0" name="delux object (44)" posX="-2290.298828125" posY="-1627.25390625" posZ="484.09713745117" rotX="359.13757324219" rotY="79.925537109375" rotZ="11.167602539063" />
+    <object id="object (lod_refinerybox1) (3)" model="3288" interior="0" dimension="0" name="delux object (45)" posX="-2264.092529" posY="-1648.699219" posZ="486.661987" rotX="0.8594" rotY="97.9758" rotZ="192.8231" />
+    <object id="object (lod_refthinchim1) (3)" model="3289" interior="0" dimension="0" name="delux object (46)" posX="-2284.700439" posY="-1656.163940" posZ="484.682312" rotX="359.1406" rotY="79.9276" rotZ="11.1727" />
+    <object id="object (lod_refthinchim1) (4)" model="3289" interior="0" dimension="0" name="delux object (47)" posX="-2286.329346" posY="-1650.423462" posZ="484.557159" rotX="359.1406" rotY="79.9276" rotZ="11.1727" />
+    <object id="object (bollardlight) (1)" model="1215" interior="0" dimension="0" name="delux object (49)" posX="-2191.7607421875" posY="-1676.0517578125" posZ="483.03234863281" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (bollardlight) (2)" model="1215" interior="0" dimension="0" name="delux object (50)" posX="-2208.909424" posY="-1679.238403" posZ="485.630981" rotX="0.0000" rotY="0.0000" rotZ="0.0000" />
+    <object id="object (bollardlight) (3)" model="1215" interior="0" dimension="0" name="delux object (51)" posX="-2223.665771" posY="-1682.263794" posZ="486.746399" rotX="0.0000" rotY="0.0000" rotZ="0.0000" />
+    <object id="object (bollardlight) (4)" model="1215" interior="0" dimension="0" name="delux object (52)" posX="-2238.333496" posY="-1685.443359" posZ="487.603027" rotX="0.0000" rotY="0.0000" rotZ="0.0000" />
+    <object id="object (bollardlight) (5)" model="1215" interior="0" dimension="0" name="delux object (53)" posX="-2255.997803" posY="-1688.989014" posZ="487.916809" rotX="0.0000" rotY="0.0000" rotZ="0.0000" />
+    <object id="object (MTraffic3) (1)" model="1263" interior="0" dimension="0" name="delux object (54)" posX="-2267.550537" posY="-1692.803711" posZ="494.569763" rotX="0.0000" rotY="0.0000" rotZ="11.2500" />
+    <object id="object (sf_rooflite) (1)" model="3877" interior="0" dimension="0" name="delux object (55)" posX="-2256.774902" posY="-1763.071411" posZ="494.719086" rotX="0.0000" rotY="0.0000" rotZ="11.2500" />
+    <object id="object (sf_roofmast) (2)" model="3876" interior="0" dimension="0" name="delux object (56)" posX="-2292.0183105469" posY="-1590.1331787109" posZ="464.32220458984" rotX="0" rotY="0" rotZ="275.77331542969" />
+    <object id="object (missile_04_SFXR) (1)" model="3795" interior="0" dimension="0" name="delux object (57)" posX="-2312.575439" posY="-1713.814331" posZ="486.993195" rotX="0.0000" rotY="1.7189" rotZ="225.0000" />
+    <object id="object (missile_07_SFXR) (1)" model="3794" interior="0" dimension="0" name="delux object (58)" posX="-2309.140625" posY="-1712.969360" posZ="487.286865" rotX="358.2811" rotY="359.1406" rotZ="326.2500" />
+    <object id="object (missile_06_SFXR) (1)" model="3793" interior="0" dimension="0" name="delux object (59)" posX="-2308.378662" posY="-1712.390381" posZ="487.434662" rotX="0.0000" rotY="0.0000" rotZ="327.9689" />
+    <object id="object (missile_03_SFXR) (1)" model="3788" interior="0" dimension="0" name="delux object (60)" posX="-2313.920166" posY="-1688.521484" posZ="487.855591" rotX="12.0321" rotY="353.1245" rotZ="45.0001" />
+    <object id="object (missile_04_SFXR) (2)" model="3795" interior="0" dimension="0" name="delux object (61)" posX="-2311.339355" posY="-1687.829468" posZ="487.634430" rotX="0.0000" rotY="10.3132" rotZ="258.7500" />
+    <object id="object (apfuel1_SFSe) (1)" model="10811" interior="0" dimension="0" name="delux object (64)" posX="-2342.903076" posY="-1595.944702" posZ="501.491333" rotX="0.0000" rotY="0.0000" rotZ="281.2500" />
+    <object id="object (vgssbighanger1) (1)" model="8240" interior="0" dimension="0" name="delux object (65)" posX="-2298.6787109375" posY="-1699.017578125" posZ="486.53308105469" rotX="0" rotY="0" rotZ="281.24450683594" />
+    <object id="object (sw_Silo04) (1)" model="12912" interior="0" dimension="0" name="delux object (66)" posX="-2281.2370605469" posY="-1715.9849853516" posZ="492.16751098633" rotX="0" rotY="0" rotZ="100.38757324219" />
+    <object id="object (vegasplant05) (3)" model="6930" interior="0" dimension="0" name="delux object (68)" posX="-2307.119873" posY="-1605.072632" posZ="500.418457" rotX="0.0000" rotY="0.0000" rotZ="11.2500" />
+    <object id="object (laxrf_refinerypipe) (1)" model="3675" interior="0" dimension="0" name="delux object (69)" posX="-2265.493896" posY="-1661.501221" posZ="492.707153" rotX="0.0000" rotY="0.0000" rotZ="101.1726" />
+    <object id="object (laxrf_refinerybase) (2)" model="3673" interior="0" dimension="0" name="delux object (70)" posX="-2414.0280761719" posY="-1782.5538330078" posZ="522.87609863281" rotX="0" rotY="0" rotZ="191.25" />
+    <object id="object (laxrf_refinerybase) (3)" model="3673" interior="0" dimension="0" name="delux object (71)" posX="-2306.111328" posY="-1752.423340" posZ="499.861786" rotX="0.0000" rotY="0.0000" rotZ="101.2500" />
+    <object id="object (cxrf_oiltank) (1)" model="3287" interior="0" dimension="0" name="delux object (72)" posX="-2287.133057" posY="-1752.813232" posZ="500.885773" rotX="0.0000" rotY="0.0000" rotZ="280.3906" />
+    <object id="object (cxrf_oiltank) (2)" model="3287" interior="0" dimension="0" name="delux object (73)" posX="-2278.449463" posY="-1751.180542" posZ="500.874329" rotX="0.0000" rotY="0.0000" rotZ="279.5312" />
+    <object id="object (substa_transf2_) (1)" model="3273" interior="0" dimension="0" name="delux object (74)" posX="-2296.7490234375" posY="-1619.443359375" posZ="502.99230957031" rotX="0" rotY="0" rotZ="281.24450683594" />
+    <object id="object (refcondens1) (3)" model="3259" interior="0" dimension="0" name="delux object (75)" posX="-2264.830322" posY="-1677.640991" posZ="487.145142" rotX="18.9076" rotY="90.2409" rotZ="102.9689" />
+    <object id="object (refcondens1) (4)" model="3259" interior="0" dimension="0" name="delux object (76)" posX="-2272.405029" posY="-1643.149292" posZ="487.145142" rotX="0.0000" rotY="90.2409" rotZ="102.9689" />
+    <object id="object (CJ_aircon2) (2)" model="2649" interior="0" dimension="0" name="delux object (78)" posX="-2313.052490" posY="-1686.345215" posZ="499.302155" rotX="0.0000" rotY="0.0000" rotZ="281.2500" />
+    <object id="object (gen_roofbit3) (1)" model="1689" interior="0" dimension="0" name="delux object (79)" posX="-2392.0424804688" posY="-1514.4658203125" posZ="534.78839111328" rotX="0" rotY="0" rotZ="11.984130859375" />
+    <object id="object (gen_roofbit3) (2)" model="1689" interior="0" dimension="0" name="delux object (80)" posX="-2323.9025878906" posY="-1655.4291992188" posZ="512.29315185547" rotX="0" rotY="0" rotZ="191.25" />
+    <object id="object (des_bigoilpipe01) (1)" model="16086" interior="0" dimension="0" name="delux object (81)" posX="-2342.697265625" posY="-1674.2041015625" posZ="501.44760131836" rotX="0" rotY="0" rotZ="11.25" />
+    <object id="object (des_ntfrescape2) (3)" model="11544" interior="0" dimension="0" name="delux object (83)" posX="-2326.1628417969" posY="-1724.6560058594" posZ="502.37725830078" rotX="0" rotY="0" rotZ="281.24450683594" />
+    <object id="object (des_oilpipe_05) (2)" model="16532" interior="0" dimension="0" name="delux object (85)" posX="-2286.169678" posY="-1620.998413" posZ="502.172943" rotX="0.0000" rotY="0.0000" rotZ="281.2500" />
+    <object id="object (sf_rooflite) (2)" model="3877" interior="0" dimension="0" name="delux object (86)" posX="-2323.9208984375" posY="-1637.544921875" posZ="516.61743164063" rotX="0" rotY="0" rotZ="11.25" />
+    <object id="object (sf_rooflite) (3)" model="3877" interior="0" dimension="0" name="delux object (87)" posX="-2349.1726074219" posY="-1549.4327392578" posZ="504.00497436523" rotX="0" rotY="0" rotZ="11.25" />
+    <object id="object (sf_rooflite) (4)" model="3877" interior="0" dimension="0" name="delux object (88)" posX="-2362.139893" posY="-1607.292603" posZ="516.607666" rotX="0.0000" rotY="0.0000" rotZ="11.2500" />
+    <object id="object (sf_rooflite) (5)" model="3877" interior="0" dimension="0" name="delux object (89)" posX="-2354.919922" posY="-1642.329224" posZ="516.685547" rotX="0.0000" rotY="0.0000" rotZ="11.2500" />
+    <object id="object (shamheliprt1) (1)" model="6973" interior="0" dimension="0" name="delux object (90)" posX="-2299.3408203125" posY="-1743.580078125" posZ="497.40893554688" rotX="0" rotY="0" rotZ="280.38757324219" />
+    <object id="object (cos_sbanksteps02) (2)" model="12839" interior="0" dimension="0" name="delux object (91)" posX="-2264.836914" posY="-1666.003662" posZ="493.660522" rotX="0.0000" rotY="0.0000" rotZ="192.1094" />
+    <object id="object (cos_sbanksteps02) (3)" model="12839" interior="0" dimension="0" name="delux object (92)" posX="-2268.375488" posY="-1659.071045" posZ="497.560699" rotX="0.0000" rotY="0.0000" rotZ="191.2500" />
+    <object id="object (des_ntfrescape2) (4)" model="11544" interior="0" dimension="0" name="delux object (93)" posX="-2264.810059" posY="-1669.028442" posZ="489.143951" rotX="0.0000" rotY="0.0000" rotZ="11.8682" />
+    <object id="object (missile_02_SFXR) (1)" model="3787" interior="0" dimension="0" name="delux object (96)" posX="-2295.742920" posY="-1727.364380" posZ="502.917847" rotX="0.0000" rotY="0.0000" rotZ="247.5000" />
+    <object id="object (missile_03_SFXR) (2)" model="3788" interior="0" dimension="0" name="delux object (97)" posX="-2292.499268" posY="-1726.502930" posZ="502.795990" rotX="0.0000" rotY="0.0000" rotZ="0.0000" />
+    <object id="object (des_ntfrescape2) (5)" model="11544" interior="0" dimension="0" name="delux object (98)" posX="-2322.764404" posY="-1654.975708" posZ="499.222229" rotX="0.0000" rotY="0.0000" rotZ="11.8682" />
+    <object id="object (imcmptrkdrr_LAS) (1)" model="1967" interior="0" dimension="0" name="delux object (99)" posX="-2321.201172" posY="-1658.768188" posZ="501.731293" rotX="0.0000" rotY="0.0000" rotZ="281.2500" />
+    <object id="object (drydock1_SFSe) (1)" model="10828" interior="0" dimension="0" name="delux object (100)" posX="-2257.5014648438" posY="-1726.4598388672" posZ="490.84844970703" rotX="0" rotY="0" rotZ="88.98193359375" />
+    <object id="object (DYN_GARAGE_DOOR) (1)" model="1508" interior="0" dimension="0" name="delux object (101)" posX="-2332.2509765625" posY="-1702.193359375" posZ="487.87881469727" rotX="0" rotY="0" rotZ="191.25" />
+    <object id="object (sf_rooflite) (6)" model="3877" interior="0" dimension="0" name="delux object (102)" posX="-2333.656250" posY="-1702.509766" posZ="490.234039" rotX="0.8594" rotY="90.2409" rotZ="12.9689" />
+    <object id="object (subbunker_ext_SFSe) (6)" model="10827" interior="0" dimension="0" name="delux object (17)" posX="-2340.0703125" posY="-1668.5393066406" posZ="450.79092407227" rotX="0" rotY="0" rotZ="101.865234375" />
+    <object id="object (subbunker_ext_SFSe) (12)" model="10827" interior="0" dimension="0" name="delux object (17)" posX="-2304.1188964844" posY="-1700.6278076172" posZ="461.14096069336" rotX="0" rotY="0" rotZ="9.2994384765625" />
+    <object id="object (subbunker_ext_SFSe) (13)" model="10827" interior="0" dimension="0" name="delux object (17)" posX="-2372.9897460938" posY="-1715.7249755859" posZ="443.98104858398" rotX="0" rotY="0" rotZ="9.29443359375" />
+    <object id="object (drydock1_SFSe) (2)" model="10828" interior="0" dimension="0" name="delux object (100)" posX="-2298.3093261719" posY="-1634.9603271484" posZ="504.67428588867" rotX="0" rotY="0" rotZ="101.19927978516" />
+    <object id="object (subbunker_ext_SFSe) (14)" model="10827" interior="0" dimension="0" name="delux object (2)" posX="-2333.2309570313" posY="-1714.5036621094" posZ="463.23483276367" rotX="0" rotY="0" rotZ="282.72766113281" />
+    <object id="object (subbunker_ext_SFSe) (15)" model="10827" interior="0" dimension="0" name="delux object (2)" posX="-2333.0170898438" posY="-1715.3166503906" posZ="448.53482055664" rotX="0" rotY="0" rotZ="282.72766113281" />
+    <object id="object (subbunker_ext_SFSe) (16)" model="10827" interior="0" dimension="0" name="delux object (17)" posX="-2311.2548828125" posY="-1701.9084472656" posZ="419.79092407227" rotX="0" rotY="0" rotZ="9.29443359375" />
+    <object id="object (drydock1_SFSe) (3)" model="10828" interior="0" dimension="0" name="delux object (100)" posX="-2334.1779785156" posY="-1778.7294921875" posZ="488.37350463867" rotX="0" rotY="0" rotZ="12.604248046875" />
+    <object id="object (drydock1_SFSe) (6)" model="10828" interior="0" dimension="0" name="delux object (100)" posX="-2277.43359375" posY="-1766.6748046875" posZ="488.37350463867" rotX="0" rotY="0" rotZ="11.854248046875" />
+    <object id="object (drydock1_SFSe) (7)" model="10828" interior="0" dimension="0" name="delux object (100)" posX="-2257.80078125" posY="-1736.9586181641" posZ="490.84844970703" rotX="0" rotY="0" rotZ="90.228271484375" />
+    <object id="object (drydock1_SFSe) (8)" model="10828" interior="0" dimension="0" name="delux object (100)" posX="-2306.8916015625" posY="-1772.908203125" posZ="488.37350463867" rotX="0" rotY="0" rotZ="11.854248046875" />
+    <object id="object (drydock1_SFSe) (11)" model="10828" interior="0" dimension="0" name="delux object (100)" posX="-2312.2294921875" posY="-1655.5616455078" posZ="504.69927978516" rotX="0" rotY="0" rotZ="11.190063476563" />
+    <object id="object (drydock1_SFSe) (12)" model="10828" interior="0" dimension="0" name="delux object (100)" posX="-2346.8999023438" posY="-1662.4138183594" posZ="504.69927978516" rotX="0" rotY="0" rotZ="11.189575195313" />
+    <object id="object (drydock1_SFSe) (13)" model="10828" interior="0" dimension="0" name="delux object (100)" posX="-2375.32421875" posY="-1668.1196289063" posZ="504.69927978516" rotX="0" rotY="0" rotZ="11.189575195313" />
+    <object id="object (des_ntfrescape2) (8)" model="11544" interior="0" dimension="0" name="delux object (83)" posX="-2355.3408203125" posY="-1768.501953125" posZ="499.24633789063" rotX="0" rotY="0" rotZ="11.661987304688" />
+    <object id="object (des_ntfrescape2) (9)" model="11544" interior="0" dimension="0" name="delux object (83)" posX="-2354.7570800781" posY="-1771.4018554688" posZ="499.24633789063" rotX="0" rotY="0" rotZ="191.90196228027" />
+    <object id="object (subbunker_ext_SFSe) (18)" model="10827" interior="0" dimension="0" name="delux object (2)" posX="-2328.8168945313" posY="-1708.5388183594" posZ="468.25982666016" rotX="0" rotY="0" rotZ="282.72766113281" />
+    <object id="object (sf_rooflite) (7)" model="3877" interior="0" dimension="0" name="delux object (86)" posX="-2325.2329101563" posY="-1716.28125" posZ="499.30163574219" rotX="0" rotY="179.30993652344" rotZ="11.25" />
+    <object id="object (sf_rooflite) (8)" model="3877" interior="0" dimension="0" name="delux object (86)" posX="-2330.0646972656" posY="-1691.8488769531" posZ="499.22665405273" rotX="0" rotY="179.30786132813" rotZ="11.25" />
+    <object id="object (substa_transf2_) (2)" model="3273" interior="0" dimension="0" name="delux object (74)" posX="-2297.978515625" posY="-1613.8251953125" posZ="502.99230957031" rotX="0" rotY="0" rotZ="281.24450683594" />
+    <object id="object (substa_transf2_) (3)" model="3273" interior="0" dimension="0" name="delux object (74)" posX="-2299.259765625" posY="-1607.5009765625" posZ="502.99230957031" rotX="0" rotY="0" rotZ="281.24450683594" />
+    <object id="object (substa_transf2_) (4)" model="3273" interior="0" dimension="0" name="delux object (74)" posX="-2300.681640625" posY="-1601.0029296875" posZ="502.99230957031" rotX="0" rotY="0" rotZ="281.24450683594" />
+    <marker id="marker (corona) (2)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2298.1408691406" posY="-1613.9545898438" posZ="507.31118774414" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (3)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2299.4125976563" posY="-1607.4899902344" posZ="507.31118774414" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (4)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2386.48046875" posY="-1538.7298583984" posZ="548.86627197266" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2409.1635742188" posY="-1761.7272949219" posZ="584.60131835938" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (15)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2196.7102050781" posY="-1666.0939941406" posZ="480.51202392578" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (16)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2215.1899414063" posY="-1668.5535888672" posZ="480.51202392578" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (17)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2234.0339355469" posY="-1671.1853027344" posZ="480.51202392578" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (18)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2250.9580078125" posY="-1673.2225341797" posZ="480.51202392578" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (19)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2194.8022460938" posY="-1686.5948486328" posZ="480.51202392578" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (20)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2212.4240722656" posY="-1690.7379150391" posZ="480.51202392578" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (21)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2230.1076660156" posY="-1694.9460449219" posZ="480.51202392578" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cunt_rockgp2_21) (4)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2293.0952148438" posY="-1788.7125244141" posZ="436.44610595703" rotX="0" rotY="0" rotZ="349.21057128906" />
+    <object id="object (cunt_rockgp2_21) (4)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2328.609375" posY="-1799.6396484375" posZ="433.94610595703" rotX="0" rotY="0" rotZ="293.62609863281" />
+    <object id="object (cos_sbanksteps03) (1)" model="12950" interior="0" dimension="0" posX="-2345.7719726563" posY="-1668.6279296875" posZ="504.00128173828" rotX="0" rotY="0" rotZ="10" />
+    <object id="object (subbunker_ext_SFSe) (15)" model="10827" interior="0" dimension="0" name="delux object (2)" posX="-2350.5859375" posY="-1731.6025390625" posZ="445.78482055664" rotX="0" rotY="0" rotZ="280.46997070313" />
+    <object id="object (subbunker_ext_SFSe) (15)" model="10827" interior="0" dimension="0" name="delux object (2)" posX="-2369.703125" posY="-1665.4853515625" posZ="458.53482055664" rotX="0" rotY="0" rotZ="283.96911621094" />
+    <object id="object (subbunker_ext_SFSe) (15)" model="10827" interior="0" dimension="0" name="delux object (2)" posX="-2373.6474609375" posY="-1667.97265625" posZ="429.83474731445" rotX="0" rotY="0" rotZ="283.96911621094" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2401.7055664063" posY="-1807.7349853516" posZ="414.78009033203" rotX="0" rotY="31.460815429688" rotZ="356.9794921875" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2410.4475097656" posY="-1794.5308837891" posZ="414.78009033203" rotX="0" rotY="31.459350585938" rotZ="249.41394042969" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2348.0515136719" posY="-1662.0491943359" posZ="500.22216796875" rotX="0" rotY="0" rotZ="10.1572265625" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2331.1059570313" posY="-1658.6911621094" posZ="500.22216796875" rotX="0" rotY="0" rotZ="10.156860351563" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2314.6057128906" posY="-1655.3171386719" posZ="500.22216796875" rotX="0" rotY="0" rotZ="10.156860351563" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2366.947265625" posY="-1665.7802734375" posZ="500.22216796875" rotX="0" rotY="0" rotZ="10.156860351563" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2382.7404785156" posY="-1676.8044433594" posZ="500.22216796875" rotX="0" rotY="0" rotZ="105.23193359375" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2295.7668457031" posY="-1651.6036376953" posZ="500.22216796875" rotX="0" rotY="0" rotZ="55.65185546875" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2258.0004882813" posY="-1721.8685302734" posZ="487.68939208984" rotX="13.25" rotY="0" rotZ="89.629028320313" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2302.625" posY="-1616.9566650391" posZ="500.22216796875" rotX="0" rotY="0" rotZ="101.62902832031" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2306.2993164063" posY="-1598.5686035156" posZ="500.22216796875" rotX="0" rotY="0" rotZ="101.62902832031" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2309.4375" posY="-1582.775390625" posZ="500.22216796875" rotX="0" rotY="0" rotZ="101.62902832031" />
+    <marker id="marker (corona) (8)" type="corona" color="#068D00FF" size="1" interior="0" dimension="0" posX="-2267.7553710938" posY="-1692.4503173828" posZ="494.04431152344" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (14)" type="corona" color="#068D00FF" size="1" interior="0" dimension="0" posX="-2267.619140625" posY="-1693.2147216797" posZ="494.04431152344" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (crackfacttanks2_SFS) (1)" model="11089" interior="0" dimension="0" posX="-2320.865234375" posY="-1733.9560546875" posZ="500.97930908203" rotX="0" rotY="0" rotZ="102.3046875" />
+    <object id="object (hc_stadlight1_SFS) (1)" model="10397" interior="0" dimension="0" posX="-2301.2553710938" posY="-1741.4593505859" posZ="501.05990600586" rotX="0" rotY="0" rotZ="6.5" />
+    <object id="object (barrel4) (1)" model="1225" interior="0" dimension="0" posX="-2342.4658203125" posY="-1719.8890380859" posZ="499.46954345703" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (barrel4) (2)" model="1225" interior="0" dimension="0" posX="-2343.4836425781" posY="-1720.3211669922" posZ="499.46954345703" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (WS_floodbeams) (1)" model="3872" interior="0" dimension="0" posX="-2258.1806640625" posY="-1681.6993408203" posZ="493.50094604492" rotX="0" rotY="0" rotZ="137.23498535156" />
+    <object id="object (WS_floodbeams) (2)" model="3872" interior="0" dimension="0" posX="-2255.396484375" posY="-1697.3779296875" posZ="494.47595214844" rotX="0" rotY="0" rotZ="248.74145507813" />
+    <object id="object (WS_floodbeams) (4)" model="3872" interior="0" dimension="0" posX="-2371.7175292969" posY="-1564.1408691406" posZ="512.22802734375" rotX="0.9942626953125" rotY="4.229736328125" rotZ="195.88647460938" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2443.173828125" posY="-1568.3366699219" posZ="540.96380615234" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2181.5205078125" posY="-1683.095703125" posZ="480.52493286133" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2392.91015625" posY="-1680.498046875" posZ="511.44104003906" rotX="0" rotY="0" rotZ="191.25" />
+    <object id="object (subbunker_ext_SFSe) (15)" model="10827" interior="0" dimension="0" name="delux object (2)" posX="-2376.2727050781" posY="-1642.2464599609" posZ="487.04495239258" rotX="0" rotY="0" rotZ="281.21911621094" />
+    <object id="object (subbunker_ext_SFSe) (15)" model="10827" interior="0" dimension="0" name="delux object (2)" posX="-2357.48046875" posY="-1710.654296875" posZ="486.22494506836" rotX="0" rotY="0" rotZ="282.22229003906" />
+    <object id="object (des_pipestrut01) (1)" model="16088" interior="0" dimension="0" name="delux object (28)" posX="-2340.2854003906" posY="-1713.7386474609" posZ="499.66738891602" rotX="0" rotY="0" rotZ="281.24450683594" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2367.373046875" posY="-1658.9056396484" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2368.4750976563" posY="-1653.4880371094" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2369.3332519531" posY="-1649.015625" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2370.7150878906" posY="-1642.3033447266" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2371.8420410156" posY="-1636.6853027344" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2372.7866210938" posY="-1631.7233886719" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2374.1374511719" posY="-1624.9256591797" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2375.3332519531" posY="-1619.1186523438" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2376.2609863281" posY="-1614.2272949219" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2377.6171875" posY="-1607.53125" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2378.7924804688" posY="-1601.5930175781" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2379.9631347656" posY="-1595.7822265625" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (des_a51guardbox02) (24)" model="16095" interior="0" dimension="0" posX="-2380.7878417969" posY="-1591.6857910156" posZ="529.36651611328" rotX="0" rotY="0" rotZ="281.27746582031" />
+    <object id="object (CARRIER_Bits_SFSe) (1)" model="11237" interior="0" dimension="0" name="delux object (3)" posX="-2261.0771484375" posY="-1692.2587890625" posZ="488.93435668945" rotX="0" rotY="0" rotZ="281.07971191406" />
+    <object id="object (CE_radarmast3) (1)" model="3763" interior="0" dimension="0" posX="-2409.2177734375" posY="-1761.7841796875" posZ="555.61212158203" rotX="0" rotY="0" rotZ="280.51940917969" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2296.751953125" posY="-1619.4716796875" posZ="507.31118774414" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2409.1635742188" posY="-1761.7272949219" posZ="584.60131835938" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (des_bycontowr) (1)" model="16327" interior="0" dimension="0" posX="-2528.6799316406" posY="-1690.3061523438" posZ="399.54644775391" rotX="0" rotY="0" rotZ="17" />
+    <object id="object (satdishsml) (1)" model="1596" interior="0" dimension="0" posX="-2282.322265625" posY="-1660.9296875" posZ="532.11242675781" rotX="0" rotY="0" rotZ="113.84033203125" />
+    <object id="object (satdishbig) (1)" model="1595" interior="0" dimension="0" posX="-2258.2468261719" posY="-1748.0090332031" posZ="503.09735107422" rotX="0" rotY="0" rotZ="66.170654296875" />
+    <object id="object (courthse_vgn) (1)" model="6871" interior="0" dimension="0" posX="-2344.8022460938" posY="-1635.2209472656" posZ="471.18063354492" rotX="180.57495117188" rotY="0" rotZ="281.17999267578" />
+    <object id="object (courthse_vgn) (2)" model="6871" interior="0" dimension="0" posX="-2382.576171875" posY="-1763.28125" posZ="446.00695800781" rotX="180.5712890625" rotY="0" rotZ="282.17834472656" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2183.65625" posY="-1674.236328125" posZ="480.44995117188" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (vgssbighanger1) (1)" model="8240" interior="0" dimension="0" name="delux object (65)" posX="-2418.5620117188" posY="-1555.1293945313" posZ="478.92083740234" rotX="0" rotY="0" rotZ="12.624755859375" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2398.56640625" posY="-1607.0919189453" posZ="453.05581665039" rotX="0" rotY="0" rotZ="191.32495117188" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2400.578125" posY="-1645.6998291016" posZ="499.34100341797" rotX="0" rotY="0" rotZ="191.25" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2330.255859375" posY="-1578.2379150391" posZ="456.05084228516" rotX="0" rotY="0" rotZ="191.25" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2456.9306640625" posY="-1616.990234375" posZ="465.69595336914" rotX="0" rotY="0" rotZ="190.56884765625" />
+    <object id="object (airprtgnd_02_SFSe) (1)" model="10815" interior="0" dimension="0" name="delux object (21)" posX="-2416.5014648438" posY="-1581.0877685547" posZ="469.44512939453" rotX="0.85693359375" rotY="1.7083740234375" rotZ="325.18664550781" />
+    <object id="object (lawestbridge_law) (1)" model="17002" interior="0" dimension="0" name="delux object (37)" posX="-2426.216796875" posY="-1528.18359375" posZ="481.37100219727" rotX="0" rotY="0" rotZ="280.82153320313" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2401.0576171875" posY="-1604.6123046875" posZ="509.98114013672" rotX="0" rotY="0" rotZ="191.9970703125" />
+    <object id="object (cxrf_brigleg) (1)" model="3330" interior="0" dimension="0" name="delux object (33)" posX="-2436.4670410156" posY="-1469.8225097656" posZ="470.19354248047" rotX="270.615234375" rotY="0" rotZ="9.262451171875" />
+    <object id="object (con_br1) (1)" model="11422" interior="0" dimension="0" name="delux object (34)" posX="-2427.0185546875" posY="-1524.2741699219" posZ="463.21026611328" rotX="0" rotY="176.93481445313" rotZ="99.654968261719" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2429.1518554688" posY="-1458.1807861328" posZ="470.1962890625" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2447" posY="-1462.2922363281" posZ="470.1962890625" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2437.9343261719" posY="-1460.9776611328" posZ="470.1962890625" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (satdishbig) (1)" model="1595" interior="0" dimension="0" posX="-2535.5424804688" posY="-1544.2940673828" posZ="493.21481323242" rotX="0" rotY="0" rotZ="239.36614990234" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2447.2844238281" posY="-1474.2116699219" posZ="470.46655273438" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2446.1728515625" posY="-1489.9123535156" posZ="470.46655273438" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2444.8854980469" posY="-1508.1069335938" posZ="470.46655273438" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2443.9025878906" posY="-1521.9921875" posZ="470.46655273438" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2424.8430175781" posY="-1470.5906982422" posZ="470.5078125" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2421.1711425781" posY="-1486.1610107422" posZ="470.5078125" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2417.3583984375" posY="-1502.3316650391" posZ="470.5078125" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2436.541015625" posY="-1468.9436035156" posZ="472.64678955078" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2434.0539550781" posY="-1483.9925537109" posZ="475.17190551758" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2430.23828125" posY="-1502.5942382813" posZ="476.57205200195" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2427.1218261719" posY="-1521.4406738281" posZ="477.47207641602" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2425.3640136719" posY="-1634.9320068359" posZ="443.60586547852" rotX="0" rotY="0" rotZ="284.31396484375" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2444.4653320313" posY="-1572.1088867188" posZ="443.60586547852" rotX="0" rotY="358.01501464844" rotZ="273.61465454102" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2462.6435546875" posY="-1589.6181640625" posZ="409.74569702148" rotX="0" rotY="358.01147460938" rotZ="184.48791503906" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2455.7766113281" posY="-1597.0390625" posZ="409.74569702148" rotX="0" rotY="358.01147460938" rotZ="270.85778808594" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2495.4052734375" posY="-1697.0947265625" posZ="412.31015014648" rotX="0" rotY="36.710815429688" rotZ="236.48071289063" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2508.1264648438" posY="-1670.78125" posZ="406.31015014648" rotX="0" rotY="36.710815429688" rotZ="243.46569824219" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2533.3295898438" posY="-1568.3243408203" posZ="404.91018676758" rotX="0" rotY="36.710815429688" rotZ="243.46252441406" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2456.5361328125" posY="-1617.296875" posZ="453.09591674805" rotX="0" rotY="0" rotZ="190.56884765625" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2464.2072753906" posY="-1583.6070556641" posZ="386.21566772461" rotX="0" rotY="358.01147460938" rotZ="184.48791503906" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2338.5124511719" posY="-1565.6877441406" posZ="410.59573364258" rotX="0" rotY="358.01147460938" rotZ="184.48791503906" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2337.7751464844" posY="-1582.2554931641" posZ="416.720703125" rotX="0" rotY="358.01147460938" rotZ="98.852905273438" />
+    <object id="object (DYN_GARAGE_DOOR) (1)" model="1508" interior="0" dimension="0" name="delux object (101)" posX="-2481.6142578125" posY="-1498.1240234375" posZ="392.44119262695" rotX="0" rotY="0" rotZ="274.39453125" />
+    <object id="object (kmb_cam) (1)" model="2921" interior="0" dimension="0" posX="-2432.5891113281" posY="-1793.3599853516" posZ="415.70547485352" rotX="0" rotY="0" rotZ="43.065826416016" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2304.736328125" posY="-1523.2861328125" posZ="401.97259521484" rotX="0" rotY="36.710815429688" rotZ="107.08923339844" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2270.1201171875" posY="-1513.7534179688" posZ="390.72259521484" rotX="0" rotY="36.710815429688" rotZ="45.559692382813" />
+    <object id="object (sf_roofmast) (2)" model="3876" interior="0" dimension="0" name="delux object (56)" posX="-2486.8225097656" posY="-1563.9462890625" posZ="476.91891479492" rotX="0" rotY="0" rotZ="275.77331542969" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2441.6550292969" posY="-1524.4011230469" posZ="477.85952758789" rotX="11.910003662109" rotY="0" rotZ="159.27185058594" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2413.5551757813" posY="-1520.0634765625" posZ="477.85952758789" rotX="11.9091796875" rotY="0" rotZ="220.80383300781" />
+    <object id="object (WS_floodbeams) (2)" model="3872" interior="0" dimension="0" posX="-2438.3122558594" posY="-1516.3775634766" posZ="483.28179931641" rotX="0" rotY="0" rotZ="248.74145507813" />
+    <object id="object (WS_floodbeams) (2)" model="3872" interior="0" dimension="0" posX="-2419.126953125" posY="-1513.3754882813" posZ="483.28179931641" rotX="0" rotY="0" rotZ="314.24597167969" />
+    <object id="object (shamheliprt1) (1)" model="6973" interior="0" dimension="0" name="delux object (90)" posX="-2373.8544921875" posY="-1569.421875" posZ="500.3215637207" rotX="0" rotY="0" rotZ="280.38757324219" />
+    <object id="object (CARRIER_Bits_SFSe) (1)" model="11237" interior="0" dimension="0" name="delux object (3)" posX="-2390.0239257813" posY="-1502.9245605469" posZ="476.63076782227" rotX="0" rotY="0" rotZ="188.4697265625" />
+    <object id="object (des_oilfieldpipe01) (1)" model="16087" interior="0" dimension="0" posX="-2422.396484375" posY="-1502.1533203125" posZ="428.09283447266" rotX="0" rotY="0" rotZ="9.920654296875" />
+    <object id="object (elecstionv_SFS) (1)" model="10675" interior="0" dimension="0" posX="-2397.6352539063" posY="-1774.5805664063" posZ="512.21118164063" rotX="0" rotY="0" rotZ="16.864990234375" />
+    <object id="object (vegasplant05) (1)" model="6930" interior="0" dimension="0" posX="-2381.119140625" posY="-1749.1220703125" posZ="518.08239746094" rotX="0" rotY="0" rotZ="11.25" />
+    <object id="object (gen_roofbit2) (1)" model="1688" interior="0" dimension="0" posX="-2367.2001953125" posY="-1497.0439453125" posZ="480.49508666992" rotX="0" rotY="0" rotZ="8.7451171875" />
+    <object id="object (gen_roofbit1) (1)" model="1687" interior="0" dimension="0" posX="-2366.4931640625" posY="-1502.0244140625" posZ="479.51620483398" rotX="0" rotY="0" rotZ="9.99755859375" />
+    <object id="object (gen_roofbit1) (2)" model="1687" interior="0" dimension="0" posX="-2365.8540039063" posY="-1501.9016113281" posZ="479.4912109375" rotX="0" rotY="0" rotZ="9.99755859375" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2405.9694824219" posY="-1547.1413574219" posZ="544.38739013672" rotX="0.85693359375" rotY="97.970581054688" rotZ="214.74670410156" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2396.6540527344" posY="-1540.7069091797" posZ="545.86236572266" rotX="0.85693359375" rotY="97.970581054688" rotZ="214.74426269531" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2387.1955566406" posY="-1534.16015625" posZ="547.41314697266" rotX="0.85693359375" rotY="97.970581054688" rotZ="214.74426269531" />
+    <object id="object (lod_refthinchim1) (2)" model="3289" interior="0" dimension="0" name="delux object (44)" posX="-2390.1469726563" posY="-1534.3540039063" posZ="547.44061279297" rotX="2.571044921875" rotY="81.175537109375" rotZ="34.707611083984" />
+    <object id="object (lod_refthinchim1) (2)" model="3289" interior="0" dimension="0" name="delux object (44)" posX="-2388.7736816406" posY="-1536.1373291016" posZ="547.34051513672" rotX="2.57080078125" rotY="81.172485351563" rotZ="34.705810546875" />
+    <object id="object (lod_refthinchim1) (2)" model="3289" interior="0" dimension="0" name="delux object (44)" posX="-2387.423828125" posY="-1537.9047851563" posZ="548.24139404297" rotX="2.57080078125" rotY="81.172485351563" rotZ="34.705810546875" />
+    <object id="object (lod_refthinchim1) (2)" model="3289" interior="0" dimension="0" name="delux object (44)" posX="-2391.2863769531" posY="-1532.6442871094" posZ="548.24139404297" rotX="2.57080078125" rotY="81.172485351563" rotZ="34.705810546875" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2416.3432617188" posY="-1554.0264892578" posZ="544.38739013672" rotX="1.0619201660156" rotY="155.76062011719" rotZ="212.74426269531" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2415.4936523438" posY="-1558.9592285156" posZ="544.38739013672" rotX="3.6515197753906" rotY="180.05364990234" rotZ="124.01425170898" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2414.7270507813" posY="-1553.2563476563" posZ="542.93695068359" rotX="0.85693359375" rotY="97.970581054688" rotZ="214.74426269531" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2422.0622558594" posY="-1558.2895507813" posZ="541.66168212891" rotX="0.85693359375" rotY="95.970581054688" rotZ="214.74426269531" />
+    <object id="object (refcondens1) (1)" model="3259" interior="0" dimension="0" name="delux object (12)" posX="-2407.298828125" posY="-1555.3981933594" posZ="543.41711425781" rotX="259.44909667969" rotY="188.06494140625" rotZ="130.31042480469" />
+    <object id="object (refcondens1) (1)" model="3259" interior="0" dimension="0" name="delux object (12)" posX="-2422.6735839844" posY="-1565.5142822266" posZ="540.01745605469" rotX="259.44763183594" rotY="188.06396484375" rotZ="130.30883789063" />
+    <object id="object (refcondens1) (1)" model="3259" interior="0" dimension="0" name="delux object (12)" posX="-2434.0986328125" posY="-1572.8891601563" posZ="537.44213867188" rotX="259.44763183594" rotY="188.06396484375" rotZ="130.30883789063" />
+    <object id="object (refcondens1) (1)" model="3259" interior="0" dimension="0" name="delux object (12)" posX="-2414.2199707031" posY="-1545.4056396484" posZ="542.81823730469" rotX="100.37762451172" rotY="190.78393554688" rotZ="295.53393554688" />
+    <object id="object (refcondens1) (1)" model="3259" interior="0" dimension="0" name="delux object (12)" posX="-2428.2053222656" posY="-1555.6700439453" posZ="539.74267578125" rotX="100.37658691406" rotY="190.78308105469" rotZ="295.5322265625" />
+    <object id="object (refcondens1) (1)" model="3259" interior="0" dimension="0" name="delux object (12)" posX="-2439.5961914063" posY="-1563.5515136719" posZ="537.36633300781" rotX="100.37658691406" rotY="190.78308105469" rotZ="295.5322265625" />
+    <object id="object (refcondens1) (1)" model="3259" interior="0" dimension="0" name="delux object (12)" posX="-2437.3498535156" posY="-1567.3897705078" posZ="537.66662597656" rotX="100.37658691406" rotY="190.78308105469" rotZ="295.5322265625" />
+    <object id="object (refinerybox1) (1)" model="3257" interior="0" dimension="0" posX="-2407.5581054688" posY="-1549.1951904297" posZ="546.22375488281" rotX="0" rotY="78.744995117188" rotZ="36.774993896484" />
+    <object id="object (lod_refthinchim1) (2)" model="3289" interior="0" dimension="0" name="delux object (44)" posX="-2393.1813964844" posY="-1546.0845947266" posZ="551.24139404297" rotX="2.57080078125" rotY="81.172485351563" rotZ="36.705810546875" />
+    <object id="object (lod_refthinchim1) (2)" model="3289" interior="0" dimension="0" name="delux object (44)" posX="-2401.2692871094" posY="-1536.7864990234" posZ="551.04119873047" rotX="2.57080078125" rotY="81.1669921875" rotZ="35.705322265625" />
+    <object id="object (refinerybox1) (3)" model="3257" interior="0" dimension="0" posX="-2416.9365234375" posY="-1556.107421875" posZ="544.31365966797" rotX="0" rotY="81.149749755859" rotZ="36.271240234375" />
+    <object id="object (refinerybox1) (4)" model="3257" interior="0" dimension="0" posX="-2426.576171875" posY="-1562.919921875" posZ="542.71307373047" rotX="0" rotY="81.14501953125" rotZ="35.760498046875" />
+    <object id="object (refinerybox1) (5)" model="3257" interior="0" dimension="0" posX="-2436.193359375" posY="-1569.7890625" posZ="540.81243896484" rotX="0" rotY="81.14501953125" rotZ="35.755004882813" />
+    <object id="object (lod_refthinchim1) (2)" model="3289" interior="0" dimension="0" name="delux object (44)" posX="-2393.6962890625" posY="-1538.8767089844" posZ="551.04119873047" rotX="358.82080078125" rotY="81.1669921875" rotZ="35.955322265625" />
+    <object id="object (lod_refthinchim1) (2)" model="3289" interior="0" dimension="0" name="delux object (44)" posX="-2395.9409179688" posY="-1547.3732910156" posZ="542.74139404297" rotX="2.57080078125" rotY="81.172485351563" rotZ="34.705810546875" />
+    <object id="object (lod_refthinchim1) (2)" model="3289" interior="0" dimension="0" name="delux object (44)" posX="-2401.5444335938" posY="-1537.3273925781" posZ="542.74139404297" rotX="2.57080078125" rotY="81.172485351563" rotZ="34.705810546875" />
+    <object id="object (refthinchim1) (1)" model="3258" interior="0" dimension="0" posX="-2381.6398925781" posY="-1530.2163085938" posZ="551.45166015625" rotX="277.43225097656" rotY="0" rotZ="306.35925292969" />
+    <object id="object (refthinchim1) (2)" model="3258" interior="0" dimension="0" posX="-2392.4123535156" posY="-1539.07421875" posZ="552.1025390625" rotX="277.43225097656" rotY="0" rotZ="306.35925292969" />
+    <object id="object (refthinchim1) (3)" model="3258" interior="0" dimension="0" posX="-2393.4597167969" posY="-1537.6728515625" posZ="552.1025390625" rotX="277.43225097656" rotY="0" rotZ="306.35925292969" />
+    <object id="object (refthinchim1) (4)" model="3258" interior="0" dimension="0" posX="-2393.4143066406" posY="-1537.7329101563" posZ="551.00219726563" rotX="277.43225097656" rotY="0" rotZ="306.35925292969" />
+    <object id="object (refthinchim1) (5)" model="3258" interior="0" dimension="0" posX="-2392.8034667969" posY="-1538.5532226563" posZ="551.00219726563" rotX="277.43225097656" rotY="0" rotZ="306.35925292969" />
+    <object id="object (refthinchim1) (6)" model="3258" interior="0" dimension="0" posX="-2392.3410644531" posY="-1539.1733398438" posZ="551.00219726563" rotX="277.43225097656" rotY="0" rotZ="306.35925292969" />
+    <object id="object (refthinchim1) (7)" model="3258" interior="0" dimension="0" posX="-2392.265625" posY="-1539.4202880859" posZ="551.47692871094" rotX="277.43225097656" rotY="0" rotZ="306.35925292969" />
+    <object id="object (refthinchim1) (8)" model="3258" interior="0" dimension="0" posX="-2393.6596679688" posY="-1537.1278076172" posZ="551.60205078125" rotX="277.43225097656" rotY="0" rotZ="306.35925292969" />
+    <object id="object (ref_oiltank01) (1)" model="3255" interior="0" dimension="0" posX="-2422.244140625" posY="-1550.7462158203" posZ="533.36285400391" rotX="0" rotY="0" rotZ="25.515106201172" />
+    <object id="object (ref_oiltank01) (2)" model="3255" interior="0" dimension="0" posX="-2413.9074707031" posY="-1559.4611816406" posZ="533.38739013672" rotX="0" rotY="0" rotZ="205.71917724609" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2419.431640625" posY="-1552.4168701172" posZ="544.38739013672" rotX="3.6474609375" rotY="180.04943847656" rotZ="124.01370239258" />
+    <object id="object (wtown_bits2_02) (1)" model="18201" interior="0" dimension="0" posX="-2474.9167480469" posY="-1702.2125244141" posZ="477.93844604492" rotX="0" rotY="0" rotZ="10.910003662109" />
+    <object id="object (refchimny01) (1)" model="3256" interior="0" dimension="0" posX="-2385.3762207031" posY="-1532.4588623047" posZ="550.41925048828" rotX="354.76501464844" rotY="82.060028076172" rotZ="34.980010986328" />
+    <object id="object (refchimny01) (2)" model="3256" interior="0" dimension="0" posX="-2397.1271972656" posY="-1540.9193115234" posZ="550.61798095703" rotX="354.5068359375" rotY="81.551513671875" rotZ="34.969482421875" />
+    <object id="object (des_oilfieldpipe01) (1)" model="16087" interior="0" dimension="0" posX="-2268.216796875" posY="-1599.8369140625" posZ="458.33599853516" rotX="0" rotY="0" rotZ="98.684692382813" />
+    <object id="object (refinerybox1) (5)" model="3257" interior="0" dimension="0" posX="-2425.91015625" posY="-1562.2935791016" posZ="541.56146240234" rotX="359.23498535156" rotY="262" rotZ="35.755004882813" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2302.2912597656" posY="-1566.3161621094" posZ="477.75225830078" rotX="0" rotY="0" rotZ="101.62902832031" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2486.3654785156" posY="-1533.2845458984" posZ="478.34942626953" rotX="2.25" rotY="0" rotZ="192.39404296875" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2309.7446289063" posY="-1527.8646240234" posZ="477.75225830078" rotX="0" rotY="0" rotZ="101.62902832031" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2313.82421875" posY="-1508.18359375" posZ="477.75225830078" rotX="0" rotY="0" rotZ="101.62902832031" />
+    <object id="object (app_light_SFS05e) (1)" model="10764" interior="0" dimension="0" posX="-2415.9448242188" posY="-1729.7507324219" posZ="521.72839355469" rotX="0" rotY="0" rotZ="56.88720703125" />
+    <object id="object (bigsfnlite02) (1)" model="9277" interior="0" dimension="0" posX="-2527.94140625" posY="-1579.3487548828" posZ="488.71041870117" rotX="358.25" rotY="0" rotZ="11" />
+    <marker id="marker (corona) (4)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2300.5517578125" posY="-1601.154296875" posZ="507.31118774414" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (4)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2391.5107421875" posY="-1531.7822265625" posZ="548.86627197266" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (4)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2414.1779785156" posY="-1543.4044189453" posZ="543.86627197266" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (4)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2407.333984375" posY="-1558.1259765625" posZ="543.86627197266" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2324.6008300781" posY="-1499.7180175781" posZ="478.13375854492" rotX="0" rotY="0" rotZ="192.63403320313" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2345.7841796875" posY="-1503.8021240234" posZ="478.13375854492" rotX="0" rotY="0" rotZ="192.62878417969" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2387.8154296875" posY="-1512.0364990234" posZ="478.13375854492" rotX="0" rotY="0" rotZ="192.62878417969" />
+    <object id="object (cos_sbanksteps06) (1)" model="12987" interior="0" dimension="0" name="delux object (32)" posX="-2297.1611328125" posY="-1579.4732666016" posZ="497.5798034668" rotX="0" rotY="0" rotZ="102.25549316406" />
+    <object id="object (cos_sbanksteps06) (1)" model="12987" interior="0" dimension="0" name="delux object (32)" posX="-2387.736328125" posY="-1509.4033203125" posZ="482.3708190918" rotX="0" rotY="0" rotZ="101.25549316406" />
+    <object id="object (vgsSstairs04_lvs) (1)" model="8615" interior="0" dimension="0" posX="-2396.1394042969" posY="-1799.2858886719" posZ="485.12466430664" rotX="0" rotY="0" rotZ="13.014038085938" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2305.9501953125" posY="-1547.279296875" posZ="477.75225830078" rotX="0" rotY="0" rotZ="101.62902832031" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2505.0441894531" posY="-1536.7470703125" posZ="478.34942626953" rotX="2.2467041015625" rotY="0" rotZ="192.392578125" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2533.4509277344" posY="-1561.2178955078" posZ="480.34982299805" rotX="2.2412109375" rotY="0" rotZ="275.55700683594" />
+    <object id="object (cos_sbanksteps05) (1)" model="12985" interior="0" dimension="0" posX="-2447.708984375" posY="-1523.1088867188" posZ="482.76712036133" rotX="0" rotY="0" rotZ="281.06500244141" />
+    <object id="object (drydock1_SFSe) (9)" model="10828" interior="0" dimension="0" name="delux object (100)" posX="-2305.1875" posY="-1600.28515625" posZ="504.67428588867" rotX="0" rotY="0" rotZ="101.18957519531" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2375.041015625" posY="-1538.9052734375" posZ="497.13098144531" rotX="0" rotY="0" rotZ="324.26696777344" />
+    <object id="object (ottos_ramp) (2)" model="10245" interior="0" dimension="0" posX="-2377.6391601563" posY="-1524.2166748047" posZ="489.35629272461" rotX="0" rotY="0" rotZ="324.26696777344" />
+    <object id="object (ottos_ramp) (3)" model="10245" interior="0" dimension="0" posX="-2330.0805664063" posY="-1672.6989746094" posZ="497.98645019531" rotX="0" rotY="0" rotZ="236.16650390625" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2366.525390625" posY="-1507.8310546875" posZ="478.13375854492" rotX="0" rotY="0" rotZ="192.62878417969" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2380.2922363281" posY="-1566.1231689453" posZ="506.25262451172" rotX="13.800628662109" rotY="0" rotZ="99.373779296875" />
+    <object id="object (WS_floodbeams) (4)" model="3872" interior="0" dimension="0" posX="-2283.61328125" posY="-1579.2325439453" posZ="505.52789306641" rotX="4.9587707519531" rotY="55.839752197266" rotZ="208.61145019531" />
+    <object id="object (sf_rooflite) (3)" model="3877" interior="0" dimension="0" name="delux object (87)" posX="-2330.044921875" posY="-1602.1376953125" posZ="516.470703125" rotX="0" rotY="0" rotZ="11.25" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2299.0546875" posY="-1635.111328125" posZ="500.22216796875" rotX="0" rotY="0" rotZ="101.62902832031" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2268.2045898438" posY="-1764.0076904297" posZ="484.4182434082" rotX="13.24951171875" rotY="0" rotZ="10.766448974609" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2258.4333496094" posY="-1746.2669677734" posZ="487.68939208984" rotX="13.24951171875" rotY="0" rotZ="89.62646484375" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2258.34375" posY="-1734.46484375" posZ="487.68939208984" rotX="13.24951171875" rotY="0" rotZ="89.62646484375" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2431.4299316406" posY="-1747.0863037109" posZ="512.97387695313" rotX="12.738647460938" rotY="0" rotZ="282.69073486328" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2375.9555664063" posY="-1783.0880126953" posZ="494.81964111328" rotX="15.988647460938" rotY="0" rotZ="11.502685546875" />
+    <object id="object (CARRIER_LIFT1_SFSE) (1)" model="3115" interior="0" dimension="0" posX="-2412.1186523438" posY="-1547.7624511719" posZ="492.31958007813" rotX="0" rotY="0" rotZ="281.07998657227" />
+    <object id="object (CARRIER_LIFT1_SFSE) (3)" model="3115" interior="0" dimension="0" posX="-2426.66796875" posY="-1552.1990966797" posZ="492.10250854492" rotX="0" rotY="0" rotZ="274.32998657227" />
+    <object id="object (CARRIER_LIFT1_SFSE) (4)" model="3115" interior="0" dimension="0" posX="-2437.4982910156" posY="-1554.3128662109" posZ="491.85250854492" rotX="43.670013427734" rotY="1.9849853515625" rotZ="274.32861328125" />
+    <object id="object (DYN_GARAGE_DOOR) (1)" model="1508" interior="0" dimension="0" name="delux object (101)" posX="-2434.9345703125" posY="-1548.9117431641" posZ="480.17556762695" rotX="0" rotY="0" rotZ="190.5" />
+	
+	<vehicle id="vehicle (Cargobob) (1)" paintjob="3" model="548" plate="IUZLIYI" interior="0" dimension="0" posX="-2353.1418457031" posY="-1690.0656738281" posZ="504.80108642578" rotX="0" rotY="0" rotZ="281.375" />
+    <vehicle id="vehicle (Hydra) (1)" paintjob="3" model="520" plate="7FAH18K" interior="0" dimension="0" posX="-2318.9714355469" posY="-1707.5068359375" posZ="488.42028808594" rotX="0" rotY="0" rotZ="283.09497070313" />
+    <vehicle id="vehicle (Hydra) (2)" paintjob="3" model="520" plate="7299GCV" interior="0" dimension="0" posX="-2321.2900390625" posY="-1697.2088623047" posZ="488.42028808594" rotX="0" rotY="0" rotZ="283.09497070313" />
+    <vehicle id="vehicle (Hydra) (3)" paintjob="3" model="520" plate="LQ6XYQL" interior="0" dimension="0" posX="-2416.650390625" posY="-1548.4609375" posZ="480.00473022461" rotX="0" rotY="0" rotZ="11.169982910156" />
+    <vehicle id="vehicle (Hydra) (4)" paintjob="3" model="520" plate="A89T3GB" interior="0" dimension="0" posX="-2426.7751464844" posY="-1550.7557373047" posZ="480.00473022461" rotX="0" rotY="0" rotZ="11.167602539063" />
+	
+	
+    <object id="object (ottos_ramp) (3)" model="10245" interior="0" dimension="0" posX="-2338.2338867188" posY="-1748.2564697266" posZ="495.35266113281" rotX="0" rotY="0" rotZ="55.76611328125" />
+    <object id="object (ottos_ramp) (3)" model="10245" interior="0" dimension="0" posX="-2338.8994140625" posY="-1744.9738769531" posZ="495.35266113281" rotX="0" rotY="0" rotZ="55.761108398438" />
+    <object id="object (ottos_ramp) (3)" model="10245" interior="0" dimension="0" posX="-2315.1220703125" posY="-1746.1422119141" posZ="495.40264892578" rotX="0" rotY="0" rotZ="236.54608154297" />
+    <object id="object (DYN_GARAGE_DOOR) (1)" model="1508" interior="0" dimension="0" name="delux object (101)" posX="-2348.0422363281" posY="-1661.9490966797" posZ="508.57684326172" rotX="0" rotY="0" rotZ="100.83166503906" />
+    <object id="object (fenceshit) (1)" model="982" interior="0" dimension="0" posX="-2464.50390625" posY="-1526.8046875" posZ="485.81686401367" rotX="0" rotY="0" rotZ="280.49194335938" />
+    <object id="object (fenceshit) (2)" model="982" interior="0" dimension="0" posX="-2478.6416015625" posY="-1529.4296875" posZ="485.81686401367" rotX="0" rotY="0" rotZ="280.49194335938" />
+    <object id="object (des_ntfrescape2) (2)" model="11544" interior="0" dimension="0" name="delux object (82)" posX="-2330.94140625" posY="-1725.5234375" posZ="502.39056396484" rotX="0" rotY="0" rotZ="101.24450683594" />
+    <object id="object (ottos_ramp) (3)" model="10245" interior="0" dimension="0" posX="-2306.66015625" posY="-1570.7530517578" posZ="491.66461181641" rotX="0" rotY="0" rotZ="324.26147460938" />
+    <object id="object (ottos_ramp) (3)" model="10245" interior="0" dimension="0" posX="-2355.2685546875" posY="-1577.8525390625" posZ="506.5036315918" rotX="0" rotY="0" rotZ="325.50842285156" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2311.6513671875" posY="-1583.435546875" posZ="470.28811645508" rotX="0" rotY="36.710815429688" rotZ="89.225463867188" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2366.0732421875" posY="-1573.9348144531" posZ="474.03811645508" rotX="0" rotY="36.710815429688" rotZ="89.225463867188" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2309.833984375" posY="-1772.767578125" posZ="484.4182434082" rotX="12.738647460938" rotY="0" rotZ="11.502685546875" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2393.4045410156" posY="-1786.8933105469" posZ="494.81964111328" rotX="15.985107421875" rotY="0" rotZ="11.502685546875" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2409.9526367188" posY="-1790.4569091797" posZ="494.81964111328" rotX="15.985107421875" rotY="0" rotZ="11.502685546875" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2426.3581542969" posY="-1793.9942626953" posZ="494.81964111328" rotX="15.985107421875" rotY="0" rotZ="11.502685546875" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2358.953125" posY="-1779.4381103516" posZ="494.81964111328" rotX="15.985107421875" rotY="0" rotZ="11.502685546875" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2269.095703125" posY="-1626.0693359375" posZ="486.50601196289" rotX="0.85693359375" rotY="97.970581054688" rotZ="191.09619140625" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2289.2001953125" posY="-1633.123046875" posZ="484.0651550293" rotX="359.13757324219" rotY="79.925537109375" rotZ="11.167602539063" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2360.9370117188" posY="-1773.3480224609" posZ="471.05606079102" rotX="358.38500976563" rotY="80.92529296875" rotZ="281.21704101563" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2392.6281738281" posY="-1799.1475830078" posZ="472.89755249023" rotX="0.85693359375" rotY="97.970581054688" rotZ="104.11743164063" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2393.7211914063" posY="-1780.3930664063" posZ="471.05606079102" rotX="358.38500976563" rotY="80.92529296875" rotZ="281.21704101563" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2508.4636230469" posY="-1565.5075683594" posZ="476.19573974609" rotX="358.13500976563" rotY="87.42529296875" rotZ="187.18719482422" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2358.646484375" posY="-1793.0283203125" posZ="472.62261962891" rotX="0.85693359375" rotY="97.970581054688" rotZ="104.11743164063" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2398.9462890625" posY="-1781.126953125" posZ="471.05606079102" rotX="358.38500976563" rotY="80.92529296875" rotZ="281.21704101563" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2507.6638183594" posY="-1570.6480712891" posZ="476.19573974609" rotX="358.13232421875" rotY="87.423706054688" rotZ="187.18505859375" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2527.6958007813" posY="-1605.1339111328" posZ="476.80828857422" rotX="0.85693359375" rotY="97.970581054688" rotZ="11.00830078125" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2501.6479492188" posY="-1603.9083251953" posZ="476.19573974609" rotX="358.13232421875" rotY="87.423706054688" rotZ="187.18505859375" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2502.5114746094" posY="-1599.5701904297" posZ="476.19573974609" rotX="358.13232421875" rotY="87.423706054688" rotZ="187.18505859375" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2530.2241210938" posY="-1587.6898193359" posZ="476.80828857422" rotX="0.85693359375" rotY="97.970581054688" rotZ="11.00830078125" />
+    <object id="object (lod_refinerybox1) (2)" model="3288" interior="0" dimension="0" name="delux object (42)" posX="-2535.1350097656" posY="-1553.8200683594" posZ="476.80828857422" rotX="0.85693359375" rotY="97.970581054688" rotZ="11.00830078125" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2511.4772949219" posY="-1548.4132080078" posZ="476.19573974609" rotX="358.13232421875" rotY="87.423706054688" rotZ="187.18505859375" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2510.6594238281" posY="-1553.4658203125" posZ="476.19573974609" rotX="358.13232421875" rotY="87.423706054688" rotZ="187.18505859375" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2506.1628417969" posY="-1582.2717285156" posZ="476.19573974609" rotX="358.13232421875" rotY="87.423706054688" rotZ="187.18505859375" />
+    <object id="object (lod_refthinchim1) (1)" model="3289" interior="0" dimension="0" name="delux object (43)" posX="-2505.1472167969" posY="-1586.8353271484" posZ="476.19573974609" rotX="358.13232421875" rotY="87.423706054688" rotZ="187.18505859375" />
+    <object id="object (shamheliprt1) (1)" model="6973" interior="0" dimension="0" name="delux object (90)" posX="-2430.8334960938" posY="-1567.2438964844" posZ="530.04168701172" rotX="0" rotY="0" rotZ="296.70739746094" />
+    <object id="object (crackfacttanks2_SFS) (1)" model="11089" interior="0" dimension="0" posX="-2470.986328125" posY="-1563.2260742188" posZ="535.88397216797" rotX="0" rotY="0" rotZ="103.8046875" />
+    <object id="object (crackfacttanks2_SFS) (1)" model="11089" interior="0" dimension="0" posX="-2444.884765625" posY="-1562.5731201172" posZ="530.13397216797" rotX="0" rotY="0" rotZ="12.494293212891" />
+    <object id="object (sf_roofmast) (2)" model="3876" interior="0" dimension="0" name="delux object (56)" posX="-2435.7280273438" posY="-1566.8868408203" posZ="530.67974853516" rotX="283.81997680664" rotY="0" rotZ="303.56311035156" />
+    <object id="object (CE_radarmast3) (1)" model="3763" interior="0" dimension="0" posX="-2411.759765625" posY="-1551.7607421875" posZ="548.93341064453" rotX="280.59631347656" rotY="0" rotZ="306.32080078125" />
+    <object id="object (des_bigoilpipe01) (1)" model="16086" interior="0" dimension="0" name="delux object (81)" posX="-2446.720703125" posY="-1593.29296875" posZ="532.97521972656" rotX="0" rotY="0" rotZ="192.89794921875" />
+    <object id="object (des_oilfieldpipe01) (1)" model="16087" interior="0" dimension="0" posX="-2472.7824707031" posY="-1750.9196777344" posZ="455.9391784668" rotX="0" rotY="0" rotZ="280.70434570313" />
+    <object id="object (des_oilfieldpipe01) (1)" model="16087" interior="0" dimension="0" posX="-2388.2941894531" posY="-1699.8002929688" posZ="521.58410644531" rotX="0" rotY="0" rotZ="284.47290039063" />
+    <object id="object (des_oilfieldpipe01) (1)" model="16087" interior="0" dimension="0" posX="-2407.8173828125" posY="-1618.8603515625" posZ="530.83166503906" rotX="0" rotY="0" rotZ="280.52490234375" />
+    <object id="object (gen_roofbit1) (1)" model="1687" interior="0" dimension="0" posX="-2455.5595703125" posY="-1549.603515625" posZ="532.6220703125" rotX="0" rotY="0" rotZ="13.99658203125" />
+    <object id="object (gen_roofbit2) (1)" model="1688" interior="0" dimension="0" posX="-2459.6513671875" posY="-1575.9384765625" posZ="533.16326904297" rotX="0" rotY="0" rotZ="192.03552246094" />
+    <object id="object (gen_roofbit3) (1)" model="1689" interior="0" dimension="0" name="delux object (79)" posX="-2267.806640625" posY="-1671.5576171875" posZ="501.13342285156" rotX="0" rotY="0" rotZ="281.24450683594" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2524.87109375" posY="-1540.4482421875" posZ="478.34942626953" rotX="2.2412109375" rotY="0" rotZ="192.38708496094" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2530.1826171875" posY="-1578.9387207031" posZ="480.34982299805" rotX="2.2357177734375" rotY="0" rotZ="275.55358886719" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2508.4936523438" posY="-1626.7849121094" posZ="467.11013793945" rotX="2.2357177734375" rotY="0" rotZ="277.80358886719" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2500.9306640625" posY="-1624.1163330078" posZ="478.09719848633" rotX="2.230224609375" rotY="0" rotZ="279.79809570313" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2505.0397949219" posY="-1645.4558105469" posZ="467.11013793945" rotX="2.230224609375" rotY="0" rotZ="279.55029296875" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2501.67578125" posY="-1663.7774658203" posZ="467.11013793945" rotX="2.2247314453125" rotY="0" rotZ="279.54711914063" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2498.2180175781" posY="-1681.7470703125" posZ="467.11013793945" rotX="2.2247314453125" rotY="0" rotZ="279.54711914063" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2495.0625" posY="-1698.6169433594" posZ="467.11013793945" rotX="2.2247314453125" rotY="0" rotZ="279.54711914063" />
+    <object id="object (minigun_base) (2)" model="2985" interior="0" dimension="0" posX="-2293.9052734375" posY="-1652.896484375" posZ="507.1262512207" rotX="0" rotY="0" rotZ="343.99841308594" />
+    <object id="object (kmb_cam) (3)" model="2921" interior="0" dimension="0" posX="-2344.4147949219" posY="-1661.2755126953" posZ="509.9475402832" rotX="0" rotY="0" rotZ="72.610015869141" />
+    <object id="object (a51_spothousing) (1)" model="2888" interior="0" dimension="0" posX="-2227.9689941406" posY="-1772.2060546875" posZ="485.97210693359" rotX="12.25" rotY="0" rotZ="241.66998291016" />
+    <object id="object (a51_spotbase) (1)" model="2889" interior="0" dimension="0" posX="-2227.9643554688" posY="-1772.3179931641" posZ="486.04721069336" rotX="0" rotY="0" rotZ="0.75" />
+    <object id="object (a51_spotbulb) (1)" model="2887" interior="0" dimension="0" posX="-2228.1328125" posY="-1772.1245117188" posZ="485.97918701172" rotX="13.25" rotY="359.25" rotZ="240.71997070313" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2343.4228515625" posY="-1714.798828125" posZ="503.47216796875" rotX="0" rotY="0" rotZ="53.6572265625" />
+    <object id="object (WS_floodbeams) (4)" model="3872" interior="0" dimension="0" posX="-2338.380859375" posY="-1719.2138671875" posZ="509.49114990234" rotX="0.98876953125" rotY="4.229736328125" rotZ="141.08642578125" />
+    <object id="object (a51_spotbase) (2)" model="2889" interior="0" dimension="0" posX="-2290.326171875" posY="-1583.2202148438" posZ="502.2783203125" rotX="0" rotY="0" rotZ="6" />
+    <object id="object (a51_spothousing) (2)" model="2888" interior="0" dimension="0" posX="-2290.4096679688" posY="-1583.2661132813" posZ="501.99752807617" rotX="12.5" rotY="0" rotZ="302.29998779297" />
+    <object id="object (a51_spotbulb) (2)" model="2887" interior="0" dimension="0" posX="-2290.6953125" posY="-1583.4428710938" posZ="502.02743530273" rotX="13.25" rotY="359.5" rotZ="301.93499755859" />
+    <object id="object (WS_floodbeams) (4)" model="3872" interior="0" dimension="0" posX="-2221.5625" posY="-1776.8525390625" posZ="489.91732788086" rotX="4.954833984375" rotY="55.838012695313" rotZ="140.33386230469" />
+    <object id="object (indust1las2_LAS) (2)" model="3637" interior="0" dimension="0" name="delux object (27)" posX="-2350.5927734375" posY="-1716.70703125" posZ="506.92495727539" rotX="0" rotY="0" rotZ="281.24450683594" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2185.041015625" posY="-1665.4306640625" posZ="480.52493286133" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (substa_transf2_) (3)" model="3273" interior="0" dimension="0" name="delux object (74)" posX="-2442.1276855469" posY="-1567.6358642578" posZ="536.16979980469" rotX="359.75" rotY="9" rotZ="216.73968505859" />
+    <object id="object (substa_transf2_) (3)" model="3273" interior="0" dimension="0" name="delux object (74)" posX="-2439.9467773438" posY="-1570.6905517578" posZ="536.16979980469" rotX="359.74731445313" rotY="8.997802734375" rotZ="216.73828125" />
+    <object id="object (substa_transf2_) (3)" model="3273" interior="0" dimension="0" name="delux object (74)" posX="-2437.7702636719" posY="-1573.6916503906" posZ="536.16979980469" rotX="359.74731445313" rotY="8.997802734375" rotZ="216.73828125" />
+    <object id="object (substa_transf2_) (3)" model="3273" interior="0" dimension="0" name="delux object (74)" posX="-2435.8259277344" posY="-1576.3641357422" posZ="536.16979980469" rotX="359.74731445313" rotY="8.997802734375" rotZ="216.73828125" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2440.9064941406" posY="-1571.3240966797" posZ="540.96380615234" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2438.6462402344" posY="-1574.3674316406" posZ="540.96380615234" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="2" interior="0" dimension="0" posX="-2436.6955566406" posY="-1577.0134277344" posZ="540.96380615234" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2290.341796875" posY="-1768.8896484375" posZ="484.4182434082" rotX="12.738647460938" rotY="0" rotZ="10.255737304688" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2428.4936523438" posY="-1761.6011962891" posZ="513.28985595703" rotX="12.738647460938" rotY="0" rotZ="282.68920898438" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2434.2202148438" posY="-1732.9533691406" posZ="512.97387695313" rotX="12.738647460938" rotY="0" rotZ="282.68920898438" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2437.3012695313" posY="-1717.0895996094" posZ="512.97387695313" rotX="12.738647460938" rotY="0" rotZ="282.68920898438" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2440.9067382813" posY="-1698.3723144531" posZ="512.97387695313" rotX="12.738647460938" rotY="0" rotZ="280.43920898438" />
+    <object id="object (des_bigoilpipe01) (1)" model="16086" interior="0" dimension="0" name="delux object (81)" posX="-2330" posY="-1528.7646484375" posZ="487.91079711914" rotX="0" rotY="0" rotZ="10.222778320313" />
+    <object id="object (gen_roofbit1) (1)" model="1687" interior="0" dimension="0" posX="-2362.828125" posY="-1512.9831542969" posZ="488.73336791992" rotX="0" rotY="0" rotZ="11.49658203125" />
+    <object id="object (gen_roofbit2) (1)" model="1688" interior="0" dimension="0" posX="-2322.298828125" posY="-1505.5632324219" posZ="488.94476318359" rotX="0" rotY="0" rotZ="192.03552246094" />
+    <object id="object (ottos_ramp) (3)" model="10245" interior="0" dimension="0" posX="-2319.0385742188" posY="-1778.771484375" posZ="483.33126831055" rotX="0" rotY="0" rotZ="237.57342529297" />
+    <object id="object (ottos_ramp) (3)" model="10245" interior="0" dimension="0" posX="-2335.8493652344" posY="-1782.9677734375" posZ="483.30627441406" rotX="0" rotY="0" rotZ="58.0517578125" />
+    <object id="object (vegaspumphouse1) (1)" model="7947" interior="0" dimension="0" name="delux object (5)" posX="-2479.3640136719" posY="-1552.3214111328" posZ="482.74423217773" rotX="0" rotY="0" rotZ="280.22485351563" />
+    <object id="object (vegaspumphouse1) (1)" model="7947" interior="0" dimension="0" name="delux object (5)" posX="-2476.3654785156" posY="-1565.7896728516" posZ="481.91900634766" rotX="0" rotY="0" rotZ="9.9774780273438" />
+    <object id="object (vegasplant05) (1)" model="6930" interior="0" dimension="0" posX="-2483.322265625" posY="-1616.841796875" posZ="486.00509643555" rotX="0" rotY="0" rotZ="100.97534179688" />
+    <object id="object (vegasplant05) (1)" model="6930" interior="0" dimension="0" posX="-2461.6796875" posY="-1629.5673828125" posZ="485.98010253906" rotX="0" rotY="0" rotZ="189.87670898438" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="7" interior="0" dimension="0" posX="-2490.0947265625" posY="-1622.9722900391" posZ="493.13790893555" rotX="0" rotY="0" rotZ="0" />
+    <marker id="marker (corona) (13)" type="corona" color="#FFFFFF99" size="7" interior="0" dimension="0" posX="-2474.2805175781" posY="-1619.9776611328" posZ="493.13790893555" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (cxrf_floodlite_) (2)" model="3398" interior="0" dimension="0" name="delux object (40)" posX="-2526.9306640625" posY="-1596.560546875" posZ="480.34982299805" rotX="2.230224609375" rotY="0" rotZ="275.54809570313" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2502.9912109375" posY="-1636.029296875" posZ="476.68011474609" rotX="0" rotY="0" rotZ="144.56909179688" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2505.6474609375" posY="-1621.4169921875" posZ="484.48022460938" rotX="0" rotY="0" rotZ="144.57458496094" />
+    <object id="object (subbunker_ext_SFSe) (1)" model="10827" interior="0" dimension="0" name="delux object" posX="-2330.3359375" posY="-1590.49609375" posZ="465.26571655273" rotX="0" rotY="0" rotZ="190.99182128906" />
+    <object id="object (cos_sbanksteps06) (1)" model="12987" interior="0" dimension="0" name="delux object (32)" posX="-2378.173828125" posY="-1509.580078125" posZ="486.24578857422" rotX="0" rotY="0" rotZ="101.25549316406" />
+    <object id="object (vgsSstairs04_lvs) (1)" model="8615" interior="0" dimension="0" posX="-2494.001953125" posY="-1533.435546875" posZ="487.56079101563" rotX="0" rotY="0" rotZ="190.39306640625" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2363.185546875" posY="-1784.1572265625" posZ="490.74020385742" rotX="0" rotY="0" rotZ="55.728149414063" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2509.5454101563" posY="-1498.1716308594" posZ="373.43347167969" rotX="0" rotY="36.710815429688" rotZ="136.64422607422" />
+    <object id="object (cunt_rockgp2_21) (1)" model="18228" interior="0" dimension="0" name="delux object (23)" posX="-2530.6440429688" posY="-1516.8448486328" posZ="369.68347167969" rotX="0" rotY="36.710815429688" rotZ="181.01745605469" />
+    <object id="object (subbunker_ext_SFSe) (15)" model="10827" interior="0" dimension="0" name="delux object (2)" posX="-2385.2531738281" posY="-1718.9815673828" posZ="445.78482055664" rotX="0" rotY="0" rotZ="280.46997070313" />
+    <object id="object (subbunker_ext_SFSe) (15)" model="10827" interior="0" dimension="0" name="delux object (2)" posX="-2391.6357421875" posY="-1723.357421875" posZ="429.93490600586" rotX="0" rotY="0" rotZ="280.46997070313" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2375.3603515625" posY="-1667.4748535156" posZ="505.91464233398" rotX="0" rotY="0" rotZ="235.62420654297" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2463.2961425781" posY="-1732.0205078125" posZ="465.75042724609" rotX="0" rotY="0" rotZ="144.56909179688" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2465.87890625" posY="-1717.3388671875" posZ="473.5251159668" rotX="0" rotY="0" rotZ="144.56909179688" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2431.673828125" posY="-1794.9002685547" posZ="470.34985351563" rotX="0" rotY="0" rotZ="55.442504882813" />
+    <object id="object (vegasplant05) (1)" model="6930" interior="0" dimension="0" posX="-2407.978515625" posY="-1779.4641113281" posZ="472.85748291016" rotX="0" rotY="0" rotZ="189.87670898438" />
+    <object id="object (vgsSstairs04_lvs) (1)" model="8615" interior="0" dimension="0" posX="-2349.7138671875" posY="-1780.181640625" posZ="495.7333984375" rotX="0" rotY="0" rotZ="10.014038085938" />
+    <object id="object (vgsSstairs04_lvs) (1)" model="8615" interior="0" dimension="0" posX="-2381.3359375" posY="-1791.0009765625" posZ="490.14971923828" rotX="0" rotY="0" rotZ="13.013305664063" />
+    <object id="object (fenceshit2) (1)" model="984" interior="0" dimension="0" posX="-2399.4372558594" posY="-1801.08203125" posZ="483.13180541992" rotX="0" rotY="0" rotZ="283.32998657227" />
+    <object id="object (fenceshit3) (1)" model="983" interior="0" dimension="0" posX="-2406.3591308594" posY="-1799.4208984375" posZ="483.17477416992" rotX="0" rotY="0" rotZ="12.75" />
+    <object id="object (fenceshit3) (2)" model="983" interior="0" dimension="0" posX="-2407.333984375" posY="-1794.9545898438" posZ="483.17477416992" rotX="0" rotY="0" rotZ="12.749633789063" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2417.22265625" posY="-1792.0439453125" posZ="478.22482299805" rotX="0" rotY="0" rotZ="55.442504882813" />
+    <object id="object (vegasplant05) (1)" model="6930" interior="0" dimension="0" posX="-2398.912109375" posY="-1736.9031982422" posZ="513.58239746094" rotX="0" rotY="0" rotZ="11.25" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2396.9477539063" posY="-1723.6783447266" posZ="516.25769042969" rotX="0" rotY="0" rotZ="326.12658691406" />
+    <object id="object (vgsSstairs01_lvs) (1)" model="8614" interior="0" dimension="0" posX="-2395.0844726563" posY="-1737.3161621094" posZ="522.72998046875" rotX="0" rotY="0" rotZ="101.05001831055" />
+    <object id="object (vegasplant05) (1)" model="6930" interior="0" dimension="0" posX="-2426.5102539063" posY="-1671.6042480469" posZ="524.52496337891" rotX="0" rotY="0" rotZ="280.03997802734" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2399.6064453125" posY="-1711.8583984375" posZ="511.75625610352" rotX="0" rotY="0" rotZ="325.37658691406" />
+    <object id="object (vgsSstairs04_lvs) (1)" model="8615" interior="0" dimension="0" posX="-2306.7934570313" posY="-1591.5224609375" posZ="509.44577026367" rotX="0" rotY="0" rotZ="101.38806152344" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2425.0852050781" posY="-1682.6762695313" posZ="530.35827636719" rotX="0" rotY="0" rotZ="145.62362670898" />
+    <object id="object (ottos_ramp) (1)" model="10245" interior="0" dimension="0" posX="-2422.193359375" posY="-1697.2410888672" posZ="522.50695800781" rotX="0" rotY="0" rotZ="145.61828613281" />
+    <object id="object (DYN_GARAGE_DOOR) (1)" model="1508" interior="0" dimension="0" name="delux object (101)" posX="-2436.5908203125" posY="-1791.3070068359" posZ="413.2633972168" rotX="0" rotY="0" rotZ="280.89453125" />
+    <object id="object (kmb_cam) (1)" model="2921" interior="0" dimension="0" posX="-2485.5244140625" posY="-1496.9619140625" posZ="394.76895141602" rotX="0" rotY="0" rotZ="242.38586425781" />
+</map>

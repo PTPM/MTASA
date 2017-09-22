@@ -1,0 +1,14 @@
+<meta>
+	<info author="SATAN, uhm" type="map" gamemodes="ptpm" name="The Fortress" version="1.0" />
+	<map src="ptpm-fortress.map"/>
+	<settings>
+		<setting name="*mapType" value="city" />
+		<setting name="*weathers" value="[[1,2,7,9,13,17,3,11,18,5,24]]" />
+		<setting name="*roundtime" value="[900000]" /> <!-- 15 mins -->
+		<setting name="*pmHealthBonus" value="[1]" />
+		<setting name="*medicHealthBonus" value="[true]" />
+		<setting name="*pmSpawnRedirect" value="[true]"/>
+	</settings>
+	
+	<file src="ptpm-fortress.png"/>
+</meta>
