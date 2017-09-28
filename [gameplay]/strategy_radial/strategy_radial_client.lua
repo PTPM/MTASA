@@ -65,9 +65,10 @@ local smartCommands =  {
 						"Well done!"
 					}
 			},{
-				Title = "Sorry",
+				Title = "Insult",
 					textLines = {
-						"Sorry!"
+						"Plonker!",
+						"Penis!"
 					}
 			}, {
 				Title = "No",
@@ -272,6 +273,14 @@ function showStrategicRadialMenu(_, whichStrategyRadialMenu_commandBind)
 		showCursor ( true, false )
 	end
 end
+
+
+addEvent( "onPlayerVoiceLine", true )
+addEventHandler( "onPlayerVoiceLine", localPlayer, 
+	function(containerName, bankId, soundId, x, y, z )
+		playSFX( containerName, bankId, soundId )
+	end 
+)
 
 function executeStrategicRadialMenu()
 	removeEventHandler("onClientRender", root, drawStrategyRadial)
