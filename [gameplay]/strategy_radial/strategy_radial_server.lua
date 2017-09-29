@@ -329,6 +329,82 @@ local voicelineSFX = {
 			["Heal me"]=	{ 104 }
 		}
 	},
+	["137"] = {
+		comment = "Psychopath Box Guy",
+		containerName = "spc_ga",
+		bankId = "132",
+		soundIds = {
+			["Hello"] = 	{ 50, 51, 60 },
+			["Insult"] = 	{ 12, 26, 27, 28, 29, 30, 32, 43, 44, 46, 47, 59, 61, 69, 79, 83 },
+			["Thanks"] = 	{ 15, 18, 31, 127, 128 },
+			["Yes"] = 	{ 88,  94 },
+			["No"] = 		{ 4, 89, 91, 92, 93 },
+			["Good job"]=	{ 73 },
+			["Wait"]= 	{ 119 },
+			["Go"]= 		{ 16 },
+			["Help!"]= 	{ 62, 77 },
+			["Attack"]= 	{ 21, 64, 67, 118 },
+			["Defend"]= 	{ 20, 114 },
+			["Heal me"]=	{ 23, 57, 58 }
+		}
+	},
+	["200"] = {
+		comment = "Psychopath Hilly Billy",
+		containerName = "spc_ga",
+		bankId = "44",
+		soundIds = {
+			["Hello"] = 	{ 0, 4 },
+			["Insult"] = 	{ 36, 49, 50, 51 },
+			["Thanks"] = 	{ 134, 115, 116 },
+			["Yes"] = 	{ 93, 94 },
+			["No"] = 		{ 96, 97 },
+			["Good job"]=	{ 3, 41 },
+			["Wait"]= 	{ 60 },
+			["Go"]= 		{ 8, 10, 12, 18 },
+			["Help!"]= 	{ 65, 120, 121 },
+			["Attack"]= 	{ 7 },
+			["Defend"]= 	{ 24 },
+			["Heal me"]=	{ 26 }
+		}
+	},
+	["212"] = {
+		comment = "Psychopath Crazy Hobo",
+		containerName = "spc_ga",
+		bankId = "153",
+		soundIds = {
+			["Hello"] = 	{ 1, 136, 137 },
+			["Insult"] = 	{ 27, 58 },
+			["Thanks"] = 	{ 173, 174 },
+			["Yes"] = 	{ 125, 126, 127 },
+			["No"] = 		{ 128, 129, 130, 132 },
+			["Good job"]=	{ 19 },
+			["Wait"]= 	{ 21, 90, 91 },
+			["Go"]= 		{ 43 },
+			["Help!"]= 	{ 23, 61 },
+			["Attack"]= 	{ 9, 10, 100 },
+			["Defend"]= 	{ 28, 34 },
+			["Heal me"]=	{ 86 }
+		}
+	},
+	["230"] = {
+		comment = "Psychopath Weel Work For Weed",
+		containerName = "spc_ga",
+		bankId = "134",
+		soundIds = {
+			["Hello"] = 	{ 22, 24, 32, 80, 83 },
+			["Insult"] = 	{ 14, 38, 62, 89 },
+			["Thanks"] = 	{ 16, 109, 166 },
+			["Yes"] = 	{ 82, 122 },
+			["No"] = 		{ 33,  42, 115, 116 },
+			["Good job"]=	{ 19, 20, 149, 167 },
+			["Wait"]= 	{ 0, 84, 93, 128 },
+			["Go"]= 		{ 51, 111, 135 },
+			["Help!"]= 	{ 1, 47, 60, 118, 158, 160, 164 },
+			["Attack"]= 	{ 26, 90 },
+			["Defend"]= 	{ 61, 146, 156 },
+			["Heal me"]=	{ 5, 78, 88  }
+		}
+	}
 }
 
 -- log when last time client played a voice line 
