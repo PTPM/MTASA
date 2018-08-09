@@ -9,7 +9,6 @@ The license applies to both the source code, as well as the intellectual propert
 © 2006-2017 PTPM Community (https://PTPM.uk), usage permitted under GNU GPLv3.
 
 Ownership of the PTPM Source Code belongs to the administrators of the [PTPM Group on Github](https://github.com/PTPM).
-The primary contact for legal issues concerning PTPM is Martin Loeffen, alias *uhm*. 
 
 
 ## Summary of license
