@@ -1,9 +1,9 @@
 <map mod="ptpm" version="1.0">
 
     <wardrobe camX="1343.25" camY="-842.85" camZ="80.58" lookX="1430.17" lookY="-793.43" lookZ="82.24" interior="0" />
-	
+    
     <intel north="-1390" south="-1930" west="1130" east="1835" feature="Los Santos" />
-	
+    
     <spawngroup type="psycho">
         <class id="0" skin="230" weapons="18,10;30,100;26,80" />
         <class id="1" skin="212" weapons="18,10;30,100;26,80" />
@@ -63,9 +63,9 @@
         <!-- ls -->
         <spawn posX="1855.5497" posY="-2115.4836" posZ="15.1679" rot="209.0140" />
         <!-- ls -->
-		<cantdrive models="519" />
+        <cantdrive models="519" />
     </spawngroup>
-	
+    
     <spawngroup type="terrorist">
         <class id="4" skin="181" weapons="26,300;31,400;18,10" />
         <class id="5" skin="183" weapons="26,300;22,200;37,300" />
@@ -76,28 +76,28 @@
         <class id="10" skin="100" weapons="23,300;31,300;37,300" />
         <class id="11" skin="274" weapons="46,1;23,100;41,300" medic="true" />
         <spawnline startX="2768.3684" startY="-1601.6525" startZ="10.9272" endX="2769.9431" endY="-1625.5819" endZ="10.9272" rot="270" />
-		<cantdrive models="519" />
+        <cantdrive models="519" />
         <spawnareacube id="terror area 1" height="22.280804" depth="56.332153" width="60.995117" posX="2749.6689" posY="-1645.4506" posZ="9.96027" rotX="0" rotY="0" rotZ="0"></spawnareacube>
         <spawnareacube id="terror area 2" height="16.103134" depth="94.43396" width="71.962646" posX="2760.9451" posY="-1594.2931" posZ="9.96594" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
-	
+    
     <spawngroup type="pm">
         <class id="12" skin="147" weapons="15,1;41,1000;46,1;24,20" />
         <spawn posX="1125.7273" posY="-2036.8785" posZ="69.8804" rot="270" />
         <cantdrive models="519" />
         <spawnareacube id="pm area 1" height="12.420189" depth="68.057129" width="157.91211" posX="1126.3749" posY="-2070.915" posZ="56.67121" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
-	
+    
     <spawngroup type="bodyguard">
         <class id="14" skin="164" weapons="23,100;28,200;46,1" />
         <class id="16" skin="166" weapons="23,100;28,200;46,1" />
         <class id="17" skin="141" weapons="23,100;28,200;46,1" />
         <class id="18" skin="276" weapons="46,1;23,100;41,300" medic="true" />
         <spawnline startX="1133" startY="-2006.7264" startZ="69.8804" endX="1133" endY="-2066.7264" endZ="69.8804" rot="270" />
-		<cantdrive models="519" />
+        <cantdrive models="519" />
         <spawnareacube id="bodyguard area 1" height="12.420189" depth="68.057129" width="157.91211" posX="1126.3749" posY="-2070.915" posZ="56.67121" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
-	
+    
     <spawngroup type="police">
         <class id="20" skin="281" weapons="24,100;29,200;41,300" />
         <class id="24" skin="285" weapons="24,100;31,200;41,300" />
@@ -105,11 +105,11 @@
         <class id="28" skin="275" weapons="46,1;24,100;41,300" medic="true" />
         <spawnline startX="1585" startY="-1674.1223" startZ="6.2252" endX="1585" endY="-1692.6426" endZ="6.2252" rot="270" />
         <spawnline startX="1610" startY="-1719.8339" startZ="6.2188" endX="1610" endY="-1666.3889" endZ="6.2188" rot="90" />
-		<cantdrive models="519" />
+        <cantdrive models="519" />
         <spawnareacube id="police area top" height="13.949919" depth="47.636963" width="68.180908" posX="1539.733" posY="-1649.9851" posZ="8.72121" rotX="0" rotY="0" rotZ="0"></spawnareacube>
         <spawnareacube id="police area below" height="7.3496351" depth="88.653931" width="89.125122" posX="1523.2262" posY="-1722.2699" posZ="4.62902" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
-	
+    
     <vehicle model="409" posX="1272.0273" posY="-2052.5105" posZ="59.0325" rotZ="268.6577" color="1 1" />
     <!-- pmlimo -->
     <vehicle model="427" posX="1248.0804" posY="-2041.6018" posZ="60.0136" rotZ="269.1785" color="0 1" />
@@ -597,8 +597,8 @@
     <vehicle model="472" posX="2764.1978" posY="-2585.1550" posZ="0.2319" rotZ="90.4367" />
     <vehicle model="472" posX="2597.1506" posY="-2477.6426" posZ="0.0033" rotZ="88.9544" />
     <vehicle model="472" posX="2625.4153" posY="-2477.6172" posZ="0.0904" rotZ="90.6708" />
-	<!-- new shit for obj -->
-	<vehicle model="523" posX="-86.6" posY="-1163.6" posZ="1.9" rotX="0" rotY="0" rotZ="342" color="0 1" />
+    <!-- new shit for obj -->
+    <vehicle model="523" posX="-86.6" posY="-1163.6" posZ="1.9" rotX="0" rotY="0" rotZ="342" color="0 1" />
     <vehicle model="422" posX="-78.1" posY="-1198.8" posZ="2.2" rotX="6" rotY="359.749" rotZ="166.026" />
     <vehicle model="529" posX="-100.7" posY="-1175.1" posZ="2.2" rotX="0" rotY="0" rotZ="156" />
     <vehicle model="527" posX="-60" posY="-1160.9" posZ="1.5" rotX="0" rotY="0" rotZ="140" />
@@ -642,8 +642,8 @@
     <vehicle model="492" posX="2094.3" posY="-1813.3" posZ="13.3" rotX="0" rotY="0" rotZ="98" />
     <vehicle model="558" posX="1793.6" posY="-1702.5" posZ="13.2" rotX="0" rotY="0" rotZ="88" />
     <vehicle model="587" posX="1016.4" posY="-1367" posZ="13.2" rotX="0" rotY="0" rotZ="0" />
-	<vehicle model="470" posX="2769.3" posY="-2407.8999" posZ="13.7" rotX="0" rotY="0" rotZ="32" color="95 10 21" />
-	<vehicle model="470" posX="2776.5" posY="-2439.7" posZ="13.7" rotX="0" rotY="0" rotZ="62" color="95 10 21" />
+    <vehicle model="470" posX="2769.3" posY="-2407.8999" posZ="13.7" rotX="0" rotY="0" rotZ="32" color="95 10 21" />
+    <vehicle model="470" posX="2776.5" posY="-2439.7" posZ="13.7" rotX="0" rotY="0" rotZ="62" color="95 10 21" />
     <vehicle model="470" posX="2739.1001" posY="-2457.5" posZ="13.8" rotX="0" rotY="0" rotZ="253.996" color="95 10 21" />
     <vehicle model="470" posX="2742.7" posY="-2474" posZ="13.8" rotX="0" rotY="0" rotZ="356" color="95 10 21" />
     <vehicle model="530" posX="2777.2" posY="-2469.8" posZ="13.4" rotX="0" rotY="0" rotZ="90" />
@@ -660,7 +660,7 @@
     <vehicle model="578" posX="2787.1001" posY="-2519.8" posZ="14.4" rotX="0" rotY="0" rotZ="0" />
     <vehicle model="519" posX="1682.6" posY="-2631" posZ="14.5" rotX="0" rotY="0" rotZ="0" color="245,245,245,245,245,245,0,0,0,0,0,0" />
 
-	
+    
     <pickup posX="1954.8279" posY="-1547.6849" posZ="13.6484" type="9" amount="1" respawn="9999999" synced="false" />
     <!-- LS1 -->
     <pickup posX="815.4976" posY="-1092.8901" posZ="25.7900" type="9" amount="1" respawn="9999999" synced="false" />
@@ -758,7 +758,7 @@
     <!-- 73LosSantos -->
     <pickup posX="1797.602" posY="-1308.881" posZ="133.8128" type="46" amount="1" respawn="30000" synced="false" />
     <!-- 81LosSantos -->
-	
+    
     <object id="object (vgsSstairs03_lvs) (3)" breakable="false" interior="0" collisions="true" alpha="255" model="8613" doublesided="false" scale="1" dimension="0" posX="977.86035" posY="-1016.0098" posZ="45.99" rotX="0" rotY="0" rotZ="359.956"></object>
     <object id="object (fenceshit2) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="984" doublesided="false" scale="1" dimension="0" posX="1075.6299" posY="-979.33008" posZ="52.97" rotX="179.995" rotY="0" rotZ="174.858"></object>
     <object id="object (gen_roofbit1) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="1687" doublesided="false" scale="1" dimension="0" posX="1065.96" posY="-977.54004" posZ="53.07" rotX="0" rotY="0" rotZ="0.22"></object>
@@ -840,8 +840,8 @@
     <object id="object (des_swtstairs1) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="400.27594" posY="-1608.3539" posZ="32.22187" rotX="0" rotY="0" rotZ="0"></object>
     <object id="object (des_swtstairs1) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="11472" doublesided="false" scale="1" dimension="0" posX="400.02563" posY="-1632.579" posZ="32.22187" rotX="0" rotY="0" rotZ="0"></object>
     <object id="crack palace floor" model="17946" posX="2533.8" posY="-1290.54" posZ="36.94" rotX="0" rotY="0" rotZ="0" />
-	
-	<!-- alternative entrance Hospital -->
+    
+    <!-- alternative entrance Hospital -->
     <object id="object (gen_roofbit1) (4)" breakable="false" interior="0" collisions="true" alpha="255" model="1687" doublesided="false" scale="1" dimension="0" posX="1103.7" posY="-1345.4" posZ="19.8" rotX="0" rotY="0" rotZ="0"></object>
     <object id="object (BillBd2) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="1267" doublesided="false" scale="1" dimension="0" posX="1136.4004" posY="-1368.5" posZ="26.3" rotX="0" rotY="0" rotZ="71.993"></object>
     <object id="object (roofstuff16) (2)" breakable="false" interior="0" collisions="true" alpha="255" model="1697" doublesided="false" scale="1" dimension="0" posX="1127.915" posY="-1358.0066" posZ="26" rotX="0" rotY="0" rotZ="141.998"></object>
@@ -857,7 +857,7 @@
     <object id="object (cr1_door) (1)" breakable="false" interior="0" collisions="true" alpha="255" model="3029" doublesided="false" scale="1" dimension="0" posX="1089.1298" posY="-1362.4003" posZ="16" rotX="0" rotY="0" rotZ="0"></object>
     <object id="object (gen_roofbit1) (5)" breakable="false" interior="0" collisions="true" alpha="255" model="1687" doublesided="false" scale="1" dimension="0" posX="1092.6" posY="-1351.4" posZ="19.8" rotX="0" rotY="0" rotZ="270"></object>
     <object id="object (gen_roofbit1) (6)" breakable="false" interior="0" collisions="true" alpha="255" model="1687" doublesided="false" scale="1" dimension="0" posX="1092.5" posY="-1357.8" posZ="19.8" rotX="0" rotY="0" rotZ="270"></object>
-	<!-- /alternative entrance Hospital -->
+    <!-- /alternative entrance Hospital -->
 
     <object id="fenceshit3 newstand fix 5" breakable="true" interior="0" collisions="true" alpha="255" model="983" doublesided="false" scale="1" dimension="0" posX="839.81934" posY="-1064.2207" posZ="32.6273" rotX="0" rotY="90" rotZ="35.019"></object>
     <object id="fenceshit3 newstand fix 4" breakable="true" interior="0" collisions="true" alpha="255" model="983" doublesided="false" scale="1" dimension="0" posX="836.89844" posY="-1059.8125" posZ="32.6273" rotX="0" rotY="90" rotZ="33.014"></object>
@@ -866,52 +866,52 @@
     <object id="fenceshit3 newstand fix 2" breakable="true" interior="0" collisions="true" alpha="255" model="983" doublesided="false" scale="1" dimension="0" posX="838.00482" posY="-1055.9729" posZ="32.6273" rotX="0" rotY="90" rotZ="66.26"></object>
     <object id="vgwstnewall6905 pig pen wall fix" breakable="true" interior="2" alpha="255" model="7922" doublesided="false" scale="1" dimension="0" posX="1210.4498" posY="-17.3844" posZ="1001.1692" rotX="0" rotY="0" rotZ="270"></object>
     <object id="hole fix fencesmallb" breakable="true" interior="0" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="1099.5656" posY="-1291.0272" posZ="17.53054" rotX="0" rotY="90" rotZ="0"></object>
-	<object id="pier hole fix 1 (des_swtfence2)" breakable="true" interior="0" alpha="0" model="11474" doublesided="false" scale="1" dimension="0" posX="395.89999" posY="-2057.2" posZ="10.5" rotX="0" rotY="0" rotZ="0.5"></object>
+    <object id="pier hole fix 1 (des_swtfence2)" breakable="true" interior="0" alpha="0" model="11474" doublesided="false" scale="1" dimension="0" posX="395.89999" posY="-2057.2" posZ="10.5" rotX="0" rotY="0" rotZ="0.5"></object>
     <object id="pier hole fix 2 (des_swtfence2)" breakable="true" interior="0" alpha="0" model="11474" doublesided="false" scale="1" dimension="0" posX="397.5" posY="-2056.8" posZ="10.6" rotX="0" rotY="0" rotZ="0"></object>
     <object id="pier hole fix 3 (des_swtfence2)" breakable="true" interior="0" alpha="0" model="11474" doublesided="false" scale="1" dimension="0" posX="397.5" posY="-2060.3999" posZ="10.4" rotX="0" rotY="0" rotZ="0"></object>
     <object id="pier hole fix 4 (des_swtfence2)" breakable="true" interior="0" alpha="0" model="11474" doublesided="false" scale="1" dimension="0" posX="395" posY="-2060.7" posZ="10.5" rotX="0" rotY="0" rotZ="0"></object>
-	
-	<objective posX="154.2323" posY="-1951.8192" posZ="-1.0000" desc="Gaze longingly out to sea" size="80.0" time="45000" />
-	<objective posX="-82.7596" posY="-1172.0170" posZ="0.0000" desc="Stop for fuel" size="50.0" time="60000" />
-	<objective posX="-52.4424" posY="-1124.3901" posZ="0.0000" desc="Tell truckers they know a lot about trucks bing bong" size="65.0" time="60000" />
-	<objective posX="541.5294" posY="-1293.5161" posZ="13.0000" desc="Buy a new car" size="100.0" time="45000" />
-	<objective posX="755.8079" posY="-1259.3934" posZ="12.9650" desc="Play some tennis" size="90.0" />
-	<objective posX="484.9465" posY="-1499.0133" posZ="13.0000" desc="Buy Cheri a new dress" size="100.0" />
-	<objective posX="381.6934" posY="-2051.2065" posZ="-1.0000" desc="Relax at the pier" size="90.0" time="45000" />
-	<objective posX="1270.7124" posY="-795.6793" posZ="70.965" desc="Chill with Madd Dogg" size="100.0" time="45000" />
-	<objective posX="1462.0706" posY="-1012.1976" posZ="22.0000" desc="Watch the opera" size="90.0" />
-	<objective posX="1021.9375" posY="-1114.1556" posZ="23.8701" desc="Attend the movie premier at the chinese theater" size="70.0" time="45000" />
-	<objective posX="882.2634" posY="-1226.9938" posZ="12.1201" desc="Cameo in Jed Good's latest film" size="130.0" time="40000" />
-	<objective posX="739.4870" posY="-1355.3096" posZ="12.9112" desc="Complain about fake news on morning TV" size="100.0" time="45000" />
-	<objective posX="1036.2753" posY="-1351.3150" posZ="12.0000" desc="Pick up some donuts" size="60.0" />
-	<objective posX="828.5863" posY="-1364.2712" posZ="13.0234" desc="Buy OG Loc's latest album" size="80.0" />
-	<objective posX="410.2908" posY="-1740.8950" posZ="4.0000" desc="Buy some shit" size="70.0" />
-	<objective posX="380.4427" posY="-1885.4113" posZ="-1.0000" desc="Meet dealer" size="45.0" />
-	<objective posX="670.8012" posY="-1866.9278" posZ="3.1112" desc="Excercise at muscle beach" size="40.0" />
-	<objective posX="794.1599" posY="-1624.7216" posZ="-1.0000" desc="Munch on a tasty burger" size="80.0" />
-	<objective posX="1316.8366" posY="-985.0253" posZ="24.0000" desc="Meet with confidential informant" size="85.0" time="40000" />
-	<objective posX="865.5235" posY="-727.6008" posZ="88.3264" desc="Meet mistress for Uno" size="55.0" time="40000" />
-	<objective posX="1119.0668" posY="-1372.6894" posZ="12.0000" desc="Buy gift for secretary" size="70.0" />
-	<objective posX="1920.1833" posY="-1400.1457" posZ="10.3917" desc="SKATE OR DIE!" size="150.0" />
-	<objective posX="2216.6948" posY="-1172.3843" posZ="22.0000" desc="Entertain secretary at seedy hotel" size="75.0" />
-	<objective posX="843.4638" posY="-1101.9404" posZ="23.7112" desc="Press F to pay respects" size="70.0" time="50000" />
-	<objective posX="1990.6287" posY="-1283.2307" posZ="20.0000" desc="Pick up dry cleaning" size="60.0" />
-	<objective posX="2031.4301" posY="-1417.6479" posZ="12.0000" desc="Photo op with sick orphans" size="100.0" time="35000" />
-	<objective posX="1849.1367" posY="-1844.1390" posZ="12.0000" desc="Buy something for Prime Minister JR." size="60.0" />
-	<objective posX="1682.7745" posY="-2635.7731" posZ="12.0000" desc="Meet President Fido at plane" size="100.0" />
-	<objective posX="1941.4040" posY="-2116.2880" posZ="11.6731" desc="Buy something nice for Mrs. Prime Minister" size="80.0" />
-	<objective posX="2787.2136" posY="-2456.2158" posZ="12.0526" desc="Discuss disaster relief plans with the National Guard" size="130.0" time="45000" />
-	<objective posX="2696.4655" posY="-2226.8588" posZ="13.5843" desc="Meet with union leader" size="100.0" time="45000" />
-	<objective posX="2384.5161" posY="-1919.1176" posZ="12.0000" desc="Order two number nines" size="70.0" />
-	<objective posX="2244.6708" posY="-1352.9061" posZ="22.0000" desc="Go to confessions" size="100.0" />
-	<objective posX="2737.6591" posY="-1760.4404" posZ="10.3781" desc="SPORTS!" size="225.0" />
-	<objective posX="2114.9116" posY="-1806.4437" posZ="11.0000" desc="Eat at the pizza parlor thats no pushover" size="85.0" />
-	<objective posX="1778.9178" posY="-1703.4992" posZ="12.0000" desc="Meet with lobbyist" size="75.0" />
-	<objective posX="693.7574" posY="-1645.7923" posZ="-1.0000" desc="Meet 13 year old for pizza" size="60.0" time="40000" />
-	<objective posX="2491.8020" posY="-1669.0101" posZ="12.0000" desc="Participate in community outreach program" size="120.0" />
-	<objective posX="1596.5534" posY="-1511.6716" posZ="12.0000" desc="Collect bribe from oil tycoon" size="100.0" />
-	<objective posX="1406.8829" posY="-1426.1519" posZ="0.0000" desc="Hire hitman" size="50.0" />
-	<objective posX="2118.7929" posY="-1182.3083" posZ="23.0000" desc="Stand in an alley like a moron" size="50.0" />
+    
+    <objective posX="154.2323" posY="-1951.8192" posZ="-1.0000" desc="Gaze longingly out to sea" size="80.0" time="45000" />
+    <objective posX="-82.7596" posY="-1172.0170" posZ="0.0000" desc="Stop for fuel" size="50.0" time="60000" />
+    <objective posX="-52.4424" posY="-1124.3901" posZ="0.0000" desc="Tell truckers they know a lot about trucks bing bong" size="65.0" time="60000" />
+    <objective posX="541.5294" posY="-1293.5161" posZ="13.0000" desc="Buy a new car" size="100.0" time="45000" />
+    <objective posX="755.8079" posY="-1259.3934" posZ="12.9650" desc="Play some tennis" size="90.0" />
+    <objective posX="484.9465" posY="-1499.0133" posZ="13.0000" desc="Buy Cheri a new dress" size="100.0" />
+    <objective posX="381.6934" posY="-2051.2065" posZ="-1.0000" desc="Relax at the pier" size="90.0" time="45000" />
+    <objective posX="1270.7124" posY="-795.6793" posZ="70.965" desc="Chill with Madd Dogg" size="100.0" time="45000" />
+    <objective posX="1462.0706" posY="-1012.1976" posZ="22.0000" desc="Watch the opera" size="90.0" />
+    <objective posX="1021.9375" posY="-1114.1556" posZ="23.8701" desc="Attend the movie premier at the chinese theater" size="70.0" time="45000" />
+    <objective posX="882.2634" posY="-1226.9938" posZ="12.1201" desc="Cameo in Jed Good's latest film" size="130.0" time="40000" />
+    <objective posX="739.4870" posY="-1355.3096" posZ="12.9112" desc="Complain about fake news on morning TV" size="100.0" time="45000" />
+    <objective posX="1036.2753" posY="-1351.3150" posZ="12.0000" desc="Pick up some donuts" size="60.0" />
+    <objective posX="828.5863" posY="-1364.2712" posZ="13.0234" desc="Buy OG Loc's latest album" size="80.0" />
+    <objective posX="410.2908" posY="-1740.8950" posZ="4.0000" desc="Buy some shit" size="70.0" />
+    <objective posX="380.4427" posY="-1885.4113" posZ="-1.0000" desc="Meet dealer" size="45.0" />
+    <objective posX="670.8012" posY="-1866.9278" posZ="3.1112" desc="Excercise at muscle beach" size="40.0" />
+    <objective posX="794.1599" posY="-1624.7216" posZ="-1.0000" desc="Munch on a tasty burger" size="80.0" />
+    <objective posX="1316.8366" posY="-985.0253" posZ="24.0000" desc="Meet with confidential informant" size="85.0" time="40000" />
+    <objective posX="865.5235" posY="-727.6008" posZ="88.3264" desc="Meet mistress for Uno" size="55.0" time="40000" />
+    <objective posX="1119.0668" posY="-1372.6894" posZ="12.0000" desc="Buy gift for secretary" size="70.0" />
+    <objective posX="1920.1833" posY="-1400.1457" posZ="10.3917" desc="SKATE OR DIE!" size="150.0" />
+    <objective posX="2216.6948" posY="-1172.3843" posZ="22.0000" desc="Entertain secretary at seedy hotel" size="75.0" />
+    <objective posX="843.4638" posY="-1101.9404" posZ="23.7112" desc="Press F to pay respects" size="70.0" time="50000" />
+    <objective posX="1990.6287" posY="-1283.2307" posZ="20.0000" desc="Pick up dry cleaning" size="60.0" />
+    <objective posX="2031.4301" posY="-1417.6479" posZ="12.0000" desc="Photo op with sick orphans" size="100.0" time="35000" />
+    <objective posX="1849.1367" posY="-1844.1390" posZ="12.0000" desc="Buy something for Prime Minister JR." size="60.0" />
+    <objective posX="1682.7745" posY="-2635.7731" posZ="12.0000" desc="Meet President Fido at plane" size="100.0" />
+    <objective posX="1941.4040" posY="-2116.2880" posZ="11.6731" desc="Buy something nice for Mrs. Prime Minister" size="80.0" />
+    <objective posX="2787.2136" posY="-2456.2158" posZ="12.0526" desc="Discuss disaster relief plans with the National Guard" size="130.0" time="45000" />
+    <objective posX="2696.4655" posY="-2226.8588" posZ="13.5843" desc="Meet with union leader" size="100.0" time="45000" />
+    <objective posX="2384.5161" posY="-1919.1176" posZ="12.0000" desc="Order two number nines" size="70.0" />
+    <objective posX="2244.6708" posY="-1352.9061" posZ="22.0000" desc="Go to confessions" size="100.0" />
+    <objective posX="2737.6591" posY="-1760.4404" posZ="10.3781" desc="SPORTS!" size="225.0" />
+    <objective posX="2114.9116" posY="-1806.4437" posZ="11.0000" desc="Eat at the pizza parlor thats no pushover" size="85.0" />
+    <objective posX="1778.9178" posY="-1703.4992" posZ="12.0000" desc="Meet with lobbyist" size="75.0" />
+    <objective posX="693.7574" posY="-1645.7923" posZ="-1.0000" desc="Meet 13 year old for pizza" size="60.0" time="40000" />
+    <objective posX="2491.8020" posY="-1669.0101" posZ="12.0000" desc="Participate in community outreach program" size="120.0" />
+    <objective posX="1596.5534" posY="-1511.6716" posZ="12.0000" desc="Collect bribe from oil tycoon" size="100.0" />
+    <objective posX="1406.8829" posY="-1426.1519" posZ="0.0000" desc="Hire hitman" size="50.0" />
+    <objective posX="2118.7929" posY="-1182.3083" posZ="23.0000" desc="Stand in an alley like a moron" size="50.0" />
 
     <boundarycorner posX="3135" posY="-3135" />
     <!-- spark's -->
