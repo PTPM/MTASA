@@ -800,6 +800,24 @@
     <object id="vgwstnewall6905 pig pen wall fix" breakable="true" interior="2" alpha="255" model="7922" doublesided="false" scale="1" dimension="0" posX="1210.4498" posY="-17.3844" posZ="1001.1692" rotX="0" rotY="0" rotZ="270"></object>
     <object id="hole fix fencesmallb" breakable="true" interior="0" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="1099.5656" posY="-1291.0272" posZ="17.53054" rotX="0" rotY="90" rotZ="0"></object>
 
+    <!-- fixes hole in the building south of the ferris wheel -->
+    <object id="pier hole fix 1 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="397.20001" posY="-2056.8" posZ="10.2" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="pier hole fix 2 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="396.39999" posY="-2056.8" posZ="10.2" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="pier hole fix 3 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="397.20001" posY="-2056.8" posZ="11.2" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="pier hole fix 4 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="396.39999" posY="-2056.8" posZ="11.2" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="pier hole fix 5 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="396.89999" posY="-2060.3" posZ="10.2" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="pier hole fix 6 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="396.5" posY="-2060.3" posZ="10.2" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="pier hole fix 7 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="396.5" posY="-2060.3" posZ="11.2" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="pier hole fix 8 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="396.89999" posY="-2060.3" posZ="11.2" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="pier hole fix 9 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="395.70001" posY="-2060.2" posZ="9.7" rotX="270" rotY="180" rotZ="180"></object>
+    <object id="pier hole fix 10 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="396.89999" posY="-2060.2" posZ="9.7" rotX="270" rotY="179.995" rotZ="179.995"></object>
+    <object id="pier hole fix 11 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="396.89999" posY="-2059.1001" posZ="9.7" rotX="270" rotY="179.995" rotZ="179.995"></object>
+    <object id="pier hole fix 12 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="395.70001" posY="-2059.1001" posZ="9.7" rotX="270" rotY="179.995" rotZ="179.995"></object>
+    <object id="pier hole fix 13 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="395.70001" posY="-2058" posZ="9.7" rotX="270" rotY="179.995" rotZ="179.995"></object>
+    <object id="pier hole fix 14(fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="396.89999" posY="-2058" posZ="9.7" rotX="270" rotY="179.995" rotZ="179.995"></object>
+    <object id="pier hole fix 15(fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="396.89999" posY="-2057" posZ="9.7" rotX="270" rotY="179.995" rotZ="179.995"></object>
+    <object id="pier hole fix 16 (fencesmallb)" breakable="true" interior="0" alpha="0" model="970" doublesided="false" scale="1" dimension="0" posX="395.70001" posY="-2057" posZ="9.7" rotX="270" rotY="179.995" rotZ="179.995"></object>
+
     <boundarycorner posX="3135" posY="-3135" />
     <!-- spark's -->
     <boundarycorner posX="3135" posY="-929.6641" />
