@@ -137,10 +137,10 @@ function getMapvoteObject( resourceName )
 	elseif 	resourceName=="ptpm-factory" 			then return { name="Factory", image="mapvoteimages/map-pic-Factory.png", votes=0,youVoted=false,res=resourceName} 
 	elseif 	resourceName=="ptpm-ls"					then return { name="Los Santos", image="mapvoteimages/map-pic-LS.png", votes=0,youVoted=false,res=resourceName} 
 	elseif 	resourceName=="ptpm-lshydra" 			then return { name="Los Santos Hydra", image="mapvoteimages/map-pic-LSH.png", votes=0,youVoted=false,res=resourceName} 
+	elseif 	resourceName=="ptpm-lsobj" 				then return { name="Los Santos Objectives", image="mapvoteimages/map-pic-LSOBJ.png", votes=0,youVoted=false,res=resourceName} 
 	elseif 	resourceName=="ptpm-lv" 				then return { name="Las Venturas", image="mapvoteimages/map-pic-LV.png", votes=0,youVoted=false,res=resourceName} 
-	elseif 	resourceName=="ptpm-lvobj" 				then return { name="Las Venturas Objectives", image="mapvoteimages/map-pic-LVOBJ.png", votes=0,youVoted=false,res=resourceName} 
+	elseif 	resourceName=="ptpm-lvobj" 				then return { name="Las Venturas Objectives", image="mapvoteimages/map-pic-LVOBJ.png", votes=0,youVoted=false,res=resourceName}
 	elseif 	resourceName=="ptpm-sf" 				then return { name="San Fierro", image="mapvoteimages/map-pic-SF.png", votes=0,youVoted=false,res=resourceName} 
-	elseif 	resourceName=="ptpm-fortress" 			then return { name="Fortress", image="mapvoteimages/map-pic-Fortress.png", votes=0,youVoted=false,res=resourceName} 
 	else return nil end
 end
 

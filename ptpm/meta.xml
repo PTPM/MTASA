@@ -71,12 +71,12 @@
 	<file src="mapvoteimages/map-pic-Desert.png" />
 	<file src="mapvoteimages/map-pic-Factory.png" />
 	<file src="mapvoteimages/map-pic-LS.png" />
+	<file src="mapvoteimages/map-pic-LSOBJ.png" />
 	<file src="mapvoteimages/map-pic-LSH.png" />
 	<file src="mapvoteimages/map-pic-LV.png" />
 	<file src="mapvoteimages/map-pic-LVOBJ.png" />
 	<file src="mapvoteimages/map-pic-SF.png" />
-	<file src="mapvoteimages/map-pic-SF.png" />
-	<file src="mapvoteimages/map-pic-Fortress.png" />
+	<file src="mapvoteimages/map-pic-_randomMap.png" />
 	
 	<file src="fonts/tahoma.ttf"/>
 
