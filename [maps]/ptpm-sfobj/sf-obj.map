@@ -474,40 +474,41 @@
     <object id="chinatown box RACK3" breakable="true" interior="0" alpha="255" model="931" doublesided="false" scale="1" dimension="0" posX="-2174.5356" posY="623.81274" posZ="57.78591" rotX="0" rotY="0" rotZ="0"></object>
     <object id="chinatown awning chinawning02" breakable="true" interior="0" alpha="255" model="10262" doublesided="false" scale="1" dimension="0" posX="-2174.0234" posY="614.59161" posZ="56.55196" rotX="0" rotY="0" rotZ="270"></object>
     
-    <objective posX="-2287.3071" posY="-386.1428" posZ="67.0000" desc="Play a round of golf" size="85.0" time="45000" />
-    <objective posX="-2351.6220" posY="-153.3119" posZ="34.0000" desc="Munch on a tasty burger" size="70.0" time="40000" />
+    <objective posX="-2323.0366" posY="-377.6000" posZ="63.0000" desc="Play a round of golf" size="65.0" time="45000" />
+    <objective posX="-2335.8811" posY="-151.2770" posZ="34.0000" desc="Munch on a tasty burger" size="70.0" time="40000" />
     <objective posX="-2462.2011" posY="-117.4917" posZ="24.0000" desc="Meet dealer behind Bing's Bongs" size="65.0" time="40000" />
-    <objective posX="-2515.3333" posY="-20.1749" posZ="24.0000" desc="Go to the Hashbury & Garcia Joint Festival" size="85.0" time="45000" />
-    <objective posX="-2572.9394" posY="-15.3648" posZ="4.0000" desc="Press F to pay respects" size="65.0" time="40000" />
-    <objective posX="-2566.3415" posY="320.8256" posZ="4.0000" desc="Buy gardening supplies" size="50.0" />
-    <objective posX="-2706.6904" posY="376.3920" posZ="4.0000" desc="Appreciate the cubic penis art" size="100.0" />
-    <objective posX="-2441.8491" posY="523.5256" posZ="29.0000" desc="Announce new commemorative coins" size="80.0" />
-    <objective posX="-2545.7895" posY="1227.9793" posZ="39.0000" desc="View the Actual Piece of Cable" size="65.0" />
+    <objective posX="-2505.3188" posY="-20.6570" posZ="15.0000" desc="Go to the Hashbury &amp; Garcia Joint Festival" size="80.0" time="45000" />
+    <objective posX="-2572.9394" posY="-15.3648" posZ="3.0000" desc="Press F to pay respects" size="65.0" time="40000" />
+    <objective posX="-2566.3415" posY="320.8256" posZ="3.0000" desc="Buy gardening supplies" size="50.0" />
+    <objective posX="-2706.6904" posY="376.3920" posZ="3.0000" desc="Appreciate the cubic penis art" size="100.0" />
+    <objective posX="-2441.8491" posY="523.5256" posZ="17.0000" desc="Announce new commemorative coins" size="80.0" />
+    <objective posX="-2545.7895" posY="1227.9793" posZ="30.0000" desc="View the Actual Piece of Cable" size="65.0" />
     <objective posX="-1657.7070" posY="1385.5048" posZ="-1.0000" desc="Enjoy yourself at Pier 69" size="100.0" />
     <objective posX="-1665.1578" posY="1209.5886" posZ="6.0000" desc="Buy a new car" size="50.0" />
     <objective posX="-1632.2380" posY="668.8888" posZ="-6.0000" desc="Present medal to police officer" size="70.0" time="40000" />
     <objective posX="-1684.3627" posY="-45.8920" posZ="2.0000" desc="Meet with union leader" size="75.0" />
-    <objective posX="-1886.9069" posY="-201.0752" posZ="10.0000" desc="Meet with confidential informant" size="70.0" />
+    <objective posX="-1886.9069" posY="-201.0752" posZ="8.0000" desc="Meet with confidential informant" size="70.0" />
     <objective posX="-2322.7824" posY="191.1077" posZ="34.0000" desc="Watch the baseball" size="100.0" />
     <objective posX="-2114.4746" posY="153.2949" posZ="34.0000" desc="Collect suspicious package" size="70.0" />
     <objective posX="-2189.1262" posY="609.1936" posZ="34.0000" desc="Eat noodles with triad boss" size="50.0" time="40000" />
-    <objective posX="-2442.3713" posY="754.2085" posZ="34.0000" desc="Get groceries" size="100.0" />
-    <objective posX="-2065.7575" posY="771.5000" posZ="60.0000" desc="Meet mistress for Yahtzee" size="70.0" time="35000" />
-    <objective posX="-2419.9980" posY="969.4943" posZ="45.0000" desc="Stop for a piss break" size="80.0" />
-    <objective posX="-2776.2851" posY="784.0876" posZ="48.0000" desc="Get donuts" size="60.0" />
-    <objective posX="-2706.6904" posY="376.3920" posZ="4.0000" desc="Accept bribe from Zombotech executive" size="100.0" time="45000" />
-    <objective posX="-2123.2768" posY="-444.6189" posZ="35.0000" desc="SPORTS!" size="100.0" time="40000" />
-    <objective posX="-1954.8408" posY="-859.4519" posZ="31.0000" desc="Give rambling speech about nothing important" size="100.0" time="60000" />
+    <objective posX="-2442.7331" posY="762.5590" posZ="34.0000" desc="Get groceries" size="100.0" />
+    <objective posX="-2055.4230" posY="770.5000" posZ="50.0000" desc="Meet mistress for Yahtzee" size="60.0" time="35000" />
+    <objective posX="-2424.9980" posY="969.4943" posZ="44.0000" desc="Stop for a piss break" size="80.0" />
+    <objective posX="-2776.2851" posY="784.0876" posZ="46.0000" desc="Get donuts" size="60.0" />
+    <objective posX="-1951.6566" posY="659.1814" posZ="45.0000" desc="Accept bribe from Zombotech executive" size="75.0" time="45000" />
+    <objective posX="-2150.1806" posY="-420.4020" posZ="34.0000" desc="SPORTS!" size="100.0" time="40000" />
+    <objective posX="-1954.8408" posY="-859.4519" posZ="31.0000" desc="Give long winded rambling speech" size="100.0" time="60000" />
     <objective posX="-1409.6231" posY="-310.6678" posZ="5.0000" desc="Pick up ambassador at airport" size="80.0" time="45000" />
-    <objective posX="-2008.1921" posY="1117.8888" posZ="4.0000" desc="Go to confessions" size="100.0" />
-    <objective posX="-2020.3030" posY="66.5423" posZ="27.0000" desc="Praise firefighters in a speech" size="75.0" />
-    <objective posX="-2072.7468" posY="924.4473" posZ="45.0000" desc="Walk the red brick road" size="150.0" />
+    <objective posX="-2008.1921" posY="1117.8888" posZ="44.0000" desc="Go to confessions" size="100.0" />
+    <objective posX="-2039.8492" posY="73.7373" posZ="26.0000" desc="Praise courageous firefighters" size="75.0" />
+    <objective posX="-2072.7468" posY="924.4473" posZ="44.0000" desc="Walk the red brick road" size="150.0" />
     <objective posX="-2413.6210" posY="330.8360" posZ="34.0000" desc="Entertain secretary at upscale hotel" size="100.0" />
-    <objective posX="-2454.7285" posY="139.8001" posZ="34.0000" desc="Entertain intern at average hotel" size="70.0" />
-    <objective posX="-1753.7500" posY="885.0000" posZ="295.0000" desc="Squeeze a lemon" size="10.0" />
-    <objective posX="-2521.5488" posY="-619.2417" posZ="132.0000" desc="Give state of the union address" size="100.0" time="60000" />
-    <objective posX="-1364.8951" posY="495.7263" posZ="11.0000" desc="Discuss the war on terror with general" size="10.0" time="35000"/>
-    <objective posX="-1954.7565" posY="227.2266" posZ="35.0000" desc="Buy a new car for secretary" size="80.0" time="35000" />
+    <objective posX="-2449.3637" posY="146.5145" posZ="31.0000" desc="Entertain intern at average hotel" size="70.0" />
+    <objective posX="-1753.7500" posY="884.0000" posZ="295.0000" desc="Squeeze a lemon" size="3.0" />
+    <objective posX="-2518.5488" posY="-619.2417" posZ="119.0000" desc="Give state of the union address" size="100.0" time="60000" />
+    <objective posX="-1337.1674" posY="500.0000" posZ="9.0000" desc="Discuss the war on terror with general" size="20.0" time="35000"/>
+    <objective posX="-1954.2739" posY="273.7908" posZ="28.0000" desc="Buy secretary a new car" size="80.0" time="35000" />
+    <objective posX="-2743.9501" posY="-692.2054" posZ="35.0000" desc="Clean the forest floor to control it" size="75.0" time="40000"/>
     
     <boundarycorner posX="-3000" posY="-887" />
     <boundarycorner posX="-2781" posY="-920" />
