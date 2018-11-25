@@ -50,7 +50,6 @@
     <spawngroup type="pm">
         <class id="12" skin="147" weapons="15,1;41,1000;46,1;24,20" />
         <spawn posX="-2604.2786" posY="-304.8785" posZ="23.2305" rot="112.7947" />
-        <cantdrive models="522,461" />
         <spawnareacube id="pm area" height="34.807327" depth="108.51682" width="218.41797" posX="-2791.6855" posY="-329.47372" posZ="2.74578" rotX="0" rotY="0" rotZ="0"></spawnareacube>
     </spawngroup>
     
@@ -504,7 +503,7 @@
     <objective posX="-2020.3030" posY="66.5423" posZ="27.0000" desc="Praise firefighters in a speech" size="75.0" />
     <objective posX="-2072.7468" posY="924.4473" posZ="45.0000" desc="Walk the red brick road" size="150.0" />
     <objective posX="-2413.6210" posY="330.8360" posZ="34.0000" desc="Entertain secretary at upscale hotel" size="100.0" />
-    <objective posX="-2706.6904" posY="376.3920" posZ="4.0000" desc="Entertain intern at average hotel" size="70.0" />
+    <objective posX="-2454.7285" posY="139.8001" posZ="34.0000" desc="Entertain intern at average hotel" size="70.0" />
     <objective posX="-1753.7500" posY="885.0000" posZ="295.0000" desc="Squeeze a lemon" size="10.0" />
     <objective posX="-2521.5488" posY="-619.2417" posZ="132.0000" desc="Give state of the union address" size="100.0" time="60000" />
     <objective posX="-1364.8951" posY="495.7263" posZ="11.0000" desc="Discuss the war on terror with general" size="10.0" time="35000"/>
