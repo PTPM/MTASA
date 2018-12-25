@@ -894,7 +894,7 @@
     
     <objective posX="154.2323" posY="-1951.8192" posZ="-1.0000" desc="Gaze longingly out to sea" size="80.0" time="45000" />
     <objective posX="-82.7596" posY="-1172.0170" posZ="0.0000" desc="Stop for fuel" size="50.0" time="60000" />
-    <objective posX="-52.4424" posY="-1124.3901" posZ="0.0000" desc="Tell truckers they know a lot about trucks bing bong" size="65.0" time="60000" />
+    <objective posX="-52.4424" posY="-1124.3901" posZ="0.0000" desc="Tell truckers they know a lot about trucks bing bing bong" size="65.0" time="60000" />
     <objective posX="541.5294" posY="-1293.5161" posZ="13.0000" desc="Buy a new car" size="100.0" time="45000" />
     <objective posX="755.8079" posY="-1259.3934" posZ="12.9650" desc="Play some tennis" size="90.0" />
     <objective posX="484.9465" posY="-1499.0133" posZ="13.0000" desc="Buy Cheri a new dress" size="100.0" />
